@@ -1,0 +1,20 @@
+language: php
+
+php:
+  - 7.1
+
+sudo: false
+
+env:
+  - COMPOSER_OPTS=""
+  - COMPOSER_OPTS="--prefer-lowest"
+
+install:
+  - travis_retry composer update $COMPOSER_OPTS
+
+script:
+  - bin/phpunit --coverage-text --coverage-clover coverage.xml
+
+#after_script:
+#  - wget https://scrutinizer-ci.com/ocular.phar
+#  - php ocular.phar code-coverage:upload --format=php-clover coverage.xml
