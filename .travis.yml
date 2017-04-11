@@ -5,12 +5,8 @@ php:
 
 sudo: false
 
-env:
-  - COMPOSER_OPTS=""
-  - COMPOSER_OPTS="--prefer-lowest"
-
 install:
-  - travis_retry composer update $COMPOSER_OPTS
+  - travis_retry composer install
 
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover coverage.xml
