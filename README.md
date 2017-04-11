@@ -34,6 +34,11 @@ final class EventSourcingThing extends AggregateRoot
             ));
         }
     }
+    
+    public function applyTheThingWasRenamed(TheThingWasRenamed $event)
+    {
+        $this->name = $event->name();
+    }
 }
 ```
 
