@@ -13,7 +13,8 @@ install:
   - travis_retry composer update $COMPOSER_OPTS
 
 script:
-  - bin/phpunit --coverage-text --coverage-clover coverage.xml
+  - vendor/bin/phpunit --coverage-text --coverage-clover coverage.xml
+  - vendor/bin/phpstan analyze -l 5 src -c phpstan.neon
 
 #after_script:
 #  - wget https://scrutinizer-ci.com/ocular.phar
