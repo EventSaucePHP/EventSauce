@@ -25,7 +25,7 @@ abstract class AggregateRootTestCase extends TestCase
     private $commandHandler;
 
     /**
-     * @var Exception
+     * @var Exception|null
      */
     private $caughtException;
 
@@ -35,7 +35,7 @@ abstract class AggregateRootTestCase extends TestCase
     private $expectedEvents = [];
 
     /**
-     * @var Exception
+     * @var Exception|null
      */
     private $theExpectedException;
 
