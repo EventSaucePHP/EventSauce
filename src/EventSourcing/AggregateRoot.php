@@ -46,7 +46,7 @@ abstract class AggregateRoot
         return $releasedEvents;
     }
 
-    private function apply(Event $event)
+    protected function apply(Event $event)
     {
         $parts = explode('\\', get_class($event));
         $this->{'apply'.end($parts)}($event);
