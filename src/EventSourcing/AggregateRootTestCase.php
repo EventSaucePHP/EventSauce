@@ -10,9 +10,9 @@ use EventSauce\Time\TestClock;
 abstract class AggregateRootTestCase extends TestCase
 {
     /**
-     * @var TestMessageRepository
+     * @var InMemoryMessageRepository
      */
-    private $eventStore;
+    private $messageRepository;
 
     /**
      * @var AggregateRootRepository
@@ -56,8 +56,8 @@ abstract class AggregateRootTestCase extends TestCase
     {
         $className = $this->aggregateRootClassName();
         $this->clock = new TestClock();
-        $this->eventStore = new TestMessageRepository();
-        $this->repository = new AggregateRootRepository($className, $this->eventStore, new DelegatingMessageDecorator());
+        $this->messageRepository = new InMemoryMessageRepository();
+        $this->repository = new AggregateRootRepository($className, $this->messageRepository, new DelegatingMessageDecorator());
         $this->commandHandler = $this->commandHandler($this->repository, $this->clock);
         $this->expectedEvents = [];
         $this->assertedScenario = false;
@@ -78,7 +78,7 @@ abstract class AggregateRootTestCase extends TestCase
 
         $this->assertExpectedException($this->theExpectedException, $this->caughtException);
         $this->assertLastCommitEqualsEvents(... $this->expectedEvents);
-        $this->eventStore->purgeLastCommit();
+        $this->messageRepository->purgeLastCommit();
         $this->assertedScenario = true;
     }
 
@@ -92,7 +92,7 @@ abstract class AggregateRootTestCase extends TestCase
     protected function given(Event ... $events)
     {
         $this->repository->persist(... $events);
-        $this->eventStore->purgeLastCommit();
+        $this->messageRepository->purgeLastCommit();
 
         return $this;
     }
@@ -143,7 +143,7 @@ abstract class AggregateRootTestCase extends TestCase
 
     protected function assertLastCommitEqualsEvents(Event ... $events)
     {
-        self::assertEquals($events, $this->eventStore->lastCommit());
+        self::assertEquals($events, $this->messageRepository->lastCommit());
     }
 
     private function assertExpectedException(Exception $expectedException = null, Exception $caughtException = null)

@@ -4,7 +4,7 @@ namespace EventSauce\EventSourcing;
 
 use Generator;
 
-class TestMessageRepository implements MessageRepository
+class InMemoryMessageRepository implements MessageRepository
 {
     /**
      * @var Message[]

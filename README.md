@@ -77,6 +77,41 @@ class EventSourcingThingTest extends AggregateRootTestCase
                 $this->pointInTime(),
                 'new name'
             ));
-    } 
+    }
 }
 ```
+
+## Concepts
+
+### AggregateRoot
+
+The `AggregateRoot` is the main `Entity` which is our contact point to the internal behavior/process.
+
+### Event
+
+An event represents something that happened which is relevant to the business.
+
+### Message
+
+A message is the distributed format of an event which can contain relevant, not domain specific, metadata.
+
+### MessageRepository
+
+The message is responsible for persisting and retrieving `Message`'s. A `MessageRepository` is like an EventStore, but
+contains messages instead of purely events.
+
+### MessageDispatcher
+
+The `MessageDispatcher` is responsible for dispatching messages to `Consumer`'s.
+
+### Consumer
+
+A `Consumer` handles `Messages`'s.
+
+### ProcessManager?
+
+This is just a `Consumer`.
+
+### Projector?
+
+This is just a `Consumer`. 
