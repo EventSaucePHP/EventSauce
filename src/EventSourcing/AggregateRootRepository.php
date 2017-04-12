@@ -14,18 +14,18 @@ final class AggregateRootRepository
     /**
      * @var MessageRepository
      */
-    private $eventStore;
+    private $repository;
 
     /**
      * @var MessageDecorator
      */
-    private $processor;
+    private $decorator;
 
-    public function __construct(string $aggregateRootClassName, MessageRepository $eventStore, MessageDecorator $processors)
+    public function __construct(string $aggregateRootClassName, MessageRepository $repository, MessageDecorator $decorator)
     {
         $this->aggregateRootClassName = $aggregateRootClassName;
-        $this->eventStore = $eventStore;
-        $this->processor = $processors;
+        $this->repository = $repository;
+        $this->decorator = $decorator;
     }
 
     public function retrieve(AggregateRootId $aggregateRootId): AggregateRoot
@@ -40,7 +40,7 @@ final class AggregateRootRepository
     private function retrieveAllEvents(AggregateRootId $aggregateRootId): Generator
     {
         /** @var Message $message */
-        foreach ($this->eventStore->retrieveAll($aggregateRootId) as $message) {
+        foreach ($this->repository->retrieveAll($aggregateRootId) as $message) {
             yield $message->event();
         }
     }
@@ -48,9 +48,9 @@ final class AggregateRootRepository
     public function persist(Event ... $events)
     {
         $messages = array_map(function (Event $event) {
-            return $this->processor->decorate(new Message($event));
+            return $this->decorator->decorate(new Message($event));
         }, $events);
 
-        $this->eventStore->persist(... $messages);
+        $this->repository->persist(... $messages);
     }
 }
