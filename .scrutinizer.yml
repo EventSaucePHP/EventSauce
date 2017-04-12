@@ -1,2 +1,13 @@
 tools:
     external_code_coverage: true
+
+filter:
+    paths:
+        - "src/*"
+    excluded_paths:
+        - "src/EventSourcing/Integration/*"
+        - "src/*Test.php"
+
+checks:
+    php:
+        duplication: false
