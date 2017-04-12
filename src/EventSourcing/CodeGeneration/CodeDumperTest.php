@@ -19,7 +19,6 @@ class CodeDumperTest extends TestCase
             list ($definitionGroup, $fixtureFile) = $group;
             $dumper = new CodeDumper();
             $actual = $dumper->dump($definitionGroup);
-            file_put_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'Fixture.php', $actual);
             $expected = file_get_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'Fixture.php');
             $this->assertEquals($expected, $actual);
         }
