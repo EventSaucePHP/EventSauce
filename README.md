@@ -87,6 +87,10 @@ class EventSourcingThingTest extends AggregateRootTestCase
 
 The `AggregateRoot` is the main `Entity` which is our contact point to the internal behavior/process.
 
+### AggregateRootRepository
+
+The `AggregateRootRepository` is our main point of infrastructural contact, 
+
 ### Event
 
 An event represents something that happened which is relevant to the business.
