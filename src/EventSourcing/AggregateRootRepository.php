@@ -21,11 +21,11 @@ final class AggregateRootRepository
      */
     private $decorator;
 
-    public function __construct(string $aggregateRootClassName, MessageRepository $repository, MessageDecorator $decorator)
+    public function __construct(string $aggregateRootClassName, MessageRepository $repository, MessageDecorator $decorator = null)
     {
         $this->aggregateRootClassName = $aggregateRootClassName;
         $this->repository = $repository;
-        $this->decorator = $decorator;
+        $this->decorator = $decorator ?: new DelegatingMessageDecorator();
     }
 
     public function retrieve(AggregateRootId $aggregateRootId): AggregateRoot
