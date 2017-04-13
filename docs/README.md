@@ -2,5 +2,6 @@
 
 * [Installation](./installation.md)
 * [Defining Commands and Events](./defining-commands-and-events.md)
+* [Creating aggregate roots](./creating-aggregate-roots.md)
 * <del>[Getting Started](./getting-started.md)</del>
 * <del>[Testing Aggregates](./testing-aggregates.md)</del>
