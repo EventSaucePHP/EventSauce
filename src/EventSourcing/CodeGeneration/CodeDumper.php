@@ -10,9 +10,9 @@ use function var_export;
 
 class CodeDumper
 {
-    public function dump(DefinitionGroup $definitionGroup): string
+    public function dump(DefinitionGroup $definitionGroup, bool $withHelpers = true): string
     {
-        $eventsCode = $this->dumpEvents($definitionGroup->events());
+        $eventsCode = $this->dumpEvents($definitionGroup->events(), $withHelpers);
         $commandCode = $this->dumpCommands($definitionGroup->commands());
         $namespace = $definitionGroup->namespace();
 
@@ -31,7 +31,7 @@ $commandCode
 EOF;
     }
 
-    private function dumpEvents(array $events): string
+    private function dumpEvents(array $events, bool $withHelpers): string
     {
         $code = [];
 
@@ -41,7 +41,7 @@ EOF;
             $constructor = $this->dumpEventConstructor($event);
             $methods = $this->dumpMethods($event);
             $deserializer = $this->dumpSerializationMethods($event);
-            $testHelpers = $this->dumpTestHelpers($event);
+            $testHelpers = $withHelpers ? $this->dumpTestHelpers($event) : '';
 
             $code[] = <<<EOF
 final class $name implements Event
