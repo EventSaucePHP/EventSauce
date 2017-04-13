@@ -6,13 +6,13 @@ First you'll need to install the main package. This package provides the base fu
 test-tooling.
 
 ```bash
-composer require eventsauce/eventsauce
+composer require eventsauce/eventsauce:@dev
 ```
 
 At the time of writing a Doctrine implementation of the `MessageRepository` is provided separately:
 
 ```bash
-composer require eventsauce/doctrine-message-repository
+composer require eventsauce/doctrine-message-repository:@dev
 ```
 
 There's also a RabbitMQ dispatcher available. This package is an extension to the php-amqplib/rabbitmq-bundle package.
@@ -21,7 +21,7 @@ implementation of the `EventSauce\EventSourcing\Cosumer` interface, binding it t
 `OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface` which ties into the bundle.
 
 ```bash
-composer require eventsauce/rabbitmq-bundle-bindings
+composer require eventsauce/rabbitmq-bundle-bindings:@dev
 ```
 
 ## Setup + Example
