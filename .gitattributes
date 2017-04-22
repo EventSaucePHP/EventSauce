@@ -8,5 +8,6 @@ phpstan.neon export-ignore
 phpunit.xml.dist export-ignore
 README.md export-ignore
 /src/EventSourcing/Integration export-ignore
-/src/Time/*Test.php
+/src/Time/SystemClockTest.php
+/src/Time/TestClockTest.php
 /docs export-ignore
