@@ -1,7 +1,9 @@
 <?php
 
-namespace EventSauce\EventSourcing;
+namespace EventSauce\EventSourcing\Integration\SynchronousDispatching;
 
+use EventSauce\EventSourcing\Message;
+use EventSauce\EventSourcing\SynchronousMessageDispatcher;
 use PHPUnit\Framework\TestCase;
 
 class SynchronousMessageDispatcherTest extends TestCase

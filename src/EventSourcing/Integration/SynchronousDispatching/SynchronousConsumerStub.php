@@ -1,6 +1,9 @@
 <?php
 
-namespace EventSauce\EventSourcing;
+namespace EventSauce\EventSourcing\Integration\SynchronousDispatching;
+
+use EventSauce\EventSourcing\Consumer;
+use EventSauce\EventSourcing\Message;
 
 final class SynchronousConsumerStub implements Consumer
 {
