@@ -8,5 +8,5 @@ phpstan.neon export-ignore
 phpunit.xml.dist export-ignore
 README.md export-ignore
 /src/EventSourcing/Integration export-ignore
-*Test.php
+**/*Test.php
 /docs export-ignore
