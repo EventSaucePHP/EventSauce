@@ -73,6 +73,9 @@ final class EventWithDescription implements Event
         ];
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function withDescription(string $description): EventWithDescription
     {
         $this->description = $description;

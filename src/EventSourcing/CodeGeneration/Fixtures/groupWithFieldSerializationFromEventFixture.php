@@ -73,6 +73,9 @@ final class EventName implements Event
         ];
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function withTitle(string $title): EventName
     {
         $this->title = $title;

@@ -73,6 +73,9 @@ final class FirstEvent implements Event
         ];
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function withFirstField(string $firstField): FirstEvent
     {
         $this->firstField = $firstField;
@@ -157,6 +160,9 @@ final class SecondEvent implements Event
         ];
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function withSecondField(string $secondField): SecondEvent
     {
         $this->secondField = $secondField;

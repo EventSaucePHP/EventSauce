@@ -87,6 +87,9 @@ final class WeWentYamling implements Event
         ];
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function withReference(\Ramsey\Uuid\UuidInterface $reference): WeWentYamling
     {
         $this->reference = $reference;
@@ -172,6 +175,9 @@ final class VersionedEvent implements Event
         ];
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function withTitle(string $title): VersionedEvent
     {
         $this->title = $title;

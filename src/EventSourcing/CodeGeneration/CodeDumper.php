@@ -251,6 +251,9 @@ EOF;
                 $constructorValues[] = $this->dumpConstructorValue($field, $event);
                 $method = sprintf('with%s', ucfirst($field['name']));
                 $helpers[] = <<<EOF
+    /**
+     * @codeCoverageIgnore
+     */
     public function $method({$field['type']} \${$field['name']}): {$event->name()}
     {
         \$this->{$field['name']} = \${$field['name']};

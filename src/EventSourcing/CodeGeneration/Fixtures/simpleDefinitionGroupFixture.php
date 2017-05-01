@@ -87,6 +87,9 @@ final class SomethingHappened implements Event
         ];
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function withWhat(string $what): SomethingHappened
     {
         $this->what = $what;
@@ -94,6 +97,9 @@ final class SomethingHappened implements Event
         return $this;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function withYolo(bool $yolo): SomethingHappened
     {
         $this->yolo = $yolo;
