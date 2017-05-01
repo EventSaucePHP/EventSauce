@@ -3,6 +3,7 @@
 namespace EventSauce\EventSourcing;
 
 use Exception;
+use function get_class;
 use PHPUnit\Framework\TestCase;
 use EventSauce\Time\Clock;
 use EventSauce\Time\TestClock;
@@ -155,7 +156,7 @@ abstract class AggregateRootTestCase extends TestCase
             return;
         }
 
-        if ($expectedException === null) {
+        if ($expectedException === null || get_class($expectedException) !== get_class($caughtException)) {
             throw $caughtException;
         }
 
