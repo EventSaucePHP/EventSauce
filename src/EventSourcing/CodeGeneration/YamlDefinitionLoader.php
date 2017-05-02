@@ -15,10 +15,15 @@ class YamlDefinitionLoader implements DefinitionLoader
         return in_array(pathinfo($filename, PATHINFO_EXTENSION), ['yaml', 'yml']);
     }
 
-    public function load(string $filename): DefinitionGroup
+    public function load(string $filename, DefinitionGroup $definitionGroup = null): DefinitionGroup
     {
         $definition = Yaml::parse(file_get_contents($filename));
-        $definitionGroup = DefinitionGroup::create($definition['namespace']);
+        $definitionGroup = $definitionGroup ?: new DefinitionGroup();
+
+        if (isset($definition['namespace'])) {
+            $definitionGroup->withNamespace($definition['namespace']);
+        }
+
         $this->loadTypeHandlers($definitionGroup, $definition['types'] ?? []);
         $this->loadFieldDefaults($definitionGroup, $definition['fields'] ?? []);
         $this->loadCommands($definitionGroup, $definition['commands'] ?? []);

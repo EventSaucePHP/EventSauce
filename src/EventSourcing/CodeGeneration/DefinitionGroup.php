@@ -65,16 +65,22 @@ final class DefinitionGroup
      */
     private $typeAliases = [];
 
-    private function __construct(string $namespace)
+    public function __construct()
     {
-        $this->namespace = $namespace;
         $this->typeSerializer(PointInTime::class, '{param}->toString()');
         $this->typeDeserializer(PointInTime::class, '{type}::fromString({param})');
     }
 
     public static function create(string $namespace): DefinitionGroup
     {
-        return new DefinitionGroup($namespace);
+        return (new DefinitionGroup($namespace))->withNamespace($namespace);
+    }
+
+    public function withNamespace(string $namespace): DefinitionGroup
+    {
+        $this->namespace = $namespace;
+
+        return $this;
     }
 
     public function typeSerializer(string $type, string $template)
