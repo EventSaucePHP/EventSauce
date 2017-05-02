@@ -73,7 +73,7 @@ final class DefinitionGroup
 
     public static function create(string $namespace): DefinitionGroup
     {
-        return (new DefinitionGroup($namespace))->withNamespace($namespace);
+        return (new DefinitionGroup())->withNamespace($namespace);
     }
 
     public function withNamespace(string $namespace): DefinitionGroup
