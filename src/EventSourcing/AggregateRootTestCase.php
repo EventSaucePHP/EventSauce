@@ -168,12 +168,12 @@ abstract class AggregateRootTestCase extends TestCase
         return $this->clock->pointInTime();
     }
 
-    private function messageDispatcher(): MessageDispatcher
+    protected function messageDispatcher(): MessageDispatcher
     {
         return new SynchronousMessageDispatcher(... $this->consumers());
     }
 
-    private function consumers(): array
+    protected function consumers(): array
     {
         return [];
     }
