@@ -22,8 +22,7 @@ fields:
 commands:
     HideFinancialDetailsOfFraudulentCompany:
         fields:
-            companyId:
-                type: uuid
+            companyId: uuid
     GoYamling:
         fields:
             reference:
@@ -37,8 +36,7 @@ commands:
 events:
     WeWentYamling:
         fields:
-            reference:
-                type: uuid
+            reference: uuid
             slogan:
                 type: string
                 serializer: |

@@ -4,6 +4,7 @@ namespace EventSauce\EventSourcing\CodeGeneration;
 
 use function file_get_contents;
 use function in_array;
+use function is_string;
 use function pathinfo;
 use const PATHINFO_EXTENSION;
 use Symfony\Component\Yaml\Yaml;
@@ -57,6 +58,10 @@ class YamlDefinitionLoader implements DefinitionLoader
             $command = $definitionGroup->command($commandName);
 
             foreach ($fields as $fieldName => $fieldDefinition) {
+                if (is_string($fieldDefinition)) {
+                    $fieldDefinition = ['type' => $fieldDefinition];
+                }
+
                 $command->field($fieldName, $fieldDefinition['type'] ?? null, $fieldDefinition['example'] ?? null);
 
                 if (isset($fieldDefinition['serializer'])) {
@@ -78,6 +83,10 @@ class YamlDefinitionLoader implements DefinitionLoader
             $fields = $eventDefinition['fields'] ?? [];
 
             foreach ($fields as $fieldName => $fieldDefinition) {
+                if (is_string($fieldDefinition)) {
+                    $fieldDefinition = ['type' => $fieldDefinition];
+                }
+
                 $event->field($fieldName, $fieldDefinition['type'] ?? null, $fieldDefinition['example'] ?? null);
 
                 if (isset($fieldDefinition['serializer'])) {
