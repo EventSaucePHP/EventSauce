@@ -16,9 +16,15 @@ class InMemoryMessageRepository implements MessageRepository
      */
     private $lastCommit;
 
-    public function __construct()
+    /**
+     * @var MessageDispatcher
+     */
+    private $dispatcher;
+
+    public function __construct(MessageDispatcher $dispatcher = null)
     {
         $this->lastCommit = [];
+        $this->dispatcher = $dispatcher ?: new SynchronousMessageDispatcher();
     }
 
     /**
@@ -44,6 +50,8 @@ class InMemoryMessageRepository implements MessageRepository
             $this->messages[$message->aggregateRootId()->toString()][] = $message;
             $this->lastCommit[] = $event;
         }
+
+        $this->dispatcher->dispatch(... $messages);
     }
 
     public function retrieveAll(AggregateRootId $id): Generator

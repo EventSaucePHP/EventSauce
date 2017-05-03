@@ -57,7 +57,7 @@ abstract class AggregateRootTestCase extends TestCase
     {
         $className = $this->aggregateRootClassName();
         $this->clock = new TestClock();
-        $this->messageRepository = new InMemoryMessageRepository();
+        $this->messageRepository = new InMemoryMessageRepository($this->messageDispatcher());
         $this->repository = new AggregateRootRepository($className, $this->messageRepository, new DelegatingMessageDecorator());
         $this->commandHandler = $this->commandHandler($this->repository, $this->clock);
         $this->expectedEvents = [];
@@ -166,5 +166,15 @@ abstract class AggregateRootTestCase extends TestCase
     protected function pointInTime(): PointInTime
     {
         return $this->clock->pointInTime();
+    }
+
+    private function messageDispatcher(): MessageDispatcher
+    {
+        return new SynchronousMessageDispatcher(... $this->consumers());
+    }
+
+    private function consumers(): array
+    {
+        return [];
     }
 }
