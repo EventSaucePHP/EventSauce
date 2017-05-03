@@ -93,7 +93,7 @@ final class SomethingHappened implements Event
     public function withWhat(string $what): SomethingHappened
     {
         $this->what = $what;
-        
+
         return $this;
     }
 
@@ -103,7 +103,7 @@ final class SomethingHappened implements Event
     public function withYolo(bool $yolo): SomethingHappened
     {
         $this->yolo = $yolo;
-        
+
         return $this;
     }
 

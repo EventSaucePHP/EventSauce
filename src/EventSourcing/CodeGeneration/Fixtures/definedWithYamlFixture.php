@@ -93,7 +93,7 @@ final class WeWentYamling implements Event
     public function withReference(\Ramsey\Uuid\UuidInterface $reference): WeWentYamling
     {
         $this->reference = $reference;
-        
+
         return $this;
     }
 
@@ -181,7 +181,7 @@ final class VersionedEvent implements Event
     public function withTitle(string $title): VersionedEvent
     {
         $this->title = $title;
-        
+
         return $this;
     }
 

@@ -79,7 +79,7 @@ final class EventWithDescription implements Event
     public function withDescription(string $description): EventWithDescription
     {
         $this->description = $description;
-        
+
         return $this;
     }
 

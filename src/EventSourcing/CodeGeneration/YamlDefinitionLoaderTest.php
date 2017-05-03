@@ -3,6 +3,7 @@
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use const false;
+use function file_get_contents;
 use PHPUnit\Framework\TestCase;
 
 class YamlDefinitionLoaderTest extends TestCase
@@ -19,6 +20,7 @@ class YamlDefinitionLoaderTest extends TestCase
         $definitionGroup = $loader->load(__DIR__.'/Fixtures/exampleDefinition.yaml');
         $dumper = new CodeDumper();
         $code = $dumper->dump($definitionGroup);
+        // file_put_contents(__DIR__.'/Fixtures/definedWithYamlFixture.php', $code);
         $expected = file_get_contents(__DIR__.'/Fixtures/definedWithYamlFixture.php');
         $this->assertEquals($expected, $code);
     }

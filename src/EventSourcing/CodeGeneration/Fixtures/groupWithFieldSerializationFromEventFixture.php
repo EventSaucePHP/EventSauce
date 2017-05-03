@@ -79,7 +79,7 @@ final class EventName implements Event
     public function withTitle(string $title): EventName
     {
         $this->title = $title;
-        
+
         return $this;
     }
 

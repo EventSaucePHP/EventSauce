@@ -79,7 +79,7 @@ final class FirstEvent implements Event
     public function withFirstField(string $firstField): FirstEvent
     {
         $this->firstField = $firstField;
-        
+
         return $this;
     }
 
@@ -166,7 +166,7 @@ final class SecondEvent implements Event
     public function withSecondField(string $secondField): SecondEvent
     {
         $this->secondField = $secondField;
-        
+
         return $this;
     }
 
