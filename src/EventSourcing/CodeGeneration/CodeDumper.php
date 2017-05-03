@@ -257,7 +257,7 @@ EOF;
     public function $method({$field['type']} \${$field['name']}): {$event->name()}
     {
         \$this->{$field['name']} = \${$field['name']};
-        
+
         return \$this;
     }
 
