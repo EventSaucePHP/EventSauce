@@ -3,6 +3,7 @@
 namespace EventSauce\EventSourcing;
 
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 final class AggregateRootId
 {
@@ -19,6 +20,11 @@ final class AggregateRootId
     public function toString(): string
     {
         return $this->identifier;
+    }
+
+    public function toUuid(): UuidInterface
+    {
+        return Uuid::fromString($this->identifier);
     }
 
     public static function create(): AggregateRootId
