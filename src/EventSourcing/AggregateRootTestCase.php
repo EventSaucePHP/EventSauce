@@ -51,12 +51,18 @@ abstract class AggregateRootTestCase extends TestCase
     private $assertedScenario = false;
 
     /**
+     * @var AggregateRootId
+     */
+    private $aggregateRootId;
+
+    /**
      * @before
      */
     protected function setUpEventStore()
     {
         $className = $this->aggregateRootClassName();
         $this->clock = new TestClock();
+        $this->aggregateRootId = AggregateRootId::create();
         $this->messageRepository = new InMemoryMessageRepository($this->messageDispatcher());
         $this->repository = new AggregateRootRepository($className, $this->messageRepository, new DelegatingMessageDecorator());
         $this->commandHandler = $this->commandHandler($this->repository, $this->clock);
@@ -86,6 +92,11 @@ abstract class AggregateRootTestCase extends TestCase
     abstract protected function aggregateRootClassName(): string;
 
     abstract protected function commandHandler(AggregateRootRepository $repository, Clock $clock): CommandHandler;
+
+    protected function aggregateRootId(): AggregateRootId
+    {
+        return $this->aggregateRootId;
+    }
 
     /**
      * @return $this

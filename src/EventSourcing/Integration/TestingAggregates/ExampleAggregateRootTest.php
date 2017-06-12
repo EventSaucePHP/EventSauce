@@ -2,7 +2,6 @@
 
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
-use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\AggregateRootTestCase;
 use EventSauce\EventSourcing\CommandHandler;
@@ -25,7 +24,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
      */
     public function executing_a_command_sucessfully()
     {
-        $aggregateRootId = AggregateRootId::create();
+        $aggregateRootId = $this->aggregateRootId();
         $this->when(new DummyCommand($aggregateRootId));
         $this->then(new DummyTaskWasExecuted($aggregateRootId, $this->pointInTime()));
     }
@@ -35,7 +34,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
      */
     public function asserting_nothing_happened()
     {
-        $aggregateRootId = AggregateRootId::create();
+        $aggregateRootId = $this->aggregateRootId();
         $this->when(new IgnoredCommand($aggregateRootId));
         $this->thenNothingShouldHaveHappened();
     }
@@ -45,7 +44,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
      */
     public function expecting_exceptions()
     {
-        $this->when(new ExceptionInducingCommand(AggregateRootId::create()))
+        $this->when(new ExceptionInducingCommand($this->aggregateRootId()))
             ->thenWeAreSorry(new DummyException());
     }
 
@@ -55,7 +54,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     public function not_expecting_exceptions()
     {
         $this->expectException(DummyException::class);
-        $this->when(new ExceptionInducingCommand(AggregateRootId::create()));
+        $this->when(new ExceptionInducingCommand($this->aggregateRootId()));
         $this->assertScenario();
     }
 
@@ -64,7 +63,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
      */
     public function setting_preconditions()
     {
-        $id = AggregateRootId::create();
+        $id = $this->aggregateRootId();
         $this->given(new DummyIncrementingHappened($id, $this->pointInTime(), 1))
             ->when(new DummyIncrementCommand($id))
             ->then(new DummyIncrementingHappened($id, $this->pointInTime(), 2));
