@@ -2,8 +2,8 @@
 
 namespace EventSauce\EventSourcing;
 
-use function explode;
 use Generator;
+use function explode;
 use function get_class;
 
 abstract class AggregateRoot
@@ -49,12 +49,12 @@ abstract class AggregateRoot
     protected function apply(Event $event)
     {
         $parts = explode('\\', get_class($event));
-        $this->{'apply'.end($parts)}($event);
+        $this->{'apply' . end($parts)}($event);
     }
 
     /**
      * @param AggregateRootId $aggregateRootId
-     * @param Generator $events
+     * @param Generator       $events
      *
      * @return static
      */

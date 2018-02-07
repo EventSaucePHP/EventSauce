@@ -52,7 +52,7 @@ final class AggregateRootRepository
 
     public function persistEvents(Event ... $events)
     {
-        $messages = array_map(function (Event $event) {
+        $messages = array_map(function(Event $event) {
             return $this->decorator->decorate(new Message($event));
         }, $events);
 
