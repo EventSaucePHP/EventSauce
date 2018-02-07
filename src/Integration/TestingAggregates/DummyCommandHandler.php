@@ -5,7 +5,7 @@ namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\CommandHandler;
-use EventSauce\Time\Clock;
+use EventSauce\EventSourcing\Time\Clock;
 
 class DummyCommandHandler implements CommandHandler
 {
@@ -41,7 +41,7 @@ class DummyCommandHandler implements CommandHandler
                 $aggregate->increment($this->clock);
             }
         } finally {
-            $this->repository->persist(... $aggregate->releaseEvents());
+            $this->repository->persist($aggregate);
         }
     }
 }

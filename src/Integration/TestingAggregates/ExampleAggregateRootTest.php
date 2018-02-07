@@ -5,7 +5,8 @@ namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\AggregateRootTestCase;
 use EventSauce\EventSourcing\CommandHandler;
-use EventSauce\Time\Clock;
+use EventSauce\EventSourcing\Time\Clock;
+use LogicException;
 
 class ExampleAggregateRootTest extends AggregateRootTestCase
 {
@@ -55,6 +56,17 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     {
         $this->expectException(DummyException::class);
         $this->when(new ExceptionInducingCommand($this->aggregateRootId()));
+        $this->assertScenario();
+    }
+
+    /**
+     * @test
+     */
+    public function expecting_the_wrong_exception()
+    {
+        $this->expectException(DummyException::class);
+        $this->when(new ExceptionInducingCommand($this->aggregateRootId()))
+            ->thenWeAreSorry(new LogicException());
         $this->assertScenario();
     }
 

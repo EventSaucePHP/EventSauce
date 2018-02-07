@@ -1,13 +1,13 @@
 <?php
 
-namespace Simple\Definition\Group;
+namespace Group\With\FieldDeserialization;
 
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
-final class SomethingHappened implements Event
+final class WithFieldSerializers implements Event
 {
     /**
      * @var AggregateRootId
@@ -15,14 +15,9 @@ final class SomethingHappened implements Event
     private $aggregateRootId;
 
     /**
-     * @var string
+     * @var array
      */
-    private $what;
-
-    /**
-     * @var bool
-     */
-    private $yolo;
+    private $items;
 
     /**
      * @var PointInTime
@@ -32,13 +27,11 @@ final class SomethingHappened implements Event
     public function __construct(
         AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording,
-        string $what,
-        bool $yolo
+        array $items
     ) {
         $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
-        $this->what = $what;
-        $this->yolo = $yolo;
+        $this->items = $items;
     }
 
     public function aggregateRootId(): AggregateRootId
@@ -46,21 +39,16 @@ final class SomethingHappened implements Event
         return $this->aggregateRootId;
     }
 
-    public function what(): string
+    public function items(): array
     {
-        return $this->what;
-    }
-
-    public function yolo(): bool
-    {
-        return $this->yolo;
+        return $this->items;
     }
 
     public function eventVersion(): int
     {
         return 1;
     }
-    
+
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -71,52 +59,31 @@ final class SomethingHappened implements Event
         AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
-        return new SomethingHappened(
+        return new WithFieldSerializers(
             $aggregateRootId,
             $timeOfRecording,
-            (string) $payload['what'],
-            (bool) $payload['yolo']
+            array_map(function ($property) {
+                return ['property' => $property];
+            }, $payload['items'])
         );
     }
 
     public function toPayload(): array
     {
         return [
-            'what' => (string) $this->what,
-            'yolo' => (bool) $this->yolo
+            'items' => array_map(function ($item) {
+                return $item['property'];
+            }, $this->items)
         ];
     }
 
-    /**
-     * @codeCoverageIgnore
-     */
-    public function withWhat(string $what): SomethingHappened
+    public static function withItems(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording, array $items): WithFieldSerializers
     {
-        $this->what = $what;
-
-        return $this;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function withYolo(bool $yolo): SomethingHappened
-    {
-        $this->yolo = $yolo;
-
-        return $this;
-    }
-
-    public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): SomethingHappened
-    {
-        return new SomethingHappened(
+        return new WithFieldSerializers(
             $aggregateRootId,
             $timeOfRecording,
-            (string) 'Example Event',
-            (bool) true
+            $items
         );
     }
 
 }
-
-

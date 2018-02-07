@@ -48,7 +48,7 @@ final class FirstEvent implements Event
     {
         return 1;
     }
-    
+
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -135,7 +135,7 @@ final class SecondEvent implements Event
     {
         return 1;
     }
-    
+
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -180,5 +180,3 @@ final class SecondEvent implements Event
     }
 
 }
-
-

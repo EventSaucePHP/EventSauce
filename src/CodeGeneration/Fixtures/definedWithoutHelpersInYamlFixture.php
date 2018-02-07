@@ -60,7 +60,7 @@ final class UserSubscribedFromMailingList implements Event
     {
         return 1;
     }
-    
+
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -88,7 +88,6 @@ final class UserSubscribedFromMailingList implements Event
     }
 
 }
-
 
 final class SubscribeToMailingList implements Command
 {
@@ -213,4 +212,3 @@ final class UnsubscribeFromMailingList implements Command
     }
 
 }
-

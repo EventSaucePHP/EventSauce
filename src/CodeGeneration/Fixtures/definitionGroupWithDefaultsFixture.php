@@ -48,7 +48,7 @@ final class EventWithDescription implements Event
     {
         return 1;
     }
-    
+
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -93,5 +93,3 @@ final class EventWithDescription implements Event
     }
 
 }
-
-

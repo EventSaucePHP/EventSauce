@@ -10,7 +10,7 @@ use EventSauce\EventSourcing\Serialization\UpcastingMessageSerializer;
 use EventSauce\EventSourcing\Upcasting\DelegatingUpcaster;
 use function iterator_to_array;
 use PHPUnit\Framework\TestCase;
-use EventSauce\Time\TestClock;
+use EventSauce\EventSourcing\Time\TestClock;
 
 class UpcastingEventsTest extends TestCase
 {

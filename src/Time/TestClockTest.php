@@ -1,6 +1,6 @@
 <?php
 
-namespace EventSauce\Time;
+namespace EventSauce\EventSourcing\Time;
 
 use EventSauce\EventSourcing\PointInTime;
 use PHPUnit\Framework\TestCase;

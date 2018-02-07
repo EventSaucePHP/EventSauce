@@ -7,7 +7,6 @@ use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
-
 final class DoSomething implements Command
 {
     /**
@@ -51,4 +50,3 @@ final class DoSomething implements Command
     }
 
 }
-

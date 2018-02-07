@@ -20,6 +20,11 @@ abstract class DefinitionWithFields
     protected $fields = [];
 
     /**
+     * @var string
+     */
+    protected $fieldsFrom = '';
+
+    /**
      * @var array <field, template>
      */
     protected $fieldSerializers = [];
@@ -35,6 +40,17 @@ abstract class DefinitionWithFields
         $this->group = $group;
     }
 
+    /**
+     * @param string $otherType
+     * @return $this
+     */
+    public function withFieldsFrom(string $otherType)
+    {
+        $this->fieldsFrom = $otherType;
+
+        return $this;
+    }
+
     public function name(): string
     {
         return $this->name;
@@ -43,6 +59,11 @@ abstract class DefinitionWithFields
     public function fields(): array
     {
         return $this->fields;
+    }
+
+    public function fieldsFrom(): string
+    {
+        return $this->fieldsFrom;
     }
 
     public function field(string $name, string $type = null, string $example = null)

@@ -60,7 +60,7 @@ final class WeWentYamling implements Event
     {
         return 1;
     }
-    
+
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -150,7 +150,7 @@ final class VersionedEvent implements Event
     {
         return 2;
     }
-    
+
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -195,7 +195,6 @@ final class VersionedEvent implements Event
     }
 
 }
-
 
 final class HideFinancialDetailsOfFraudulentCompany implements Command
 {
@@ -296,4 +295,3 @@ final class GoYamling implements Command
     }
 
 }
-

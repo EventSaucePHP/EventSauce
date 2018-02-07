@@ -2,6 +2,7 @@
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
+use function array_filter;
 use function join;
 use const null;
 use function sprintf;
@@ -10,11 +11,18 @@ use function var_export;
 
 class CodeDumper
 {
+    /**
+     * @var DefinitionGroup
+     */
+    private $definitionGroup;
+
     public function dump(DefinitionGroup $definitionGroup, bool $withHelpers = true): string
     {
+        $this->definitionGroup = $definitionGroup;
         $eventsCode = $this->dumpEvents($definitionGroup->events(), $withHelpers);
         $commandCode = $this->dumpCommands($definitionGroup->commands());
         $namespace = $definitionGroup->namespace();
+        $allCode = join(array_filter([$eventsCode, $commandCode]), "\n\n");
 
         return <<<EOF
 <?php
@@ -26,14 +34,18 @@ use EventSauce\\EventSourcing\\Command;
 use EventSauce\\EventSourcing\\Event;
 use EventSauce\\EventSourcing\\PointInTime;
 
-$eventsCode
-$commandCode
+$allCode
+
 EOF;
     }
 
     private function dumpEvents(array $events, bool $withHelpers): string
     {
         $code = [];
+
+        if (empty($events)) {
+            return '';
+        }
 
         foreach ($events as $event) {
             $name = $event->name();
@@ -55,7 +67,7 @@ $constructor$methods    public function eventVersion(): int
     {
         return {$event->version()};
     }
-    
+
     public function timeOfRecording(): PointInTime
     {
         return \$this->timeOfRecording;
@@ -69,11 +81,12 @@ $testHelpers}
 EOF;
         }
 
-        return join('', $code);
+        return rtrim(join('', $code));
     }
 
     private function dumpFields(DefinitionWithFields $definition): string
     {
+        $fields = $this->fieldsFromDefinition($definition);
         $code = [];
         $code[] = <<<EOF
     /**
@@ -85,7 +98,7 @@ EOF;
 EOF;
 
 
-        foreach ($definition->fields() as $field) {
+        foreach ($fields as $field) {
             $name = $field['name'];
             $type = $field['type'];
 
@@ -107,8 +120,9 @@ EOF;
     {
         $arguments = ['        AggregateRootId $aggregateRootId', '        PointInTime $timeOfRecording'];
         $assignments = ['        $this->aggregateRootId = $aggregateRootId;', '        $this->timeOfRecording = $timeOfRecording;'];
+        $fields = $this->fieldsFromDefinition($event);
 
-        foreach ($event->fields() as $field) {
+        foreach ($fields as $field) {
             $arguments[] = sprintf('        %s $%s', $field['type'], $field['name']);
             $assignments[] = sprintf('        $this->%s = $%s;', $field['name'], $field['name']);
         }
@@ -134,8 +148,9 @@ EOF;
     {
         $arguments = ['        AggregateRootId $aggregateRootId', '        PointInTime $timeOfRequest'];
         $assignments = ['        $this->aggregateRootId = $aggregateRootId;', '        $this->timeOfRequest = $timeOfRequest;'];
+        $fields = $this->fieldsFromDefinition($command);
 
-        foreach ($command->fields() as $field) {
+        foreach ($fields as $field) {
             $arguments[] = sprintf('        %s $%s', $field['type'], $field['name']);
             $assignments[] = sprintf('        $this->%s = $%s;', $field['name'], $field['name']);
         }
@@ -169,7 +184,7 @@ EOF;
 EOF;
 
 
-        foreach ($command->fields() as $field) {
+        foreach ($this->fieldsFromDefinition($command) as $field) {
             $methods[] = <<<EOF
     public function {$field['name']}(): {$field['type']}
     {
@@ -180,7 +195,7 @@ EOF;
 EOF;
         }
 
-        return join('', $methods);
+        return rtrim(join('', $methods))."\n\n";
     }
 
     private function dumpSerializationMethods(EventDefinition $event)
@@ -189,7 +204,7 @@ EOF;
         $arguments = [];
         $serializers = [];
 
-        foreach ($event->fields() as $field) {
+        foreach ($this->fieldsFromDefinition($event) as $field) {
             $parameter = sprintf('$payload[\'%s\']', $field['name']);
             $template = $event->deserializerForField($field['name'])
                 ?: $event->deserializerForType($field['type']);
@@ -242,7 +257,7 @@ EOF;
         $constructorValues = ['$aggregateRootId', '$timeOfRecording'];
         $helpers = [];
 
-        foreach ($event->fields() as $field) {
+        foreach ($this->fieldsFromDefinition($event) as $field) {
             if ($field['example'] === null) {
                 $constructor[] = ucfirst($field['name']);
                 $constructorArguments .= sprintf(', %s $%s', $field['type'], $field['name']);
@@ -326,6 +341,42 @@ final class {$command->name()} implements Command
 EOF;
         }
 
-        return join('', $code);
+        return rtrim(join('', $code));
+    }
+
+    /**
+     * @param DefinitionWithFields $definition
+     * @return array
+     */
+    private function fieldsFromDefinition(DefinitionWithFields $definition): array
+    {
+        $fields = $this->fieldsFrom($definition->fieldsFrom());
+
+        foreach ($definition->fields() as $field) {
+            array_push($fields, $field);
+        }
+
+        return $fields;
+    }
+
+    private function fieldsFrom(string $fieldsFrom): array
+    {
+        if (empty($fieldsFrom)) {
+            return [];
+        }
+
+        foreach ($this->definitionGroup->events() as $event) {
+            if ($event->name() === $fieldsFrom)  {
+                return $event->fields();
+            }
+        }
+
+        foreach ($this->definitionGroup->commands() as $command) {
+            if ($command->name() === $fieldsFrom)  {
+                return $command->fields();
+            }
+        }
+
+        return [];
     }
 }

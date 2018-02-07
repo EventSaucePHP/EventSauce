@@ -1,6 +1,6 @@
 <?php
 
-namespace EventSauce\Time;
+namespace EventSauce\EventSourcing\Time;
 
 use DateTimeImmutable;
 use EventSauce\EventSourcing\PointInTime;

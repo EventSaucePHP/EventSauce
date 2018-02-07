@@ -21,10 +21,10 @@ final class AggregateRootRepository
      */
     private $decorator;
 
-    public function __construct(string $aggregateRootClassName, MessageRepository $repository, MessageDecorator $decorator = null)
+    public function __construct(string $aggregateRootClassName, MessageRepository $messageRepository, MessageDecorator $decorator = null)
     {
         $this->aggregateRootClassName = $aggregateRootClassName;
-        $this->repository = $repository;
+        $this->repository = $messageRepository;
         $this->decorator = $decorator ?: new DelegatingMessageDecorator();
     }
 
@@ -45,7 +45,12 @@ final class AggregateRootRepository
         }
     }
 
-    public function persist(Event ... $events)
+    public function persist(AggregateRoot $aggregateRoot)
+    {
+        $this->persistEvents(...$aggregateRoot->releaseEvents());
+    }
+
+    public function persistEvents(Event ... $events)
     {
         $messages = array_map(function (Event $event) {
             return $this->decorator->decorate(new Message($event));

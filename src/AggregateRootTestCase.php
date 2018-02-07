@@ -5,8 +5,8 @@ namespace EventSauce\EventSourcing;
 use Exception;
 use function get_class;
 use PHPUnit\Framework\TestCase;
-use EventSauce\Time\Clock;
-use EventSauce\Time\TestClock;
+use EventSauce\EventSourcing\Time\Clock;
+use EventSauce\EventSourcing\Time\TestClock;
 
 abstract class AggregateRootTestCase extends TestCase
 {
@@ -83,10 +83,15 @@ abstract class AggregateRootTestCase extends TestCase
         }
         // @codeCoverageIgnoreEnd
 
-        $this->assertExpectedException($this->theExpectedException, $this->caughtException);
-        $this->assertLastCommitEqualsEvents(... $this->expectedEvents);
-        $this->messageRepository->purgeLastCommit();
-        $this->assertedScenario = true;
+        try {
+            $this->assertExpectedException($this->theExpectedException, $this->caughtException);
+            $this->assertLastCommitEqualsEvents(... $this->expectedEvents);
+            $this->messageRepository->purgeLastCommit();
+        } finally {
+            $this->assertedScenario = true;
+            $this->theExpectedException = null;
+            $this->caughtException = null;
+        }
     }
 
     abstract protected function aggregateRootClassName(): string;
@@ -103,7 +108,7 @@ abstract class AggregateRootTestCase extends TestCase
      */
     protected function given(Event ... $events)
     {
-        $this->repository->persist(... $events);
+        $this->repository->persistEvents(... $events);
         $this->messageRepository->purgeLastCommit();
 
         return $this;
@@ -155,23 +160,20 @@ abstract class AggregateRootTestCase extends TestCase
 
     protected function assertLastCommitEqualsEvents(Event ... $events)
     {
-        self::assertEquals($events, $this->messageRepository->lastCommit());
+        self::assertEquals($events, $this->messageRepository->lastCommit(), "Events are not equal.");
     }
 
     private function assertExpectedException(Exception $expectedException = null, Exception $caughtException = null)
     {
-        $this->theExpectedException = null;
-        $this->caughtException = null;
-
         if ($expectedException == $caughtException) {
             return;
         }
 
-        if ($caughtException !== null && get_class($expectedException) !== get_class($caughtException)) {
+        if ($expectedException == null || ($caughtException !== null && (get_class($expectedException) !== get_class($caughtException)))) {
             throw $caughtException;
         }
 
-        self::assertEquals([$expectedException], [$caughtException]);
+        self::assertEquals([$expectedException], [$caughtException], ">> Exceptions are not equal.");
     }
 
     protected function pointInTime(): PointInTime
@@ -184,6 +186,9 @@ abstract class AggregateRootTestCase extends TestCase
         return new SynchronousMessageDispatcher(... $this->consumers());
     }
 
+    /**
+     * @return Consumer[]
+     */
     protected function consumers(): array
     {
         return [];

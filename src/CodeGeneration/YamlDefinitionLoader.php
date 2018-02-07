@@ -2,12 +2,13 @@
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
+use Symfony\Component\Yaml\Yaml;
+use const PATHINFO_EXTENSION;
 use function file_get_contents;
 use function in_array;
 use function is_string;
 use function pathinfo;
-use const PATHINFO_EXTENSION;
-use Symfony\Component\Yaml\Yaml;
+use function var_dump;
 
 class YamlDefinitionLoader implements DefinitionLoader
 {
@@ -56,6 +57,7 @@ class YamlDefinitionLoader implements DefinitionLoader
         foreach ($commands as $commandName => $commandDefinition) {
             $fields = $commandDefinition['fields'] ?? [];
             $command = $definitionGroup->command($commandName);
+            $command->withFieldsFrom($commandDefinition['fields_from'] ?? '');
 
             foreach ($fields as $fieldName => $fieldDefinition) {
                 if (is_string($fieldDefinition)) {
@@ -80,6 +82,7 @@ class YamlDefinitionLoader implements DefinitionLoader
         foreach ($events as $eventName => $eventDefinition) {
             $event = $definitionGroup->event($eventName);
             $event->atVersion($eventDefinition['version'] ?? 1);
+            $event->withFieldsFrom($eventDefinition['fields_from'] ?? '');
             $fields = $eventDefinition['fields'] ?? [];
 
             foreach ($fields as $fieldName => $fieldDefinition) {

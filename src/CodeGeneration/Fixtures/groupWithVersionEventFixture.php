@@ -1,23 +1,18 @@
 <?php
 
-namespace Group\With\FieldDeserialization;
+namespace With\Versioned\Event;
 
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
-final class WithFieldSerializers implements Event
+final class VersionTwo implements Event
 {
     /**
      * @var AggregateRootId
      */
     private $aggregateRootId;
-
-    /**
-     * @var array
-     */
-    private $items;
 
     /**
      * @var PointInTime
@@ -26,12 +21,10 @@ final class WithFieldSerializers implements Event
 
     public function __construct(
         AggregateRootId $aggregateRootId,
-        PointInTime $timeOfRecording,
-        array $items
+        PointInTime $timeOfRecording
     ) {
         $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
-        $this->items = $items;
     }
 
     public function aggregateRootId(): AggregateRootId
@@ -39,16 +32,11 @@ final class WithFieldSerializers implements Event
         return $this->aggregateRootId;
     }
 
-    public function items(): array
-    {
-        return $this->items;
-    }
-
     public function eventVersion(): int
     {
-        return 1;
+        return 2;
     }
-    
+
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -59,33 +47,23 @@ final class WithFieldSerializers implements Event
         AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
-        return new WithFieldSerializers(
+        return new VersionTwo(
             $aggregateRootId,
-            $timeOfRecording,
-            array_map(function ($property) {
-                return ['property' => $property];
-            }, $payload['items'])
+            $timeOfRecording
         );
     }
 
     public function toPayload(): array
     {
-        return [
-            'items' => array_map(function ($item) {
-                return $item['property'];
-            }, $this->items)
-        ];
+        return [];
     }
 
-    public static function withItems(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording, array $items): WithFieldSerializers
+    public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): VersionTwo
     {
-        return new WithFieldSerializers(
+        return new VersionTwo(
             $aggregateRootId,
-            $timeOfRecording,
-            $items
+            $timeOfRecording
         );
     }
 
 }
-
-

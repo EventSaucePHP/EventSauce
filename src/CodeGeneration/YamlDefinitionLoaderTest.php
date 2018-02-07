@@ -2,9 +2,9 @@
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
+use PHPUnit\Framework\TestCase;
 use const false;
 use function file_get_contents;
-use PHPUnit\Framework\TestCase;
 
 class YamlDefinitionLoaderTest extends TestCase
 {
@@ -17,11 +17,11 @@ class YamlDefinitionLoaderTest extends TestCase
         $this->assertTrue($loader->canLoad('a_yaml_file.yaml'));
         $this->assertTrue($loader->canLoad('a_yaml_file.yml'));
         $this->assertFalse($loader->canLoad('not_a_yaml_file.php'));
-        $definitionGroup = $loader->load(__DIR__.'/Fixtures/exampleDefinition.yaml');
+        $definitionGroup = $loader->load(__DIR__ . '/Fixtures/exampleDefinition.yaml');
         $dumper = new CodeDumper();
         $code = $dumper->dump($definitionGroup);
-        // file_put_contents(__DIR__.'/Fixtures/definedWithYamlFixture.php', $code);
-        $expected = file_get_contents(__DIR__.'/Fixtures/definedWithYamlFixture.php');
+        // file_put_contents(__DIR__ . '/Fixtures/definedWithYamlFixture.php', $code);
+        $expected = file_get_contents(__DIR__ . '/Fixtures/definedWithYamlFixture.php');
         $this->assertEquals($expected, $code);
     }
 
@@ -31,10 +31,11 @@ class YamlDefinitionLoaderTest extends TestCase
     public function loading_definitions_from_yaml_without_helpers()
     {
         $loader = new YamlDefinitionLoader();
-        $definitionGroup = $loader->load(__DIR__.'/Fixtures/exampleDefinitionWithoutHelpers.yaml');
+        $definitionGroup = $loader->load(__DIR__ . '/Fixtures/exampleDefinitionWithoutHelpers.yaml');
         $dumper = new CodeDumper();
         $code = $dumper->dump($definitionGroup, false);
-        $expected = file_get_contents(__DIR__.'/Fixtures/definedWithoutHelpersInYamlFixture.php');
+        // file_put_contents(__DIR__ . '/Fixtures/definedWithoutHelpersInYamlFixture.php', $code);
+        $expected = file_get_contents(__DIR__ . '/Fixtures/definedWithoutHelpersInYamlFixture.php');
         $this->assertEquals($expected, $code);
     }
 }

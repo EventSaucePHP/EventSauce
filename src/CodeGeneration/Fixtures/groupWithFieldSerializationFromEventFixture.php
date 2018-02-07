@@ -1,18 +1,23 @@
 <?php
 
-namespace With\Versioned\Event;
+namespace With\EventFieldSerialization;
 
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
-final class VersionTwo implements Event
+final class EventName implements Event
 {
     /**
      * @var AggregateRootId
      */
     private $aggregateRootId;
+
+    /**
+     * @var string
+     */
+    private $title;
 
     /**
      * @var PointInTime
@@ -21,10 +26,12 @@ final class VersionTwo implements Event
 
     public function __construct(
         AggregateRootId $aggregateRootId,
-        PointInTime $timeOfRecording
+        PointInTime $timeOfRecording,
+        string $title
     ) {
         $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
+        $this->title = $title;
     }
 
     public function aggregateRootId(): AggregateRootId
@@ -32,11 +39,16 @@ final class VersionTwo implements Event
         return $this->aggregateRootId;
     }
 
+    public function title(): string
+    {
+        return $this->title;
+    }
+
     public function eventVersion(): int
     {
-        return 2;
+        return 1;
     }
-    
+
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -47,25 +59,37 @@ final class VersionTwo implements Event
         AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
-        return new VersionTwo(
+        return new EventName(
             $aggregateRootId,
-            $timeOfRecording
+            $timeOfRecording,
+            strtolower($payload['title'])
         );
     }
 
     public function toPayload(): array
     {
-        return [];
+        return [
+            'title' => strtoupper($this->title)
+        ];
     }
 
-    public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): VersionTwo
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withTitle(string $title): EventName
     {
-        return new VersionTwo(
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): EventName
+    {
+        return new EventName(
             $aggregateRootId,
-            $timeOfRecording
+            $timeOfRecording,
+            strtolower('Title')
         );
     }
 
 }
-
-

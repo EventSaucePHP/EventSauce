@@ -3,7 +3,7 @@
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRoot;
-use EventSauce\Time\Clock;
+use EventSauce\EventSourcing\Time\Clock;
 
 class DummyAggregate extends AggregateRoot
 {

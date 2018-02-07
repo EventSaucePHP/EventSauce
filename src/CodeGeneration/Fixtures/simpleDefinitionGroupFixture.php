@@ -1,13 +1,13 @@
 <?php
 
-namespace With\EventFieldSerialization;
+namespace Simple\Definition\Group;
 
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
-final class EventName implements Event
+final class SomethingHappened implements Event
 {
     /**
      * @var AggregateRootId
@@ -17,7 +17,12 @@ final class EventName implements Event
     /**
      * @var string
      */
-    private $title;
+    private $what;
+
+    /**
+     * @var bool
+     */
+    private $yolo;
 
     /**
      * @var PointInTime
@@ -27,11 +32,13 @@ final class EventName implements Event
     public function __construct(
         AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording,
-        string $title
+        string $what,
+        bool $yolo
     ) {
         $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
-        $this->title = $title;
+        $this->what = $what;
+        $this->yolo = $yolo;
     }
 
     public function aggregateRootId(): AggregateRootId
@@ -39,16 +46,21 @@ final class EventName implements Event
         return $this->aggregateRootId;
     }
 
-    public function title(): string
+    public function what(): string
     {
-        return $this->title;
+        return $this->what;
+    }
+
+    public function yolo(): bool
+    {
+        return $this->yolo;
     }
 
     public function eventVersion(): int
     {
         return 1;
     }
-    
+
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -59,39 +71,50 @@ final class EventName implements Event
         AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
-        return new EventName(
+        return new SomethingHappened(
             $aggregateRootId,
             $timeOfRecording,
-            strtolower($payload['title'])
+            (string) $payload['what'],
+            (bool) $payload['yolo']
         );
     }
 
     public function toPayload(): array
     {
         return [
-            'title' => strtoupper($this->title)
+            'what' => (string) $this->what,
+            'yolo' => (bool) $this->yolo
         ];
     }
 
     /**
      * @codeCoverageIgnore
      */
-    public function withTitle(string $title): EventName
+    public function withWhat(string $what): SomethingHappened
     {
-        $this->title = $title;
+        $this->what = $what;
 
         return $this;
     }
 
-    public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): EventName
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withYolo(bool $yolo): SomethingHappened
     {
-        return new EventName(
+        $this->yolo = $yolo;
+
+        return $this;
+    }
+
+    public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): SomethingHappened
+    {
+        return new SomethingHappened(
             $aggregateRootId,
             $timeOfRecording,
-            strtolower('Title')
+            (string) 'Example Event',
+            (bool) true
         );
     }
 
 }
-
-
