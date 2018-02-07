@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit colors="true" bootstrap="vendor/autoload.php">
+<phpunit
+        colors="true"
+        bootstrap="vendor/autoload.php"
+        addUncoveredFilesFromWhitelist="true"
+>
     <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests/</directory>
+        <testsuite>
             <directory suffix="Test.php">src/</directory>
         </testsuite>
     </testsuites>
@@ -11,8 +14,8 @@
         <whitelist>
             <directory>./src/</directory>
             <exclude>
-                <directory suffix="Test.php">src/*</directory>
-                <directory suffix="Fixture.php">src/*</directory>
+                <directory suffix="Test.php">src/</directory>
+                <directory suffix="Fixture.php">src/</directory>
             </exclude>
         </whitelist>
     </filter>
