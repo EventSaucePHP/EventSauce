@@ -2,10 +2,10 @@
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-use function array_filter;
-use function join;
 use LogicException;
 use const null;
+use function array_filter;
+use function join;
 use function sprintf;
 use function ucfirst;
 use function var_export;
@@ -132,7 +132,6 @@ EOF;
         $assignments = join("\n", $assignments);
 
 
-
         return <<<EOF
     public function __construct(
 $arguments
@@ -158,7 +157,6 @@ EOF;
 
         $arguments = join(",\n", $arguments);
         $assignments = join("\n", $assignments);
-
 
 
         return <<<EOF
@@ -196,7 +194,7 @@ EOF;
 EOF;
         }
 
-        return rtrim(join('', $methods))."\n\n";
+        return rtrim(join('', $methods)) . "\n\n";
     }
 
     private function dumpSerializationMethods(EventDefinition $event)
@@ -224,7 +222,7 @@ EOF;
             $arguments = ",\n$arguments";
         }
 
-        $serializers = preg_replace('/^.{2,}$/m', '            $0',join(",\n", $serializers));
+        $serializers = preg_replace('/^.{2,}$/m', '            $0', join(",\n", $serializers));
 
         if ( ! empty($serializers)) {
             $serializers = "\n$serializers\n        ";
@@ -367,13 +365,13 @@ EOF;
         }
 
         foreach ($this->definitionGroup->events() as $event) {
-            if ($event->name() === $fieldsFrom)  {
+            if ($event->name() === $fieldsFrom) {
                 return $event->fields();
             }
         }
 
         foreach ($this->definitionGroup->commands() as $command) {
-            if ($command->name() === $fieldsFrom)  {
+            if ($command->name() === $fieldsFrom) {
                 return $command->fields();
             }
         }
