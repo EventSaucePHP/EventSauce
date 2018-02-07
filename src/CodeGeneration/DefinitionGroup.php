@@ -22,7 +22,7 @@ final class DefinitionGroup
     private $defaults = [];
 
     /**
-     * @var array <type, template>
+     * @var array
      */
     private $typeSerializer = [
         'string' => '({type}) {param}',
@@ -34,7 +34,7 @@ final class DefinitionGroup
     ];
 
     /**
-     * @var array <type, template>
+     * @var array
      */
     private $typeDeserializer = [
         'string' => '({type}) {param}',
@@ -46,12 +46,12 @@ final class DefinitionGroup
     ];
 
     /**
-     * @var array <field, template>
+     * @var array
      */
     private $fieldSerializer = [];
 
     /**
-     * @var array <field, template>
+     * @var array
      */
     private $fieldDeserializer = [];
 
