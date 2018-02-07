@@ -25,12 +25,12 @@ abstract class DefinitionWithFields
     protected $fieldsFrom = '';
 
     /**
-     * @var array <field, template>
+     * @var array
      */
     protected $fieldSerializers = [];
 
     /**
-     * @var array <field, template>
+     * @var array
      */
     protected $fieldDeserializers = [];
 
