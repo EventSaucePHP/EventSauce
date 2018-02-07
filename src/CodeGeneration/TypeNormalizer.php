@@ -2,9 +2,9 @@
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-use function ltrim;
 use ReflectionClass;
 use ReflectionException;
+use function ltrim;
 
 /**
  * @internal
@@ -17,7 +17,7 @@ class TypeNormalizer
 
         return static::isNativeType($type)
             ? $type
-            : '\\'.$type;
+            : '\\' . $type;
     }
 
     public static function isNativeType(string $type)
