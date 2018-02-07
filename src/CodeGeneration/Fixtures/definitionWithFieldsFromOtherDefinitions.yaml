@@ -1,0 +1,19 @@
+---
+namespace: EventsFrom\OtherTypes
+
+commands:
+    BaseCommand:
+        fields:
+            name:
+                type: string
+                example: Jane Doe
+    ExtendedCommand:
+        fields_from: BaseCommand
+events:
+    BaseEvent:
+        fields:
+            age:
+                type: int
+                example: 10
+    ExtendedEvent:
+        fields_from: BaseEvent

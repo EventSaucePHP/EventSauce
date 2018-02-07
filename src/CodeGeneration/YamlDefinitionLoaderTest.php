@@ -38,4 +38,17 @@ class YamlDefinitionLoaderTest extends TestCase
         $expected = file_get_contents(__DIR__ . '/Fixtures/definedWithoutHelpersInYamlFixture.php');
         $this->assertEquals($expected, $code);
     }
+
+    /**
+     * @test
+     */
+    public function loading_definitions_that_get_fields_from_other_types()
+    {
+        $loader = new YamlDefinitionLoader();
+        $definitionGroup = $loader->load(__DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitions.yaml');
+        $dumper = new CodeDumper();
+        $code = $dumper->dump($definitionGroup, false);
+        $expected = file_get_contents(__DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitionsFixture.php');
+        $this->assertEquals($expected, $code);
+    }
 }

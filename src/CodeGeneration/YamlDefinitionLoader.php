@@ -8,7 +8,6 @@ use function file_get_contents;
 use function in_array;
 use function is_string;
 use function pathinfo;
-use function var_dump;
 
 class YamlDefinitionLoader implements DefinitionLoader
 {
