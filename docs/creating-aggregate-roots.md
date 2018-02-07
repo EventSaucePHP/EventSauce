@@ -7,7 +7,7 @@ release events.
 <?php
 
 use EventSauce\EventSourcing\AggregateRoot;
-use EventSauce\Time\Clock;
+use EventSauce\EventSourcing\Time\Clock;
 
 class SomeBusinessProcess extends AggregateRoot
 {
