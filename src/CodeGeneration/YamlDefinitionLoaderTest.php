@@ -2,6 +2,7 @@
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
+use LogicException;
 use PHPUnit\Framework\TestCase;
 use const false;
 use function file_get_contents;
@@ -50,5 +51,17 @@ class YamlDefinitionLoaderTest extends TestCase
         $code = $dumper->dump($definitionGroup, false);
         $expected = file_get_contents(__DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitionsFixture.php');
         $this->assertEquals($expected, $code);
+    }
+
+    /**
+     * @test
+     */
+    public function trying_to_inherit_fields_from_unknown_type()
+    {
+        $this->expectException(LogicException::class);
+        $loader = new YamlDefinitionLoader();
+        $definitionGroup = $loader->load(__DIR__ . '/Fixtures/inheritFieldsFromUnknownType.yaml');
+        $dumper = new CodeDumper();
+        $dumper->dump($definitionGroup, false);
     }
 }

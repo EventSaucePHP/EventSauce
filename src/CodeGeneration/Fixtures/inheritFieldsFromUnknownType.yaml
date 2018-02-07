@@ -1,0 +1,4 @@
+---
+commands:
+    SomeCommand:
+        fields_from: UnknownCommand

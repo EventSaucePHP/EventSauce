@@ -4,6 +4,7 @@ namespace EventSauce\EventSourcing\CodeGeneration;
 
 use function array_filter;
 use function join;
+use LogicException;
 use const null;
 use function sprintf;
 use function ucfirst;
@@ -377,6 +378,6 @@ EOF;
             }
         }
 
-        return [];
+        throw new LogicException("Could not inherit fields from {$fieldsFrom}.");
     }
 }
