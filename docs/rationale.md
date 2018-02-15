@@ -10,6 +10,10 @@ implement you'll be less likely to be locked into the library.
 
 There are several parts that make up an event sourcing library:
 
+### Aggregate Root
+
+The aggregate root is our primary modeling space.
+
 ### Aggregate Root Repository
 
 The aggregate root repository is used to retrieve and "persist" aggregate root

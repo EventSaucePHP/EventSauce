@@ -2,10 +2,10 @@
 
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
-use EventSauce\EventSourcing\AggregateRoot;
+use EventSauce\EventSourcing\BaseAggregateRoot;
 use EventSauce\EventSourcing\Time\Clock;
 
-class DummyAggregate extends AggregateRoot
+class DummyAggregate extends BaseAggregateRoot
 {
     private $incrementedNumber = 0;
 

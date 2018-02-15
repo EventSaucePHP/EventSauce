@@ -24,10 +24,12 @@ Have an AggregateRoot
 <?php
 
 use EventSauce\EventSourcing\AggregateRoot;
-use EventSauce\Time\Clock;
+use EventSauce\EventSourcing\Time\Clock;
 
 final class EventSourcingThing extends AggregateRoot
 {
+    private $name;
+
     public function rename(string $newName, Clock $clock)
     {
         if ($this->name !== $newName) {
@@ -53,12 +55,18 @@ and test it.
 
 use EventSauce\EventSourcing\AggregateRootTestCase;
 use EventSauce\EventSourcing\AggregateRootRepository;
+use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\UuidAggregateRootId;
 use EventSauce\EventSourcing\CommandHandler;
-use EventSauce\Time\Clock;
+use EventSauce\EventSourcing\Time\Clock;
 
 class EventSourcingThingTest extends AggregateRootTestCase
 {
+    protected function aggregateRootId(): AggregateRootId
+    {
+        return UuidAggregateRootId::create();
+    }
+    
     protected function aggregateRootClassName(): string
     {
         return EventSourcingThing::class;
