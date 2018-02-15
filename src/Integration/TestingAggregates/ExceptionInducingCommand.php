@@ -3,8 +3,8 @@
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\UuidAggregateRootId;
 use EventSauce\EventSourcing\Command;
+use EventSauce\EventSourcing\UuidAggregateRootId;
 
 class ExceptionInducingCommand implements Command
 {

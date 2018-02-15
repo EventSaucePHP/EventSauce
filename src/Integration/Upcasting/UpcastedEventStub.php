@@ -3,14 +3,13 @@
 namespace EventSauce\EventSourcing\Integration\Upcasting;
 
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\UuidAggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
 class UpcastedEventStub implements Event
 {
     /**
-     * @var UuidAggregateRootId
+     * @var AggregateRootId
      */
     private $aggregateRootId;
 
@@ -24,7 +23,7 @@ class UpcastedEventStub implements Event
      */
     private $property;
 
-    public function __construct(UuidAggregateRootId $aggregateRootId, PointInTime $timeOfRecording, string $property)
+    public function __construct(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording, string $property)
     {
         $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
