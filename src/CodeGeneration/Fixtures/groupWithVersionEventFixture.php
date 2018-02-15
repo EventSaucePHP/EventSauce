@@ -32,11 +32,6 @@ final class VersionTwo implements Event
         return $this->aggregateRootId;
     }
 
-    public function eventVersion(): int
-    {
-        return 2;
-    }
-
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -55,7 +50,9 @@ final class VersionTwo implements Event
 
     public function toPayload(): array
     {
-        return [];
+        return [
+            '__event_version' => 2,
+        ];
     }
 
     public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): VersionTwo

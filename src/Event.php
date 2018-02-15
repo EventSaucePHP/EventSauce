@@ -5,9 +5,9 @@ namespace EventSauce\EventSourcing;
 
 interface Event
 {
-    public function aggregateRootId(): AggregateRootId;
+    const EVENT_VERSION_PAYLOAD_KEY = '__event_version';
 
-    public function eventVersion(): int;
+    public function aggregateRootId(): AggregateRootId;
 
     public function timeOfRecording(): PointInTime;
 

@@ -44,11 +44,6 @@ final class BaseEvent implements Event
         return $this->age;
     }
 
-    public function eventVersion(): int
-    {
-        return 1;
-    }
-
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -69,7 +64,8 @@ final class BaseEvent implements Event
     public function toPayload(): array
     {
         return [
-            'age' => (int) $this->age
+            'age' => (int) $this->age,
+            '__event_version' => 1,
         ];
     }
 
@@ -112,11 +108,6 @@ final class ExtendedEvent implements Event
         return $this->age;
     }
 
-    public function eventVersion(): int
-    {
-        return 1;
-    }
-
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -137,7 +128,8 @@ final class ExtendedEvent implements Event
     public function toPayload(): array
     {
         return [
-            'age' => (int) $this->age
+            'age' => (int) $this->age,
+            '__event_version' => 1,
         ];
     }
 

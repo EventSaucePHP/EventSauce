@@ -44,11 +44,6 @@ final class EventName implements Event
         return $this->title;
     }
 
-    public function eventVersion(): int
-    {
-        return 1;
-    }
-
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -69,7 +64,8 @@ final class EventName implements Event
     public function toPayload(): array
     {
         return [
-            'title' => strtoupper($this->title)
+            'title' => strtoupper($this->title),
+            '__event_version' => 1,
         ];
     }
 

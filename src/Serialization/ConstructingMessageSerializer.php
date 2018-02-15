@@ -23,14 +23,15 @@ final class ConstructingMessageSerializer implements MessageSerializer
     public function serializeMessage(Message $message): array
     {
         $event = $message->event();
+        $payload = $event->toPayload();
 
         return [
             'type' => EventType::fromEvent($event)->toEventName(),
-            'version' => $event->eventVersion(),
+            'version' => $payload[Event::EVENT_VERSION_PAYLOAD_KEY] ?? 0,
             'aggregateRootId' => $event->aggregateRootId()->toString(),
             'timeOfRecording' => $event->timeOfRecording()->toString(),
             'metadata' => $message->metadata(),
-            'data' => $event->toPayload(),
+            'data' => $payload,
         ];
     }
 

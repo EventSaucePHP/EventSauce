@@ -56,11 +56,6 @@ final class SomethingHappened implements Event
         return $this->yolo;
     }
 
-    public function eventVersion(): int
-    {
-        return 1;
-    }
-
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -83,7 +78,8 @@ final class SomethingHappened implements Event
     {
         return [
             'what' => (string) $this->what,
-            'yolo' => (bool) $this->yolo
+            'yolo' => (bool) $this->yolo,
+            '__event_version' => 1,
         ];
     }
 

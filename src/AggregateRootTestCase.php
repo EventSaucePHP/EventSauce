@@ -166,7 +166,7 @@ abstract class AggregateRootTestCase extends TestCase
             return;
         }
 
-        if ($expectedException == null || ($caughtException !== null && (get_class($expectedException) !== get_class($caughtException)))) {
+        if ( ! $expectedException instanceof Exception || ($caughtException instanceof Exception && (get_class($expectedException) !== get_class($caughtException)))) {
             throw $caughtException;
         }
 

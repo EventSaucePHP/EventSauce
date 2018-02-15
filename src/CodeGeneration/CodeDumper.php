@@ -2,6 +2,7 @@
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
+use EventSauce\EventSourcing\Event;
 use LogicException;
 use const null;
 use function array_filter;
@@ -64,12 +65,7 @@ $fields    /**
      */
     private \$timeOfRecording;
 
-$constructor$methods    public function eventVersion(): int
-    {
-        return {$event->version()};
-    }
-
-    public function timeOfRecording(): PointInTime
+$constructor$methods    public function timeOfRecording(): PointInTime
     {
         return \$this->timeOfRecording;
     }
@@ -225,8 +221,10 @@ EOF;
         $serializers = preg_replace('/^.{2,}$/m', '            $0', join(",\n", $serializers));
 
         if ( ! empty($serializers)) {
-            $serializers = "\n$serializers\n        ";
+            $serializers = "\n$serializers,";
         }
+
+        $eventVersionPayloadKey = Event::EVENT_VERSION_PAYLOAD_KEY;
 
         return <<<EOF
     public static function fromPayload(
@@ -242,7 +240,9 @@ EOF;
 
     public function toPayload(): array
     {
-        return [$serializers];
+        return [$serializers
+            '$eventVersionPayloadKey' => {$event->version()},
+        ];
     }
 EOF;
 

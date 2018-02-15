@@ -44,11 +44,6 @@ final class FirstEvent implements Event
         return $this->firstField;
     }
 
-    public function eventVersion(): int
-    {
-        return 1;
-    }
-
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -69,7 +64,8 @@ final class FirstEvent implements Event
     public function toPayload(): array
     {
         return [
-            'firstField' => (string) $this->firstField
+            'firstField' => (string) $this->firstField,
+            '__event_version' => 1,
         ];
     }
 
@@ -131,11 +127,6 @@ final class SecondEvent implements Event
         return $this->secondField;
     }
 
-    public function eventVersion(): int
-    {
-        return 1;
-    }
-
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -156,7 +147,8 @@ final class SecondEvent implements Event
     public function toPayload(): array
     {
         return [
-            'secondField' => (string) $this->secondField
+            'secondField' => (string) $this->secondField,
+            '__event_version' => 1,
         ];
     }
 

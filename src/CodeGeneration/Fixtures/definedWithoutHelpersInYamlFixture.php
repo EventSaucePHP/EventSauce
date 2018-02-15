@@ -56,11 +56,6 @@ final class UserSubscribedFromMailingList implements Event
         return $this->mailingList;
     }
 
-    public function eventVersion(): int
-    {
-        return 1;
-    }
-
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -83,7 +78,8 @@ final class UserSubscribedFromMailingList implements Event
     {
         return [
             'username' => (string) $this->username,
-            'mailingList' => (string) $this->mailingList
+            'mailingList' => (string) $this->mailingList,
+            '__event_version' => 1,
         ];
     }
 

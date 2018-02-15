@@ -52,6 +52,7 @@ class UpcastingEventsTest extends TestCase
             'metadata' => [],
             'data' => [
                 'property' => 'upcasted',
+                '__event_version' => 1,
             ],
         ];
 

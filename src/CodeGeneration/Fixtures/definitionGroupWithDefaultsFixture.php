@@ -44,11 +44,6 @@ final class EventWithDescription implements Event
         return $this->description;
     }
 
-    public function eventVersion(): int
-    {
-        return 1;
-    }
-
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -69,7 +64,8 @@ final class EventWithDescription implements Event
     public function toPayload(): array
     {
         return [
-            'description' => (string) $this->description
+            'description' => (string) $this->description,
+            '__event_version' => 1,
         ];
     }
 

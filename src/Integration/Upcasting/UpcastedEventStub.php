@@ -35,11 +35,6 @@ class UpcastedEventStub implements Event
         return $this->aggregateRootId;
     }
 
-    public function eventVersion(): int
-    {
-        return 1;
-    }
-
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -47,7 +42,7 @@ class UpcastedEventStub implements Event
 
     public function toPayload(): array
     {
-        return ['property' => $this->property];
+        return ['property' => $this->property, self::EVENT_VERSION_PAYLOAD_KEY => 1];
     }
 
     public static function fromPayload(array $payload, AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): Event

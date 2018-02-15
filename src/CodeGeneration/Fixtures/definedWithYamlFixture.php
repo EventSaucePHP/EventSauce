@@ -56,11 +56,6 @@ final class WeWentYamling implements Event
         return $this->slogan;
     }
 
-    public function eventVersion(): int
-    {
-        return 1;
-    }
-
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -83,7 +78,8 @@ final class WeWentYamling implements Event
     {
         return [
             'reference' => $this->reference->toString(),
-            'slogan' => (string) $this->slogan
+            'slogan' => (string) $this->slogan,
+            '__event_version' => 1,
         ];
     }
 
@@ -146,11 +142,6 @@ final class VersionedEvent implements Event
         return $this->title;
     }
 
-    public function eventVersion(): int
-    {
-        return 2;
-    }
-
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -171,7 +162,8 @@ final class VersionedEvent implements Event
     public function toPayload(): array
     {
         return [
-            'title' => (string) $this->title
+            'title' => (string) $this->title,
+            '__event_version' => 2,
         ];
     }
 

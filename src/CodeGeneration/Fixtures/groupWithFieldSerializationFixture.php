@@ -44,11 +44,6 @@ final class WithFieldSerializers implements Event
         return $this->items;
     }
 
-    public function eventVersion(): int
-    {
-        return 1;
-    }
-
     public function timeOfRecording(): PointInTime
     {
         return $this->timeOfRecording;
@@ -73,7 +68,8 @@ final class WithFieldSerializers implements Event
         return [
             'items' => array_map(function ($item) {
                 return $item['property'];
-            }, $this->items)
+            }, $this->items),
+            '__event_version' => 1,
         ];
     }
 
