@@ -40,3 +40,16 @@ a request identifier so you can track an action from the web all the way down to
 processes. This mechanism prevents you from polluting the domain events with non-domain
 specific information.
 
+### Message Serializer(s)
+
+Message serializers are responsible for converting messages from and to a serialized form. When
+using (or implementing) a message repository, you'll want to use this rely on this interface.
+
+Message serializers can be composed using decoration to provide more complex features such as upcasting.
+
+### Time
+
+Time is a very important concept in EventSauce. In the core of the library a `Clock` is defined.
+The `SystemClock` provides a production-ready implementation, while the `TestClock` is used during testing.
+The `TestClock` allows you to fixate time, allowing you to test processes over time. 
+
