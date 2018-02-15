@@ -3,6 +3,7 @@
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootId;
+use EventSauce\EventSourcing\UuidAggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -12,7 +13,7 @@ use EventSauce\EventSourcing\PointInTime;
 class DummyIncrementingHappened implements Event
 {
     /**
-     * @var AggregateRootId
+     * @var UuidAggregateRootId
      */
     private $aggregateRootId;
 
@@ -26,7 +27,7 @@ class DummyIncrementingHappened implements Event
      */
     private $number;
 
-    public function __construct(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording, int $number)
+    public function __construct(UuidAggregateRootId $aggregateRootId, PointInTime $timeOfRecording, int $number)
     {
         $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;

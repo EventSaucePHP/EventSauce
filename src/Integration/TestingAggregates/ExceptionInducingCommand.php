@@ -3,16 +3,17 @@
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootId;
+use EventSauce\EventSourcing\UuidAggregateRootId;
 use EventSauce\EventSourcing\Command;
 
 class ExceptionInducingCommand implements Command
 {
     /**
-     * @var AggregateRootId
+     * @var UuidAggregateRootId
      */
     private $aggregateRootId;
 
-    public function __construct(AggregateRootId $aggregateRootId)
+    public function __construct(UuidAggregateRootId $aggregateRootId)
     {
         $this->aggregateRootId = $aggregateRootId;
     }

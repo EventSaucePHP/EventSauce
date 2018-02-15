@@ -53,7 +53,7 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @var AggregateRootId
      */
-    private $aggregateRootId;
+    protected $aggregateRootId;
 
     /**
      * @before
@@ -62,7 +62,7 @@ abstract class AggregateRootTestCase extends TestCase
     {
         $className = $this->aggregateRootClassName();
         $this->clock = new TestClock();
-        $this->aggregateRootId = AggregateRootId::create();
+        $this->aggregateRootId = $this->aggregateRootId();
         $this->messageRepository = new InMemoryMessageRepository($this->messageDispatcher());
         $this->repository = new AggregateRootRepository($className, $this->messageRepository, new DelegatingMessageDecorator());
         $this->commandHandler = $this->commandHandler($this->repository, $this->clock);
@@ -94,14 +94,11 @@ abstract class AggregateRootTestCase extends TestCase
         }
     }
 
+    abstract protected function aggregateRootId(): AggregateRootId;
+
     abstract protected function aggregateRootClassName(): string;
 
     abstract protected function commandHandler(AggregateRootRepository $repository, Clock $clock): CommandHandler;
-
-    protected function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
-    }
 
     /**
      * @return $this

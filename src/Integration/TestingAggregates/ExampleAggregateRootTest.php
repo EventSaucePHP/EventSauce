@@ -2,10 +2,12 @@
 
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
+use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\AggregateRootTestCase;
 use EventSauce\EventSourcing\CommandHandler;
 use EventSauce\EventSourcing\Time\Clock;
+use EventSauce\EventSourcing\UuidAggregateRootId;
 use LogicException;
 
 class ExampleAggregateRootTest extends AggregateRootTestCase
@@ -79,5 +81,16 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         $this->given(new DummyIncrementingHappened($id, $this->pointInTime(), 1))
             ->when(new DummyIncrementCommand($id))
             ->then(new DummyIncrementingHappened($id, $this->pointInTime(), 2));
+    }
+
+    protected function aggregateRootId(): AggregateRootId
+    {
+        static $id;
+
+        if ( ! $id instanceof AggregateRootId) {
+            $id = UuidAggregateRootId::create();
+        }
+
+        return $id;
     }
 }

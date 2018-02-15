@@ -2,7 +2,7 @@
 
 namespace EventSauce\EventSourcing\Integration\Upcasting;
 
-use EventSauce\EventSourcing\AggregateRootId;
+use EventSauce\EventSourcing\UuidAggregateRootId;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\Serialization\ConstructingMessageSerializer;
 use EventSauce\EventSourcing\Serialization\EventType;
@@ -25,18 +25,18 @@ class UpcastingEventsTest extends TestCase
         $payload = [
             'type' => EventType::fromClassName(UpcastedEventStub::class)->toEventName(),
             'version' => 0,
-            'aggregateRootId' => $uuid = AggregateRootId::create()->toString(),
+            'aggregateRootId' => $uuid = UuidAggregateRootId::create()->toString(),
             'timeOfRecording' => $pointInTime->toString(),
             'metadata' => [],
             'data' => [],
         ];
 
         $upcaster = new DelegatingUpcaster(new UpcasterStub());
-        $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(), $upcaster);
+        $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(UuidAggregateRootId::class), $upcaster);
 
         $message = iterator_to_array($serializer->unserializePayload($payload))[0];
         $expected = new Message(new UpcastedEventStub(
-            new AggregateRootId($uuid),
+            new UuidAggregateRootId($uuid),
             $pointInTime,
             'upcasted'
         ));

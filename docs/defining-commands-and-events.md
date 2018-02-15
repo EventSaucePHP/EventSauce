@@ -15,7 +15,7 @@ examples.
 ```php
 <?php
 
-use EventSauce\EventSourcing\AggregateRootId;
+use EventSauce\EventSourcing\UuidAggregateRootId;
 use EventSauce\EventSourcing\Command;
 
 class SomeCommand implements Command
@@ -39,7 +39,7 @@ class SomeCommand implements Command
 ```php
 <?php
 
-use EventSauce\EventSourcing\AggregateRootId;
+use EventSauce\EventSourcing\UuidAggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -82,7 +82,7 @@ class SomeEvent implements Event
 ```
 
 As you can see in the examples above, there are a handful of required methods. These methods help EventSauce to connect
-events to aggregates using the AggregateRootId. The event version is used for when you need to change events and want
+events to aggregates using the UuidAggregateRootId. The event version is used for when you need to change events and want
 to provide an upgrade path using _upcasting_. The _from_ and _to_ payload methods are used in the serialization process.
 This ensures the events can be properly stores, values returned in the `toPayload` method should be `json_encode`-able.
 
@@ -145,7 +145,7 @@ Which compiles to the following PHP file:
  
  namespace Acme\BusinessProcess;
  
- use EventSauce\EventSourcing\AggregateRootId;
+ use EventSauce\EventSourcing\UuidAggregateRootId;
  use EventSauce\EventSourcing\Command;
  use EventSauce\EventSourcing\Event;
  use EventSauce\EventSourcing\PointInTime;

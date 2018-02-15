@@ -54,7 +54,7 @@ abstract class AggregateRoot
 
     /**
      * @param AggregateRootId $aggregateRootId
-     * @param Generator       $events
+     * @param Generator           $events
      *
      * @return static
      */

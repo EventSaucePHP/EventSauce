@@ -31,7 +31,7 @@ composer require eventsauce/rabbitmq-bundle-bindings:@dev
 
 use Doctrine\DBAL\Connection;
 use EventSauce\DoctrineMessageRepository\DoctrineMessageRepository;
-use EventSauce\EventSourcing\AggregateRootId;
+use EventSauce\EventSourcing\UuidAggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\Serialization\ConstructingMessageSerializer;
 use EventSauce\RabbitMQ\RabbitMQMessageDispatcher;

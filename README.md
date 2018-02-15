@@ -53,7 +53,7 @@ and test it.
 
 use EventSauce\EventSourcing\AggregateRootTestCase;
 use EventSauce\EventSourcing\AggregateRootRepository;
-use EventSauce\EventSourcing\AggregateRootId;
+use EventSauce\EventSourcing\UuidAggregateRootId;
 use EventSauce\EventSourcing\CommandHandler;
 use EventSauce\Time\Clock;
 

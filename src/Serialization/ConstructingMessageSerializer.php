@@ -10,6 +10,16 @@ use Generator;
 
 final class ConstructingMessageSerializer implements MessageSerializer
 {
+    /**
+     * @var string
+     */
+    private $aggregateRootIdClassName;
+
+    public function __construct(string $aggregateRootIdClassName)
+    {
+        $this->aggregateRootIdClassName = $aggregateRootIdClassName;
+    }
+
     public function serializeMessage(Message $message): array
     {
         $event = $message->event();
@@ -28,9 +38,11 @@ final class ConstructingMessageSerializer implements MessageSerializer
     {
         /** @var Event $className */
         $className = EventType::fromEventType($payload['type'])->toClassName();
+        /** @var AggregateRootId $aggregateRootIdClassName */
+        $aggregateRootIdClassName = $this->aggregateRootIdClassName;
         $event = $className::fromPayload(
             $payload['data'],
-            new AggregateRootId($payload['aggregateRootId']),
+            $aggregateRootIdClassName::fromString($payload['aggregateRootId']),
             PointInTime::fromString($payload['timeOfRecording'])
         );
 
