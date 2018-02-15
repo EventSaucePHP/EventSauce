@@ -25,7 +25,7 @@ The aggregate root consists of two parts:
 
 ### Message Repository
 
-The message repository is the libraries connection to the persistence layer. It's responsible
+The message repository is the library's connection to the persistence layer. It's responsible
 for storing and retrieving events. Events stored in the repository are wrapped in a `Message`
 object. This object allows you to store additional meta-data alongside the event data.
 
