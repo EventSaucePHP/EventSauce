@@ -31,8 +31,8 @@ object. This object allows you to store additional meta-data alongside the event
 
 ### Message Decorator
 
-A message decorator has the ability to enrich messages with extrainformation. This could be a
-request identifier so you can track an action from the web all the way down to background
+A message decorator has the ability to enrich messages with extra information. This could be
+a request identifier so you can track an action from the web all the way down to background
 processes. This mechanism prevents you from polluting the domain events with non-domain
 specific information.
 
