@@ -12,3 +12,10 @@ filter:
 checks:
     php:
         duplication: false
+
+build:
+    nodes:
+        analysis:
+            tests:
+                override:
+                    - phpcs-run
