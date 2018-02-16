@@ -49,7 +49,7 @@ $messageDispatcher = new RabbitMQMessageDispatcher($producer, $messageSerializer
 $messageRepository = new DoctrineMessageRepository($connection, $messageDispatcher, $messageSerializer, 'domain_messages');
 $aggregateRootRepository = new AggregateRootRepository(MyAggregate::class, $messageRepository);
 
-$aggregateRootId = new AggregateRootId('4ea45435-aee8-43f2-aad8-2309bcd2aaab');
+$aggregateRootId = new UuidAggregateRootId('4ea45435-aee8-43f2-aad8-2309bcd2aaab');
 $myAggregate = $aggregateRootRepository->retrieve($aggregateRootId);
 
 // Perform actions.

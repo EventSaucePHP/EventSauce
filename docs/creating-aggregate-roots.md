@@ -6,10 +6,10 @@ release events.
 ```php
 <?php
 
-use EventSauce\EventSourcing\AggregateRoot;
+use EventSauce\EventSourcing\BaseAggregateRoot;
 use EventSauce\EventSourcing\Time\Clock;
 
-class SomeBusinessProcess extends AggregateRoot
+class SomeBusinessProcess extends BaseAggregateRoot
 {
     private $reasonsForTasks = [];
     
