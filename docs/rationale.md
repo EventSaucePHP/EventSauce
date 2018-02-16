@@ -6,6 +6,11 @@ to your application without application-wide rewrites. EventSauce will also try
 to avoid coupling as much as it can. By having well defined interfaces you can
 implement you'll be less likely to be locked into the library.
 
+EvenSauce puts the focus on event sourcing, not on things that happen around event
+sourcing. It does not require you to follow CQRS patterns, it does not require you
+to use a command-, event-, or query-bus. By doing to it allows developers to use
+event sourcing for parts of their application more easily. 
+
 ## The parts
 
 There are several parts that make up an event sourcing library:
