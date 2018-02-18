@@ -10,9 +10,12 @@ title: EventSauce - Rationale
 
 EventSauce is a no-nonsense library for event-sourcing in PHP. This library
 was developed with the idea that you should be able to add event sourced parts
-to your application without application-wide rewrites. EventSauce will also try
-to avoid coupling as much as possible. The core of EventSauce is built around
-a set of interfaces, this makes it easy to integrate with tools you're already using. 
+to your application with easy. No application-wide rewrites, no big investements
+upfront. 
+
+EventSauce will also try to avoid coupling as much as possible. The core of EventSauce
+is built around a set of interfaces, this given you the freedom to choose the tools
+that meet your requirements.
 
 EvenSauce puts the focus on event sourcing, not on things that happen around event
 sourcing. It does not require you to follow CQRS patterns, although it does use
