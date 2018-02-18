@@ -1,3 +1,9 @@
+---
+layout: default
+permalink: /installation/
+title: EventSauce - Installation
+---
+
 # Installation
 
 EvenSauce consists of multiple parts. Besides the main package you'll need _persistence_ and a _dispatcher_.

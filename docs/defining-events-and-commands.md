@@ -1,4 +1,10 @@
-# Defining commands and events
+---
+layout: default
+permalink: /defining-events-and-commands/
+title: EventSauce - Defining Commands and Events
+---
+
+# Defining events and commands
 
 Defining events and commands can be done in 2 ways.
 

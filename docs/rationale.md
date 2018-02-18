@@ -1,3 +1,9 @@
+---
+layout: default
+permalink: /rationale/
+title: EventSauce - Rationale
+---
+
 # Rationale
 
 ## Motivation
