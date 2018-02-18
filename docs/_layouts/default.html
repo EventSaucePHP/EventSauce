@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }} - {{ site.data.project.title }}</title>
+    {% if site.data.project.description %}
+        <meta name="description" content="{{ site.data.project.description }}">
+    {% endif %}
+    <link rel="stylesheet" href="//theme.thephpleague.com/css/all.css">
+    <base href="//eventsauce.io">
+</head>
+<body>
+<main>
+    <menu>
+        {% for section in site.data.menu %}
+            <h2>{{ section[0] }}</h2>
+            <ul>
+                {% for link in section[1] %}
+                    <li {% if page.url == link[1] %}class="selected"{% endif %}>
+                        <a href="{{ link[1] }}">{{ link[0] }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </menu>
+    <article>
+        {{ content }}
+    </article>
+</main>
+</body>
+</html>
