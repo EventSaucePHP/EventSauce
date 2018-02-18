@@ -23,14 +23,14 @@ Have an AggregateRoot
 ```php
 <?php
 
-use EventSauce\EventSourcing\AggregateRoot;
+use EventSauce\EventSourcing\BaseAggregateRoot;
 use EventSauce\EventSourcing\Time\Clock;
 
-final class EventSourcingThing extends AggregateRoot
+final class EventSourcingThing extends BaseAggregateRoot
 {
     private $name;
 
-    public function rename(string $newName, Clock $clock)
+    public function rename(Clock $clock, string $newName)
     {
         if ($this->name !== $newName) {
             $this->recordThat(new TheThingWasRenamed(
