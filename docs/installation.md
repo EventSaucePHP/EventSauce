@@ -30,7 +30,7 @@ composer require eventsauce/rabbitmq-bundle-bindings:@dev
 <?php
 
 use Doctrine\DBAL\Connection;
-use EventSauce\DoctrineMessageRepository\DoctrineMessageRepository;
+use EventSauce\DoctrineMessageRepository\MysqlDoctrineMessageRepository;
 use EventSauce\EventSourcing\UuidAggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\Serialization\ConstructingMessageSerializer;
@@ -44,7 +44,7 @@ $connection = doctrine_connection();
 /** @var ProducerInterface $producer */
 $producer = rabbbitmq_producer();
 
-$messageSerializer = new ConstructingMessageSerializer();
+$messageSerializer = new ConstructingMessageSerializer(Your);
 $messageDispatcher = new RabbitMQMessageDispatcher($producer, $messageSerializer);
 $messageRepository = new DoctrineMessageRepository($connection, $messageDispatcher, $messageSerializer, 'domain_messages');
 $aggregateRootRepository = new AggregateRootRepository(MyAggregate::class, $messageRepository);

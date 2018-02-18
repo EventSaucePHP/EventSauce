@@ -16,7 +16,16 @@ their application more easily.
 
 ## The parts 
 
-There are several parts that make up an event sourcing library:
+EventSauce consists of 3 parts; a core library, and two parts that you can choose
+based on your requirements. These parts are the `MessageRepository` which is used
+to store and retrieve events, and a `MessageDispatcher` which allows you to broadcast
+events asynchronously. The core library ships with a `SynchronousMessageDispatcher`,
+so you don't even _need_ to have a queue in order.
+
+Which `MessageRepository` or `MessageDispatcher` you use it totally up to you. There
+are benefits (and downsides) to each queueing mechanism. Because EventSauce places
+these implementations behind an interface you're free to choose whatever fits best.
+You can even create your own repositories and dispatchers, the interface is very tiny.
 
 ### Aggregate Root
 
