@@ -2,7 +2,7 @@
 
 namespace EventSauce\EventSourcing\Integration\Upcasting;
 
-use EventSauce\EventSourcing\Serialization\EventType;
+use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
 use EventSauce\EventSourcing\Upcasting\DelegatableUpcaster;
 use Generator;
 
@@ -23,6 +23,6 @@ class UpcasterStub implements DelegatableUpcaster
 
     public function type(): string
     {
-        return EventType::fromClassName(UpcastedEventStub::class)->toEventName();
+        return (new DotSeparatedSnakeCaseInflector())->classNameToEventName(UpcastedEventStub::class);
     }
 }

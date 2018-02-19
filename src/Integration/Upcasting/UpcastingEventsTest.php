@@ -2,15 +2,15 @@
 
 namespace EventSauce\EventSourcing\Integration\Upcasting;
 
-use EventSauce\EventSourcing\UuidAggregateRootId;
+use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\Serialization\ConstructingMessageSerializer;
-use EventSauce\EventSourcing\Serialization\EventType;
 use EventSauce\EventSourcing\Serialization\UpcastingMessageSerializer;
-use EventSauce\EventSourcing\Upcasting\DelegatingUpcaster;
-use function iterator_to_array;
-use PHPUnit\Framework\TestCase;
 use EventSauce\EventSourcing\Time\TestClock;
+use EventSauce\EventSourcing\Upcasting\DelegatingUpcaster;
+use EventSauce\EventSourcing\UuidAggregateRootId;
+use PHPUnit\Framework\TestCase;
+use function iterator_to_array;
 
 class UpcastingEventsTest extends TestCase
 {
@@ -23,12 +23,12 @@ class UpcastingEventsTest extends TestCase
         $pointInTime = $clock->pointInTime();
 
         $payload = [
-            'type' => EventType::fromClassName(UpcastedEventStub::class)->toEventName(),
-            'version' => 0,
+            'type'            => (new DotSeparatedSnakeCaseInflector())->classNameToEventName(UpcastedEventStub::class),
+            'version'         => 0,
             'aggregateRootId' => $uuid = UuidAggregateRootId::create()->toString(),
             'timeOfRecording' => $pointInTime->toString(),
-            'metadata' => [],
-            'data' => [],
+            'metadata'        => [],
+            'data'            => [],
         ];
 
         $upcaster = new DelegatingUpcaster(new UpcasterStub());
@@ -45,13 +45,13 @@ class UpcastingEventsTest extends TestCase
 
         $serializeMessage = $serializer->serializeMessage($message);
         $expectedPayload = $payload = [
-            'type' => EventType::fromClassName(UpcastedEventStub::class)->toEventName(),
-            'version' => 1,
+            'type'            => (new DotSeparatedSnakeCaseInflector())->classNameToEventName(UpcastedEventStub::class),
+            'version'         => 1,
             'aggregateRootId' => $uuid,
             'timeOfRecording' => $pointInTime->toString(),
-            'metadata' => [],
-            'data' => [
-                'property' => 'upcasted',
+            'metadata'        => [],
+            'data'            => [
+                'property'        => 'upcasted',
                 '__event_version' => 1,
             ],
         ];

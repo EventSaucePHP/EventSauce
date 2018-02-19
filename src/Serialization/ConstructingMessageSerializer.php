@@ -3,7 +3,9 @@
 namespace EventSauce\EventSourcing\Serialization;
 
 use EventSauce\EventSourcing\AggregateRootId;
+use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
 use EventSauce\EventSourcing\Event;
+use EventSauce\EventSourcing\EventNameInflector;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\PointInTime;
 use Generator;
@@ -15,9 +17,15 @@ final class ConstructingMessageSerializer implements MessageSerializer
      */
     private $aggregateRootIdClassName;
 
-    public function __construct(string $aggregateRootIdClassName)
+    /**
+     * @var EventNameInflector
+     */
+    private $eventNameInflector;
+
+    public function __construct(string $aggregateRootIdClassName, EventNameInflector $eventNameInflector = null)
     {
         $this->aggregateRootIdClassName = $aggregateRootIdClassName;
+        $this->eventNameInflector = $eventNameInflector ?: new DotSeparatedSnakeCaseInflector();
     }
 
     public function serializeMessage(Message $message): array
@@ -26,7 +34,7 @@ final class ConstructingMessageSerializer implements MessageSerializer
         $payload = $event->toPayload();
 
         return [
-            'type' => EventType::fromEvent($event)->toEventName(),
+            'type' => $this->eventNameInflector->eventToEventName($event),
             'version' => $payload[Event::EVENT_VERSION_PAYLOAD_KEY] ?? 0,
             'aggregateRootId' => $event->aggregateRootId()->toString(),
             'timeOfRecording' => $event->timeOfRecording()->toString(),
@@ -38,7 +46,7 @@ final class ConstructingMessageSerializer implements MessageSerializer
     public function unserializePayload(array $payload): Generator
     {
         /** @var Event $className */
-        $className = EventType::fromEventType($payload['type'])->toClassName();
+        $className = $this->eventNameInflector->eventNameToClassName($payload['type']);
         /** @var AggregateRootId $aggregateRootIdClassName */
         $aggregateRootIdClassName = $this->aggregateRootIdClassName;
         $event = $className::fromPayload(
