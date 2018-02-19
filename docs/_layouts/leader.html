@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }} - {{ site.data.project.title }}</title>
+    {% if site.data.project.description %}
+    <meta name="description" content="{{ site.data.project.description }}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Varela+Round" rel="stylesheet">
+    {% endif %}
+    <!--<base href="//eventsauce.io/">-->
+    <style>
+        main, body, html {
+            min-height: 100vh;
+            min-width: 100%;
+            background: #EBEBEB;
+        }
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #teaser {
+            text-align: center;
+        }
+        p {
+            font-family: 'Varela Round', sans-serif;
+            text-align: center;
+            font-size: 30px;
+            color: #4D4D4D;
+        }
+        span {
+            color: #A70000;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div id="teaser">
+        <img id="logo" src="/static/logo.svg" height="150px" width="150px" alt="EventSauce">
+        <p>
+            Almost <span>ready</span>.
+        </p>
+    </div>
+</main>
+</body>
+</html>
