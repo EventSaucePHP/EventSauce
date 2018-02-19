@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /defining-events-and-commands/
-title: EventSauce - Defining Commands and Events
+title: Defining Commands and Events
 ---
 
 # Defining events and commands

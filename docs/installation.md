@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /installation/
-title: EventSauce - Installation
+title: Installation
 ---
 
 # Installation

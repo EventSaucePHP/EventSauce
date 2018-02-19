@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /rationale/
-title: EventSauce - Rationale
+title: Rationale
 ---
 
 # Rationale
