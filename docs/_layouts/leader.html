@@ -26,13 +26,16 @@
     <!--<base href="//eventsauce.io/">-->
     <style>
         main, body, html {
-            min-height: 100vh;
-            min-width: 100%;
             background: #EBEBEB;
             padding: 0;
             margin: 0;
+            font-family: 'Varela Round', sans-serif;
+            color: #4D4D4D;
         }
         main {
+            padding-top: 15vh;
+            min-height: 50vh;
+            min-width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -43,10 +46,8 @@
             animation: teaser-intro .5s ease-out;
         }
         p {
-            font-family: 'Varela Round', sans-serif;
             text-align: center;
             font-size: 30px;
-            color: #4D4D4D;
         }
         span {
             color: #A70000;
@@ -84,6 +85,53 @@
                 transform: scale(1);
             }
         }
+
+        form {
+            text-align: left;
+            padding: 10px;
+        }
+        label {
+            display: block;
+            padding-bottom: 15px;
+        }
+        input[type=email] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: 0;
+            line-height: 30px;
+            font-size: 20px;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-right: 15px;
+            color: inherit;
+            box-shadow: 0 0 15px rgba(0, 0, 0, .15);
+        }
+        input[type=email]::placeholder {
+            color: #D8D8D8;
+        }
+        button[type=submit] {
+            border: 0;
+            line-height: 30px;
+            font-size: 20px;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-right: 0;
+            cursor: pointer;
+            background: #A70000;
+            color: rgba(255, 255, 255, .8);
+            background: linear-gradient(-180deg, #BE2323 0%, #A70000 50%, #920000 100%);
+        }
+        button[type=submit]:hover, button[type=submit]:focus {
+            color: #fff;
+        }
+        .max-width-full {
+            width: 500px;
+            max-width: 100%;
+        }
+        .text-center {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -93,6 +141,12 @@
         <p>
             Almost <span>ready</span>.
         </p>
+        <!--
+        <form method="post" action="/here/">
+            <label>Get notified about the latest development:</label>
+            <input type="email" name="email" placeholder="Enter your email" /><button type="submit">Subscribe</button>
+        </form>
+        -->
         <p>
             <a href="https://twitter.com/eventsaucephp">
                 <img height="35px" width="35px" src="/static/twitter.svg" alt="Twitter" />
@@ -103,5 +157,9 @@
         </p>
     </div>
 </main>
+<div class="text-center">
+    <h2>Testing an aggregate</h2>
+    <img src="/static/testing-an-aggregate-root.png" class="max-width-full" alt="Testing and Aggregate Root" />
+</div>
 </body>
 </html>
