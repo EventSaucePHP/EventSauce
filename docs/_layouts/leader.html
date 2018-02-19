@@ -22,6 +22,8 @@
             min-height: 100vh;
             min-width: 100%;
             background: #EBEBEB;
+            padding: 0;
+            margin: 0;
         }
         main {
             display: flex;
@@ -30,6 +32,8 @@
         }
         #teaser {
             text-align: center;
+            transform: translate3d(0, 0, 0);
+            animation: teaser-intro .5s ease-out;
         }
         p {
             font-family: 'Varela Round', sans-serif;
@@ -40,6 +44,39 @@
         span {
             color: #A70000;
         }
+        a, a>img {
+            display: inline-block;
+            height: 25px;
+            width: 25px;
+            color: #4D4D4D;
+        }
+
+        a {
+            padding: 3px 5px 7px 5px;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background: #fff;
+        }
+
+        @keyframes teaser-intro {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            85% {
+                transform: scale(1.025);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
 <body>
@@ -48,6 +85,14 @@
         <img id="logo" src="/static/logo.svg" height="150px" width="150px" alt="EventSauce">
         <p>
             Almost <span>ready</span>.
+        </p>
+        <p>
+            <a href="https://twitter.com/eventsaucephp">
+                <img height="35px" width="35px" src="/static/twitter.svg" alt="Twitter" />
+            </a>
+            <a href="https://github.com/eventsaucephp">
+                <img height="35px" width="35px" src="/static/github.svg" alt="Twitter" />
+            </a>
         </p>
     </div>
 </main>
