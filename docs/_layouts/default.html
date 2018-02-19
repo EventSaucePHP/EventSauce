@@ -8,6 +8,13 @@
     {% if site.data.project.description %}
         <meta name="description" content="{{ site.data.project.description }}">
     {% endif %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114414242-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-114414242-1');
+    </script>
     <!--<base href="//eventsauce.io/">-->
 </head>
 <body>
