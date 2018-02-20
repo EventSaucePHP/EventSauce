@@ -25,6 +25,9 @@
     </script>
     <!--<base href="//eventsauce.io/">-->
     <style>
+        * {
+            box-sizing: border-box;
+        }
         main, body, html {
             background: #EBEBEB;
             padding: 0;
@@ -58,7 +61,6 @@
             width: 25px;
             color: #4D4D4D;
         }
-
         a {
             padding: 3px 5px 7px 5px;
             border-radius: 5px;
@@ -67,7 +69,6 @@
         a:hover {
             background: #fff;
         }
-
         @keyframes teaser-intro {
             0% {
                 opacity: 0;
@@ -85,7 +86,6 @@
                 transform: scale(1);
             }
         }
-
         form {
             text-align: left;
             padding: 10px;
@@ -99,6 +99,8 @@
             -moz-appearance: none;
             appearance: none;
             border: 0;
+            display: block;
+            width: 100%;
             line-height: 30px;
             font-size: 20px;
             border-radius: 5px;
@@ -106,12 +108,15 @@
             margin-right: 15px;
             color: inherit;
             box-shadow: 0 0 15px rgba(0, 0, 0, .15);
+            margin-bottom: 15px;
         }
         input[type=email]::placeholder {
             color: #D8D8D8;
         }
         button[type=submit] {
             border: 0;
+            display: block;
+            width: 100%;
             line-height: 30px;
             font-size: 20px;
             border-radius: 5px;
@@ -141,12 +146,7 @@
         <p>
             Almost <span>ready</span>.
         </p>
-        <!--
-        <form method="post" action="/here/">
-            <label>Get notified about the latest development:</label>
-            <input type="email" name="email" placeholder="Enter your email" /><button type="submit">Subscribe</button>
-        </form>
-        -->
+        {{ content }}
         <p>
             <a href="https://twitter.com/eventsaucephp">
                 <img height="35px" width="35px" src="/static/twitter.svg" alt="Twitter" />
