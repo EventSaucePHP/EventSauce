@@ -86,6 +86,21 @@
                 transform: scale(1);
             }
         }
+
+        @keyframes slide-in-from-bottom {
+            0% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            85% {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
         form {
             text-align: left;
             padding: 10px;
@@ -109,6 +124,11 @@
             color: inherit;
             box-shadow: 0 0 15px rgba(0, 0, 0, .15);
             margin-bottom: 15px;
+        }
+        #example-testing {
+            transform: translate3d(0, 0, 0);
+            animation: slide-in-from-bottom .5s ease-out;
+            animation-delay: .5s;
         }
         input[type=email]::placeholder {
             color: #D8D8D8;
@@ -150,7 +170,7 @@
     </div>
 </main>
 <div class="text-center">
-    <img src="/static/testing-an-aggregate-root.png" class="max-width-full" alt="Testing and Aggregate Root" />
+    <img id="example-testing" src="/static/testing-an-aggregate-root.png" class="max-width-full" alt="Testing and Aggregate Root" />
     <p>
         <a href="https://twitter.com/eventsaucephp">
             <img height="35px" width="35px" src="/static/twitter.svg" alt="Twitter" />
