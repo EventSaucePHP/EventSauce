@@ -1,0 +1,54 @@
+@tailwind preflight;
+
+@tailwind utilities;
+
+.bg-decorated {
+    background: rgba(245, 245, 245, 1);
+    position: relative;
+}
+
+.bg-decorated::before {
+    z-index: 0;
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(-180deg, rgba(245, 245, 245, .25) 0%, rgba(245, 245, 245, .75) 100%), url('/static/squares.svg') repeat center center;
+}
+
+.bg-decorated > * {
+    z-index: 1;
+    position: relative;
+}
+
+body {
+    font-family: 'Varela Round', sans-serif;
+    color: #4D4D4D;
+}
+
+h1, h2, h3 {
+    font-weight: normal;
+}
+
+a {
+    text-decoration: none;
+}
+
+main h1 {
+    @apply text-red text-5xl mb-2 mt-2;
+}
+
+main h2 {
+    @apply text-red text-3xl mt-8;
+}
+
+
+main h3 {
+    @apply text-red text-2xl mt-6;
+}
+
+main p {
+    @apply mb-6;
+}

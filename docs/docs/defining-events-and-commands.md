@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /defining-events-and-commands/
+permalink: /docs/events-and-commands/
 title: Defining Commands and Events
 ---
 

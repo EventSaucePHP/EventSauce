@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /rationale/
+permalink: /docs/rationale/
 title: Rationale
 ---
 

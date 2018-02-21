@@ -1,5 +1,7 @@
+About:
+    Introduction: '/docs/'
+    Installation: '/docs/installation/'
+    Rationale: '/docs/rationale/'
+
 Getting Started:
-    Introduction: '/'
-    Installation: '/installation/'
-    Rationale: '/rationale/'
-    Defining Events (and Commands): '/defining-events-and-commands/'
+    Events and Commands: '/docs/events-and-commands/'
