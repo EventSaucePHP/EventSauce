@@ -2,6 +2,7 @@ About:
     Introduction: '/docs/'
     Installation: '/docs/installation/'
     Rationale: '/docs/rationale/'
+    Lifecycle: '/docs/lifecycle/'
 
 Getting Started:
     Events and Commands: '/docs/events-and-commands/'

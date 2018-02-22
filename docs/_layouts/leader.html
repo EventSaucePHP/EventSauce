@@ -35,6 +35,7 @@
             margin: 0;
             font-family: 'Varela Round', sans-serif;
             color: #4D4D4D;
+            font-size: 20px;
         }
         main::before {
             z-index: 0;
@@ -125,49 +126,62 @@
             display: block;
             padding-bottom: 15px;
             margin-top: 30px;
+            opacity: .5;
         }
         input[type=email] {
-            font-family: inherit;
+            font-family: 'Montserrat', sans-serif;
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            border: 0;
+            outline: none;
             display: block;
             width: 100%;
             line-height: 30px;
             font-size: 20px;
-            border-radius: 3px;
-            padding: 10px 20px;
+            border-radius: 4px;
+            padding: 10px 15px;
             margin-right: 15px;
             color: inherit;
-            box-shadow: 0 0 15px rgba(0, 0, 0, .15);
+            box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.08);
+            border: 1px solid #D8D8D8;
             margin-bottom: 15px;
         }
         #example-testing {
             transform: translate3d(0, 0, 0);
             animation: slide-in-from-bottom 1.5s ease-out;
+            margin-bottom: 50px;
         }
         input[type=email]::placeholder {
+            font-family: 'Montserrat', sans-serif;
             color: #D8D8D8;
-            font-family: inherit;
         }
         button[type=submit] {
-            border: 0;
-            font-family: inherit;
+            font-family: 'Montserrat', sans-serif;
             display: block;
             width: 100%;
             line-height: 30px;
             font-size: 20px;
             border-radius: 3px;
-            padding: 10px 20px;
+            padding: 10px 15px;
             margin-right: 0;
             cursor: pointer;
-            background: #A70000;
+            background: #BE2323;
             color: rgba(255, 255, 255, .8);
-            background: linear-gradient(-180deg, #BE2323 0%, #A70000 50%, #920000 100%);
+            border: 1px solid #BE2323;
+            position: relative;
+            top: 0;
+            transition-property: top, box-shadow;
+            transition-duration: .2s;
+            text-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.38);
+            /*background: linear-gradient(-180deg, #BE2323 0%, #A70000 50%, #920000 100%);*/
         }
         button[type=submit]:hover, button[type=submit]:focus {
             color: #fff;
+            outline: none;
+            /*background: #BE2323;*/
+            /*border: 1px solid #BE2323;*/
+            top: -2px;
+            box-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.25);
         }
         .max-width-full {
             width: 500px;

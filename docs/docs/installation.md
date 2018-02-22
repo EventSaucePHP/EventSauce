@@ -30,7 +30,7 @@ implementation of the `EventSauce\EventSourcing\Cosumer` interface, binding it t
 composer require eventsauce/rabbitmq-bundle-bindings:@dev
 ```
 
-## Setup + Example
+## Bootstrap
 
 ```php
 <?php
@@ -50,10 +50,10 @@ $connection = doctrine_connection();
 /** @var ProducerInterface $producer */
 $producer = rabbbitmq_producer();
 
-$messageSerializer = new ConstructingMessageSerializer(Your);
+$messageSerializer = new ConstructingMessageSerializer(UuidAggregateRootId::class);
 $messageDispatcher = new RabbitMQMessageDispatcher($producer, $messageSerializer);
-$messageRepository = new DoctrineMessageRepository($connection, $messageDispatcher, $messageSerializer, 'domain_messages');
-$aggregateRootRepository = new AggregateRootRepository(MyAggregate::class, $messageRepository);
+$messageRepository = new MysqlDoctrineMessageRepository($connection, $messageDispatcher, $messageSerializer, 'domain_messages');
+$aggregateRootRepository = new AggregateRootRepository(MyAggregateRoot::class, $messageRepository);
 
 $aggregateRootId = new UuidAggregateRootId('4ea45435-aee8-43f2-aad8-2309bcd2aaab');
 $myAggregate = $aggregateRootRepository->retrieve($aggregateRootId);

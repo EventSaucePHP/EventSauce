@@ -1343,16 +1343,12 @@ button,
   clear: both;
 }
 
-.font-sans {
-  font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+.font-heading {
+  font-family: Varela Round, sans-serif;
 }
 
-.font-serif {
-  font-family: Constantia, Lucida Bright, Lucidabright, Lucida Serif, Lucida, DejaVu Serif, Bitstream Vera Serif, Liberation Serif, Georgia, serif;
-}
-
-.font-mono {
-  font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+.font-body {
+  font-family: Montserrat, sans-serif;
 }
 
 .font-hairline {
@@ -2947,14 +2943,19 @@ button,
 }
 
 body {
-  font-family: 'Varela Round', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #4d4d4d;
+}
+
+a {
+  color: #a70000;
 }
 
 h1,
 h2,
 h3 {
   font-weight: normal;
+  font-family: Varela Round, sans-serif;
 }
 
 a {
@@ -2980,7 +2981,9 @@ main h3 {
   margin-top: 1.5rem;
 }
 
-main p {
+main p,
+main ul,
+main ol {
   margin-bottom: 1.5rem;
 }
 
@@ -3720,16 +3723,12 @@ main p {
     clear: both;
   }
 
-  .sm\:font-sans {
-    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  .sm\:font-heading {
+    font-family: Varela Round, sans-serif;
   }
 
-  .sm\:font-serif {
-    font-family: Constantia, Lucida Bright, Lucidabright, Lucida Serif, Lucida, DejaVu Serif, Bitstream Vera Serif, Liberation Serif, Georgia, serif;
-  }
-
-  .sm\:font-mono {
-    font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  .sm\:font-body {
+    font-family: Montserrat, sans-serif;
   }
 
   .sm\:font-hairline {
@@ -6031,16 +6030,12 @@ main p {
     clear: both;
   }
 
-  .md\:font-sans {
-    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  .md\:font-heading {
+    font-family: Varela Round, sans-serif;
   }
 
-  .md\:font-serif {
-    font-family: Constantia, Lucida Bright, Lucidabright, Lucida Serif, Lucida, DejaVu Serif, Bitstream Vera Serif, Liberation Serif, Georgia, serif;
-  }
-
-  .md\:font-mono {
-    font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  .md\:font-body {
+    font-family: Montserrat, sans-serif;
   }
 
   .md\:font-hairline {
@@ -8342,16 +8337,12 @@ main p {
     clear: both;
   }
 
-  .lg\:font-sans {
-    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  .lg\:font-heading {
+    font-family: Varela Round, sans-serif;
   }
 
-  .lg\:font-serif {
-    font-family: Constantia, Lucida Bright, Lucidabright, Lucida Serif, Lucida, DejaVu Serif, Bitstream Vera Serif, Liberation Serif, Georgia, serif;
-  }
-
-  .lg\:font-mono {
-    font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  .lg\:font-body {
+    font-family: Montserrat, sans-serif;
   }
 
   .lg\:font-hairline {
@@ -10653,16 +10644,12 @@ main p {
     clear: both;
   }
 
-  .xl\:font-sans {
-    font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  .xl\:font-heading {
+    font-family: Varela Round, sans-serif;
   }
 
-  .xl\:font-serif {
-    font-family: Constantia, Lucida Bright, Lucidabright, Lucida Serif, Lucida, DejaVu Serif, Bitstream Vera Serif, Liberation Serif, Georgia, serif;
-  }
-
-  .xl\:font-mono {
-    font-family: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  .xl\:font-body {
+    font-family: Montserrat, sans-serif;
   }
 
   .xl\:font-hairline {

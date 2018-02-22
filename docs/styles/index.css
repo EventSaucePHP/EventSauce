@@ -24,12 +24,17 @@
 }
 
 body {
-    font-family: 'Varela Round', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #4D4D4D;
+}
+
+a {
+    @apply text-red;
 }
 
 h1, h2, h3 {
     font-weight: normal;
+    @apply font-heading;
 }
 
 a {
@@ -49,6 +54,6 @@ main h3 {
     @apply text-red text-2xl mt-6;
 }
 
-main p {
+main p, main ul, main ol {
     @apply mb-6;
 }

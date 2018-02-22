@@ -1,15 +1,31 @@
 ---
 layout: default
 permalink: /docs/events-and-commands/
-title: Defining Commands and Events
+title: Events and commands
 ---
 
-# Defining events and commands
+# Events and commands
+
+Events are the core of any event sourced system. They are the payload,
+the message, they allow our system to communicate in a meaningful way.
+Events (and commands) are also very simple. They are instantiated with
+all the data they need and _only_ expose the data. An event should be
+handled as an immutable object. They also have but a few technical
+requirements:
+
+1. They contain a reference to the aggregate root.
+1. They must be persistable.
+1. They must be valid.
+
+The events and commands reference the aggregate root by ID. This ID
+is commonly referred to as the `AggregateRootId`. Additionally an
+event should contain a relevant payload.
 
 Defining events and commands can be done in 2 ways.
 
-* Manually creating classes.
 * Defining them in YAML.
+* Creating classes by pressing keys on your keyboard.
+
 
 ## Manually creating classes.
 
