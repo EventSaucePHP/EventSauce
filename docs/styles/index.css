@@ -26,6 +26,11 @@
 body {
     font-family: 'Montserrat', sans-serif;
     color: #4D4D4D;
+    font-size: 15px;
+    font-weight: 400;
+    font-stretch: 100%;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
 }
 
 a {
@@ -42,7 +47,7 @@ a {
 }
 
 main h1 {
-    @apply text-red text-5xl mb-2 mt-2;
+    @apply text-red text-5xl mb-2 mt-2 leading-tight;
 }
 
 main h2 {

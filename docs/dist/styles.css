@@ -2945,6 +2945,11 @@ button,
 body {
   font-family: 'Montserrat', sans-serif;
   color: #4d4d4d;
+  font-size: 15px;
+  font-weight: 400;
+  font-stretch: 100%;
+  -webkit-font-smoothing: antialiased;
+          font-smoothing: antialiased;
 }
 
 a {
@@ -2967,6 +2972,7 @@ main h1 {
   font-size: 3rem;
   margin-bottom: .5rem;
   margin-top: .5rem;
+  line-height: 1.25;
 }
 
 main h2 {
