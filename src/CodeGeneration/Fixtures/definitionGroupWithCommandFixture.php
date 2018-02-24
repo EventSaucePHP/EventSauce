@@ -2,7 +2,6 @@
 
 namespace With\Commands;
 
-use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -29,11 +28,6 @@ final class DoSomething
     public function timeOfRequest(): PointInTime
     {
         return $this->timeOfRequest;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function reason(): string

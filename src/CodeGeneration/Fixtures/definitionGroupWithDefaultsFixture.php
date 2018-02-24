@@ -2,7 +2,6 @@
 
 namespace Group\With\Defaults;
 
-use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -24,11 +23,6 @@ final class EventWithDescription implements Event
     ) {
         $this->timeOfRecording = $timeOfRecording;
         $this->description = $description;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function description(): string

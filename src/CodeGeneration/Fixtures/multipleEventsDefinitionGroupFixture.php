@@ -2,7 +2,6 @@
 
 namespace Multiple\Events\DefinitionGroup;
 
-use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -24,11 +23,6 @@ final class FirstEvent implements Event
     ) {
         $this->timeOfRecording = $timeOfRecording;
         $this->firstField = $firstField;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function firstField(): string
@@ -97,11 +91,6 @@ final class SecondEvent implements Event
     ) {
         $this->timeOfRecording = $timeOfRecording;
         $this->secondField = $secondField;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function secondField(): string

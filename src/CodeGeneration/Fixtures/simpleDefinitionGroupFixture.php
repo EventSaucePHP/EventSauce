@@ -2,7 +2,6 @@
 
 namespace Simple\Definition\Group;
 
-use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -31,11 +30,6 @@ final class SomethingHappened implements Event
         $this->timeOfRecording = $timeOfRecording;
         $this->what = $what;
         $this->yolo = $yolo;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function what(): string

@@ -2,7 +2,6 @@
 
 namespace EventsFrom\OtherTypes;
 
-use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -24,11 +23,6 @@ final class BaseEvent implements Event
     ) {
         $this->timeOfRecording = $timeOfRecording;
         $this->age = $age;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function age(): int
@@ -79,11 +73,6 @@ final class ExtendedEvent implements Event
     ) {
         $this->timeOfRecording = $timeOfRecording;
         $this->age = $age;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function age(): int
@@ -141,11 +130,6 @@ final class BaseCommand
         return $this->timeOfRequest;
     }
 
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
-    }
-
     public function name(): string
     {
         return $this->name;
@@ -176,11 +160,6 @@ final class ExtendedCommand
     public function timeOfRequest(): PointInTime
     {
         return $this->timeOfRequest;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function name(): string

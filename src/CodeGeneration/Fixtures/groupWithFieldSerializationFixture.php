@@ -2,7 +2,6 @@
 
 namespace Group\With\FieldDeserialization;
 
-use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -24,11 +23,6 @@ final class WithFieldSerializers implements Event
     ) {
         $this->timeOfRecording = $timeOfRecording;
         $this->items = $items;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function items(): array

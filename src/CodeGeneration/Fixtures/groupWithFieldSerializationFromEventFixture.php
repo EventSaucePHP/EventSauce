@@ -2,7 +2,6 @@
 
 namespace With\EventFieldSerialization;
 
-use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -24,11 +23,6 @@ final class EventName implements Event
     ) {
         $this->timeOfRecording = $timeOfRecording;
         $this->title = $title;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function title(): string

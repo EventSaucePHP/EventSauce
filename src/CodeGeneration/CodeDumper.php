@@ -31,7 +31,6 @@ class CodeDumper
 
 namespace $namespace;
 
-use EventSauce\\EventSourcing\\AggregateRootId;
 use EventSauce\\EventSourcing\\Event;
 use EventSauce\\EventSourcing\\PointInTime;
 
@@ -163,15 +162,6 @@ EOF;
     private function dumpMethods(DefinitionWithFields $command): string
     {
         $methods = [];
-        $methods[] = <<<EOF
-    public function aggregateRootId(): AggregateRootId
-    {
-        return \$this->aggregateRootId;
-    }
-
-
-EOF;
-
 
         foreach ($this->fieldsFromDefinition($command) as $field) {
             $methods[] = <<<EOF
@@ -184,7 +174,7 @@ EOF;
 EOF;
         }
 
-        return rtrim(join('', $methods)) . "\n\n";
+        return empty($methods) ? '' : rtrim(join('', $methods)) . "\n\n";
     }
 
     private function dumpSerializationMethods(EventDefinition $event)

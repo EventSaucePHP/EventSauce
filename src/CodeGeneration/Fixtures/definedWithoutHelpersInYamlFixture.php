@@ -2,7 +2,6 @@
 
 namespace Acme\BusinessProcess;
 
-use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -31,11 +30,6 @@ final class UserSubscribedFromMailingList implements Event
         $this->timeOfRecording = $timeOfRecording;
         $this->username = $username;
         $this->mailingList = $mailingList;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function username(): string
@@ -107,11 +101,6 @@ final class SubscribeToMailingList
         return $this->timeOfRequest;
     }
 
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
-    }
-
     public function username(): string
     {
         return $this->username;
@@ -161,11 +150,6 @@ final class UnsubscribeFromMailingList
     public function timeOfRequest(): PointInTime
     {
         return $this->timeOfRequest;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function username(): string

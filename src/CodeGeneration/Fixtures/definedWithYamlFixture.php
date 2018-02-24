@@ -2,7 +2,6 @@
 
 namespace DefinedWith\Yaml;
 
-use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -31,11 +30,6 @@ final class WeWentYamling implements Event
         $this->timeOfRecording = $timeOfRecording;
         $this->reference = $reference;
         $this->slogan = $slogan;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function reference(): \Ramsey\Uuid\UuidInterface
@@ -114,11 +108,6 @@ final class VersionedEvent implements Event
         $this->title = $title;
     }
 
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
-    }
-
     public function title(): string
     {
         return $this->title;
@@ -192,11 +181,6 @@ final class HideFinancialDetailsOfFraudulentCompany
         return $this->timeOfRequest;
     }
 
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
-    }
-
     public function companyId(): \Ramsey\Uuid\UuidInterface
     {
         return $this->companyId;
@@ -234,11 +218,6 @@ final class GoYamling
     public function timeOfRequest(): PointInTime
     {
         return $this->timeOfRequest;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function reference(): \Ramsey\Uuid\UuidInterface

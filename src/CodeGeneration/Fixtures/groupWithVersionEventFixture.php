@@ -2,7 +2,6 @@
 
 namespace With\Versioned\Event;
 
-use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -17,11 +16,6 @@ final class VersionTwo implements Event
         PointInTime $timeOfRecording
     ) {
         $this->timeOfRecording = $timeOfRecording;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function timeOfRecording(): PointInTime
