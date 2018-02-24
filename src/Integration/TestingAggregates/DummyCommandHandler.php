@@ -6,6 +6,8 @@ use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\CommandHandler;
 use EventSauce\EventSourcing\Time\Clock;
+use LogicException;
+use function method_exists;
 
 class DummyCommandHandler implements CommandHandler
 {
@@ -25,6 +27,10 @@ class DummyCommandHandler implements CommandHandler
         $this->clock = $clock;
     }
 
+    /**
+     * @param DummyCommand $command
+     * @throws DummyException
+     */
     public function handle(Command $command)
     {
         /** @var DummyAggregate $aggregate */
