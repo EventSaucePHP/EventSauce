@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ page.title }} - {{ site.data.project.title }}</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Varela+Round" rel="stylesheet" />
     {% if site.data.project.description %}
         <meta name="description" content="{{ site.data.project.description }}">
     {% endif %}
@@ -23,33 +24,36 @@
     {% endif %}
     <!--<base href="//eventsauce.io/">-->
 </head>
-<body class="flex min-h-screen min-w-full leading-normal">
-<nav class="flex flex-no-shrink flex-col min-h-screen border-grey-lightest border-r">
-    <div class="p-8 bg-decorated border-grey-lightest border-b">
-        <div class="flex items-center flex-no-shrink">
-            <img class="fill-current h-12 w-12 mr-2" width="30" height="30" src="/static/logo.svg"/>
-            <span class="font-normal font-heading leading-none text-3xl text-grey-dark">
-                Event<span class="text-red">Sauce</span><sup class="text-xs relative" style="top: -20px;">alpha</sup>
-            </span>
-        </div>
+<body class="min-h-screen min-w-full leading-normal bg-grey-most-light">
+<div class="p-4 bg-white border-grey-lightest border-b">
+    <div class="flex items-center flex-no-shrink">
+        <img class="fill-current h-10 w-10 mr-2" width="30" height="30" src="/static/logo.svg"/>
+        <span class="font-normal font-heading leading-none text-3xl text-grey-dark">
+            Event<span class="text-red">Sauce</span><sup class="text-xs relative" style="top: -20px;">alpha</sup>
+        </span>
     </div>
-    <menu class="flex-grow p-8 bg-grey-most-light mt-0">
-        {% for section in site.data.menu %}
-        <h2 class="text-sm leading-loose tracking-wide text-grey-light uppercase">{{ section[0] }}</h2>
-        <ul class="list-reset mb-8">
-            {% for link in section[1] %}
-            <li>
-                <a class="leading-loose text-lg {% if page.url == link[1] %}text-red{% else %}text-grey-dark{% endif %}" href="{{ link[1] }}">{{ link[0] }}</a>
-            </li>
+</div>
+
+<main class="lg:flex">
+    <nav class="flex-no-shrink flex-col min-h-screen">
+        <menu class="p-4 mt-0">
+            {% for section in site.data.menu %}
+            <h2 class="cli-prefixed text-sm leading-loose tracking-wide text-grey-lighter uppercase">{{ section[0] }}</h2>
+            <ul class="list-reset mb-8">
+                {% for link in section[1] %}
+                <li>
+                    <a class="leading-loose text-lg {% if page.url == link[1] %}text-red{% else %}text-grey-dark{% endif %}" href="{{ link[1] }}">{{ link[0] }}</a>
+                </li>
+                {% endfor %}
+            </ul>
             {% endfor %}
-        </ul>
-        {% endfor %}
-    </menu>
-</nav>
-<main class="flex-grow bg-grey-most-light p-8 m-h-screen">
-    <article class="max-w-md mx-auto">
-    {{ content }}
-    </article>
+        </menu>
+    </nav>
+    <div class="flex-grow p-8 m-h-screen max-w-full overflow-auto">
+        <article class="max-w-lg mx-auto">
+        {{ content }}
+        </article>
+    </div>
 </main>
 <!--
 <main>

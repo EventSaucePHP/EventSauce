@@ -125,7 +125,7 @@ module.exports = {
             'sans-serif'
         ],
         'body': [
-            'Montserrat',
+            'Raleway',
             'sans-serif'
         ]
     },

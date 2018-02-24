@@ -2,35 +2,41 @@
 
 @tailwind utilities;
 
-.bg-decorated {
-    background: rgba(245, 245, 245, 1);
-    position: relative;
+.cli-prefixed::before {
+    content: '#';
 }
 
+.bg-decorated {
+    background: rgb(245,245,245);
+}
 .bg-decorated::before {
     z-index: 0;
     content: ' ';
     position: absolute;
     top: 0;
     left: 0;
-    bottom: 0;
+    height: 60vh;
     width: 100%;
-    background: linear-gradient(-180deg, rgba(245, 245, 245, .25) 0%, rgba(245, 245, 245, .75) 100%), url('/static/squares.svg') repeat center center;
+    background: linear-gradient(-180deg, rgba(245, 245, 245, 0) 0%, rgba(245, 245, 245, 1) 100%), url('/static/squares.svg') repeat center center;
 }
 
 .bg-decorated > * {
-    z-index: 1;
     position: relative;
+    z-index: 1;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: #4D4D4D;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 400;
     font-stretch: 100%;
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 a {
@@ -46,19 +52,19 @@ a {
     text-decoration: none;
 }
 
-main h1 {
-    @apply text-red text-5xl mb-2 mt-2 leading-tight;
+article h1 {
+    @apply text-red text-5xl mb-2 leading-tight;
 }
 
-main h2 {
-    @apply text-red text-3xl mt-8;
+article h2 {
+    @apply text-red text-3xl;
 }
 
 
-main h3 {
+article h3 {
     @apply text-red text-2xl mt-6;
 }
 
-main p, main ul, main ol {
+article p, article ul, article ol {
     @apply mb-6;
 }
