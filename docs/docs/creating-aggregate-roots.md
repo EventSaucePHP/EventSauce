@@ -1,6 +1,6 @@
 # Creating aggregate roots
 
-Creating aggregate roots as as simple as extending a base class which provides the functionality required to record and
+Creating aggregate roots is as simple as extending a base class providing the functionality to record and
 release events.
 
 ```php
@@ -29,12 +29,10 @@ class SomeBusinessProcess extends BaseAggregateRoot
 }
 ```
 
-The aggregate root base class defined a couple of methods. As shown in the example above, it provides the `recordThat`
-method which records events that need to be persisted/dispatched later. The method `performTask` also receives a `Clock`.
-This is one of the libraries opinions. Every event has a time of recording, which is a `PointInTime`. This is a microsecond
-precise object. It's so precise that two instances created after each-other don't have the same value.
+As shown in the example above, the base class provides the `recordThat` method which records events that need to be persisted/dispatched later. The method `performTask` also receives a `Clock`.
 
-> For general usage throughout your application a `Clock` implementation is provided in the form of a `SystemClock`, this
-> generates a new `PointInTime` object. For testing purposes a `TestClock` is provides which allows you to fixate time.
-> This is extremely handy in situations where time is relevant for handling events.
+The `Clock` object provides the current time, represented by a `PointInTime`, a microsecond precise object. It's so precise that two instances created after each other usually won't have the same value.
+ 
+One of the core concepts in EventSauce is that every event records the `PointInTime` it occured. This is useful for business analysis but is also allows us to find the original order of the events after they've been persisted. The `BaseAggregateRoot` needs a `Clock` to provide this time to each event. 
 
+EventSauce provides a couple `Clock` implementations out of the box. In production, use the  `SystemClock`, which returns the current time of the operating system. For testing, you can use `TestClock` is provides which allows you to provide a fixed time. This is very useful because using the system time in tests makes it impossible to hardcode your fixtures.
