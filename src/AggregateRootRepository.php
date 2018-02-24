@@ -21,10 +21,20 @@ final class AggregateRootRepository
      */
     private $decorator;
 
-    public function __construct(string $aggregateRootClassName, MessageRepository $messageRepository, MessageDecorator $decorator = null)
-    {
+    /**
+     * @var MessageDispatcher
+     */
+    private $dispatcher;
+
+    public function __construct(
+        string $aggregateRootClassName,
+        MessageRepository $messageRepository,
+        MessageDispatcher $dispatcher = null,
+        MessageDecorator $decorator = null
+    ) {
         $this->aggregateRootClassName = $aggregateRootClassName;
         $this->repository = $messageRepository;
+        $this->dispatcher = $dispatcher ?: new SynchronousMessageDispatcher();
         $this->decorator = $decorator ?: new DelegatingMessageDecorator();
     }
 
@@ -57,5 +67,6 @@ final class AggregateRootRepository
         }, $events);
 
         $this->repository->persist($aggregateRootId, ... $messages);
+        $this->dispatcher->dispatch(... $messages);
     }
 }
