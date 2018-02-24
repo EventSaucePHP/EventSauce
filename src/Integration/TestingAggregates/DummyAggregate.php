@@ -12,7 +12,6 @@ class DummyAggregate extends BaseAggregateRoot
     public function performDummyTask(Clock $clock)
     {
         $this->recordThat(new DummyTaskWasExecuted(
-            $this->aggregateRootId(),
             $clock->pointInTime()
         ));
     }
@@ -20,7 +19,6 @@ class DummyAggregate extends BaseAggregateRoot
     public function increment(Clock $clock)
     {
         $this->recordThat(new DummyIncrementingHappened(
-            $this->aggregateRootId(),
             $clock->pointInTime(),
             $this->incrementedNumber + 1
         ));

@@ -10,11 +10,6 @@ use EventSauce\EventSourcing\PointInTime;
 final class WeWentYamling implements Event
 {
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var \Ramsey\Uuid\UuidInterface
      */
     private $reference;
@@ -30,12 +25,10 @@ final class WeWentYamling implements Event
     private $timeOfRecording;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording,
         \Ramsey\Uuid\UuidInterface $reference,
         string $slogan
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
         $this->reference = $reference;
         $this->slogan = $slogan;
@@ -63,11 +56,9 @@ final class WeWentYamling implements Event
 
     public static function fromPayload(
         array $payload,
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
         return new WeWentYamling(
-            $aggregateRootId,
             $timeOfRecording,
             \Ramsey\Uuid\Uuid::fromString($payload['reference']),
             (string) $payload['slogan']
@@ -93,10 +84,9 @@ final class WeWentYamling implements Event
         return $this;
     }
 
-    public static function withSlogan(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording, string $slogan): WeWentYamling
+    public static function withSlogan(PointInTime $timeOfRecording, string $slogan): WeWentYamling
     {
         return new WeWentYamling(
-            $aggregateRootId,
             $timeOfRecording,
             \Ramsey\Uuid\Uuid::fromString("c0b47bc5-2aaa-497b-83cb-11d97da03a95"),
             $slogan
@@ -108,11 +98,6 @@ final class WeWentYamling implements Event
 final class VersionedEvent implements Event
 {
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var string
      */
     private $title;
@@ -123,11 +108,9 @@ final class VersionedEvent implements Event
     private $timeOfRecording;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording,
         string $title
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
         $this->title = $title;
     }
@@ -149,11 +132,9 @@ final class VersionedEvent implements Event
 
     public static function fromPayload(
         array $payload,
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
         return new VersionedEvent(
-            $aggregateRootId,
             $timeOfRecording,
             (string) $payload['title']
         );
@@ -177,10 +158,9 @@ final class VersionedEvent implements Event
         return $this;
     }
 
-    public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): VersionedEvent
+    public static function with(PointInTime $timeOfRecording): VersionedEvent
     {
         return new VersionedEvent(
-            $aggregateRootId,
             $timeOfRecording,
             (string) 'Some Example Title'
         );
@@ -196,21 +176,14 @@ final class HideFinancialDetailsOfFraudulentCompany implements Command
     private $timeOfRequest;
 
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var \Ramsey\Uuid\UuidInterface
      */
     private $companyId;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRequest,
         \Ramsey\Uuid\UuidInterface $companyId
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRequest = $timeOfRequest;
         $this->companyId = $companyId;
     }
@@ -240,11 +213,6 @@ final class GoYamling implements Command
     private $timeOfRequest;
 
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var \Ramsey\Uuid\UuidInterface
      */
     private $reference;
@@ -255,12 +223,10 @@ final class GoYamling implements Command
     private $slogan;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRequest,
         \Ramsey\Uuid\UuidInterface $reference,
         string $slogan
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRequest = $timeOfRequest;
         $this->reference = $reference;
         $this->slogan = $slogan;

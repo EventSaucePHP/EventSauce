@@ -14,15 +14,21 @@ final class Message
      */
     private $metadata;
 
-    public function __construct(Event $event, array $metadata = [])
+    /**
+     * @var AggregateRootId
+     */
+    private $aggregateRootId;
+
+    public function __construct(AggregateRootId $aggregateRootId, Event $event, array $metadata = [])
     {
         $this->event = $event;
         $this->metadata = $metadata;
+        $this->aggregateRootId = $aggregateRootId;
     }
 
     public function aggregateRootId(): AggregateRootId
     {
-        return $this->event->aggregateRootId();
+        return $this->aggregateRootId;
     }
 
     public function withMetadata(string $key, $value)

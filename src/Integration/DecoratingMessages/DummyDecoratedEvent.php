@@ -11,16 +11,6 @@ use EventSauce\EventSourcing\PointInTime;
  */
 class DummyDecoratedEvent implements Event
 {
-    public function aggregateRootId(): AggregateRootId
-    {
-
-    }
-
-    public function eventVersion(): int
-    {
-
-    }
-
     public function timeOfRecording(): PointInTime
     {
 
@@ -31,7 +21,7 @@ class DummyDecoratedEvent implements Event
 
     }
 
-    public static function fromPayload(array $payload, AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): Event
+    public static function fromPayload(array $payload, PointInTime $timeOfRecording): Event
     {
 
     }

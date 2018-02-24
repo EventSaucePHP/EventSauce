@@ -12,11 +12,6 @@ use EventSauce\EventSourcing\PointInTime;
 class DummyIncrementingHappened implements Event
 {
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var PointInTime
      */
     private $timeOfRecording;
@@ -26,21 +21,10 @@ class DummyIncrementingHappened implements Event
      */
     private $number;
 
-    public function __construct(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording, int $number)
+    public function __construct(PointInTime $timeOfRecording, int $number)
     {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
         $this->number = $number;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
-    }
-
-    public function eventVersion(): int
-    {
-        return 1;
     }
 
     public function timeOfRecording(): PointInTime
@@ -53,9 +37,9 @@ class DummyIncrementingHappened implements Event
         return [];
     }
 
-    public static function fromPayload(array $payload, AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): Event
+    public static function fromPayload(array $payload, PointInTime $timeOfRecording): Event
     {
-        return new DummyIncrementingHappened($aggregateRootId, $timeOfRecording, $payload['number']);
+        return new DummyIncrementingHappened($timeOfRecording, $payload['number']);
     }
 
     public function number(): int

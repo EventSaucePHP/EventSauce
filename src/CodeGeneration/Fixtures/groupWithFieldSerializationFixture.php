@@ -10,11 +10,6 @@ use EventSauce\EventSourcing\PointInTime;
 final class WithFieldSerializers implements Event
 {
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var array
      */
     private $items;
@@ -25,11 +20,9 @@ final class WithFieldSerializers implements Event
     private $timeOfRecording;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording,
         array $items
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
         $this->items = $items;
     }
@@ -51,11 +44,9 @@ final class WithFieldSerializers implements Event
 
     public static function fromPayload(
         array $payload,
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
         return new WithFieldSerializers(
-            $aggregateRootId,
             $timeOfRecording,
             array_map(function ($property) {
                 return ['property' => $property];
@@ -73,10 +64,9 @@ final class WithFieldSerializers implements Event
         ];
     }
 
-    public static function withItems(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording, array $items): WithFieldSerializers
+    public static function withItems(PointInTime $timeOfRecording, array $items): WithFieldSerializers
     {
         return new WithFieldSerializers(
-            $aggregateRootId,
             $timeOfRecording,
             $items
         );

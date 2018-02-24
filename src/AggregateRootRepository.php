@@ -47,15 +47,15 @@ final class AggregateRootRepository
 
     public function persist(AggregateRoot $aggregateRoot)
     {
-        $this->persistEvents(...$aggregateRoot->releaseEvents());
+        $this->persistEvents($aggregateRoot->aggregateRootId(), ...$aggregateRoot->releaseEvents());
     }
 
-    public function persistEvents(Event ... $events)
+    public function persistEvents(AggregateRootId $aggregateRootId, Event ... $events)
     {
-        $messages = array_map(function(Event $event) {
-            return $this->decorator->decorate(new Message($event));
+        $messages = array_map(function(Event $event) use ($aggregateRootId) {
+            return $this->decorator->decorate(new Message($aggregateRootId, $event));
         }, $events);
 
-        $this->repository->persist(... $messages);
+        $this->repository->persist($aggregateRootId, ... $messages);
     }
 }

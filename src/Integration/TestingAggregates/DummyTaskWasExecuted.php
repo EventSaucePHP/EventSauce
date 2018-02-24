@@ -11,25 +11,15 @@ use EventSauce\EventSourcing\PointInTime;
  */
 class DummyTaskWasExecuted implements Event
 {
-    /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
 
     /**
      * @var PointInTime
      */
     private $timeOfRecording;
 
-    public function __construct(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording)
+    public function __construct(PointInTime $timeOfRecording)
     {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function eventVersion(): int
@@ -47,8 +37,8 @@ class DummyTaskWasExecuted implements Event
         return [];
     }
 
-    public static function fromPayload(array $payload, AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): Event
+    public static function fromPayload(array $payload, PointInTime $timeOfRecording): Event
     {
-        return new DummyTaskWasExecuted($aggregateRootId, $timeOfRecording);
+        return new DummyTaskWasExecuted($timeOfRecording);
     }
 }

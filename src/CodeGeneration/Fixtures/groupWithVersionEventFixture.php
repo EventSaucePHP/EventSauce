@@ -10,20 +10,13 @@ use EventSauce\EventSourcing\PointInTime;
 final class VersionTwo implements Event
 {
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var PointInTime
      */
     private $timeOfRecording;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
     }
 
@@ -39,11 +32,9 @@ final class VersionTwo implements Event
 
     public static function fromPayload(
         array $payload,
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
         return new VersionTwo(
-            $aggregateRootId,
             $timeOfRecording
         );
     }
@@ -55,10 +46,9 @@ final class VersionTwo implements Event
         ];
     }
 
-    public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): VersionTwo
+    public static function with(PointInTime $timeOfRecording): VersionTwo
     {
         return new VersionTwo(
-            $aggregateRootId,
             $timeOfRecording
         );
     }

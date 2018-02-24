@@ -21,11 +21,12 @@ class UpcastingEventsTest extends TestCase
     {
         $clock = new TestClock();
         $pointInTime = $clock->pointInTime();
+        $aggregateRootId = UuidAggregateRootId::create();
 
         $payload = [
             'type'            => (new DotSeparatedSnakeCaseInflector())->classNameToEventName(UpcastedEventStub::class),
             'version'         => 0,
-            'aggregateRootId' => $uuid = UuidAggregateRootId::create()->toString(),
+            'aggregateRootId' => $aggregateRootId->toString(),
             'timeOfRecording' => $pointInTime->toString(),
             'metadata'        => [],
             'data'            => [],
@@ -35,8 +36,7 @@ class UpcastingEventsTest extends TestCase
         $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(UuidAggregateRootId::class), $upcaster);
 
         $message = iterator_to_array($serializer->unserializePayload($payload))[0];
-        $expected = new Message(new UpcastedEventStub(
-            new UuidAggregateRootId($uuid),
+        $expected = new Message($aggregateRootId, new UpcastedEventStub(
             $pointInTime,
             'upcasted'
         ));
@@ -47,7 +47,7 @@ class UpcastingEventsTest extends TestCase
         $expectedPayload = $payload = [
             'type'            => (new DotSeparatedSnakeCaseInflector())->classNameToEventName(UpcastedEventStub::class),
             'version'         => 1,
-            'aggregateRootId' => $uuid,
+            'aggregateRootId' => $aggregateRootId->toString(),
             'timeOfRecording' => $pointInTime->toString(),
             'metadata'        => [],
             'data'            => [

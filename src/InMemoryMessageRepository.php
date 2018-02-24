@@ -40,14 +40,14 @@ class InMemoryMessageRepository implements MessageRepository
         $this->lastCommit = [];
     }
 
-    public function persist(Message ... $messages)
+    public function persist(AggregateRootId $id, Message ... $messages)
     {
         $this->lastCommit = [];
 
         /** @var Message $event */
         foreach ($messages as $message) {
             $event = $message->event();
-            $this->messages[$message->aggregateRootId()->toString()][] = $message;
+            $this->messages[$id->toString()][] = $message;
             $this->lastCommit[] = $event;
         }
 

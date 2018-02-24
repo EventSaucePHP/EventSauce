@@ -29,7 +29,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     {
         $aggregateRootId = $this->aggregateRootId();
         $this->when(new DummyCommand($aggregateRootId));
-        $this->then(new DummyTaskWasExecuted($aggregateRootId, $this->pointInTime()));
+        $this->then(new DummyTaskWasExecuted($this->pointInTime()));
     }
 
     /**
@@ -78,9 +78,22 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     public function setting_preconditions()
     {
         $id = $this->aggregateRootId();
-        $this->given(new DummyIncrementingHappened($id, $this->pointInTime(), 1))
+        $this->given(new DummyIncrementingHappened($this->pointInTime(), 1))
             ->when(new DummyIncrementCommand($id))
-            ->then(new DummyIncrementingHappened($id, $this->pointInTime(), 2));
+            ->then(new DummyIncrementingHappened($this->pointInTime(), 2));
+    }
+
+    /**
+     * @test
+     */
+    public function setting_preconditions_from_other_aggregates()
+    {
+        $id = $this->aggregateRootId();
+        $this->on(UuidAggregateRootId::create())->stage(
+            new DummyIncrementingHappened($this->pointInTime(), 10)
+        )
+            ->when(new DummyIncrementCommand($id))
+            ->then(new DummyIncrementingHappened($this->pointInTime(), 1));
     }
 
     protected function aggregateRootId(): AggregateRootId

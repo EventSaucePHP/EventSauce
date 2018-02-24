@@ -10,11 +10,6 @@ use EventSauce\EventSourcing\PointInTime;
 final class EventName implements Event
 {
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var string
      */
     private $title;
@@ -25,11 +20,9 @@ final class EventName implements Event
     private $timeOfRecording;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording,
         string $title
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
         $this->title = $title;
     }
@@ -51,11 +44,9 @@ final class EventName implements Event
 
     public static function fromPayload(
         array $payload,
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
         return new EventName(
-            $aggregateRootId,
             $timeOfRecording,
             strtolower($payload['title'])
         );
@@ -79,10 +70,9 @@ final class EventName implements Event
         return $this;
     }
 
-    public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): EventName
+    public static function with(PointInTime $timeOfRecording): EventName
     {
         return new EventName(
-            $aggregateRootId,
             $timeOfRecording,
             strtolower('Title')
         );

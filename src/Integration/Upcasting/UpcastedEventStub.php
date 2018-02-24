@@ -9,11 +9,6 @@ use EventSauce\EventSourcing\PointInTime;
 class UpcastedEventStub implements Event
 {
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var PointInTime
      */
     private $timeOfRecording;
@@ -23,16 +18,10 @@ class UpcastedEventStub implements Event
      */
     private $property;
 
-    public function __construct(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording, string $property)
+    public function __construct(PointInTime $timeOfRecording, string $property)
     {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
         $this->property = $property;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function timeOfRecording(): PointInTime
@@ -45,8 +34,8 @@ class UpcastedEventStub implements Event
         return ['property' => $this->property, self::EVENT_VERSION_PAYLOAD_KEY => 1];
     }
 
-    public static function fromPayload(array $payload, AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): Event
+    public static function fromPayload(array $payload, PointInTime $timeOfRecording): Event
     {
-        return new UpcastedEventStub($aggregateRootId, $timeOfRecording, $payload['property'] ?? 'undefined');
+        return new UpcastedEventStub($timeOfRecording, $payload['property'] ?? 'undefined');
     }
 }

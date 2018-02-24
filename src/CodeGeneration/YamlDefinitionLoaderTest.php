@@ -21,7 +21,7 @@ class YamlDefinitionLoaderTest extends TestCase
         $definitionGroup = $loader->load(__DIR__ . '/Fixtures/exampleDefinition.yaml');
         $dumper = new CodeDumper();
         $code = $dumper->dump($definitionGroup);
-        // file_put_contents(__DIR__ . '/Fixtures/definedWithYamlFixture.php', $code);
+        file_put_contents(__DIR__ . '/Fixtures/definedWithYamlFixture.php', $code);
         $expected = file_get_contents(__DIR__ . '/Fixtures/definedWithYamlFixture.php');
         $this->assertEquals($expected, $code);
     }
@@ -35,7 +35,7 @@ class YamlDefinitionLoaderTest extends TestCase
         $definitionGroup = $loader->load(__DIR__ . '/Fixtures/exampleDefinitionWithoutHelpers.yaml');
         $dumper = new CodeDumper();
         $code = $dumper->dump($definitionGroup, false);
-        // file_put_contents(__DIR__ . '/Fixtures/definedWithoutHelpersInYamlFixture.php', $code);
+        file_put_contents(__DIR__ . '/Fixtures/definedWithoutHelpersInYamlFixture.php', $code);
         $expected = file_get_contents(__DIR__ . '/Fixtures/definedWithoutHelpersInYamlFixture.php');
         $this->assertEquals($expected, $code);
     }
@@ -49,6 +49,7 @@ class YamlDefinitionLoaderTest extends TestCase
         $definitionGroup = $loader->load(__DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitions.yaml');
         $dumper = new CodeDumper();
         $code = $dumper->dump($definitionGroup, false);
+        file_put_contents(__DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitionsFixture.php', $code);
         $expected = file_get_contents(__DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitionsFixture.php');
         $this->assertEquals($expected, $code);
     }

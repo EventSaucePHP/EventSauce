@@ -10,11 +10,6 @@ use EventSauce\EventSourcing\PointInTime;
 final class BaseEvent implements Event
 {
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var int
      */
     private $age;
@@ -25,11 +20,9 @@ final class BaseEvent implements Event
     private $timeOfRecording;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording,
         int $age
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
         $this->age = $age;
     }
@@ -51,11 +44,9 @@ final class BaseEvent implements Event
 
     public static function fromPayload(
         array $payload,
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
         return new BaseEvent(
-            $aggregateRootId,
             $timeOfRecording,
             (int) $payload['age']
         );
@@ -74,11 +65,6 @@ final class BaseEvent implements Event
 final class ExtendedEvent implements Event
 {
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var int
      */
     private $age;
@@ -89,11 +75,9 @@ final class ExtendedEvent implements Event
     private $timeOfRecording;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording,
         int $age
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
         $this->age = $age;
     }
@@ -115,11 +99,9 @@ final class ExtendedEvent implements Event
 
     public static function fromPayload(
         array $payload,
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
         return new ExtendedEvent(
-            $aggregateRootId,
             $timeOfRecording,
             (int) $payload['age']
         );
@@ -143,21 +125,14 @@ final class BaseCommand implements Command
     private $timeOfRequest;
 
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var string
      */
     private $name;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRequest,
         string $name
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRequest = $timeOfRequest;
         $this->name = $name;
     }
@@ -187,21 +162,14 @@ final class ExtendedCommand implements Command
     private $timeOfRequest;
 
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var string
      */
     private $name;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRequest,
         string $name
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRequest = $timeOfRequest;
         $this->name = $name;
     }

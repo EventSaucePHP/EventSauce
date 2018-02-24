@@ -10,11 +10,6 @@ use EventSauce\EventSourcing\PointInTime;
 final class UserSubscribedFromMailingList implements Event
 {
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var string
      */
     private $username;
@@ -30,12 +25,10 @@ final class UserSubscribedFromMailingList implements Event
     private $timeOfRecording;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording,
         string $username,
         string $mailingList
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
         $this->username = $username;
         $this->mailingList = $mailingList;
@@ -63,11 +56,9 @@ final class UserSubscribedFromMailingList implements Event
 
     public static function fromPayload(
         array $payload,
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
         return new UserSubscribedFromMailingList(
-            $aggregateRootId,
             $timeOfRecording,
             (string) $payload['username'],
             (string) $payload['mailingList']
@@ -93,11 +84,6 @@ final class SubscribeToMailingList implements Command
     private $timeOfRequest;
 
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var string
      */
     private $username;
@@ -108,12 +94,10 @@ final class SubscribeToMailingList implements Command
     private $mailingList;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRequest,
         string $username,
         string $mailingList
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRequest = $timeOfRequest;
         $this->username = $username;
         $this->mailingList = $mailingList;
@@ -149,11 +133,6 @@ final class UnsubscribeFromMailingList implements Command
     private $timeOfRequest;
 
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var string
      */
     private $username;
@@ -169,13 +148,11 @@ final class UnsubscribeFromMailingList implements Command
     private $reason;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRequest,
         string $username,
         string $mailingList,
         string $reason
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRequest = $timeOfRequest;
         $this->username = $username;
         $this->mailingList = $mailingList;

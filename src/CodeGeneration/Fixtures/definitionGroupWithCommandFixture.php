@@ -15,21 +15,14 @@ final class DoSomething implements Command
     private $timeOfRequest;
 
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var string
      */
     private $reason;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRequest,
         string $reason
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRequest = $timeOfRequest;
         $this->reason = $reason;
     }
