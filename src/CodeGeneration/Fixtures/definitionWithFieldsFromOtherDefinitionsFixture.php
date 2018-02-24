@@ -3,7 +3,6 @@
 namespace EventsFrom\OtherTypes;
 
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -117,7 +116,7 @@ final class ExtendedEvent implements Event
 
 }
 
-final class BaseCommand implements Command
+final class BaseCommand
 {
     /**
      * @var PointInTime
@@ -154,7 +153,7 @@ final class BaseCommand implements Command
 
 }
 
-final class ExtendedCommand implements Command
+final class ExtendedCommand
 {
     /**
      * @var PointInTime

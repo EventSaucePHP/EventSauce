@@ -3,7 +3,6 @@
 namespace Multiple\Events\DefinitionGroup;
 
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 

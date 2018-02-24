@@ -5,7 +5,6 @@ namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\AggregateRootTestCase;
-use EventSauce\EventSourcing\CommandHandler;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\UuidAggregateRootId;
 use LogicException;
@@ -17,7 +16,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         return DummyAggregate::class;
     }
 
-    protected function commandHandler(AggregateRootRepository $repository, Clock $clock): CommandHandler
+    protected function commandHandler(AggregateRootRepository $repository, Clock $clock)
     {
         return new DummyCommandHandler($repository, $clock);
     }
@@ -94,6 +93,12 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         )
             ->when(new DummyIncrementCommand($id))
             ->then(new DummyIncrementingHappened($this->pointInTime(), 1));
+    }
+
+    protected function handle($command)
+    {
+        $commandHandler = $this->commandHandler($this->repository, $this->clock());
+        $commandHandler->handle($command);
     }
 
     protected function aggregateRootId(): AggregateRootId

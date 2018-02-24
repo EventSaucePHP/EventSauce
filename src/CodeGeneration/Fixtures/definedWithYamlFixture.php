@@ -3,7 +3,6 @@
 namespace DefinedWith\Yaml;
 
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -168,7 +167,7 @@ final class VersionedEvent implements Event
 
 }
 
-final class HideFinancialDetailsOfFraudulentCompany implements Command
+final class HideFinancialDetailsOfFraudulentCompany
 {
     /**
      * @var PointInTime
@@ -205,7 +204,7 @@ final class HideFinancialDetailsOfFraudulentCompany implements Command
 
 }
 
-final class GoYamling implements Command
+final class GoYamling
 {
     /**
      * @var PointInTime

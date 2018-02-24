@@ -3,7 +3,6 @@
 namespace Acme\BusinessProcess;
 
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
@@ -76,7 +75,7 @@ final class UserSubscribedFromMailingList implements Event
 
 }
 
-final class SubscribeToMailingList implements Command
+final class SubscribeToMailingList
 {
     /**
      * @var PointInTime
@@ -125,7 +124,7 @@ final class SubscribeToMailingList implements Command
 
 }
 
-final class UnsubscribeFromMailingList implements Command
+final class UnsubscribeFromMailingList
 {
     /**
      * @var PointInTime

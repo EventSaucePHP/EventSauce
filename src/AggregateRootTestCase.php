@@ -3,10 +3,14 @@
 namespace EventSauce\EventSourcing;
 
 use Exception;
+use function func_get_args;
 use function get_class;
+use LogicException;
+use function method_exists;
 use PHPUnit\Framework\TestCase;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\Time\TestClock;
+use function sprintf;
 
 abstract class AggregateRootTestCase extends TestCase
 {
@@ -18,12 +22,7 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @var AggregateRootRepository
      */
-    private $repository;
-
-    /**
-     * @var CommandHandler
-     */
-    private $commandHandler;
+    protected $repository;
 
     /**
      * @var Exception|null
@@ -65,7 +64,6 @@ abstract class AggregateRootTestCase extends TestCase
         $this->aggregateRootId = $this->aggregateRootId();
         $this->messageRepository = new InMemoryMessageRepository($this->messageDispatcher());
         $this->repository = new AggregateRootRepository($className, $this->messageRepository, new DelegatingMessageDecorator());
-        $this->commandHandler = $this->commandHandler($this->repository, $this->clock);
         $this->expectedEvents = [];
         $this->assertedScenario = false;
         $this->theExpectedException = null;
@@ -98,8 +96,6 @@ abstract class AggregateRootTestCase extends TestCase
 
     abstract protected function aggregateRootClassName(): string;
 
-    abstract protected function commandHandler(AggregateRootRepository $repository, Clock $clock): CommandHandler;
-
     /**
      * @return $this
      */
@@ -119,10 +115,15 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @return $this
      */
-    protected function when(Command $command)
+    protected function when()
     {
         try {
-            $this->commandHandler->handle($command);
+            if ( ! method_exists($this, 'handle')) {
+                throw new LogicException(sprintf('Class %s is missing a ::handle method.', get_class($this)));
+            }
+
+            $arguments = func_get_args();
+            $this->handle(...$arguments);
         } catch (Exception $exception) {
             $this->caughtException = $exception;
         }
@@ -181,6 +182,11 @@ abstract class AggregateRootTestCase extends TestCase
     protected function pointInTime(): PointInTime
     {
         return $this->clock->pointInTime();
+    }
+
+    protected function clock(): Clock
+    {
+        return $this->clock;
     }
 
     protected function messageDispatcher(): MessageDispatcher

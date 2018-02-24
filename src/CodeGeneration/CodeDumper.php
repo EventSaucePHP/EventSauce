@@ -32,7 +32,6 @@ class CodeDumper
 namespace $namespace;
 
 use EventSauce\\EventSourcing\\AggregateRootId;
-use EventSauce\\EventSourcing\\Command;
 use EventSauce\\EventSourcing\\Event;
 use EventSauce\\EventSourcing\\PointInTime;
 
@@ -314,7 +313,7 @@ EOF;
 
         foreach ($commands as $command) {
             $code[] = <<<EOF
-final class {$command->name()} implements Command
+final class {$command->name()}
 {
     /**
      * @var PointInTime

@@ -3,9 +3,8 @@
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\Command;
 
-class IgnoredCommand implements Command
+class IgnoredCommand
 {
     /**
      * @var AggregateRootId
