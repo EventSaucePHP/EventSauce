@@ -36,7 +36,7 @@ final class ConstructingMessageSerializer implements MessageSerializer
         return [
             'type' => $this->eventNameInflector->eventToEventName($event),
             'version' => $payload[Event::EVENT_VERSION_PAYLOAD_KEY] ?? 0,
-            'aggregateRootId' => $event->aggregateRootId()->toString(),
+            'aggregateRootId' => $message->aggregateRootId()->toString(),
             'timeOfRecording' => $event->timeOfRecording()->toString(),
             'metadata' => $message->metadata(),
             'data' => $payload,
@@ -49,12 +49,12 @@ final class ConstructingMessageSerializer implements MessageSerializer
         $className = $this->eventNameInflector->eventNameToClassName($payload['type']);
         /** @var AggregateRootId $aggregateRootIdClassName */
         $aggregateRootIdClassName = $this->aggregateRootIdClassName;
+        $aggregateRootId = $aggregateRootIdClassName::fromString($payload['aggregateRootId']);
         $event = $className::fromPayload(
             $payload['data'],
-            $aggregateRootIdClassName::fromString($payload['aggregateRootId']),
             PointInTime::fromString($payload['timeOfRecording'])
         );
 
-        yield new Message($event, $payload['metadata']);
+        yield new Message($aggregateRootId, $event, $payload['metadata']);
     }
 }

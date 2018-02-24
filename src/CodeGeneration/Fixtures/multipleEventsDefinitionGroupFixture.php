@@ -2,18 +2,11 @@
 
 namespace Multiple\Events\DefinitionGroup;
 
-use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
 final class FirstEvent implements Event
 {
-    /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
     /**
      * @var string
      */
@@ -25,18 +18,11 @@ final class FirstEvent implements Event
     private $timeOfRecording;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording,
         string $firstField
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
         $this->firstField = $firstField;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function firstField(): string
@@ -51,11 +37,9 @@ final class FirstEvent implements Event
 
     public static function fromPayload(
         array $payload,
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
         return new FirstEvent(
-            $aggregateRootId,
             $timeOfRecording,
             (string) $payload['firstField']
         );
@@ -79,10 +63,9 @@ final class FirstEvent implements Event
         return $this;
     }
 
-    public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): FirstEvent
+    public static function with(PointInTime $timeOfRecording): FirstEvent
     {
         return new FirstEvent(
-            $aggregateRootId,
             $timeOfRecording,
             (string) 'FIRST'
         );
@@ -92,11 +75,6 @@ final class FirstEvent implements Event
 
 final class SecondEvent implements Event
 {
-    /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
     /**
      * @var string
      */
@@ -108,18 +86,11 @@ final class SecondEvent implements Event
     private $timeOfRecording;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording,
         string $secondField
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
         $this->secondField = $secondField;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function secondField(): string
@@ -134,11 +105,9 @@ final class SecondEvent implements Event
 
     public static function fromPayload(
         array $payload,
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
         return new SecondEvent(
-            $aggregateRootId,
             $timeOfRecording,
             (string) $payload['secondField']
         );
@@ -162,10 +131,9 @@ final class SecondEvent implements Event
         return $this;
     }
 
-    public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): SecondEvent
+    public static function with(PointInTime $timeOfRecording): SecondEvent
     {
         return new SecondEvent(
-            $aggregateRootId,
             $timeOfRecording,
             (string) 'SECOND'
         );

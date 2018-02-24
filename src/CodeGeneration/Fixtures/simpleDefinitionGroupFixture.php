@@ -2,18 +2,11 @@
 
 namespace Simple\Definition\Group;
 
-use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
 final class SomethingHappened implements Event
 {
-    /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
     /**
      * @var string
      */
@@ -30,20 +23,13 @@ final class SomethingHappened implements Event
     private $timeOfRecording;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording,
         string $what,
         bool $yolo
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
         $this->what = $what;
         $this->yolo = $yolo;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function what(): string
@@ -63,11 +49,9 @@ final class SomethingHappened implements Event
 
     public static function fromPayload(
         array $payload,
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
         return new SomethingHappened(
-            $aggregateRootId,
             $timeOfRecording,
             (string) $payload['what'],
             (bool) $payload['yolo']
@@ -103,10 +87,9 @@ final class SomethingHappened implements Event
         return $this;
     }
 
-    public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): SomethingHappened
+    public static function with(PointInTime $timeOfRecording): SomethingHappened
     {
         return new SomethingHappened(
-            $aggregateRootId,
             $timeOfRecording,
             (string) 'Example Event',
             (bool) true

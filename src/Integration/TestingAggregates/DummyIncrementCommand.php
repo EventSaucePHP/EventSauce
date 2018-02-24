@@ -3,9 +3,8 @@
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\Command;
 
-class DummyIncrementCommand implements Command
+class DummyIncrementCommand
 {
     /**
      * @var AggregateRootId

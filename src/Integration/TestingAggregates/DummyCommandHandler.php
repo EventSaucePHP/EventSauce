@@ -3,11 +3,9 @@
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootRepository;
-use EventSauce\EventSourcing\Command;
-use EventSauce\EventSourcing\CommandHandler;
 use EventSauce\EventSourcing\Time\Clock;
 
-class DummyCommandHandler implements CommandHandler
+class DummyCommandHandler
 {
     /**
      * @var AggregateRootRepository
@@ -25,7 +23,11 @@ class DummyCommandHandler implements CommandHandler
         $this->clock = $clock;
     }
 
-    public function handle(Command $command)
+    /**
+     * @param DummyCommand $command
+     * @throws DummyException
+     */
+    public function handle($command)
     {
         /** @var DummyAggregate $aggregate */
         $aggregate = $this->repository->retrieve($command->aggregateRootId());

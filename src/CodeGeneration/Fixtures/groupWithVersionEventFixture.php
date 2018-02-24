@@ -2,34 +2,20 @@
 
 namespace With\Versioned\Event;
 
-use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
 final class VersionTwo implements Event
 {
     /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
      * @var PointInTime
      */
     private $timeOfRecording;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function timeOfRecording(): PointInTime
@@ -39,11 +25,9 @@ final class VersionTwo implements Event
 
     public static function fromPayload(
         array $payload,
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
         return new VersionTwo(
-            $aggregateRootId,
             $timeOfRecording
         );
     }
@@ -55,10 +39,9 @@ final class VersionTwo implements Event
         ];
     }
 
-    public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): VersionTwo
+    public static function with(PointInTime $timeOfRecording): VersionTwo
     {
         return new VersionTwo(
-            $aggregateRootId,
             $timeOfRecording
         );
     }

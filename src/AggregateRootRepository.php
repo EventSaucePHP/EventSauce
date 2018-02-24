@@ -21,10 +21,20 @@ final class AggregateRootRepository
      */
     private $decorator;
 
-    public function __construct(string $aggregateRootClassName, MessageRepository $messageRepository, MessageDecorator $decorator = null)
-    {
+    /**
+     * @var MessageDispatcher
+     */
+    private $dispatcher;
+
+    public function __construct(
+        string $aggregateRootClassName,
+        MessageRepository $messageRepository,
+        MessageDispatcher $dispatcher = null,
+        MessageDecorator $decorator = null
+    ) {
         $this->aggregateRootClassName = $aggregateRootClassName;
         $this->repository = $messageRepository;
+        $this->dispatcher = $dispatcher ?: new SynchronousMessageDispatcher();
         $this->decorator = $decorator ?: new DelegatingMessageDecorator();
     }
 
@@ -47,15 +57,16 @@ final class AggregateRootRepository
 
     public function persist(AggregateRoot $aggregateRoot)
     {
-        $this->persistEvents(...$aggregateRoot->releaseEvents());
+        $this->persistEvents($aggregateRoot->aggregateRootId(), ...$aggregateRoot->releaseEvents());
     }
 
-    public function persistEvents(Event ... $events)
+    public function persistEvents(AggregateRootId $aggregateRootId, Event ... $events)
     {
-        $messages = array_map(function(Event $event) {
-            return $this->decorator->decorate(new Message($event));
+        $messages = array_map(function(Event $event) use ($aggregateRootId) {
+            return $this->decorator->decorate(new Message($aggregateRootId, $event));
         }, $events);
 
-        $this->repository->persist(... $messages);
+        $this->repository->persist($aggregateRootId, ... $messages);
+        $this->dispatcher->dispatch(... $messages);
     }
 }

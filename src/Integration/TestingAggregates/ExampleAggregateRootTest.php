@@ -5,7 +5,6 @@ namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\AggregateRootTestCase;
-use EventSauce\EventSourcing\CommandHandler;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\UuidAggregateRootId;
 use LogicException;
@@ -17,7 +16,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         return DummyAggregate::class;
     }
 
-    protected function commandHandler(AggregateRootRepository $repository, Clock $clock): CommandHandler
+    protected function commandHandler(AggregateRootRepository $repository, Clock $clock)
     {
         return new DummyCommandHandler($repository, $clock);
     }
@@ -29,7 +28,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     {
         $aggregateRootId = $this->aggregateRootId();
         $this->when(new DummyCommand($aggregateRootId));
-        $this->then(new DummyTaskWasExecuted($aggregateRootId, $this->pointInTime()));
+        $this->then(new DummyTaskWasExecuted($this->pointInTime()));
     }
 
     /**
@@ -78,9 +77,28 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     public function setting_preconditions()
     {
         $id = $this->aggregateRootId();
-        $this->given(new DummyIncrementingHappened($id, $this->pointInTime(), 1))
+        $this->given(new DummyIncrementingHappened($this->pointInTime(), 1))
             ->when(new DummyIncrementCommand($id))
-            ->then(new DummyIncrementingHappened($id, $this->pointInTime(), 2));
+            ->then(new DummyIncrementingHappened($this->pointInTime(), 2));
+    }
+
+    /**
+     * @test
+     */
+    public function setting_preconditions_from_other_aggregates()
+    {
+        $id = $this->aggregateRootId();
+        $this->on(UuidAggregateRootId::create())->stage(
+            new DummyIncrementingHappened($this->pointInTime(), 10)
+        )
+            ->when(new DummyIncrementCommand($id))
+            ->then(new DummyIncrementingHappened($this->pointInTime(), 1));
+    }
+
+    protected function handle($command)
+    {
+        $commandHandler = $this->commandHandler($this->repository, $this->clock());
+        $commandHandler->handle($command);
     }
 
     protected function aggregateRootId(): AggregateRootId

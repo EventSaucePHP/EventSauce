@@ -2,18 +2,11 @@
 
 namespace Group\With\Defaults;
 
-use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\Command;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
 final class EventWithDescription implements Event
 {
-    /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
     /**
      * @var string
      */
@@ -25,18 +18,11 @@ final class EventWithDescription implements Event
     private $timeOfRecording;
 
     public function __construct(
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording,
         string $description
     ) {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
         $this->description = $description;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function description(): string
@@ -51,11 +37,9 @@ final class EventWithDescription implements Event
 
     public static function fromPayload(
         array $payload,
-        AggregateRootId $aggregateRootId,
         PointInTime $timeOfRecording): Event
     {
         return new EventWithDescription(
-            $aggregateRootId,
             $timeOfRecording,
             (string) $payload['description']
         );
@@ -79,10 +63,9 @@ final class EventWithDescription implements Event
         return $this;
     }
 
-    public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): EventWithDescription
+    public static function with(PointInTime $timeOfRecording): EventWithDescription
     {
         return new EventWithDescription(
-            $aggregateRootId,
             $timeOfRecording,
             (string) 'This is a description.'
         );

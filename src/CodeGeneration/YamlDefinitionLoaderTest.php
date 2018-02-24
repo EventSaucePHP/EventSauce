@@ -49,6 +49,7 @@ class YamlDefinitionLoaderTest extends TestCase
         $definitionGroup = $loader->load(__DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitions.yaml');
         $dumper = new CodeDumper();
         $code = $dumper->dump($definitionGroup, false);
+        // file_put_contents(__DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitionsFixture.php', $code);
         $expected = file_get_contents(__DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitionsFixture.php');
         $this->assertEquals($expected, $code);
     }

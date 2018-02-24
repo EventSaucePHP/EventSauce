@@ -31,8 +31,6 @@ class CodeDumper
 
 namespace $namespace;
 
-use EventSauce\\EventSourcing\\AggregateRootId;
-use EventSauce\\EventSourcing\\Command;
 use EventSauce\\EventSourcing\\Event;
 use EventSauce\\EventSourcing\\PointInTime;
 
@@ -86,11 +84,6 @@ EOF;
         $fields = $this->fieldsFromDefinition($definition);
         $code = [];
         $code[] = <<<EOF
-    /**
-     * @var AggregateRootId
-     */
-    private \$aggregateRootId;
-
 
 EOF;
 
@@ -115,8 +108,8 @@ EOF;
 
     private function dumpEventConstructor(EventDefinition $event): string
     {
-        $arguments = ['        AggregateRootId $aggregateRootId', '        PointInTime $timeOfRecording'];
-        $assignments = ['        $this->aggregateRootId = $aggregateRootId;', '        $this->timeOfRecording = $timeOfRecording;'];
+        $arguments = ['        PointInTime $timeOfRecording'];
+        $assignments = ['        $this->timeOfRecording = $timeOfRecording;'];
         $fields = $this->fieldsFromDefinition($event);
 
         foreach ($fields as $field) {
@@ -142,8 +135,8 @@ EOF;
 
     private function dumpCommandConstructor(CommandDefinition $command): string
     {
-        $arguments = ['        AggregateRootId $aggregateRootId', '        PointInTime $timeOfRequest'];
-        $assignments = ['        $this->aggregateRootId = $aggregateRootId;', '        $this->timeOfRequest = $timeOfRequest;'];
+        $arguments = ['        PointInTime $timeOfRequest'];
+        $assignments = ['        $this->timeOfRequest = $timeOfRequest;'];
         $fields = $this->fieldsFromDefinition($command);
 
         foreach ($fields as $field) {
@@ -169,15 +162,6 @@ EOF;
     private function dumpMethods(DefinitionWithFields $command): string
     {
         $methods = [];
-        $methods[] = <<<EOF
-    public function aggregateRootId(): AggregateRootId
-    {
-        return \$this->aggregateRootId;
-    }
-
-
-EOF;
-
 
         foreach ($this->fieldsFromDefinition($command) as $field) {
             $methods[] = <<<EOF
@@ -190,7 +174,7 @@ EOF;
 EOF;
         }
 
-        return rtrim(join('', $methods)) . "\n\n";
+        return empty($methods) ? '' : rtrim(join('', $methods)) . "\n\n";
     }
 
     private function dumpSerializationMethods(EventDefinition $event)
@@ -229,11 +213,9 @@ EOF;
         return <<<EOF
     public static function fromPayload(
         array \$payload,
-        AggregateRootId \$aggregateRootId,
         PointInTime \$timeOfRecording): Event
     {
         return new $name(
-            \$aggregateRootId,
             \$timeOfRecording$arguments
         );
     }
@@ -252,8 +234,8 @@ EOF;
     private function dumpTestHelpers(EventDefinition $event): string
     {
         $constructor = [];
-        $constructorArguments = 'AggregateRootId $aggregateRootId, PointInTime $timeOfRecording';
-        $constructorValues = ['$aggregateRootId', '$timeOfRecording'];
+        $constructorArguments = 'PointInTime $timeOfRecording';
+        $constructorValues = ['$timeOfRecording'];
         $helpers = [];
 
         foreach ($this->fieldsFromDefinition($event) as $field) {
@@ -321,7 +303,7 @@ EOF;
 
         foreach ($commands as $command) {
             $code[] = <<<EOF
-final class {$command->name()} implements Command
+final class {$command->name()}
 {
     /**
      * @var PointInTime
