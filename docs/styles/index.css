@@ -37,6 +37,14 @@
     @apply hidden;
 }
 
+.focus\:outline-0 {
+    outline: 0;
+}
+
+.algolia-autocomplete {
+    width: 100% !important;
+}
+
 body {
     font-family: 'Raleway', sans-serif;
     color: #4D4D4D;

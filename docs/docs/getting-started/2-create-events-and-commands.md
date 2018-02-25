@@ -1,10 +1,10 @@
 ---
 layout: default
-permalink: /docs/events-and-commands/
+permalink: /docs/getting-started/create-events-and-commands/
 title: Events and commands
 ---
 
-# Events and commands
+# Create Events and commands
 
 Events are the core of any event sourced system. They are the payload,
 the message, they allow our system to communicate in a meaningful way.

@@ -52,6 +52,7 @@ pre[class*="language-"] {
     border-right-width: 1rem;
     padding: 0;
     margin: 1rem 0rem;
+    max-height: 30rem;
     /*border-radius: 3px;*/
 }
 

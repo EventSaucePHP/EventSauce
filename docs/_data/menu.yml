@@ -5,4 +5,6 @@ About:
     Lifecycle: '/docs/lifecycle/'
 
 Getting Started:
-    Events and Commands: '/docs/events-and-commands/'
+    1. Create an Aggregate Root: '/docs/getting-started/create-an-aggregate-root/'
+    2. Create Events and Commands: '/docs/getting-started/create-events-and-commands/'
+    2. Create Events and Commands: '/docs/getting-started/create-events-and-commands/'
