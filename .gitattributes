@@ -8,5 +8,6 @@ phpstan.neon export-ignore
 phpunit.xml.dist export-ignore
 README.md export-ignore
 /src/Integration/ export-ignore
+/src/CodeGeneration/Fixtures/ export-ignore
 **/*Test.php export-ignore
 /docs export-ignore
