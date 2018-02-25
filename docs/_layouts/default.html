@@ -46,7 +46,7 @@
 </div>
 
 <main class="lg:flex">
-    <nav id="main-navigation" class="w-full fixed lg:relative flex-no-shrink min-h-screen hidden lg:block bg-grey-most-light">
+    <nav id="main-navigation" class="lg:w-auto w-full fixed lg:relative flex-no-shrink min-h-screen hidden lg:block bg-grey-most-light">
         <menu class="p-4 mt-0">
             {% for section in site.data.menu %}
             <h2 class="opacity-50 cli-prefixed text-sm leading-loose tracking-wide text-grey-light uppercase">{{
@@ -62,7 +62,7 @@
             {% endfor %}
         </menu>
     </nav>
-    <div class="flex-grow p-4 m-h-screen max-w-full overflow-auto">
+    <div class="flex-grow p-4 m-h-screen overflow-auto">
         <article class="max-w-lg mx-auto">
             {{ content }}
         </article>
