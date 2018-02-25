@@ -50,9 +50,10 @@ let colors = {
     'red-lighter': '#BE2323',
 
     'grey-dark': '#4D4D4D',
+    'grey': '#808080',
     'grey-lighter': '#D8D8D8',
     'grey-lightest': '#EBEBEB',
-    'grey-most-light': 'rgba(245, 245, 245, .4)',
+    'grey-most-light': 'rgb(250, 250, 250)',
     'white': '#FFF',
 };
 
@@ -530,6 +531,8 @@ module.exports = {
         '4': '1rem',
         '6': '1.5rem',
         '8': '2rem',
+        '10': '3rem',
+        '12': '4rem',
     },
 
 

@@ -25,6 +25,18 @@
     z-index: 1;
 }
 
+.menu-closed\:shown {
+    @apply hidden;
+}
+
+.menu-closed .menu-closed\:shown {
+    @apply inline;
+}
+
+.menu-closed .menu-closed\:hidden {
+    @apply hidden;
+}
+
 body {
     font-family: 'Raleway', sans-serif;
     color: #4D4D4D;

@@ -1,1 +1,2 @@
-import styles from './styles/index.css'
+import styles from './styles/index.css';
+
