@@ -1,11 +1,9 @@
 <?php
 
-namespace EventSauce\Integration\TestingAggregates;
+namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootTestCase;
-use EventSauce\EventSourcing\Integration\TestingAggregates\DummyAggregate;
-use EventSauce\EventSourcing\Integration\TestingAggregates\DummyCommand;
 use EventSauce\EventSourcing\UuidAggregateRootId;
 use LogicException;
 
