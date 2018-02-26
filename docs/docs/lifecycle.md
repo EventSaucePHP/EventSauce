@@ -24,10 +24,11 @@ $aggregateRoot = $repository->retrieve($aggregateRootId);
 ```
 
 Retrieving an aggregate root fetches all the events that belong to
-your aggregate root (related by aggregate root ID). A new instance
-by calling the `::reconstituteFromEvents` method on your `AggregateRoot`.
+your aggregate root (related by aggregate root ID). You can rebuild
+an instance of your aggregate root by calling its `::reconstituteFromEvents`
+method and passing the events to it.
 
-The reconstitution process consists of applying all the previously
+The reconstitution process applies all the previously
 recorded events on the instance. This brings our model to the current
 state, ready for us to interact with it.
 
@@ -108,7 +109,7 @@ The `MessageDispatcher` is responsible for passing `Message`s on to
 
 Typical consumer types are:
 
-* Projections: processes events to hydrate "read models".
+* Projections: processes events to update "read models".
 * Process Managers: listen to events and then perform actions.
 
 ```php
