@@ -1,7 +1,7 @@
 # Creating aggregate roots
 
-Creating aggregate roots is as simple as extending a base class providing the functionality to record and
-release events.
+Creating aggregate roots is as simple as extending a base class. EventSauce ships with a `BaseAggregateRoot`
+that provides the functionality to record and release events.
 
 ```php
 <?php
@@ -35,4 +35,4 @@ The `Clock` object provides the current time, represented by a `PointInTime`, a 
  
 One of the core concepts in EventSauce is that every event records the `PointInTime` it occured. This is useful for business analysis but is also allows us to find the original order of the events after they've been persisted. The `BaseAggregateRoot` needs a `Clock` to provide this time to each event. 
 
-EventSauce provides a couple `Clock` implementations out of the box. In production, use the  `SystemClock`, which returns the current time of the operating system. For testing, you can use `TestClock` is provides which allows you to provide a fixed time. This is very useful because using the system time in tests makes it impossible to hardcode your fixtures.
+EventSauce provides a couple of `Clock` implementations out of the box. In production, use the  `SystemClock`, which returns the current time of the operating system. For testing, you can use `TestClock` is provides which allows you to provide a fixed time. This is very useful because using the system time in tests makes it impossible to hardcode your fixtures.

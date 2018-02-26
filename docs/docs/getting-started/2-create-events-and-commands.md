@@ -100,15 +100,17 @@ class SomeEvent implements Event
 
 As you can see in the examples above, there are a handful of required methods. These methods help EventSauce to connect
 events to aggregates using the AggregateRootId. The _from_ and _to_ payload methods are used in the serialization process.
-This ensures the events can be properly stores, values returned in the `toPayload` method should be `json_encode`-able.
+This ensures the events can be properly stored. Values returned in the `toPayload` method should be `json_encode`-able.
 
-Additional required properties of an event should be injected into the constructor and properly formatted in the payload
+Additional required properties for an event should be injected into the constructor and properly formatted in the payload
 methods.
 
 ## Defining commands and events using YAML.
 
-Commands and events are mostly not very special, they're often just glorified arrays with accessors. Because of this
-an easy way to declare them is made available. Here's an example YAML file containing some command and event definitions.
+Commands and events aren't very special, they're often just glorified arrays with accessors. Because of this
+an easy way to declare them is made available.
+
+Here's an example YAML file containing some command and event definitions.
 
 ```yaml
 namespace: Acme\BusinessProcess 

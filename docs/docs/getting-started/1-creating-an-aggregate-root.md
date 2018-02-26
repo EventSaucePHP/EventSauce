@@ -26,11 +26,11 @@ class AcmeProcess extends BaseAggregateRoot
 ## Aggregate Root ID
 
 An aggregate root has an identifier. This is called the "aggregate root ID".
-It's good practise to have a unique type of ID for every aggregate root. This
-way you'll be sure not to mix them up you have more than one, because that would
-result in a type error (yay for types).
+It's good practice to have a unique type of ID for every aggregate root. This
+way you'll be sure not to mix them up if you're juggling more than one at the same
+time, since that would result in a type error (yay for types).
 
-An aggregate root ID needs to implement the `EventSauce\EventSourcing\AggrgeateRootId`
+An aggregate root ID needs to implement the `EventSauce\EventSourcing\AggregateRootId`
 interface.
 
 ```php
@@ -62,11 +62,12 @@ class AcmeProcessId implements AggregateRootId
 ```
 
 Because the ID implements an interface you can use whatever kind of ID
-best fits your use-case. You can use UUID's, or an identifier that's
+best fits your use-case. You can use UUIDs or an identifier that's
 natural to the domain you're modeling (e.g. a serial number or a unique
 group identifier).
 
-Having unique identifiers for aggregates has an added benefit when you're
-refactoring and events or commands move to a different aggregate. The 
-types will assure you're using the right kind of ID even though they might
-share the underlying type. 
+Having unique ID classes for each typea of aggregate has an added benefit
+when you're refactoring and events or commands move to a different aggregate. The 
+types will assure you're using the right kind of ID. The fact a ProductId
+and a UserID might both be UUIDs under the hood is just a coincidence,
+not their defining feature. 
