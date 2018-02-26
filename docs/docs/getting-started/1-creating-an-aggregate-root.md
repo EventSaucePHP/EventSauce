@@ -65,3 +65,8 @@ Because the ID implements an interface you can use whatever kind of ID
 best fits your use-case. You can use UUID's, or an identifier that's
 natural to the domain you're modeling (e.g. a serial number or a unique
 group identifier).
+
+Having unique identifiers for aggregates has an added benefit when you're
+refactoring and events or commands move to a different aggregate. The 
+types will assure you're using the right kind of ID even though they might
+share the underlying type. 
