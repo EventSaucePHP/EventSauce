@@ -2,16 +2,18 @@
 
 namespace EventSauce\EventSourcing;
 
-use Exception;
-use function func_get_args;
-use function get_class;
-use LogicException;
-use function method_exists;
-use PHPUnit\Framework\TestCase;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\Time\TestClock;
+use Exception;
+use LogicException;
+use PHPUnit\Framework\TestCase;
+use function get_class;
+use function method_exists;
 use function sprintf;
 
+/**
+ * @method handle()
+ */
 abstract class AggregateRootTestCase extends TestCase
 {
     /**
