@@ -2,6 +2,7 @@
 
 namespace EventSauce\EventSourcing\Serialization;
 
+use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\Time\TestClock;
 use EventSauce\EventSourcing\UuidAggregateRootId;
@@ -20,9 +21,11 @@ class ConstructingMessageSerializerTest extends TestCase
         $message = new Message(new EventStub($timeOfRecording, 'original value'), [
             'aggregate_root_id' => $aggregateRootId,
         ]);
-        $serializer = new ConstructingMessageSerializer(UuidAggregateRootId::class);
+        $serializer = new ConstructingMessageSerializer();
         $serialized = $serializer->serializeMessage($message);
+        $aggregateRootIdType = (new DotSeparatedSnakeCaseInflector())->instanceToType($aggregateRootId);
+        $expectedMessage = $message->withMetadata('aggregate_root_id_type', $aggregateRootIdType);
         $deserializedMessage = iterator_to_array($serializer->unserializePayload($serialized))[0];
-        $this->assertEquals($message, $deserializedMessage);
+        $this->assertEquals($expectedMessage, $deserializedMessage);
     }
 }

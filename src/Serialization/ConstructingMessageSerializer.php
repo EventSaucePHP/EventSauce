@@ -5,7 +5,7 @@ namespace EventSauce\EventSourcing\Serialization;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\EventNameInflector;
+use EventSauce\EventSourcing\ClassNameInflector;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\PointInTime;
 use Generator;
@@ -13,19 +13,13 @@ use Generator;
 final class ConstructingMessageSerializer implements MessageSerializer
 {
     /**
-     * @var string
+     * @var ClassNameInflector
      */
-    private $aggregateRootIdClassName;
+    private $classNameInflector;
 
-    /**
-     * @var EventNameInflector
-     */
-    private $eventNameInflector;
-
-    public function __construct(string $aggregateRootIdClassName, EventNameInflector $eventNameInflector = null)
+    public function __construct(ClassNameInflector $classNameInflector = null)
     {
-        $this->aggregateRootIdClassName = $aggregateRootIdClassName;
-        $this->eventNameInflector = $eventNameInflector ?: new DotSeparatedSnakeCaseInflector();
+        $this->classNameInflector = $classNameInflector ?: new DotSeparatedSnakeCaseInflector();
     }
 
     public function serializeMessage(Message $message): array
@@ -35,11 +29,12 @@ final class ConstructingMessageSerializer implements MessageSerializer
         $aggregateRootId = $message->metadataValue('aggregate_root_id');
 
         if ($aggregateRootId instanceof AggregateRootId) {
-            $message = $message->withMetadata('aggregate_root_id', $aggregateRootId->toString());
+            $message = $message->withMetadata('aggregate_root_id', $aggregateRootId->toString())
+                ->withMetadata('aggregate_root_id_type', $this->classNameInflector->instanceToType($aggregateRootId));
         }
 
         return [
-            'type'            => $this->eventNameInflector->eventToEventName($event),
+            'type'            => $this->classNameInflector->instanceToType($event),
             'version'         => $payload[Event::EVENT_VERSION_PAYLOAD_KEY] ?? 0,
             'timeOfRecording' => $event->timeOfRecording()->toString(),
             'metadata'        => $message->metadata(),
@@ -50,11 +45,11 @@ final class ConstructingMessageSerializer implements MessageSerializer
     public function unserializePayload(array $payload): Generator
     {
         /** @var Event $className */
-        $className = $this->eventNameInflector->eventNameToClassName($payload['type']);
+        $className = $this->classNameInflector->typeToClassName($payload['type']);
 
-        if (isset($payload['metadata']['aggregate_root_id']) && $this->aggregateRootIdClassName !== null) {
+        if (isset($payload['metadata']['aggregate_root_id'], $payload['metadata']['aggregate_root_id_type'])) {
             /** @var AggregateRootId $aggregateRootIdClassName */
-            $aggregateRootIdClassName = $this->aggregateRootIdClassName;
+            $aggregateRootIdClassName = $this->classNameInflector->typeToClassName($payload['metadata']['aggregate_root_id_type']);
             $payload['metadata']['aggregate_root_id'] = $aggregateRootIdClassName::fromString($payload['metadata']['aggregate_root_id']);
         }
 

@@ -22,7 +22,7 @@ class UpcastingEventsTest extends TestCase
         $clock = new TestClock();
         $pointInTime = $clock->pointInTime();
         $payload = [
-            'type'            => (new DotSeparatedSnakeCaseInflector())->classNameToEventName(UpcastedEventStub::class),
+            'type'            => (new DotSeparatedSnakeCaseInflector())->classNameToType(UpcastedEventStub::class),
             'version'         => 0,
             'timeOfRecording' => $pointInTime->toString(),
             'metadata'        => [],
@@ -30,7 +30,7 @@ class UpcastingEventsTest extends TestCase
         ];
 
         $upcaster = new DelegatingUpcaster(new UpcasterStub());
-        $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(UuidAggregateRootId::class), $upcaster);
+        $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(), $upcaster);
 
         $message = iterator_to_array($serializer->unserializePayload($payload))[0];
         $expected = new Message(new UpcastedEventStub(
@@ -42,7 +42,7 @@ class UpcastingEventsTest extends TestCase
 
         $serializeMessage = $serializer->serializeMessage($message);
         $expectedPayload = $payload = [
-            'type'            => (new DotSeparatedSnakeCaseInflector())->classNameToEventName(UpcastedEventStub::class),
+            'type'            => (new DotSeparatedSnakeCaseInflector())->classNameToType(UpcastedEventStub::class),
             'version'         => 1,
             'timeOfRecording' => $pointInTime->toString(),
             'metadata'        => [],
