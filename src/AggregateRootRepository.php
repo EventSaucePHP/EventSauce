@@ -67,7 +67,7 @@ final class AggregateRootRepository
             return $this->decorator->decorate(new Message($event, $metadata));
         }, $events);
 
-        $this->repository->persist($aggregateRootId, ... $messages);
+        $this->repository->persist(... $messages);
         $this->dispatcher->dispatch(... $messages);
     }
 }

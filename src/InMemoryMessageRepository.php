@@ -29,20 +29,23 @@ class InMemoryMessageRepository implements MessageRepository
         $this->lastCommit = [];
     }
 
-    public function persist(AggregateRootId $id, Message ... $messages)
+    public function persist(Message ... $messages)
     {
         $this->lastCommit = [];
 
         /** @var Message $event */
         foreach ($messages as $message) {
-            $event = $message->event();
-            $this->messages[$id->toString()][] = $message;
-            $this->lastCommit[] = $event;
+            $this->messages[] = $message;
+            $this->lastCommit[] = $message->event();
         }
     }
 
     public function retrieveAll(AggregateRootId $id): Generator
     {
-        yield from $this->messages[$id->toString()] ?? [];
+        foreach ($this->messages as $message) {
+            if ($id->equals($message->metadataValue('aggregate_root_id'))) {
+                yield $message;
+            }
+        }
     }
 }
