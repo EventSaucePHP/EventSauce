@@ -32,14 +32,18 @@ final class ConstructingMessageSerializer implements MessageSerializer
     {
         $event = $message->event();
         $payload = $event->toPayload();
+        $aggregateRootId = $message->metadataValue('aggregate_root_id');
+
+        if ($aggregateRootId instanceof AggregateRootId) {
+            $message = $message->withMetadata('aggregate_root_id', $aggregateRootId->toString());
+        }
 
         return [
-            'type' => $this->eventNameInflector->eventToEventName($event),
-            'version' => $payload[Event::EVENT_VERSION_PAYLOAD_KEY] ?? 0,
-            'aggregateRootId' => $message->aggregateRootId()->toString(),
+            'type'            => $this->eventNameInflector->eventToEventName($event),
+            'version'         => $payload[Event::EVENT_VERSION_PAYLOAD_KEY] ?? 0,
             'timeOfRecording' => $event->timeOfRecording()->toString(),
-            'metadata' => $message->metadata(),
-            'data' => $payload,
+            'metadata'        => $message->metadata(),
+            'data'            => $payload,
         ];
     }
 
@@ -47,14 +51,18 @@ final class ConstructingMessageSerializer implements MessageSerializer
     {
         /** @var Event $className */
         $className = $this->eventNameInflector->eventNameToClassName($payload['type']);
-        /** @var AggregateRootId $aggregateRootIdClassName */
-        $aggregateRootIdClassName = $this->aggregateRootIdClassName;
-        $aggregateRootId = $aggregateRootIdClassName::fromString($payload['aggregateRootId']);
+
+        if (isset($payload['metadata']['aggregate_root_id']) && $this->aggregateRootIdClassName !== null) {
+            /** @var AggregateRootId $aggregateRootIdClassName */
+            $aggregateRootIdClassName = $this->aggregateRootIdClassName;
+            $payload['metadata']['aggregate_root_id'] = $aggregateRootIdClassName::fromString($payload['metadata']['aggregate_root_id']);
+        }
+
         $event = $className::fromPayload(
             $payload['data'],
             PointInTime::fromString($payload['timeOfRecording'])
         );
 
-        yield new Message($aggregateRootId, $event, $payload['metadata']);
+        yield new Message($event, $payload['metadata']);
     }
 }
