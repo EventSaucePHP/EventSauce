@@ -17,6 +17,12 @@ final class UuidAggregateRootId implements AggregateRootId
         $this->identifier = $identifier;
     }
 
+    public function equals($otherId): bool
+    {
+        return $otherId instanceof UuidAggregateRootId
+            && $this->toUuid()->equals($otherId->toUuid());
+    }
+
     public function toString(): string
     {
         return $this->identifier;

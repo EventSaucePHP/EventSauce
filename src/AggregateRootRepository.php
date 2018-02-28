@@ -62,11 +62,12 @@ final class AggregateRootRepository
 
     public function persistEvents(AggregateRootId $aggregateRootId, Event ... $events)
     {
-        $messages = array_map(function(Event $event) use ($aggregateRootId) {
-            return $this->decorator->decorate(new Message($aggregateRootId, $event));
+        $metadata = ['aggregate_root_id' => $aggregateRootId];
+        $messages = array_map(function (Event $event) use ($metadata) {
+            return $this->decorator->decorate(new Message($event, $metadata));
         }, $events);
 
-        $this->repository->persist($aggregateRootId, ... $messages);
+        $this->repository->persist(... $messages);
         $this->dispatcher->dispatch(... $messages);
     }
 }

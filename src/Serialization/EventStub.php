@@ -1,11 +1,11 @@
 <?php
 
-namespace EventSauce\EventSourcing\Integration\Upcasting;
+namespace EventSauce\EventSourcing\Serialization;
 
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
-class UpcastedEventStub implements Event
+class EventStub implements Event
 {
     /**
      * @var PointInTime
@@ -15,12 +15,12 @@ class UpcastedEventStub implements Event
     /**
      * @var string
      */
-    private $property;
+    private $value;
 
-    public function __construct(PointInTime $timeOfRecording, string $property)
+    public function __construct(PointInTime $timeOfRecording, string $value)
     {
         $this->timeOfRecording = $timeOfRecording;
-        $this->property = $property;
+        $this->value = $value;
     }
 
     public function timeOfRecording(): PointInTime
@@ -30,11 +30,11 @@ class UpcastedEventStub implements Event
 
     public function toPayload(): array
     {
-        return ['property' => $this->property, self::EVENT_VERSION_PAYLOAD_KEY => 1];
+        return ['__event_version' => 2, 'value' => $this->value];
     }
 
     public static function fromPayload(array $payload, PointInTime $timeOfRecording): Event
     {
-        return new UpcastedEventStub($timeOfRecording, $payload['property'] ?? 'undefined');
+        return new EventStub($timeOfRecording, $payload['value'] ?? 'default');
     }
 }
