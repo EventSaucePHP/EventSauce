@@ -7,8 +7,9 @@
 }
 
 .bg-decorated {
-    background: rgb(245,245,245);
+    background: rgb(245, 245, 245);
 }
+
 .bg-decorated::before {
     z-index: 0;
     content: ' ';
@@ -42,7 +43,28 @@
 }
 
 .algolia-autocomplete {
-    width: 100% !important;
+    width: 100% !important
+}
+
+@media (max-width: 768px) {
+    .algolia-autocomplete.algolia-autocomplete-right .ds-dropdown-menu {
+        max-width: calc(100vw - 3rem) !important;
+        width: calc(100vw - 3rem) !important;
+        min-width: 0 !important;
+        width: calc(100vw - 3rem) !important;
+        margin-left: 16px !important;
+        right: -2rem !important;
+    }
+    .algolia-autocomplete .algolia-docsearch-suggestion--content {
+        width: 100% !important;
+        padding-left: 0 !important;
+    }
+    .algolia-autocomplete .algolia-docsearch-suggestion--content:before {
+        display: none !important;
+    }
+    .algolia-autocomplete .algolia-docsearch-suggestion--subcategory-column {
+        display: none !important;
+    }
 }
 
 body {
@@ -73,16 +95,18 @@ a {
 }
 
 article h1 {
-    @apply text-red text-5xl mb-2 leading-tight;
+    @apply text-red
+    text-5xl mb-2 leading-tight;
 }
 
 article h2 {
-    @apply text-red text-3xl;
+    @apply text-red
+    text-3xl;
 }
 
-
 article h3 {
-    @apply text-red text-2xl mt-6;
+    @apply text-red
+    text-2xl mt-6;
 }
 
 article p, article ul, article ol {
