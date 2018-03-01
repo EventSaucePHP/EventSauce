@@ -79,6 +79,18 @@ and properly formatted in the payload methods.
 Commands and events aren't very special, they're often just glorified arrays with accessors. A common name for these kind
 of objects is DTO (Data Transfer Object). Because of their simplicity it's possible to use code generation:
 
+```php
+<?php
+
+use EventSauce\EventSourcing\CodeGeneration\CodeDumper;
+use EventSauce\EventSourcing\CodeGeneration\YamlDefinitionLoader;
+
+$loader = new YamlDefinitionLoader();
+$dumper = new CodeDumper();
+$phpCode = $dumper->dump($loader->load('path/to/definition.yml'));
+file_put_contents($destination, $phpCode);
+```
+
 Here's an example YAML file containing some command and event definitions.
 
 ```yaml
@@ -133,17 +145,11 @@ Which compiles to the following PHP file:
  namespace Acme\BusinessProcess;
  
  use EventSauce\EventSourcing\AggregateRootId;
- use EventSauce\EventSourcing\Command;
  use EventSauce\EventSourcing\Event;
  use EventSauce\EventSourcing\PointInTime;
  
  final class UserSubscribedFromMailingList implements Event
  {
-     /**
-      * @var AggregateRootId
-      */
-     private $aggregateRootId;
- 
      /**
       * @var string
       */
@@ -160,20 +166,13 @@ Which compiles to the following PHP file:
      private $timeOfRecording;
  
      public function __construct(
-         AggregateRootId $aggregateRootId,
          PointInTime $timeOfRecording,
          string $username,
          string $mailingList
      ) {
-         $this->aggregateRootId = $aggregateRootId;
          $this->timeOfRecording = $timeOfRecording;
          $this->username = $username;
          $this->mailingList = $mailingList;
-     }
- 
-     public function aggregateRootId(): AggregateRootId
-     {
-         return $this->aggregateRootId;
      }
  
      public function username(): string
@@ -193,11 +192,9 @@ Which compiles to the following PHP file:
  
      public static function fromPayload(
          array $payload,
-         AggregateRootId $aggregateRootId,
          PointInTime $timeOfRecording): Event
      {
          return new UserSubscribedFromMailingList(
-             $aggregateRootId,
              $timeOfRecording,
              (string) $payload['username'],
              (string) $payload['mailingList']
@@ -226,10 +223,9 @@ Which compiles to the following PHP file:
          return $this;
      }
  
-     public static function with(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): UserSubscribedFromMailingList
+     public static function with(PointInTime $timeOfRecording): UserSubscribedFromMailingList
      {
          return new UserSubscribedFromMailingList(
-             $aggregateRootId,
              $timeOfRecording,
              (string) 'example-user',
              (string) 'list-name'
@@ -239,17 +235,12 @@ Which compiles to the following PHP file:
  }
  
  
- final class SubscribeToMailingList implements Command
+ final class SubscribeToMailingList
  {
      /**
       * @var PointInTime
       */
      private $timeOfRequest;
- 
-     /**
-      * @var AggregateRootId
-      */
-     private $aggregateRootId;
  
      /**
       * @var string
@@ -262,12 +253,10 @@ Which compiles to the following PHP file:
      private $mailingList;
  
      public function __construct(
-         AggregateRootId $aggregateRootId,
          PointInTime $timeOfRequest,
          string $username,
          string $mailingList
      ) {
-         $this->aggregateRootId = $aggregateRootId;
          $this->timeOfRequest = $timeOfRequest;
          $this->username = $username;
          $this->mailingList = $mailingList;
@@ -276,11 +265,6 @@ Which compiles to the following PHP file:
      public function timeOfRequest(): PointInTime
      {
          return $this->timeOfRequest;
-     }
- 
-     public function aggregateRootId(): AggregateRootId
-     {
-         return $this->aggregateRootId;
      }
  
      public function username(): string
@@ -295,17 +279,12 @@ Which compiles to the following PHP file:
  
  }
  
- final class UnsubscribeFromMailingList implements Command
+ final class UnsubscribeFromMailingList
  {
      /**
       * @var PointInTime
       */
      private $timeOfRequest;
- 
-     /**
-      * @var AggregateRootId
-      */
-     private $aggregateRootId;
  
      /**
       * @var string
@@ -323,13 +302,11 @@ Which compiles to the following PHP file:
      private $reason;
  
      public function __construct(
-         AggregateRootId $aggregateRootId,
          PointInTime $timeOfRequest,
          string $username,
          string $mailingList,
          string $reason
      ) {
-         $this->aggregateRootId = $aggregateRootId;
          $this->timeOfRequest = $timeOfRequest;
          $this->username = $username;
          $this->mailingList = $mailingList;
@@ -339,11 +316,6 @@ Which compiles to the following PHP file:
      public function timeOfRequest(): PointInTime
      {
          return $this->timeOfRequest;
-     }
- 
-     public function aggregateRootId(): AggregateRootId
-     {
-         return $this->aggregateRootId;
      }
  
      public function username(): string
@@ -360,20 +332,5 @@ Which compiles to the following PHP file:
      {
          return $this->reason;
      }
- 
  }
  ```
- 
- The code required to generate events is pretty simple:
- 
-```php
-<?php
-
-use EventSauce\EventSourcing\CodeGeneration\CodeDumper;
-use EventSauce\EventSourcing\CodeGeneration\YamlDefinitionLoader;
-
-$loader = new YamlDefinitionLoader();
-$dumper = new CodeDumper();
-$phpCode = $dumper->dump($loader->load('path/to/definition.yml'));
-file_put_contents($destination, $phpCode);
-```
