@@ -8,18 +8,21 @@ title: Events and commands
 
 Events are the core of any event sourced system. They are the payload,
 the message, they allow our system to communicate in a meaningful way.
-Events (and commands) are also very simple. They are instantiated with
-all the data they need and _only_ expose the data. An event should be
-handled as an immutable object. They also have but a few technical
-requirements:
+Events and commands are very simple objects. They are should be modeled
+as "read-only" objects. This means they have to be  instantiated with
+all the data they need and _only_ expose the data. They also have but a
+few technical requirements:
 
-1. They contain a reference to the aggregate root.
 1. They must be persistable.
 1. They must be valid.
+1. They must have a `PointInTime`.
 
-The events and commands reference the aggregate root by ID. This ID
-is commonly referred to as the `AggregateRootId`. Additionally an
-event should contain a relevant payload.
+Every event and command has a `EventSauce\EventSourcing\Time\PointInTime`
+object. This is one of the few constraints that EventSauce places upon its
+users, and for very good reasons. Almost every event sourcing project
+eventually comes to a point where the timing of events (and/or commands)
+becomes significant. Having this information from the start is a small
+investment that always pays itself back.
 
 Defining events and commands can be done in 2 ways.
 
@@ -32,53 +35,21 @@ Defining events and commands can be done in 2 ways.
 EventSauce provides interfaces for events and commands. You can create implementations of this. Here are minimal 
 examples.
 
-#### Command
-
-```php
-<?php
-
-use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\Command;
-
-class SomeCommand implements Command
-{
-    private $aggregateRootId;
-    
-    public function __construct(AggregateRootId $aggregateRootId)
-    {
-        $this->aggregateRootId = $aggregateRootId;
-    }
-    
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
-    }
-}
-```
-
 ### Event
 
 ```php
 <?php
 
-use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 
 class SomeEvent implements Event
 {
-    private $aggregateRootId;
     private $timeOfRecording;
 
-    public function __construct(AggregateRootId $aggregateRootId, PointInTime $timeOfRecording)
+    public function __construct(PointInTime $timeOfRecording)
     {
-        $this->aggregateRootId = $aggregateRootId;
         $this->timeOfRecording = $timeOfRecording;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
     }
 
     public function timeOfRecording(): PointInTime
@@ -91,24 +62,22 @@ class SomeEvent implements Event
         return [];
     }
 
-    public static function fromPayload(array $payload, AggregateRootId $aggregateRootId, PointInTime $timeOfRecording): Event
+    public static function fromPayload(array $payload, PointInTime $timeOfRecording): Event
     {
-        return new SomeEvent($aggregateRootId, $timeOfRecording);
+        return new SomeEvent($timeOfRecording);
     }
 }
 ```
 
-As you can see in the examples above, there are a handful of required methods. These methods help EventSauce to connect
-events to aggregates using the AggregateRootId. The _from_ and _to_ payload methods are used in the serialization process.
-This ensures the events can be properly stored. Values returned in the `toPayload` method should be `json_encode`-able.
-
-Additional required properties for an event should be injected into the constructor and properly formatted in the payload
-methods.
+As you can see in the examples above, there are a handful of required methods.  The _from_ and _to_ payload methods are
+used in the serialization process. This ensures the events can be properly stored. Values returned in the `toPayload`
+method should be `json_encode`-able. Additional required properties for an event should be injected into the constructor
+and properly formatted in the payload methods.
 
 ## Defining commands and events using YAML.
 
-Commands and events aren't very special, they're often just glorified arrays with accessors. Because of this
-an easy way to declare them is made available.
+Commands and events aren't very special, they're often just glorified arrays with accessors. A common name for these kind
+of objects is DTO (Data Transfer Object). Because of their simplicity it's possible to use code generation:
 
 Here's an example YAML file containing some command and event definitions.
 
