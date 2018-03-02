@@ -63,7 +63,6 @@ final class SomethingHappened implements Event
         return [
             'what' => (string) $this->what,
             'yolo' => (bool) $this->yolo,
-            '__event_version' => 1,
         ];
     }
 

@@ -34,9 +34,7 @@ final class VersionTwo implements Event
 
     public function toPayload(): array
     {
-        return [
-            '__event_version' => 2,
-        ];
+        return [];
     }
 
     public static function with(PointInTime $timeOfRecording): VersionTwo

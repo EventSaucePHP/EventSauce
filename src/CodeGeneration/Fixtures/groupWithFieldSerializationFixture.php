@@ -53,7 +53,6 @@ final class WithFieldSerializers implements Event
             'items' => array_map(function ($item) {
                 return $item['property'];
             }, $this->items),
-            '__event_version' => 1,
         ];
     }
 

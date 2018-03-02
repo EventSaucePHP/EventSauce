@@ -63,7 +63,6 @@ final class UserSubscribedFromMailingList implements Event
         return [
             'username' => (string) $this->username,
             'mailingList' => (string) $this->mailingList,
-            '__event_version' => 1,
         ];
     }
 

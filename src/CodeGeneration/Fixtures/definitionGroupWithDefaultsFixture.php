@@ -49,7 +49,6 @@ final class EventWithDescription implements Event
     {
         return [
             'description' => (string) $this->description,
-            '__event_version' => 1,
         ];
     }
 

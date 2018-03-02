@@ -80,7 +80,6 @@ class YamlDefinitionLoader implements DefinitionLoader
     {
         foreach ($events as $eventName => $eventDefinition) {
             $event = $definitionGroup->event($eventName);
-            $event->atVersion($eventDefinition['version'] ?? 1);
             $event->withFieldsFrom($eventDefinition['fields_from'] ?? '');
             $fields = $eventDefinition['fields'] ?? [];
 

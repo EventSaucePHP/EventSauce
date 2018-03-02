@@ -49,7 +49,6 @@ final class FirstEvent implements Event
     {
         return [
             'firstField' => (string) $this->firstField,
-            '__event_version' => 1,
         ];
     }
 
@@ -117,7 +116,6 @@ final class SecondEvent implements Event
     {
         return [
             'secondField' => (string) $this->secondField,
-            '__event_version' => 1,
         ];
     }
 

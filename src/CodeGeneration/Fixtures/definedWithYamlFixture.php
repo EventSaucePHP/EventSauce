@@ -63,7 +63,6 @@ final class WeWentYamling implements Event
         return [
             'reference' => $this->reference->toString(),
             'slogan' => (string) $this->slogan,
-            '__event_version' => 1,
         ];
     }
 
@@ -83,74 +82,6 @@ final class WeWentYamling implements Event
             $timeOfRecording,
             \Ramsey\Uuid\Uuid::fromString("c0b47bc5-2aaa-497b-83cb-11d97da03a95"),
             $slogan
-        );
-    }
-
-}
-
-final class VersionedEvent implements Event
-{
-    /**
-     * @var string
-     */
-    private $title;
-
-    /**
-     * @var PointInTime
-     */
-    private $timeOfRecording;
-
-    public function __construct(
-        PointInTime $timeOfRecording,
-        string $title
-    ) {
-        $this->timeOfRecording = $timeOfRecording;
-        $this->title = $title;
-    }
-
-    public function title(): string
-    {
-        return $this->title;
-    }
-
-    public function timeOfRecording(): PointInTime
-    {
-        return $this->timeOfRecording;
-    }
-
-    public static function fromPayload(
-        array $payload,
-        PointInTime $timeOfRecording): Event
-    {
-        return new VersionedEvent(
-            $timeOfRecording,
-            (string) $payload['title']
-        );
-    }
-
-    public function toPayload(): array
-    {
-        return [
-            'title' => (string) $this->title,
-            '__event_version' => 2,
-        ];
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function withTitle(string $title): VersionedEvent
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public static function with(PointInTime $timeOfRecording): VersionedEvent
-    {
-        return new VersionedEvent(
-            $timeOfRecording,
-            (string) 'Some Example Title'
         );
     }
 
