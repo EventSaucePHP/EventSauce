@@ -2,7 +2,6 @@
 
 namespace EventSauce\EventSourcing\Serialization;
 
-use EventSauce\EventSourcing\DefaultHeadersDecorator;
 use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
 use EventSauce\EventSourcing\EventStub;
 use EventSauce\EventSourcing\Header;
@@ -11,7 +10,6 @@ use EventSauce\EventSourcing\Time\TestClock;
 use EventSauce\EventSourcing\UuidAggregateRootId;
 use PHPUnit\Framework\TestCase;
 use function iterator_to_array;
-use function var_dump;
 
 class ConstructingMessageSerializerTest extends TestCase
 {
