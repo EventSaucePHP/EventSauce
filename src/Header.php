@@ -3,9 +3,6 @@
 
 namespace EventSauce\EventSourcing;
 
-/**
- * @internal
- */
 interface Header
 {
     const EVENT_TYPE = '__event_type';
