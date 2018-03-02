@@ -35,7 +35,7 @@ final class AggregateRootRepository
         $this->aggregateRootClassName = $aggregateRootClassName;
         $this->repository = $messageRepository;
         $this->dispatcher = $dispatcher ?: new SynchronousMessageDispatcher();
-        $this->decorator = $decorator ?: new DelegatingMessageDecorator();
+        $this->decorator = $decorator ?: new DefaultHeadersDecorator();
     }
 
     public function retrieve(AggregateRootId $aggregateRootId): AggregateRoot
@@ -62,7 +62,7 @@ final class AggregateRootRepository
 
     public function persistEvents(AggregateRootId $aggregateRootId, Event ... $events)
     {
-        $metadata = ['aggregate_root_id' => $aggregateRootId];
+        $metadata = [Header::AGGREGATE_ROOT_ID => $aggregateRootId];
         $messages = array_map(function (Event $event) use ($metadata) {
             return $this->decorator->decorate(new Message($event, $metadata));
         }, $events);

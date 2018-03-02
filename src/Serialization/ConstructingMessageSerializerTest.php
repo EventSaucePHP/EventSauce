@@ -2,12 +2,16 @@
 
 namespace EventSauce\EventSourcing\Serialization;
 
+use EventSauce\EventSourcing\DefaultHeadersDecorator;
 use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
+use EventSauce\EventSourcing\EventStub;
+use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\Time\TestClock;
 use EventSauce\EventSourcing\UuidAggregateRootId;
+use PHPUnit\Framework\TestCase;
 use function iterator_to_array;
-use PHPStan\Testing\TestCase;
+use function var_dump;
 
 class ConstructingMessageSerializerTest extends TestCase
 {
@@ -17,15 +21,18 @@ class ConstructingMessageSerializerTest extends TestCase
     public function serializing_messages_with_aggregate_root_ids()
     {
         $aggregateRootId = UuidAggregateRootId::create();
+        $inflector = new DotSeparatedSnakeCaseInflector();
+        $aggregateRootIdType = $inflector->instanceToType($aggregateRootId);
         $timeOfRecording = (new TestClock())->pointInTime();
         $message = new Message(new EventStub($timeOfRecording, 'original value'), [
-            'aggregate_root_id' => $aggregateRootId,
+            Header::AGGREGATE_ROOT_ID      => $aggregateRootId,
+            Header::AGGREGATE_ROOT_ID_TYPE => $aggregateRootIdType,
+            Header::TIME_OF_RECORDING      => $timeOfRecording->toString(),
+            Header::EVENT_TYPE             => $inflector->classNameToType(EventStub::class),
         ]);
         $serializer = new ConstructingMessageSerializer();
         $serialized = $serializer->serializeMessage($message);
-        $aggregateRootIdType = (new DotSeparatedSnakeCaseInflector())->instanceToType($aggregateRootId);
-        $expectedMessage = $message->withMetadata('aggregate_root_id_type', $aggregateRootIdType);
         $deserializedMessage = iterator_to_array($serializer->unserializePayload($serialized))[0];
-        $this->assertEquals($expectedMessage, $deserializedMessage);
+        $this->assertEquals($message, $deserializedMessage);
     }
 }

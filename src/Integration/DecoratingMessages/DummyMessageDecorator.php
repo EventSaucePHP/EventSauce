@@ -9,6 +9,6 @@ class DummyMessageDecorator implements MessageDecorator
 {
     public function decorate(Message $message): Message
     {
-        return $message->withMetadata('dummy', 'value');
+        return $message->withHeader('dummy', 'value');
     }
 }

@@ -7,7 +7,7 @@ use Generator;
 
 interface Upcaster
 {
-    public function canUpcast(string $type, int $version): bool;
+    public function canUpcast(string $type, array $payload): bool;
 
-    public function upcast(string $type, int $version, array $payload): Generator;
+    public function upcast(array $payload): Generator;
 }

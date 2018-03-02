@@ -12,34 +12,42 @@ final class Message
     /**
      * @var array
      */
-    private $metadata;
+    private $headers;
 
     public function __construct(Event $event, array $metadata = [])
     {
         $this->event = $event;
-        $this->metadata = $metadata;
+        $this->headers = $metadata;
     }
 
-    public function withMetadata(string $key, $value)
+    public function withHeader(string $key, $value): Message
     {
         $clone = clone $this;
-        $clone->metadata[$key] = $value;
+        $clone->headers[$key] = $value;
 
         return $clone;
     }
 
-    public function metadataValue(string $key)
+    public function withHeaders(array $headers): Message
     {
-        return $this->metadata[$key] ?? null;
+        $clone = clone $this;
+        $clone->headers = $headers + $clone->headers;
+
+        return $clone;
+    }
+
+    public function header(string $key)
+    {
+        return $this->headers[$key] ?? null;
+    }
+
+    public function headers(): array
+    {
+        return $this->headers;
     }
 
     public function event(): Event
     {
         return $this->event;
-    }
-
-    public function metadata(): array
-    {
-        return $this->metadata;
     }
 }

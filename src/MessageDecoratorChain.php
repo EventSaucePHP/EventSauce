@@ -2,7 +2,7 @@
 
 namespace EventSauce\EventSourcing;
 
-class DelegatingMessageDecorator implements MessageDecorator
+class MessageDecoratorChain implements MessageDecorator
 {
     /**
      * @var MessageDecorator[]

@@ -2,6 +2,7 @@
 
 namespace EventSauce\EventSourcing\Upcasting;
 
+use EventSauce\EventSourcing\Header;
 use Generator;
 
 final class DelegatingUpcaster implements Upcaster
@@ -11,11 +12,6 @@ final class DelegatingUpcaster implements Upcaster
      */
     private $upcasters;
 
-    /**
-     * @var DelegatableUpcaster[]
-     */
-    private $lookupCache = [];
-
     public function __construct(DelegatableUpcaster ... $upcasters)
     {
         foreach ($upcasters as $upcaster) {
@@ -23,22 +19,32 @@ final class DelegatingUpcaster implements Upcaster
         }
     }
 
-    public function canUpcast(string $type, int $version): bool
+    public function upcaster(array $payload): ?Upcaster
     {
+        $type = $payload['headers'][Header::EVENT_TYPE];
+
         foreach ($this->upcasters[$type] ?? [] as $upcaster) {
-            if ($upcaster->canUpcast($type, $version)) {
-                $this->lookupCache["{$type}-{$version}"] = $upcaster;
-                return true;
+            if ($upcaster->canUpcast($type, $payload)) {
+                return $upcaster;
             }
         }
 
-        return false;
+        return null;
     }
 
-    public function upcast(string $type, int $version, array $payload): Generator
+    public function upcast(array $payload): Generator
     {
-        $upcaster = $this->lookupCache["{$type}-{$version}"];
+        if ($upcaster = $this->upcaster($payload)) {
+            foreach ($upcaster->upcast($payload) as $upcasted) {
+                yield from $this->upcast($upcasted);
+            }
+        } else {
+            yield $payload;
+        }
+    }
 
-        yield from $upcaster->upcast($type, $version, $payload);
+    public function canUpcast(string $type, array $payload): bool
+    {
+        return isset($this->upcasters[$type]);
     }
 }
