@@ -144,7 +144,6 @@ Which compiles to the following PHP file:
  
  namespace Acme\BusinessProcess;
  
- use EventSauce\EventSourcing\AggregateRootId;
  use EventSauce\EventSourcing\Event;
  use EventSauce\EventSourcing\PointInTime;
  
