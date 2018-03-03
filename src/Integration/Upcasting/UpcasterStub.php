@@ -3,20 +3,23 @@
 namespace EventSauce\EventSourcing\Integration\Upcasting;
 
 use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
+use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Upcasting\DelegatableUpcaster;
 use Generator;
 
 class UpcasterStub implements DelegatableUpcaster
 {
-    public function canUpcast(string $type, int $version): bool
+    public function canUpcast(string $type, array $payload): bool
     {
+        $version = $payload['headers']['version'] ?? 0;
+
         return $this->type() === $type && $version < 1;
     }
 
-    public function upcast(string $type, int $version, array $payload): Generator
+    public function upcast(array $payload): Generator
     {
-        $payload['data']['property'] = 'upcasted';
-        $payload['version'] = 1;
+        $payload['payload']['property'] = 'upcasted';
+        $payload['headers']['version'] = 1;
 
         yield $payload;
     }

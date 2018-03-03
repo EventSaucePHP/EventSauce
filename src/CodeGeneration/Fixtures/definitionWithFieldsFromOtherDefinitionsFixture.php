@@ -49,7 +49,6 @@ final class BaseEvent implements Event
     {
         return [
             'age' => (int) $this->age,
-            '__event_version' => 1,
         ];
     }
 
@@ -99,7 +98,6 @@ final class ExtendedEvent implements Event
     {
         return [
             'age' => (int) $this->age,
-            '__event_version' => 1,
         ];
     }
 

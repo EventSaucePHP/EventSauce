@@ -30,7 +30,7 @@ class UpcastedEventStub implements Event
 
     public function toPayload(): array
     {
-        return ['property' => $this->property, self::EVENT_VERSION_PAYLOAD_KEY => 1];
+        return ['property' => $this->property];
     }
 
     public static function fromPayload(array $payload, PointInTime $timeOfRecording): Event

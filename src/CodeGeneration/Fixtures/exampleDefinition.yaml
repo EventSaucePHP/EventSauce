@@ -43,7 +43,3 @@ events:
                     (string) {param}
                 deserializer: |
                     (string) {param}
-    VersionedEvent:
-        version: 2
-        fields:
-            title: []

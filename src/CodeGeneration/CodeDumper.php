@@ -205,10 +205,8 @@ EOF;
         $serializers = preg_replace('/^.{2,}$/m', '            $0', join(",\n", $serializers));
 
         if ( ! empty($serializers)) {
-            $serializers = "\n$serializers,";
+            $serializers = "\n$serializers,\n        ";
         }
-
-        $eventVersionPayloadKey = Event::EVENT_VERSION_PAYLOAD_KEY;
 
         return <<<EOF
     public static function fromPayload(
@@ -222,9 +220,7 @@ EOF;
 
     public function toPayload(): array
     {
-        return [$serializers
-            '$eventVersionPayloadKey' => {$event->version()},
-        ];
+        return [$serializers];
     }
 EOF;
 

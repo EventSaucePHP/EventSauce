@@ -66,8 +66,7 @@ EOF
 
         /* test case 5 */
         $groupWithVersionEvent = DefinitionGroup::create('With\Versioned\Event');
-        $groupWithVersionEvent->event('VersionTwo')
-            ->atVersion(2);
+        $groupWithVersionEvent->event('VersionTwo');
 
         $definitionGroupWithCommand = DefinitionGroup::create('With\Commands');
         $definitionGroupWithCommand->command('DoSomething')

@@ -207,6 +207,6 @@ abstract class AggregateRootTestCase extends TestCase
 
     private function messageDecorator(): MessageDecorator
     {
-        return new DelegatingMessageDecorator();
+        return new MessageDecoratorChain(new DefaultHeadersDecorator());
     }
 }

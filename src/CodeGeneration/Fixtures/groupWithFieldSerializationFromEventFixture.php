@@ -49,7 +49,6 @@ final class EventName implements Event
     {
         return [
             'title' => strtoupper($this->title),
-            '__event_version' => 1,
         ];
     }
 
