@@ -4,10 +4,19 @@ EventSauce:
     Core Concepts: '/docs/core-concepts/'
     Lifecycle: '/docs/lifecycle/'
 
-Testing:
-    Tooling: '/docs/testing/'
-
 Getting Started:
     1. Create an Aggregate Root: '/docs/getting-started/create-an-aggregate-root/'
     2. Create Events and Commands: '/docs/getting-started/create-events-and-commands/'
     2. Create Events and Commands: '/docs/getting-started/create-events-and-commands/'
+
+Testing:
+    Introduction: '/docs/testing/'
+    Preconditions: '/docs/testing/preconditions/'
+    Handling Exceptions: '/docs/testing/handling-exceptions/'
+
+Advanced Topics:
+    <del>Message Internals</del>: '/docs/advanced/message-internals/'
+    <del>Message Decoration</del>: '/docs/advanced/message-decoration/'
+    <del>Upcasting</del>: '/docs/advanced/upcasting/'
+    <del>Custom Repository</del>: '/docs/advanced/custom-repository/'
+    <del>Custom Dispatcher</del>: '/docs/advanced/custom-dispatcher/'

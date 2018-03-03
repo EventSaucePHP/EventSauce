@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /docs/core-concepts/
-title: Rationale
+title: Core Concepts
 ---
 
 # Core Concepts
@@ -23,7 +23,7 @@ very tiny.
 ### Aggregate Root
 
 The aggregate root is our primary modeling space. It's tasked with maintaining the integrity
-of our model.
+of our model, guarding invariants, and recording events.
 
 ### Aggregate Root Repository
 

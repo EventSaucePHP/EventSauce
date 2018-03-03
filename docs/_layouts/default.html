@@ -51,7 +51,7 @@
 </div>
 
 <main class="lg:flex">
-    <nav id="main-navigation" class="lg:w-auto w-full fixed lg:relative flex-no-shrink min-h-screen hidden lg:block bg-grey-most-light">
+    <nav id="main-navigation" class="lg:w-auto w-fullfixed lg:relative flex-no-shrink min-h-screen hidden lg:block bg-grey-most-light">
         <menu class="p-4 mt-0">
             {% for section in site.data.menu %}
             <h2 class="opacity-50 cli-prefixed text-sm leading-loose tracking-wide text-grey-light uppercase">{{
@@ -59,7 +59,7 @@
             <ul class="list-reset mb-8">
                 {% for link in section[1] %}
                 <li>
-                    <a class="leading-loose text-lg {% if page.url == link[1] %}text-red{% else %}text-grey-dark{% endif %}"
+                    <a class="leading-loose text-md {% if page.url == link[1] %}text-red{% else %}text-grey-dark{% endif %}"
                        href="{{ link[1] }}">{{ link[0] }}</a>
                 </li>
                 {% endfor %}

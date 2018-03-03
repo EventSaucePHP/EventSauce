@@ -47,7 +47,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     public function expecting_exceptions()
     {
         $this->when(new ExceptionInducingCommand($this->aggregateRootId()))
-            ->thenWeAreSorry(new DummyException());
+            ->expectToFail(new DummyException());
     }
 
     /**
@@ -67,7 +67,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     {
         $this->expectException(DummyException::class);
         $this->when(new ExceptionInducingCommand($this->aggregateRootId()))
-            ->thenWeAreSorry(new LogicException());
+            ->expectToFail(new LogicException());
         $this->assertScenario();
     }
 

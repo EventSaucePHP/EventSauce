@@ -147,7 +147,7 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @return $this
      */
-    public function thenWeAreSorry(Exception $expectedException)
+    public function expectToFail(Exception $expectedException)
     {
         $this->theExpectedException = $expectedException;
 
