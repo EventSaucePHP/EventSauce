@@ -5,6 +5,7 @@ namespace EventSauce\EventSourcing;
 
 interface Header
 {
+    const EVENT_ID = '__event_id';
     const EVENT_TYPE = '__event_type';
     const EVENT_VERSION = '__event_version';
     const TIME_OF_RECORDING = '__time_of_recording';
