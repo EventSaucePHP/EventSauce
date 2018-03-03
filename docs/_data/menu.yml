@@ -1,8 +1,11 @@
-About:
+EventSauce:
     Introduction: '/docs/'
     Installation: '/docs/installation/'
     Core Concepts: '/docs/core-concepts/'
     Lifecycle: '/docs/lifecycle/'
+
+Testing:
+    Tooling: '/docs/testing/'
 
 Getting Started:
     1. Create an Aggregate Root: '/docs/getting-started/create-an-aggregate-root/'
