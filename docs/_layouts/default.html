@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>{{ page.title }} - {{ site.data.project.title }}</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Varela+Round" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Varela+Round" rel="stylesheet"/>
     {% if site.data.project.description %}
     <meta name="description" content="{{ site.data.project.description }}">
     {% endif %}
@@ -23,8 +23,8 @@
     <link rel="stylesheet" href="/static/prism.css"/>
     <!--<base href="//eventsauce.io/">-->
 </head>
-<body class="min-h-screen min-w-full pt-12 leading-normal">
-<div class="px-4 h-16 fixed z-10 pin-t w-screen py-2 bg-white border-grey-lightest border-b">
+<body class="min-h-screen min-w-full pt-12 leading-normal bg-grey-lightest">
+<div class="px-4 h-16 fixed z-10 pin-t w-screen py-2 bg-white border-grey-light border-b">
     <div class="flex items-center flex-no-shrink pt-1">
         <a href="/" class="flex items-center">
             <img class="fill-current h-10 w-10 mr-2" width="30" height="30" src="/static/logo.svg"/>
@@ -33,12 +33,12 @@
             </span>
         </a>
         <div class="flex-grow h-10 px-4 relative">
-            <input id="global-search" class="focus:outline-0 appearance-none border border-grey-lighter h-10 py-2 pl-8 pr-2 rounded bg-white max-w-sm w-full" type="text" placeholder="Search the docs" />
+            <input id="global-search" class="focus:outline-0 appearance-none border border-grey-lightest focus:border-grey-light h-10 py-2 pl-8 pr-2 rounded bg-grey-lightest focus:bg-white focus:placeholder-white max-w-sm w-full" type="text" placeholder="Search the docs" />
             <span class="pointer-events-none absolute pin-y pin-l pl-6 flex items-center">
                 <svg class="fill-current pointer-events-none text-grey w-4 h-4 border-transparent border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
             </span>
         </div>
-        <a href="#" id="menu-toggle" class="block lg:hidden h-8 w-8 border-transparent border p-1 text-grey hover:text-grey menu-closed">
+        <a href="#" id="menu-toggle" class="block lg:hidden h-8 w-8 border p-1 border-transparent text-grey hover:text-grey menu-closed">
             <svg class="menu-closed:shown fill-current h-full w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
             </svg>
