@@ -2,9 +2,7 @@
 
 namespace EventSauce\EventSourcing;
 
-use JsonSerializable;
-
-interface Event extends JsonSerializable
+interface Event
 {
     public function timeOfRecording(): PointInTime;
 
