@@ -8,7 +8,7 @@ title: Core Concepts
 
 ## The Architecture
 
-EventSauce consists of 3 parts; a core library, and two parts that you can choose
+EventSauce consists of 3 parts; a **core** library, and two parts that you can choose
 based on your requirements. The `MessageRepository`, which is used
 to persist and retrieve events, and a `MessageDispatcher`, which allows you to broadcast
 events to `Consumer`s. The core library ships with a `SynchronousMessageDispatcher`,

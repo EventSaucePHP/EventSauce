@@ -2,7 +2,7 @@ EventSauce:
     Introduction: '/docs/'
     Installation: '/docs/installation/'
     Core Concepts: '/docs/core-concepts/'
-    Lifecycle: '/docs/lifecycle/'
+    Lifecycle <span class="uppercase text-xs p-1 bg-white ml-2 border border-grey-light text-grey rounded">must read</span>: '/docs/lifecycle/'
 
 Getting Started:
     1. Create an Aggregate Root: '/docs/getting-started/create-an-aggregate-root/'
@@ -20,3 +20,4 @@ Advanced Topics:
     <del>Upcasting</del>: '/docs/advanced/upcasting/'
     <del>Custom Repository</del>: '/docs/advanced/custom-repository/'
     <del>Custom Dispatcher</del>: '/docs/advanced/custom-dispatcher/'
+    <del>Delayed Commands</del>: '/docs/advanced/delayed-commands/'

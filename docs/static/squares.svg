@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns='http://www.w3.org/2000/svg' width='56' height='100'>
-    <path d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='#D2D7DF' stroke-opacity=".6" stroke-width='1'/>
-    <path d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='#D2D7DF' stroke-opacity=".5" stroke-width='1'/>
+    <path d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='#3d4852' stroke-opacity=".125" stroke-width='1'/>
+    <path d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34' fill='none' stroke='#3d4852' stroke-opacity=".125" stroke-width='1'/>
 </svg>
