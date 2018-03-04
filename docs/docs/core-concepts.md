@@ -35,9 +35,9 @@ root this is also where you persist the newly raised events.
 The aggregate root has the following dependencies:
 
 1. An aggregate root class name (so it knows what to reconstitute and return)
-2. A [message repository](#message-repository) from which it retrieves the actual events
+2. A [message repository](#message-repository) from which it retrieves previously recorded events
 3. A [message dispatcher](#message-dispatcher) which dispatches the messages _(optional)_
-3. A [message decorator](#message-decorator) optional* which decorated the messages _(optional)_
+3. A [message decorator](#message-decorator) which decorated the messages _(optional)_
 
 ### Message Repository
 

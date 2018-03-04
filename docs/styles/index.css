@@ -115,3 +115,11 @@ article h3 {
 article p, article ul, article ol {
     @apply mb-6;
 }
+
+article blockquote {
+    @apply p-4 bg-white border-l-4 border-grey-darker mb-4;
+}
+
+article blockquote :last-child {
+    @apply mb-0;
+}

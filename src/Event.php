@@ -1,12 +1,11 @@
 <?php
 
-
 namespace EventSauce\EventSourcing;
 
-interface Event
-{
-    const EVENT_VERSION_PAYLOAD_KEY = '__event_version';
+use JsonSerializable;
 
+interface Event extends JsonSerializable
+{
     public function timeOfRecording(): PointInTime;
 
     public function toPayload(): array;

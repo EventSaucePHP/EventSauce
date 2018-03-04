@@ -10,23 +10,49 @@ Events are the core of any event sourced system. They are the payload,
 the message, they allow our system to communicate in a meaningful way.
 Events and commands are very simple objects. They are should be modeled
 as "read-only" objects. This means they have to be  instantiated with
-all the data they need and _only_ expose the data. They also have but a
-few technical requirements:
+all the data they need and _only_ expose the data. They also have but
+one technical requirements:
 
-1. They must be persistable.
-1. They must be valid.
-1. They must have a `PointInTime`.
+> All events must implement the `EventSauce\EventSourcing\Event` interface.
 
-Every event and command has a `EventSauce\EventSourcing\Time\PointInTime`
-object. This is one of the few constraints that EventSauce places upon its
+This interface requires you to create implement **3** public functions:
+
+> 1. `timeOfRecording(): PointInTime`
+> 2. `toPayload(): array`
+> 3. `fromPayload(array $payload, PointInTime $timeOfRecording): Event`
+
+## Time of recording 
+
+Every event has a `EventSauce\EventSourcing\Time\PointInTime` object. This
+is one of the few constraints that EventSauce places upon its
 users, and for very good reasons. Almost every event sourcing project
 eventually comes to a point where the timing of events (and/or commands)
 becomes significant. Having this information from the start is a small
 investment that always pays itself back.
 
+## To and from payload
+
+The `toPayload` and (static) `fromPayload` methods are used in the serialization
+process. The `toPayload` method is expected to return an array that's serializable as JSON.
+The `fromPayload` method is exctected to create an instance from a deserialized JSON array.
+
+To illustrate:
+
+```php
+$event1 = new MyEvent($clock->pointInTime());
+$event2 = MyEvent::fromPayload(
+    $event1->timeOfRecording(),
+    $event1->toPayload()
+);
+
+assert($event1 == $event2);
+```
+
+## Defining events (and commands)
+
 Defining events and commands can be done in 2 ways.
 
-* Defining them in YAML.
+* Defining them in YAML (code generation).
 * Creating classes by pressing keys on your keyboard.
 
 

@@ -2,7 +2,7 @@ EventSauce:
     Introduction: '/docs/'
     Installation: '/docs/installation/'
     Core Concepts: '/docs/core-concepts/'
-    Lifecycle <span class="uppercase text-xs p-1 bg-white ml-2 border border-grey-light text-grey rounded">must read</span>: '/docs/lifecycle/'
+    Lifecycle <span class="uppercase text-xs p-1 bg-white ml-2 border border-grey-light text-grey-dark rounded">must read</span>: '/docs/lifecycle/'
 
 Getting Started:
     1. Create an Aggregate Root: '/docs/getting-started/create-an-aggregate-root/'
@@ -13,6 +13,10 @@ Testing:
     Introduction: '/docs/testing/'
     Preconditions: '/docs/testing/preconditions/'
     Handling Exceptions: '/docs/testing/handling-exceptions/'
+
+Reacting to events:
+    <del>Projection &amp; Read Models</del>: '/docs/reacting-to-events/projections-and-read-models/'
+    <del>Process Managers</del>: '/docs/reacting-to-events/process-managers/'
 
 Advanced Topics:
     <del>Message Internals</del>: '/docs/advanced/message-internals/'

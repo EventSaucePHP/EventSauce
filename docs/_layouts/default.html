@@ -33,7 +33,7 @@
             </span>
         </a>
         <div class="flex-grow h-10 px-4 relative">
-            <input id="global-search" class="focus:outline-0 appearance-none border border-grey-lightest focus:border-grey-light h-10 py-2 pl-8 pr-2 rounded bg-grey-lightest focus:bg-white focus:placeholder-white max-w-sm w-full" type="text" placeholder="Search the docs" />
+            <input id="global-search" class="focus:outline-0 appearance-none border border-grey-lightest focus:border-grey-light h-10 py-2 pl-8 pr-2 rounded bg-grey-lightest focus:bg-white focus:placeholder-white max-w-xs w-full" type="text" placeholder="Search the docs" />
             <span class="pointer-events-none absolute pin-y pin-l pl-6 flex items-center">
                 <svg class="fill-current pointer-events-none text-grey w-4 h-4 border-transparent border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
             </span>
@@ -66,7 +66,7 @@
             {% endfor %}
         </menu>
     </nav>
-    <div class="flex-grow p-4 m-h-screen overflow-auto">
+    <div id="main-article" class="flex-grow p-4 lg:block">
         <article class="max-w-lg mx-auto pt-4">
             {{ content }}
         </article>
