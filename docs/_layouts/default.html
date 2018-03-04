@@ -9,7 +9,7 @@
     {% if site.data.project.description %}
     <meta name="description" content="{{ site.data.project.description }}">
     {% endif %}
-    {% if dev_mode %}
+    {% unless site.data.dev.dev_mode %}
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114414242-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -17,20 +17,19 @@
         gtag('js', new Date());
         gtag('config', 'UA-114414242-1');
     </script>
-    {% else %}
+    {% endunless %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
     <link rel="stylesheet" href="/dist/styles.css"/>
     <link rel="stylesheet" href="/static/prism.css"/>
-    {% endif %}
     <!--<base href="//eventsauce.io/">-->
 </head>
-<body class="min-h-screen min-w-full pt-12 leading-normal bg-grey-most-light">
+<body class="min-h-screen min-w-full pt-12 leading-normal">
 <div class="px-4 h-16 fixed z-10 pin-t w-screen py-2 bg-white border-grey-lightest border-b">
     <div class="flex items-center flex-no-shrink pt-1">
         <a href="/" class="flex items-center">
             <img class="fill-current h-10 w-10 mr-2" width="30" height="30" src="/static/logo.svg"/>
-            <span class="pr-2 font-normal font-heading leading-none text-3xl text-grey-dark hidden md:block">
-                Event<span class="text-red">Sauce</span><sup class="text-xs relative" style="top: -20px;">alpha</sup>
+            <span class="pr-2 font-normal font-heading leading-none text-3xl text-grey-darkest hidden md:block">
+                Event<span class="text-red">Sauce</span><sup class="text-xs relative text-grey-dark" style="top: -20px;">alpha</sup>
             </span>
         </a>
         <div class="flex-grow h-10 px-4 relative">
@@ -39,7 +38,7 @@
                 <svg class="fill-current pointer-events-none text-grey w-4 h-4 border-transparent border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
             </span>
         </div>
-        <a href="#" id="menu-toggle" class="block lg:hidden h-8 w-8 border-transparent border p-1 text-grey-lighter hover:text-grey menu-closed">
+        <a href="#" id="menu-toggle" class="block lg:hidden h-8 w-8 border-transparent border p-1 text-grey hover:text-grey menu-closed">
             <svg class="menu-closed:shown fill-current h-full w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
             </svg>
@@ -51,10 +50,10 @@
 </div>
 
 <main class="lg:flex">
-    <nav id="main-navigation" class="lg:w-auto w-fullfixed lg:relative flex-no-shrink min-h-screen hidden lg:block bg-grey-most-light">
+    <nav id="main-navigation" class="lg:w-auto w-fullfixed lg:relative flex-no-shrink min-h-screen hidden lg:block">
         <menu class="p-4 mt-0">
             {% for section in site.data.menu %}
-            <h2 class="opacity-50 cli-prefixed text-sm leading-loose tracking-wide text-grey-light uppercase">{{
+            <h2 class="opacity-50 cli-prefixed text-sm leading-loose tracking-wide text-grey-dark uppercase">{{
                 section[0] }}</h2>
             <ul class="list-reset mb-8">
                 {% for link in section[1] %}
@@ -80,7 +79,7 @@
     apiKey: '439460ae4715ee79780b36ea5647db26',
     indexName: 'eventsauce',
     inputSelector: '#global-search',
-    debug: true // Set debug to true if you want to inspect the dropdown
+    debug: {% if site.data.dev.dev_mode %}true{% else %}false{% endif %}
 });
 </script>
 </body>

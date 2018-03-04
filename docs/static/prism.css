@@ -11,7 +11,7 @@
 code[class*="language-"],
 pre[class*="language-"] {
     color: #36312c;
-    background-color: #fff;
+    background-color: #F8F9FB;
     font-family: 'Fira Code', 'Hack', 'Source Code Pro', 'Monaco', monospace;
     /*font-size:12px;*/
     text-align: left;
@@ -47,18 +47,19 @@ pre[class*="language-"] {
     margin: 1em 0;
     overflow: auto;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .20);
-    border: 10px solid #fff;
+    border: 10px solid #F8F9FB;
     border-left-width: 1rem;
     border-right-width: 1rem;
     padding: 0;
     margin: 1rem 0rem;
     max-height: 30rem;
+    background: #F8F9FB;
     /*border-radius: 3px;*/
 }
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-    background: #fff;
+    background: #F8F9FB;
 }
 
 /* Inline code */
