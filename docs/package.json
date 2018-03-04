@@ -17,5 +17,8 @@
         "style-loader": "^0.19.0",
         "tailwindcss": "^0.4.1",
         "webpack": "^3.8.1"
+    },
+    "dependencies": {
+        "autoprefixer": "^8.1.0"
     }
 }
