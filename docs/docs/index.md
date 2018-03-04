@@ -32,5 +32,7 @@ about processes, transitions, and communication in general. Event sourcing is al
 simple. It's build on a body of knowledge that is inherently complex. There are many
 concepts that come into play that build off one another.
 
-However, event sourcing also provides an easier way to model a variety of issues.
+However, event sourcing also provides an easier way to model a variety of issues. It's
+a remedy against storing "work in progress" entities. It's a better fit when modeling
+anything where the transition is just as important as the end result.
 

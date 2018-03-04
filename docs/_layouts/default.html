@@ -58,7 +58,7 @@
             <ul class="list-reset mb-8">
                 {% for link in section[1] %}
                 <li>
-                    <a class="leading-loose text-md {% if page.url == link[1] %}text-red{% else %}text-grey-dark{% endif %}"
+                    <a class="leading-loose text-md {% if page.url == link[1] %}text-red{% else %}text-grey-darker{% endif %}"
                        href="{{ link[1] }}">{{ link[0] }}</a>
                 </li>
                 {% endfor %}
