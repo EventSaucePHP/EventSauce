@@ -10,6 +10,25 @@ class TailwindExtractor {
     }
 }
 
+let plugins = [
+    new ExtractTextPlugin('styles.css'),
+    new OptimizeCssAssetsPlugin(),
+];
+
+let isProd = process.env.NODE_ENV === 'production';
+
+if (isProd) {
+    plugins.push(new PurgecssPlugin({
+        paths: glob.sync([
+            path.join(__dirname, "_site/**/*.html"),
+        ]),
+        extractors: [{
+            extractor: TailwindExtractor,
+            extensions: ["html"]
+        }]
+    }));
+}
+
 module.exports = {
     entry: './index.js',
     output: {
@@ -30,17 +49,5 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new ExtractTextPlugin('styles.css'),
-        // new PurgecssPlugin({
-        //     paths: glob.sync([
-        //         path.join(__dirname, "_site/**/*.html"),
-        //     ]),
-        //     extractors: [{
-        //         extractor: TailwindExtractor,
-        //         extensions: ["html"]
-        //     }]
-        // }),
-        new OptimizeCssAssetsPlugin(),
-    ]
+    plugins: plugins
 }
