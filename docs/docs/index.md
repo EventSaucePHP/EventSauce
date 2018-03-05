@@ -4,6 +4,13 @@ permalink: /docs/
 title: Event sourcing for PHP
 ---
 
+<div class="text-center mb-8">
+    <img id="logo" src="/static/logo.svg" height="150px" width="150px" alt="EventSauce">
+    <h1 class="text-grey-darkest mt-1">
+        Event<span class="text-red">Sauce</span>
+    </h1>
+</div>
+
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master)
 [![Build Status](https://travis-ci.org/EventSaucePHP/EventSauce.svg?branch=master)](https://travis-ci.org/EventSaucePHP/EventSauce)

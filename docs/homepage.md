@@ -9,7 +9,7 @@ An event sourcing library for PHP with a focus on developer experience.
 </p>
 
 <div class="text-center">
-    <img id="example-testing" src="/static/testing-an-aggregate-root.png" class="max-width-full" alt="Testing and Aggregate Root" />
+    <img id="example-testing" src="/static/example.png" class="max-width-full" alt="Testing and Aggregate Root" />
 </div>
 
 <p class="max-width-medium">
