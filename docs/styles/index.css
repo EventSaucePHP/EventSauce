@@ -113,8 +113,23 @@ article h3 {
     text-xl mt-6;
 }
 
-article p, article ul, article ol {
+article table {
+    @apply text-left p-4 bg-white border-l-4 border-grey-darker mb-4 shadow-md;
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+article p, article ul, article ol, article table {
     @apply mb-6;
+}
+
+article table td {
+    @apply border-t border-grey;
+}
+
+article table th, article table td {
+    @apply p-2;
 }
 
 article blockquote {

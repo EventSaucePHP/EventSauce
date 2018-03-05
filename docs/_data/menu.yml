@@ -7,7 +7,8 @@ EventSauce:
 Getting Started:
     1. Create an Aggregate Root: '/docs/getting-started/create-an-aggregate-root/'
     2. Create Events and Commands: '/docs/getting-started/create-events-and-commands/'
-    2. Create Events and Commands: '/docs/getting-started/create-events-and-commands/'
+    3. Configure Persistence: '/docs/getting-started/configure-persistence/'
+    4. Bootstrap and Go!: '/docs/getting-started/bootstrap-and-use/'
 
 Testing:
     Introduction: '/docs/testing/'
