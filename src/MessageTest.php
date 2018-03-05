@@ -26,9 +26,9 @@ class MessageTest extends TestCase
     public function aggregate_root_id_accessor()
     {
         $event = EventStub::create('some value');
-        $message = new Message($event, [
-            Header::AGGREGATE_ROOT_ID => UuidAggregateRootId::create()
-        ]);
+        $message = new Message($event);
+        $this->assertNull($message->aggregateRootId());
+        $message = $message->withHeader(Header::AGGREGATE_ROOT_ID, UuidAggregateRootId::create());
         $this->assertInstanceOf(AggregateRootId::class, $message->aggregateRootId());
     }
 }
