@@ -121,8 +121,8 @@ class SomeConsumer implements Consumer
     {
         $aggregateRootId = $message->aggregateRootId();
         $event = $message->event();
-        $allMetadata = $message->metadata();
-        $requestId = $message->metadataValue('x-request-id');
+        $allHeaders = $message->headers();
+        $requestId = $message->headersValue('x-request-id');
     }
 }
 ```

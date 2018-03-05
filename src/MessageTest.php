@@ -2,7 +2,6 @@
 
 namespace EventSauce\EventSourcing;
 
-use EventSauce\EventSourcing\Time\TestClock;
 use PHPStan\Testing\TestCase;
 
 class MessageTest extends TestCase
@@ -19,6 +18,17 @@ class MessageTest extends TestCase
         $this->assertEquals($event->timeOfRecording(), $message->event()->timeOfRecording());
         $this->assertSame($event, $message->event());
         $this->assertEquals($initialHeaders, $message->headers());
+    }
 
+    /**
+     * @test
+     */
+    public function aggregate_root_id_accessor()
+    {
+        $event = EventStub::create('some value');
+        $message = new Message($event, [
+            Header::AGGREGATE_ROOT_ID => UuidAggregateRootId::create()
+        ]);
+        $this->assertInstanceOf(AggregateRootId::class, $message->aggregateRootId());
     }
 }

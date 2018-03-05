@@ -36,6 +36,11 @@ final class Message
         return $clone;
     }
 
+    public function aggregateRootId(): ?AggregateRootId
+    {
+        return $this->headers[Header::AGGREGATE_ROOT_ID] ?? null;
+    }
+
     public function header(string $key)
     {
         return $this->headers[$key] ?? null;

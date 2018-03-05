@@ -4,6 +4,11 @@ permalink: /docs/
 title: Event sourcing for PHP
 ---
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master)
+[![Build Status](https://travis-ci.org/EventSaucePHP/EventSauce.svg?branch=master)](https://travis-ci.org/EventSaucePHP/EventSauce)
+
+
 # What is EventSauce?
 
 EventSauce is a no-nonsense event sourcing library for PHP with a focus on developer

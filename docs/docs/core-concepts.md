@@ -12,7 +12,7 @@ EventSauce consists of 3 parts; a **core** library, and two parts that you can c
 based on your requirements. The `MessageRepository`, which is used
 to persist and retrieve events, and a `MessageDispatcher`, which allows you to broadcast
 events to `Consumer`s. The core library ships with a `SynchronousMessageDispatcher`,
-so you don't even _need_ to have a queue in order.
+so having a queueing system is not an immediate requirement.
 
 Which `MessageRepository` or `MessageDispatcher` you use it totally up to you. There
 are benefits (and downsides) to each queueing mechanism and message repository. Because
