@@ -26,7 +26,7 @@ use EventSauce\EventSourcing\SynchronousMessageDispatcher;
 $messageDispatcher = new SynchronousMessageDispatcher(
     new ProjectorOne(),
     new ProjectorTwo(),
-    new ProcessManager
+    new ProcessManager()
 );
 
 $aggregateRootRepository = new AggregateRootRepository(
