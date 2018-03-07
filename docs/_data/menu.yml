@@ -16,13 +16,12 @@ Testing:
     Handling Exceptions: '/docs/testing/handling-exceptions/'
 
 Reacting to events:
-    <del>Projection &amp; Read Models</del>: '/docs/reacting-to-events/projections-and-read-models/'
-    <del>Process Managers</del>: '/docs/reacting-to-events/process-managers/'
+    Projection &amp; Read Models: '/docs/reacting-to-events/projections-and-read-models/'
+    Process Managers: '/docs/reacting-to-events/process-managers/'
 
 Advanced Topics:
-    <del>Message Internals</del>: '/docs/advanced/message-internals/'
-    <del>Message Decoration</del>: '/docs/advanced/message-decoration/'
-    <del>Upcasting</del>: '/docs/advanced/upcasting/'
-    <del>Custom Repository</del>: '/docs/advanced/custom-repository/'
-    <del>Custom Dispatcher</del>: '/docs/advanced/custom-dispatcher/'
-    <del>Delayed Commands</del>: '/docs/advanced/delayed-commands/'
+    Message Internals: '/docs/advanced/message-internals/'
+    Message Decoration: '/docs/advanced/message-decoration/'
+    Upcasting: '/docs/advanced/upcasting/'
+    Custom Repository: '/docs/advanced/custom-repository/'
+    Custom Dispatcher: '/docs/advanced/custom-dispatcher/'

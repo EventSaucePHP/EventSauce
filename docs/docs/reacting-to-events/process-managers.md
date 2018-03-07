@@ -1,0 +1,60 @@
+---
+layout: default
+permalink: /docs/reacting-to-events/process-managers/
+title: Process Managers
+---
+
+# Process Managers
+
+Projections and read models are a big part of event sourcing. They
+our way to communicating state with the outside world. They're also
+very project specific.
+
+In EventSauce process managers are nothing more than an implementation of
+the `Consumer` interface. Unlike projections, which feed read models, process
+managers do more than just respond to something that happened. Process
+managers **act**. How the process manager interacts with your system depends
+on how you've chosen to model this interaction. You can dispatch commands or
+use a service layer to trigger new actions.
+
+## Why process managers are useful?
+
+When modeling large processes, process managers allow you break then up in
+multiple steps. This is especially useful when subsequent actions don't require
+user interaction. All of these action can be done in the background, thus not
+blocking the user from receiving a response from the server.
+
+
+## Process Manager Example
+
+In this example I'm using [tactician](https://tactician.thephpleague.com) to
+dispatch new commands:
+
+```php
+<?php
+
+use EventSauce\EventSourcing\Consumer;
+use EventSauce\EventSourcing\Message;
+Use League\Tactician\CommandBus;
+
+class ProductRestocker implements Consumer
+{
+    public function __construct(CommandBus $commandBus)
+    {
+        $this->commandBus = $commandBus;
+    }
+
+    public function handle(Message $message)
+    {
+        $event = $message->event();
+        
+        if ($event instanceof ProductSoldOut) {
+            $this->commandBus->handle(
+                new RestockProduct($event->productId())
+            );
+        }
+    }
+}
+```
+
+

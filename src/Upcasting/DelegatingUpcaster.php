@@ -19,12 +19,12 @@ final class DelegatingUpcaster implements Upcaster
         }
     }
 
-    public function upcaster(array $payload): ?Upcaster
+    public function upcaster(array $message): ?Upcaster
     {
-        $type = $payload['headers'][Header::EVENT_TYPE];
+        $type = $message['headers'][Header::EVENT_TYPE];
 
         foreach ($this->upcasters[$type] ?? [] as $upcaster) {
-            if ($upcaster->canUpcast($type, $payload)) {
+            if ($upcaster->canUpcast($type, $message)) {
                 return $upcaster;
             }
         }
@@ -32,18 +32,18 @@ final class DelegatingUpcaster implements Upcaster
         return null;
     }
 
-    public function upcast(array $payload): Generator
+    public function upcast(array $message): Generator
     {
-        if ($upcaster = $this->upcaster($payload)) {
-            foreach ($upcaster->upcast($payload) as $upcasted) {
+        if ($upcaster = $this->upcaster($message)) {
+            foreach ($upcaster->upcast($message) as $upcasted) {
                 yield from $this->upcast($upcasted);
             }
         } else {
-            yield $payload;
+            yield $message;
         }
     }
 
-    public function canUpcast(string $type, array $payload): bool
+    public function canUpcast(string $type, array $message): bool
     {
         return isset($this->upcasters[$type]);
     }
