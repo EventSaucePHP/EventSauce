@@ -56,9 +56,9 @@ abstract class SignUpProcessTestCase extends AggregateRootTestCase
 }
 ```
 
-## 2. Create test scenario's
+## 2. Create test scenarios
 
-Now that you've got your base class it's time to setup test scenario's. It's advised to
+Now that you've got your base class it's time to setup test scenarios. It's advised to
 create small, focused test cases that handle a specific task or condition.
 
 Fir instance, initiating a sign-up process:
