@@ -1,5 +1,7 @@
 # EventSaucePHP
 
+<img src="https://eventsauce.io/static/logo.svg" height="150px" width="150px">
+
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master)
 [![Build Status](https://travis-ci.org/EventSaucePHP/EventSauce.svg?branch=master)](https://travis-ci.org/EventSaucePHP/EventSauce)
