@@ -16,6 +16,7 @@ Testing:
     Handling Exceptions: '/docs/testing/handling-exceptions/'
 
 Reacting to events:
+    Setup Consumers: '/docs/reacting-to-events/setup-consumers/'
     Projection &amp; Read Models: '/docs/reacting-to-events/projections-and-read-models/'
     Process Managers: '/docs/reacting-to-events/process-managers/'
 
