@@ -9,7 +9,7 @@ class SystemClock implements Clock
 {
     public function dateTime(): DateTimeImmutable
     {
-        return DateTimeImmutable::createFromFormat('U.u', sprintf('%.6f', microtime(true)));
+        return new DateTimeImmutable();
     }
 
     public function pointInTime(): PointInTime
