@@ -86,7 +86,7 @@ class InitiatingSignUpProcessTest extends SignUpProcessTestCase
 The `when` call takes the input needed to `handle` our scenario. The `then` clause specifies
 one or more events that we expect to be recorded afterwards.
 
-In some cases you'll want to record mutiple events from a single interaction, this is also
+In some cases you'll want to record multiple events from a single interaction, this is also
 possible:
 
 ```php
