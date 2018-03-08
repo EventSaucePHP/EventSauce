@@ -14,7 +14,7 @@
     <title>{{ page.title }} - {{ site.data.project.title }}</title>
     {% if site.data.project.description %}
     <meta name="description" content="{{ site.data.project.description }}" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Varela+Round" rel="stylesheet" />
     {% endif %}
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114414242-1"></script>
     <script>
@@ -134,7 +134,7 @@
             opacity: .5;
         }
         input[type=email] {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Raleway', sans-serif;
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
@@ -157,11 +157,14 @@
             margin-bottom: 50px;
         }
         input[type=email]::placeholder {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Raleway', sans-serif;
             color: #D8D8D8;
         }
+        input[type=email]:focus::placeholder {
+            opacity: 0;
+        }
         button[type=submit] {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Raleway', sans-serif;
             display: block;
             width: 100%;
             line-height: 30px;
