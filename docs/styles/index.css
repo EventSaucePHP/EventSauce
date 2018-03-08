@@ -120,9 +120,13 @@ article table {
     border-collapse: collapse;
 }
 
-article p, article ul, article ol, article table {
+article p, article table {
     @apply mb-6 max-w-full block p-0;
     overflow: auto;
+}
+
+article ul, article ol {
+    @apply mb-6 pl-4;
 }
 
 article table td {
