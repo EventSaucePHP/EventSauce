@@ -133,7 +133,7 @@
             margin-top: 30px;
             opacity: .5;
         }
-        input[type=email] {
+        input[type=email], button[type=submit] {
             font-family: 'Raleway', sans-serif;
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -141,10 +141,10 @@
             outline: none;
             display: block;
             width: 100%;
-            line-height: 30px;
-            font-size: 20px;
+            line-height: 24px;
+            font-size: 18px;
             border-radius: 4px;
-            padding: 10px 15px;
+            padding: 8px 10px;
             margin-right: 15px;
             color: inherit;
             box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.08);
@@ -164,14 +164,6 @@
             opacity: 0;
         }
         button[type=submit] {
-            font-family: 'Raleway', sans-serif;
-            display: block;
-            width: 100%;
-            line-height: 30px;
-            font-size: 20px;
-            border-radius: 3px;
-            padding: 10px 15px;
-            margin-right: 0;
             cursor: pointer;
             background: #BE2323;
             color: rgba(255, 255, 255, .8);
@@ -181,6 +173,7 @@
             transition-property: top, box-shadow;
             transition-duration: .2s;
             text-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.38);
+            text-transform: uppercase;
         }
         button[type=submit]:hover, button[type=submit]:focus {
             color: #fff;
