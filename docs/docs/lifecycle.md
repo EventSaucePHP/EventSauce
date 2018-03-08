@@ -8,9 +8,9 @@ title: Lifecycle
 
 The lifecycle of EventSauce can be broken down into **3** steps:
 
-1. [Interacting with the model](#interacting-with-the-model)
-2. [Storing and dispatching raised events](#storing-and-dispatching-raised-events)
-3. [Reacting to dispatched events](#reacting-to-dispatched-events)
+1. [Interacting with the model](#interacting-with-the-model).
+2. [Storing and dispatching raised events](#storing-and-dispatching-raised-events).
+3. [Reacting to dispatched events](#reacting-to-dispatched-events).
 
 ## Interacting with the model
 

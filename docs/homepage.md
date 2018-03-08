@@ -5,7 +5,7 @@ title: Event sourcing for PHP
 ---
 
 <p class="max-width-medium">
-An event sourcing library for PHP with a focus on developer experience.
+A pragmatic event sourcing library for PHP with a focus on developer experience.
 </p>
 
 <div class="text-center">
