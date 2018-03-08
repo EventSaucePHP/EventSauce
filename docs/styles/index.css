@@ -99,8 +99,7 @@ a {
 }
 
 article h1 {
-    @apply text-red
-    text-4xl mb-2 leading-tight;
+    @apply text-red text-4xl mb-2 leading-tight;
 }
 
 article h2 {
@@ -138,7 +137,7 @@ article table th, article table td {
 }
 
 article blockquote {
-    @apply p-4 bg-white border-l-4 border-grey-darker mb-4;
+    @apply p-4 bg-white border-l-4 border-grey-darker mb-4 shadow;
 }
 
 article blockquote :last-child {
