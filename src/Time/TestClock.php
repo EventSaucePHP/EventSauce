@@ -2,8 +2,11 @@
 
 namespace EventSauce\EventSourcing\Time;
 
+use DateTime;
 use DateTimeImmutable;
+use DateTimeZone;
 use EventSauce\EventSourcing\PointInTime;
+use function strtotime;
 
 class TestClock implements Clock
 {
@@ -12,22 +15,31 @@ class TestClock implements Clock
      */
     const FORMAT_OF_TIME = 'Y-m-d H:i:s.uO';
 
+    /**
+     * @var DateTimeImmutable
+     */
     private $time;
 
-    final public function __construct()
+    /**
+     * @var DateTimeZone
+     */
+    private $timeZone;
+
+    public function __construct(DateTimeZone $timeZone = null)
     {
+        $this->timeZone = $timeZone ?: new DateTimeZone('UTC');
         $this->tick();
     }
 
     public function tick()
     {
-        $this->time = DateTimeImmutable::createFromFormat('U.u', sprintf('%.6f', microtime(true)));
+        $this->time = new DateTimeImmutable('now', $this->timeZone);
     }
 
     public function fixate(string $dateTime)
     {
-        $preciseTime = sprintf('%s.000000+0000', $dateTime);
-        $this->time = DateTimeImmutable::createFromFormat(self::FORMAT_OF_TIME, $preciseTime);
+        $preciseTime = sprintf('%s.000000', $dateTime);
+        $this->time = DateTimeImmutable::createFromFormat('Y-m-d H:i:s.u', $preciseTime, $this->timeZone);
     }
 
     public function dateTime(): DateTimeImmutable
