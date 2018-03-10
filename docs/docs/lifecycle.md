@@ -67,7 +67,6 @@ public function performAction(Clock $clock, SomeCommand $command)
 
 Or if you used the parameterised approach:
 
-
 ```php
 // Inside our aggregate root class
 public function performAnotherAction(
@@ -83,6 +82,23 @@ public function performAnotherAction(
     ));
 }
 ```
+
+Whenever you record an events the `recordThat` ensures it's immediately
+applied. This ensures the aggregate root is ready for the next interaction
+without needing to re-retrieve it from the aggregate root repository.
+
+```php
+// Inside our aggregate root class
+public function applySomeActionWasPerformed(SomeActionWasPerformed $event)
+{
+    // Use the data from the event to bring the current state up to date.
+}
+```
+
+> It's important to note that applying events must **never** have side-effect.
+> The only job of this function is to *use* the data from the event. Applying 
+> and event must not cause any exceptions.
+
 
 ## Storing and dispatching raised events
 
