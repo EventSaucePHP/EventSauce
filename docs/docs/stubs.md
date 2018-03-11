@@ -2,6 +2,7 @@
 layout: default
 permalink: /algolia-stubs/
 title: Algolia Stubs
+sitemap: false
 ---
 
 This file contains a html/css skeleton to prevent css overrides to

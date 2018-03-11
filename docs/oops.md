@@ -2,6 +2,7 @@
 layout: leader
 permalink: /oops/
 title: Event sourcing for PHP
+sitemap: false
 ---
 
 ## Oops! Something went wrong!
