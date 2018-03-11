@@ -66,8 +66,12 @@
             {% endfor %}
         </menu>
     </nav>
-    <div id="main-article" class="flex-grow p-4 lg:block">
-        <div class="bg-grey-dark">lol</div>
+    <div id="main-article" class="flex-grow p-4 pt-0 lg:block">
+        <div class="md:mb-6 mb-2 max-w-lg mx-auto text-right font-heading">
+            <p class="bg-grey-light text-xs text-grey-dark rounded rounded-t-none py-2 px-3 text-shadow inline-block">
+                Published at {{ page.published_at | date_to_long_string }}{% if page.published_at != page.updated_at %} | Last updated at {{ page.updated_at | date_to_long_string }}{% endif %}
+            </p>
+        </div>
         <article class="max-w-lg mx-auto">
             {{ content }}
         </article>
