@@ -4,7 +4,7 @@ title: Creating an Aggregate Root
 ---
 
 An aggregate root is a class that implements the `EventSauce\EventSourcing\AggregateRoot` 
-interface. In order to make things easy an abstract class is provided
+interface. In order to make things easy several traits are provided
 which implements the interface so you won't have to.
 
 ```php
@@ -12,13 +12,26 @@ which implements the interface so you won't have to.
 
 namespace AcmeCompany\AcmeProject;
 
-use EventSauce\EventSourcing\BaseAggregateRoot;
+use EventSauce\EventSourcing\AggregateRoot;
+use EventSauce\EventSourcing\AggregateRootBehaviour\AggregateRootBehaviour;
+use EventSauce\EventSourcing\AggregateRootBehaviour\ConstructionBehaviour;
+use EventSauce\EventSourcing\AggregateRootBehaviour\EventApplyingBehaviour;
+use EventSauce\EventSourcing\AggregateRootBehaviour\EventRecordingBehaviour;
 
-class AcmeProcess extends BaseAggregateRoot
+class AcmeProcess implements AggregateRoot
 {
-    
+    // Use all traits.
+    use AggregateRootBehaviour;
+
+    // OR use individually
+    use ConstructionBehaviour,
+        EventApplyingBehaviour,
+        EventRecordingBehaviour;
 }
 ```
+
+If you *really* lazy, you can also extend the `EventSauce\EventSourcing\BaseAggregateRoot`
+base class.
 
 ## Aggregate Root ID
 
