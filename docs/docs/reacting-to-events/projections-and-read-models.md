@@ -1,6 +1,8 @@
 ---
 permalink: /docs/reacting-to-events/projections-and-read-models/
 title: Projections and Read Models
+published_at: 2018-03-11
+updated_at: 2018-03-11
 ---
 
 Projections and read models are a big part of event sourcing. They
@@ -97,4 +99,3 @@ class PendingInvitationProjection implements Consumer
     }
 }
 ```
-

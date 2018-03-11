@@ -1,6 +1,8 @@
 ---
 permalink: /docs/advanced/upcasting/
 title: Upcasting
+published_at: 2018-03-11
+updated_at: 2018-03-11
 ---
 
 Event sourcing is a great discovery tools, it's also provides a
@@ -58,4 +60,3 @@ $upcastingSerializer = new UpcastingMessageSerializer(
     new DelegatingUpcaster(new UpcasterOne(), new UpcasterTwo())
 );
 ```
- 

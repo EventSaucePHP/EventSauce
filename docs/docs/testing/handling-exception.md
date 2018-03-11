@@ -1,6 +1,8 @@
 ---
 permalink: /docs/testing/handling-exceptions/
 title: Handling Exceptions
+published_at: 2018-03-11
+updated_at: 2018-03-11
 ---
 
 Handling exceptions is an important part of software modeling. EventSauce
@@ -58,4 +60,3 @@ protected function handle($command)
 The `finally` class will be triggered even though a exception is thrown. In
 this case the events recorded prior to the exception are still recorded but
 your exception still bubbles up so you can handle it transparently.
-

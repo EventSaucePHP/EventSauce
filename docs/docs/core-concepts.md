@@ -1,6 +1,8 @@
 ---
 permalink: /docs/core-concepts/
 title: Core Concepts
+published_at: 2018-03-11
+updated_at: 2018-03-11
 ---
 
 ## The Architecture
@@ -71,5 +73,4 @@ Message serializers can be composed using decoration to provide more complex fea
 Time is a very important concept in EventSauce. In the core of the library a `Clock` is defined.
 The `SystemClock` provides a production-ready implementation, while the `TestClock` is used during testing.
 The `TestClock` allows you to fixate time, allowing you to test processes without worrying about the current
-time changing under you. 
-
+time changing under you.

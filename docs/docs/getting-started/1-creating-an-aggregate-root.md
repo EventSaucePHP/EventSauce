@@ -1,6 +1,8 @@
 ---
 permalink: /docs/getting-started/create-an-aggregate-root/
 title: Creating an Aggregate Root
+published_at: 2018-03-11
+updated_at: 2018-03-11
 ---
 
 An aggregate root is a class that implements the `EventSauce\EventSourcing\AggregateRoot` 
@@ -80,4 +82,4 @@ Having unique ID classes for each typea of aggregate has an added benefit
 when you're refactoring and events or commands move to a different aggregate. The 
 types will assure you're using the right kind of ID. The fact a ProductId
 and a UserID might both be UUIDs under the hood is just a coincidence,
-not their defining feature. 
+not their defining feature.

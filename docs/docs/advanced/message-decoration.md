@@ -1,6 +1,8 @@
 ---
 permalink: /docs/advanced/message-decoration/
 title: Message Decoration
+published_at: 2018-03-11
+updated_at: 2018-03-11
 ---
 
 EventSauce provides the possibility to decorate messaged. What this
@@ -90,4 +92,4 @@ class YourDecorator implements MessageDecorator
 >
 > It's important to note that `Message` objects are modelled as immutable
 > objects. The `withHeader` and `withHeaders` methods return a new (cloned)
-> version with the added headers. 
+> version with the added headers.

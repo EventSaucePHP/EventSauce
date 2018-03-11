@@ -1,6 +1,8 @@
 ---
 permalink: /docs/advanced/custom-dispatcher/
 title: Custom Message Dispatcher
+published_at: 2018-03-11
+updated_at: 2018-03-11
 ---
 
 You can create a custom implementation of the message dispatcher if needed. Your
@@ -19,4 +21,3 @@ interface MessageDispatcher
 
 It's recommended to leverage the `MessageSerializer` capabilities, just like
 the [custom repository](/docs/advanced/custom-repository) does.
- 

@@ -1,6 +1,8 @@
 ---
 permalink: /docs/getting-started/bootstrap-and-use/
 title: Bootstrap
+published_at: 2018-03-11
+updated_at: 2018-03-11
 ---
 
 Now that you've got your MessageRepository and MessageDispatcher in place

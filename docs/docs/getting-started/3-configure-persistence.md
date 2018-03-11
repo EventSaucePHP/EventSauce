@@ -16,6 +16,8 @@ the `MessageRepository` on side where we produce messages.
 ## Provided bindings:
 
 Name | R | D
+published_at: 2018-03-11
+updated_at: 2018-03-11
 --- | --- | ---
 [eventsauce/doctrine-message-repository](https://packagist.org/packages/eventsauce/doctrine-message-repository) | ✅ | ❌
 [eventsauce/rabbitmq-bundle-bindings](https://packagist.org/packages/eventsauce/rabbitmq-bundle-bindings) | ❌ | ✅

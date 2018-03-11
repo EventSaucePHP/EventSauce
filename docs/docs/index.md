@@ -2,6 +2,8 @@
 permalink: /docs/
 title: Event sourcing for PHP
 hide_title: true
+published_at: 2018-03-11
+updated_at: 2018-03-11
 ---
 
 <div class="text-center mb-8 max-w-md">
@@ -47,4 +49,3 @@ concepts that come into play that build off one another.
 However, event sourcing also provides an easier way to model a variety of issues. It's
 a remedy against storing "work in progress" entities. It's a better fit when modeling
 anything where the transition is just as important as the end result.
-
