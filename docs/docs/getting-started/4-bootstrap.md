@@ -1,5 +1,5 @@
 ---
-permalink: /docs/getting-started/bootstrap-and-use/
+permalink: /docs/getting-started/bootstrap/
 title: Bootstrap
 published_at: 2018-03-11
 updated_at: 2018-03-11
