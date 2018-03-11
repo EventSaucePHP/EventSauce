@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: /docs/reacting-to-events/projections-and-read-models/
 title: Projections and Read Models
 ---

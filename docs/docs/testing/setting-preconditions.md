@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: /docs/testing/preconditions/
 title: Setting preconditions
 ---

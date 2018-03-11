@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: /docs/core-concepts/
 title: Core Concepts
 ---

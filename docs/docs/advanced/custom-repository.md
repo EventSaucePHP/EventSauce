@@ -1,5 +1,5 @@
 ---
-layout: default
+
 permalink: /docs/advanced/custom-repository/
 title: Custom Message Repository
 ---

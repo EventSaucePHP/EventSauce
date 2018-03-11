@@ -1,5 +1,5 @@
 ---
-layout: default
+
 permalink: /docs/reacting-to-events/process-managers/
 title: Process Managers
 ---

@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: /docs/testing/handling-exceptions/
 title: Handling Exceptions
 ---

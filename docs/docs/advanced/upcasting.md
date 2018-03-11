@@ -1,5 +1,5 @@
 ---
-layout: default
+
 permalink: /docs/advanced/upcasting/
 title: Upcasting
 ---

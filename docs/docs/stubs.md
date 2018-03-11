@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: /algolia-stubs/
 title: Algolia Stubs
 sitemap: false

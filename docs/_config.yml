@@ -1,2 +1,9 @@
 plugins:
-  - jekyll-sitemap
+    - jekyll-sitemap
+defaults:
+    - scope:
+        path: ""
+      values:
+        layout: "default"
+        created_at: "2018-03-11"
+        updated_at: "2018-03-11"

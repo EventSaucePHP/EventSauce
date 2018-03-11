@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: /docs/getting-started/create-an-aggregate-root/
 title: Creating an Aggregate Root
 ---

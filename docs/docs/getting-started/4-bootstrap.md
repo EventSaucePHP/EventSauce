@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: /docs/getting-started/bootstrap-and-use/
 title: Configure Persistence
 ---

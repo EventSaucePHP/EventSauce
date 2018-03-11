@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: /docs/getting-started/configure-persistence/
 title: Configure Persistence
 ---

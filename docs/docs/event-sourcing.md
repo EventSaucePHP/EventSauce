@@ -1,5 +1,5 @@
 ---
-layout: default
+
 permalink: /docs/event-sourcing/
 title: Event Sourcing
 ---

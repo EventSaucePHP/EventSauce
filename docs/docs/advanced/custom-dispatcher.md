@@ -1,5 +1,5 @@
 ---
-layout: default
+
 permalink: /docs/advanced/custom-dispatcher/
 title: Custom Message Dispatcher
 ---

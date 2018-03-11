@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: /docs/getting-started/create-events-and-commands/
 title: Events and commands
 ---

@@ -1,5 +1,4 @@
 ---
-layout: default
 permalink: /docs/
 title: Event sourcing for PHP
 ---

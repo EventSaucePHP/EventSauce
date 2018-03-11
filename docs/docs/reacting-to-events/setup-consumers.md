@@ -1,5 +1,5 @@
 ---
-layout: default
+
 permalink: /docs/reacting-to-events/setup-consumers/
 title: Setup Consumers
 ---
