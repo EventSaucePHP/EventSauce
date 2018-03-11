@@ -1,6 +1,8 @@
 ---
 permalink: /docs/advanced/message-internals/
 title: Message Internals
+published_at: 2018-03-11
+updated_at: 2018-03-11
 ---
 
 The `Message` object is the envelope in which events are stored and
@@ -11,8 +13,6 @@ headers are available as constants on the `EventSauce\EventSourcing\Header`
 interface:
 
 constant | value | description
-published_at: 2018-03-11
-updated_at: 2018-03-11
 --- | --- | ---
 `Header::EVENT_ID` | `__event_id` | ID of the event (optional but recommended)
 `Header::EVENT_TYPE` | `__event_type` | type of the event
