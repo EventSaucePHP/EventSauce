@@ -3,8 +3,6 @@ permalink: /docs/getting-started/configure-persistence/
 title: Configure Persistence
 ---
 
-# Configure Persistence
-
 EventSauce has _two_ connections to persistence.
 
 * The `MessageRepository` which contains `Message`s for reconstituting aggregates.

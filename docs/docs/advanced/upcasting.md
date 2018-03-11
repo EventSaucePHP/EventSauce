@@ -1,10 +1,7 @@
 ---
-
 permalink: /docs/advanced/upcasting/
 title: Upcasting
 ---
-
-# Upcasting
 
 Event sourcing is a great discovery tools, it's also provides a
 solid basis to perform system introspection. By analysing streams

@@ -1,10 +1,7 @@
 ---
-
 permalink: /docs/advanced/message-internals/
 title: Message Internals
 ---
-
-# Message Internals
 
 The `Message` object is the envelope in which events are stored and
 dispatched to consumers. It contains a `Event` instance and headers.

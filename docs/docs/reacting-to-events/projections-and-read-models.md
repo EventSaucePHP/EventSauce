@@ -3,8 +3,6 @@ permalink: /docs/reacting-to-events/projections-and-read-models/
 title: Projections and Read Models
 ---
 
-# Projections and Read Models
-
 Projections and read models are a big part of event sourcing. They
 our way to communicating state with the outside world. They're also
 very project specific.

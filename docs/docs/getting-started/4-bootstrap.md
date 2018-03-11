@@ -1,9 +1,7 @@
 ---
 permalink: /docs/getting-started/bootstrap-and-use/
-title: Configure Persistence
+title: Bootstrap
 ---
-
-# Bootstrap 
 
 Now that you've got your MessageRepository and MessageDispatcher in place
 you're set to bootstrap your `AggregateRootRepository`.

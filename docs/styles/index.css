@@ -104,7 +104,7 @@ a {
 }
 
 article h1 {
-    @apply text-red text-4xl mb-2 leading-tight;
+    @apply text-red text-4xl leading-tight;
 }
 
 article h2 {

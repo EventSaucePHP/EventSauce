@@ -1,6 +1,7 @@
 ---
 permalink: /docs/
 title: Event sourcing for PHP
+hide_title: true
 ---
 
 <div class="text-center mb-8 max-w-md">

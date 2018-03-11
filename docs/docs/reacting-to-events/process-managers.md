@@ -1,10 +1,7 @@
 ---
-
 permalink: /docs/reacting-to-events/process-managers/
 title: Process Managers
 ---
-
-# Process Managers
 
 Projections and read models are a big part of event sourcing. They
 our way to communicating state with the outside world. They're also

@@ -3,8 +3,6 @@ permalink: /docs/lifecycle/
 title: Lifecycle
 ---
 
-# Lifecycle
-
 The lifecycle of EventSauce can be broken down into **3** steps:
 
 1. [Interacting with the model](#interacting-with-the-model).

@@ -3,8 +3,6 @@ permalink: /docs/testing/handling-exceptions/
 title: Handling Exceptions
 ---
 
-# Handling exceptions
-
 Handling exceptions is an important part of software modeling. EventSauce
 makes it easy to test failures. If our `AggregateRoot` guard invariants
 we can create tests for that to ensure our business rule is respected.

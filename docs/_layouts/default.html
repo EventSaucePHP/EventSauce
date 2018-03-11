@@ -66,13 +66,14 @@
             {% endfor %}
         </menu>
     </nav>
-    <div id="main-article" class="flex-grow p-4 pt-0 lg:block">
-        <div class="md:mb-6 mb-2 max-w-lg mx-auto text-right font-heading">
-            <p class="bg-grey-light text-xs text-grey-dark rounded rounded-t-none py-2 px-3 text-shadow inline-block">
+    <div id="main-article" class="flex-grow p-4 lg:block">
+        <article class="max-w-lg mx-auto">
+            {% unless page.hide_title %}
+            <h1 class="mb-1">{% if page.alternate_title %}{{ page.alternate_title }}{% else %}{{ page.title }}{% endif %}</h1>
+            <p class="text-xs text-grey-dark rounded rounded-t-none mb-4 text-shadow inline-block">
                 Published at {{ page.published_at | date_to_long_string }}{% if page.published_at != page.updated_at %} | Last updated at {{ page.updated_at | date_to_long_string }}{% endif %}
             </p>
-        </div>
-        <article class="max-w-lg mx-auto">
+            {% endunless %}
             {{ content }}
         </article>
     </div>

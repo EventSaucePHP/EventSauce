@@ -1,10 +1,7 @@
 ---
-
 permalink: /docs/advanced/message-decoration/
 title: Message Decoration
 ---
-
-# Message Decoration
 
 EventSauce provides the possibility to decorate messaged. What this
 means is that you can add headers to messages to provide extra

@@ -3,8 +3,6 @@ permalink: /docs/getting-started/create-an-aggregate-root/
 title: Creating an Aggregate Root
 ---
 
-# Create an Aggregate Root
-
 An aggregate root is a class that implements the `EventSauce\EventSourcing\AggregateRoot` 
 interface. In order to make things easy an abstract class is provided
 which implements the interface so you won't have to.

@@ -3,8 +3,6 @@ permalink: /docs/installation/
 title: Installation
 ---
 
-# Installation
-
 EvenSauce consists of multiple parts. Besides the main package you'll need _persistence_ and a _dispatcher_.
 
 First you'll need to install the main package. This package provides the base functionality, some interfaces and

@@ -1,10 +1,7 @@
 ---
-
 permalink: /docs/advanced/custom-repository/
 title: Custom Message Repository
 ---
-
-# Custom Message Repository
 
 You can create a custom implementation of the message repository if needed. Your
 class must implement the `MessageRepository` interface:

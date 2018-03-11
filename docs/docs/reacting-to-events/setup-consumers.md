@@ -1,10 +1,7 @@
 ---
-
 permalink: /docs/reacting-to-events/setup-consumers/
 title: Setup Consumers
 ---
-
-# Setup Consumers
 
 In order to process events you need to wire up your consumers
 to your dispatchers. EventSauce ships with a

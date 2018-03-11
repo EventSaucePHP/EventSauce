@@ -1,10 +1,7 @@
 ---
-
 permalink: /docs/advanced/custom-dispatcher/
 title: Custom Message Dispatcher
 ---
-
-# Custom Message Dispatcher
 
 You can create a custom implementation of the message dispatcher if needed. Your
 class must implement the `MessageDispatcher` interface:

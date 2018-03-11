@@ -3,8 +3,6 @@ permalink: /docs/core-concepts/
 title: Core Concepts
 ---
 
-# Core Concepts
-
 ## The Architecture
 
 EventSauce consists of 3 parts; a **core** library, and two parts that you can choose
