@@ -1,0 +1,23 @@
+<?php
+
+namespace EventSauce\EventSourcing;
+
+class MessageDispatcherChain implements MessageDispatcher
+{
+    /**
+     * @var MessageDispatcher[]
+     */
+    private $dispatchers;
+
+    public function __construct(MessageDispatcher ... $dispatchers)
+    {
+        $this->dispatchers = $dispatchers;
+    }
+
+    public function dispatch(Message ... $messages)
+    {
+        foreach ($this->dispatchers as $dispatcher) {
+            $dispatcher->dispatch(... $messages);
+        }
+    }
+}
