@@ -16,7 +16,7 @@ managers **act**. How the process manager interacts with your system depends
 on how you've chosen to model this interaction. You can dispatch commands or
 use a service layer to trigger new actions.
 
-## Why process managers are useful?
+## Why are process managers useful?
 
 When modeling large processes, process managers allow you break then up in
 multiple steps. This is especially useful when subsequent actions don't require

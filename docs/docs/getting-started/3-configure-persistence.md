@@ -12,8 +12,8 @@ EventSauce has _two_ connections to persistence.
 
 Because of EventSauce's design it's possible to use traditional tools
 to work like an event store. Databases like [Event Store](https://eventstore.org/)
-implement both requires capabilities. In these cases You only need to use
-the `MessageRepository` on side where we produce messages.
+implement both required capabilities. In these cases you only need to use
+the `MessageRepository` on the side where we produce messages.
 
 ## Provided bindings:
 

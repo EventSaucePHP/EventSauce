@@ -6,7 +6,7 @@ updated_at: 2018-03-12
 ---
 
 Often you'll want to setup preconditions for tests. These are events recorded prior
-to the interaction you want to test in the current scenario. This can be done
+to the interaction you want to test in the current scenario. This can be provided
 using the `given` method. This method receives one or more events:
 
 ```php

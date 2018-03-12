@@ -10,8 +10,8 @@ Event sourced applications are very easy to test. EventSauce ships with test too
 that allows for scenario based testing using a given/when/then structure. This kind
 testing is often associated with Behavior Driven Development (BDD).
 
-Test written in this style are very expressive and easy to read. They also make it
-very easy to document business requirements. The test tooling makes it easy
+Tests written in this style are very expressive and easy to read. This makes it
+simple to document business requirements. The test tooling also makes it easy
 to follow the TDD approach. Creating tests (and the required events) often gives
 very usable insights when modeling your application.
 
@@ -22,7 +22,7 @@ for all test cases around the aggregate. There are a couple methods that need to
 
 * `aggregateRootId` is expected to always return the same aggregate root ID
 * `aggregateRootClassName` for the fully qualified aggregate root class name
-* `handle` which handled the `when` input
+* `handle` executes the `when` input, usually by passing a command object to a method on the aggregate
 
 You can choose to setup a handle method in your base test case or per test case.
 If you use a command based interaction you'll want to set it up in your base class.
@@ -76,7 +76,7 @@ class InitiatingSignUpProcessTest extends SignUpProcessTestCase
         $this->when(new InitiateSignUpProcess(
             $processId,
             $this->pointInTime()
-        ))->then(new SingUpProcessWasInitiated(
+        ))->then(new SignUpProcessWasInitiated(
             $this->pointInTime()
         ));
     } 
@@ -94,7 +94,7 @@ $this->when(new InitiateSignUpProcess(
     $processId,
     $this->pointInTime()
 ))->then(
-    new SingUpProcessWasInitiated($this->pointInTime()),
+    new SignUpProcessWasInitiated($this->pointInTime()),
     new AnotherThingHappened($this->pointInTime())
 );
 ```
@@ -120,7 +120,7 @@ class InitiatingSignUpProcessTest extends SignUpProcessTestCase
 }
 ```
 
-The `handle` implementation for this command you look something like:
+The `handle` implementation for this command looks something like:
 
 ```php
 abstract class SignUpProcessTestCase extends AggregateRootTestCase

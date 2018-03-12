@@ -32,13 +32,13 @@ class AcmeProcess implements AggregateRoot
 }
 ```
 
-If you *really* lazy, you can also extend the `EventSauce\EventSourcing\BaseAggregateRoot`
+Or if you're feeling extra lazy, you can just extend the `EventSauce\EventSourcing\BaseAggregateRoot`
 base class.
 
 ## Aggregate Root ID
 
 An aggregate root has an identifier. This is called the "aggregate root ID".
-It's good practice to have a unique type of ID for every aggregate root. This
+It's good practice to have a unique ID class for every aggregate root. This
 way you'll be sure not to mix them up if you're juggling more than one at the same
 time, since that would result in a type error (yay for types).
 

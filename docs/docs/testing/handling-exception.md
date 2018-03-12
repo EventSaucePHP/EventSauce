@@ -6,10 +6,10 @@ updated_at: 2018-03-12
 ---
 
 Handling exceptions is an important part of software modeling. EventSauce
-makes it easy to test failures. If our `AggregateRoot` guard invariants
+makes it easy to test failures. If our `AggregateRoot` guards an invariant,
 we can create tests for that to ensure our business rule is respected.
 
-For example, if there's a business rule that nobody on a blacklist can
+For example, if there's a business rule that no one on a blacklist can
 subscribe, we can create a test for this:
 
 ```php
