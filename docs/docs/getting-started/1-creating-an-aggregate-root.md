@@ -2,7 +2,7 @@
 permalink: /docs/getting-started/create-an-aggregate-root/
 title: Creating an Aggregate Root
 published_at: 2018-03-11
-updated_at: 2018-03-11
+updated_at: 2018-03-12
 ---
 
 An aggregate root is a class that implements the `EventSauce\EventSourcing\AggregateRoot` 

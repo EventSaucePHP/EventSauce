@@ -2,7 +2,7 @@
 permalink: /docs/testing/handling-exceptions/
 title: Handling Exceptions
 published_at: 2018-03-11
-updated_at: 2018-03-11
+updated_at: 2018-03-12
 ---
 
 Handling exceptions is an important part of software modeling. EventSauce

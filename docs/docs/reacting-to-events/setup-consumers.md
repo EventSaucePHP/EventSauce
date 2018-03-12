@@ -2,7 +2,7 @@
 permalink: /docs/reacting-to-events/setup-consumers/
 title: Setup Consumers
 published_at: 2018-03-11
-updated_at: 2018-03-11
+updated_at: 2018-03-12
 ---
 
 In order to process events you need to wire up your consumers

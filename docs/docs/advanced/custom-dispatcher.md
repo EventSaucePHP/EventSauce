@@ -2,7 +2,7 @@
 permalink: /docs/advanced/custom-dispatcher/
 title: Custom Message Dispatcher
 published_at: 2018-03-11
-updated_at: 2018-03-11
+updated_at: 2018-03-12
 ---
 
 You can create a custom implementation of the message dispatcher if needed. Your

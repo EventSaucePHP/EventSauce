@@ -1,7 +1,5 @@
 <?php
 
-use SebastianBergmann\CodeCoverage\Report\PHP;
-
 $files = array_map(
     function (SplFileInfo $fileInfo): string {
         return $fileInfo->getRealPath();
@@ -32,6 +30,7 @@ foreach ($files as $path) {
 
     list($info, $offset) = $matches[1];
     $end = $offset + mb_strlen($info);
+    $updatedInfo = trim($info);
     $document = rtrim(substr($contents, $end)) . "\n";
 
     $updates = [
@@ -39,14 +38,12 @@ foreach ($files as $path) {
         'updated_at'   => date('Y-m-d', filemtime($path)),
     ];
 
-    $updatedInfo = trim($info);
-
     foreach ($updates as $label => $date) {
         if ($label === 'published_at' && strpos($updatedInfo, $label) !== false) {
             continue;
         }
 
-        $updatedInfo = preg_replace("/(^{$label}: .*)/", "{$label}: {$date}", $updatedInfo);
+        $updatedInfo = preg_replace("/{$label}: .*/", "{$label}: {$date}", $updatedInfo);
 
         if (strpos($updatedInfo, $label) === false) {
             $updatedInfo = rtrim($updatedInfo) . "\n{$label}: {$date}";
@@ -54,5 +51,8 @@ foreach ($files as $path) {
     }
 
     $updatedContents = "---\n{$updatedInfo}\n{$document}";
-    file_put_contents($path, $updatedContents);
+
+    if ($contents !== $updatedContents) {
+        file_put_contents($path, $updatedContents);
+    }
 }
