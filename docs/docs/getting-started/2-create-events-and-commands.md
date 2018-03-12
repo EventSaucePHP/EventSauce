@@ -7,10 +7,10 @@ updated_at: 2018-03-12
 
 Events are the core of any event sourced system. They are the payload,
 the message, they allow our system to communicate in a meaningful way.
-Events and commands are very simple objects. They are should be modeled
-as "read-only" objects. This means they have to be  instantiated with
-all the data they need and _only_ expose the data. They also have but
-one technical requirements:
+Events and commands are very simple objects. They should be modeled
+as "read-only" objects. This means they have to be instantiated with
+all the data they need and _only_ expose that data. In EventSauce,
+they have but one technical requirement:
 
 > All events must implement the `EventSauce\EventSourcing\Event` interface.
 
@@ -24,16 +24,20 @@ This interface requires you to create implement **3** public functions:
 
 Every event has a `EventSauce\EventSourcing\Time\PointInTime` object. This
 is one of the few constraints that EventSauce places upon its
-users, and for very good reasons. Almost every event sourcing project
-eventually comes to a point where the timing of events (and/or commands)
-becomes significant. Having this information from the start is a small
-investment that always pays itself back.
+users, and for very good reasons. Storing the event time lets us replay
+events in the same order they originally happened and it's extremely useful
+for business analyics too!
 
-## To and from payload
+
+Almost every event sourcing project eventually comes to a point where the
+timing of events (and/or commands) becomes significant. Having this information
+from the start is a small investment that always pays itself back.
+
+## To and From payload
 
 The `toPayload` and (static) `fromPayload` methods are used in the serialization
 process. The `toPayload` method is expected to return an array that's serializable as JSON.
-The `fromPayload` method is exctected to create an instance from a deserialized JSON array.
+The `fromPayload` method is expected to create an instance from a deserialized JSON array.
 
 To illustrate:
 

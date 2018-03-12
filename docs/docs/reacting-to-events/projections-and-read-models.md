@@ -23,25 +23,25 @@ interface Consumer
 }
 ```
 
-The `Consumer` accepts a `Message` via the `handle` method. And can
-then retrieve the `Event` to retrieve information about something
-that happened with relevance to the business.
+The `Consumer` accepts a `Message` via the `handle` method. It can
+then retrieve the `Event` from the `Message` to read information
+about something important that happened in the business.
 
 ## Why read models are important/useful
 
 Read models allow you to separate presentational state from the process
-you're modelling. In general this has two effects. You processing side
+you're modelling. In general this has two effects. Your processing side
 is leaner because it doesn't have to deal with any presentation data or
 associated presentation logic. On the other your read models are free
-to from any constraints your domain model has and can be very optimized.
+from any constraints your domain model has and can be very optimized.
 
 Because projections and read models are fed by a stream of events it's
 also a lot easier to create multiple read models. These read models can
-be really specific to one use-case and don't have to share restrictions.
+even be specific to one use-case and don't have to share restrictions.
 
 ## Read model example: friendship requests
 
-As an example we're going to create a couple read models for a the
+As an example we're going to create a couple read models for the
 following case: becoming friends on social media. In this case we'll have
 the following events defined:
 

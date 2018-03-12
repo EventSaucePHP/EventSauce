@@ -7,7 +7,7 @@ updated_at: 2018-03-12
 ---
 
 Now that you've got your MessageRepository and MessageDispatcher in place
-you're set to bootstrap your `AggregateRootRepository`.
+you're ready to bootstrap your `AggregateRootRepository`.
 
 ```php
 <?php
