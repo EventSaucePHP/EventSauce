@@ -3,7 +3,6 @@
 namespace Multiple\Events\DefinitionGroup;
 
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\PointInTime;
 
 final class FirstEvent implements Event
 {
@@ -22,7 +21,6 @@ final class FirstEvent implements Event
     {
         return $this->firstField;
     }
-
     public static function fromPayload(array $payload): Event
     {
         return new FirstEvent(
@@ -46,13 +44,15 @@ final class FirstEvent implements Event
         return $this;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public static function with(): FirstEvent
     {
         return new FirstEvent(
             (string) 'FIRST'
         );
     }
-
 }
 
 final class SecondEvent implements Event
@@ -72,7 +72,6 @@ final class SecondEvent implements Event
     {
         return $this->secondField;
     }
-
     public static function fromPayload(array $payload): Event
     {
         return new SecondEvent(
@@ -96,11 +95,13 @@ final class SecondEvent implements Event
         return $this;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public static function with(): SecondEvent
     {
         return new SecondEvent(
             (string) 'SECOND'
         );
     }
-
 }

@@ -3,7 +3,6 @@
 namespace DefinedWith\Yaml;
 
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\PointInTime;
 
 final class WeWentYamling implements Event
 {
@@ -34,7 +33,6 @@ final class WeWentYamling implements Event
     {
         return $this->slogan;
     }
-
     public static function fromPayload(array $payload): Event
     {
         return new WeWentYamling(
@@ -60,6 +58,9 @@ final class WeWentYamling implements Event
         return $this;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public static function withSlogan(string $slogan): WeWentYamling
     {
         return new WeWentYamling(
@@ -67,7 +68,6 @@ final class WeWentYamling implements Event
             $slogan
         );
     }
-
 }
 
 final class HideFinancialDetailsOfFraudulentCompany
@@ -87,7 +87,6 @@ final class HideFinancialDetailsOfFraudulentCompany
     {
         return $this->companyId;
     }
-
 }
 
 final class GoYamling
@@ -119,5 +118,4 @@ final class GoYamling
     {
         return $this->slogan;
     }
-
 }

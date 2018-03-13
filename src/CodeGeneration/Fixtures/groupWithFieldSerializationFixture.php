@@ -3,7 +3,6 @@
 namespace Group\With\FieldDeserialization;
 
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\PointInTime;
 
 final class WithFieldSerializers implements Event
 {
@@ -22,7 +21,6 @@ final class WithFieldSerializers implements Event
     {
         return $this->items;
     }
-
     public static function fromPayload(array $payload): Event
     {
         return new WithFieldSerializers(
@@ -40,11 +38,13 @@ final class WithFieldSerializers implements Event
         ];
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public static function withItems(array $items): WithFieldSerializers
     {
         return new WithFieldSerializers(
             $items
         );
     }
-
 }

@@ -3,7 +3,6 @@
 namespace Group\With\Defaults;
 
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\PointInTime;
 
 final class EventWithDescription implements Event
 {
@@ -22,7 +21,6 @@ final class EventWithDescription implements Event
     {
         return $this->description;
     }
-
     public static function fromPayload(array $payload): Event
     {
         return new EventWithDescription(
@@ -46,11 +44,13 @@ final class EventWithDescription implements Event
         return $this;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public static function with(): EventWithDescription
     {
         return new EventWithDescription(
             (string) 'This is a description.'
         );
     }
-
 }

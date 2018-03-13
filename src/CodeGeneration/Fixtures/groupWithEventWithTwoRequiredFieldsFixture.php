@@ -3,7 +3,6 @@
 namespace With\ManyRequiredFields;
 
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\PointInTime;
 
 final class ThisOne implements Event
 {
@@ -34,7 +33,6 @@ final class ThisOne implements Event
     {
         return $this->description;
     }
-
     public static function fromPayload(array $payload): Event
     {
         return new ThisOne(
@@ -50,6 +48,9 @@ final class ThisOne implements Event
         ];
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public static function withTitleAndDescription(string $title, string $description): ThisOne
     {
         return new ThisOne(
@@ -57,5 +58,4 @@ final class ThisOne implements Event
             $description
         );
     }
-
 }

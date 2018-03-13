@@ -3,7 +3,6 @@
 namespace Simple\Definition\Group;
 
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\PointInTime;
 
 final class SomethingHappened implements Event
 {
@@ -34,7 +33,6 @@ final class SomethingHappened implements Event
     {
         return $this->yolo;
     }
-
     public static function fromPayload(array $payload): Event
     {
         return new SomethingHappened(
@@ -70,6 +68,9 @@ final class SomethingHappened implements Event
         return $this;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public static function with(): SomethingHappened
     {
         return new SomethingHappened(
@@ -77,5 +78,4 @@ final class SomethingHappened implements Event
             (bool) true
         );
     }
-
 }

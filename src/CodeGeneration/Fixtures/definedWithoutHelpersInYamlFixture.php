@@ -3,7 +3,6 @@
 namespace Acme\BusinessProcess;
 
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\PointInTime;
 
 final class UserSubscribedFromMailingList implements Event
 {
@@ -34,7 +33,6 @@ final class UserSubscribedFromMailingList implements Event
     {
         return $this->mailingList;
     }
-
     public static function fromPayload(array $payload): Event
     {
         return new UserSubscribedFromMailingList(
@@ -81,7 +79,6 @@ final class SubscribeToMailingList
     {
         return $this->mailingList;
     }
-
 }
 
 final class UnsubscribeFromMailingList
@@ -125,5 +122,4 @@ final class UnsubscribeFromMailingList
     {
         return $this->reason;
     }
-
 }

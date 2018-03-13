@@ -3,7 +3,6 @@
 namespace With\Commands;
 
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\PointInTime;
 
 final class DoSomething
 {
@@ -22,5 +21,4 @@ final class DoSomething
     {
         return $this->reason;
     }
-
 }

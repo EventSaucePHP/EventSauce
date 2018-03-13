@@ -3,7 +3,6 @@
 namespace With\EventFieldSerialization;
 
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\PointInTime;
 
 final class EventName implements Event
 {
@@ -22,7 +21,6 @@ final class EventName implements Event
     {
         return $this->title;
     }
-
     public static function fromPayload(array $payload): Event
     {
         return new EventName(
@@ -46,11 +44,13 @@ final class EventName implements Event
         return $this;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public static function with(): EventName
     {
         return new EventName(
             strtolower('Title')
         );
     }
-
 }

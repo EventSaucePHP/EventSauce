@@ -32,7 +32,6 @@ class CodeDumper
 namespace $namespace;
 
 use EventSauce\\EventSourcing\\Event;
-use EventSauce\\EventSourcing\\PointInTime;
 
 $allCode
 
@@ -138,7 +137,7 @@ EOF;
 EOF;
         }
 
-        return empty($methods) ? '' : rtrim(join('', $methods)) . "\n\n";
+        return empty($methods) ? '' : rtrim(join('', $methods)) . "\n";
     }
 
     private function dumpSerializationMethods(EventDefinition $event)
@@ -226,6 +225,9 @@ EOF;
         $constructor = sprintf('with%s', join('And', $constructor));
         $constructorValues = join(",\n            ", $constructorValues);
         $helpers[] = <<<EOF
+    /**
+     * @codeCoverageIgnore
+     */
     public static function $constructor($constructorArguments): {$event->name()}
     {
         return new {$event->name()}(
@@ -237,7 +239,7 @@ EOF;
 EOF;
 
 
-        return join('', $helpers);
+        return rtrim(join('', $helpers))."\n";
     }
 
     private function dumpConstructorValue(array $field, EventDefinition $event): string

@@ -3,7 +3,6 @@
 namespace EventsFrom\OtherTypes;
 
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\PointInTime;
 
 final class BaseEvent implements Event
 {
@@ -22,7 +21,6 @@ final class BaseEvent implements Event
     {
         return $this->age;
     }
-
     public static function fromPayload(array $payload): Event
     {
         return new BaseEvent(
@@ -55,7 +53,6 @@ final class ExtendedEvent implements Event
     {
         return $this->age;
     }
-
     public static function fromPayload(array $payload): Event
     {
         return new ExtendedEvent(
@@ -88,7 +85,6 @@ final class BaseCommand
     {
         return $this->name;
     }
-
 }
 
 final class ExtendedCommand
@@ -108,5 +104,4 @@ final class ExtendedCommand
     {
         return $this->name;
     }
-
 }
