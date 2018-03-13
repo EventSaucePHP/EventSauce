@@ -22,6 +22,7 @@ Reacting to events:
     Process Managers: '/docs/reacting-to-events/process-managers/'
 
 Advanced Topics:
+    Rebuilding Projections: '/docs/advanced/rebuilding-projections/'
     Message Internals: '/docs/advanced/message-internals/'
     Message Decoration: '/docs/advanced/message-decoration/'
     Upcasting: '/docs/advanced/upcasting/'
