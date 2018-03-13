@@ -24,7 +24,7 @@ class SequenceWasEmit implements Event
      * SequenceWasEmit constructor.
      *
      * @param \EventSauce\EventSourcing\PointInTime $pointInTime
-     * @param int                                   $int
+     * @param int                                   $version
      */
     public function __construct(PointInTime $pointInTime, int $version)
     {
