@@ -17,5 +17,4 @@ The way that EventSauce is designed allows for very easy extension.
 Implementing your own `MessageRepository` and/or `MessageDispatcher` is
 done in a matter of minutes. Keeping this interface simple was a very
 important decision. It means you're able to take **full control** of it
-when (and&nbsp;if) needed. 
-
+when (and&nbsp;if) needed.
