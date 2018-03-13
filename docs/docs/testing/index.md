@@ -75,10 +75,7 @@ class InitiatingSignUpProcessTest extends SignUpProcessTestCase
 
         $this->when(new InitiateSignUpProcess(
             $processId,
-            $this->pointInTime()
-        ))->then(new SignUpProcessWasInitiated(
-            $this->pointInTime()
-        ));
+        ))->then(new SignUpProcessWasInitiated());
     } 
 }
 ```
@@ -91,11 +88,10 @@ possible:
 
 ```php
 $this->when(new InitiateSignUpProcess(
-    $processId,
-    $this->pointInTime()
+    $processId
 ))->then(
-    new SignUpProcessWasInitiated($this->pointInTime()),
-    new AnotherThingHappened($this->pointInTime())
+    new SignUpProcessWasInitiated(),
+    new AnotherThingHappened()
 );
 ```
 
@@ -114,7 +110,6 @@ class InitiatingSignUpProcessTest extends SignUpProcessTestCase
 
         $this->when(new UneventfulCommand(
             $processId,
-            $this->pointInTime()
         ))->thenNothingShouldHaveHappened();
     }
 }

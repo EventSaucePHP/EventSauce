@@ -18,12 +18,12 @@ class SignUpRespectsBlackListTest extends SignUpProcessTestCase
     public function blacklist_is_respected()
     {
         $this->given(
-            new SignUpWasInitiated($this->pointInTime()),
-            new EmailWasSpecifiedForSignUp($this->pointInTime(), 'info@domain.tld')
+            new SignUpWasInitiated(),
+            new EmailWasSpecifiedForSignUp('info@domain.tld')
         )->when(
-            new FinalizeSignUpProcess($this->pointInTime())
+            new FinalizeSignUpProcess()
         )->then(
-            new SignUpWasFinalized($this->pointInTime())
+            new SignUpWasFinalized()
         );
     } 
 }

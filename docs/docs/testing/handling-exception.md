@@ -26,9 +26,8 @@ class SignUpRespectsBlackListTest extends SignUpProcessTestCase
     public function blacklist_is_respected()
     {
         $this->given(
-            new SignUpWasInitiated($this->pointInTime())
+            new SignUpWasInitiated()
         )->when(SpecifyEmailForSignUp(
-            $this->pointInTime(),
             $email = 'blacklisted@e-mail.com'
         ))->expectToFail(
             SorryEmailAddressIsBlackListed::forEmail($email)

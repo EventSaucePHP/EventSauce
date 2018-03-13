@@ -10,9 +10,19 @@ means is that you can add headers to messages to provide extra
 contextual information before a message is persisted and/or dispatched.
 
 By default the `DefaultHeaderDecorator` is used by the `AggregateRootRepository`.
-This decorator copies the `time of recording` from payload as headers. It 
+This decorator adds the `Header::TIME_OF_RECORDING` field which is a very precise
+date/time record for when the message was recorded. It also
 ensures the `Header::EVENT_TYPE` is detected and filled. It also pre-processes
 the _aggregate root id_ by turning it into a string and adding type information.
+
+## Time Of Recording
+
+Storing the time of recording lets us replay events in the same order they
+originally happened and it's extremely useful for business analyics too!
+
+Almost every event sourcing project eventually comes to a point where the
+timing of events (and/or commands) becomes significant. Having this information
+from the start is a small investment that always pays itself back.
 
 ## Using custom decorators
 

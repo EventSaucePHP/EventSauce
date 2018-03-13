@@ -57,7 +57,6 @@ public function performAction(Clock $clock, SomeCommand $command)
 {
     $this->guardBusinessRule($command);
     $this->recordThat(new SomeActionWasPerformed(
-        $clock->pointInTime(),
         $command->parameter(),
         $command->otherParameter()
     ));
@@ -69,13 +68,11 @@ Or if you used the parameterised approach:
 ```php
 // Inside our aggregate root class
 public function performAnotherAction(
-    Clock $clock,
     int $param1,
     string $param2
 ) {
     $this->guardBusinessRule($param1, $param2);
     $this->recordThat(new SomeActionWasPerformed(
-        $clock->pointInTime(),
         $param1,
         $param2
     ));

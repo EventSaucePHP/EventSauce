@@ -14,24 +14,10 @@ they have but one technical requirement:
 
 > All events must implement the `EventSauce\EventSourcing\Event` interface.
 
-This interface requires you to create implement **3** public functions:
+This interface requires you to create implement **2** public functions:
 
-> 1. `timeOfRecording(): PointInTime`
 > 2. `toPayload(): array`
-> 3. `fromPayload(array $payload, PointInTime $timeOfRecording): Event`
-
-## Time of recording 
-
-Every event has a `EventSauce\EventSourcing\Time\PointInTime` object. This
-is one of the few constraints that EventSauce places upon its
-users, and for very good reasons. Storing the event time lets us replay
-events in the same order they originally happened and it's extremely useful
-for business analyics too!
-
-
-Almost every event sourcing project eventually comes to a point where the
-timing of events (and/or commands) becomes significant. Having this information
-from the start is a small investment that always pays itself back.
+> 3. `fromPayload(array $payload): Event`
 
 ## To and From payload
 
@@ -42,11 +28,8 @@ The `fromPayload` method is expected to create an instance from a deserialized J
 To illustrate:
 
 ```php
-$event1 = new MyEvent($clock->pointInTime());
-$event2 = MyEvent::fromPayload(
-    $event1->timeOfRecording(),
-    $event1->toPayload()
-);
+$event1 = new MyEvent();
+$event2 = MyEvent::fromPayload($event1->timeOfRecording());
 
 assert($event1 == $event2);
 ```
@@ -70,30 +53,17 @@ examples.
 <?php
 
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\PointInTime;
 
 class SomeEvent implements Event
 {
-    private $timeOfRecording;
-
-    public function __construct(PointInTime $timeOfRecording)
-    {
-        $this->timeOfRecording = $timeOfRecording;
-    }
-
-    public function timeOfRecording(): PointInTime
-    {
-        return $this->timeOfRecording;
-    }
-
     public function toPayload(): array
     {
         return [];
     }
 
-    public static function fromPayload(array $payload, PointInTime $timeOfRecording): Event
+    public static function fromPayload(array $payload): Event
     {
-        return new SomeEvent($timeOfRecording);
+        return new SomeEvent();
     }
 }
 ```
@@ -174,7 +144,6 @@ Which compiles to the following PHP file:
  namespace Acme\BusinessProcess;
  
  use EventSauce\EventSourcing\Event;
- use EventSauce\EventSourcing\PointInTime;
  
  final class UserSubscribedFromMailingList implements Event
  {
@@ -187,14 +156,7 @@ Which compiles to the following PHP file:
       * @var string
       */
      private $mailingList;
- 
-     /**
-      * @var PointInTime
-      */
-     private $timeOfRecording;
- 
      public function __construct(
-         PointInTime $timeOfRecording,
          string $username,
          string $mailingList
      ) {
@@ -212,18 +174,10 @@ Which compiles to the following PHP file:
      {
          return $this->mailingList;
      }
-     
-     public function timeOfRecording(): PointInTime
-     {
-         return $this->timeOfRecording;
-     }
  
-     public static function fromPayload(
-         array $payload,
-         PointInTime $timeOfRecording): Event
+     public static function fromPayload(array $payload): Event
      {
          return new UserSubscribedFromMailingList(
-             $timeOfRecording,
              (string) $payload['username'],
              (string) $payload['mailingList']
          );
@@ -251,10 +205,9 @@ Which compiles to the following PHP file:
          return $this;
      }
  
-     public static function with(PointInTime $timeOfRecording): UserSubscribedFromMailingList
+     public static function with(): UserSubscribedFromMailingList
      {
          return new UserSubscribedFromMailingList(
-             $timeOfRecording,
              (string) 'example-user',
              (string) 'list-name'
          );
@@ -264,12 +217,7 @@ Which compiles to the following PHP file:
  
  
  final class SubscribeToMailingList
- {
-     /**
-      * @var PointInTime
-      */
-     private $timeOfRequest;
- 
+ { 
      /**
       * @var string
       */
@@ -281,18 +229,11 @@ Which compiles to the following PHP file:
      private $mailingList;
  
      public function __construct(
-         PointInTime $timeOfRequest,
          string $username,
          string $mailingList
      ) {
-         $this->timeOfRequest = $timeOfRequest;
          $this->username = $username;
          $this->mailingList = $mailingList;
-     }
- 
-     public function timeOfRequest(): PointInTime
-     {
-         return $this->timeOfRequest;
      }
  
      public function username(): string
@@ -310,11 +251,6 @@ Which compiles to the following PHP file:
  final class UnsubscribeFromMailingList
  {
      /**
-      * @var PointInTime
-      */
-     private $timeOfRequest;
- 
-     /**
       * @var string
       */
      private $username;
@@ -330,20 +266,13 @@ Which compiles to the following PHP file:
      private $reason;
  
      public function __construct(
-         PointInTime $timeOfRequest,
          string $username,
          string $mailingList,
          string $reason
      ) {
-         $this->timeOfRequest = $timeOfRequest;
          $this->username = $username;
          $this->mailingList = $mailingList;
          $this->reason = $reason;
-     }
- 
-     public function timeOfRequest(): PointInTime
-     {
-         return $this->timeOfRequest;
      }
  
      public function username(): string
