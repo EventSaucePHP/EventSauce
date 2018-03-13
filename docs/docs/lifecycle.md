@@ -39,11 +39,10 @@ handler** or **service layer**.
 
 ```php
 // Send a command to the aggregate root directly
-$aggregateRoot->performAction($clock, $command);
+$aggregateRoot->performAction($command);
 
 // Or pass individual parameters
 $aggregateRoot->performAnotherAction(
-    $clock,
     $command->parameter(),
     $command->otherParameter()
 );
@@ -53,7 +52,7 @@ In the aggregate you can now guard invariants and record events:
 
 ```php
 // Inside our aggregate root class
-public function performAction(Clock $clock, SomeCommand $command)
+public function performAction(SomeCommand $command)
 {
     $this->guardBusinessRule($command);
     $this->recordThat(new SomeActionWasPerformed(
