@@ -5,6 +5,8 @@ namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\AggregateRootTestCase;
+use EventSauce\EventSourcing\Header;
+use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\PointInTime;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\UuidAggregateRootId;
@@ -101,6 +103,27 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
             ->stage(new DummyIncrementingHappened(10))
             ->when(new DummyIncrementCommand($id))
             ->then(new DummyIncrementingHappened(1));
+    }
+
+    /**
+     * @test
+     */
+    public function messages_have_a_sequence()
+    {
+        $id = $this->aggregateRootId();
+        $this->given(new DummyIncrementingHappened(10))
+            ->when(new DummyIncrementCommand($id))
+            ->then(new DummyIncrementingHappened(11));
+
+        /** @var Message $lastMessage */
+        $lastMessage = null;
+
+        foreach ($this->messageRepository->retrieveAll($id) as $message) {
+            $lastMessage = $message;
+        }
+
+        $this->assertInstanceOf(Message::class, $lastMessage);
+        $this->assertEquals(2, $lastMessage->header(Header::AGGREGATE_ROOT_VERSION));
     }
 
     protected function handle($command)

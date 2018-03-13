@@ -10,4 +10,5 @@ interface Header
     const TIME_OF_RECORDING = '__time_of_recording';
     const AGGREGATE_ROOT_ID = '__aggregate_root_id';
     const AGGREGATE_ROOT_ID_TYPE = '__aggregate_root_id_type';
+    const AGGREGATE_ROOT_VERSION = '__aggregate_root_version';
 }

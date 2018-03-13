@@ -12,7 +12,9 @@ trait ConstructionBehaviour
     /**
      * @var AggregateRootId
      */
-    protected $aggregateRootId;
+    private $aggregateRootId;
+
+    private $aggregateRootVersion = 0;
 
     public function __construct(AggregateRootId $aggregateRootId)
     {
@@ -22,6 +24,11 @@ trait ConstructionBehaviour
     public function aggregateRootId(): AggregateRootId
     {
         return $this->aggregateRootId;
+    }
+
+    public function aggregateRootVersion(): int
+    {
+        return $this->aggregateRootVersion;
     }
 
     /**
@@ -37,6 +44,7 @@ trait ConstructionBehaviour
         /** @var Event $event */
         foreach ($events as $event) {
             $aggregateRoot->apply($event);
+            $aggregateRoot->aggregateRootVersion++;
         }
 
         return $aggregateRoot;
