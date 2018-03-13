@@ -19,6 +19,7 @@ constant | value | description
 `Header::TIME_OF_RECORDING` | `__time_of_recording` | when the event was recorded
 `Header::AGGREGATE_ROOT_ID` | `__aggregate_root_id` | the aggregate root id
 `Header::AGGREGATE_ROOT_ID_TYPE` | `__aggregate_root_id_type` | the type of aggregate root id
+`Header::AGGREGATE_ROOT_VERSION` | `__aggregate_root_version` | the aggregate version (1-based sequence)
 
 ## Message Decorator
 
