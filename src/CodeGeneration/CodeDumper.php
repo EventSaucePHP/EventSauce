@@ -266,9 +266,7 @@ EOF;
             $code[] = <<<EOF
 final class {$command->name()}
 {
-{$this->dumpFields($command)}{$this->dumpConstructor($command)}
-
-{$this->dumpMethods($command)}}
+{$this->dumpFields($command)}{$this->dumpConstructor($command)}{$this->dumpMethods($command)}}
 
 
 EOF;

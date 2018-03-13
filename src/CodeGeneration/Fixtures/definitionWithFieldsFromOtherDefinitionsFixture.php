@@ -84,8 +84,6 @@ final class BaseCommand
         $this->name = $name;
     }
 
-
-
     public function name(): string
     {
         return $this->name;
@@ -105,8 +103,6 @@ final class ExtendedCommand
     ) {
         $this->name = $name;
     }
-
-
 
     public function name(): string
     {

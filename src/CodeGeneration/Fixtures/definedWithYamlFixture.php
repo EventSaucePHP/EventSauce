@@ -83,8 +83,6 @@ final class HideFinancialDetailsOfFraudulentCompany
         $this->companyId = $companyId;
     }
 
-
-
     public function companyId(): \Ramsey\Uuid\UuidInterface
     {
         return $this->companyId;
@@ -111,8 +109,6 @@ final class GoYamling
         $this->reference = $reference;
         $this->slogan = $slogan;
     }
-
-
 
     public function reference(): \Ramsey\Uuid\UuidInterface
     {

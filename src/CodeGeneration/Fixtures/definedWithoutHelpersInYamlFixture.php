@@ -72,8 +72,6 @@ final class SubscribeToMailingList
         $this->mailingList = $mailingList;
     }
 
-
-
     public function username(): string
     {
         return $this->username;
@@ -112,8 +110,6 @@ final class UnsubscribeFromMailingList
         $this->mailingList = $mailingList;
         $this->reason = $reason;
     }
-
-
 
     public function username(): string
     {

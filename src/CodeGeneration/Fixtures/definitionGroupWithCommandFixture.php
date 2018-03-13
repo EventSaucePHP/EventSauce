@@ -18,8 +18,6 @@ final class DoSomething
         $this->reason = $reason;
     }
 
-
-
     public function reason(): string
     {
         return $this->reason;
