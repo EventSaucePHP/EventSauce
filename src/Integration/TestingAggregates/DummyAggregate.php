@@ -24,8 +24,6 @@ class DummyAggregate extends BaseAggregateRoot
         ));
     }
 
-    protected function applySequenceWasEmit(SequenceWasEmit $event) {}
-
     protected function applyDummyIncrementingHappened(DummyIncrementingHappened $event)
     {
         $this->incrementedNumber = $event->number();
