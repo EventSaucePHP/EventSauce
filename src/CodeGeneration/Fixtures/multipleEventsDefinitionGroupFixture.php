@@ -12,16 +12,9 @@ final class FirstEvent implements Event
      */
     private $firstField;
 
-    /**
-     * @var PointInTime
-     */
-    private $timeOfRecording;
-
     public function __construct(
-        PointInTime $timeOfRecording,
         string $firstField
     ) {
-        $this->timeOfRecording = $timeOfRecording;
         $this->firstField = $firstField;
     }
 
@@ -30,25 +23,16 @@ final class FirstEvent implements Event
         return $this->firstField;
     }
 
-    public function timeOfRecording(): PointInTime
+    public static function fromPayload(array $payload): Event
     {
-        return $this->timeOfRecording;
-    }
-
-    public static function fromPayload(
-        array $payload,
-        PointInTime $timeOfRecording): Event
-    {
-        return new FirstEvent(
-            $timeOfRecording,
-            (string) $payload['firstField']
-        );
+        return new FirstEvent(,
+            (string) $payload['firstField']);
     }
 
     public function toPayload(): array
     {
         return [
-            'firstField' => (string) $this->firstField,
+                        'firstField' => (string) $this->firstField,
         ];
     }
 
@@ -62,10 +46,9 @@ final class FirstEvent implements Event
         return $this;
     }
 
-    public static function with(PointInTime $timeOfRecording): FirstEvent
+    public static function with(): FirstEvent
     {
         return new FirstEvent(
-            $timeOfRecording,
             (string) 'FIRST'
         );
     }
@@ -79,16 +62,9 @@ final class SecondEvent implements Event
      */
     private $secondField;
 
-    /**
-     * @var PointInTime
-     */
-    private $timeOfRecording;
-
     public function __construct(
-        PointInTime $timeOfRecording,
         string $secondField
     ) {
-        $this->timeOfRecording = $timeOfRecording;
         $this->secondField = $secondField;
     }
 
@@ -97,25 +73,16 @@ final class SecondEvent implements Event
         return $this->secondField;
     }
 
-    public function timeOfRecording(): PointInTime
+    public static function fromPayload(array $payload): Event
     {
-        return $this->timeOfRecording;
-    }
-
-    public static function fromPayload(
-        array $payload,
-        PointInTime $timeOfRecording): Event
-    {
-        return new SecondEvent(
-            $timeOfRecording,
-            (string) $payload['secondField']
-        );
+        return new SecondEvent(,
+            (string) $payload['secondField']);
     }
 
     public function toPayload(): array
     {
         return [
-            'secondField' => (string) $this->secondField,
+                        'secondField' => (string) $this->secondField,
         ];
     }
 
@@ -129,10 +96,9 @@ final class SecondEvent implements Event
         return $this;
     }
 
-    public static function with(PointInTime $timeOfRecording): SecondEvent
+    public static function with(): SecondEvent
     {
         return new SecondEvent(
-            $timeOfRecording,
             (string) 'SECOND'
         );
     }

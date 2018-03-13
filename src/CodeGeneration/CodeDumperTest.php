@@ -2,8 +2,8 @@
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-use function file_get_contents;
 use PHPUnit\Framework\TestCase;
+use function file_get_contents;
 
 class CodeDumperTest extends TestCase
 {
@@ -54,13 +54,13 @@ array_map(function (\$item) {
     return \$item['property'];
 }, {param})
 EOF
-);
+        );
         $groupWithFieldSerialization->fieldDeserializer('items', <<<EOF
 array_map(function (\$property) {
     return ['property' => \$property];
 }, {param})
 EOF
-);
+        );
         $groupWithFieldSerialization->event('WithFieldSerializers')
             ->field('items', 'array');
 
@@ -79,10 +79,10 @@ EOF
             ->fieldSerializer('title', <<<EOF
 strtoupper({param})
 EOF
-)->fieldDeserializer('title', <<<EOF
+            )->fieldDeserializer('title', <<<EOF
 strtolower({param})
 EOF
-);
+            );
 
         return [
             [$simpleDefinitionGroup, 'simpleDefinitionGroup'],

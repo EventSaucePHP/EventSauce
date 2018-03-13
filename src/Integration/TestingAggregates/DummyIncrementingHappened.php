@@ -12,24 +12,13 @@ use EventSauce\EventSourcing\PointInTime;
 class DummyIncrementingHappened implements Event
 {
     /**
-     * @var PointInTime
-     */
-    private $timeOfRecording;
-
-    /**
      * @var int
      */
     private $number;
 
-    public function __construct(PointInTime $timeOfRecording, int $number)
+    public function __construct(int $number)
     {
-        $this->timeOfRecording = $timeOfRecording;
         $this->number = $number;
-    }
-
-    public function timeOfRecording(): PointInTime
-    {
-        return $this->timeOfRecording;
     }
 
     public function toPayload(): array
@@ -37,9 +26,9 @@ class DummyIncrementingHappened implements Event
         return [];
     }
 
-    public static function fromPayload(array $payload, PointInTime $timeOfRecording): Event
+    public static function fromPayload(array $payload): Event
     {
-        return new DummyIncrementingHappened($timeOfRecording, $payload['number']);
+        return new DummyIncrementingHappened($payload['number']);
     }
 
     public function number(): int

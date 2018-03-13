@@ -3,29 +3,17 @@
 namespace EventSauce\EventSourcing;
 
 use function compact;
-use EventSauce\EventSourcing\Time\TestClock;
 
 class EventStub implements Event
 {
-    /**
-     * @var PointInTime
-     */
-    private $pointInTime;
-
     /**
      * @var string
      */
     private $value;
 
-    public function __construct(PointInTime $pointInTime, string $value)
+    public function __construct(string $value)
     {
-        $this->pointInTime = $pointInTime;
         $this->value = $value;
-    }
-
-    public function timeOfRecording(): PointInTime
-    {
-        return $this->pointInTime;
     }
 
     public function toPayload(): array
@@ -33,13 +21,13 @@ class EventStub implements Event
         return ['value' => $this->value];
     }
 
-    public static function fromPayload(array $payload, PointInTime $timeOfRecording): Event
+    public static function fromPayload(array $payload): Event
     {
-        return new static($timeOfRecording, $payload['value']);
+        return new static($payload['value']);
     }
 
     public static function create(string $value = null)
     {
-        return static::fromPayload(compact('value'), (new TestClock())->pointInTime());
+        return static::fromPayload(compact('value'));
     }
 }

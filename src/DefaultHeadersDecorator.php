@@ -2,6 +2,9 @@
 
 namespace EventSauce\EventSourcing;
 
+use EventSauce\EventSourcing\Time\Clock;
+use EventSauce\EventSourcing\Time\SystemClock;
+
 class DefaultHeadersDecorator implements MessageDecorator
 {
     /**
@@ -9,9 +12,15 @@ class DefaultHeadersDecorator implements MessageDecorator
      */
     private $inflector;
 
-    public function __construct(ClassNameInflector $inflector = null)
+    /**
+     * @var Clock
+     */
+    private $clock;
+
+    public function __construct(ClassNameInflector $inflector = null, Clock $clock = null)
     {
         $this->inflector = $inflector ?: new DotSeparatedSnakeCaseInflector();
+        $this->clock = $clock ?: new SystemClock();
     }
 
     public function decorate(Message $message): Message
@@ -20,7 +29,7 @@ class DefaultHeadersDecorator implements MessageDecorator
         $id = $message->header(Header::AGGREGATE_ROOT_ID);
         $headers = [
             Header::EVENT_TYPE        => $this->inflector->instanceToType($event),
-            Header::TIME_OF_RECORDING => $event->timeOfRecording()->toString(),
+            Header::TIME_OF_RECORDING => $this->clock->pointInTime()->toString(),
         ];
 
         if ($id instanceof AggregateRootId) {

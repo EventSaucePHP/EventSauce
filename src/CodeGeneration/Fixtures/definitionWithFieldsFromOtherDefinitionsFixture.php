@@ -12,16 +12,9 @@ final class BaseEvent implements Event
      */
     private $age;
 
-    /**
-     * @var PointInTime
-     */
-    private $timeOfRecording;
-
     public function __construct(
-        PointInTime $timeOfRecording,
         int $age
     ) {
-        $this->timeOfRecording = $timeOfRecording;
         $this->age = $age;
     }
 
@@ -30,25 +23,16 @@ final class BaseEvent implements Event
         return $this->age;
     }
 
-    public function timeOfRecording(): PointInTime
+    public static function fromPayload(array $payload): Event
     {
-        return $this->timeOfRecording;
-    }
-
-    public static function fromPayload(
-        array $payload,
-        PointInTime $timeOfRecording): Event
-    {
-        return new BaseEvent(
-            $timeOfRecording,
-            (int) $payload['age']
-        );
+        return new BaseEvent(,
+            (int) $payload['age']);
     }
 
     public function toPayload(): array
     {
         return [
-            'age' => (int) $this->age,
+                        'age' => (int) $this->age,
         ];
     }
 
@@ -61,16 +45,9 @@ final class ExtendedEvent implements Event
      */
     private $age;
 
-    /**
-     * @var PointInTime
-     */
-    private $timeOfRecording;
-
     public function __construct(
-        PointInTime $timeOfRecording,
         int $age
     ) {
-        $this->timeOfRecording = $timeOfRecording;
         $this->age = $age;
     }
 
@@ -79,25 +56,16 @@ final class ExtendedEvent implements Event
         return $this->age;
     }
 
-    public function timeOfRecording(): PointInTime
+    public static function fromPayload(array $payload): Event
     {
-        return $this->timeOfRecording;
-    }
-
-    public static function fromPayload(
-        array $payload,
-        PointInTime $timeOfRecording): Event
-    {
-        return new ExtendedEvent(
-            $timeOfRecording,
-            (int) $payload['age']
-        );
+        return new ExtendedEvent(,
+            (int) $payload['age']);
     }
 
     public function toPayload(): array
     {
         return [
-            'age' => (int) $this->age,
+                        'age' => (int) $this->age,
         ];
     }
 
@@ -106,27 +74,17 @@ final class ExtendedEvent implements Event
 final class BaseCommand
 {
     /**
-     * @var PointInTime
-     */
-    private $timeOfRequest;
-
-    /**
      * @var string
      */
     private $name;
 
     public function __construct(
-        PointInTime $timeOfRequest,
         string $name
     ) {
-        $this->timeOfRequest = $timeOfRequest;
         $this->name = $name;
     }
 
-    public function timeOfRequest(): PointInTime
-    {
-        return $this->timeOfRequest;
-    }
+
 
     public function name(): string
     {
@@ -138,27 +96,17 @@ final class BaseCommand
 final class ExtendedCommand
 {
     /**
-     * @var PointInTime
-     */
-    private $timeOfRequest;
-
-    /**
      * @var string
      */
     private $name;
 
     public function __construct(
-        PointInTime $timeOfRequest,
         string $name
     ) {
-        $this->timeOfRequest = $timeOfRequest;
         $this->name = $name;
     }
 
-    public function timeOfRequest(): PointInTime
-    {
-        return $this->timeOfRequest;
-    }
+
 
     public function name(): string
     {

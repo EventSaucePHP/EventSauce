@@ -50,7 +50,7 @@ EOF;
         foreach ($events as $event) {
             $name = $event->name();
             $fields = $this->dumpFields($event);
-            $constructor = $this->dumpEventConstructor($event);
+            $constructor = $this->dumpConstructor($event);
             $methods = $this->dumpMethods($event);
             $deserializer = $this->dumpSerializationMethods($event);
             $testHelpers = $withHelpers ? $this->dumpTestHelpers($event) : '';
@@ -58,17 +58,7 @@ EOF;
             $code[] = <<<EOF
 final class $name implements Event
 {
-$fields    /**
-     * @var PointInTime
-     */
-    private \$timeOfRecording;
-
-$constructor$methods    public function timeOfRecording(): PointInTime
-    {
-        return \$this->timeOfRecording;
-    }
-
-$deserializer
+$fields$constructor$methods$deserializer
 
 $testHelpers}
 
@@ -106,11 +96,11 @@ EOF;
         return join('', $code);
     }
 
-    private function dumpEventConstructor(EventDefinition $event): string
+    private function dumpConstructor(DefinitionWithFields $definition): string
     {
-        $arguments = ['        PointInTime $timeOfRecording'];
-        $assignments = ['        $this->timeOfRecording = $timeOfRecording;'];
-        $fields = $this->fieldsFromDefinition($event);
+        $arguments = [];
+        $assignments = [];
+        $fields = $this->fieldsFromDefinition($definition);
 
         foreach ($fields as $field) {
             $arguments[] = sprintf('        %s $%s', $field['type'], $field['name']);
@@ -128,32 +118,6 @@ $arguments
 $assignments
     }
 
-
-EOF;
-
-    }
-
-    private function dumpCommandConstructor(CommandDefinition $command): string
-    {
-        $arguments = ['        PointInTime $timeOfRequest'];
-        $assignments = ['        $this->timeOfRequest = $timeOfRequest;'];
-        $fields = $this->fieldsFromDefinition($command);
-
-        foreach ($fields as $field) {
-            $arguments[] = sprintf('        %s $%s', $field['type'], $field['name']);
-            $assignments[] = sprintf('        $this->%s = $%s;', $field['name'], $field['name']);
-        }
-
-        $arguments = join(",\n", $arguments);
-        $assignments = join("\n", $assignments);
-
-
-        return <<<EOF
-    public function __construct(
-$arguments
-    ) {
-$assignments
-    }
 
 EOF;
 
@@ -205,17 +169,13 @@ EOF;
         $serializers = preg_replace('/^.{2,}$/m', '            $0', join(",\n", $serializers));
 
         if ( ! empty($serializers)) {
-            $serializers = "\n$serializers,\n        ";
+            $serializers = "\n            $serializers,\n        ";
         }
 
         return <<<EOF
-    public static function fromPayload(
-        array \$payload,
-        PointInTime \$timeOfRecording): Event
+    public static function fromPayload(array \$payload): Event
     {
-        return new $name(
-            \$timeOfRecording$arguments
-        );
+        return new $name($arguments);
     }
 
     public function toPayload(): array
@@ -230,14 +190,19 @@ EOF;
     private function dumpTestHelpers(EventDefinition $event): string
     {
         $constructor = [];
-        $constructorArguments = 'PointInTime $timeOfRecording';
-        $constructorValues = ['$timeOfRecording'];
+        $constructorArguments = '';
+        $constructorValues = [];
         $helpers = [];
 
         foreach ($this->fieldsFromDefinition($event) as $field) {
             if ($field['example'] === null) {
                 $constructor[] = ucfirst($field['name']);
-                $constructorArguments .= sprintf(', %s $%s', $field['type'], $field['name']);
+
+                if ($constructorArguments !== '') {
+                    $constructorArguments .= ', ';
+                }
+
+                $constructorArguments .= sprintf('%s $%s', $field['type'], $field['name']);
                 $constructorValues[] = sprintf('$%s', $field['name']);
             } else {
                 $constructorValues[] = $this->dumpConstructorValue($field, $event);
@@ -301,16 +266,7 @@ EOF;
             $code[] = <<<EOF
 final class {$command->name()}
 {
-    /**
-     * @var PointInTime
-     */
-    private \$timeOfRequest;
-
-{$this->dumpFields($command)}{$this->dumpCommandConstructor($command)}
-    public function timeOfRequest(): PointInTime
-    {
-        return \$this->timeOfRequest;
-    }
+{$this->dumpFields($command)}{$this->dumpConstructor($command)}
 
 {$this->dumpMethods($command)}}
 

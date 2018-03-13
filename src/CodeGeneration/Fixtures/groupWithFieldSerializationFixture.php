@@ -12,16 +12,9 @@ final class WithFieldSerializers implements Event
      */
     private $items;
 
-    /**
-     * @var PointInTime
-     */
-    private $timeOfRecording;
-
     public function __construct(
-        PointInTime $timeOfRecording,
         array $items
     ) {
-        $this->timeOfRecording = $timeOfRecording;
         $this->items = $items;
     }
 
@@ -30,36 +23,26 @@ final class WithFieldSerializers implements Event
         return $this->items;
     }
 
-    public function timeOfRecording(): PointInTime
+    public static function fromPayload(array $payload): Event
     {
-        return $this->timeOfRecording;
-    }
-
-    public static function fromPayload(
-        array $payload,
-        PointInTime $timeOfRecording): Event
-    {
-        return new WithFieldSerializers(
-            $timeOfRecording,
+        return new WithFieldSerializers(,
             array_map(function ($property) {
                 return ['property' => $property];
-            }, $payload['items'])
-        );
+            }, $payload['items']));
     }
 
     public function toPayload(): array
     {
         return [
-            'items' => array_map(function ($item) {
+                        'items' => array_map(function ($item) {
                 return $item['property'];
             }, $this->items),
         ];
     }
 
-    public static function withItems(PointInTime $timeOfRecording, array $items): WithFieldSerializers
+    public static function withItems(array $items): WithFieldSerializers
     {
         return new WithFieldSerializers(
-            $timeOfRecording,
             $items
         );
     }

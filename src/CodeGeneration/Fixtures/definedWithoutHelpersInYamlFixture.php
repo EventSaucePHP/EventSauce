@@ -17,17 +17,10 @@ final class UserSubscribedFromMailingList implements Event
      */
     private $mailingList;
 
-    /**
-     * @var PointInTime
-     */
-    private $timeOfRecording;
-
     public function __construct(
-        PointInTime $timeOfRecording,
         string $username,
         string $mailingList
     ) {
-        $this->timeOfRecording = $timeOfRecording;
         $this->username = $username;
         $this->mailingList = $mailingList;
     }
@@ -42,26 +35,17 @@ final class UserSubscribedFromMailingList implements Event
         return $this->mailingList;
     }
 
-    public function timeOfRecording(): PointInTime
+    public static function fromPayload(array $payload): Event
     {
-        return $this->timeOfRecording;
-    }
-
-    public static function fromPayload(
-        array $payload,
-        PointInTime $timeOfRecording): Event
-    {
-        return new UserSubscribedFromMailingList(
-            $timeOfRecording,
+        return new UserSubscribedFromMailingList(,
             (string) $payload['username'],
-            (string) $payload['mailingList']
-        );
+            (string) $payload['mailingList']);
     }
 
     public function toPayload(): array
     {
         return [
-            'username' => (string) $this->username,
+                        'username' => (string) $this->username,
             'mailingList' => (string) $this->mailingList,
         ];
     }
@@ -70,11 +54,6 @@ final class UserSubscribedFromMailingList implements Event
 
 final class SubscribeToMailingList
 {
-    /**
-     * @var PointInTime
-     */
-    private $timeOfRequest;
-
     /**
      * @var string
      */
@@ -86,19 +65,14 @@ final class SubscribeToMailingList
     private $mailingList;
 
     public function __construct(
-        PointInTime $timeOfRequest,
         string $username,
         string $mailingList
     ) {
-        $this->timeOfRequest = $timeOfRequest;
         $this->username = $username;
         $this->mailingList = $mailingList;
     }
 
-    public function timeOfRequest(): PointInTime
-    {
-        return $this->timeOfRequest;
-    }
+
 
     public function username(): string
     {
@@ -115,11 +89,6 @@ final class SubscribeToMailingList
 final class UnsubscribeFromMailingList
 {
     /**
-     * @var PointInTime
-     */
-    private $timeOfRequest;
-
-    /**
      * @var string
      */
     private $username;
@@ -135,21 +104,16 @@ final class UnsubscribeFromMailingList
     private $reason;
 
     public function __construct(
-        PointInTime $timeOfRequest,
         string $username,
         string $mailingList,
         string $reason
     ) {
-        $this->timeOfRequest = $timeOfRequest;
         $this->username = $username;
         $this->mailingList = $mailingList;
         $this->reason = $reason;
     }
 
-    public function timeOfRequest(): PointInTime
-    {
-        return $this->timeOfRequest;
-    }
+
 
     public function username(): string
     {

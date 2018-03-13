@@ -12,16 +12,9 @@ final class EventWithDescription implements Event
      */
     private $description;
 
-    /**
-     * @var PointInTime
-     */
-    private $timeOfRecording;
-
     public function __construct(
-        PointInTime $timeOfRecording,
         string $description
     ) {
-        $this->timeOfRecording = $timeOfRecording;
         $this->description = $description;
     }
 
@@ -30,25 +23,16 @@ final class EventWithDescription implements Event
         return $this->description;
     }
 
-    public function timeOfRecording(): PointInTime
+    public static function fromPayload(array $payload): Event
     {
-        return $this->timeOfRecording;
-    }
-
-    public static function fromPayload(
-        array $payload,
-        PointInTime $timeOfRecording): Event
-    {
-        return new EventWithDescription(
-            $timeOfRecording,
-            (string) $payload['description']
-        );
+        return new EventWithDescription(,
+            (string) $payload['description']);
     }
 
     public function toPayload(): array
     {
         return [
-            'description' => (string) $this->description,
+                        'description' => (string) $this->description,
         ];
     }
 
@@ -62,10 +46,9 @@ final class EventWithDescription implements Event
         return $this;
     }
 
-    public static function with(PointInTime $timeOfRecording): EventWithDescription
+    public static function with(): EventWithDescription
     {
         return new EventWithDescription(
-            $timeOfRecording,
             (string) 'This is a description.'
         );
     }

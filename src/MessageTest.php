@@ -15,7 +15,6 @@ class MessageTest extends TestCase
         $initialHeaders = ['initial' => 'header value'];
         $message = new Message($event, $initialHeaders);
         $this->assertEquals($event->toPayload(), $message->event()->toPayload());
-        $this->assertEquals($event->timeOfRecording(), $message->event()->timeOfRecording());
         $this->assertSame($event, $message->event());
         $this->assertEquals($initialHeaders, $message->headers());
     }

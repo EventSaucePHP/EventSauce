@@ -17,17 +17,10 @@ final class SomethingHappened implements Event
      */
     private $yolo;
 
-    /**
-     * @var PointInTime
-     */
-    private $timeOfRecording;
-
     public function __construct(
-        PointInTime $timeOfRecording,
         string $what,
         bool $yolo
     ) {
-        $this->timeOfRecording = $timeOfRecording;
         $this->what = $what;
         $this->yolo = $yolo;
     }
@@ -42,26 +35,17 @@ final class SomethingHappened implements Event
         return $this->yolo;
     }
 
-    public function timeOfRecording(): PointInTime
+    public static function fromPayload(array $payload): Event
     {
-        return $this->timeOfRecording;
-    }
-
-    public static function fromPayload(
-        array $payload,
-        PointInTime $timeOfRecording): Event
-    {
-        return new SomethingHappened(
-            $timeOfRecording,
+        return new SomethingHappened(,
             (string) $payload['what'],
-            (bool) $payload['yolo']
-        );
+            (bool) $payload['yolo']);
     }
 
     public function toPayload(): array
     {
         return [
-            'what' => (string) $this->what,
+                        'what' => (string) $this->what,
             'yolo' => (bool) $this->yolo,
         ];
     }
@@ -86,10 +70,9 @@ final class SomethingHappened implements Event
         return $this;
     }
 
-    public static function with(PointInTime $timeOfRecording): SomethingHappened
+    public static function with(): SomethingHappened
     {
         return new SomethingHappened(
-            $timeOfRecording,
             (string) 'Example Event',
             (bool) true
         );
