@@ -103,14 +103,9 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     public function messages_have_a_sequence()
     {
         $id = $this->aggregateRootId();
-        $this->given(
-            new DummyIncrementingHappened($this->pointInTime(), 1),
-            new DummyIncrementingHappened($this->pointInTime(), 1),
-            new DummyIncrementingHappened($this->pointInTime(), 1),
-            new DummyIncrementingHappened($this->pointInTime(), 1)
-        )
-            ->when(new EmitSequence($id))
-            ->then(new SequenceWasEmit($this->pointInTime(), 4));
+        $this->given(new DummyIncrementingHappened($this->pointInTime(), 10))
+            ->when(new DummyIncrementCommand($id))
+            ->then(new DummyIncrementingHappened($this->pointInTime(), 11));
 
         /** @var Message $lastMessage */
         $lastMessage = null;
@@ -120,7 +115,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         }
 
         $this->assertInstanceOf(Message::class, $lastMessage);
-        $this->assertEquals(5, $lastMessage->header(Header::AGGREGATE_ROOT_VERSION));
+        $this->assertEquals(2, $lastMessage->header(Header::AGGREGATE_ROOT_VERSION));
     }
 
     protected function handle($command)
