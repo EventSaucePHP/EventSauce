@@ -7,6 +7,7 @@ use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\AggregateRootTestCase;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
+use EventSauce\EventSourcing\PointInTime;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\UuidAggregateRootId;
 use LogicException;
@@ -30,7 +31,15 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     {
         $aggregateRootId = $this->aggregateRootId();
         $this->when(new DummyCommand($aggregateRootId));
-        $this->then(new DummyTaskWasExecuted($this->pointInTime()));
+        $this->then(new DummyTaskWasExecuted());
+    }
+
+    /**
+     * @test
+     */
+    public function there_is_a_clock()
+    {
+        $this->assertInstanceOf(PointInTime::class, $this->pointInTime());
     }
 
     /**
@@ -79,9 +88,9 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     public function setting_preconditions()
     {
         $id = $this->aggregateRootId();
-        $this->given(new DummyIncrementingHappened($this->pointInTime(), 1))
+        $this->given(new DummyIncrementingHappened(1))
             ->when(new DummyIncrementCommand($id))
-            ->then(new DummyIncrementingHappened($this->pointInTime(), 2));
+            ->then(new DummyIncrementingHappened(2));
     }
 
     /**
@@ -90,11 +99,10 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     public function setting_preconditions_from_other_aggregates()
     {
         $id = $this->aggregateRootId();
-        $this->on(UuidAggregateRootId::create())->stage(
-            new DummyIncrementingHappened($this->pointInTime(), 10)
-        )
+        $this->on(UuidAggregateRootId::create())
+            ->stage(new DummyIncrementingHappened(10))
             ->when(new DummyIncrementCommand($id))
-            ->then(new DummyIncrementingHappened($this->pointInTime(), 1));
+            ->then(new DummyIncrementingHappened(1));
     }
 
     /**
@@ -103,9 +111,9 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     public function messages_have_a_sequence()
     {
         $id = $this->aggregateRootId();
-        $this->given(new DummyIncrementingHappened($this->pointInTime(), 10))
+        $this->given(new DummyIncrementingHappened(10))
             ->when(new DummyIncrementCommand($id))
-            ->then(new DummyIncrementingHappened($this->pointInTime(), 11));
+            ->then(new DummyIncrementingHappened(11));
 
         /** @var Message $lastMessage */
         $lastMessage = null;

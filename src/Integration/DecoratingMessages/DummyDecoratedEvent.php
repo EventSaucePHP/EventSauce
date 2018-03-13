@@ -20,7 +20,7 @@ class DummyDecoratedEvent implements Event
 
     }
 
-    public static function fromPayload(array $payload, PointInTime $timeOfRecording): Event
+    public static function fromPayload(array $payload): Event
     {
 
     }

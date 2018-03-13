@@ -3,7 +3,6 @@
 namespace With\EventFieldSerialization;
 
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\PointInTime;
 
 final class EventName implements Event
 {
@@ -12,16 +11,9 @@ final class EventName implements Event
      */
     private $title;
 
-    /**
-     * @var PointInTime
-     */
-    private $timeOfRecording;
-
     public function __construct(
-        PointInTime $timeOfRecording,
         string $title
     ) {
-        $this->timeOfRecording = $timeOfRecording;
         $this->title = $title;
     }
 
@@ -29,20 +21,10 @@ final class EventName implements Event
     {
         return $this->title;
     }
-
-    public function timeOfRecording(): PointInTime
-    {
-        return $this->timeOfRecording;
-    }
-
-    public static function fromPayload(
-        array $payload,
-        PointInTime $timeOfRecording): Event
+    public static function fromPayload(array $payload): Event
     {
         return new EventName(
-            $timeOfRecording,
-            strtolower($payload['title'])
-        );
+            strtolower($payload['title']));
     }
 
     public function toPayload(): array
@@ -62,12 +44,13 @@ final class EventName implements Event
         return $this;
     }
 
-    public static function with(PointInTime $timeOfRecording): EventName
+    /**
+     * @codeCoverageIgnore
+     */
+    public static function with(): EventName
     {
         return new EventName(
-            $timeOfRecording,
             strtolower('Title')
         );
     }
-
 }

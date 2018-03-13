@@ -1,20 +1,32 @@
 <?php
 
-namespace Group\With\Defaults;
+namespace With\ManyRequiredFields;
 
 use EventSauce\EventSourcing\Event;
 
-final class EventWithDescription implements Event
+final class ThisOne implements Event
 {
+    /**
+     * @var string
+     */
+    private $title;
+
     /**
      * @var string
      */
     private $description;
 
     public function __construct(
+        string $title,
         string $description
     ) {
+        $this->title = $title;
         $this->description = $description;
+    }
+
+    public function title(): string
+    {
+        return $this->title;
     }
 
     public function description(): string
@@ -23,13 +35,15 @@ final class EventWithDescription implements Event
     }
     public static function fromPayload(array $payload): Event
     {
-        return new EventWithDescription(
+        return new ThisOne(
+            (string) $payload['title'],
             (string) $payload['description']);
     }
 
     public function toPayload(): array
     {
         return [
+            'title' => (string) $this->title,
             'description' => (string) $this->description,
         ];
     }
@@ -37,20 +51,11 @@ final class EventWithDescription implements Event
     /**
      * @codeCoverageIgnore
      */
-    public function withDescription(string $description): EventWithDescription
+    public static function withTitleAndDescription(string $title, string $description): ThisOne
     {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public static function with(): EventWithDescription
-    {
-        return new EventWithDescription(
-            (string) 'This is a description.'
+        return new ThisOne(
+            $title,
+            $description
         );
     }
 }

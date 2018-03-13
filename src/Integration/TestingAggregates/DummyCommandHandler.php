@@ -34,13 +34,13 @@ class DummyCommandHandler
 
         try {
             if ($command instanceof DummyCommand) {
-                $aggregate->performDummyTask($this->clock);
+                $aggregate->performDummyTask();
             } elseif ($command instanceof IgnoredCommand) {
                 $aggregate->dontDoAnything();
             } elseif ($command instanceof ExceptionInducingCommand) {
                 $aggregate->throwAnException();
             } elseif ($command instanceof DummyIncrementCommand) {
-                $aggregate->increment($this->clock);
+                $aggregate->increment();
             }
         } finally {
             $this->repository->persist($aggregate);

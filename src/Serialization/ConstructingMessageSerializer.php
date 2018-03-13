@@ -45,11 +45,7 @@ final class ConstructingMessageSerializer implements MessageSerializer
 
         /** @var Event $className */
         $className = $this->classNameInflector->typeToClassName($payload['headers'][Header::EVENT_TYPE]);
-
-        $event = $className::fromPayload(
-            $payload['payload'],
-            PointInTime::fromString($payload['headers'][Header::TIME_OF_RECORDING])
-        );
+        $event = $className::fromPayload($payload['payload']);
 
         yield new Message($event, $payload['headers']);
     }

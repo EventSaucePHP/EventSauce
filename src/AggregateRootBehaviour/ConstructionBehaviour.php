@@ -9,7 +9,6 @@ use Generator;
 
 trait ConstructionBehaviour
 {
-
     /**
      * @var AggregateRootId
      */

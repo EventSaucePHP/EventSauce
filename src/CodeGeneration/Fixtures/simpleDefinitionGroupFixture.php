@@ -3,7 +3,6 @@
 namespace Simple\Definition\Group;
 
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\PointInTime;
 
 final class SomethingHappened implements Event
 {
@@ -17,17 +16,10 @@ final class SomethingHappened implements Event
      */
     private $yolo;
 
-    /**
-     * @var PointInTime
-     */
-    private $timeOfRecording;
-
     public function __construct(
-        PointInTime $timeOfRecording,
         string $what,
         bool $yolo
     ) {
-        $this->timeOfRecording = $timeOfRecording;
         $this->what = $what;
         $this->yolo = $yolo;
     }
@@ -41,21 +33,11 @@ final class SomethingHappened implements Event
     {
         return $this->yolo;
     }
-
-    public function timeOfRecording(): PointInTime
-    {
-        return $this->timeOfRecording;
-    }
-
-    public static function fromPayload(
-        array $payload,
-        PointInTime $timeOfRecording): Event
+    public static function fromPayload(array $payload): Event
     {
         return new SomethingHappened(
-            $timeOfRecording,
             (string) $payload['what'],
-            (bool) $payload['yolo']
-        );
+            (bool) $payload['yolo']);
     }
 
     public function toPayload(): array
@@ -86,13 +68,14 @@ final class SomethingHappened implements Event
         return $this;
     }
 
-    public static function with(PointInTime $timeOfRecording): SomethingHappened
+    /**
+     * @codeCoverageIgnore
+     */
+    public static function with(): SomethingHappened
     {
         return new SomethingHappened(
-            $timeOfRecording,
             (string) 'Example Event',
             (bool) true
         );
     }
-
 }
