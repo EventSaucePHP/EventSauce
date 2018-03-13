@@ -34,7 +34,7 @@ final class WithFieldSerializers implements Event
     public function toPayload(): array
     {
         return [
-                        'items' => array_map(function ($item) {
+            'items' => array_map(function ($item) {
                 return $item['property'];
             }, $this->items),
         ];

@@ -169,7 +169,7 @@ EOF;
         $serializers = preg_replace('/^.{2,}$/m', '            $0', join(",\n", $serializers));
 
         if ( ! empty($serializers)) {
-            $serializers = "\n            $serializers,\n        ";
+            $serializers = "\n$serializers,\n        ";
         }
 
         return <<<EOF

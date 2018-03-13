@@ -5,6 +5,7 @@ namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\AggregateRootTestCase;
+use EventSauce\EventSourcing\PointInTime;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\UuidAggregateRootId;
 use LogicException;
@@ -29,6 +30,14 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         $aggregateRootId = $this->aggregateRootId();
         $this->when(new DummyCommand($aggregateRootId));
         $this->then(new DummyTaskWasExecuted());
+    }
+
+    /**
+     * @test
+     */
+    public function there_is_a_clock()
+    {
+        $this->assertInstanceOf(PointInTime::class, $this->pointInTime());
     }
 
     /**

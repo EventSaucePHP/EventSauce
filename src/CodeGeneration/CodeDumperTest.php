@@ -65,9 +65,6 @@ EOF
             ->field('items', 'array');
 
         /* test case 5 */
-        $groupWithVersionEvent = DefinitionGroup::create('With\Versioned\Event');
-        $groupWithVersionEvent->event('VersionTwo');
-
         $definitionGroupWithCommand = DefinitionGroup::create('With\Commands');
         $definitionGroupWithCommand->command('DoSomething')
             ->field('reason', 'string', 'Because reasons.');
@@ -84,14 +81,19 @@ strtolower({param})
 EOF
             );
 
+        $groupWithEventWithTwoRequiredFields = DefinitionGroup::create('With\\ManyRequiredFields');
+        $groupWithEventWithTwoRequiredFields->event('ThisOne')
+            ->field('title', 'string')
+            ->field('description', 'string');
+
         return [
             [$simpleDefinitionGroup, 'simpleDefinitionGroup'],
             [$multipleEventsDefinitionGroup, 'multipleEventsDefinitionGroup'],
             [$definitionGroupWithDefaults, 'definitionGroupWithDefaults'],
             [$groupWithFieldSerialization, 'groupWithFieldSerialization'],
-            [$groupWithVersionEvent, 'groupWithVersionEvent'],
             [$definitionGroupWithCommand, 'definitionGroupWithCommand'],
             [$groupWithFieldSerializationFromEvent, 'groupWithFieldSerializationFromEvent'],
+            [$groupWithEventWithTwoRequiredFields, 'groupWithEventWithTwoRequiredFields'],
         ];
     }
 }

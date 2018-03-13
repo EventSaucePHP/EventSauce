@@ -45,7 +45,7 @@ final class UserSubscribedFromMailingList implements Event
     public function toPayload(): array
     {
         return [
-                        'username' => (string) $this->username,
+            'username' => (string) $this->username,
             'mailingList' => (string) $this->mailingList,
         ];
     }

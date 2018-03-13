@@ -32,7 +32,7 @@ final class BaseEvent implements Event
     public function toPayload(): array
     {
         return [
-                        'age' => (int) $this->age,
+            'age' => (int) $this->age,
         ];
     }
 
@@ -65,7 +65,7 @@ final class ExtendedEvent implements Event
     public function toPayload(): array
     {
         return [
-                        'age' => (int) $this->age,
+            'age' => (int) $this->age,
         ];
     }
 

@@ -45,7 +45,7 @@ final class SomethingHappened implements Event
     public function toPayload(): array
     {
         return [
-                        'what' => (string) $this->what,
+            'what' => (string) $this->what,
             'yolo' => (bool) $this->yolo,
         ];
     }

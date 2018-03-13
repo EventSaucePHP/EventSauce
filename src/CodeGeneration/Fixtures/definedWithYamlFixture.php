@@ -45,7 +45,7 @@ final class WeWentYamling implements Event
     public function toPayload(): array
     {
         return [
-                        'reference' => $this->reference->toString(),
+            'reference' => $this->reference->toString(),
             'slogan' => (string) $this->slogan,
         ];
     }

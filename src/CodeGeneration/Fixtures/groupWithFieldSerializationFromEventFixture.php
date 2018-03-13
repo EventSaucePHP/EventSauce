@@ -32,7 +32,7 @@ final class EventName implements Event
     public function toPayload(): array
     {
         return [
-                        'title' => strtoupper($this->title),
+            'title' => strtoupper($this->title),
         ];
     }
 

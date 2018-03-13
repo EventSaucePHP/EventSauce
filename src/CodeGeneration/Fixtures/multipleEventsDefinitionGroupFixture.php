@@ -32,7 +32,7 @@ final class FirstEvent implements Event
     public function toPayload(): array
     {
         return [
-                        'firstField' => (string) $this->firstField,
+            'firstField' => (string) $this->firstField,
         ];
     }
 
@@ -82,7 +82,7 @@ final class SecondEvent implements Event
     public function toPayload(): array
     {
         return [
-                        'secondField' => (string) $this->secondField,
+            'secondField' => (string) $this->secondField,
         ];
     }
 
