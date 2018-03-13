@@ -9,17 +9,14 @@ class DummyAggregate extends BaseAggregateRoot
 {
     private $incrementedNumber = 0;
 
-    public function performDummyTask(Clock $clock)
+    public function performDummyTask()
     {
-        $this->recordThat(new DummyTaskWasExecuted(
-            $clock->pointInTime()
-        ));
+        $this->recordThat(new DummyTaskWasExecuted());
     }
 
-    public function increment(Clock $clock)
+    public function increment()
     {
         $this->recordThat(new DummyIncrementingHappened(
-            $clock->pointInTime(),
             $this->incrementedNumber + 1
         ));
     }

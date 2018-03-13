@@ -22,7 +22,7 @@ class UpcastingEventsTest extends TestCase
     {
         $clock = new TestClock();
         $pointInTime = $clock->pointInTime();
-        $defaultDecorator = new DefaultHeadersDecorator();
+        $defaultDecorator = new DefaultHeadersDecorator(null, $clock);
         $eventType = (new DotSeparatedSnakeCaseInflector())->classNameToType(UpcastedEventStub::class);
         $payload = [
             'headers' => [
@@ -36,10 +36,7 @@ class UpcastingEventsTest extends TestCase
         $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(), $upcaster);
 
         $message = iterator_to_array($serializer->unserializePayload($payload))[0];
-        $expected = $defaultDecorator->decorate(new Message(new UpcastedEventStub(
-            $pointInTime,
-            'upcasted'
-        )))->withHeader('version', 1);
+        $expected = $defaultDecorator->decorate(new Message(new UpcastedEventStub('upcasted')))->withHeader('version', 1);
 
         $this->assertEquals($expected, $message);
 
@@ -51,7 +48,7 @@ class UpcastingEventsTest extends TestCase
     {
         $clock = new TestClock();
         $pointInTime = $clock->pointInTime();
-        $defaultDecorator = new DefaultHeadersDecorator();
+        $defaultDecorator = new DefaultHeadersDecorator(null, $clock);
         $eventType = (new DotSeparatedSnakeCaseInflector())->classNameToType(UpcastedEventStub::class);
         $payload = [
             'headers' => [
@@ -65,10 +62,7 @@ class UpcastingEventsTest extends TestCase
         $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(), $upcaster);
 
         $message = iterator_to_array($serializer->unserializePayload($payload))[0];
-        $expected = $defaultDecorator->decorate(new Message(new UpcastedEventStub(
-            $pointInTime,
-            'undefined'
-        )));
+        $expected = $defaultDecorator->decorate(new Message(new UpcastedEventStub('undefined')));
 
         $this->assertEquals($expected, $message);
 
@@ -79,15 +73,10 @@ class UpcastingEventsTest extends TestCase
      */
     public function serializing_still_works()
     {
-        $clock = new TestClock();
-        $pointInTime = $clock->pointInTime();
         $upcaster = new DelegatingUpcaster(new UpcasterStub());
         $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(), $upcaster);
 
-        $message = new Message(new UpcastedEventStub(
-            $pointInTime,
-            'a value'
-        ));
+        $message = new Message(new UpcastedEventStub('a value'));
 
         $serializeMessage = $serializer->serializeMessage($message);
         $expectedPayload = [

@@ -11,34 +11,13 @@ use EventSauce\EventSourcing\PointInTime;
  */
 class DummyTaskWasExecuted implements Event
 {
-
-    /**
-     * @var PointInTime
-     */
-    private $timeOfRecording;
-
-    public function __construct(PointInTime $timeOfRecording)
-    {
-        $this->timeOfRecording = $timeOfRecording;
-    }
-
-    public function eventVersion(): int
-    {
-        return 1;
-    }
-
-    public function timeOfRecording(): PointInTime
-    {
-        return $this->timeOfRecording;
-    }
-
     public function toPayload(): array
     {
         return [];
     }
 
-    public static function fromPayload(array $payload, PointInTime $timeOfRecording): Event
+    public static function fromPayload(array $payload): Event
     {
-        return new DummyTaskWasExecuted($timeOfRecording);
+        return new DummyTaskWasExecuted();
     }
 }
