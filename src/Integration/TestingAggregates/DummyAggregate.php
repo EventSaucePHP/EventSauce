@@ -24,6 +24,13 @@ class DummyAggregate extends BaseAggregateRoot
         ));
     }
 
+    public function emitSequence(Clock $clock)
+    {
+        $this->recordThat(new SequenceWasEmit($clock->pointInTime(), $this->aggregateRootVersion()));
+    }
+
+    protected function applySequenceWasEmit(SequenceWasEmit $event) {}
+
     protected function applyDummyIncrementingHappened(DummyIncrementingHappened $event)
     {
         $this->incrementedNumber = $event->number();

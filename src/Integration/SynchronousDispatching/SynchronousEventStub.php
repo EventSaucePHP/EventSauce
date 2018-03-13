@@ -2,7 +2,6 @@
 
 namespace EventSauce\EventSourcing\Integration\SynchronousDispatching;
 
-use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\PointInTime;
 

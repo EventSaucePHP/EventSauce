@@ -19,7 +19,7 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @var InMemoryMessageRepository
      */
-    private $messageRepository;
+    protected $messageRepository;
 
     /**
      * @var AggregateRootRepository
@@ -105,7 +105,7 @@ abstract class AggregateRootTestCase extends TestCase
      */
     protected function given(Event ... $events)
     {
-        $this->repository->persistEvents($this->aggregateRootId(), ... $events);
+        $this->repository->persistEvents($this->aggregateRootId(), 0, ... $events);
         $this->messageRepository->purgeLastCommit();
 
         return $this;

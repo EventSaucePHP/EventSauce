@@ -41,6 +41,8 @@ class DummyCommandHandler
                 $aggregate->throwAnException();
             } elseif ($command instanceof DummyIncrementCommand) {
                 $aggregate->increment($this->clock);
+            } elseif ($command instanceof EmitSequence) {
+                $aggregate->emitSequence($this->clock);
             }
         } finally {
             $this->repository->persist($aggregate);

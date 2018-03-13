@@ -5,6 +5,8 @@ namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\AggregateRootTestCase;
+use EventSauce\EventSourcing\Header;
+use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\UuidAggregateRootId;
 use LogicException;
@@ -93,6 +95,32 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         )
             ->when(new DummyIncrementCommand($id))
             ->then(new DummyIncrementingHappened($this->pointInTime(), 1));
+    }
+
+    /**
+     * @test
+     */
+    public function messages_have_a_sequence()
+    {
+        $id = $this->aggregateRootId();
+        $this->given(
+            new DummyIncrementingHappened($this->pointInTime(), 1),
+            new DummyIncrementingHappened($this->pointInTime(), 1),
+            new DummyIncrementingHappened($this->pointInTime(), 1),
+            new DummyIncrementingHappened($this->pointInTime(), 1)
+        )
+            ->when(new EmitSequence($id))
+            ->then(new SequenceWasEmit($this->pointInTime(), 4));
+
+        /** @var Message $lastMessage */
+        $lastMessage = null;
+
+        foreach ($this->messageRepository->retrieveAll($id) as $message) {
+            $lastMessage = $message;
+        }
+
+        $this->assertInstanceOf(Message::class, $lastMessage);
+        $this->assertEquals(5, $lastMessage->header(Header::AGGREGATE_ROOT_VERSION));
     }
 
     protected function handle($command)

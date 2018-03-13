@@ -12,6 +12,11 @@ interface AggregateRoot
     public function aggregateRootId(): AggregateRootId;
 
     /**
+     * @return int
+     */
+    public function aggregateRootVersion(): int;
+
+    /**
      * @return Event[]
      */
     public function releaseEvents(): array;
