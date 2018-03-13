@@ -37,7 +37,7 @@ final class WeWentYamling implements Event
 
     public static function fromPayload(array $payload): Event
     {
-        return new WeWentYamling(,
+        return new WeWentYamling(
             \Ramsey\Uuid\Uuid::fromString($payload['reference']),
             (string) $payload['slogan']);
     }

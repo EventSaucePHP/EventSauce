@@ -37,7 +37,7 @@ final class UserSubscribedFromMailingList implements Event
 
     public static function fromPayload(array $payload): Event
     {
-        return new UserSubscribedFromMailingList(,
+        return new UserSubscribedFromMailingList(
             (string) $payload['username'],
             (string) $payload['mailingList']);
     }

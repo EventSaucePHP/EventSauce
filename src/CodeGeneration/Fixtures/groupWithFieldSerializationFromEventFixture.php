@@ -25,7 +25,7 @@ final class EventName implements Event
 
     public static function fromPayload(array $payload): Event
     {
-        return new EventName(,
+        return new EventName(
             strtolower($payload['title']));
     }
 

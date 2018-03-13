@@ -25,7 +25,7 @@ final class WithFieldSerializers implements Event
 
     public static function fromPayload(array $payload): Event
     {
-        return new WithFieldSerializers(,
+        return new WithFieldSerializers(
             array_map(function ($property) {
                 return ['property' => $property];
             }, $payload['items']));

@@ -25,7 +25,7 @@ final class EventWithDescription implements Event
 
     public static function fromPayload(array $payload): Event
     {
-        return new EventWithDescription(,
+        return new EventWithDescription(
             (string) $payload['description']);
     }
 

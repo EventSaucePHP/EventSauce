@@ -163,7 +163,7 @@ EOF;
         $arguments = preg_replace('/^.{2,}$/m', '            $0', join(",\n", $arguments));
 
         if ( ! empty($arguments)) {
-            $arguments = ",\n$arguments";
+            $arguments = "\n$arguments";
         }
 
         $serializers = preg_replace('/^.{2,}$/m', '            $0', join(",\n", $serializers));

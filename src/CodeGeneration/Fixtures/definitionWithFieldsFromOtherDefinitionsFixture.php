@@ -25,7 +25,7 @@ final class BaseEvent implements Event
 
     public static function fromPayload(array $payload): Event
     {
-        return new BaseEvent(,
+        return new BaseEvent(
             (int) $payload['age']);
     }
 
@@ -58,7 +58,7 @@ final class ExtendedEvent implements Event
 
     public static function fromPayload(array $payload): Event
     {
-        return new ExtendedEvent(,
+        return new ExtendedEvent(
             (int) $payload['age']);
     }
 

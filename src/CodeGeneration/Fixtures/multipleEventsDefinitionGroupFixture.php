@@ -25,7 +25,7 @@ final class FirstEvent implements Event
 
     public static function fromPayload(array $payload): Event
     {
-        return new FirstEvent(,
+        return new FirstEvent(
             (string) $payload['firstField']);
     }
 
@@ -75,7 +75,7 @@ final class SecondEvent implements Event
 
     public static function fromPayload(array $payload): Event
     {
-        return new SecondEvent(,
+        return new SecondEvent(
             (string) $payload['secondField']);
     }
 

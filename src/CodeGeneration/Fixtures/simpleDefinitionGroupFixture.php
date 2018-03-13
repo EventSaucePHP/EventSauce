@@ -37,7 +37,7 @@ final class SomethingHappened implements Event
 
     public static function fromPayload(array $payload): Event
     {
-        return new SomethingHappened(,
+        return new SomethingHappened(
             (string) $payload['what'],
             (bool) $payload['yolo']);
     }
