@@ -115,25 +115,25 @@ commands:
                 type: string
                 example: no-longer-interested
 events:
-    UserSubscribedFromMailingList:
-            fields:
-                username:
-                    type: string
-                    example: example-user
-                mailingList:
-                    type: string
-                    example: list-name
-        UserUnsubscribedFromMailingList:
-            fields:
-                username:
-                    type: string
-                    example: example-user
-                mailingList:
-                    type: string
-                    example: list-name
-                reason:
-                    type: string
-                    example: no-longer-interested
+    UserSubscribedToMailingList:
+        fields:
+            username:
+                type: string
+                example: example-user
+            mailingList:
+                type: string
+                example: list-name
+    UserUnsubscribedFromMailingList:
+        fields:
+            username:
+                type: string
+                example: example-user
+            mailingList:
+                type: string
+                example: list-name
+            reason:
+                type: string
+                example: no-longer-interested
 ```
 
 Which compiles to the following PHP file:
@@ -145,7 +145,7 @@ Which compiles to the following PHP file:
  
  use EventSauce\EventSourcing\Event;
  
- final class UserSubscribedFromMailingList implements Event
+ final class UserSubscribedToMailingList implements Event
  {
      /**
       * @var string
