@@ -12,6 +12,9 @@ title: Changelog
   a `Header::TIME_OF_RECORDING` headers.
 * The `AggregateRoot` now keeps track of a version, the `ConstructionBehaviour`
   trait has been updated to reflect this and shows how it's implemented.
+* The `AggregateRootTestCase` now requires you to implement the `newAggregateRootId`
+  method to be able to return a stable aggregate root id from the
+  `aggregateRootId` method.
   
 ## 0.1.2
 
