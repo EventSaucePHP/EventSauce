@@ -86,6 +86,9 @@ EOF
             ->field('title', 'string')
             ->field('description', 'string');
 
+        $groupWithEventWithNoFields = DefinitionGroup::create('Without\Fields');
+        $groupWithEventWithNoFields->event('WithoutFields');
+
         return [
             [$simpleDefinitionGroup, 'simpleDefinitionGroup'],
             [$multipleEventsDefinitionGroup, 'multipleEventsDefinitionGroup'],
@@ -94,6 +97,7 @@ EOF
             [$definitionGroupWithCommand, 'definitionGroupWithCommand'],
             [$groupWithFieldSerializationFromEvent, 'groupWithFieldSerializationFromEvent'],
             [$groupWithEventWithTwoRequiredFields, 'groupWithEventWithTwoRequiredFields'],
+            [$groupWithEventWithNoFields, 'groupWithEventWithNoFields'],
         ];
     }
 }

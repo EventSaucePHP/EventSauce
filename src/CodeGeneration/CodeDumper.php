@@ -101,6 +101,10 @@ EOF;
         $assignments = [];
         $fields = $this->fieldsFromDefinition($definition);
 
+        if (empty($fields)) {
+            return '';
+        }
+
         foreach ($fields as $field) {
             $arguments[] = sprintf('        %s $%s', $field['type'], $field['name']);
             $assignments[] = sprintf('        $this->%s = $%s;', $field['name'], $field['name']);
@@ -224,15 +228,18 @@ EOF;
 
         $constructor = sprintf('with%s', join('And', $constructor));
         $constructorValues = join(",\n            ", $constructorValues);
+
+        if ($constructorValues !== "") {
+            $constructorValues = "\n            $constructorValues\n        ";
+        }
+
         $helpers[] = <<<EOF
     /**
      * @codeCoverageIgnore
      */
     public static function $constructor($constructorArguments): {$event->name()}
     {
-        return new {$event->name()}(
-            $constructorValues
-        );
+        return new {$event->name()}($constructorValues);
     }
 
 
