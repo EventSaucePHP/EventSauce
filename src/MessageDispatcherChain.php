@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing;
 
 class MessageDispatcherChain implements MessageDispatcher
@@ -9,15 +11,15 @@ class MessageDispatcherChain implements MessageDispatcher
      */
     private $dispatchers;
 
-    public function __construct(MessageDispatcher ... $dispatchers)
+    public function __construct(MessageDispatcher ...$dispatchers)
     {
         $this->dispatchers = $dispatchers;
     }
 
-    public function dispatch(Message ... $messages)
+    public function dispatch(Message ...$messages)
     {
         foreach ($this->dispatchers as $dispatcher) {
-            $dispatcher->dispatch(... $messages);
+            $dispatcher->dispatch(...$messages);
         }
     }
 }

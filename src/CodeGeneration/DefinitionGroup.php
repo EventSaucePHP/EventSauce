@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use EventSauce\EventSourcing\PointInTime;
@@ -25,24 +27,24 @@ final class DefinitionGroup
      * @var array
      */
     private $typeSerializer = [
-        'string' => '({type}) {param}',
-        'array' => '({type}) {param}',
+        'string'  => '({type}) {param}',
+        'array'   => '({type}) {param}',
         'integer' => '({type}) {param}',
-        'int' => '({type}) {param}',
-        'bool' => '({type}) {param}',
-        'float' => '({type}) {param}',
+        'int'     => '({type}) {param}',
+        'bool'    => '({type}) {param}',
+        'float'   => '({type}) {param}',
     ];
 
     /**
      * @var array
      */
     private $typeDeserializer = [
-        'string' => '({type}) {param}',
-        'array' => '({type}) {param}',
+        'string'  => '({type}) {param}',
+        'array'   => '({type}) {param}',
         'integer' => '({type}) {param}',
-        'int' => '({type}) {param}',
-        'bool' => '({type}) {param}',
-        'float' => '({type}) {param}',
+        'int'     => '({type}) {param}',
+        'bool'    => '({type}) {param}',
+        'float'   => '({type}) {param}',
     ];
 
     /**
@@ -94,7 +96,7 @@ final class DefinitionGroup
     {
         $type = $this->resolveTypeAlias($type);
 
-        return $this->typeSerializer[$type] ?? "new {type}({param})";
+        return $this->typeSerializer[$type] ?? 'new {type}({param})';
     }
 
     public function typeDeserializer(string $type, string $template)
@@ -106,7 +108,7 @@ final class DefinitionGroup
     {
         $type = $this->resolveTypeAlias($type);
 
-        return $this->typeDeserializer[$type] ?? "new {type}({param})";
+        return $this->typeDeserializer[$type] ?? 'new {type}({param})';
     }
 
     public function fieldSerializer(string $field, string $template)

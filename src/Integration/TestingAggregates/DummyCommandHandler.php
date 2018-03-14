@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootRepository;
@@ -25,6 +27,7 @@ class DummyCommandHandler
 
     /**
      * @param DummyCommand $command
+     *
      * @throws DummyException
      */
     public function handle($command)

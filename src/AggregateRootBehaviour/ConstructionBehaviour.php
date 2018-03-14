@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\AggregateRootBehaviour;
 
 use EventSauce\EventSourcing\AggregateRoot;
@@ -33,7 +35,7 @@ trait ConstructionBehaviour
 
     /**
      * @param AggregateRootId $aggregateRootId
-     * @param Generator           $events
+     * @param Generator       $events
      *
      * @return static
      */
@@ -44,7 +46,7 @@ trait ConstructionBehaviour
         /** @var Event $event */
         foreach ($events as $event) {
             $aggregateRoot->apply($event);
-            $aggregateRoot->aggregateRootVersion++;
+            ++$aggregateRoot->aggregateRootVersion;
         }
 
         return $aggregateRoot;

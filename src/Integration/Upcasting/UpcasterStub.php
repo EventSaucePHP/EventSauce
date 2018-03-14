@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Integration\Upcasting;
 
 use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
-use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Upcasting\DelegatableUpcaster;
 use Generator;
 

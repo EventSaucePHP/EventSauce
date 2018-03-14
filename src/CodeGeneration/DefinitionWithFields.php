@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 abstract class DefinitionWithFields
@@ -42,6 +44,7 @@ abstract class DefinitionWithFields
 
     /**
      * @param string $otherType
+     *
      * @return $this
      */
     public function withFieldsFrom(string $otherType)

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\AggregateRootBehaviour;
 
 use EventSauce\EventSourcing\Event;

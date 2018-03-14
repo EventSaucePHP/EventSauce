@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing;
 
 use Generator;
@@ -64,7 +66,7 @@ final class AggregateRootRepository
         );
     }
 
-    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, Event ... $events)
+    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, Event ...$events)
     {
         $metadata = [Header::AGGREGATE_ROOT_ID => $aggregateRootId];
         $messages = array_map(function (Event $event) use ($metadata, &$aggregateRootVersion) {
@@ -74,7 +76,7 @@ final class AggregateRootRepository
             ));
         }, $events);
 
-        $this->repository->persist(... $messages);
-        $this->dispatcher->dispatch(... $messages);
+        $this->repository->persist(...$messages);
+        $this->dispatcher->dispatch(...$messages);
     }
 }

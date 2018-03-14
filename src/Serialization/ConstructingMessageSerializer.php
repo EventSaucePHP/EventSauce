@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Serialization;
 
 use EventSauce\EventSourcing\AggregateRootId;
@@ -8,7 +10,6 @@ use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
 use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
-use EventSauce\EventSourcing\PointInTime;
 use Generator;
 
 final class ConstructingMessageSerializer implements MessageSerializer
@@ -30,8 +31,8 @@ final class ConstructingMessageSerializer implements MessageSerializer
         $headers = $message->headers();
 
         return [
-            'headers'         => $headers,
-            'payload'         => $payload,
+            'headers' => $headers,
+            'payload' => $payload,
         ];
     }
 

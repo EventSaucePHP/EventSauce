@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use PHPUnit\Framework\TestCase;
@@ -17,7 +19,7 @@ class CodeDumperTest extends TestCase
         foreach ($groups as $group) {
             /** @var DefinitionGroup $definitionGroup */
             /** @var string $fixtureFile */
-            list ($definitionGroup, $fixtureFile) = $group;
+            list($definitionGroup, $fixtureFile) = $group;
             $dumper = new CodeDumper();
             $actual = $dumper->dump($definitionGroup);
             // file_put_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'Fixture.php', $actual);

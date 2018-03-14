@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Integration\Upcasting;
 
 use EventSauce\EventSourcing\DefaultHeadersDecorator;
@@ -39,8 +41,8 @@ class UpcastingEventsTest extends TestCase
         $expected = $defaultDecorator->decorate(new Message(new UpcastedEventStub('upcasted')))->withHeader('version', 1);
 
         $this->assertEquals($expected, $message);
-
     }
+
     /**
      * @test
      */
@@ -65,7 +67,6 @@ class UpcastingEventsTest extends TestCase
         $expected = $defaultDecorator->decorate(new Message(new UpcastedEventStub('undefined')));
 
         $this->assertEquals($expected, $message);
-
     }
 
     /**
@@ -80,9 +81,9 @@ class UpcastingEventsTest extends TestCase
 
         $serializeMessage = $serializer->serializeMessage($message);
         $expectedPayload = [
-            'headers'        => [],
-            'payload'         => [
-                'property'            => 'a value',
+            'headers' => [],
+            'payload' => [
+                'property' => 'a value',
             ],
         ];
 

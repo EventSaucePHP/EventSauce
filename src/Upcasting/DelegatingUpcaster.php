@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Upcasting;
 
 use EventSauce\EventSourcing\Header;
@@ -12,7 +14,7 @@ final class DelegatingUpcaster implements Upcaster
      */
     private $upcasters;
 
-    public function __construct(DelegatableUpcaster ... $upcasters)
+    public function __construct(DelegatableUpcaster ...$upcasters)
     {
         foreach ($upcasters as $upcaster) {
             $this->upcasters[$upcaster->type()][] = $upcaster;

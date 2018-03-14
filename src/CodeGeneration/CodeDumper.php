@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use EventSauce\EventSourcing\Event;
@@ -76,7 +78,6 @@ EOF;
 
 EOF;
 
-
         foreach ($fields as $field) {
             $name = $field['name'];
             $type = $field['type'];
@@ -89,7 +90,6 @@ EOF;
 
 
 EOF;
-
         }
 
         return join('', $code);
@@ -113,7 +113,6 @@ EOF;
         $arguments = join(",\n", $arguments);
         $assignments = join("\n", $assignments);
 
-
         return <<<EOF
     public function __construct(
 $arguments
@@ -123,7 +122,6 @@ $assignments
 
 
 EOF;
-
     }
 
     private function dumpMethods(DefinitionWithFields $command): string
@@ -186,8 +184,6 @@ EOF;
         return [$serializers];
     }
 EOF;
-
-
     }
 
     private function dumpTestHelpers(EventDefinition $event): string
@@ -198,10 +194,10 @@ EOF;
         $helpers = [];
 
         foreach ($this->fieldsFromDefinition($event) as $field) {
-            if ($field['example'] === null) {
+            if (null === $field['example']) {
                 $constructor[] = ucfirst($field['name']);
 
-                if ($constructorArguments !== '') {
+                if ('' !== $constructorArguments) {
                     $constructorArguments .= ', ';
                 }
 
@@ -229,7 +225,7 @@ EOF;
         $constructor = sprintf('with%s', join('And', $constructor));
         $constructorValues = join(",\n            ", $constructorValues);
 
-        if ($constructorValues !== "") {
+        if ('' !== $constructorValues) {
             $constructorValues = "\n            $constructorValues\n        ";
         }
 
@@ -245,8 +241,7 @@ EOF;
 
 EOF;
 
-
-        return rtrim(join('', $helpers))."\n";
+        return rtrim(join('', $helpers)) . "\n";
     }
 
     private function dumpConstructorValue(array $field, EventDefinition $event): string
@@ -265,6 +260,7 @@ EOF;
 
     /**
      * @param CommandDefinition[] $commands
+     *
      * @return string
      */
     private function dumpCommands(array $commands): string
@@ -286,6 +282,7 @@ EOF;
 
     /**
      * @param DefinitionWithFields $definition
+     *
      * @return array
      */
     private function fieldsFromDefinition(DefinitionWithFields $definition): array

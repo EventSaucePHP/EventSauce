@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use Symfony\Component\Yaml\Yaml;
@@ -88,7 +90,7 @@ class YamlDefinitionLoader implements DefinitionLoader
                     $fieldDefinition = ['type' => $fieldDefinition];
                 }
 
-                $event->field($fieldName, $fieldDefinition['type'] ?? null, $fieldDefinition['example'] ?? null);
+                $event->field($fieldName, $fieldDefinition['type'] ?? null, (string) ($fieldDefinition['example'] ?? null));
 
                 if (isset($fieldDefinition['serializer'])) {
                     $event->fieldSerializer($fieldName, $fieldDefinition['serializer']);

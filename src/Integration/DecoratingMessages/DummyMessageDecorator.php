@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Integration\DecoratingMessages;
 
 use EventSauce\EventSourcing\Message;

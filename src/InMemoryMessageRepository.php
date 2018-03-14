@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing;
 
 use Generator;
@@ -29,11 +31,11 @@ class InMemoryMessageRepository implements MessageRepository
         $this->lastCommit = [];
     }
 
-    public function persist(Message ... $messages)
+    public function persist(Message ...$messages)
     {
         $this->lastCommit = [];
 
-        /** @var Message $event */
+        /* @var Message $event */
         foreach ($messages as $message) {
             $this->messages[] = $message;
             $this->lastCommit[] = $message->event();

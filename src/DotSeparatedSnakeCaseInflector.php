@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing;
 
 use function get_class;
@@ -18,6 +20,7 @@ class DotSeparatedSnakeCaseInflector implements ClassNameInflector
 
     /**
      * @param object $instance
+     *
      * @return string
      */
     public function instanceToType($instance): string

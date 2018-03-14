@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Integration\DecoratingMessages;
 
 use EventSauce\EventSourcing\MessageDecoratorChain;
 use EventSauce\EventSourcing\Message;
-use EventSauce\EventSourcing\UuidAggregateRootId;
 use PHPUnit\Framework\TestCase;
 
 class MessageDecoratingTest extends TestCase

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing;
 
 class EventStager
@@ -35,9 +37,9 @@ class EventStager
     /**
      * @return AggregateRootTestCase
      */
-    public function stage(Event ... $events): AggregateRootTestCase
+    public function stage(Event ...$events): AggregateRootTestCase
     {
-        $this->repository->persistEvents($this->id, 0, ... $events);
+        $this->repository->persistEvents($this->id, 0, ...$events);
         $this->messageRepository->purgeLastCommit();
 
         return $this->testCase;

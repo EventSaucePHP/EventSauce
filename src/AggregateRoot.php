@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing;
 
 use Generator;
@@ -23,7 +25,7 @@ interface AggregateRoot
 
     /**
      * @param AggregateRootId $aggregateRootId
-     * @param Generator           $events
+     * @param Generator       $events
      *
      * @return static
      */

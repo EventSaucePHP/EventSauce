@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
@@ -12,6 +13,7 @@ interface AggregateRootId
 
     /**
      * @param string $aggregateRootId
+     *
      * @return static
      */
     public static function fromString(string $aggregateRootId): AggregateRootId;

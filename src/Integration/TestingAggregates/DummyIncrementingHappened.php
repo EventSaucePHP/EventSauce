@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
-use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Event;
-use EventSauce\EventSourcing\PointInTime;
 
 /**
  * @codeCoverageIgnore

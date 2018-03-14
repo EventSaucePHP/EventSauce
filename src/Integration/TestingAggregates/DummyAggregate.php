@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
 use EventSauce\EventSourcing\BaseAggregateRoot;
-use EventSauce\EventSourcing\Time\Clock;
 
 class DummyAggregate extends BaseAggregateRoot
 {
@@ -28,7 +29,6 @@ class DummyAggregate extends BaseAggregateRoot
 
     protected function applyDummyTaskWasExecuted(DummyTaskWasExecuted $event)
     {
-
     }
 
     public function dontDoAnything()

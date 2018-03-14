@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing;
 
 class MessageDecoratorChain implements MessageDecorator
@@ -9,7 +11,7 @@ class MessageDecoratorChain implements MessageDecorator
      */
     private $processors;
 
-    public function __construct(MessageDecorator ... $processors)
+    public function __construct(MessageDecorator ...$processors)
     {
         $this->processors = $processors;
     }
