@@ -14,7 +14,7 @@ use function method_exists;
 use function sprintf;
 
 /**
- * @method handle()
+ * @method handle(...$arguments)
  */
 abstract class AggregateRootTestCase extends TestCase
 {
