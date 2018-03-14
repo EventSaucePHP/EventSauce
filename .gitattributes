@@ -12,4 +12,5 @@ README.md export-ignore
 /src/Integration/ export-ignore
 /src/CodeGeneration/Fixtures/ export-ignore
 **/*Test.php export-ignore
+**/*Stub.php export-ignore
 /docs export-ignore
