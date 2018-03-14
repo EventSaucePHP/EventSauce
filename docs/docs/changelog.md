@@ -1,6 +1,8 @@
 ---
 permalink: /docs/changelog/
 title: Changelog
+published_at: 2018-03-14
+updated_at: 2018-03-14
 ---
 
 ## 0.2.0
