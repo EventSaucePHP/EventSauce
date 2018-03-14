@@ -9,7 +9,7 @@ use LogicException;
 
 class TestCaseMustHaveHandleMethodsTest extends AggregateRootTestCase
 {
-    protected function aggregateRootId(): AggregateRootId
+    protected function newAggregateRootId(): AggregateRootId
     {
         return UuidAggregateRootId::create();
     }

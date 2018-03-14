@@ -132,14 +132,8 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         $commandHandler->handle($command);
     }
 
-    protected function aggregateRootId(): AggregateRootId
+    protected function newAggregateRootId(): AggregateRootId
     {
-        static $id;
-
-        if ( ! $id instanceof AggregateRootId) {
-            $id = UuidAggregateRootId::create();
-        }
-
-        return $id;
+        return UuidAggregateRootId::create();
     }
 }

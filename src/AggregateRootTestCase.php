@@ -63,7 +63,7 @@ abstract class AggregateRootTestCase extends TestCase
     {
         $className = $this->aggregateRootClassName();
         $this->clock = new TestClock();
-        $this->aggregateRootId = $this->aggregateRootId();
+        $this->aggregateRootId = $this->newAggregateRootId();
         $this->messageRepository = new InMemoryMessageRepository();
         $dispatcher = $this->messageDispatcher();
         $decorator = $this->messageDecorator();
@@ -96,7 +96,12 @@ abstract class AggregateRootTestCase extends TestCase
         }
     }
 
-    abstract protected function aggregateRootId(): AggregateRootId;
+    protected function aggregateRootId(): AggregateRootId
+    {
+        return $this->aggregateRootId;
+    }
+
+    abstract protected function newAggregateRootId(): AggregateRootId;
 
     abstract protected function aggregateRootClassName(): string;
 
