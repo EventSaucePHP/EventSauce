@@ -2,11 +2,9 @@
 
 namespace EventSauce\EventSourcing\Time;
 
-use DateTime;
 use DateTimeImmutable;
 use DateTimeZone;
 use EventSauce\EventSourcing\PointInTime;
-use function strtotime;
 
 class TestClock implements Clock
 {
