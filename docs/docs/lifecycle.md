@@ -2,7 +2,7 @@
 permalink: /docs/lifecycle/
 title: Lifecycle
 published_at: 2018-03-11
-updated_at: 2018-03-13
+updated_at: 2018-03-14
 ---
 
 The lifecycle of EventSauce can be broken down into **3** steps:
@@ -133,7 +133,7 @@ class SomeConsumer implements Consumer
         $aggregateRootId = $message->aggregateRootId();
         $event = $message->event();
         $allHeaders = $message->headers();
-        $requestId = $message->headersValue('x-request-id');
+        $requestId = $message->header('x-request-id');
     }
 }
 ```
