@@ -15,7 +15,7 @@ A pragmatic event sourcing library for PHP with a focus on developer experience.
 </div>
 
 <p class="max-width-medium">
-We're <span>almost</span> ready.
+We're <span>almost</span> ready. You can view the documentation&nbsp;<a href="/docs">here</a>.
 </p>
 
 <form method="post" action="https://widgets.eventsauce.io/signup/" class="max-width-medium">
