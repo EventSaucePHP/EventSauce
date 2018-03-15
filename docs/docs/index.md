@@ -26,6 +26,10 @@ be able to add event sourced parts to your application with ease. No application
 rewrites and no big investments upfront. The core is built around a set of (tiny)
 interfaces, which gives you the freedom to choose the tools that meet your requirements.
 
+Many parts of the library are extremely pragmatic in nature. You're encouraged to take
+control over it. It allows everything from  custom storage adapter to highly customizable
+message dispatching setups.
+
 EventSauce puts the focus on event sourcing, not on things that happen around event
 sourcing. It does not require you to follow CQRS patterns. It does not require you
 to use a command-, event-, or query-bus. By doing so, it allows developers to use
