@@ -14,7 +14,7 @@ they have but one technical requirement:
 
 > All events must implement the `EventSauce\EventSourcing\Event` interface.
 
-This interface requires you to create implement **2** public functions:
+This interface requires you to implement **2** public functions:
 
 > 2. `toPayload(): array`
 > 3. `fromPayload(array $payload): Event`

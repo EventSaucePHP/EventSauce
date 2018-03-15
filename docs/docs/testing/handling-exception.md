@@ -41,7 +41,7 @@ class SignUpRespectsBlackListTest extends SignUpProcessTestCase
 If you want to react to failures (exceptional cases) make sure you
 persist the aggregate in a `finally` class in your handler:
 
-```yaml
+```php
 protected function handle($command)
 {
     $process = $this->repository->retrieve($command->processId());
