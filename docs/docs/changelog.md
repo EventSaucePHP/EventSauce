@@ -5,6 +5,12 @@ published_at: 2018-03-14
 updated_at: 2018-03-14
 ---
 
+## 0.2.1
+
+### Improved
+
+* The `CodeDumper` now generated prettier code.
+
 ## 0.2.0
 
 ### BC Breaks
