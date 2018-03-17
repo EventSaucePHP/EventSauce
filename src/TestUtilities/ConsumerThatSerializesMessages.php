@@ -27,6 +27,6 @@ class ConsumerThatSerializesMessages implements Consumer
     {
         $payload = $this->serializer->serializeMessage($message);
         $deserializedMessage = iterator_to_array($this->serializer->unserializePayload($payload))[0] ?? null;
-        TestCase::assertEquals($message, $deserializedMessage);
+        TestCase::assertEquals($message->event(), $deserializedMessage->event());
     }
 }

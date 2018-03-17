@@ -5,6 +5,13 @@ published_at: 2018-03-14
 updated_at: 2018-03-14
 ---
 
+## Next release
+
+### Altered
+
+* The Header::AGGREGATE_ROOT_ID is no longer converted to string in the default decorator but in the serializer.
+* The Header::AGGREGATE_ROOT_ID_TYPE is now set in the serializer.
+
 ## 0.2.1
 
 ### Improved

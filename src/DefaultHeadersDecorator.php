@@ -32,11 +32,6 @@ class DefaultHeadersDecorator implements MessageDecorator
             Header::EVENT_TYPE        => $this->inflector->instanceToType($event),
             Header::TIME_OF_RECORDING => $this->clock->pointInTime()->toString(),
         ];
-        $id = $message->header(Header::AGGREGATE_ROOT_ID);
-
-        if ($id instanceof AggregateRootId) {
-            $headers[Header::AGGREGATE_ROOT_ID_TYPE] = $this->inflector->instanceToType($id);
-        }
 
         return $message->withHeaders($headers);
     }
