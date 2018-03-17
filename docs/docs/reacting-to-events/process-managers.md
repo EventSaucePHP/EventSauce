@@ -6,8 +6,8 @@ updated_at: 2018-03-13
 ---
 
 Projections and read models are a big part of event sourcing. They
-our way to communicating state with the outside world. They're also
-very project specific.
+are a way to communicating state with the outside world. They're also
+very project-specific.
 
 In EventSauce process managers are nothing more than an implementation of
 the `Consumer` interface. Unlike projections, which feed read models, process
@@ -18,9 +18,9 @@ use a service layer to trigger new actions.
 
 ## Why are process managers useful?
 
-When modeling large processes, process managers allow you break then up in
+When modelling large processes, process managers allow you break them up into
 multiple steps. This is especially useful when subsequent actions don't require
-user interaction. All of these action can be done in the background, thus not
+user interaction. All of these actions can be done in the background, thus not
 blocking the user from receiving a response from the server.
 
 

@@ -6,7 +6,7 @@ updated_at: 2018-03-13
 ---
 
 Rebuilding projections is one of the more complicated subjects in
-event sourcing. EventSauce takes a uncommon approach to tackle this
+event sourcing. EventSauce takes an uncommon approach to tackle this
 problem: it **does not** tackle the problem.
 
 Generic rebuild tooling is very complex and imposes some additional

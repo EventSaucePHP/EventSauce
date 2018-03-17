@@ -75,7 +75,7 @@ class AcmeProcessId implements AggregateRootId
 
 Because the ID implements an interface you can use whatever kind of ID
 best fits your use-case. You can use UUIDs or an identifier that's
-natural to the domain you're modeling (e.g. a serial number or a unique
+natural to the domain you're modelling (e.g. a serial number or a unique
 group identifier).
 
 Having unique ID classes for each type of aggregate has an added benefit

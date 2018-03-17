@@ -30,7 +30,7 @@ Our code reflects this data-centric view. When we test our code, we
 assert based on current application state. When we create our code
 we often start out by modelling the "things" not the behaviour.
 
-> Over time state is modified/created/removed in order keep up with changes.
+> Over time state is modified/created/removed in order to keep up with changes.
 
 In event sourcing this concept is turned upside-down. Software is modelled 
 using events that describe things when they happen. In order to get to the
@@ -55,7 +55,7 @@ and running.
 ## The opportunities
 
 Event sourcing opens up an exciting amount of new possibilities. It's easier
-to respond to change due to the message based nature. You can create data-views
+to respond to change due to the message-based nature. You can create data-views
 specialized for certain cases, mostly referred to as "read models". Background
 processing can be done more frequently if needed. Moving processes from the main
 request to the background is also a lot easier.

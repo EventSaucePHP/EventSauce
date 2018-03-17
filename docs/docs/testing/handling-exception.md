@@ -5,7 +5,7 @@ published_at: 2018-03-11
 updated_at: 2018-03-13
 ---
 
-Handling exceptions is an important part of software modeling. EventSauce
+Handling exceptions is an important part of software modelling. EventSauce
 makes it easy to test failures. If our `AggregateRoot` guards an invariant,
 we can create tests for that to ensure our business rule is respected.
 
@@ -39,7 +39,7 @@ class SignUpRespectsBlackListTest extends SignUpProcessTestCase
 ## Recording events on failure
 
 If you want to react to failures (exceptional cases) make sure you
-persist the aggregate in a `finally` class in your handler:
+persist the aggregate in a `finally` clause in your handler:
 
 ```php
 protected function handle($command)
@@ -56,6 +56,6 @@ protected function handle($command)
 }
 ```
 
-The `finally` class will be triggered even though a exception is thrown. In
+The `finally` clause will be triggered even though an exception is thrown. In
 this case the events recorded prior to the exception are still recorded but
 your exception still bubbles up so you can handle it transparently.

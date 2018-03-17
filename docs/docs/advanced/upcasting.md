@@ -5,7 +5,7 @@ published_at: 2018-03-11
 updated_at: 2018-03-12
 ---
 
-Event sourcing is a great discovery tools, it's also provides a
+Event sourcing is a great discovery tool, it also provides a
 solid basis to perform system introspection. By analysing streams
 of events you can come to great new insights. Sometimes different
 events are needed to better express what has happened. Instead of

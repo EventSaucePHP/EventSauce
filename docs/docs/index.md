@@ -45,11 +45,11 @@ of entry but provide an "everything you need is right here" experience.
 ## Disclaimer
 
 Solving problems using event sourcing requires a very different mindset when compared
-to traditional PHP-OOP software modeling. It's less focused about state and more
+to traditional PHP-OOP software modelling. It's less focused about state and more
 about processes, transitions, and communication in general. Event sourcing is also not
 simple. It's build on a body of knowledge that is inherently complex. There are many
 concepts that come into play that build off one another.
 
 However, event sourcing also provides an easier way to model a variety of issues. It's
-a remedy against storing "work in progress" entities. It's a better fit when modeling
+a remedy against storing "work in progress" entities. It's a better fit when modelling
 anything where the transition is just as important as the end result.

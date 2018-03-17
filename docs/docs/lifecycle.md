@@ -78,7 +78,7 @@ public function performAnotherAction(
 }
 ```
 
-Whenever you record an events the `recordThat` ensures it's immediately
+Whenever you record an event the `recordThat` ensures it's immediately
 applied. This ensures the aggregate root is ready for the next interaction
 without needing to re-retrieve it from the aggregate root repository.
 
@@ -90,9 +90,9 @@ public function applySomeActionWasPerformed(SomeActionWasPerformed $event)
 }
 ```
 
-> It's important to note that applying events must **never** have side-effect.
+> It's important to note that applying events must **never** have side-effects.
 > The only job of this function is to *use* the data from the event. Applying 
-> and event must not cause any exceptions.
+> an event must not cause any exceptions.
 
 
 ## Storing and dispatching raised events

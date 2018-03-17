@@ -13,12 +13,12 @@ testing is often associated with Behavior Driven Development (BDD).
 Tests written in this style are very expressive and easy to read. This makes it
 simple to document business requirements. The test tooling also makes it easy
 to follow the TDD approach. Creating tests (and the required events) often gives
-very usable insights when modeling your application.
+very usable insights when modelling your application.
 
 ## 1. Create a base test case for your aggregate.
 
 It's advised to create a base test for your aggregate. This base class sets up the defaults
-for all test cases around the aggregate. There are a couple methods that need to be implemented:
+for all test cases around the aggregate. There are a couple of methods that need to be implemented:
 
 * `aggregateRootId` is expected to always return the same aggregate root ID
 * `aggregateRootClassName` for the fully qualified aggregate root class name
@@ -58,7 +58,7 @@ abstract class SignUpProcessTestCase extends AggregateRootTestCase
 
 ## 2. Create test scenarios
 
-Now that you've got your base class it's time to setup test scenarios. It's advised to
+Now that you've got your base class it's time to set up test scenarios. It's advised to
 create small, focused test cases that handle a specific task or condition.
 
 Fir instance, initiating a sign-up process:
