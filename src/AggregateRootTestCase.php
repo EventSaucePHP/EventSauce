@@ -209,7 +209,7 @@ abstract class AggregateRootTestCase extends TestCase
     {
         return new SynchronousMessageDispatcher(
             new ConsumerThatSerializesMessages(),
-            ... $this->consumers()
+            ...$this->consumers()
         );
     }
 

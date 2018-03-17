@@ -11,7 +11,6 @@ use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use Generator;
-use function var_dump;
 
 final class ConstructingMessageSerializer implements MessageSerializer
 {
