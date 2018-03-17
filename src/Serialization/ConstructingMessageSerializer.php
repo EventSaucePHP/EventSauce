@@ -30,6 +30,10 @@ final class ConstructingMessageSerializer implements MessageSerializer
         $payload = $event->toPayload();
         $headers = $message->headers();
 
+        if (isset($headers[Header::AGGREGATE_ROOT_ID]) && $headers[Header::AGGREGATE_ROOT_ID] instanceof AggregateRootId) {
+            $headers[Header::AGGREGATE_ROOT_ID] = $headers[Header::AGGREGATE_ROOT_ID]->toString();
+        }
+
         return [
             'headers' => $headers,
             'payload' => $payload,

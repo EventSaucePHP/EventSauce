@@ -45,7 +45,7 @@ class InMemoryMessageRepository implements MessageRepository
     public function retrieveAll(AggregateRootId $id): Generator
     {
         foreach ($this->messages as $message) {
-            if ($id->toString() === $message->header(Header::AGGREGATE_ROOT_ID)) {
+            if ($id->toString() === $message->header(Header::AGGREGATE_ROOT_ID)->toString()) {
                 yield $message;
             }
         }

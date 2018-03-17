@@ -14,7 +14,7 @@ class DummyIncrementingHappened implements Event
     /**
      * @var int
      */
-    private $number;
+    private $number = 0;
 
     public function __construct(int $number)
     {
@@ -23,7 +23,7 @@ class DummyIncrementingHappened implements Event
 
     public function toPayload(): array
     {
-        return [];
+        return ['number' => $this->number];
     }
 
     public static function fromPayload(array $payload): Event

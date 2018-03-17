@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
+use EventSauce\EventSourcing\TestUtilities\ConsumerThatSerializesMessages;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\Time\TestClock;
 use Exception;
@@ -61,7 +62,7 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @before
      */
-    protected function setUpEventStore()
+    protected function setUpEventSauce()
     {
         $className = $this->aggregateRootClassName();
         $this->clock = new TestClock();
@@ -69,7 +70,12 @@ abstract class AggregateRootTestCase extends TestCase
         $this->messageRepository = new InMemoryMessageRepository();
         $dispatcher = $this->messageDispatcher();
         $decorator = $this->messageDecorator();
-        $this->repository = new AggregateRootRepository($className, $this->messageRepository, $dispatcher, $decorator);
+        $this->repository = new AggregateRootRepository(
+            $className,
+            $this->messageRepository,
+            $dispatcher,
+            $decorator
+        );
         $this->expectedEvents = [];
         $this->assertedScenario = false;
         $this->theExpectedException = null;
@@ -201,7 +207,10 @@ abstract class AggregateRootTestCase extends TestCase
 
     protected function messageDispatcher(): MessageDispatcher
     {
-        return new SynchronousMessageDispatcher(...$this->consumers());
+        return new SynchronousMessageDispatcher(
+            new ConsumerThatSerializesMessages(),
+            ... $this->consumers()
+        );
     }
 
     /**
