@@ -29,10 +29,11 @@ final class ConstructingMessageSerializer implements MessageSerializer
         $event = $message->event();
         $payload = $event->toPayload();
         $headers = $message->headers();
+        $aggregateRootId = $headers[Header::AGGREGATE_ROOT_ID] ?? null;
 
-        if (isset($headers[Header::AGGREGATE_ROOT_ID]) && $headers[Header::AGGREGATE_ROOT_ID] instanceof AggregateRootId) {
-            $headers[Header::AGGREGATE_ROOT_ID_TYPE] = $this->classNameInflector->instanceToType($headers[Header::AGGREGATE_ROOT_ID]);
-            $headers[Header::AGGREGATE_ROOT_ID] = $headers[Header::AGGREGATE_ROOT_ID]->toString();
+        if ($aggregateRootId instanceof AggregateRootId) {
+            $headers[Header::AGGREGATE_ROOT_ID_TYPE] = $this->classNameInflector->instanceToType($aggregateRootId);
+            $headers[Header::AGGREGATE_ROOT_ID] = $aggregateRootId->toString();
         }
 
         return [
