@@ -11,6 +11,7 @@ use EventSauce\EventSourcing\Event;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use Generator;
+use function var_dump;
 
 final class ConstructingMessageSerializer implements MessageSerializer
 {
@@ -31,6 +32,7 @@ final class ConstructingMessageSerializer implements MessageSerializer
         $headers = $message->headers();
 
         if (isset($headers[Header::AGGREGATE_ROOT_ID]) && $headers[Header::AGGREGATE_ROOT_ID] instanceof AggregateRootId) {
+            $headers[Header::AGGREGATE_ROOT_ID_TYPE] = $this->classNameInflector->instanceToType($headers[Header::AGGREGATE_ROOT_ID]);
             $headers[Header::AGGREGATE_ROOT_ID] = $headers[Header::AGGREGATE_ROOT_ID]->toString();
         }
 
