@@ -1,7 +1,7 @@
 {
     "name": "eventsauce/eventsauce",
-    "description": "Event sourcing library.",
     "type": "library",
+    "description": "Event sourcing library.",
     "license": "MIT",
     "authors": [
         {
@@ -9,19 +9,19 @@
             "email": "info@frenky.net"
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "EventSauce\\EventSourcing\\": "src/"
-        }
-    },
     "require": {
         "php": ">=7.1",
         "ramsey/uuid": "^3.6",
         "symfony/yaml": "^3.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.0",
+        "friendsofphp/php-cs-fixer": "^2.10",
         "phpstan/phpstan": "@stable",
-        "friendsofphp/php-cs-fixer": "^2.10"
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "EventSauce\\EventSourcing\\": "src/"
+        }
     }
 }
