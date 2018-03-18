@@ -5,7 +5,7 @@ published_at: 2018-03-11
 updated_at: 2018-03-13
 ---
 
-EventSauce provides the possibility to decorate messaged. What this
+EventSauce provides the possibility to decorate messages. What this
 means is that you can add headers to messages to provide extra
 contextual information before a message is persisted and/or dispatched.
 

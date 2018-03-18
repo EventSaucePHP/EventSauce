@@ -13,7 +13,7 @@ to persist and retrieve events, and a `MessageDispatcher`, which allows you to b
 events to `Consumer`s. The core library ships with a `SynchronousMessageDispatcher`,
 so having a queueing system is not an immediate requirement.
 
-Which `MessageRepository` or `MessageDispatcher` you use it totally up to you. There
+Which `MessageRepository` or `MessageDispatcher` you use is totally up to you. There
 are benefits (and downsides) to each queueing mechanism and message repository. Because
 EventSauce places these implementations behind an interface you're free to choose whatever
 fits best. You can even create your own repositories and dispatchers, the interface is
@@ -21,7 +21,7 @@ very tiny.
 
 ### Aggregate Root
 
-The aggregate root is our primary modeling space. It's tasked with maintaining the integrity
+The aggregate root is our primary modelling space. It's tasked with maintaining the integrity
 of our model, guarding invariants, and recording events.
 
 ### Aggregate Root Repository

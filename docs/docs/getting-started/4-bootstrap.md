@@ -6,7 +6,7 @@ published_at: 2018-03-11
 updated_at: 2018-03-13
 ---
 
-Now that you've got your MessageRepository and MessageDispatcher in place
+Now that you've got your `MessageRepository` and `MessageDispatcher` in place
 you're ready to bootstrap your `AggregateRootRepository`.
 
 ```php
@@ -21,5 +21,5 @@ $aggregateRootRepository = new AggregateRootRepository(
 );
 ```
 
-Now you're ready to start modeling! For more information about how you do this, read the [lifecycle](/docs/lifecycle/)
+Now you're ready to start modelling! For more information about how you do this, read the [lifecycle](/docs/lifecycle/)
 documentation.

@@ -6,8 +6,8 @@ updated_at: 2018-03-13
 ---
 
 The `Message` object is the envelope in which events are stored and
-dispatched to consumers. It contains a `Event` instance and headers.
-The headers are meant for non-domain-event specific information.
+dispatched to consumers. It contains an `Event` instance and headers.
+The headers are meant for non-domain-event-specific information.
 EventSauce uses a number of headers internally. All of the internal
 headers are available as constants on the `EventSauce\EventSourcing\Header`
 interface:
@@ -23,12 +23,12 @@ constant | value | description
 
 ## Message Decorator
 
-You you want to add more headers you can use [Message Decorators](/docs/advanced/message-decoration/).
+If you want to add more headers you can use [Message Decorators](/docs/advanced/message-decoration/).
 
 ## Message Serialization
 
-For persistence and dispatching message are serialized. The `MessageSerializer` interface
-represents this boundary. By default the `ConstructingMessageSerializer` is used. Which
+For persistence and dispatching, messages are serialized. The `MessageSerializer` interface
+represents this boundary. By default the `ConstructingMessageSerializer` is used, which
 serializes the event to the following format (shown JSON encoded):
 
 ```json

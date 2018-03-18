@@ -5,10 +5,10 @@ published_at: 2018-03-14
 updated_at: 2018-03-14
 ---
 
-In many case `time` is a crucial factor in dealing with business
+In many cases `time` is a crucial factor in dealing with business
 decisions. Testing time-based interactions can be a tedious task.
-The base test case (shipped in EventSauce) comes with some time
-based tooling to help you out.
+The base test case (shipped in EventSauce) comes with some time-based 
+tooling to help you out.
 
 ```php
 public function test_function()
@@ -34,5 +34,5 @@ public function test_with_fixated_time()
 
 When time is crucial to your domain it makes sense to account for this in
 the domain. You're free to use the `PointInTime` objects if those fit your
-needs, but you're encouraged to create domain specific object that model
+needs, but you're encouraged to create domain-specific object that model
 your case more closely.

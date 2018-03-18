@@ -23,7 +23,7 @@ interface MessageRepository
 ```
 
 It's recommended to leverage the `MessageSerializer` capabilities. The following
-is an example of a filesystem based message repository:
+is an example of a filesystem-based message repository:
 
 ```php
 <?php

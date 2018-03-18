@@ -6,8 +6,8 @@ updated_at: 2018-03-13
 ---
 
 Projections and read models are a big part of event sourcing. They
-our way to communicating state with the outside world. They're also
-very project specific.
+are a way to communicating state with the outside world. They're also
+very project-specific.
 
 In EventSauce projections are nothing more than the implementation of
 the `Consumer` interface.
@@ -41,7 +41,7 @@ even be specific to one use-case and don't have to share restrictions.
 
 ## Read model example: friendship requests
 
-As an example we're going to create a couple read models for the
+As an example we're going to create a couple of read models for the
 following case: becoming friends on social media. In this case we'll have
 the following events defined:
 
@@ -53,8 +53,8 @@ the following events defined:
 All these events describe something that happened in the process of becoming
 friends on social media.
 
-In our UI we might have 2 views. One for outgoing invitations and one for incoming.
-We can map these UI's to 2 read models:
+In our UI we might have two views. One for outgoing invitations and one for incoming.
+We can map these UI's to two read models:
 
 * `OutgoingInvitations`
 * `IncomingInvitations`
