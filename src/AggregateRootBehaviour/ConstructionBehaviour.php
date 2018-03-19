@@ -42,7 +42,7 @@ trait ConstructionBehaviour
     {
         $aggregateRoot = new static($aggregateRootId);
 
-        /** @var Event $event */
+        /** @var object $event */
         foreach ($events as $event) {
             $aggregateRoot->apply($event);
             ++$aggregateRoot->aggregateRootVersion;
