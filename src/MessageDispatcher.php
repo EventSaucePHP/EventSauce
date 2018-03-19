@@ -6,5 +6,8 @@ namespace EventSauce\EventSourcing;
 
 interface MessageDispatcher
 {
+    /**
+     * @param Message[] ...$messages
+     */
     public function dispatch(Message ...$messages);
 }

@@ -25,6 +25,9 @@ class TestClock implements Clock
      */
     private $timeZone;
 
+    /**
+     * @param DateTimeZone|null $timeZone
+     */
     public function __construct(DateTimeZone $timeZone = null)
     {
         $this->timeZone = $timeZone ?: new DateTimeZone('UTC');
@@ -36,17 +39,26 @@ class TestClock implements Clock
         $this->time = new DateTimeImmutable('now', $this->timeZone);
     }
 
+    /**
+     * @param string $dateTime
+     */
     public function fixate(string $dateTime)
     {
         $preciseTime = sprintf('%s.000000', $dateTime);
         $this->time = DateTimeImmutable::createFromFormat('Y-m-d H:i:s.u', $preciseTime, $this->timeZone);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function dateTime(): DateTimeImmutable
     {
         return $this->time;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function pointInTime(): PointInTime
     {
         return PointInTime::fromDateTime($this->dateTime());

@@ -20,11 +20,17 @@ class SystemClock implements Clock
         $this->timeZone = $timeZone ?: new DateTimeZone('UTC');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function dateTime(): DateTimeImmutable
     {
         return new DateTimeImmutable('now', $this->timeZone);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function pointInTime(): PointInTime
     {
         return PointInTime::fromDateTime($this->dateTime());

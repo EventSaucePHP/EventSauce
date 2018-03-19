@@ -16,11 +16,20 @@ use LogicException;
 
 class ExampleAggregateRootTest extends AggregateRootTestCase
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function aggregateRootClassName(): string
     {
         return DummyAggregate::class;
     }
 
+    /**
+     * @param AggregateRootRepository $repository
+     * @param Clock                   $clock
+     *
+     * @return DummyCommandHandler
+     */
     protected function commandHandler(AggregateRootRepository $repository, Clock $clock)
     {
         return new DummyCommandHandler($repository, $clock);
@@ -134,6 +143,9 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         $commandHandler->handle($command);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function newAggregateRootId(): AggregateRootId
     {
         return UuidAggregateRootId::create();

@@ -25,6 +25,9 @@ class UpcasterStub implements DelegatableUpcaster
         yield $payload;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function type(): string
     {
         return (new DotSeparatedSnakeCaseInflector())->classNameToType(UpcastedEventStub::class);

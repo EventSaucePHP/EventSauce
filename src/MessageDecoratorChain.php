@@ -16,6 +16,9 @@ class MessageDecoratorChain implements MessageDecorator
         $this->processors = $processors;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function decorate(Message $message): Message
     {
         foreach ($this->processors as $processor) {
