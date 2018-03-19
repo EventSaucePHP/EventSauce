@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Serialization;
 
-use function assert;
-use function get_class;
-use LogicException;
-
 class ConstructingEventSerializer implements EventSerializer
 {
     /**
