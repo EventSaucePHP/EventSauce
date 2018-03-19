@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing\AggregateRootBehaviour;
 trait EventRecordingBehaviour
 {
     /**
-     * @var Event[]
+     * @var object[]
      */
     private $recordedEvents = [];
 
