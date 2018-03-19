@@ -25,7 +25,7 @@ class CodeDumper
         $eventsCode = $this->dumpEvents($definitionGroup->events(), $withHelpers, $withSerialization);
         $commandCode = $this->dumpCommands($definitionGroup->commands());
         $namespace = $definitionGroup->namespace();
-        $allCode = join(array_filter([$eventsCode, $commandCode]), "\n\n");
+        $allCode = implode(array_filter([$eventsCode, $commandCode]), "\n\n");
 
         if ($withSerialization) {
             $namespace .= ";
@@ -71,7 +71,7 @@ $testHelpers}
 EOF;
         }
 
-        return rtrim(join('', $code));
+        return rtrim(implode('', $code));
     }
 
     private function dumpFields(DefinitionWithFields $definition): string
@@ -96,7 +96,7 @@ EOF;
 EOF;
         }
 
-        return join('', $code);
+        return implode('', $code);
     }
 
     private function dumpConstructor(DefinitionWithFields $definition): string
@@ -114,8 +114,8 @@ EOF;
             $assignments[] = sprintf('        $this->%s = $%s;', $field['name'], $field['name']);
         }
 
-        $arguments = join(",\n", $arguments);
-        $assignments = join("\n", $assignments);
+        $arguments = implode(",\n", $arguments);
+        $assignments = implode("\n", $assignments);
 
         return <<<EOF
     public function __construct(
@@ -143,7 +143,7 @@ EOF;
 EOF;
         }
 
-        return empty($methods) ? '' : rtrim(join('', $methods)) . "\n";
+        return empty($methods) ? '' : rtrim(implode('', $methods)) . "\n";
     }
 
     private function dumpSerializationMethods(EventDefinition $event)
@@ -165,13 +165,13 @@ EOF;
             $serializers[] = trim(strtr($template, ['{type}' => $field['type'], '{param}' => $property]));
         }
 
-        $arguments = preg_replace('/^.{2,}$/m', '            $0', join(",\n", $arguments));
+        $arguments = preg_replace('/^.{2,}$/m', '            $0', implode(",\n", $arguments));
 
         if ( ! empty($arguments)) {
             $arguments = "\n$arguments";
         }
 
-        $serializers = preg_replace('/^.{2,}$/m', '            $0', join(",\n", $serializers));
+        $serializers = preg_replace('/^.{2,}$/m', '            $0', implode(",\n", $serializers));
 
         if ( ! empty($serializers)) {
             $serializers = "\n$serializers,\n        ";
@@ -226,8 +226,8 @@ EOF;
             }
         }
 
-        $constructor = sprintf('with%s', join('And', $constructor));
-        $constructorValues = join(",\n            ", $constructorValues);
+        $constructor = sprintf('with%s', implode('And', $constructor));
+        $constructorValues = implode(",\n            ", $constructorValues);
 
         if ('' !== $constructorValues) {
             $constructorValues = "\n            $constructorValues\n        ";
@@ -245,7 +245,7 @@ EOF;
 
 EOF;
 
-        return rtrim(join('', $helpers)) . "\n";
+        return rtrim(implode('', $helpers)) . "\n";
     }
 
     private function dumpConstructorValue(array $field, EventDefinition $event): string
@@ -281,7 +281,7 @@ final class {$command->name()}
 EOF;
         }
 
-        return rtrim(join('', $code));
+        return rtrim(implode('', $code));
     }
 
     /**
