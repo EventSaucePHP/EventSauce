@@ -27,7 +27,7 @@ interface AggregateRoot
      * @param AggregateRootId $aggregateRootId
      * @param Generator       $events
      *
-     * @return static
+     * @return AggregateRoot
      */
     public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot;
 }

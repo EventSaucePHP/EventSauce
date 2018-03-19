@@ -18,11 +18,17 @@ class ConsumerThatSerializesMessages implements Consumer
      */
     private $serializer;
 
+    /**
+     * @param MessageSerializer|null $serializer
+     */
     public function __construct(MessageSerializer $serializer = null)
     {
         $this->serializer = $serializer ?: new ConstructingMessageSerializer();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function handle(Message $message)
     {
         $payload = $this->serializer->serializeMessage($message);

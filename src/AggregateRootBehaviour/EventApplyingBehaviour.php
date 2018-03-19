@@ -8,6 +8,9 @@ use EventSauce\EventSourcing\Event;
 
 trait EventApplyingBehaviour
 {
+    /**
+     * @param Event $event
+     */
     protected function apply(Event $event)
     {
         $parts = explode('\\', get_class($event));

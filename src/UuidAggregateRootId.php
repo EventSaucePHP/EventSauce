@@ -14,30 +14,40 @@ final class UuidAggregateRootId implements AggregateRootId
      */
     private $identifier;
 
+    /**
+     * @param string $identifier
+     */
     public function __construct(string $identifier)
     {
         $this->identifier = $identifier;
     }
 
+    /**
+     * @return string
+     */
     public function toString(): string
     {
         return $this->identifier;
     }
 
+    /**
+     * @return UuidInterface
+     */
     public function toUuid(): UuidInterface
     {
         return Uuid::fromString($this->identifier);
     }
 
+    /**
+     * @return UuidAggregateRootId
+     */
     public static function create(): UuidAggregateRootId
     {
         return new UuidAggregateRootId(Uuid::uuid4()->toString());
     }
 
     /**
-     * @param string $aggregateRootId
-     *
-     * @return static
+     * {@inheritdoc}
      */
     public static function fromString(string $aggregateRootId): AggregateRootId
     {

@@ -13,6 +13,9 @@ trait EventRecordingBehaviour
      */
     private $recordedEvents = [];
 
+    /**
+     * @param Event $event
+     */
     protected function recordThat(Event $event)
     {
         $this->apply($event);
@@ -30,5 +33,10 @@ trait EventRecordingBehaviour
         return $releasedEvents;
     }
 
+    /**
+     * @param Event $event
+     *
+     * @return mixed
+     */
     abstract protected function apply(Event $event);
 }

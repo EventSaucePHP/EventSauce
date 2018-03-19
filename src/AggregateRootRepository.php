@@ -28,6 +28,12 @@ final class AggregateRootRepository
      */
     private $dispatcher;
 
+    /**
+     * @param string                 $aggregateRootClassName
+     * @param MessageRepository      $messageRepository
+     * @param MessageDispatcher|null $dispatcher
+     * @param MessageDecorator|null  $decorator
+     */
     public function __construct(
         string $aggregateRootClassName,
         MessageRepository $messageRepository,
@@ -40,6 +46,11 @@ final class AggregateRootRepository
         $this->decorator = $decorator ?: new DefaultHeadersDecorator();
     }
 
+    /**
+     * @param AggregateRootId $aggregateRootId
+     *
+     * @return AggregateRoot
+     */
     public function retrieve(AggregateRootId $aggregateRootId): AggregateRoot
     {
         /** @var AggregateRoot $className */
@@ -49,6 +60,11 @@ final class AggregateRootRepository
         return $className::reconstituteFromEvents($aggregateRootId, $events);
     }
 
+    /**
+     * @param AggregateRootId $aggregateRootId
+     *
+     * @return Generator
+     */
     private function retrieveAllEvents(AggregateRootId $aggregateRootId): Generator
     {
         /** @var Message $message */
@@ -57,6 +73,9 @@ final class AggregateRootRepository
         }
     }
 
+    /**
+     * @param AggregateRoot $aggregateRoot
+     */
     public function persist(AggregateRoot $aggregateRoot)
     {
         $this->persistEvents(
@@ -66,6 +85,11 @@ final class AggregateRootRepository
         );
     }
 
+    /**
+     * @param AggregateRootId $aggregateRootId
+     * @param int             $aggregateRootVersion
+     * @param Event[]         ...$events
+     */
     public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, Event ...$events)
     {
         $metadata = [Header::AGGREGATE_ROOT_ID => $aggregateRootId];

@@ -18,26 +18,43 @@ final class PointInTime
      */
     private $pointInTime;
 
+    /**
+     * @param DateTimeImmutable $pointInTime
+     */
     private function __construct(DateTimeImmutable $pointInTime)
     {
         $this->pointInTime = $pointInTime;
     }
 
+    /**
+     * @return DateTimeImmutable
+     */
     public function dateTime(): DateTimeImmutable
     {
         return $this->pointInTime;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->pointInTime->format(self::DATE_TIME_FORMAT);
     }
 
+    /**
+     * @return string
+     */
     public function toString()
     {
         return $this->pointInTime->format(self::DATE_TIME_FORMAT);
     }
 
+    /**
+     * @param string $pointInTime
+     *
+     * @return PointInTime
+     */
     public static function fromString(string $pointInTime): PointInTime
     {
         $dateTime = DateTimeImmutable::createFromFormat(self::DATE_TIME_FORMAT, $pointInTime);
@@ -49,6 +66,11 @@ final class PointInTime
         return new PointInTime($dateTime);
     }
 
+    /**
+     * @param DateTimeImmutable $dateTime
+     *
+     * @return PointInTime
+     */
     public static function fromDateTime(DateTimeImmutable $dateTime): PointInTime
     {
         return new PointInTime($dateTime);

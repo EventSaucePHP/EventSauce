@@ -19,11 +19,17 @@ final class ConstructingMessageSerializer implements MessageSerializer
      */
     private $classNameInflector;
 
+    /**
+     * @param ClassNameInflector|null $classNameInflector
+     */
     public function __construct(ClassNameInflector $classNameInflector = null)
     {
         $this->classNameInflector = $classNameInflector ?: new DotSeparatedSnakeCaseInflector();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function serializeMessage(Message $message): array
     {
         $event = $message->event();
@@ -42,6 +48,9 @@ final class ConstructingMessageSerializer implements MessageSerializer
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function unserializePayload(array $payload): Generator
     {
         if (isset($payload['headers'][Header::AGGREGATE_ROOT_ID], $payload['headers'][Header::AGGREGATE_ROOT_ID_TYPE])) {

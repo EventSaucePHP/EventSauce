@@ -26,6 +26,12 @@ class EventStager
      */
     private $messageRepository;
 
+    /**
+     * @param AggregateRootId           $id
+     * @param InMemoryMessageRepository $messageRepository
+     * @param AggregateRootRepository   $repository
+     * @param AggregateRootTestCase     $testCase
+     */
     public function __construct(AggregateRootId $id, InMemoryMessageRepository $messageRepository, AggregateRootRepository $repository, AggregateRootTestCase $testCase)
     {
         $this->id = $id;
@@ -35,6 +41,8 @@ class EventStager
     }
 
     /**
+     * @param Event[] $events
+     *
      * @return AggregateRootTestCase
      */
     public function stage(Event ...$events): AggregateRootTestCase

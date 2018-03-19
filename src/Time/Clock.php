@@ -9,7 +9,13 @@ use EventSauce\EventSourcing\PointInTime;
 
 interface Clock
 {
+    /**
+     * @return DateTimeImmutable
+     */
     public function dateTime(): DateTimeImmutable;
 
+    /**
+     * @return PointInTime
+     */
     public function pointInTime(): PointInTime;
 }
