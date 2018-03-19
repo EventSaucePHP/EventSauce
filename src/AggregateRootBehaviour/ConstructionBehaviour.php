@@ -16,18 +16,30 @@ trait ConstructionBehaviour
      */
     private $aggregateRootId;
 
+    /**
+     * @var int
+     */
     private $aggregateRootVersion = 0;
 
+    /**
+     * @param AggregateRootId $aggregateRootId
+     */
     public function __construct(AggregateRootId $aggregateRootId)
     {
         $this->aggregateRootId = $aggregateRootId;
     }
 
+    /**
+     * @return AggregateRootId
+     */
     public function aggregateRootId(): AggregateRootId
     {
         return $this->aggregateRootId;
     }
 
+    /**
+     * @return int
+     */
     public function aggregateRootVersion(): int
     {
         return $this->aggregateRootVersion;
@@ -37,7 +49,7 @@ trait ConstructionBehaviour
      * @param AggregateRootId $aggregateRootId
      * @param Generator       $events
      *
-     * @return static
+     * @return AggregateRoot|static
      */
     public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot
     {
@@ -52,5 +64,8 @@ trait ConstructionBehaviour
         return $aggregateRoot;
     }
 
+    /**
+     * @param Event $event
+     */
     abstract protected function apply(Event $event);
 }

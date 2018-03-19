@@ -11,11 +11,17 @@ final class SynchronousMessageDispatcher implements MessageDispatcher
      */
     private $consumers;
 
+    /**
+     * @param Consumer[] ...$consumers
+     */
     public function __construct(Consumer ...$consumers)
     {
         $this->consumers = $consumers;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function dispatch(Message ...$messages)
     {
         foreach ($messages as $message) {

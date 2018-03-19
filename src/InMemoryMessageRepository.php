@@ -31,6 +31,9 @@ class InMemoryMessageRepository implements MessageRepository
         $this->lastCommit = [];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function persist(Message ...$messages)
     {
         $this->lastCommit = [];
@@ -42,6 +45,9 @@ class InMemoryMessageRepository implements MessageRepository
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function retrieveAll(AggregateRootId $id): Generator
     {
         foreach ($this->messages as $message) {

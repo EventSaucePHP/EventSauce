@@ -14,7 +14,7 @@ interface AggregateRootId
     /**
      * @param string $aggregateRootId
      *
-     * @return static
+     * @return AggregateRootId
      */
     public static function fromString(string $aggregateRootId): AggregateRootId;
 }
