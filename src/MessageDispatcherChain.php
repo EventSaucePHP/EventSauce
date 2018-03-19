@@ -11,11 +11,17 @@ class MessageDispatcherChain implements MessageDispatcher
      */
     private $dispatchers;
 
+    /**
+     * @param MessageDispatcher[] ...$dispatchers
+     */
     public function __construct(MessageDispatcher ...$dispatchers)
     {
         $this->dispatchers = $dispatchers;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function dispatch(Message ...$messages)
     {
         foreach ($this->dispatchers as $dispatcher) {

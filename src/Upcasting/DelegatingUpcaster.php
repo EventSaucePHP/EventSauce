@@ -10,7 +10,7 @@ use Generator;
 final class DelegatingUpcaster implements Upcaster
 {
     /**
-     * @var DelegatableUpcaster[][]
+     * @var DelegatableUpcaster[]
      */
     private $upcasters;
 
@@ -21,6 +21,11 @@ final class DelegatingUpcaster implements Upcaster
         }
     }
 
+    /**
+     * @param array $message
+     *
+     * @return Upcaster|null
+     */
     public function upcaster(array $message): ?Upcaster
     {
         $type = $message['headers'][Header::EVENT_TYPE];
@@ -34,6 +39,9 @@ final class DelegatingUpcaster implements Upcaster
         return null;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function upcast(array $message): Generator
     {
         if ($upcaster = $this->upcaster($message)) {
@@ -45,6 +53,9 @@ final class DelegatingUpcaster implements Upcaster
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function canUpcast(string $type, array $message): bool
     {
         return isset($this->upcasters[$type]);

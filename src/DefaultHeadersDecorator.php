@@ -19,12 +19,21 @@ class DefaultHeadersDecorator implements MessageDecorator
      */
     private $clock;
 
+    /**
+     * @param ClassNameInflector|null $inflector
+     * @param Clock|null              $clock
+     */
     public function __construct(ClassNameInflector $inflector = null, Clock $clock = null)
     {
         $this->inflector = $inflector ?: new DotSeparatedSnakeCaseInflector();
         $this->clock = $clock ?: new SystemClock();
     }
 
+    /**
+     * @param Message $message
+     *
+     * @return Message
+     */
     public function decorate(Message $message): Message
     {
         $event = $message->event();

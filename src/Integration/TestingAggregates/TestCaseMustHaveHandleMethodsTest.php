@@ -11,6 +11,9 @@ use LogicException;
 
 class TestCaseMustHaveHandleMethodsTest extends AggregateRootTestCase
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function newAggregateRootId(): AggregateRootId
     {
         return UuidAggregateRootId::create();
