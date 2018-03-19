@@ -18,12 +18,7 @@ class DotSeparatedSnakeCaseInflector implements ClassNameInflector
         return str_replace(' ', '', ucwords(str_replace('_', ' ', str_replace('.', '\\ ', $eventName))));
     }
 
-    /**
-     * @param object $instance
-     *
-     * @return string
-     */
-    public function instanceToType($instance): string
+    public function instanceToType(object $instance): string
     {
         return $this->classNameToType(get_class($instance));
     }

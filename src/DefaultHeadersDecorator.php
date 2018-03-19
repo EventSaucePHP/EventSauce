@@ -27,12 +27,9 @@ class DefaultHeadersDecorator implements MessageDecorator
 
     public function decorate(Message $message): Message
     {
-        $event = $message->event();
-        $headers = [
-            Header::EVENT_TYPE        => $this->inflector->instanceToType($event),
+        return $message->withHeaders([
+            Header::EVENT_TYPE        => $this->inflector->instanceToType($message->event()),
             Header::TIME_OF_RECORDING => $this->clock->pointInTime()->toString(),
-        ];
-
-        return $message->withHeaders($headers);
+        ]);
     }
 }

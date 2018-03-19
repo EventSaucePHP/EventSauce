@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-use EventSauce\EventSourcing\Event;
 use LogicException;
 use const null;
 use function array_filter;
@@ -20,27 +19,32 @@ class CodeDumper
      */
     private $definitionGroup;
 
-    public function dump(DefinitionGroup $definitionGroup, bool $withHelpers = true): string
+    public function dump(DefinitionGroup $definitionGroup, bool $withHelpers = true, bool $withSerialization = true): string
     {
         $this->definitionGroup = $definitionGroup;
-        $eventsCode = $this->dumpEvents($definitionGroup->events(), $withHelpers);
+        $eventsCode = $this->dumpEvents($definitionGroup->events(), $withHelpers, $withSerialization);
         $commandCode = $this->dumpCommands($definitionGroup->commands());
         $namespace = $definitionGroup->namespace();
         $allCode = join(array_filter([$eventsCode, $commandCode]), "\n\n");
+
+        if ($withSerialization) {
+            $namespace .= ";
+
+use EventSauce\EventSourcing\Serialization\SerializableEvent";
+
+        }
 
         return <<<EOF
 <?php
 
 namespace $namespace;
 
-use EventSauce\\EventSourcing\\Event;
-
 $allCode
 
 EOF;
     }
 
-    private function dumpEvents(array $events, bool $withHelpers): string
+    private function dumpEvents(array $events, bool $withHelpers, bool $withSerialization): string
     {
         $code = [];
 
@@ -55,9 +59,10 @@ EOF;
             $methods = $this->dumpMethods($event);
             $deserializer = $this->dumpSerializationMethods($event);
             $testHelpers = $withHelpers ? $this->dumpTestHelpers($event) : '';
+            $implements = $withSerialization ? ' implements SerializableEvent' : '';
 
             $code[] = <<<EOF
-final class $name implements Event
+final class $name$implements
 {
 $fields$constructor$methods$deserializer
 
@@ -174,7 +179,7 @@ EOF;
         }
 
         return <<<EOF
-    public static function fromPayload(array \$payload): Event
+    public static function fromPayload(array \$payload): SerializableEvent
     {
         return new $name($arguments);
     }

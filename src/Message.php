@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing;
 final class Message
 {
     /**
-     * @var Event
+     * @var object
      */
     private $event;
 
@@ -16,7 +16,7 @@ final class Message
      */
     private $headers;
 
-    public function __construct(Event $event, array $metadata = [])
+    public function __construct(object $event, array $metadata = [])
     {
         $this->event = $event;
         $this->headers = $metadata;
@@ -53,7 +53,7 @@ final class Message
         return $this->headers;
     }
 
-    public function event(): Event
+    public function event(): object
     {
         return $this->event;
     }

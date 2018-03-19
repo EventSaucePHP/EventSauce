@@ -2,11 +2,11 @@
 
 namespace Without\Fields;
 
-use EventSauce\EventSourcing\Event;
+use EventSauce\EventSourcing\Serialization\SerializableEvent;
 
-final class WithoutFields implements Event
+final class WithoutFields implements SerializableEvent
 {
-    public static function fromPayload(array $payload): Event
+    public static function fromPayload(array $payload): SerializableEvent
     {
         return new WithoutFields();
     }

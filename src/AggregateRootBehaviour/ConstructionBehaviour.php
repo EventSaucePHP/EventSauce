@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing\AggregateRootBehaviour;
 
 use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\Event;
+use EventSauce\EventSourcing\Serialization\SerializableEvent;
 use Generator;
 
 trait ConstructionBehaviour
@@ -52,5 +52,5 @@ trait ConstructionBehaviour
         return $aggregateRoot;
     }
 
-    abstract protected function apply(Event $event);
+    abstract protected function apply(object $event);
 }

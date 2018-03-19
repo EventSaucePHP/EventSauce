@@ -2,9 +2,9 @@
 
 namespace DefinedWith\Yaml;
 
-use EventSauce\EventSourcing\Event;
+use EventSauce\EventSourcing\Serialization\SerializableEvent;
 
-final class WeWentYamling implements Event
+final class WeWentYamling implements SerializableEvent
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -33,7 +33,7 @@ final class WeWentYamling implements Event
     {
         return $this->slogan;
     }
-    public static function fromPayload(array $payload): Event
+    public static function fromPayload(array $payload): SerializableEvent
     {
         return new WeWentYamling(
             \Ramsey\Uuid\Uuid::fromString($payload['reference']),

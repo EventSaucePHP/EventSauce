@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing\Serialization;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\ClassNameInflector;
 use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
-use EventSauce\EventSourcing\Event;
+use EventSauce\EventSourcing\Serialization\SerializableEvent;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use Generator;
@@ -19,15 +19,23 @@ final class ConstructingMessageSerializer implements MessageSerializer
      */
     private $classNameInflector;
 
-    public function __construct(ClassNameInflector $classNameInflector = null)
-    {
+    /**
+     * @var EventSerializer
+     */
+    private $eventSerializer;
+
+    public function __construct(
+        ClassNameInflector $classNameInflector = null,
+        EventSerializer $eventSerializer = null
+    ) {
         $this->classNameInflector = $classNameInflector ?: new DotSeparatedSnakeCaseInflector();
+        $this->eventSerializer = $eventSerializer ?: new ConstructingEventSerializer();
     }
 
     public function serializeMessage(Message $message): array
     {
         $event = $message->event();
-        $payload = $event->toPayload();
+        $payload = $this->eventSerializer->serializeEvent($event);
         $headers = $message->headers();
         $aggregateRootId = $headers[Header::AGGREGATE_ROOT_ID] ?? null;
 
@@ -50,9 +58,8 @@ final class ConstructingMessageSerializer implements MessageSerializer
             $payload['headers'][Header::AGGREGATE_ROOT_ID] = $aggregateRootIdClassName::fromString($payload['headers'][Header::AGGREGATE_ROOT_ID]);
         }
 
-        /** @var Event $className */
         $className = $this->classNameInflector->typeToClassName($payload['headers'][Header::EVENT_TYPE]);
-        $event = $className::fromPayload($payload['payload']);
+        $event = $this->eventSerializer->unserializePayload($className, $payload['payload']);
 
         yield new Message($event, $payload['headers']);
     }

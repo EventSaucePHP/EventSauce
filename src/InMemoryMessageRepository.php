@@ -14,7 +14,7 @@ class InMemoryMessageRepository implements MessageRepository
     private $messages = [];
 
     /**
-     * @var Event[]
+     * @var object[]
      */
     private $lastCommit = [];
 

@@ -2,9 +2,9 @@
 
 namespace Acme\BusinessProcess;
 
-use EventSauce\EventSourcing\Event;
+use EventSauce\EventSourcing\Serialization\SerializableEvent;
 
-final class UserSubscribedFromMailingList implements Event
+final class UserSubscribedFromMailingList implements SerializableEvent
 {
     /**
      * @var string
@@ -33,7 +33,7 @@ final class UserSubscribedFromMailingList implements Event
     {
         return $this->mailingList;
     }
-    public static function fromPayload(array $payload): Event
+    public static function fromPayload(array $payload): SerializableEvent
     {
         return new UserSubscribedFromMailingList(
             (string) $payload['username'],
