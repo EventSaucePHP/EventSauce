@@ -19,7 +19,7 @@ class InMemoryMessageRepository implements MessageRepository
     private $lastCommit = [];
 
     /**
-     * @return Event[]
+     * @return object[]
      */
     public function lastCommit(): array
     {
