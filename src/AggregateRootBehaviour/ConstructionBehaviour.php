@@ -6,7 +6,6 @@ namespace EventSauce\EventSourcing\AggregateRootBehaviour;
 
 use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
 use Generator;
 
 trait ConstructionBehaviour
