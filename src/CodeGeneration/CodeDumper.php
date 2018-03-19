@@ -31,7 +31,6 @@ class CodeDumper
             $namespace .= ";
 
 use EventSauce\EventSourcing\Serialization\SerializableEvent";
-
         }
 
         return <<<EOF

@@ -7,7 +7,6 @@ namespace EventSauce\EventSourcing\Serialization;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\ClassNameInflector;
 use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use Generator;
