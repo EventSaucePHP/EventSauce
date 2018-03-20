@@ -2,9 +2,9 @@
 
 namespace Group\With\Defaults;
 
-use EventSauce\EventSourcing\Event;
+use EventSauce\EventSourcing\Serialization\SerializableEvent;
 
-final class EventWithDescription implements Event
+final class EventWithDescription implements SerializableEvent
 {
     /**
      * @var string
@@ -21,7 +21,7 @@ final class EventWithDescription implements Event
     {
         return $this->description;
     }
-    public static function fromPayload(array $payload): Event
+    public static function fromPayload(array $payload): SerializableEvent
     {
         return new EventWithDescription(
             (string) $payload['description']);

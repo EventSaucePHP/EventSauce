@@ -4,23 +4,21 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\AggregateRootBehaviour;
 
-use EventSauce\EventSourcing\Event;
-
 trait EventRecordingBehaviour
 {
     /**
-     * @var Event[]
+     * @var object[]
      */
     private $recordedEvents = [];
 
-    protected function recordThat(Event $event)
+    protected function recordThat(object $event)
     {
         $this->apply($event);
         $this->recordedEvents[] = $event;
     }
 
     /**
-     * @return Event[]
+     * @return object[]
      */
     public function releaseEvents(): array
     {
@@ -30,5 +28,5 @@ trait EventRecordingBehaviour
         return $releasedEvents;
     }
 
-    abstract protected function apply(Event $event);
+    abstract protected function apply(object $event);
 }

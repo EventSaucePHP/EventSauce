@@ -2,9 +2,9 @@
 
 namespace EventsFrom\OtherTypes;
 
-use EventSauce\EventSourcing\Event;
+use EventSauce\EventSourcing\Serialization\SerializableEvent;
 
-final class BaseEvent implements Event
+final class BaseEvent implements SerializableEvent
 {
     /**
      * @var int
@@ -21,7 +21,7 @@ final class BaseEvent implements Event
     {
         return $this->age;
     }
-    public static function fromPayload(array $payload): Event
+    public static function fromPayload(array $payload): SerializableEvent
     {
         return new BaseEvent(
             (int) $payload['age']);
@@ -36,7 +36,7 @@ final class BaseEvent implements Event
 
 }
 
-final class ExtendedEvent implements Event
+final class ExtendedEvent implements SerializableEvent
 {
     /**
      * @var int
@@ -53,7 +53,7 @@ final class ExtendedEvent implements Event
     {
         return $this->age;
     }
-    public static function fromPayload(array $payload): Event
+    public static function fromPayload(array $payload): SerializableEvent
     {
         return new ExtendedEvent(
             (int) $payload['age']);

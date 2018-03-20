@@ -2,7 +2,7 @@
 
 namespace With\Commands;
 
-use EventSauce\EventSourcing\Event;
+use EventSauce\EventSourcing\Serialization\SerializableEvent;
 
 final class DoSomething
 {

@@ -66,10 +66,10 @@ final class AggregateRootRepository
         );
     }
 
-    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, Event ...$events)
+    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events)
     {
         $metadata = [Header::AGGREGATE_ROOT_ID => $aggregateRootId];
-        $messages = array_map(function (Event $event) use ($metadata, &$aggregateRootVersion) {
+        $messages = array_map(function (object $event) use ($metadata, &$aggregateRootVersion) {
             return $this->decorator->decorate(new Message(
                 $event,
                 $metadata + [Header::AGGREGATE_ROOT_VERSION => ++$aggregateRootVersion]

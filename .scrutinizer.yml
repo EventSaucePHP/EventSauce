@@ -13,3 +13,10 @@ filter:
 checks:
     php:
         duplication: false
+
+build:
+    nodes:
+        analysis:
+            tests:
+                override:
+                    - php-scrutinizer-run

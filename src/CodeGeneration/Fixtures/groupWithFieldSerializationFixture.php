@@ -2,9 +2,9 @@
 
 namespace Group\With\FieldDeserialization;
 
-use EventSauce\EventSourcing\Event;
+use EventSauce\EventSourcing\Serialization\SerializableEvent;
 
-final class WithFieldSerializers implements Event
+final class WithFieldSerializers implements SerializableEvent
 {
     /**
      * @var array
@@ -21,7 +21,7 @@ final class WithFieldSerializers implements Event
     {
         return $this->items;
     }
-    public static function fromPayload(array $payload): Event
+    public static function fromPayload(array $payload): SerializableEvent
     {
         return new WithFieldSerializers(
             array_map(function ($property) {

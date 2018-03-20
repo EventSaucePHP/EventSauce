@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Integration\Upcasting;
 
-use EventSauce\EventSourcing\Event;
+use EventSauce\EventSourcing\Serialization\SerializableEvent;
 
-class UpcastedEventStub implements Event
+class UpcastedEventStub implements SerializableEvent
 {
     /**
      * @var string
@@ -23,7 +23,7 @@ class UpcastedEventStub implements Event
         return ['property' => $this->property];
     }
 
-    public static function fromPayload(array $payload): Event
+    public static function fromPayload(array $payload): SerializableEvent
     {
         return new UpcastedEventStub($payload['property'] ?? 'undefined');
     }

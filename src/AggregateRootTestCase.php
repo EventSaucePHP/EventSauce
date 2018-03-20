@@ -35,7 +35,7 @@ abstract class AggregateRootTestCase extends TestCase
     private $caughtException;
 
     /**
-     * @var Event[]
+     * @var object[]
      */
     private $expectedEvents = [];
 
@@ -116,7 +116,7 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @return $this
      */
-    protected function given(Event ...$events)
+    protected function given(object ...$events)
     {
         $this->repository->persistEvents($this->aggregateRootId(), 0, ...$events);
         $this->messageRepository->purgeLastCommit();
@@ -150,7 +150,7 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @return $this
      */
-    protected function then(Event ...$events)
+    protected function then(object ...$events)
     {
         $this->expectedEvents = $events;
 
@@ -177,7 +177,7 @@ abstract class AggregateRootTestCase extends TestCase
         return $this;
     }
 
-    protected function assertLastCommitEqualsEvents(Event ...$events)
+    protected function assertLastCommitEqualsEvents(object ...$events)
     {
         self::assertEquals($events, $this->messageRepository->lastCommit(), 'Events are not equal.');
     }

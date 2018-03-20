@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": "^7.2",
         "ramsey/uuid": "^3.6",
         "symfony/yaml": "^3.2"
     },
