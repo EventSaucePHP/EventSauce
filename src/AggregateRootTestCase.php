@@ -64,14 +64,14 @@ abstract class AggregateRootTestCase extends TestCase
      */
     protected function setUpEventSauce()
     {
-        $className = $this->aggregateRootClassName();
+        $aggregateRootFactory = $this->aggregateRootFactory();
         $this->clock = new TestClock();
         $this->aggregateRootId = $this->newAggregateRootId();
         $this->messageRepository = new InMemoryMessageRepository();
         $dispatcher = $this->messageDispatcher();
         $decorator = $this->messageDecorator();
         $this->repository = new AggregateRootRepository(
-            $className,
+            $aggregateRootFactory,
             $this->messageRepository,
             $dispatcher,
             $decorator
@@ -111,7 +111,12 @@ abstract class AggregateRootTestCase extends TestCase
 
     abstract protected function newAggregateRootId(): AggregateRootId;
 
-    abstract protected function aggregateRootClassName(): string;
+    abstract protected function aggregateRootFactory(): AggregateRootFactory;
+
+    protected function reconstitutableAggregateRootFactory(string $className): AggregateRootFactory
+    {
+        return new ReconstitutableAggregateRootFactory($className);
+    }
 
     /**
      * @return $this

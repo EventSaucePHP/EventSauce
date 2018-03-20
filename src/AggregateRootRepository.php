@@ -9,9 +9,9 @@ use Generator;
 final class AggregateRootRepository
 {
     /**
-     * @var string
+     * @var AggregateRootFactory
      */
-    private $aggregateRootClassName;
+    private $aggregateRootFactory;
 
     /**
      * @var MessageRepository
@@ -29,24 +29,23 @@ final class AggregateRootRepository
     private $dispatcher;
 
     public function __construct(
-        string $aggregateRootClassName,
+        AggregateRootFactory $aggregateRootFactory,
         MessageRepository $messageRepository,
         MessageDispatcher $dispatcher = null,
         MessageDecorator $decorator = null
     ) {
-        $this->aggregateRootClassName = $aggregateRootClassName;
         $this->repository = $messageRepository;
         $this->dispatcher = $dispatcher ?: new SynchronousMessageDispatcher();
         $this->decorator = $decorator ?: new DefaultHeadersDecorator();
+        $this->aggregateRootFactory = $aggregateRootFactory;
     }
 
     public function retrieve(AggregateRootId $aggregateRootId): AggregateRoot
     {
-        /** @var AggregateRoot $className */
-        $className = $this->aggregateRootClassName;
-        $events = $this->retrieveAllEvents($aggregateRootId);
-
-        return $className::reconstituteFromEvents($aggregateRootId, $events);
+        return $this->aggregateRootFactory->reconstituteFromEvents(
+            $aggregateRootId,
+            $this->retrieveAllEvents($aggregateRootId)
+        );
     }
 
     private function retrieveAllEvents(AggregateRootId $aggregateRootId): Generator
