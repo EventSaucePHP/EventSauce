@@ -8,6 +8,7 @@ class ConstructingEventSerializer implements EventSerializer
 {
     /**
      * @param SerializableEvent $event
+     *
      * @return array
      */
     public function serializeEvent(object $event): array
@@ -17,7 +18,7 @@ class ConstructingEventSerializer implements EventSerializer
 
     public function unserializePayload(string $className, array $payload): object
     {
-        /** @var SerializableEvent $className */
+        /* @var SerializableEvent $className */
         return $className::fromPayload($payload);
     }
 }

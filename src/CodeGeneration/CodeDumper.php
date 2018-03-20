@@ -7,7 +7,6 @@ namespace EventSauce\EventSourcing\CodeGeneration;
 use LogicException;
 use const null;
 use function array_filter;
-use function join;
 use function sprintf;
 use function ucfirst;
 use function var_export;
