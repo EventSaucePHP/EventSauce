@@ -70,7 +70,7 @@ abstract class AggregateRootTestCase extends TestCase
         $this->messageRepository = new InMemoryMessageRepository();
         $dispatcher = $this->messageDispatcher();
         $decorator = $this->messageDecorator();
-        $this->repository = new AggregateRootRepository(
+        $this->repository = $this->aggregateRootRepository(
             $className,
             $this->messageRepository,
             $dispatcher,
@@ -224,5 +224,19 @@ abstract class AggregateRootTestCase extends TestCase
     private function messageDecorator(): MessageDecorator
     {
         return new MessageDecoratorChain(new DefaultHeadersDecorator());
+    }
+
+    protected function aggregateRootRepository(
+        string $className,
+        MessageRepository $repository,
+        MessageDispatcher $dispatcher,
+        MessageDecorator $decorator
+    ): AggregateRootRepository {
+        return new ConstructingAggregateRootRepository(
+            $className,
+            $repository,
+            $dispatcher,
+            $decorator
+        );
     }
 }
