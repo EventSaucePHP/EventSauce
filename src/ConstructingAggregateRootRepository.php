@@ -60,7 +60,7 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
 
     public function persist(object $aggregateRoot)
     {
-        assert($aggregateRoot instanceof AggregateRoot, "Expected \$aggregateRoot to be an instance of " . AggregateRoot::class);
+        assert($aggregateRoot instanceof AggregateRoot, 'Expected $aggregateRoot to be an instance of ' . AggregateRoot::class);
 
         $this->persistEvents(
             $aggregateRoot->aggregateRootId(),
