@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing;
 
 use EventSauce\EventSourcing\AggregateRootBehaviour\AggregateRootBehaviour;
 
-abstract class BaseAggregateRoot implements AggregateRoot
+abstract class BaseAggregateRoot implements ReconstitutableAggregateRoot
 {
     use AggregateRootBehaviour;
 }

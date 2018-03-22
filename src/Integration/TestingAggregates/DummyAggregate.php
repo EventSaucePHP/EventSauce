@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
 use EventSauce\EventSourcing\BaseAggregateRoot;
+use EventSauce\EventSourcing\ReconstitutableAggregateRoot;
 
-class DummyAggregate extends BaseAggregateRoot
+class DummyAggregate extends BaseAggregateRoot implements ReconstitutableAggregateRoot
 {
     private $incrementedNumber = 0;
 

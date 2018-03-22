@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
+use EventSauce\EventSourcing\AggregateRootFactory;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootTestCase;
 use EventSauce\EventSourcing\UuidAggregateRootId;
@@ -16,11 +17,6 @@ class TestCaseMustHaveHandleMethodsTest extends AggregateRootTestCase
         return UuidAggregateRootId::create();
     }
 
-    protected function aggregateRootClassName(): string
-    {
-        return DummyAggregate::class;
-    }
-
     /**
      * @test
      */
@@ -29,5 +25,10 @@ class TestCaseMustHaveHandleMethodsTest extends AggregateRootTestCase
         $this->expectException(LogicException::class);
         $this->when(new DummyCommand($this->aggregateRootId()));
         $this->assertScenario();
+    }
+
+    protected function aggregateRootFactory(): AggregateRootFactory
+    {
+        return $this->reconstitutableAggregateRootFactory(DummyAggregate::class);
     }
 }

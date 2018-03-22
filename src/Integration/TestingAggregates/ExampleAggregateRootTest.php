@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
+use EventSauce\EventSourcing\AggregateRootFactory;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\AggregateRootTestCase;
@@ -16,9 +17,9 @@ use LogicException;
 
 class ExampleAggregateRootTest extends AggregateRootTestCase
 {
-    protected function aggregateRootClassName(): string
+    protected function aggregateRootFactory(): AggregateRootFactory
     {
-        return DummyAggregate::class;
+        return $this->reconstitutableAggregateRootFactory(DummyAggregate::class);
     }
 
     protected function commandHandler(AggregateRootRepository $repository, Clock $clock)
