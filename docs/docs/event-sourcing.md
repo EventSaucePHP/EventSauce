@@ -41,7 +41,7 @@ style of programming the focus is put on communication. Because we're
 primarily modelling using messages communicating change is very easy to
 facilitate.
 
-## The cost
+## The cost and trade-offs
 
 Event sourcing is one of the bigger paradigm shifts in software modelling.
 It is also not a cost-free solution. Like many things in our work-field,
