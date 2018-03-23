@@ -20,6 +20,20 @@ $files = array_map(
     )
 );
 
+function creation_date(string $path): string
+{
+    $date = shell_exec("git --no-pager log --diff-filter=A -1 --format=\"%ai\" -- ".$path);
+
+    return explode(' ', $date)[0];
+}
+
+function modified_date(string $path): string
+{
+    $date = shell_exec("git --no-pager log -1 --format=\"%ai\" -- ".$path);
+
+    return explode(' ', $date)[0];
+}
+
 foreach ($files as $path) {
     $contents = file_get_contents($path);
     $result = preg_match('/^---\n((?:.*\n)*)---/mU', $contents, $matches, PREG_OFFSET_CAPTURE);
@@ -34,15 +48,11 @@ foreach ($files as $path) {
     $document = rtrim(substr($contents, $end)) . "\n";
 
     $updates = [
-        'published_at' => date('Y-m-d', filectime($path)),
-        'updated_at'   => date('Y-m-d', filemtime($path)),
+        'published_at' => creation_date($path),
+        'updated_at'   => modified_date($path),
     ];
 
     foreach ($updates as $label => $date) {
-        if ($label === 'published_at' && strpos($updatedInfo, $label) !== false) {
-            continue;
-        }
-
         $updatedInfo = preg_replace("/{$label}: .*/", "{$label}: {$date}", $updatedInfo);
 
         if (strpos($updatedInfo, $label) === false) {

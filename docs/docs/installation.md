@@ -1,7 +1,7 @@
 ---
 permalink: /docs/installation/
 title: Installation
-published_at: 2018-03-11
+published_at: 2018-02-21
 updated_at: 2018-03-12
 ---
 

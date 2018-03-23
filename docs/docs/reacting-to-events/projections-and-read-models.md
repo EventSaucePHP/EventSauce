@@ -1,8 +1,8 @@
 ---
 permalink: /docs/reacting-to-events/projections-and-read-models/
 title: Projections and Read Models
-published_at: 2018-03-11
-updated_at: 2018-03-13
+published_at: 2018-03-07
+updated_at: 2018-03-23
 ---
 
 Projections and read models are a big part of event sourcing. They
@@ -24,7 +24,7 @@ interface Consumer
 ```
 
 The `Consumer` accepts a `Message` via the `handle` method. It can
-then retrieve the `Event` from the `Message` to read information
+then retrieve the event from the `Message` to read information
 about something important that happened in the business.
 
 ## Why read models are important/useful

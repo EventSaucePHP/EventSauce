@@ -1,0 +1,43 @@
+```yaml
+namespace: Acme\BusinessProcess
+commands:
+    SubscribeToMailingList:
+        fields:
+            username:
+                type: string
+                example: example-user
+            mailingList:
+                type: string
+                example: list-name
+    UnsubscribeFromMailingList:
+        fields:
+            username:
+                type: string
+                example: example-user
+            mailingList:
+                type: string
+                example: list-name
+            reason:
+                type: string
+                example: no-longer-interested
+events:
+    UserSubscribedToMailingList:
+        fields:
+            username:
+                type: string
+                example: example-user
+            mailingList:
+                type: string
+                example: list-name
+    UserUnsubscribedFromMailingList:
+        fields:
+            username:
+                type: string
+                example: example-user
+            mailingList:
+                type: string
+                example: list-name
+            reason:
+                type: string
+                example: no-longer-interested
+```

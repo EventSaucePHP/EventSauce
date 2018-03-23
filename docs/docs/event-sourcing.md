@@ -2,8 +2,8 @@
 permalink: /docs/event-sourcing/
 title: Event Sourcing
 alternate_title: What is event sourcing?
-published_at: 2018-03-11
-updated_at: 2018-03-12
+published_at: 2018-03-08
+updated_at: 2018-03-23
 ---
 
 Event sourcing is a way to model software where the emphasis is put

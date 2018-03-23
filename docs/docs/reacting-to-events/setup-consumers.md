@@ -1,8 +1,8 @@
 ---
 permalink: /docs/reacting-to-events/setup-consumers/
 title: Setup Consumers
-published_at: 2018-03-11
-updated_at: 2018-03-12
+published_at: 2018-03-07
+updated_at: 2018-03-23
 ---
 
 In order to process events you need to wire up your consumers
@@ -19,7 +19,7 @@ infrastructure.
 ```php
 <?php
 
-use EventSauce\EventSourcing\AggregateRootRepository;
+use EventSauce\EventSourcing\ConstructingAggregateRootRepository;
 use EventSauce\EventSourcing\SynchronousMessageDispatcher;
 
 $messageDispatcher = new SynchronousMessageDispatcher(
@@ -28,7 +28,7 @@ $messageDispatcher = new SynchronousMessageDispatcher(
     new ProcessManager()
 );
 
-$aggregateRootRepository = new AggregateRootRepository(
+$aggregateRootRepository = new ConstructingAggregateRootRepository(
     YourAggregateRootClass::class,
     $messageRepository,
     $messageDispatcher

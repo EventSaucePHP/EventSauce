@@ -2,7 +2,7 @@
 permalink: /algolia-stubs/
 title: Algolia Stubs
 sitemap: false
-published_at: 2018-03-11
+published_at: 2018-03-05
 updated_at: 2018-03-12
 ---
 

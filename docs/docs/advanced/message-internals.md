@@ -1,12 +1,12 @@
 ---
 permalink: /docs/advanced/message-internals/
 title: Message Internals
-published_at: 2018-03-11
-updated_at: 2018-03-13
+published_at: 2018-03-07
+updated_at: 2018-03-23
 ---
 
 The `Message` object is the envelope in which events are stored and
-dispatched to consumers. It contains an `Event` instance and headers.
+dispatched to consumers. It contains an event object and headers.
 The headers are meant for non-domain-event-specific information.
 EventSauce uses a number of headers internally. All of the internal
 headers are available as constants on the `EventSauce\EventSourcing\Header`

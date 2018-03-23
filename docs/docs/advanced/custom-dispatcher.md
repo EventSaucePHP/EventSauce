@@ -1,7 +1,7 @@
 ---
 permalink: /docs/advanced/custom-dispatcher/
 title: Custom Message Dispatcher
-published_at: 2018-03-11
+published_at: 2018-03-07
 updated_at: 2018-03-12
 ---
 
