@@ -12,12 +12,19 @@ as "read-only" objects. This means they have to be instantiated with
 all the data they need and _only_ expose that data. In EventSauce,
 they have but one technical requirement:
 
-> All events must implement the `EventSauce\EventSourcing\Event` interface.
+> All events must be an object.
 
-This interface requires you to implement **2** public functions:
+## Event serialization
+
+In order to persist events they must be serializable. You can create your
+own serialization strategy, or use the default ones provided.
+
+By default the `MessageSerializer` uses the `EventSerializer` to serialize
+events. This serializer requires events to implement the `SerializableEvent`
+interface. This interface requires you to implement **2** public functions:
 
 > 2. `toPayload(): array`
-> 3. `fromPayload(array $payload): Event`
+> 3. `fromPayload(array $payload): SerializableEvent`
 
 ## To and From payload
 
@@ -52,16 +59,16 @@ examples.
 ```php
 <?php
 
-use EventSauce\EventSourcing\Event;
+use EventSauce\EventSourcing\Serialization\SerializableEvent;
 
-class SomeEvent implements Event
+class SomeEvent implements SerializableEvent
 {
     public function toPayload(): array
     {
         return [];
     }
 
-    public static function fromPayload(array $payload): Event
+    public static function fromPayload(array $payload): SerializableEvent
     {
         return new SomeEvent();
     }
@@ -139,155 +146,155 @@ events:
 Which compiles to the following PHP file:
  
  ```php
- <?php
- 
- namespace Acme\BusinessProcess;
- 
- use EventSauce\EventSourcing\Event;
- 
- final class UserSubscribedToMailingList implements Event
- {
-     /**
-      * @var string
-      */
-     private $username;
- 
-     /**
-      * @var string
-      */
-     private $mailingList;
-     public function __construct(
-         string $username,
-         string $mailingList
-     ) {
-         $this->timeOfRecording = $timeOfRecording;
-         $this->username = $username;
-         $this->mailingList = $mailingList;
-     }
- 
-     public function username(): string
-     {
-         return $this->username;
-     }
- 
-     public function mailingList(): string
-     {
-         return $this->mailingList;
-     }
- 
-     public static function fromPayload(array $payload): Event
-     {
-         return new UserSubscribedFromMailingList(
-             (string) $payload['username'],
-             (string) $payload['mailingList']
-         );
-     }
- 
-     public function toPayload(): array
-     {
-         return [
-             'username' => (string) $this->username,
-             'mailingList' => (string) $this->mailingList
-         ];
-     }
- 
-     public function withUsername(string $username): UserSubscribedFromMailingList
-     {
-         $this->username = $username;
-         
-         return $this;
-     }
- 
-     public function withMailingList(string $mailingList): UserSubscribedFromMailingList
-     {
-         $this->mailingList = $mailingList;
-         
-         return $this;
-     }
- 
-     public static function with(): UserSubscribedFromMailingList
-     {
-         return new UserSubscribedFromMailingList(
-             (string) 'example-user',
-             (string) 'list-name'
-         );
-     }
- 
- }
- 
- 
- final class SubscribeToMailingList
- { 
-     /**
-      * @var string
-      */
-     private $username;
- 
-     /**
-      * @var string
-      */
-     private $mailingList;
- 
-     public function __construct(
-         string $username,
-         string $mailingList
-     ) {
-         $this->username = $username;
-         $this->mailingList = $mailingList;
-     }
- 
-     public function username(): string
-     {
-         return $this->username;
-     }
- 
-     public function mailingList(): string
-     {
-         return $this->mailingList;
-     }
- 
- }
- 
- final class UnsubscribeFromMailingList
- {
-     /**
-      * @var string
-      */
-     private $username;
- 
-     /**
-      * @var string
-      */
-     private $mailingList;
- 
-     /**
-      * @var string
-      */
-     private $reason;
- 
-     public function __construct(
-         string $username,
-         string $mailingList,
-         string $reason
-     ) {
-         $this->username = $username;
-         $this->mailingList = $mailingList;
-         $this->reason = $reason;
-     }
- 
-     public function username(): string
-     {
-         return $this->username;
-     }
- 
-     public function mailingList(): string
-     {
-         return $this->mailingList;
-     }
- 
-     public function reason(): string
-     {
-         return $this->reason;
-     }
- }
+<?php
+
+namespace Acme\BusinessProcess;
+
+use EventSauce\EventSourcing\Serialization\SerializableEvent;
+
+final class UserSubscribedToMailingList implements SerializableEvent
+{
+    /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $mailingList;
+    public function __construct(
+        string $username,
+        string $mailingList
+    ) {
+        $this->timeOfRecording = $timeOfRecording;
+        $this->username = $username;
+        $this->mailingList = $mailingList;
+    }
+
+    public function username(): string
+    {
+        return $this->username;
+    }
+
+    public function mailingList(): string
+    {
+        return $this->mailingList;
+    }
+
+    public static function fromPayload(array $payload): SerializableEvent
+    {
+        return new UserSubscribedFromMailingList(
+            (string) $payload['username'],
+            (string) $payload['mailingList']
+        );
+    }
+
+    public function toPayload(): array
+    {
+        return [
+            'username' => (string) $this->username,
+            'mailingList' => (string) $this->mailingList
+        ];
+    }
+
+    public function withUsername(string $username): UserSubscribedFromMailingList
+    {
+        $this->username = $username;
+        
+        return $this;
+    }
+
+    public function withMailingList(string $mailingList): UserSubscribedFromMailingList
+    {
+        $this->mailingList = $mailingList;
+        
+        return $this;
+    }
+
+    public static function with(): UserSubscribedFromMailingList
+    {
+        return new UserSubscribedFromMailingList(
+            (string) 'example-user',
+            (string) 'list-name'
+        );
+    }
+
+}
+
+
+final class SubscribeToMailingList
+{ 
+    /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $mailingList;
+
+    public function __construct(
+        string $username,
+        string $mailingList
+    ) {
+        $this->username = $username;
+        $this->mailingList = $mailingList;
+    }
+
+    public function username(): string
+    {
+        return $this->username;
+    }
+
+    public function mailingList(): string
+    {
+        return $this->mailingList;
+    }
+
+}
+
+final class UnsubscribeFromMailingList
+{
+    /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $mailingList;
+
+    /**
+     * @var string
+     */
+    private $reason;
+
+    public function __construct(
+        string $username,
+        string $mailingList,
+        string $reason
+    ) {
+        $this->username = $username;
+        $this->mailingList = $mailingList;
+        $this->reason = $reason;
+    }
+
+    public function username(): string
+    {
+        return $this->username;
+    }
+
+    public function mailingList(): string
+    {
+        return $this->mailingList;
+    }
+
+    public function reason(): string
+    {
+        return $this->reason;
+    }
+}
  ```

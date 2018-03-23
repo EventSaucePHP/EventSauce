@@ -24,7 +24,7 @@ interface Consumer
 ```
 
 The `Consumer` accepts a `Message` via the `handle` method. It can
-then retrieve the `Event` from the `Message` to read information
+then retrieve the event from the `Message` to read information
 about something important that happened in the business.
 
 ## Why read models are important/useful

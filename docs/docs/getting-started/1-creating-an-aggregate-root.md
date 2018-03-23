@@ -5,9 +5,12 @@ published_at: 2018-03-11
 updated_at: 2018-03-13
 ---
 
-An aggregate root is a class that implements the `EventSauce\EventSourcing\AggregateRoot` 
-interface. In order to make things easy several traits are provided
-which implements the interface so you won't have to.
+An aggregate root is an entity that is modelled using events. The default
+aggregate root repository (`ConstructingAggregateRootRepository`) relies
+on the `AggregateRoot` interface, which your aggregate root must implement.
+
+In order to make things easy several traits are provided which implements
+the interface so you won't have to.
 
 ```php
 <?php

@@ -19,7 +19,7 @@ infrastructure.
 ```php
 <?php
 
-use EventSauce\EventSourcing\AggregateRootRepository;
+use EventSauce\EventSourcing\ConstructingAggregateRootRepository;
 use EventSauce\EventSourcing\SynchronousMessageDispatcher;
 
 $messageDispatcher = new SynchronousMessageDispatcher(
@@ -28,7 +28,7 @@ $messageDispatcher = new SynchronousMessageDispatcher(
     new ProcessManager()
 );
 
-$aggregateRootRepository = new AggregateRootRepository(
+$aggregateRootRepository = new ConstructingAggregateRootRepository(
     YourAggregateRootClass::class,
     $messageRepository,
     $messageDispatcher

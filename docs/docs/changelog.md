@@ -5,6 +5,22 @@ published_at: 2018-03-14
 updated_at: 2018-03-14
 ---
 
+## 0.3.0
+
+### Breaking Changes
+
+* The `AggregateRootRepository` is now an interface. The default implementation
+  is the `ConstructingAggregateRootRepository`.
+* The `Event` interface is removed. A new `SerializableEvent` interface is provided
+  to aid the default serializers. If you use the default serializers your events
+  must implement this interface. The methods are the same as the `Event` interface,
+  so effectively it's a in-place replacement.
+* The `CodeDumper` is changed to ensure code now implements the `SerializableEvent`
+  interface.
+* The `AggregateRootTestCase` now allows you to overwrite the `aggregateRootRepository`
+  method for if/when you have a custom implementation and still want all the benefits
+  of the default test tooling.
+
 ## 0.2.2
 
 ### Altered
