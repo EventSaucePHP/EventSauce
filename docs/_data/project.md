@@ -1,7 +1,0 @@
-```yaml
-title: "EventSauce"
-tagline: "No-nonsense event sourcing for PHP"
-description: "Event sourcing for PHP with easy test tooling."
-version: 0.3.0
-
-```
