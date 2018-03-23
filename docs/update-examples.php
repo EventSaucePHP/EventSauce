@@ -32,6 +32,6 @@ foreach ($files as $path) {
     $dumper = new CodeDumper();
     $loader = new YamlDefinitionLoader();
     $definitionGroup = $loader->load($path);
-    $code = $dumper->dump($definitionGroup);
+    $code = trim($dumper->dump($definitionGroup));
     file_put_contents($pathBase.'-output.md', "```php\n{$code}\n```\n");
 }

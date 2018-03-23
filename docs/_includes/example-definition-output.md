@@ -255,5 +255,4 @@ final class UnsubscribeFromMailingList
         return $this->reason;
     }
 }
-
 ```

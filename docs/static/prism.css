@@ -52,9 +52,8 @@ pre[class*="language-"] {
     border-right-width: 1rem;
     padding: 0;
     margin: 1rem 0rem;
-    max-height: 30rem;
     background: #fff;
-    /*border-radius: 3px;*/
+    border-radius: 3px;
 }
 
 :not(pre) > code[class*="language-"],
