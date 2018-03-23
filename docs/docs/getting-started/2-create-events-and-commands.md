@@ -270,7 +270,7 @@ final class UserUnsubscribedFromMailingList implements SerializableEvent
 
     public static function fromPayload(array $payload): SerializableEvent
     {
-        return new UserSubscribedToMailingList(
+        return new UserUnsubscribedFromMailingList(
             (string) $payload['username'],
             (string) $payload['mailingList'],
             (string) $payload['reason']
