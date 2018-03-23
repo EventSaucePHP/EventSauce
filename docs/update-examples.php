@@ -26,12 +26,12 @@ $files = array_map(
 );
 
 foreach ($files as $path) {
-    $contents = file_get_contents($path);
+    $contents = trim(file_get_contents($path));
     $pathBase = pathinfo($path, PATHINFO_DIRNAME).DIRECTORY_SEPARATOR.pathinfo($path, PATHINFO_FILENAME);
-    file_put_contents($pathBase.'.md', "```yaml\n{$contents}\n```");
+    file_put_contents($pathBase.'.md', "```yaml\n{$contents}\n```\n");
     $dumper = new CodeDumper();
     $loader = new YamlDefinitionLoader();
     $definitionGroup = $loader->load($path);
     $code = $dumper->dump($definitionGroup);
-    file_put_contents($pathBase.'-output.md', "```php\n{$code}\n```");
+    file_put_contents($pathBase.'-output.md', "```php\n{$code}\n```\n");
 }
