@@ -1,0 +1,35 @@
+```yaml
+EventSauce:
+    Introduction: '/docs/'
+    Installation: '/docs/installation/'
+    Event Sourcing: '/docs/event-sourcing/'
+    Core Concepts: '/docs/core-concepts/'
+    Lifecycle <span class="uppercase text-xs p-1 bg-white ml-2 border border-grey-light text-grey-dark rounded">must read</span>: '/docs/lifecycle/'
+    Changelog: '/docs/changelog/'
+
+Getting Started:
+    1. Create an Aggregate Root: '/docs/getting-started/create-an-aggregate-root/'
+    2. Create Events and Commands: '/docs/getting-started/create-events-and-commands/'
+    3. Configure Persistence: '/docs/getting-started/configure-persistence/'
+    4. Bootstrap: '/docs/getting-started/bootstrap/'
+
+Testing:
+    Introduction: '/docs/testing/'
+    Preconditions: '/docs/testing/preconditions/'
+    Handling Exceptions: '/docs/testing/handling-exceptions/'
+    Testing with Time: '/docs/testing/testing-with-time/'
+
+Reacting to events:
+    Setup Consumers: '/docs/reacting-to-events/setup-consumers/'
+    Projection &amp; Read Models: '/docs/reacting-to-events/projections-and-read-models/'
+    Process Managers: '/docs/reacting-to-events/process-managers/'
+
+Advanced Topics:
+    Rebuilding Projections: '/docs/advanced/rebuilding-projections/'
+    Message Internals: '/docs/advanced/message-internals/'
+    Message Decoration: '/docs/advanced/message-decoration/'
+    Upcasting: '/docs/advanced/upcasting/'
+    Custom Repository: '/docs/advanced/custom-repository/'
+    Custom Dispatcher: '/docs/advanced/custom-dispatcher/'
+
+```

@@ -2,7 +2,7 @@
 permalink: /docs/advanced/message-decoration/
 title: Message Decoration
 published_at: 2018-03-11
-updated_at: 2018-03-13
+updated_at: 2018-03-20
 ---
 
 EventSauce provides the possibility to decorate messages. What this

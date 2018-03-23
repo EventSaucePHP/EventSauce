@@ -2,7 +2,7 @@
 permalink: /docs/testing/testing-with-time/
 title: Testing with time
 published_at: 2018-03-14
-updated_at: 2018-03-14
+updated_at: 2018-03-20
 ---
 
 In many cases `time` is a crucial factor in dealing with business
