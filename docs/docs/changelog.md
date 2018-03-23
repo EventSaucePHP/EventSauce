@@ -14,7 +14,7 @@ updated_at: 2018-03-14
 * The `Event` interface is removed. A new `SerializableEvent` interface is provided
   to aid the default serializers. If you use the default serializers your events
   must implement this interface. The methods are the same as the `Event` interface,
-  so effectively it's a in-place replacement.
+  so effectively it's an in-place replacement.
 * The `CodeDumper` is changed to ensure code now implements the `SerializableEvent`
   interface.
 * The `AggregateRootTestCase` now allows you to overwrite the `aggregateRootRepository`
