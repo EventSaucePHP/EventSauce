@@ -12,7 +12,10 @@ as "read-only" objects. This means they have to be instantiated with
 all the data they need and _only_ expose that data. In EventSauce,
 they have but one technical requirement:
 
-> All events must be an object.
+> All events must objects.
+
+Depending on your serialization strategy your events may need to implement
+more methods or indicate they implement a certain interface.
 
 ## Event serialization
 
@@ -65,12 +68,12 @@ class SomeEvent implements SerializableEvent
 {
     public function toPayload(): array
     {
-        return [];
+        return ['property' => $this->property];
     }
 
     public static function fromPayload(array $payload): SerializableEvent
     {
-        return new SomeEvent();
+        return new SomeEvent($payload['property']);
     }
 }
 ```
@@ -163,11 +166,11 @@ final class UserSubscribedToMailingList implements SerializableEvent
      * @var string
      */
     private $mailingList;
+
     public function __construct(
         string $username,
         string $mailingList
     ) {
-        $this->timeOfRecording = $timeOfRecording;
         $this->username = $username;
         $this->mailingList = $mailingList;
     }
