@@ -187,7 +187,7 @@ final class UserSubscribedToMailingList implements SerializableEvent
 
     public static function fromPayload(array $payload): SerializableEvent
     {
-        return new UserSubscribedFromMailingList(
+        return new UserSubscribedToMailingList(
             (string) $payload['username'],
             (string) $payload['mailingList']
         );
@@ -201,25 +201,117 @@ final class UserSubscribedToMailingList implements SerializableEvent
         ];
     }
 
-    public function withUsername(string $username): UserSubscribedFromMailingList
+    public function withUsername(string $username): UserSubscribedToMailingList
     {
         $this->username = $username;
         
         return $this;
     }
 
-    public function withMailingList(string $mailingList): UserSubscribedFromMailingList
+    public function withMailingList(string $mailingList): UserSubscribedToMailingList
     {
         $this->mailingList = $mailingList;
         
         return $this;
     }
 
-    public static function with(): UserSubscribedFromMailingList
+    public static function with(): UserSubscribedToMailingList
     {
-        return new UserSubscribedFromMailingList(
+        return new UserSubscribedToMailingList(
             (string) 'example-user',
             (string) 'list-name'
+        );
+    }
+
+}
+
+
+final class UserUnsubscribedFromMailingList implements SerializableEvent
+{
+    /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $mailingList;
+
+    /**
+     * @var string
+     */
+    private $reason;
+
+    public function __construct(
+        string $username,
+        string $mailingList,
+        string $reason
+    ) {
+        $this->username = $username;
+        $this->mailingList = $mailingList;
+        $this->reason = $reason;
+    }
+
+    public function username(): string
+    {
+        return $this->username;
+    }
+
+    public function mailingList(): string
+    {
+        return $this->mailingList;
+    }
+
+    public function reason(): string
+    {
+        return $this->reason;
+    }
+
+    public static function fromPayload(array $payload): SerializableEvent
+    {
+        return new UserSubscribedToMailingList(
+            (string) $payload['username'],
+            (string) $payload['mailingList'],
+            (string) $payload['reason']
+        );
+    }
+
+    public function toPayload(): array
+    {
+        return [
+            'username' => (string) $this->username,
+            'mailingList' => (string) $this->mailingList
+        ];
+    }
+
+    public function withUsername(string $username): UserSubscribedToMailingList
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function withMailingList(string $mailingList): UserSubscribedToMailingList
+    {
+        $this->mailingList = $mailingList;
+
+        return $this;
+    }
+
+    public function withReason(string $mailingList): UserSubscribedToMailingList
+    {
+        $this->mailingList = $mailingList;
+
+        return $this;
+    }
+
+    public static function with(): UserSubscribedToMailingList
+    {
+        return new UserSubscribedToMailingList(
+            (string) 'example-user',
+            (string) 'list-name',
+            (string) 'no-longer-interested'
         );
     }
 

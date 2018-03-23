@@ -14,7 +14,7 @@ you get your aggregate root from and where you persist (persist recorded events)
 it. When you're retrieving an aggregate root from the repository it's responsible
 for fetching the associated events from the `MessageRepository` and using that
 to create an aggregate root. This process is commonly referred to as 
-**reconstituting and aggregate root**.
+**reconstituting an aggregate root**.
 
 The default implementation shipped in EventSauce is the `ConstructingAggregateRootRepository`.
 This repository is a sane default implementation and also serves as a reference
