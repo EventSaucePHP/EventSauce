@@ -21,8 +21,8 @@ very tiny.
 
 ### Aggregate Root
 
-The aggregate root is our primary modelling space. It's tasked with maintaining the integrity
-of our model, guarding invariants, and recording events.
+The aggregate root is your primary modelling space. It's tasked with maintaining the integrity
+of the model, guarding invariants, and recording events.
 
 ### Aggregate Root Repository
 
