@@ -7,11 +7,24 @@ updated_at: 2018-03-20
 
 ## The Architecture
 
-EventSauce consists of 3 parts; a **core** library, and two parts that you can choose
-based on your requirements. The `MessageRepository`, which is used
-to persist and retrieve events, and a `MessageDispatcher`, which allows you to broadcast
-events to `Consumer`s. The core library ships with a `SynchronousMessageDispatcher`,
-so having a queueing system is not an immediate requirement.
+The core of EventSauce revolves around a set of **3** interfaces:
+
+1. `AggregateRootRepository`
+2. `MessageRepository`
+3. `MessageDispatcher`
+
+The `AggregateRootRepository` is the main interface. It is responsible for
+retrieving and persisting aggregate root objects. It uses the other two
+parts for retrieving and storing `Message` objects (in which events are transported)
+and dispatching messages to `Consumer`s. Because EventSauce is based around these
+interfaces it's very easy to modify how the library is interacts with external
+boundaries (such as databases and queue's). The interfaces also make EventSauce highly
+composable without the need for inheritance.
+
+The library ships with an `InMemoryMessageRepository` (which can be used for testing)
+and a `SynchronousMessageDispatcher`. Apart from that it ships with composition helpers
+such as the `MessageDispatcherChain`. The dispatcher chain allows you to chain dispatchers,
+this allows you to combine synchronous and asynchronous dispatching in the same composition.
 
 Which `MessageRepository` or `MessageDispatcher` you use is totally up to you. There
 are benefits (and downsides) to each queueing mechanism and message repository. Because
