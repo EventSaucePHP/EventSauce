@@ -299,9 +299,9 @@ final class UserUnsubscribedFromMailingList implements SerializableEvent
         return $this;
     }
 
-    public function withReason(string $mailingList): UserSubscribedToMailingList
+    public function withReason(string $reason): UserSubscribedToMailingList
     {
-        $this->mailingList = $mailingList;
+        $this->reason = $reason;
 
         return $this;
     }
