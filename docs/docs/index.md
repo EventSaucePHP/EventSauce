@@ -2,8 +2,8 @@
 permalink: /docs/
 title: Event sourcing for PHP
 hide_title: true
-published_at: 2018-03-11
-updated_at: 2018-03-20
+published_at: 2018-02-21
+updated_at: 2018-03-23
 ---
 
 <div class="text-center mb-8 max-w-md">

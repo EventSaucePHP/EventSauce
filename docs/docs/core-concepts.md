@@ -1,8 +1,8 @@
 ---
 permalink: /docs/core-concepts/
 title: Core Concepts
-published_at: 2018-03-11
-updated_at: 2018-03-20
+published_at: 2018-02-25
+updated_at: 2018-03-23
 ---
 
 ## The Architecture

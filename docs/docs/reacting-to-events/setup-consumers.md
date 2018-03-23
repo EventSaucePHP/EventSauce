@@ -1,7 +1,7 @@
 ---
 permalink: /docs/reacting-to-events/setup-consumers/
 title: Setup Consumers
-published_at: 2018-03-11
+published_at: 2018-03-07
 updated_at: 2018-03-23
 ---
 

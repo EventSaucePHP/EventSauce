@@ -1,7 +1,7 @@
 ---
 permalink: /docs/getting-started/create-events-and-commands/
 title: Create events and commands
-published_at: 2018-03-11
+published_at: 2018-02-25
 updated_at: 2018-03-23
 ---
 

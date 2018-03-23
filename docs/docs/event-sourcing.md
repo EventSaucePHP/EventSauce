@@ -2,7 +2,7 @@
 permalink: /docs/event-sourcing/
 title: Event Sourcing
 alternate_title: What is event sourcing?
-published_at: 2018-03-11
+published_at: 2018-03-08
 updated_at: 2018-03-23
 ---
 
