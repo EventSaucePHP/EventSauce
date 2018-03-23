@@ -12,7 +12,7 @@ as "read-only" objects. This means they have to be instantiated with
 all the data they need and _only_ expose that data. In EventSauce,
 they have but one technical requirement:
 
-> All events must objects.
+> All events must be objects.
 
 Depending on your serialization strategy your events may need to implement
 more methods or indicate they implement a certain interface.
