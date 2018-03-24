@@ -5,6 +5,12 @@ published_at: 2018-03-14
 updated_at: 2018-03-23
 ---
 
+## 0.3.1
+
+### Dependencies
+
+* `symfony/yaml` now allows ^3.2|^4.0
+
 ## 0.3.0
 
 ### Breaking Changes
