@@ -1,36 +1,54 @@
 ---
-permalink: /docs/core-concepts/
-title: Core Concepts
-published_at: 2018-02-25
-updated_at: 2018-03-23
+permalink: /docs/architecture/
+redirect_from: '/docs/core-concepts/'
+title: Architecture
+published_at: 2018-03-24
+updated_at: 2018-03-24
 ---
-
-## The Architecture
 
 The core of EventSauce revolves around a set of **3** interfaces:
 
-1. `AggregateRootRepository`
-2. `MessageRepository`
-3. `MessageDispatcher`
+> 1. `AggregateRootRepository`
+> 2. `MessageRepository`
+> 3. `MessageDispatcher`
 
 The `AggregateRootRepository` is the main interface. It is responsible for
 retrieving and persisting aggregate root objects. It uses the other two
 parts for retrieving and storing `Message` objects (in which events are transported)
 and dispatching messages to `Consumer`s. Because EventSauce is based around these
-interfaces it's very easy to modify how the library is interacts with external
-boundaries (such as databases and queue's). The interfaces also make EventSauce highly
-composable without the need for inheritance.
+interfaces it's very easy to modify how the library behaves. The interfaces also
+make EventSauce highly customizable without the need for inheritance.
+
+Which `MessageRepository` or `MessageDispatcher` you use is totally up to you. There
+are benefits (and downsides) to each queueing mechanism and message repository. Because
+EventSauce places these implementations behind an interface you're free to choose whatever
+fits best. You can even create your own repositories and dispatchers, the interfaces are
+very tiny.
+
+### Replaceable items
+
+> * `AggregateRootRepository` - custom aggregate root construction and persistence
+> * `MessageRepository` - custom message storage (database)
+> * `MessageDispatcher` - customer message dispatching (queue)
+> * `ClassNameInflector` - custom inflection for class-names to event names (interoperability)
+> * `MessageSerializer` - customer message serialization (storage)
+> * `EventSerializer` - customer event serialization (storage)
+
+### Shipped Implementation
+
+The default implementation of the `AggregateRootRepository` is the
+`ConstructingAggregateRootRepository`. This repository requires your aggregate root
+to implement the `AggregateRoot` interface. This implementation supports simple
+aggregate root reconstitution and versioning for sequential integrity.
 
 The library ships with an `InMemoryMessageRepository` (which can be used for testing)
 and a `SynchronousMessageDispatcher`. Apart from that it ships with composition helpers
 such as the `MessageDispatcherChain`. The dispatcher chain allows you to chain dispatchers,
 this allows you to combine synchronous and asynchronous dispatching in the same composition.
 
-Which `MessageRepository` or `MessageDispatcher` you use is totally up to you. There
-are benefits (and downsides) to each queueing mechanism and message repository. Because
-EventSauce places these implementations behind an interface you're free to choose whatever
-fits best. You can even create your own repositories and dispatchers, the interface is
-very tiny.
+## Core Concepts
+
+Below are short descriptions of all parts that make up EventSauce.
 
 ### Aggregate Root
 
@@ -44,7 +62,7 @@ entities. It's your main point of interaction when using the library. You
 retrieve the aggregate root from it. After you've interacted with the aggregate
 root this is also where you persist the newly raised events.
 
-The aggregate root has the following dependencies:
+The aggregate root repository has the following dependencies:
 
 1. An aggregate root class name (so it knows what to reconstitute and return)
 2. A [message repository](#message-repository) from which it retrieves previously recorded events

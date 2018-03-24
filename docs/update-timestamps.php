@@ -31,7 +31,7 @@ function modified_date(string $path): string
 {
     $date = shell_exec("git --no-pager log -1 --format=\"%ai\" -- ".$path);
 
-    return explode(' ', $date)[0];
+    return explode(' ', $date ?: '')[0] ?? null;
 }
 
 foreach ($files as $path) {
@@ -48,8 +48,8 @@ foreach ($files as $path) {
     $document = rtrim(substr($contents, $end)) . "\n";
 
     $updates = [
-        'published_at' => creation_date($path),
-        'updated_at'   => modified_date($path),
+        'published_at' => creation_date($path) ?: date('Y-m-d'),
+        'updated_at'   => modified_date($path) ?: date('Y-m-d'),
     ];
 
     foreach ($updates as $label => $date) {
