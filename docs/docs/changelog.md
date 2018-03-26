@@ -9,7 +9,7 @@ updated_at: 2018-03-23
 
 ### Dependencies
 
-* symfony/yaml now allows ^3.2|^4.0
+* symfony/yaml now allows ^3.2\|^4.0
 
 ## 0.3.0
 
