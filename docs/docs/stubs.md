@@ -3,7 +3,7 @@ permalink: /algolia-stubs/
 title: Algolia Stubs
 sitemap: false
 published_at: 2018-03-05
-updated_at: 2018-03-23
+updated_at: 2018-03-24
 ---
 
 This file contains a html/css skeleton to prevent css overrides to

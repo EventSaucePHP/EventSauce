@@ -3,7 +3,7 @@ layout: leader
 permalink: /
 title: Event sourcing for PHP
 published_at: 2018-02-21
-updated_at: 2018-03-23
+updated_at: 2018-03-24
 ---
 
 <p class="max-width-medium">
