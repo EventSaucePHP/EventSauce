@@ -16,7 +16,7 @@ updated_at: 2018-03-23
 
 [![Code Quality](https://img.shields.io/scrutinizer/g/EventSaucePHP/EventSauce.svg?style=flat-square)](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/EventSaucePHP/EventSauce.svg?style=flat-square)](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master)
-[![Travis](https://img.shields.io/travis/EventSaucePHP/EventSauce.svg?style=flat-square)](https://travis-ci.org/EventSaucePHP/EventSauce)`
+[![Travis](https://img.shields.io/travis/EventSaucePHP/EventSauce.svg?style=flat-square)](https://travis-ci.org/EventSaucePHP/EventSauce)
 [![Source Code](https://img.shields.io/badge/source-eventsaucephp/eventsauce-brightgreen.svg?style=flat-square)](https://github.com/eventsaucephp/eventsauce)
 [![Packagist](https://img.shields.io/badge/packagist-eventsauce/eventsauce-brightgreen.svg?style=flat-square)](https://packagist.org/packages/eventsauce/eventsauce)
 
