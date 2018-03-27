@@ -148,3 +148,8 @@ article blockquote {
 article blockquote :last-child {
     @apply mb-0;
 }
+
+.github-link-icon {
+    position: relative;
+    top: 4px;
+}
