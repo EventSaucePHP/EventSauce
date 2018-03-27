@@ -13,9 +13,11 @@ updated_at: 2018-03-23
     </h1>
 </div>
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master)
-[![Build Status](https://travis-ci.org/EventSaucePHP/EventSauce.svg?branch=master)](https://travis-ci.org/EventSaucePHP/EventSauce)
+
+[![Code Quality](https://img.shields.io/scrutinizer/g/EventSaucePHP/EventSauce.svg?style=flat-square)](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/EventSaucePHP/EventSauce.svg?style=flat-square)](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master)
+[![Travis](https://img.shields.io/travis/EventSaucePHP/EventSauce.svg?style=flat-square)](https://travis-ci.org/EventSaucePHP/EventSauce)
+[![Source Code](https://img.shields.io/badge/source-eventsaucephp/eventsauce-brightgreen.svg?style=flat-square)](//github.com/eventsaucephp/eventsauce)
 
 
 # What is EventSauce?
