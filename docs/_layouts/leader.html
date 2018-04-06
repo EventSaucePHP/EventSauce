@@ -7,34 +7,21 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#be2323" />
-    <meta name="msapplication-TileColor" content="#ebebeb" />
-    <meta name="theme-color" content="#be2323" />
     <title>{{ page.title }} - {{ site.data.project.title }}</title>
     {% if site.data.project.description %}
     <meta name="description" content="{{ site.data.project.description }}" />
     <link href="https://fonts.googleapis.com/css?family=Raleway|Varela+Round" rel="stylesheet" />
     {% endif %}
+    {% unless site.data.dev.dev_mode %}
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114414242-1"></script>
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="EventSauce" />
-    <meta name="twitter:description" content="Pragmatic eventsourcing library for PHP." />
-    <meta name="twitter:url" content="https://eventsauce.io/" />
-    <meta name="twitter:image" content="https://eventsauce.io/static/twitter-card.png" />
-    <meta name="twitter:label1" content="Written by" />
-    <meta name="twitter:data1" content="Frank de Jonge" />
-    <meta name="twitter:site" content="@eventsaucephp" />
-    <meta name="twitter:creator" content="@frankdejonge" />
-    <meta property="og:image:width" content="394" />
-    <meta property="og:image:height" content="315" />
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'UA-114414242-1');
     </script>
-    <!--<base href="//eventsauce.io/">-->
+    <base href="//eventsauce.io/" />
+    {% endunless %}
     <style>
         * {
             box-sizing: border-box;
