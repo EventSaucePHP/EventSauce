@@ -1,5 +1,5 @@
 ---
-layout: leader
+layout: homepage
 permalink: /oops/
 title: Event sourcing for PHP
 sitemap: false

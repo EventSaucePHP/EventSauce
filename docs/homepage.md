@@ -1,5 +1,5 @@
 ---
-layout: leader
+layout: homepage
 permalink: /
 title: Event sourcing for PHP
 published_at: 2018-02-21

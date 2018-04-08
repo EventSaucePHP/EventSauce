@@ -6,6 +6,12 @@ published_at: 2018-03-24
 updated_at: 2018-03-24
 ---
 
+EventSauce is designed to be pragmatic. It's pragmatic because it's easy to setup
+and easy to extend. The library is focused on getting you up and running quickly
+without sacrificing the conceptual integrity.
+
+## Overview
+
 The core of EventSauce revolves around a set of **3** interfaces:
 
 > 1. `AggregateRootRepository`

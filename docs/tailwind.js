@@ -3,6 +3,8 @@ let defaultConfig = require('tailwindcss/defaultConfig')();
 let colors = {
     'transparent': 'transparent',
 
+    'for-code': '#253238',
+
     'red': '#BE2323',
     'red-lighter': '#BE2323',
 
@@ -22,8 +24,13 @@ module.exports = {
     colors: colors,
     screens: {
         'sm': '576px',
+        '-md': {'max': '768px'},
+        'sm-md': {'min': '576px', 'max': '768px'},
         'md': '768px',
+        'md-lg': {'min': '768px', 'max': '992px'},
+        '-lg': {'max': '992px'},
         'lg': '992px',
+        'lg-xl': {'min': '992px', 'max': '1200px'},
         'xl': '1200px',
     },
     fonts: {
@@ -60,6 +67,7 @@ module.exports = {
         'black': 900,
     },
     leading: {
+        'squash': 0,
         'none': 1,
         'tight': 1.25,
         'normal': 1.5,
@@ -170,10 +178,13 @@ module.exports = {
         '2': '0.5rem',
         '3': '0.75rem',
         '4': '1rem',
+        '5': '1.25rem',
         '6': '1.5rem',
         '8': '2rem',
         '10': '3rem',
         '12': '4rem',
+        '14': '6rem',
+        '16': '10rem',
     },
     margin: {
         'auto': 'auto',
@@ -185,6 +196,10 @@ module.exports = {
         '4': '1rem',
         '6': '1.5rem',
         '8': '2rem',
+        '10': '4rem',
+        '12': '4rem',
+        '14': '6rem',
+        '16': '10rem',
     },
     negativeMargin: {
         'px': '1px',
@@ -195,6 +210,10 @@ module.exports = {
         '4': '1rem',
         '6': '1.5rem',
         '8': '2rem',
+        '10': '4rem',
+        '12': '4rem',
+        '14': '6rem',
+        '16': '10rem',
     },
     shadows: {
         default: '0 2px 4px 0 rgba(0,0,0,0.10)',
