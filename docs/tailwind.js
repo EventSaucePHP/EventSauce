@@ -72,6 +72,7 @@ module.exports = {
         'tight': 1.25,
         'normal': 1.5,
         'loose': 2,
+        'very-loose': 3.5
     },
     tracking: {
         'tight': '-0.05em',
