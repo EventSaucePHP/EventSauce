@@ -35,15 +35,21 @@
 </div>
 {% endif %}
 <header id="leader" class="text-center md:py-10">
-    <div id="teaser" class="pt-10 pb-10">
+    <div id="teaser" class="pt-10 pb-6 max-w-sm mx-auto text-center">
         <a href="/">
-        <img class="mb-4" id="logo" src="/static/logo.svg" height="150px" width="150px" alt="EventSauce">
+            <img class="mb-4" id="logo" src="/static/logo.svg" height="150px" width="150px" alt="EventSauce">
         </a>
         <h1 class="text-4xl">
             Event<span class="text-red">Sauce</span>.
         </h1>
         <p class="text-xl max-w-sm mx-auto mt-4 px-8 leading-tight">
             A pragmatic event sourcing library for PHP with a focus on developer experience.
+        </p>
+        <p class="text-md max-w-sm mx-auto mt-10 px-8 leading-tight">
+            <a class="bg-grey-lightest text-black borde border-grey-light shadow rounded py-2 px-4 mr-3" href="/docs/">Docs</a>
+            <a class="bg-grey-lightest text-black borde border-grey-light shadow rounded py-2 px-4 mr-3" href="#newsletter">Newsletter</a>
+            <a class="bg-grey-lightest text-black borde border-grey-light shadow rounded py-2 px-4 mr-3" href="https://github.com/eventsaucephp/eventsauce">GitHub</a>
+            <a class="bg-grey-lightest text-black borde border-grey-light shadow rounded py-2 px-4" href="https://twitter.com/eventsaucephp">Twitter</a>
         </p>
     </div>
 </header>
@@ -150,10 +156,13 @@ events:
     </div>
 </section>
 <section class="mt-10 pt-0 pb-14 w-full text-center md:text-left leading-normal">
-    <form method="post" action="https://widgets.eventsauce.io/signup/" class="max-w-xs mx-auto text-center text-lg">
+    <form id="newsletter" method="post" action="https://widgets.eventsauce.io/signup/" class="max-w-xs mx-auto text-center text-lg">
         <span class="h-16 w-16 p-5 mr-3 rounded-full bg-red inline-block mb-2">
             <img src="/static/icons/announcement.svg" class="inline-block w-full" />
         </span>
+        <h2 class="text-3xl text-black leading-tight mb-2">
+            Newsletter
+        </h2>
         <label class="block">Want to stay up to date?</label>
         <input class="block w-full my-4 leading-normal px-3 py-2 rounded border border-grey-light" type="email" name="email" placeholder="Enter your email" />
         <button type="submit" class="block w-full text-center rounded leading-normal p-2 bg-red text-white">Subscribe</button>
