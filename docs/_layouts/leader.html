@@ -64,7 +64,7 @@
                     Event Sourcing
                 </h2>
                 <p class="text-grey-dark text-lg leading-tight mx-auto max-w-sm">
-                    Model your domain using event sourcing, an event-driven approach designed
+                    Model your domain using events, a message-driven approach designed
                     for dealing with complex business&nbsp;requirements.
                 </p>
             </div>
@@ -84,7 +84,10 @@
                 <h2 class="text-3xl text-black leading-tight mb-2">
                     Expressive Testing
                 </h2>
-                <p class="text-grey-darker text-lg leading-tight mx-auto max-w-sm">Scenario based testing provides a clear and meaningful way to guarantee business requirements are met.</p>
+                <p class="text-grey-darker text-lg leading-tight mx-auto max-w-sm">
+                    Scenario based testing provides an expressive way to
+                    ensure business requirements are met.
+                </p>
             </div>
         </section>
         <section class="md:w-1/2 lg:w-3/5 border-b border-t md:border-l border-grey-light md:rounded-l-lg bg-white">
@@ -127,8 +130,9 @@ class MyEventSourcedTest extends AggregateRootTestCase
                     Code Generation
                 </h2>
                 <p class="text-grey-darker text-lg leading-tight mx-auto max-w-sm">
-                    Code generation provides an easy way to create events (and command) quickly
-                    while keeping them simple.
+                    Generated event and command definitions can greatly speed up your workflow.
+                    The built-in code generation tools provide an easy way to
+                    create them quickly.
                 </p>
             </div>
         </section>
@@ -168,19 +172,6 @@ events:
         <button type="submit" class="block w-full text-center rounded leading-normal p-2 bg-red text-white">Subscribe</button>
     </form>
 </section>
-<section class="bg-black pt-10 pb-10">
-    <div class="max-w-xs mx-auto text-center text-md leading-loose">
-        <img src="/static/frankdejonge.jpg" alt="Frank de Jonge" class="rounded-full h-20 w-20 border border-white border-2"/>
-        <p class="text-grey mb-4">
-            EventSauce is a project by <a class="text-white" target="_blank" href="https://frankdejonge.nl">Frank de Jonge</a>.
-        </p>
-        <p class="text-grey">
-            This website is built using
-            <a href="https://tailwindcss.com/" target="_blank" class="text-white">Tailwind CSS</a>,
-            <a href="https://www.zondicons.com/" target="_blank" class="text-white">Zondicons</a>,
-            and <a href="https://webpack.js.org/" target="_blank" class="text-white">Webpack</a>.
-        </p>
-    </div>
-</section>
+{% include footer.html %}
 </body>
 </html>
