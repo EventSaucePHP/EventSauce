@@ -118,10 +118,6 @@ article p, article table {
     overflow: auto;
 }
 
-article ul, article ol {
-    @apply mb-6 pl-4;
-}
-
 article table td {
     @apply border-t border-grey;
 }
@@ -132,6 +128,10 @@ article table th, article table td {
 
 article blockquote {
     @apply p-4 bg-white border-l-4 border-grey-darker mb-4 shadow;
+}
+
+article ul, article ol {
+    @apply mb-6 pl-4;
 }
 
 article blockquote :last-child {
