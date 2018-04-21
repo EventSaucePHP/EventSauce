@@ -13,11 +13,23 @@ class ConstructingEventSerializer implements EventSerializer
      */
     public function serializeEvent(object $event): array
     {
+        if (!$event instanceof SerializableEvent) {
+            throw new \InvalidArgumentException(
+                'Cannot serialize event that does not implement "EventSauce\EventSourcing\Serialization\SerializableEvent".'
+            );
+        }
+
         return $event->toPayload();
     }
 
     public function unserializePayload(string $className, array $payload): object
     {
+        if (!is_subclass_of($className, SerializableEvent::class)) {
+            throw new \InvalidArgumentException(
+                'Cannot unserialize payload into an event that does not implement "EventSauce\EventSourcing\Serialization\SerializableEvent".'
+            );
+        }
+
         /* @var SerializableEvent $className */
         return $className::fromPayload($payload);
     }
