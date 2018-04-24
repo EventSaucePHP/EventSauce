@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Serialization;
 
-final class EventTypeHintCheckSerializer implements EventSerializer
+final class TypeValidatingEventSerializer implements EventSerializer
 {
     private $serializer;
     private $eventClassName;

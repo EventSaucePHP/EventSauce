@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing\Serialization;
 use PHPStan\Testing\TestCase;
 use EventSauce\EventSourcing\EventStub;
 
-final class EventTypeHintCheckSerializerTest extends TestCase
+final class TypeValidatingEventSerializerTest extends TestCase
 {
     private $serializer;
     private $innerSerializer;
@@ -15,7 +15,7 @@ final class EventTypeHintCheckSerializerTest extends TestCase
     public function setUp()
     {
         $this->innerSerializer = $this->createMock(EventSerializer::class);
-        $this->serializer = new EventTypeHintCheckSerializer(
+        $this->serializer = new TypeValidatingEventSerializer(
             $this->innerSerializer,
             SerializableEvent::class
         );
