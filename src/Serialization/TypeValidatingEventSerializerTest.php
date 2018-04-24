@@ -14,8 +14,9 @@ final class TypeValidatingEventSerializerTest extends TestCase
 
     public function setUp()
     {
+        $this->innerSerializer = new ConstructingEventSerializer();
         $this->serializer = new TypeValidatingEventSerializer(
-            new ConstructingEventSerializer(),
+            $this->innerSerializer,
             SerializableEvent::class
         );
     }
@@ -34,8 +35,10 @@ final class TypeValidatingEventSerializerTest extends TestCase
     public function delegates_serialization_to_decorated_serializer()
     {
         $event = EventStub::create('some value');
-        $data = $this->serializer->serializeEvent($event);
-        $this->assertSame(['value' => 'some value'], $data);
+        $this->assertSame(
+            $this->innerSerializer->serializeEvent($event),
+            $this->serializer->serializeEvent($event)
+        );
     }
 
     /**
@@ -43,8 +46,12 @@ final class TypeValidatingEventSerializerTest extends TestCase
      */
     public function delegates_unserialization_to_decorated_serializer()
     {
-        $object = $this->serializer->unserializePayload(EventStub::class, ['value' => 'some value']);
-        $this->assertSame(['value' => 'some value'], $object->toPayload());
+        $payloadArgs = [EventStub::class, ['value' => 'some value']];
+
+        $this->assertSame(
+            $this->innerSerializer->unserializePayload(...$payloadArgs)->toPayload(),
+            $this->serializer->unserializePayload(...$payloadArgs)->toPayload()
+        );
     }
 
     /**
