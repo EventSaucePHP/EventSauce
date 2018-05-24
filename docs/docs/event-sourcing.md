@@ -8,7 +8,7 @@ updated_at: 2018-03-23
 
 Event sourcing is a way to model software where the emphasis is put
 on why (and how) things change, rather than focusing on the current
-state of the application. Action performed on the system are captured
+state of the application. Actions performed on the system are captured
 in the form of events, which are communicated throughout the system.
 
 Event sourcing is the answer to a very specific set of problems and
