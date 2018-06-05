@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing;
 final class Message
 {
     /**
-     * @var object
+     * @var \object
      */
     private $event;
 

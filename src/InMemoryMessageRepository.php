@@ -14,12 +14,12 @@ class InMemoryMessageRepository implements MessageRepository
     private $messages = [];
 
     /**
-     * @var object[]
+     * @var \object[]
      */
     private $lastCommit = [];
 
     /**
-     * @return object[]
+     * @return \object[]
      */
     public function lastCommit(): array
     {
