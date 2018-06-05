@@ -35,7 +35,7 @@ abstract class AggregateRootTestCase extends TestCase
     private $caughtException;
 
     /**
-     * @var object[]
+     * @var \object[]
      */
     private $expectedEvents = [];
 

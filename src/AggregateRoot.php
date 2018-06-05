@@ -19,7 +19,7 @@ interface AggregateRoot
     public function aggregateRootVersion(): int;
 
     /**
-     * @return object[]
+     * @return \object[]
      */
     public function releaseEvents(): array;
 
