@@ -5,6 +5,12 @@ published_at: 2018-03-14
 updated_at: 2018-03-26
 ---
 
+## 0.4.0
+
+### Fixed
+
+* Code generation now handles types and type aliases better.
+
 ## 0.3.1
 
 ### Dependencies
