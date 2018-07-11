@@ -7,6 +7,7 @@ namespace EventSauce\EventSourcing\Time;
 use DateTimeImmutable;
 use DateTimeZone;
 use EventSauce\EventSourcing\PointInTime;
+use InvalidArgumentException;
 
 class TestClock implements Clock
 {
@@ -36,10 +37,16 @@ class TestClock implements Clock
         $this->time = new DateTimeImmutable('now', $this->timeZone);
     }
 
-    public function fixate(string $dateTime)
+    public function fixate(string $input)
     {
-        $preciseTime = sprintf('%s.000000', $dateTime);
-        $this->time = DateTimeImmutable::createFromFormat('Y-m-d H:i:s.u', $preciseTime, $this->timeZone);
+        $preciseTime = sprintf('%s.000000', $input);
+        $dateTime = DateTimeImmutable::createFromFormat('Y-m-d H:i:s.u', $preciseTime, $this->timeZone);
+
+        if ( ! $dateTime instanceof DateTimeImmutable) {
+            throw new InvalidArgumentException("Invalid input for date/time fixation provided: {$input}");
+        }
+
+        $this->time = $dateTime;
     }
 
     public function dateTime(): DateTimeImmutable

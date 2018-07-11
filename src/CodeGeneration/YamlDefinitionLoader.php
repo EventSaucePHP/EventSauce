@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
+use InvalidArgumentException;
+use function is_array;
 use Symfony\Component\Yaml\Yaml;
 use const PATHINFO_EXTENSION;
 use function file_get_contents;
@@ -20,7 +22,18 @@ class YamlDefinitionLoader implements DefinitionLoader
 
     public function load(string $filename, DefinitionGroup $definitionGroup = null): DefinitionGroup
     {
-        $definition = Yaml::parse(file_get_contents($filename));
+        $fileContents = file_get_contents($filename);
+
+        if ( ! is_string($fileContents)) {
+            throw new InvalidArgumentException("File {$filename} does not contain anything");
+        }
+
+        $definition = Yaml::parse($fileContents);
+
+        if ( ! is_array($definition)) {
+            throw new InvalidArgumentException('The definition is incorrectly formatted');
+        }
+
         $definitionGroup = $definitionGroup ?: new DefinitionGroup();
 
         if (isset($definition['namespace'])) {
