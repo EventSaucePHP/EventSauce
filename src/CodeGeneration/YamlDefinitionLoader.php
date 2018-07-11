@@ -40,7 +40,6 @@ class YamlDefinitionLoader implements DefinitionLoader
         foreach ($types as $type => $handlers) {
             if (isset($handlers['type'])) {
                 $definitionGroup->aliasType($type, $handlers['type']);
-                $type = $handlers['type'];
             }
 
             if (isset($handlers['serializer'])) {
@@ -65,7 +64,7 @@ class YamlDefinitionLoader implements DefinitionLoader
                     $fieldDefinition = ['type' => $fieldDefinition];
                 }
 
-                $command->field($fieldName, $fieldDefinition['type'] ?? null, $fieldDefinition['example'] ?? null);
+                $command->field($fieldName, $fieldDefinition['type'], $fieldDefinition['example'] ?? null);
 
                 if (isset($fieldDefinition['serializer'])) {
                     $command->fieldSerializer($fieldName, $fieldDefinition['serializer']);
@@ -90,7 +89,7 @@ class YamlDefinitionLoader implements DefinitionLoader
                     $fieldDefinition = ['type' => $fieldDefinition];
                 }
 
-                $event->field($fieldName, $fieldDefinition['type'] ?? null, (string) ($fieldDefinition['example'] ?? null));
+                $event->field($fieldName, $fieldDefinition['type'], (string) ($fieldDefinition['example'] ?? null));
 
                 if (isset($fieldDefinition['serializer'])) {
                     $event->fieldSerializer($fieldName, $fieldDefinition['serializer']);

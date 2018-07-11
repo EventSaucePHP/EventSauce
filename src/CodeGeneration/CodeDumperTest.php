@@ -11,21 +11,15 @@ class CodeDumperTest extends TestCase
 {
     /**
      * @test
+     * @dataProvider definitionProvider
      */
-    public function dumping_a_definition()
+    public function dumping_a_definition(DefinitionGroup $definitionGroup, string $fixtureFile)
     {
-        $groups = $this->definitionProvider();
-
-        foreach ($groups as $group) {
-            /** @var DefinitionGroup $definitionGroup */
-            /** @var string $fixtureFile */
-            list($definitionGroup, $fixtureFile) = $group;
-            $dumper = new CodeDumper();
-            $actual = $dumper->dump($definitionGroup);
-            // file_put_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'Fixture.php', $actual);
-            $expected = file_get_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'Fixture.php');
-            $this->assertEquals($expected, $actual, "Expect {$fixtureFile} to match generated code.");
-        }
+        $dumper = new CodeDumper();
+        $actual = $dumper->dump($definitionGroup);
+        // file_put_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'Fixture.php', $actual);
+        $expected = file_get_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'Fixture.php');
+        $this->assertEquals($expected, $actual, "Expect {$fixtureFile} to match generated code.");
     }
 
     public function definitionProvider()
@@ -47,7 +41,7 @@ class CodeDumperTest extends TestCase
         $definitionGroupWithDefaults = DefinitionGroup::create('Group\\With\\Defaults');
         $definitionGroupWithDefaults->fieldDefault('description', 'string', 'This is a description.');
         $definitionGroupWithDefaults->event('EventWithDescription')
-            ->field('description');
+            ->field('description', 'string');
 
         /* test case 4 */
         $groupWithFieldSerialization = DefinitionGroup::create('Group\\With\\FieldDeserialization');

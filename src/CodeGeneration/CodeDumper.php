@@ -9,6 +9,7 @@ use const null;
 use function array_filter;
 use function sprintf;
 use function ucfirst;
+use function var_dump;
 use function var_export;
 
 class CodeDumper
@@ -83,7 +84,7 @@ EOF;
 
         foreach ($fields as $field) {
             $name = $field['name'];
-            $type = $field['type'];
+            $type = $this->definitionGroup->resolveTypeAlias($field['type']);
 
             $code[] = <<<EOF
     /**
@@ -109,7 +110,8 @@ EOF;
         }
 
         foreach ($fields as $field) {
-            $arguments[] = sprintf('        %s $%s', $field['type'], $field['name']);
+            $resolvedType = $this->definitionGroup->resolveTypeAlias($field['type']);
+            $arguments[] = sprintf('        %s $%s', $resolvedType, $field['name']);
             $assignments[] = sprintf('        $this->%s = $%s;', $field['name'], $field['name']);
         }
 
@@ -133,7 +135,7 @@ EOF;
 
         foreach ($this->fieldsFromDefinition($command) as $field) {
             $methods[] = <<<EOF
-    public function {$field['name']}(): {$field['type']}
+    public function {$field['name']}(): {$this->definitionGroup->resolveTypeAlias($field['type'])}
     {
         return \$this->{$field['name']};
     }
@@ -152,16 +154,17 @@ EOF;
         $serializers = [];
 
         foreach ($this->fieldsFromDefinition($event) as $field) {
+            $type = $this->definitionGroup->resolveTypeAlias($field['type']);
             $parameter = sprintf('$payload[\'%s\']', $field['name']);
             $template = $event->deserializerForField($field['name'])
                 ?: $event->deserializerForType($field['type']);
-            $arguments[] = trim(strtr($template, ['{type}' => $field['type'], '{param}' => $parameter]));
+            $arguments[] = trim(strtr($template, ['{type}' => $type, '{param}' => $parameter]));
 
             $property = sprintf('$this->%s', $field['name']);
             $template = $event->serializerForField($field['name'])
                 ?: $event->serializerForType($field['type']);
             $template = sprintf("'%s' => %s", $field['name'], $template);
-            $serializers[] = trim(strtr($template, ['{type}' => $field['type'], '{param}' => $property]));
+            $serializers[] = trim(strtr($template, ['{type}' => $type, '{param}' => $property]));
         }
 
         $arguments = preg_replace('/^.{2,}$/m', '            $0', implode(",\n", $arguments));
@@ -197,6 +200,8 @@ EOF;
         $helpers = [];
 
         foreach ($this->fieldsFromDefinition($event) as $field) {
+            $resolvedType = $this->definitionGroup->resolveTypeAlias($field['type']);
+
             if (null === $field['example']) {
                 $constructor[] = ucfirst($field['name']);
 
@@ -204,7 +209,7 @@ EOF;
                     $constructorArguments .= ', ';
                 }
 
-                $constructorArguments .= sprintf('%s $%s', $field['type'], $field['name']);
+                $constructorArguments .= sprintf('%s $%s', $resolvedType, $field['name']);
                 $constructorValues[] = sprintf('$%s', $field['name']);
             } else {
                 $constructorValues[] = $this->dumpConstructorValue($field, $event);
@@ -213,7 +218,7 @@ EOF;
     /**
      * @codeCoverageIgnore
      */
-    public function $method({$field['type']} \${$field['name']}): {$event->name()}
+    public function $method({$resolvedType} \${$field['name']}): {$event->name()}
     {
         \$this->{$field['name']} = \${$field['name']};
 
@@ -250,15 +255,16 @@ EOF;
     private function dumpConstructorValue(array $field, EventDefinition $event): string
     {
         $parameter = rtrim($field['example']);
+        $resolvedType = $this->definitionGroup->resolveTypeAlias($field['type']);
 
-        if (gettype($parameter) === $field['type']) {
+        if (gettype($parameter) === $resolvedType) {
             $parameter = var_export($parameter, true);
         }
 
         $template = $event->deserializerForField($field['name'])
             ?: $event->deserializerForType($field['type']);
 
-        return rtrim(strtr($template, ['{type}' => $field['type'], '{param}' => $parameter]));
+        return rtrim(strtr($template, ['{type}' => $resolvedType, '{param}' => $parameter]));
     }
 
     /**

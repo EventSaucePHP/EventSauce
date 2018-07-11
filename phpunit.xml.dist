@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
-        colors="true"
-        bootstrap="vendor/autoload.php"
-        addUncoveredFilesFromWhitelist="true"
->
+<phpunit colors="true" bootstrap="vendor/autoload.php">
     <testsuites>
-        <testsuite>
+        <testsuite name="EventSauce">
             <directory suffix="Test.php">src/</directory>
         </testsuite>
     </testsuites>

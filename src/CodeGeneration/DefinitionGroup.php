@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
+use function array_key_exists;
 use EventSauce\EventSourcing\PointInTime;
+use function var_dump;
 
 final class DefinitionGroup
 {
@@ -101,6 +103,8 @@ final class DefinitionGroup
 
     public function typeDeserializer(string $type, string $template)
     {
+        $type = $this->resolveTypeAlias($type);
+
         $this->typeDeserializer[TypeNormalizer::normalize($type)] = $template;
     }
 

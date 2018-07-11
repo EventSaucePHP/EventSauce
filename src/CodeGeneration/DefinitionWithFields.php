@@ -69,10 +69,8 @@ abstract class DefinitionWithFields
         return $this->fieldsFrom;
     }
 
-    public function field(string $name, string $type = null, string $example = null)
+    public function field(string $name, string $type, string $example = null)
     {
-        $type = $this->group->resolveTypeAlias($type);
-        $type = TypeNormalizer::normalize($type ?: $this->group->typeForField($name));
         $example = $example ?: $this->group->exampleForField($name);
         $this->fields[] = compact('name', 'type', 'example');
 
@@ -98,9 +96,9 @@ abstract class DefinitionWithFields
         return $this;
     }
 
-    public function deserializerForField($field)
+    public function deserializerForField($fieldName)
     {
-        return $this->fieldDeserializers[$field] ?? $this->group->deserializerForField($field);
+        return $this->fieldDeserializers[$fieldName] ?? $this->group->deserializerForField($fieldName);
     }
 
     public function deserializerForType($type)
