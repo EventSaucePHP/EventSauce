@@ -9,7 +9,6 @@ use const null;
 use function array_filter;
 use function sprintf;
 use function ucfirst;
-use function var_dump;
 use function var_export;
 
 class CodeDumper
