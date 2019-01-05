@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing;
 
 use function assert;
+use function count;
 use Generator;
 
 final class ConstructingAggregateRootRepository implements AggregateRootRepository
@@ -71,6 +72,10 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
 
     public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events)
     {
+        // decrease the aggregate root version by the number of raised events
+        // so the version of each message represents the version at the time
+        // of recording.
+        $aggregateRootVersion = $aggregateRootVersion - count($events);
         $metadata = [Header::AGGREGATE_ROOT_ID => $aggregateRootId];
         $messages = array_map(function (object $event) use ($metadata, &$aggregateRootVersion) {
             return $this->decorator->decorate(new Message(

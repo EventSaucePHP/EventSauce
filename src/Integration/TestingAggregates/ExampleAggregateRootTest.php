@@ -13,6 +13,7 @@ use EventSauce\EventSourcing\PointInTime;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\UuidAggregateRootId;
 use LogicException;
+use function var_dump;
 
 class ExampleAggregateRootTest extends AggregateRootTestCase
 {
