@@ -38,26 +38,6 @@ trait AggregateRootBehaviour
         return $this->aggregateRootVersion;
     }
 
-    /**
-     * @param AggregateRootId $aggregateRootId
-     * @param Generator       $events
-     *
-     * @return static
-     * @see AggregateRoot::reconstituteFromEvents
-     */
-    public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot
-    {
-        /** @var AggregateRoot|static $aggregateRoot */
-        $aggregateRoot = new static($aggregateRootId);
-
-        /** @var object $event */
-        foreach ($events as $event) {
-            $aggregateRoot->apply($event);
-        }
-
-        return $aggregateRoot;
-    }
-
     protected function apply(object $event)
     {
         $parts = explode('\\', get_class($event));
@@ -80,5 +60,25 @@ trait AggregateRootBehaviour
         $this->recordedEvents = [];
 
         return $releasedEvents;
+    }
+
+    /**
+     * @param AggregateRootId $aggregateRootId
+     * @param Generator       $events
+     *
+     * @return static
+     * @see AggregateRoot::reconstituteFromEvents
+     */
+    public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot
+    {
+        /** @var AggregateRoot|static $aggregateRoot */
+        $aggregateRoot = new static($aggregateRootId);
+
+        /** @var object $event */
+        foreach ($events as $event) {
+            $aggregateRoot->apply($event);
+        }
+
+        return $aggregateRoot;
     }
 }
