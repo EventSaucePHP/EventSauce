@@ -4,7 +4,7 @@ permalink: /thanks/
 title: Event sourcing for PHP
 sitemap: false
 published_at: 2018-02-20
-updated_at: 2018-03-26
+updated_at: 2018-04-09
 ---
 
 <p class="text-xl max-w-sm mx-auto mt-4 px-8 leading-tight">
