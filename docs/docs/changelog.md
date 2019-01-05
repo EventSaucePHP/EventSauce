@@ -2,8 +2,20 @@
 permalink: /docs/changelog/
 title: Changelog
 published_at: 2018-03-14
-updated_at: 2018-07-11
+updated_at: 2019-01-05
 ---
+
+## 0.5.0
+
+### Breaking Changes
+
+The abstract `BaseAggregateRoot` has now been removed and all the traits have
+been collapsed into one. This trait has been moved to the root namespace.
+
+## Fixed
+
+* Multiple interactions and intermediate persisting of aggregates now has correct
+  versioning of messages.
 
 ## 0.4.0
 

@@ -4,7 +4,7 @@ permalink: /oops/
 title: Event sourcing for PHP
 sitemap: false
 published_at: 2018-02-20
-updated_at: 2018-04-09
+updated_at: 2019-01-05
 ---
 
 <form id="newsletter" method="post" action="https://widgets.eventsauce.io/signup/" class="max-w-xs mx-auto mt-6 text-center text-lg leading-normal">

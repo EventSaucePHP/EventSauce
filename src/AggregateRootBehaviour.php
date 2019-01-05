@@ -2,20 +2,26 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\AggregateRootBehaviour;
+namespace EventSauce\EventSourcing;
 
-use EventSauce\EventSourcing\AggregateRoot;
-use EventSauce\EventSourcing\AggregateRootId;
 use Generator;
 
-trait ConstructionBehaviour
+trait AggregateRootBehaviour
 {
     /**
      * @var AggregateRootId
      */
     private $aggregateRootId;
 
+    /**
+     * @var int
+     */
     private $aggregateRootVersion = 0;
+
+    /**
+     * @var object[]
+     */
+    private $recordedEvents = [];
 
     public function __construct(AggregateRootId $aggregateRootId)
     {
@@ -32,24 +38,47 @@ trait ConstructionBehaviour
         return $this->aggregateRootVersion;
     }
 
+    protected function apply(object $event)
+    {
+        $parts = explode('\\', get_class($event));
+        $this->{'apply' . end($parts)}($event);
+        $this->aggregateRootVersion++;
+    }
+
+    protected function recordThat(object $event)
+    {
+        $this->apply($event);
+        $this->recordedEvents[] = $event;
+    }
+
+    /**
+     * @return object[]
+     */
+    public function releaseEvents(): array
+    {
+        $releasedEvents = $this->recordedEvents;
+        $this->recordedEvents = [];
+
+        return $releasedEvents;
+    }
+
     /**
      * @param AggregateRootId $aggregateRootId
      * @param Generator       $events
      *
      * @return static
+     * @see AggregateRoot::reconstituteFromEvents
      */
     public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot
     {
+        /** @var AggregateRoot|static $aggregateRoot */
         $aggregateRoot = new static($aggregateRootId);
 
         /** @var object $event */
         foreach ($events as $event) {
             $aggregateRoot->apply($event);
-            ++$aggregateRoot->aggregateRootVersion;
         }
 
         return $aggregateRoot;
     }
-
-    abstract protected function apply(object $event);
 }

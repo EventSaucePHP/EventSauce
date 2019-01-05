@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
-use EventSauce\EventSourcing\BaseAggregateRoot;
+use EventSauce\EventSourcing\AggregateRoot;
+use EventSauce\EventSourcing\AggregateRootBehaviour;
 
-class DummyAggregate extends BaseAggregateRoot
+class DummyAggregate implements AggregateRoot
 {
+    use AggregateRootBehaviour;
+
     private $incrementedNumber = 0;
 
     public function performDummyTask()
