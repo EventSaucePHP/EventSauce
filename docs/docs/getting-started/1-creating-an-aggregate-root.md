@@ -18,25 +18,13 @@ the interface so you won't have to.
 namespace AcmeCompany\AcmeProject;
 
 use EventSauce\EventSourcing\AggregateRoot;
-use EventSauce\EventSourcing\AggregateRootBehaviour\AggregateRootBehaviour;
-use EventSauce\EventSourcing\AggregateRootBehaviour\ConstructionBehaviour;
-use EventSauce\EventSourcing\AggregateRootBehaviour\EventApplyingBehaviour;
-use EventSauce\EventSourcing\AggregateRootBehaviour\EventRecordingBehaviour;
+use EventSauce\EventSourcing\AggregateRootBehaviour;
 
 class AcmeProcess implements AggregateRoot
 {
-    // Use all traits.
     use AggregateRootBehaviour;
-
-    // OR use individually
-    use ConstructionBehaviour,
-        EventApplyingBehaviour,
-        EventRecordingBehaviour;
 }
 ```
-
-Or if you're feeling extra lazy, you can just extend the `EventSauce\EventSourcing\BaseAggregateRoot`
-base class.
 
 ## Aggregate Root ID
 
