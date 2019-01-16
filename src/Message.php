@@ -16,10 +16,10 @@ final class Message
      */
     private $headers;
 
-    public function __construct(object $event, array $metadata = [])
+    public function __construct(object $event, array $headers = [])
     {
         $this->event = $event;
-        $this->headers = $metadata;
+        $this->headers = $headers;
     }
 
     public function withHeader(string $key, $value): Message
