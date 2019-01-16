@@ -5,10 +5,6 @@ published_at: 2018-03-07
 updated_at: 2018-03-23
 ---
 
-Projections and read models are a big part of event sourcing. They
-are a way to communicating state with the outside world. They're also
-very project-specific.
-
 In EventSauce process managers are nothing more than an implementation of
 the `Consumer` interface. Unlike projections, which feed read models, process
 managers do more than just respond to something that happened. Process
