@@ -6,6 +6,9 @@ namespace EventSauce\EventSourcing;
 
 use Generator;
 
+/**
+ * @see AggregateRootBehaviour
+ */
 interface AggregateRoot
 {
     /**

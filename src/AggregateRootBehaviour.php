@@ -6,6 +6,9 @@ namespace EventSauce\EventSourcing;
 
 use Generator;
 
+/**
+ * @see AggregateRoot
+ */
 trait AggregateRootBehaviour
 {
     /**
