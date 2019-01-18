@@ -118,15 +118,19 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
             ->when(new DummyIncrementCommand($id))
             ->then(new DummyIncrementingHappened(11));
 
-        /** @var Message $lastMessage */
-        $lastMessage = null;
+        /** @var Message[] $messages */
+        $messages = [];
 
+        /** @var Message $message */
         foreach ($this->messageRepository->retrieveAll($id) as $message) {
-            $lastMessage = $message;
+            $messages[] = $message;
         }
 
-        $this->assertInstanceOf(Message::class, $lastMessage);
-        $this->assertEquals(2, $lastMessage->header(Header::AGGREGATE_ROOT_VERSION));
+        $this->assertContainsOnlyInstancesOf(Message::class, $messages);
+
+
+        $this->assertEquals(1, $messages[0]->header(Header::AGGREGATE_ROOT_VERSION));
+        $this->assertEquals(2, $messages[1]->header(Header::AGGREGATE_ROOT_VERSION));
     }
 
     protected function handle($command)
