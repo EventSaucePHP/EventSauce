@@ -77,7 +77,8 @@ class YamlDefinitionLoader implements DefinitionLoader
                     $fieldDefinition = ['type' => $fieldDefinition];
                 }
 
-                $command->field($fieldName, $fieldDefinition['type'], $fieldDefinition['example'] ?? null);
+                $type = $fieldDefinition['type'] ?? $definitionGroup->typeForField($fieldName);
+                $command->field($fieldName, TypeNormalizer::normalize($type), $fieldDefinition['example'] ?? null);
 
                 if (isset($fieldDefinition['serializer'])) {
                     $command->fieldSerializer($fieldName, $fieldDefinition['serializer']);
@@ -102,7 +103,8 @@ class YamlDefinitionLoader implements DefinitionLoader
                     $fieldDefinition = ['type' => TypeNormalizer::normalize($fieldDefinition)];
                 }
 
-                $event->field($fieldName, TypeNormalizer::normalize($fieldDefinition['type']), (string) ($fieldDefinition['example'] ?? null));
+                $type = $fieldDefinition['type'] ?? $definitionGroup->typeForField($fieldName);
+                $event->field($fieldName, TypeNormalizer::normalize($type), (string) ($fieldDefinition['example'] ?? null));
 
                 if (isset($fieldDefinition['serializer'])) {
                     $event->fieldSerializer($fieldName, $fieldDefinition['serializer']);
