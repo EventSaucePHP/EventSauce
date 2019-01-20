@@ -18,7 +18,7 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
     /**
      * @var MessageRepository
      */
-    private $repository;
+    private $messages;
 
     /**
      * @var MessageDecorator
@@ -37,7 +37,7 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
         MessageDecorator $decorator = null
     ) {
         $this->aggregateRootClassName = $aggregateRootClassName;
-        $this->repository = $messageRepository;
+        $this->messages = $messageRepository;
         $this->dispatcher = $dispatcher ?: new SynchronousMessageDispatcher();
         $this->decorator = $decorator ?: new DefaultHeadersDecorator();
     }
@@ -54,7 +54,7 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
     private function retrieveAllEvents(AggregateRootId $aggregateRootId): Generator
     {
         /** @var Message $message */
-        foreach ($this->repository->retrieveAll($aggregateRootId) as $message) {
+        foreach ($this->messages->retrieveAll($aggregateRootId) as $message) {
             yield $message->event();
         }
     }
@@ -84,7 +84,7 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
             ));
         }, $events);
 
-        $this->repository->persist(...$messages);
+        $this->messages->persist(...$messages);
         $this->dispatcher->dispatch(...$messages);
     }
 }
