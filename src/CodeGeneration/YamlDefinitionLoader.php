@@ -99,10 +99,10 @@ class YamlDefinitionLoader implements DefinitionLoader
 
             foreach ($fields as $fieldName => $fieldDefinition) {
                 if (is_string($fieldDefinition)) {
-                    $fieldDefinition = ['type' => $fieldDefinition];
+                    $fieldDefinition = ['type' => TypeNormalizer::normalize($fieldDefinition)];
                 }
 
-                $event->field($fieldName, $fieldDefinition['type'], (string) ($fieldDefinition['example'] ?? null));
+                $event->field($fieldName, TypeNormalizer::normalize($fieldDefinition['type']), (string) ($fieldDefinition['example'] ?? null));
 
                 if (isset($fieldDefinition['serializer'])) {
                     $event->fieldSerializer($fieldName, $fieldDefinition['serializer']);
