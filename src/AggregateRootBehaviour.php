@@ -69,12 +69,12 @@ trait AggregateRootBehaviour
      * @param AggregateRootId $aggregateRootId
      * @param Generator       $events
      *
-     * @return static
+     * @return AggregateRoot
      * @see AggregateRoot::reconstituteFromEvents
      */
     public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot
     {
-        /** @var AggregateRoot|static $aggregateRoot */
+        /** @var AggregateRoot&AggregateRootBehaviour $aggregateRoot */
         $aggregateRoot = new static($aggregateRootId);
 
         /** @var object $event */
