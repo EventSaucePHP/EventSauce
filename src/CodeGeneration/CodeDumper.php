@@ -24,7 +24,7 @@ class CodeDumper
         $eventsCode = $this->dumpEvents($definitionGroup->events(), $withHelpers, $withSerialization);
         $commandCode = $this->dumpCommands($definitionGroup->commands());
         $namespace = $definitionGroup->namespace();
-        $allCode = implode(array_filter([$eventsCode, $commandCode]), "\n\n");
+        $allCode = implode("\n\n", array_filter([$eventsCode, $commandCode]));
 
         if ($withSerialization) {
             $namespace .= ";
