@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
+use InvalidArgumentException;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use const false;
@@ -66,5 +67,25 @@ class YamlDefinitionLoaderTest extends TestCase
         $definitionGroup = $loader->load(__DIR__ . '/Fixtures/inheritFieldsFromUnknownType.yaml');
         $dumper = new CodeDumper();
         $dumper->dump($definitionGroup, false);
+    }
+
+    /**
+     * @test
+     */
+    public function loading_a_yaml_thats_not_an_array()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $loader = new YamlDefinitionLoader();
+        $loader->load(__DIR__ . '/Fixtures/no-array.yml');
+    }
+
+    /**
+     * @test
+     */
+    public function loading_a_yaml_that_does_not_exist()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $loader = new YamlDefinitionLoader();
+        $loader->load(__DIR__ . '/Fixtures/empty.yml');
     }
 }

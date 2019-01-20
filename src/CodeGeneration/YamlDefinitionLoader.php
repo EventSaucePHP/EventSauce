@@ -24,7 +24,7 @@ class YamlDefinitionLoader implements DefinitionLoader
     {
         $fileContents = file_get_contents($filename);
 
-        if ( ! is_string($fileContents)) {
+        if ( ! is_string($fileContents) || empty($fileContents)) {
             throw new InvalidArgumentException("File {$filename} does not contain anything");
         }
 
