@@ -23,7 +23,7 @@ $aggregateRoot = $repository->retrieve($aggregateRootId);
 ```
 
 Retrieving an aggregate root fetches all the events that belong to
-your aggregate root (related by aggregate root ID). You can rebuild
+your aggregate root (related by aggregate root ID). You can reconstruct
 an instance of your aggregate root by calling its `::reconstituteFromEvents`
 method and passing the events to it.
 
