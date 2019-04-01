@@ -25,11 +25,13 @@ class SignUpRespectsBlackListTest extends SignUpProcessTestCase
      */
     public function blacklist_is_respected()
     {
+        $email = 'blacklisted@e-mail.com';
+
         $this->given(
             new SignUpWasInitiated()
-        )->when(new SpecifyEmailForSignUp(
-            $email = 'blacklisted@e-mail.com'
-        ))->expectToFail(
+        )->when(
+            new SpecifyEmailForSignUp($email)
+        )->expectToFail(
             SorryEmailAddressIsBlackListed::forEmail($email)
         );
     } 
