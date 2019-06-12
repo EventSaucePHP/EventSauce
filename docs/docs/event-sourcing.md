@@ -3,7 +3,7 @@ permalink: /docs/event-sourcing/
 title: Event Sourcing
 alternate_title: What is event sourcing?
 published_at: 2018-03-08
-updated_at: 2019-01-05
+updated_at: 2019-06-12
 ---
 Event sourcing is a radically different way to model software, compared to
 traditional entity/state based modeling. It puts an emphasis in change,
@@ -83,4 +83,3 @@ In general, it's easier to respond to change due to the message-based nature. Ch
 the heart of an event sourced application. Everything you do is acting, causing events, and
 reacting. Because of this, background processing can be done more frequently, and with ease.
 Moving processes from the main request to the background is also a lot easier.
-

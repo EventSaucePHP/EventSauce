@@ -3,7 +3,7 @@ permalink: /docs/getting-started/bootstrap/
 title: Bootstrap
 alternate_title: Bootstrapping EventSauce
 published_at: 2018-03-05
-updated_at: 2018-03-23
+updated_at: 2019-06-12
 ---
 
 Now that you've got your `MessageRepository` and `MessageDispatcher` in place
