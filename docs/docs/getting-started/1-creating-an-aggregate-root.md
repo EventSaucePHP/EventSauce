@@ -5,7 +5,7 @@ published_at: 2018-02-25
 updated_at: 2019-01-05
 ---
 
-An aggregate root is an entity that is modelled using events. The default
+An aggregate root is an entity that is modeled using events. The default
 aggregate root repository (`ConstructingAggregateRootRepository`) relies
 on the `AggregateRoot` interface, which your aggregate root must implement.
 
@@ -66,7 +66,7 @@ class AcmeProcessId implements AggregateRootId
 
 Because the ID implements an interface you can use whatever kind of ID
 best fits your use-case. You can use UUIDs or an identifier that's
-natural to the domain you're modelling (e.g. a serial number or a unique
+natural to the domain you're modeling (e.g. a serial number or a unique
 group identifier).
 
 Having unique ID classes for each type of aggregate has an added benefit

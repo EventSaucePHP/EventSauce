@@ -5,7 +5,7 @@ published_at: 2018-03-04
 updated_at: 2018-03-23
 ---
 
-Handling exceptions is an important part of software modelling. EventSauce
+Handling exceptions is an important part of software modeling. EventSauce
 makes it easy to test failures. If our `AggregateRoot` guards an invariant,
 we can create tests for that to ensure our business rule is respected.
 

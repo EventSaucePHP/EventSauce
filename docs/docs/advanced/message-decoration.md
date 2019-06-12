@@ -100,6 +100,6 @@ class YourDecorator implements MessageDecorator
 
 > # Message Immutability
 >
-> It's important to note that `Message` objects are modelled as immutable
+> It's important to note that `Message` objects are modeled as immutable
 > objects. The `withHeader` and `withHeaders` methods return a new (cloned)
 > version with the added headers.

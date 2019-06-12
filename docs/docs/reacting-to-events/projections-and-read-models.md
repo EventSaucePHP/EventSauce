@@ -30,7 +30,7 @@ about something important that happened in the business.
 ## Why read models are important/useful
 
 Read models allow you to separate presentational state from the process
-you're modelling. In general this has two effects. Your processing side
+you're modeling. In general this has two effects. Your processing side
 is leaner because it doesn't have to deal with any presentation data or
 associated presentation logic. On the other your read models are free
 from any constraints your domain model has and can be very optimized.

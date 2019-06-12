@@ -13,7 +13,7 @@ testing is often associated with Behavior Driven Development (BDD).
 Tests written in this style are very expressive and easy to read. This makes it
 simple to document business requirements. The test tooling also makes it easy
 to follow the TDD approach. Creating tests (and the required events) often gives
-very usable insights when modelling your application.
+very usable insights when modeling your application.
 
 ## 1. Create a base test case for your aggregate.
 

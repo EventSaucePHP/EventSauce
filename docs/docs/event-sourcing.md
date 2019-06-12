@@ -17,7 +17,7 @@ outside world.
 
 This style of programming especially fit for:
 
-* Business process modelling (finite flows, complex transitions and transactions).
+* Business process modeling (finite flows, complex transitions and transactions).
 * Complex user flows.
 * Asynchronous system interactions
 * Cases where audit trails are of paramount importance.

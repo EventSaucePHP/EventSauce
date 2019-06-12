@@ -14,7 +14,7 @@ use a service layer to trigger new actions.
 
 ## Why are process managers useful?
 
-When modelling large processes, process managers allow you break them up into
+When modeling large processes, process managers allow you break them up into
 multiple steps. This is especially useful when subsequent actions don't require
 user interaction. All of these actions can be done in the background, thus not
 blocking the user from receiving a response from the server.

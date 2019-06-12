@@ -7,7 +7,7 @@ updated_at: 2018-03-23
 
 Events are the core of any event sourced system. They are the payload,
 the message, they allow our system to communicate in a meaningful way.
-Events and commands are very simple objects. They should be modelled
+Events and commands are very simple objects. They should be modeled
 as "read-only" objects. This means they have to be instantiated with
 all the data they need and _only_ expose that data. In EventSauce,
 they have but one technical requirement:

@@ -11,7 +11,7 @@ to your dispatchers. EventSauce ships with a
 you can also use it as a regular dispatcher. It's recommended
 to use a queueing/async dispatcher for better system resiliency,
 reliability and general fault-tolerance. However, you're not
-blocked from modelling simply because you're lacking that
+blocked from modeling simply because you're lacking that
 infrastructure.
 
 ## Synchronous Message Dispatcher

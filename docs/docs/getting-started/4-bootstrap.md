@@ -32,5 +32,5 @@ $aggregateRootRepository = new ConstructingAggregateRootRepository(
 );
 ```
 
-Now you're ready to start modelling! For more information about how you do this, read the [lifecycle](/docs/lifecycle/)
+Now you're ready to start modeling! For more information about how you do this, read the [lifecycle](/docs/lifecycle/)
 documentation.

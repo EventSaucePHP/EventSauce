@@ -52,13 +52,23 @@ and a `SynchronousMessageDispatcher`. Apart from that it ships with composition 
 such as the `MessageDispatcherChain`. The dispatcher chain allows you to chain dispatchers,
 this allows you to combine synchronous and asynchronous dispatching in the same composition.
 
+```php
+$dispatcher = new MessageDispatcherChain(
+    new RabbitMQMessageDispatcher($producer, $serilizer),
+    new SynchronousMessageDispatcher($consumer, $anotherConsumer),
+);
+```
+
+The message dispatcher chain will sub-dispatch the messages to the synchronous
+dispatcher and the RabbitMQ dispatcher. 
+
 ## Core Concepts
 
 Below are short descriptions of all parts that make up EventSauce.
 
 ### Aggregate Root
 
-The aggregate root is your primary modelling space. It's tasked with maintaining the integrity
+The aggregate root is your primary modeling space. It's tasked with maintaining the integrity
 of the model, guarding invariants, and recording events.
 
 ### Aggregate Root Repository
