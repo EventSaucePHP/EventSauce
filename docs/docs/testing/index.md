@@ -24,8 +24,8 @@ for all test cases around the aggregate. There are a couple of methods that need
 * `aggregateRootClassName` for the fully qualified aggregate root class name
 * `handle` executes the `when` input, usually by passing a command object to a method on the aggregate
 
-You can choose to setup a handle method in your base test case or per test case.
-If you use a command based interaction you'll want to set it up in your base class.
+You can choose to setup a _handle_ method in your base test case or per test case.
+If you use a command-bus based interaction you'll want to set it up in your base class.
 
 ```php
 use EventSauce\EventSourcing\AggregateRootId;
