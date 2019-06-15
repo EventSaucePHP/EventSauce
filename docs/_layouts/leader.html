@@ -26,7 +26,7 @@
 </head>
 <body class="bg-grey-lighter min-h-screen bg-squared leading-tight leader">
 {% if site.data.dev.dev_mode %}
-<div class="fixed pin-t pin-l bg-black text-white rounded-br p-2 opacity-50">
+<div class="fixed left-0 top-0 bg-black text-white rounded-br p-2 opacity-50">
     <span class="sm:hidden">&lt; sm</span>
     <span class="sm-md:block hidden">sm-md</span>
     <span class="md-lg:block hidden">md-lg</span>
@@ -37,7 +37,7 @@
 <header id="leader" class="text-center md:py-10">
     <div id="teaser" class="pt-10 pb-6 max-w-sm mx-auto text-center">
         <a href="/">
-            <img class="mb-4" id="logo" src="/static/logo.svg" height="150px" width="150px" alt="EventSauce">
+            <img class="mb-4 inline" id="logo" src="/static/logo.svg" height="150px" width="150px" alt="EventSauce">
         </a>
         <h1 class="text-4xl">
             Event<span class="text-red">Sauce</span>.
@@ -56,8 +56,8 @@
 <section class="my-10 bg-black pt-10 md:pt-16 md:pb-14 pb-10 w-full text-center md:text-left">
     <div class="max-w-xl mx-auto md:flex relative overflow-hidden md:overflow-visible">
         <section class="md:w-1/2 px-4 max-w-md flex flex-col md:flex-row items-center md:items-start">
-            <span class="h-16 md:h-8 w-16 md:w-8 p-5 md:p-2 mr-3 rounded-full bg-red inline-block flex-no-shrink mb-6">
-                <img src="/static/icons/thumbs-up.svg" class="inline-block w-full" />
+            <span class="h-10 w-10 mr-3 rounded-full bg-red inline-block mb-6 flex-grow-0 flex-shrink-0 flex align-middle justify-center">
+                <img src="/static/icons/thumbs-up.svg" class="inline-block w-5" />
             </span>
             <div class="mb-2 leading-normal">
                 <h2 class="text-3xl text-white leading-tight mb-2">
@@ -78,8 +78,8 @@
 <section class="md:right-half-bg-black relative text-center md:text-left md:my-12">
     <div class="max-w-xl mx-auto mb-10 md:flex relative">
         <section class="md:w-1/2 lg:w-2/5 px-4 max-w-md flex flex-col md:flex-row items-center md:items-start">
-            <span class="h-16 md:h-8 w-16 md:w-8 p-5 md:p-2 mr-3 rounded-full bg-red inline-block flex-no-shrink mb-6">
-                <img src="/static/icons/heart.svg" class="inline-block w-full" />
+            <span class="h-10 w-10 mr-3 rounded-full bg-red inline-block mb-6 flex-grow-0 flex-shrink-0 flex align-middle justify-center">
+                <img src="/static/icons/heart.svg" class="inline-block w-5" />
             </span>
             <div class="mb-8">
                 <h2 class="text-3xl text-black mb-2">
@@ -123,8 +123,8 @@ class MyEventSourcedTest extends AggregateRootTestCase
 <section class="md:left-half-bg-black relative md:mt-12 md:mb-10">
     <div class="max-w-xl mx-auto md:flex relative md:flex-row-reverse">
         <section class="md:w-1/2 lg:w-2/5 mx-auto px-4 max-w-md flex flex-col md:flex-row items-center md:items-start text-center md:text-left">
-            <span class="h-16 md:h-8 w-16 md:w-8 p-5 md:p-2 mr-3 rounded-full bg-red inline-block flex-no-shrink mb-6">
-                <img src="/static/icons/news-paper.svg" class="inline-block w-full" />
+            <span class="h-10 w-10 mr-3 rounded-full bg-red inline-block mb-6 flex-grow-0 flex-shrink-0 flex align-middle justify-center">
+                <img src="/static/icons/news-paper.svg" class="inline-block w-5" />
             </span>
             <div class="mb-2">
                 <h2 class="text-3xl text-black mb-2">
@@ -161,9 +161,9 @@ events:
     </div>
 </section>
 <section class="mt-10 pt-0 pb-14 w-full text-center md:text-left leading-normal">
-    <form id="newsletter" method="post" action="https://widgets.eventsauce.io/signup/" class="max-w-xs mx-auto text-center text-lg">
-        <span class="h-16 w-16 p-5 mr-3 rounded-full bg-red inline-block mb-2">
-            <img src="/static/icons/announcement.svg" class="inline-block w-full" />
+    <form id="newsletter" method="post" action="https://widgets.eventsauce.io/signup/" class="max-w-xs mx-auto text-lg text-center">
+        <span class="h-12 w-12 rounded-full bg-red inline-block mb-6 flex align-middle justify-center mx-auto">
+            <img src="/static/icons/announcement.svg" class="inline-block w-6" />
         </span>
         <h2 class="text-3xl text-black mb-2">
             Newsletter

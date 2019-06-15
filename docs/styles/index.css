@@ -1,6 +1,11 @@
-@tailwind preflight;
-
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
+
+img {
+    @apply .inline;
+    vertical-align: initial;
+}
 
 .cli-prefixed::before {
     content: '#';

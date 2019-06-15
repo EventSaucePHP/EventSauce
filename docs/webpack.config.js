@@ -1,4 +1,4 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const glob = require("glob-all");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -11,7 +11,7 @@ class TailwindExtractor {
 }
 
 let plugins = [
-    new ExtractTextPlugin('styles.css'),
+    new MiniCssExtractPlugin({ filename: 'styles.css' }),
     new OptimizeCssAssetsPlugin(),
 ];
 
@@ -30,22 +30,28 @@ if (isProd) {
 }
 
 module.exports = {
-    entry: './index.js',
+    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+    entry: {
+        docs: './index.js'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'styles.css',
+        filename: '[name].js',
     },
     module: {
         rules: [
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        { loader: 'css-loader', options: { importLoaders: 1 } },
-                        'postcss-loader'
-                    ]
-                })
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            hmr: process.env.NODE_ENV === 'development',
+                        },
+                    },
+                    'css-loader',
+                    'postcss-loader',
+                ]
             }
         ]
     },
