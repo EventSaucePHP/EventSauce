@@ -3,6 +3,9 @@ const PurgecssPlugin = require('purgecss-webpack-plugin');
 const glob = require("glob-all");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const isProduction = process.env.NODE_ENV === 'production';
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 class TailwindExtractor {
     static extract(content) {
@@ -11,8 +14,15 @@ class TailwindExtractor {
 }
 
 let plugins = [
-    new MiniCssExtractPlugin({ filename: 'styles.css' }),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+        filename: isProduction ? 'styles.[hash].css' : 'styles.css'
+    }),
     new OptimizeCssAssetsPlugin(),
+    new ManifestPlugin({
+        fileName: '../_data/manifest.yml',
+        publicPath: '/dist/',
+    }),
 ];
 
 let isProd = process.env.NODE_ENV === 'production';
@@ -36,7 +46,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js',
+        filename: isProduction ? '[name].[hash].js' : '[name].js',
     },
     module: {
         rules: [

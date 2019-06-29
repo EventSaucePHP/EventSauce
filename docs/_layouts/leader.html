@@ -22,7 +22,7 @@
     </script>
     <base href="//eventsauce.io/" />
     {% endunless %}
-    <link rel="stylesheet" href="/dist/styles.css?v=3.0"/>
+    <link rel="stylesheet" href="{{ site.data.manifest['docs.css'] }}"/>
 </head>
 <body class="bg-grey-lighter min-h-screen bg-squared leading-tight leader">
 {% if site.data.dev.dev_mode %}
@@ -35,7 +35,7 @@
 </div>
 {% endif %}
 <header id="leader" class="text-center md:py-10">
-    <div id="teaser" class="pt-10 pb-6 max-w-sm mx-auto text-center">
+    <div id="teaser" class="pt-10 max-w-sm mx-auto text-center">
         <a href="/">
             <img class="mb-4 inline" id="logo" src="/static/logo.svg" height="150px" width="150px" alt="EventSauce">
         </a>
@@ -50,6 +50,20 @@
             <a class="bg-grey-lightest text-black shadow rounded py-2 px-3 mr-3" href="#newsletter">Newsletter</a>
             <a class="bg-grey-lightest text-black shadow rounded py-2 px-3 mr-3" href="https://github.com/eventsaucephp/eventsauce">GitHub</a>
             <a class="bg-grey-lightest text-black shadow rounded py-2 px-3" href="https://twitter.com/eventsaucephp">Twitter</a>
+        </p>
+        <p class="pt-4">
+            <a href="https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master">
+                <img alt="Scrutinizer Code Quality" src="https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/badges/quality-score.png?b=master">
+            </a>
+            <a href="https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master">
+                <img src="https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/badges/coverage.png?b=master">
+            </a>
+            <a href="https://travis-ci.org/EventSaucePHP/EventSauce">
+                <img src="https://travis-ci.org/EventSaucePHP/EventSauce.svg?branch=master">
+            </a>
+            <a href="https://packagist.org/packages/eventsauce/eventsauce">
+                <img src="https://img.shields.io/github/tag/eventsaucephp/eventsauce.svg" alt="Latest Version">
+            </a>
         </p>
     </div>
 </header>
