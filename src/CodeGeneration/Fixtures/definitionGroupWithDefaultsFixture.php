@@ -39,9 +39,10 @@ final class EventWithDescription implements SerializableEvent
      */
     public function withDescription(string $description): EventWithDescription
     {
-        $this->description = $description;
+        $clone = clone $this;
+        $clone->description = $description;
 
-        return $this;
+        return $clone;
     }
 
     /**

@@ -53,9 +53,10 @@ final class SomethingHappened implements SerializableEvent
      */
     public function withWhat(string $what): SomethingHappened
     {
-        $this->what = $what;
+        $clone = clone $this;
+        $clone->what = $what;
 
-        return $this;
+        return $clone;
     }
 
     /**
@@ -63,9 +64,10 @@ final class SomethingHappened implements SerializableEvent
      */
     public function withYolo(bool $yolo): SomethingHappened
     {
-        $this->yolo = $yolo;
+        $clone = clone $this;
+        $clone->yolo = $yolo;
 
-        return $this;
+        return $clone;
     }
 
     /**

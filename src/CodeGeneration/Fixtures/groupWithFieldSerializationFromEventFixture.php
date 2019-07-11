@@ -39,9 +39,10 @@ final class EventName implements SerializableEvent
      */
     public function withTitle(string $title): EventName
     {
-        $this->title = $title;
+        $clone = clone $this;
+        $clone->title = $title;
 
-        return $this;
+        return $clone;
     }
 
     /**

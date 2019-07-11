@@ -219,9 +219,10 @@ EOF;
      */
     public function $method({$resolvedType} \${$field['name']}): {$event->name()}
     {
-        \$this->{$field['name']} = \${$field['name']};
+        \$clone = clone \$this;
+        \$clone->{$field['name']} = \${$field['name']};
 
-        return \$this;
+        return \$clone;
     }
 
 

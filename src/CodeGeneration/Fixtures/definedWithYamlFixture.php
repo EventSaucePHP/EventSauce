@@ -53,9 +53,10 @@ final class WeWentYamling implements SerializableEvent
      */
     public function withReference(\Ramsey\Uuid\UuidInterface $reference): WeWentYamling
     {
-        $this->reference = $reference;
+        $clone = clone $this;
+        $clone->reference = $reference;
 
-        return $this;
+        return $clone;
     }
 
     /**

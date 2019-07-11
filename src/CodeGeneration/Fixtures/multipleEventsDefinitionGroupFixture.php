@@ -39,9 +39,10 @@ final class FirstEvent implements SerializableEvent
      */
     public function withFirstField(string $firstField): FirstEvent
     {
-        $this->firstField = $firstField;
+        $clone = clone $this;
+        $clone->firstField = $firstField;
 
-        return $this;
+        return $clone;
     }
 
     /**
@@ -90,9 +91,10 @@ final class SecondEvent implements SerializableEvent
      */
     public function withSecondField(string $secondField): SecondEvent
     {
-        $this->secondField = $secondField;
+        $clone = clone $this;
+        $clone->secondField = $secondField;
 
-        return $this;
+        return $clone;
     }
 
     /**
