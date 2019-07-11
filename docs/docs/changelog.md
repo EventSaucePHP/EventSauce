@@ -5,6 +5,12 @@ published_at: 2018-03-14
 updated_at: 2019-01-05
 ---
 
+## 0.5.1
+
+## Breaking changes
+
+Test helpers (the ::withX methods) are now immutable.
+
 ## 0.5.0
 
 ### Breaking Changes
