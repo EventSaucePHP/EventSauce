@@ -41,11 +41,11 @@ been collapsed into one. This trait has been moved to the root namespace.
 
 * The `AggregateRootRepository` is now an interface. The default implementation
   is the `ConstructingAggregateRootRepository`.
-* The `Event` interface is removed. A new `SerializableEvent` interface is provided
+* The `Event` interface is removed. A new `SerializablePayload` interface is provided
   to aid the default serializers. If you use the default serializers your events
   must implement this interface. The methods are the same as the `Event` interface,
   so effectively it's an in-place replacement.
-* The `CodeDumper` is changed to ensure code now implements the `SerializableEvent`
+* The `CodeDumper` is changed to ensure code now implements the `SerializablePayload`
   interface.
 * The `AggregateRootTestCase` now allows you to overwrite the `aggregateRootRepository`
   method for if/when you have a custom implementation and still want all the benefits

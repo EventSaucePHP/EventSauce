@@ -2,9 +2,9 @@
 
 namespace With\EventFieldSerialization;
 
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
+use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-final class EventName implements SerializableEvent
+final class EventName implements SerializablePayload
 {
     /**
      * @var string
@@ -21,10 +21,11 @@ final class EventName implements SerializableEvent
     {
         return $this->title;
     }
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new EventName(
-            strtolower($payload['title']));
+            strtolower($payload['title'])
+        );
     }
 
     public function toPayload(): array

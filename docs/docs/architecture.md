@@ -38,7 +38,7 @@ very tiny.
 > * `MessageDispatcher` - customer message dispatching (queue)
 > * `ClassNameInflector` - custom inflection for class-names to event names (interoperability)
 > * `MessageSerializer` - customer message serialization (storage)
-> * `EventSerializer` - customer event serialization (storage)
+> * `PayloadSerializer` - customer event serialization (storage)
 
 ### Shipped Implementation
 

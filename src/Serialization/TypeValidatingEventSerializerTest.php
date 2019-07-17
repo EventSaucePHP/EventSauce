@@ -5,27 +5,27 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\Serialization;
 
 use PHPStan\Testing\TestCase;
-use EventSauce\EventSourcing\EventStub;
+use EventSauce\EventSourcing\PayloadStub;
 use stdClass;
 
 final class TypeValidatingEventSerializerTest extends TestCase
 {
     /**
-     * @var TypeValidatingEventSerializer
+     * @var TypeValidatingPayloadSerializer
      */
     private $serializer;
 
     /**
-     * @var ConstructingEventSerializer
+     * @var ConstructingPayloadSerializer
      */
     private $innerSerializer;
 
     public function setUp()
     {
-        $this->innerSerializer = new ConstructingEventSerializer();
-        $this->serializer = new TypeValidatingEventSerializer(
+        $this->innerSerializer = new ConstructingPayloadSerializer();
+        $this->serializer = new TypeValidatingPayloadSerializer(
             $this->innerSerializer,
-            SerializableEvent::class
+            SerializablePayload::class
         );
     }
 
@@ -34,7 +34,7 @@ final class TypeValidatingEventSerializerTest extends TestCase
      */
     public function is_an_event_serializer()
     {
-        $this->assertInstanceOf(EventSerializer::class, $this->serializer);
+        $this->assertInstanceOf(PayloadSerializer::class, $this->serializer);
     }
 
     /**
@@ -42,7 +42,7 @@ final class TypeValidatingEventSerializerTest extends TestCase
      */
     public function delegates_serialization_to_decorated_serializer()
     {
-        $event = EventStub::create('some value');
+        $event = PayloadStub::create('some value');
         $this->assertSame(
             $this->innerSerializer->serializeEvent($event),
             $this->serializer->serializeEvent($event)
@@ -54,7 +54,7 @@ final class TypeValidatingEventSerializerTest extends TestCase
      */
     public function delegates_unserialization_to_decorated_serializer()
     {
-        $payloadArgs = [EventStub::class, ['value' => 'some value']];
+        $payloadArgs = [PayloadStub::class, ['value' => 'some value']];
 
         $this->assertSame(
             $this->innerSerializer->unserializePayload(...$payloadArgs)->toPayload(),
@@ -65,7 +65,7 @@ final class TypeValidatingEventSerializerTest extends TestCase
     /**
      * @test
      * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Cannot serialize event that does not implement "EventSauce\EventSourcing\Serialization\SerializableEvent".
+     * @expectedExceptionMessage Cannot serialize event that does not implement "EventSauce\EventSourcing\Serialization\SerializablePayload".
      */
     public function cannot_serialize_non_instance_of_provided_event_classname()
     {
@@ -75,7 +75,7 @@ final class TypeValidatingEventSerializerTest extends TestCase
     /**
      * @test
      * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Cannot unserialize payload into an event that does not implement "EventSauce\EventSourcing\Serialization\SerializableEvent".
+     * @expectedExceptionMessage Cannot unserialize payload into an event that does not implement "EventSauce\EventSourcing\Serialization\SerializablePayload".
      */
     public function cannot_unserialize_into_non_serializable_event()
     {

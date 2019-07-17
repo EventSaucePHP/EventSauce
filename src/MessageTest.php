@@ -13,7 +13,7 @@ class MessageTest extends TestCase
      */
     public function accessors()
     {
-        $event = EventStub::create('some value');
+        $event = PayloadStub::create('some value');
         $initialHeaders = ['initial' => 'header value'];
         $message = new Message($event, $initialHeaders);
         $this->assertSame($event, $message->event());
@@ -25,7 +25,7 @@ class MessageTest extends TestCase
      */
     public function aggregate_root_id_accessor()
     {
-        $event = EventStub::create('some value');
+        $event = PayloadStub::create('some value');
         $message = new Message($event);
         $this->assertNull($message->aggregateRootId());
         $message = $message->withHeader(Header::AGGREGATE_ROOT_ID, UuidAggregateRootId::create());

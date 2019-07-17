@@ -2,9 +2,9 @@
 
 namespace EventsFrom\OtherTypes;
 
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
+use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-final class BaseEvent implements SerializableEvent
+final class BaseEvent implements SerializablePayload
 {
     /**
      * @var int
@@ -21,10 +21,11 @@ final class BaseEvent implements SerializableEvent
     {
         return $this->age;
     }
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new BaseEvent(
-            (int) $payload['age']);
+            (int) $payload['age']
+        );
     }
 
     public function toPayload(): array
@@ -36,7 +37,7 @@ final class BaseEvent implements SerializableEvent
 
 }
 
-final class ExtendedEvent implements SerializableEvent
+final class ExtendedEvent implements SerializablePayload
 {
     /**
      * @var int
@@ -53,10 +54,11 @@ final class ExtendedEvent implements SerializableEvent
     {
         return $this->age;
     }
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new ExtendedEvent(
-            (int) $payload['age']);
+            (int) $payload['age']
+        );
     }
 
     public function toPayload(): array
@@ -68,7 +70,7 @@ final class ExtendedEvent implements SerializableEvent
 
 }
 
-final class BaseCommand
+final class BaseCommand implements SerializablePayload
 {
     /**
      * @var string
@@ -85,9 +87,23 @@ final class BaseCommand
     {
         return $this->name;
     }
+    public static function fromPayload(array $payload): SerializablePayload
+    {
+        return new BaseCommand(
+            (string) $payload['name']
+        );
+    }
+
+    public function toPayload(): array
+    {
+        return [
+            'name' => (string) $this->name,
+        ];
+    }
+
 }
 
-final class ExtendedCommand
+final class ExtendedCommand implements SerializablePayload
 {
     /**
      * @var string
@@ -104,4 +120,18 @@ final class ExtendedCommand
     {
         return $this->name;
     }
+    public static function fromPayload(array $payload): SerializablePayload
+    {
+        return new ExtendedCommand(
+            (string) $payload['name']
+        );
+    }
+
+    public function toPayload(): array
+    {
+        return [
+            'name' => (string) $this->name,
+        ];
+    }
+
 }

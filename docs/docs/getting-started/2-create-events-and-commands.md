@@ -22,12 +22,12 @@ more methods or indicate they implement a certain interface.
 In order to persist events they must be serializable. You can create your
 own serialization strategy, or use the default ones provided.
 
-By default the `MessageSerializer` uses the `EventSerializer` to serialize
-events. This serializer requires events to implement the `SerializableEvent`
+By default the `MessageSerializer` uses the `PayloadSerializer` to serialize
+events. This serializer requires events to implement the `SerializablePayload`
 interface. This interface requires you to implement **2** public functions:
 
 > 2. `toPayload(): array`
-> 3. `fromPayload(array $payload): SerializableEvent`
+> 3. `fromPayload(array $payload): SerializablePayload`
 
 ## To and From payload
 
@@ -62,7 +62,7 @@ examples.
 ```php
 <?php
 
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
+use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 class SomeEvent implements SerializableEvent
 {

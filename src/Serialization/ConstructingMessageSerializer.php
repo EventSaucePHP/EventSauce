@@ -19,16 +19,16 @@ final class ConstructingMessageSerializer implements MessageSerializer
     private $classNameInflector;
 
     /**
-     * @var EventSerializer
+     * @var PayloadSerializer
      */
     private $eventSerializer;
 
     public function __construct(
         ClassNameInflector $classNameInflector = null,
-        EventSerializer $eventSerializer = null
+        PayloadSerializer $eventSerializer = null
     ) {
         $this->classNameInflector = $classNameInflector ?: new DotSeparatedSnakeCaseInflector();
-        $this->eventSerializer = $eventSerializer ?: new ConstructingEventSerializer();
+        $this->eventSerializer = $eventSerializer ?: new ConstructingPayloadSerializer();
     }
 
     public function serializeMessage(Message $message): array

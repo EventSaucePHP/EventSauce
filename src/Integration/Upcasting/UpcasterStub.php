@@ -27,6 +27,6 @@ class UpcasterStub implements DelegatableUpcaster
 
     public function type(): string
     {
-        return (new DotSeparatedSnakeCaseInflector())->classNameToType(UpcastedEventStub::class);
+        return (new DotSeparatedSnakeCaseInflector())->classNameToType(UpcastedPayloadStub::class);
     }
 }

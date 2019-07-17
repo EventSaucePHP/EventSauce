@@ -3,7 +3,7 @@
 
 namespace Acme\BusinessProcess;
 
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
+use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class UserSubscribedToMailingList implements SerializableEvent
 {

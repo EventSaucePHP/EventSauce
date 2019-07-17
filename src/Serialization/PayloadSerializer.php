@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Serialization;
 
-interface EventSerializer
+interface PayloadSerializer
 {
     public function serializeEvent(object $event): array;
 

@@ -21,15 +21,15 @@ class CodeDumper
     public function dump(DefinitionGroup $definitionGroup, bool $withHelpers = true, bool $withSerialization = true): string
     {
         $this->definitionGroup = $definitionGroup;
-        $eventsCode = $this->dumpEvents($definitionGroup->events(), $withHelpers, $withSerialization);
-        $commandCode = $this->dumpCommands($definitionGroup->commands());
+        $definitionCode = $this->dumpClass($definitionGroup->events(), $withHelpers, $withSerialization);
+        $commandCode = $this->dumpClass($definitionGroup->commands(), $withHelpers, $withSerialization);
         $namespace = $definitionGroup->namespace();
-        $allCode = implode("\n\n", array_filter([$eventsCode, $commandCode]));
+        $allCode = implode("\n\n", array_filter([$definitionCode, $commandCode]));
 
         if ($withSerialization) {
             $namespace .= ";
 
-use EventSauce\EventSourcing\Serialization\SerializableEvent";
+use EventSauce\EventSourcing\Serialization\SerializablePayload";
         }
 
         return <<<EOF
@@ -42,22 +42,22 @@ $allCode
 EOF;
     }
 
-    private function dumpEvents(array $events, bool $withHelpers, bool $withSerialization): string
+    private function dumpClass(array $definitions, bool $withHelpers, bool $withSerialization): string
     {
         $code = [];
 
-        if (empty($events)) {
+        if (empty($definitions)) {
             return '';
         }
 
-        foreach ($events as $event) {
-            $name = $event->name();
-            $fields = $this->dumpFields($event);
-            $constructor = $this->dumpConstructor($event);
-            $methods = $this->dumpMethods($event);
-            $deserializer = $this->dumpSerializationMethods($event);
-            $testHelpers = $withHelpers ? $this->dumpTestHelpers($event) : '';
-            $implements = $withSerialization ? ' implements SerializableEvent' : '';
+        foreach ($definitions as $definition) {
+            $name = $definition->name();
+            $fields = $this->dumpFields($definition);
+            $constructor = $this->dumpConstructor($definition);
+            $methods = $this->dumpMethods($definition);
+            $deserializer = $this->dumpSerializationMethods($definition);
+            $testHelpers = $withHelpers ? $this->dumpTestHelpers($definition) : '';
+            $implements = $withSerialization ? ' implements SerializablePayload' : '';
 
             $code[] = <<<EOF
 final class $name$implements
@@ -146,22 +146,22 @@ EOF;
         return empty($methods) ? '' : rtrim(implode('', $methods)) . "\n";
     }
 
-    private function dumpSerializationMethods(EventPayloadDefinition $event)
+    private function dumpSerializationMethods(PayloadDefinition $definition)
     {
-        $name = $event->name();
+        $name = $definition->name();
         $arguments = [];
         $serializers = [];
 
-        foreach ($this->fieldsFromDefinition($event) as $field) {
+        foreach ($this->fieldsFromDefinition($definition) as $field) {
             $type = $this->definitionGroup->resolveTypeAlias($field['type']);
             $parameter = sprintf('$payload[\'%s\']', $field['name']);
-            $template = $event->deserializerForField($field['name'])
-                ?: $event->deserializerForType($field['type']);
+            $template = $definition->deserializerForField($field['name'])
+                ?: $definition->deserializerForType($field['type']);
             $arguments[] = trim(strtr($template, ['{type}' => $type, '{param}' => $parameter]));
 
             $property = sprintf('$this->%s', $field['name']);
-            $template = $event->serializerForField($field['name'])
-                ?: $event->serializerForType($field['type']);
+            $template = $definition->serializerForField($field['name'])
+                ?: $definition->serializerForType($field['type']);
             $template = sprintf("'%s' => %s", $field['name'], $template);
             $serializers[] = trim(strtr($template, ['{type}' => $type, '{param}' => $property]));
         }
@@ -169,7 +169,7 @@ EOF;
         $arguments = preg_replace('/^.{2,}$/m', '            $0', implode(",\n", $arguments));
 
         if ( ! empty($arguments)) {
-            $arguments = "\n$arguments";
+            $arguments = "\n$arguments\n        ";
         }
 
         $serializers = preg_replace('/^.{2,}$/m', '            $0', implode(",\n", $serializers));
@@ -179,7 +179,7 @@ EOF;
         }
 
         return <<<EOF
-    public static function fromPayload(array \$payload): SerializableEvent
+    public static function fromPayload(array \$payload): SerializablePayload
     {
         return new $name($arguments);
     }
@@ -191,14 +191,14 @@ EOF;
 EOF;
     }
 
-    private function dumpTestHelpers(EventPayloadDefinition $event): string
+    private function dumpTestHelpers(PayloadDefinition $definition): string
     {
         $constructor = [];
         $constructorArguments = '';
         $constructorValues = [];
         $helpers = [];
 
-        foreach ($this->fieldsFromDefinition($event) as $field) {
+        foreach ($this->fieldsFromDefinition($definition) as $field) {
             $resolvedType = $this->definitionGroup->resolveTypeAlias($field['type']);
 
             if (null === $field['example']) {
@@ -211,13 +211,13 @@ EOF;
                 $constructorArguments .= sprintf('%s $%s', $resolvedType, $field['name']);
                 $constructorValues[] = sprintf('$%s', $field['name']);
             } else {
-                $constructorValues[] = $this->dumpConstructorValue($field, $event);
+                $constructorValues[] = $this->dumpConstructorValue($field, $definition);
                 $method = sprintf('with%s', ucfirst($field['name']));
                 $helpers[] = <<<EOF
     /**
      * @codeCoverageIgnore
      */
-    public function $method({$resolvedType} \${$field['name']}): {$event->name()}
+    public function $method({$resolvedType} \${$field['name']}): {$definition->name()}
     {
         \$clone = clone \$this;
         \$clone->{$field['name']} = \${$field['name']};
@@ -241,9 +241,9 @@ EOF;
     /**
      * @codeCoverageIgnore
      */
-    public static function $constructor($constructorArguments): {$event->name()}
+    public static function $constructor($constructorArguments): {$definition->name()}
     {
-        return new {$event->name()}($constructorValues);
+        return new {$definition->name()}($constructorValues);
     }
 
 
@@ -252,7 +252,7 @@ EOF;
         return rtrim(implode('', $helpers)) . "\n";
     }
 
-    private function dumpConstructorValue(array $field, EventPayloadDefinition $event): string
+    private function dumpConstructorValue(array $field, PayloadDefinition $definition): string
     {
         $parameter = rtrim($field['example']);
         $resolvedType = $this->definitionGroup->resolveTypeAlias($field['type']);
@@ -261,32 +261,10 @@ EOF;
             $parameter = var_export($parameter, true);
         }
 
-        $template = $event->deserializerForField($field['name'])
-            ?: $event->deserializerForType($field['type']);
+        $template = $definition->deserializerForField($field['name'])
+            ?: $definition->deserializerForType($field['type']);
 
         return rtrim(strtr($template, ['{type}' => $resolvedType, '{param}' => $parameter]));
-    }
-
-    /**
-     * @param CommandPayloadDefinition[] $commands
-     *
-     * @return string
-     */
-    private function dumpCommands(array $commands): string
-    {
-        $code = [];
-
-        foreach ($commands as $command) {
-            $code[] = <<<EOF
-final class {$command->name()}
-{
-{$this->dumpFields($command)}{$this->dumpConstructor($command)}{$this->dumpMethods($command)}}
-
-
-EOF;
-        }
-
-        return rtrim(implode('', $code));
     }
 
     /**
@@ -311,9 +289,9 @@ EOF;
             return [];
         }
 
-        foreach ($this->definitionGroup->events() as $event) {
-            if ($event->name() === $fieldsFrom) {
-                return $event->fields();
+        foreach ($this->definitionGroup->events() as $definition) {
+            if ($definition->name() === $fieldsFrom) {
+                return $definition->fields();
             }
         }
 

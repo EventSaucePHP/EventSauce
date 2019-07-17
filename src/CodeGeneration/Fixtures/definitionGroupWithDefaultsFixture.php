@@ -2,9 +2,9 @@
 
 namespace Group\With\Defaults;
 
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
+use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-final class EventWithDescription implements SerializableEvent
+final class EventWithDescription implements SerializablePayload
 {
     /**
      * @var string
@@ -21,10 +21,11 @@ final class EventWithDescription implements SerializableEvent
     {
         return $this->description;
     }
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new EventWithDescription(
-            (string) $payload['description']);
+            (string) $payload['description']
+        );
     }
 
     public function toPayload(): array

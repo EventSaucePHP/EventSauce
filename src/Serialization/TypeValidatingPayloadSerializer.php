@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Serialization;
 
-final class TypeValidatingEventSerializer implements EventSerializer
+final class TypeValidatingPayloadSerializer implements PayloadSerializer
 {
     private $serializer;
     private $eventClassName;
 
     public function __construct(
-        EventSerializer $serializer,
+        PayloadSerializer $serializer,
         string $eventClassName
     ) {
         $this->serializer = $serializer;

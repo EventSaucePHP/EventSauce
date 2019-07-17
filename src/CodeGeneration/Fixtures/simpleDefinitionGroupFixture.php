@@ -2,9 +2,9 @@
 
 namespace Simple\Definition\Group;
 
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
+use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-final class SomethingHappened implements SerializableEvent
+final class SomethingHappened implements SerializablePayload
 {
     /**
      * @var string
@@ -33,11 +33,12 @@ final class SomethingHappened implements SerializableEvent
     {
         return $this->yolo;
     }
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new SomethingHappened(
             (string) $payload['what'],
-            (bool) $payload['yolo']);
+            (bool) $payload['yolo']
+        );
     }
 
     public function toPayload(): array

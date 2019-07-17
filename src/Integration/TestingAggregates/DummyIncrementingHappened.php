@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
+use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 /**
  * @codeCoverageIgnore
  */
-class DummyIncrementingHappened implements SerializableEvent
+class DummyIncrementingHappened implements SerializablePayload
 {
     /**
      * @var int
@@ -26,7 +26,7 @@ class DummyIncrementingHappened implements SerializableEvent
         return ['number' => $this->number];
     }
 
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new DummyIncrementingHappened($payload['number']);
     }

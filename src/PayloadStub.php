@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
+use EventSauce\EventSourcing\Serialization\SerializablePayload;
 use function compact;
 
-class EventStub implements SerializableEvent
+class PayloadStub implements SerializablePayload
 {
     /**
      * @var string
@@ -24,7 +24,7 @@ class EventStub implements SerializableEvent
         return ['value' => $this->value];
     }
 
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new static($payload['value']);
     }

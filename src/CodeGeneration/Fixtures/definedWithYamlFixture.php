@@ -2,9 +2,9 @@
 
 namespace DefinedWith\Yaml;
 
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
+use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-final class WeWentYamling implements SerializableEvent
+final class WeWentYamling implements SerializablePayload
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -33,11 +33,12 @@ final class WeWentYamling implements SerializableEvent
     {
         return $this->slogan;
     }
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new WeWentYamling(
             \Ramsey\Uuid\Uuid::fromString($payload['reference']),
-            (string) $payload['slogan']);
+            (string) $payload['slogan']
+        );
     }
 
     public function toPayload(): array
@@ -71,7 +72,7 @@ final class WeWentYamling implements SerializableEvent
     }
 }
 
-final class HideFinancialDetailsOfFraudulentCompany
+final class HideFinancialDetailsOfFraudulentCompany implements SerializablePayload
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -88,9 +89,32 @@ final class HideFinancialDetailsOfFraudulentCompany
     {
         return $this->companyId;
     }
+    public static function fromPayload(array $payload): SerializablePayload
+    {
+        return new HideFinancialDetailsOfFraudulentCompany(
+            \Ramsey\Uuid\Uuid::fromString($payload['companyId'])
+        );
+    }
+
+    public function toPayload(): array
+    {
+        return [
+            'companyId' => $this->companyId->toString(),
+        ];
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public static function withCompanyId(\Ramsey\Uuid\UuidInterface $companyId): HideFinancialDetailsOfFraudulentCompany
+    {
+        return new HideFinancialDetailsOfFraudulentCompany(
+            $companyId
+        );
+    }
 }
 
-final class GoYamling
+final class GoYamling implements SerializablePayload
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -118,5 +142,42 @@ final class GoYamling
     public function slogan(): string
     {
         return $this->slogan;
+    }
+    public static function fromPayload(array $payload): SerializablePayload
+    {
+        return new GoYamling(
+            \Ramsey\Uuid\Uuid::fromString($payload['reference']),
+            (string) $payload['slogan']
+        );
+    }
+
+    public function toPayload(): array
+    {
+        return [
+            'reference' => $this->reference->toString(),
+            'slogan' => (string) $this->slogan,
+        ];
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withReference(\Ramsey\Uuid\UuidInterface $reference): GoYamling
+    {
+        $clone = clone $this;
+        $clone->reference = $reference;
+
+        return $clone;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public static function withSlogan(string $slogan): GoYamling
+    {
+        return new GoYamling(
+            \Ramsey\Uuid\Uuid::fromString("c0b47bc5-2aaa-497b-83cb-11d97da03a95"),
+            $slogan
+        );
     }
 }

@@ -2,9 +2,9 @@
 
 namespace Multiple\Events\DefinitionGroup;
 
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
+use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-final class FirstEvent implements SerializableEvent
+final class FirstEvent implements SerializablePayload
 {
     /**
      * @var string
@@ -21,10 +21,11 @@ final class FirstEvent implements SerializableEvent
     {
         return $this->firstField;
     }
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new FirstEvent(
-            (string) $payload['firstField']);
+            (string) $payload['firstField']
+        );
     }
 
     public function toPayload(): array
@@ -56,7 +57,7 @@ final class FirstEvent implements SerializableEvent
     }
 }
 
-final class SecondEvent implements SerializableEvent
+final class SecondEvent implements SerializablePayload
 {
     /**
      * @var string
@@ -73,10 +74,11 @@ final class SecondEvent implements SerializableEvent
     {
         return $this->secondField;
     }
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new SecondEvent(
-            (string) $payload['secondField']);
+            (string) $payload['secondField']
+        );
     }
 
     public function toPayload(): array

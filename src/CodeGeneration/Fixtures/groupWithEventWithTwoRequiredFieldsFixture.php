@@ -2,9 +2,9 @@
 
 namespace With\ManyRequiredFields;
 
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
+use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-final class ThisOne implements SerializableEvent
+final class ThisOne implements SerializablePayload
 {
     /**
      * @var string
@@ -33,11 +33,12 @@ final class ThisOne implements SerializableEvent
     {
         return $this->description;
     }
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new ThisOne(
             (string) $payload['title'],
-            (string) $payload['description']);
+            (string) $payload['description']
+        );
     }
 
     public function toPayload(): array
