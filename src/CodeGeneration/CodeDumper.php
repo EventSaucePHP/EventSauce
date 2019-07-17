@@ -73,7 +73,7 @@ EOF;
         return rtrim(implode('', $code));
     }
 
-    private function dumpFields(DefinitionWithFields $definition): string
+    private function dumpFields(PayloadDefinition $definition): string
     {
         $fields = $this->fieldsFromDefinition($definition);
         $code = [];
@@ -98,7 +98,7 @@ EOF;
         return implode('', $code);
     }
 
-    private function dumpConstructor(DefinitionWithFields $definition): string
+    private function dumpConstructor(PayloadDefinition $definition): string
     {
         $arguments = [];
         $assignments = [];
@@ -128,7 +128,7 @@ $assignments
 EOF;
     }
 
-    private function dumpMethods(DefinitionWithFields $command): string
+    private function dumpMethods(PayloadDefinition $command): string
     {
         $methods = [];
 
@@ -146,7 +146,7 @@ EOF;
         return empty($methods) ? '' : rtrim(implode('', $methods)) . "\n";
     }
 
-    private function dumpSerializationMethods(EventDefinition $event)
+    private function dumpSerializationMethods(EventPayloadDefinition $event)
     {
         $name = $event->name();
         $arguments = [];
@@ -191,7 +191,7 @@ EOF;
 EOF;
     }
 
-    private function dumpTestHelpers(EventDefinition $event): string
+    private function dumpTestHelpers(EventPayloadDefinition $event): string
     {
         $constructor = [];
         $constructorArguments = '';
@@ -252,7 +252,7 @@ EOF;
         return rtrim(implode('', $helpers)) . "\n";
     }
 
-    private function dumpConstructorValue(array $field, EventDefinition $event): string
+    private function dumpConstructorValue(array $field, EventPayloadDefinition $event): string
     {
         $parameter = rtrim($field['example']);
         $resolvedType = $this->definitionGroup->resolveTypeAlias($field['type']);
@@ -268,7 +268,7 @@ EOF;
     }
 
     /**
-     * @param CommandDefinition[] $commands
+     * @param CommandPayloadDefinition[] $commands
      *
      * @return string
      */
@@ -290,11 +290,11 @@ EOF;
     }
 
     /**
-     * @param DefinitionWithFields $definition
+     * @param PayloadDefinition $definition
      *
      * @return array
      */
-    private function fieldsFromDefinition(DefinitionWithFields $definition): array
+    private function fieldsFromDefinition(PayloadDefinition $definition): array
     {
         $fields = $this->fieldsFrom($definition->fieldsFrom());
 

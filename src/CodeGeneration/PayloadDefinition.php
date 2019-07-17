@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-abstract class DefinitionWithFields
+abstract class PayloadDefinition
 {
     /**
      * @var DefinitionGroup

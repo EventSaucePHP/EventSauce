@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-class CommandDefinition extends DefinitionWithFields
+class CommandPayloadDefinition extends PayloadDefinition
 {
     // Commands only have fields.
 }

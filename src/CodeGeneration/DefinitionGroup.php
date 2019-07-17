@@ -14,7 +14,7 @@ final class DefinitionGroup
     private $namespace;
 
     /**
-     * @var EventDefinition[]
+     * @var EventPayloadDefinition[]
      */
     private $events = [];
 
@@ -58,7 +58,7 @@ final class DefinitionGroup
     private $fieldDeserializer = [];
 
     /**
-     * @var CommandDefinition[]
+     * @var CommandPayloadDefinition[]
      */
     private $commands = [];
 
@@ -153,14 +153,14 @@ final class DefinitionGroup
         return $alias;
     }
 
-    public function event(string $name): EventDefinition
+    public function event(string $name): EventPayloadDefinition
     {
-        return $this->events[] = new EventDefinition($this, $name);
+        return $this->events[] = new EventPayloadDefinition($this, $name);
     }
 
     public function command(string $name)
     {
-        return $this->commands[] = new CommandDefinition($this, $name);
+        return $this->commands[] = new CommandPayloadDefinition($this, $name);
     }
 
     public function typeForField(string $field): string
@@ -174,7 +174,7 @@ final class DefinitionGroup
     }
 
     /**
-     * @return EventDefinition[]
+     * @return EventPayloadDefinition[]
      */
     public function events(): array
     {
@@ -182,7 +182,7 @@ final class DefinitionGroup
     }
 
     /**
-     * @return CommandDefinition[]
+     * @return CommandPayloadDefinition[]
      */
     public function commands(): array
     {
