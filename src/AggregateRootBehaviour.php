@@ -74,7 +74,7 @@ trait AggregateRootBehaviour
      */
     public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot
     {
-        /** @var AggregateRoot&AggregateRootBehaviour $aggregateRoot */
+        /** @var AggregateRootBehaviour $aggregateRoot */
         $aggregateRoot = new static($aggregateRootId);
 
         /** @var object $event */
@@ -82,6 +82,7 @@ trait AggregateRootBehaviour
             $aggregateRoot->apply($event);
         }
 
+        /** @var AggregateRoot $aggregateRoot */
         return $aggregateRoot;
     }
 }
