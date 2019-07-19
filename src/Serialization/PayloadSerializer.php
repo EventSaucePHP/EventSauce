@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing\Serialization;
 
 interface PayloadSerializer
 {
-    public function serializeEvent(object $event): array;
+    public function serializePayload(object $event): array;
 
     public function unserializePayload(string $className, array $payload): object;
 }

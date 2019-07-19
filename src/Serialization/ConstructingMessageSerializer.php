@@ -21,20 +21,20 @@ final class ConstructingMessageSerializer implements MessageSerializer
     /**
      * @var PayloadSerializer
      */
-    private $eventSerializer;
+    private $payloadSerializer;
 
     public function __construct(
         ClassNameInflector $classNameInflector = null,
-        PayloadSerializer $eventSerializer = null
+        PayloadSerializer $payloadSerializer = null
     ) {
         $this->classNameInflector = $classNameInflector ?: new DotSeparatedSnakeCaseInflector();
-        $this->eventSerializer = $eventSerializer ?: new ConstructingPayloadSerializer();
+        $this->payloadSerializer = $payloadSerializer ?: new ConstructingPayloadSerializer();
     }
 
     public function serializeMessage(Message $message): array
     {
         $event = $message->event();
-        $payload = $this->eventSerializer->serializeEvent($event);
+        $payload = $this->payloadSerializer->serializePayload($event);
         $headers = $message->headers();
         $aggregateRootId = $headers[Header::AGGREGATE_ROOT_ID] ?? null;
 
@@ -58,7 +58,7 @@ final class ConstructingMessageSerializer implements MessageSerializer
         }
 
         $className = $this->classNameInflector->typeToClassName($payload['headers'][Header::EVENT_TYPE]);
-        $event = $this->eventSerializer->unserializePayload($className, $payload['payload']);
+        $event = $this->payloadSerializer->unserializePayload($className, $payload['payload']);
 
         yield new Message($event, $payload['headers']);
     }

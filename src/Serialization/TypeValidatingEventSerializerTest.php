@@ -44,8 +44,8 @@ final class TypeValidatingEventSerializerTest extends TestCase
     {
         $event = PayloadStub::create('some value');
         $this->assertSame(
-            $this->innerSerializer->serializeEvent($event),
-            $this->serializer->serializeEvent($event)
+            $this->innerSerializer->serializePayload($event),
+            $this->serializer->serializePayload($event)
         );
     }
 
@@ -69,7 +69,7 @@ final class TypeValidatingEventSerializerTest extends TestCase
      */
     public function cannot_serialize_non_instance_of_provided_event_classname()
     {
-        $this->serializer->serializeEvent(new stdClass());
+        $this->serializer->serializePayload(new stdClass());
     }
 
     /**

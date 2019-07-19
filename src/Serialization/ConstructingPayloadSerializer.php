@@ -11,7 +11,7 @@ class ConstructingPayloadSerializer implements PayloadSerializer
      *
      * @return array
      */
-    public function serializeEvent(object $event): array
+    public function serializePayload(object $event): array
     {
         return $event->toPayload();
     }

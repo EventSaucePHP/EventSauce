@@ -5,7 +5,7 @@ namespace Acme\BusinessProcess;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-final class UserSubscribedToMailingList implements SerializableEvent
+final class UserSubscribedToMailingList implements SerializablePayload
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -46,12 +46,13 @@ final class UserSubscribedToMailingList implements SerializableEvent
     {
         return $this->mailingList;
     }
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new UserSubscribedToMailingList(
             \Ramsey\Uuid\Uuid::fromString($payload['id']),
             (string) $payload['username'],
-            (string) $payload['mailingList']);
+            (string) $payload['mailingList']
+        );
     }
 
     public function toPayload(): array
@@ -98,7 +99,7 @@ final class UserSubscribedToMailingList implements SerializableEvent
     }
 }
 
-final class UserUnsubscribedFromMailingList implements SerializableEvent
+final class UserUnsubscribedFromMailingList implements SerializablePayload
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -151,13 +152,14 @@ final class UserUnsubscribedFromMailingList implements SerializableEvent
     {
         return $this->reason;
     }
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new UserUnsubscribedFromMailingList(
             \Ramsey\Uuid\Uuid::fromString($payload['id']),
             (string) $payload['username'],
             (string) $payload['mailingList'],
-            (string) $payload['reason']);
+            (string) $payload['reason']
+        );
     }
 
     public function toPayload(): array
@@ -217,7 +219,7 @@ final class UserUnsubscribedFromMailingList implements SerializableEvent
     }
 }
 
-final class SubscribeToMailingList
+final class SubscribeToMailingList implements SerializablePayload
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -258,9 +260,57 @@ final class SubscribeToMailingList
     {
         return $this->mailingList;
     }
+    public static function fromPayload(array $payload): SerializablePayload
+    {
+        return new SubscribeToMailingList(
+            (string) $payload['username'],
+            (string) $payload['mailingList']
+        );
+    }
+
+    public function toPayload(): array
+    {
+        return [
+            'username' => (string) $this->username,
+            'mailingList' => (string) $this->mailingList,
+        ];
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withUsername(string $username): SubscribeToMailingList
+    {
+        $clone = clone $this;
+        $clone->username = $username;
+
+        return $clone;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withMailingList(string $mailingList): SubscribeToMailingList
+    {
+        $clone = clone $this;
+        $clone->mailingList = $mailingList;
+
+        return $clone;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public static function with(): SubscribeToMailingList
+    {
+        return new SubscribeToMailingList(
+            (string) 'example-user',
+            (string) 'list-name'
+        );
+    }
 }
 
-final class UnsubscribeFromMailingList
+final class UnsubscribeFromMailingList implements SerializablePayload
 {
     /**
      * @var \Ramsey\Uuid\UuidInterface
@@ -312,6 +362,68 @@ final class UnsubscribeFromMailingList
     public function reason(): string
     {
         return $this->reason;
+    }
+    public static function fromPayload(array $payload): SerializablePayload
+    {
+        return new UnsubscribeFromMailingList(
+            (string) $payload['username'],
+            (string) $payload['mailingList'],
+            (string) $payload['reason']
+        );
+    }
+
+    public function toPayload(): array
+    {
+        return [
+            'username' => (string) $this->username,
+            'mailingList' => (string) $this->mailingList,
+            'reason' => (string) $this->reason,
+        ];
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withUsername(string $username): UnsubscribeFromMailingList
+    {
+        $clone = clone $this;
+        $clone->username = $username;
+
+        return $clone;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withMailingList(string $mailingList): UnsubscribeFromMailingList
+    {
+        $clone = clone $this;
+        $clone->mailingList = $mailingList;
+
+        return $clone;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withReason(string $reason): UnsubscribeFromMailingList
+    {
+        $clone = clone $this;
+        $clone->reason = $reason;
+
+        return $clone;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public static function with(): UnsubscribeFromMailingList
+    {
+        return new UnsubscribeFromMailingList(
+            (string) 'example-user',
+            (string) 'list-name',
+            (string) 'no-longer-interested'
+        );
     }
 }
 ```

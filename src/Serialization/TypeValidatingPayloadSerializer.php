@@ -17,7 +17,7 @@ final class TypeValidatingPayloadSerializer implements PayloadSerializer
         $this->eventClassName = $eventClassName;
     }
 
-    public function serializeEvent(object $event): array
+    public function serializePayload(object $event): array
     {
         if ( ! $event instanceof $this->eventClassName) {
             throw new \InvalidArgumentException(sprintf(
@@ -26,7 +26,7 @@ final class TypeValidatingPayloadSerializer implements PayloadSerializer
             ));
         }
 
-        return $this->serializer->serializeEvent($event);
+        return $this->serializer->serializePayload($event);
     }
 
     public function unserializePayload(string $className, array $payload): object

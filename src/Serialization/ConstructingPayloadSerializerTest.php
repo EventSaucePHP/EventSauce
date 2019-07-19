@@ -9,6 +9,9 @@ use EventSauce\EventSourcing\PayloadStub;
 
 final class ConstructingPayloadSerializerTest extends TestCase
 {
+    /**
+     * @var ConstructingPayloadSerializer
+     */
     private $serializer;
 
     public function setUp()
@@ -22,7 +25,7 @@ final class ConstructingPayloadSerializerTest extends TestCase
     public function serializes_serializable_event()
     {
         $event = PayloadStub::create('some value');
-        $data = $this->serializer->serializeEvent($event);
+        $data = $this->serializer->serializePayload($event);
 
         $this->assertSame(['value' => 'some value'], $data);
     }
