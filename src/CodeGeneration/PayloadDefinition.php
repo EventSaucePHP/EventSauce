@@ -9,32 +9,32 @@ final class PayloadDefinition
     /**
      * @var DefinitionGroup
      */
-    protected $group;
+    private $group;
 
     /**
      * @var string
      */
-    protected $name;
+    private $name;
 
     /**
      * @var array[]
      */
-    protected $fields = [];
+    private $fields = [];
 
     /**
      * @var string
      */
-    protected $fieldsFrom = '';
+    private $fieldsFrom = '';
 
     /**
      * @var array
      */
-    protected $fieldSerializers = [];
+    private $fieldSerializers = [];
 
     /**
      * @var array
      */
-    protected $fieldDeserializers = [];
+    private $fieldDeserializers = [];
 
     public function __construct(DefinitionGroup $group, string $name)
     {

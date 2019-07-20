@@ -127,7 +127,6 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
 
         $this->assertContainsOnlyInstancesOf(Message::class, $messages);
 
-
         $this->assertEquals(1, $messages[0]->header(Header::AGGREGATE_ROOT_VERSION));
         $this->assertEquals(2, $messages[1]->header(Header::AGGREGATE_ROOT_VERSION));
     }

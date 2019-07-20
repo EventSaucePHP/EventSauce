@@ -45,7 +45,7 @@ trait AggregateRootBehaviour
     {
         $parts = explode('\\', get_class($event));
         $this->{'apply' . end($parts)}($event);
-        $this->aggregateRootVersion++;
+        ++$this->aggregateRootVersion;
     }
 
     protected function recordThat(object $event)
@@ -70,6 +70,7 @@ trait AggregateRootBehaviour
      * @param Generator       $events
      *
      * @return AggregateRoot
+     *
      * @see AggregateRoot::reconstituteFromEvents
      */
     public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot
@@ -82,7 +83,7 @@ trait AggregateRootBehaviour
             $aggregateRoot->apply($event);
         }
 
-        /** @var AggregateRoot $aggregateRoot */
+        /* @var AggregateRoot $aggregateRoot */
         return $aggregateRoot;
     }
 }
