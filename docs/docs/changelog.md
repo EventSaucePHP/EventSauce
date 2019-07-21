@@ -5,9 +5,17 @@ published_at: 2018-03-14
 updated_at: 2019-07-17
 ---
 
+## 0.6.0
+
+### Breaking changes
+
+- Event serialization is now converted to payload serialization. Generated commands now use the same serialization for easier tracing and logging.
+
+See the [upgrade guide to 0.6.0](/docs/upgrading/to-0-6-0).
+
 ## 0.5.1
 
-## Breaking changes
+### Breaking changes
 
 Test helpers (the ::withX methods) are now immutable.
 
@@ -41,11 +49,11 @@ been collapsed into one. This trait has been moved to the root namespace.
 
 * The `AggregateRootRepository` is now an interface. The default implementation
   is the `ConstructingAggregateRootRepository`.
-* The `Event` interface is removed. A new `SerializablePayload` interface is provided
+* The `Event` interface is removed. A new `SerializableEvent` interface is provided
   to aid the default serializers. If you use the default serializers your events
   must implement this interface. The methods are the same as the `Event` interface,
   so effectively it's an in-place replacement.
-* The `CodeDumper` is changed to ensure code now implements the `SerializablePayload`
+* The `CodeDumper` is changed to ensure code now implements the `SerializableEvent`
   interface.
 * The `AggregateRootTestCase` now allows you to overwrite the `aggregateRootRepository`
   method for if/when you have a custom implementation and still want all the benefits
