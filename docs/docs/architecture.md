@@ -37,8 +37,8 @@ very tiny.
 > * `MessageRepository` - custom message storage (database)
 > * `MessageDispatcher` - customer message dispatching (queue)
 > * `ClassNameInflector` - custom inflection for class-names to event names (interoperability)
-> * `MessageSerializer` - customer message serialization (storage)
-> * `PayloadSerializer` - customer event serialization (storage)
+> * `MessageSerializer` - custom message serialization (storage)
+> * `PayloadSerializer` - custom event serialization (storage)
 
 ### Shipped Implementation
 
