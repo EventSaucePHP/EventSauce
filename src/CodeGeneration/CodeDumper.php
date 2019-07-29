@@ -35,6 +35,8 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload";
         return <<<EOF
 <?php
 
+declare(strict_types=1);
+
 namespace $namespace;
 
 $allCode

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Acme\BusinessProcess;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;

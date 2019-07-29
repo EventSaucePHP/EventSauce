@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Without\Fields;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;

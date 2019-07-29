@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DefinedWith\Yaml;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
