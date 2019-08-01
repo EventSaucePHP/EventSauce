@@ -35,6 +35,7 @@ final class UserSubscribedFromMailingList implements SerializablePayload
     {
         return $this->mailingList;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new UserSubscribedFromMailingList(
@@ -82,6 +83,7 @@ final class SubscribeToMailingList implements SerializablePayload
     {
         return $this->mailingList;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new SubscribeToMailingList(
@@ -141,6 +143,7 @@ final class UnsubscribeFromMailingList implements SerializablePayload
     {
         return $this->reason;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new UnsubscribeFromMailingList(

@@ -35,6 +35,7 @@ final class ThisOne implements SerializablePayload
     {
         return $this->description;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new ThisOne(

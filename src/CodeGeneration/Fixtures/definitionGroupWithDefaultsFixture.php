@@ -23,6 +23,7 @@ final class EventWithDescription implements SerializablePayload
     {
         return $this->description;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new EventWithDescription(

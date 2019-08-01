@@ -23,6 +23,7 @@ final class WithFieldSerializers implements SerializablePayload
     {
         return $this->items;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new WithFieldSerializers(

@@ -145,7 +145,7 @@ EOF;
 EOF;
         }
 
-        return empty($methods) ? '' : rtrim(implode('', $methods)) . "\n";
+        return empty($methods) ? '' : rtrim(implode('', $methods)) . "\n\n";
     }
 
     private function dumpSerializationMethods(PayloadDefinition $definition)

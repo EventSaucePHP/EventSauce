@@ -35,6 +35,7 @@ final class SomethingHappened implements SerializablePayload
     {
         return $this->yolo;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new SomethingHappened(

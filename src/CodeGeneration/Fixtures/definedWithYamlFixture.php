@@ -35,6 +35,7 @@ final class WeWentYamling implements SerializablePayload
     {
         return $this->slogan;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new WeWentYamling(
@@ -91,6 +92,7 @@ final class HideFinancialDetailsOfFraudulentCompany implements SerializablePaylo
     {
         return $this->companyId;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new HideFinancialDetailsOfFraudulentCompany(
@@ -145,6 +147,7 @@ final class GoYamling implements SerializablePayload
     {
         return $this->slogan;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new GoYamling(

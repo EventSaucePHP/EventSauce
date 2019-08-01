@@ -23,6 +23,7 @@ final class DoSomething implements SerializablePayload
     {
         return $this->reason;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new DoSomething(

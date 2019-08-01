@@ -23,6 +23,7 @@ final class EventName implements SerializablePayload
     {
         return $this->title;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new EventName(
