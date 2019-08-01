@@ -37,7 +37,6 @@ final class BaseEvent implements SerializablePayload
             'age' => (int) $this->age,
         ];
     }
-
 }
 
 final class ExtendedEvent implements SerializablePayload
@@ -71,7 +70,6 @@ final class ExtendedEvent implements SerializablePayload
             'age' => (int) $this->age,
         ];
     }
-
 }
 
 final class BaseCommand implements SerializablePayload
@@ -105,7 +103,6 @@ final class BaseCommand implements SerializablePayload
             'name' => (string) $this->name,
         ];
     }
-
 }
 
 final class ExtendedCommand implements SerializablePayload
@@ -139,5 +136,4 @@ final class ExtendedCommand implements SerializablePayload
             'name' => (string) $this->name,
         ];
     }
-
 }

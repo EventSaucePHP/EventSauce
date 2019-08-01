@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use LogicException;
+use function array_map;
+use function join;
 use const null;
 use function array_filter;
 use function sprintf;
@@ -61,12 +63,15 @@ EOF;
             $testHelpers = $withHelpers ? $this->dumpTestHelpers($definition) : '';
             $implements = $withSerialization ? ' implements SerializablePayload' : '';
 
+            $allSections = [$fields, $constructor, $methods, $deserializer, $testHelpers];
+            $allSections = array_filter(array_map('rtrim', $allSections));
+            $allCode = join("\n\n", $allSections);
+
             $code[] = <<<EOF
 final class $name$implements
 {
-$fields$constructor$methods$deserializer
-
-$testHelpers}
+$allCode
+}
 
 
 EOF;

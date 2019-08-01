@@ -51,7 +51,6 @@ final class UserSubscribedFromMailingList implements SerializablePayload
             'mailingList' => (string) $this->mailingList,
         ];
     }
-
 }
 
 final class SubscribeToMailingList implements SerializablePayload
@@ -99,7 +98,6 @@ final class SubscribeToMailingList implements SerializablePayload
             'mailingList' => (string) $this->mailingList,
         ];
     }
-
 }
 
 final class UnsubscribeFromMailingList implements SerializablePayload
@@ -161,5 +159,4 @@ final class UnsubscribeFromMailingList implements SerializablePayload
             'reason' => (string) $this->reason,
         ];
     }
-
 }
