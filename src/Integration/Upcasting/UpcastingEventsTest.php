@@ -38,7 +38,9 @@ class UpcastingEventsTest extends TestCase
         $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(), $upcaster);
 
         $message = iterator_to_array($serializer->unserializePayload($payload))[0];
-        $expected = $defaultDecorator->decorate(new Message(new UpcastedPayloadStub('upcasted')))->withHeader('version', 1);
+        $expected = $defaultDecorator
+                ->decorate(new Message(new UpcastedPayloadStub('upcasted')))
+                ->withHeader('version', 1);
 
         $this->assertEquals($expected, $message);
     }
