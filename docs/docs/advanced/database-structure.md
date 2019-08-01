@@ -18,7 +18,7 @@ There are multiple ways this can be approached. We'll explore 4 ways:
 
 Storing all events in one table is a very simple approach. In this approach the table to
 store events in will be shared by multiple different types of event-sourced models. A table
-like this will be called something along the lines of "event_sourcing_messages".
+like this will be called something along the lines of "domain_messages".
 
 ### Pro's
 
