@@ -25,6 +25,7 @@ Reacting to events:
     Process Managers: '/docs/reacting-to-events/process-managers/'
 
 Advanced Topics:
+    Database Structure: '/docs/advanced/database-structure/'
     Rebuilding Projections: '/docs/advanced/rebuilding-projections/'
     Message Internals: '/docs/advanced/message-internals/'
     Message Decoration: '/docs/advanced/message-decoration/'
