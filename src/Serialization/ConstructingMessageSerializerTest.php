@@ -25,10 +25,10 @@ class ConstructingMessageSerializerTest extends TestCase
         $aggregateRootIdType = $inflector->instanceToType($aggregateRootId);
         $timeOfRecording = (new TestClock())->pointInTime();
         $message = new Message(new PayloadStub('original value'), [
-            Header::AGGREGATE_ROOT_ID      => $aggregateRootId,
+            Header::AGGREGATE_ROOT_ID => $aggregateRootId,
             Header::AGGREGATE_ROOT_ID_TYPE => $aggregateRootIdType,
-            Header::TIME_OF_RECORDING      => $timeOfRecording->toString(),
-            Header::EVENT_TYPE             => $inflector->classNameToType(PayloadStub::class),
+            Header::TIME_OF_RECORDING => $timeOfRecording->toString(),
+            Header::EVENT_TYPE => $inflector->classNameToType(PayloadStub::class),
         ]);
         $serializer = new ConstructingMessageSerializer();
         $serialized = $serializer->serializeMessage($message);

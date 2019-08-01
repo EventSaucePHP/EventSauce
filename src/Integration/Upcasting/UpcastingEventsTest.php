@@ -28,7 +28,7 @@ class UpcastingEventsTest extends TestCase
         $eventType = (new DotSeparatedSnakeCaseInflector())->classNameToType(UpcastedPayloadStub::class);
         $payload = [
             'headers' => [
-                Header::EVENT_TYPE        => $eventType,
+                Header::EVENT_TYPE => $eventType,
                 Header::TIME_OF_RECORDING => $pointInTime->toString(),
             ],
             'payload' => [],
@@ -56,7 +56,7 @@ class UpcastingEventsTest extends TestCase
         $eventType = (new DotSeparatedSnakeCaseInflector())->classNameToType(UpcastedPayloadStub::class);
         $payload = [
             'headers' => [
-                Header::EVENT_TYPE        => $eventType,
+                Header::EVENT_TYPE => $eventType,
                 Header::TIME_OF_RECORDING => $pointInTime->toString(),
             ],
             'payload' => [],

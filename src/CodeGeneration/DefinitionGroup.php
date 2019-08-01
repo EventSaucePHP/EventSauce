@@ -27,24 +27,24 @@ final class DefinitionGroup
      * @var array
      */
     private $typeSerializer = [
-        'string'  => '({type}) {param}',
-        'array'   => '({type}) {param}',
+        'string' => '({type}) {param}',
+        'array' => '({type}) {param}',
         'integer' => '({type}) {param}',
-        'int'     => '({type}) {param}',
-        'bool'    => '({type}) {param}',
-        'float'   => '({type}) {param}',
+        'int' => '({type}) {param}',
+        'bool' => '({type}) {param}',
+        'float' => '({type}) {param}',
     ];
 
     /**
      * @var array
      */
     private $typeDeserializer = [
-        'string'  => '({type}) {param}',
-        'array'   => '({type}) {param}',
+        'string' => '({type}) {param}',
+        'array' => '({type}) {param}',
         'integer' => '({type}) {param}',
-        'int'     => '({type}) {param}',
-        'bool'    => '({type}) {param}',
-        'float'   => '({type}) {param}',
+        'int' => '({type}) {param}',
+        'bool' => '({type}) {param}',
+        'float' => '({type}) {param}',
     ];
 
     /**

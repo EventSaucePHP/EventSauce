@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use LogicException;
-use function array_map;
-use function join;
-use const null;
 use function array_filter;
+use function array_map;
+use function implode;
 use function sprintf;
 use function ucfirst;
 use function var_export;
+use const null;
 
 class CodeDumper
 {
@@ -65,7 +65,7 @@ EOF;
 
             $allSections = [$fields, $constructor, $methods, $deserializer, $testHelpers];
             $allSections = array_filter(array_map('rtrim', $allSections));
-            $allCode = join("\n\n", $allSections);
+            $allCode = implode("\n\n", $allSections);
 
             $code[] = <<<EOF
 final class $name$implements
