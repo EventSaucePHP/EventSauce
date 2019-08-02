@@ -17,11 +17,11 @@ class SynchronousMessageDispatcherTest extends TestCase
      */
     public function dispatching_messages_synchronously()
     {
-        $stubconsumer = new SynchronousConsumerStub();
-        $syncDispatcher = new SynchronousMessageDispatcher($stubconsumer, $stubconsumer);
+        $stubConsumer = new SynchronousConsumerStub();
+        $syncDispatcher = new SynchronousMessageDispatcher($stubConsumer, $stubConsumer);
         $message = new Message(new PayloadStub('value'));
         $syncDispatcher->dispatch($message, $message);
-        $this->assertEquals([$message, $message, $message, $message], $stubconsumer->handled);
+        $this->assertEquals([$message, $message, $message, $message], $stubConsumer->handled);
     }
 
     /**
