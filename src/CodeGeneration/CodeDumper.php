@@ -23,8 +23,8 @@ class CodeDumper
     public function dump(DefinitionGroup $definitionGroup, bool $withHelpers = true, bool $withSerialization = true): string
     {
         $this->definitionGroup = $definitionGroup;
-        $definitionCode = $this->dumpClass($definitionGroup->events(), $withHelpers, $withSerialization);
-        $commandCode = $this->dumpClass($definitionGroup->commands(), $withHelpers, $withSerialization);
+        $definitionCode = $this->dumpClasses($definitionGroup->events(), $withHelpers, $withSerialization);
+        $commandCode = $this->dumpClasses($definitionGroup->commands(), $withHelpers, $withSerialization);
         $namespace = $definitionGroup->namespace();
         $allCode = implode("\n\n", array_filter([$definitionCode, $commandCode]));
 
@@ -46,7 +46,7 @@ $allCode
 EOF;
     }
 
-    private function dumpClass(array $definitions, bool $withHelpers, bool $withSerialization): string
+    private function dumpClasses(array $definitions, bool $withHelpers, bool $withSerialization): string
     {
         $code = [];
 
