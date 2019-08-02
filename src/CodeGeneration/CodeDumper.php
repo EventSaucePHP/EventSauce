@@ -130,8 +130,6 @@ $arguments
     ) {
 $assignments
     }
-
-
 EOF;
     }
 
@@ -150,7 +148,7 @@ EOF;
 EOF;
         }
 
-        return empty($methods) ? '' : rtrim(implode('', $methods)) . "\n\n";
+        return implode('', $methods);
     }
 
     private function dumpSerializationMethods(PayloadDefinition $definition)
