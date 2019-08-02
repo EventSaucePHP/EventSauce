@@ -254,7 +254,7 @@ EOF;
 
 EOF;
 
-        return rtrim(implode('', $helpers)) . "\n";
+        return implode('', $helpers);
     }
 
     private function dumpConstructorValue(array $field, PayloadDefinition $definition): string
