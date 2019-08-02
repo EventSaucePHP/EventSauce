@@ -7,7 +7,6 @@ namespace EventSauce\EventSourcing\CodeGeneration;
 use LogicException;
 use function array_filter;
 use function array_map;
-use function array_push;
 use function implode;
 use function sprintf;
 use function ucfirst;
@@ -281,7 +280,10 @@ EOF;
     private function fieldsFromDefinition(PayloadDefinition $definition): array
     {
         $fields = $this->fieldsFrom($definition->fieldsFrom());
-        array_push($fields, ...$definition->fields());
+
+        foreach ($definition->fields() as $field) {
+            array_push($fields, $field);
+        }
 
         return $fields;
     }
