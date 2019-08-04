@@ -54,9 +54,10 @@ final class UserSubscribedToMailingList implements SerializableEvent
      */
     public function withUsername(string $username): UserSubscribedToMailingList
     {
-        $this->username = $username;
+        $clone = clone $this;
+        $clone->username = $username;
 
-        return $this;
+        return $clone;
     }
 
     /**
@@ -64,9 +65,10 @@ final class UserSubscribedToMailingList implements SerializableEvent
      */
     public function withMailingList(string $mailingList): UserSubscribedToMailingList
     {
-        $this->mailingList = $mailingList;
+        $clone = clone $this;
+        $clone->mailingList = $mailingList;
 
-        return $this;
+        return $clone;
     }
 
     /**
@@ -144,9 +146,10 @@ final class UserUnsubscribedFromMailingList implements SerializableEvent
      */
     public function withUsername(string $username): UserUnsubscribedFromMailingList
     {
-        $this->username = $username;
+        $clone = clone $this;
+        $clone->username = $username;
 
-        return $this;
+        return $clone;
     }
 
     /**
@@ -154,9 +157,10 @@ final class UserUnsubscribedFromMailingList implements SerializableEvent
      */
     public function withMailingList(string $mailingList): UserUnsubscribedFromMailingList
     {
-        $this->mailingList = $mailingList;
+        $clone = clone $this;
+        $clone->mailingList = $mailingList;
 
-        return $this;
+        return $clone;
     }
 
     /**
@@ -164,9 +168,10 @@ final class UserUnsubscribedFromMailingList implements SerializableEvent
      */
     public function withReason(string $reason): UserUnsubscribedFromMailingList
     {
-        $this->reason = $reason;
+        $clone = clone $this;
+        $clone->reason = $reason;
 
-        return $this;
+        return $clone;
     }
 
     /**
