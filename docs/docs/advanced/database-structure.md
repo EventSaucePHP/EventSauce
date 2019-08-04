@@ -1,8 +1,8 @@
 ---
 permalink: /docs/advanced/database-structure/
 title: Database Structure
-published_at: 2019-07-01
-updated_at: 2019-07-01
+published_at: 2019-08-01
+updated_at: 2019-08-01
 ---
 
 Storing events for reconstitution should be done in any type queryable data store. It needs
@@ -90,8 +90,3 @@ atomically add new entries using a `$push` operation.
 
 * Required a NoSQL database (although MySQL and Postgres also have similar features).
 * Creating snapshots is harder when you want incremental snapshots.
-
-
-
-
-
