@@ -1,8 +1,21 @@
 ```yaml
+## The namespace for your generated code.
 namespace: Acme\BusinessProcess
+
+## Custom type serialization (optional)
+types:
+    uuid:
+        type: Ramsey\Uuid\UuidInterface
+        serializer: |
+            {param}->toString()
+        deserializer: |
+            \Ramsey\Uuid\Uuid::fromString({param})
+
+## The commands (optional)
 commands:
     SubscribeToMailingList:
         fields:
+            id: uuid
             username:
                 type: string
                 example: example-user
@@ -11,6 +24,7 @@ commands:
                 example: list-name
     UnsubscribeFromMailingList:
         fields:
+            id: uuid
             username:
                 type: string
                 example: example-user
@@ -20,9 +34,12 @@ commands:
             reason:
                 type: string
                 example: no-longer-interested
+
+## The events
 events:
     UserSubscribedToMailingList:
         fields:
+            id: uuid
             username:
                 type: string
                 example: example-user
@@ -31,6 +48,7 @@ events:
                 example: list-name
     UserUnsubscribedFromMailingList:
         fields:
+            id: uuid
             username:
                 type: string
                 example: example-user

@@ -8,6 +8,11 @@ use EventSauce\EventSourcing\Serialization\SerializableEvent;
 final class UserSubscribedToMailingList implements SerializableEvent
 {
     /**
+     * @var \Ramsey\Uuid\UuidInterface
+     */
+    private $id;
+
+    /**
      * @var string
      */
     private $username;
@@ -18,11 +23,18 @@ final class UserSubscribedToMailingList implements SerializableEvent
     private $mailingList;
 
     public function __construct(
+        \Ramsey\Uuid\UuidInterface $id,
         string $username,
         string $mailingList
     ) {
+        $this->id = $id;
         $this->username = $username;
         $this->mailingList = $mailingList;
+    }
+
+    public function id(): \Ramsey\Uuid\UuidInterface
+    {
+        return $this->id;
     }
 
     public function username(): string
@@ -37,6 +49,7 @@ final class UserSubscribedToMailingList implements SerializableEvent
     public static function fromPayload(array $payload): SerializableEvent
     {
         return new UserSubscribedToMailingList(
+            \Ramsey\Uuid\Uuid::fromString($payload['id']),
             (string) $payload['username'],
             (string) $payload['mailingList']);
     }
@@ -44,6 +57,7 @@ final class UserSubscribedToMailingList implements SerializableEvent
     public function toPayload(): array
     {
         return [
+            'id' => $this->id->toString(),
             'username' => (string) $this->username,
             'mailingList' => (string) $this->mailingList,
         ];
@@ -74,9 +88,10 @@ final class UserSubscribedToMailingList implements SerializableEvent
     /**
      * @codeCoverageIgnore
      */
-    public static function with(): UserSubscribedToMailingList
+    public static function withId(\Ramsey\Uuid\UuidInterface $id): UserSubscribedToMailingList
     {
         return new UserSubscribedToMailingList(
+            $id,
             (string) 'example-user',
             (string) 'list-name'
         );
@@ -85,6 +100,11 @@ final class UserSubscribedToMailingList implements SerializableEvent
 
 final class UserUnsubscribedFromMailingList implements SerializableEvent
 {
+    /**
+     * @var \Ramsey\Uuid\UuidInterface
+     */
+    private $id;
+
     /**
      * @var string
      */
@@ -101,13 +121,20 @@ final class UserUnsubscribedFromMailingList implements SerializableEvent
     private $reason;
 
     public function __construct(
+        \Ramsey\Uuid\UuidInterface $id,
         string $username,
         string $mailingList,
         string $reason
     ) {
+        $this->id = $id;
         $this->username = $username;
         $this->mailingList = $mailingList;
         $this->reason = $reason;
+    }
+
+    public function id(): \Ramsey\Uuid\UuidInterface
+    {
+        return $this->id;
     }
 
     public function username(): string
@@ -127,6 +154,7 @@ final class UserUnsubscribedFromMailingList implements SerializableEvent
     public static function fromPayload(array $payload): SerializableEvent
     {
         return new UserUnsubscribedFromMailingList(
+            \Ramsey\Uuid\Uuid::fromString($payload['id']),
             (string) $payload['username'],
             (string) $payload['mailingList'],
             (string) $payload['reason']);
@@ -135,6 +163,7 @@ final class UserUnsubscribedFromMailingList implements SerializableEvent
     public function toPayload(): array
     {
         return [
+            'id' => $this->id->toString(),
             'username' => (string) $this->username,
             'mailingList' => (string) $this->mailingList,
             'reason' => (string) $this->reason,
@@ -177,9 +206,10 @@ final class UserUnsubscribedFromMailingList implements SerializableEvent
     /**
      * @codeCoverageIgnore
      */
-    public static function with(): UserUnsubscribedFromMailingList
+    public static function withId(\Ramsey\Uuid\UuidInterface $id): UserUnsubscribedFromMailingList
     {
         return new UserUnsubscribedFromMailingList(
+            $id,
             (string) 'example-user',
             (string) 'list-name',
             (string) 'no-longer-interested'
@@ -189,6 +219,11 @@ final class UserUnsubscribedFromMailingList implements SerializableEvent
 
 final class SubscribeToMailingList
 {
+    /**
+     * @var \Ramsey\Uuid\UuidInterface
+     */
+    private $id;
+
     /**
      * @var string
      */
@@ -200,11 +235,18 @@ final class SubscribeToMailingList
     private $mailingList;
 
     public function __construct(
+        \Ramsey\Uuid\UuidInterface $id,
         string $username,
         string $mailingList
     ) {
+        $this->id = $id;
         $this->username = $username;
         $this->mailingList = $mailingList;
+    }
+
+    public function id(): \Ramsey\Uuid\UuidInterface
+    {
+        return $this->id;
     }
 
     public function username(): string
@@ -221,6 +263,11 @@ final class SubscribeToMailingList
 final class UnsubscribeFromMailingList
 {
     /**
+     * @var \Ramsey\Uuid\UuidInterface
+     */
+    private $id;
+
+    /**
      * @var string
      */
     private $username;
@@ -236,13 +283,20 @@ final class UnsubscribeFromMailingList
     private $reason;
 
     public function __construct(
+        \Ramsey\Uuid\UuidInterface $id,
         string $username,
         string $mailingList,
         string $reason
     ) {
+        $this->id = $id;
         $this->username = $username;
         $this->mailingList = $mailingList;
         $this->reason = $reason;
+    }
+
+    public function id(): \Ramsey\Uuid\UuidInterface
+    {
+        return $this->id;
     }
 
     public function username(): string
