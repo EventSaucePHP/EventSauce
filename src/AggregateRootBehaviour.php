@@ -26,11 +26,6 @@ trait AggregateRootBehaviour
      */
     private $recordedEvents = [];
 
-    public function __construct(AggregateRootId $aggregateRootId)
-    {
-        $this->aggregateRootId = $aggregateRootId;
-    }
-
     public function aggregateRootId(): AggregateRootId
     {
         return $this->aggregateRootId;
@@ -76,7 +71,8 @@ trait AggregateRootBehaviour
     public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot
     {
         /** @var AggregateRootBehaviour $aggregateRoot */
-        $aggregateRoot = new static($aggregateRootId);
+        $aggregateRoot = new static();
+        $aggregateRoot->aggregateRootId = $aggregateRootId;
 
         /** @var object $event */
         foreach ($events as $event) {
