@@ -39,7 +39,7 @@ To illustrate:
 
 ```php
 $event1 = new MyEvent();
-$event2 = MyEvent::fromPayload($event1->timeOfRecording());
+$event2 = MyEvent::fromPayload($event1->toPayload());
 
 assert($event1 == $event2);
 ```
