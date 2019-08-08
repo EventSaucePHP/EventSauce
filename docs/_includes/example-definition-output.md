@@ -1,6 +1,8 @@
 ```php
 <?php
 
+declare(strict_types=1);
+
 namespace Acme\BusinessProcess;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
@@ -46,6 +48,7 @@ final class UserSubscribedToMailingList implements SerializablePayload
     {
         return $this->mailingList;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new UserSubscribedToMailingList(
@@ -152,6 +155,7 @@ final class UserUnsubscribedFromMailingList implements SerializablePayload
     {
         return $this->reason;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new UserUnsubscribedFromMailingList(
@@ -260,9 +264,11 @@ final class SubscribeToMailingList implements SerializablePayload
     {
         return $this->mailingList;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new SubscribeToMailingList(
+            \Ramsey\Uuid\Uuid::fromString($payload['id']),
             (string) $payload['username'],
             (string) $payload['mailingList']
         );
@@ -271,6 +277,7 @@ final class SubscribeToMailingList implements SerializablePayload
     public function toPayload(): array
     {
         return [
+            'id' => $this->id->toString(),
             'username' => (string) $this->username,
             'mailingList' => (string) $this->mailingList,
         ];
@@ -301,9 +308,10 @@ final class SubscribeToMailingList implements SerializablePayload
     /**
      * @codeCoverageIgnore
      */
-    public static function with(): SubscribeToMailingList
+    public static function withId(\Ramsey\Uuid\UuidInterface $id): SubscribeToMailingList
     {
         return new SubscribeToMailingList(
+            $id,
             (string) 'example-user',
             (string) 'list-name'
         );
@@ -363,9 +371,11 @@ final class UnsubscribeFromMailingList implements SerializablePayload
     {
         return $this->reason;
     }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new UnsubscribeFromMailingList(
+            \Ramsey\Uuid\Uuid::fromString($payload['id']),
             (string) $payload['username'],
             (string) $payload['mailingList'],
             (string) $payload['reason']
@@ -375,6 +385,7 @@ final class UnsubscribeFromMailingList implements SerializablePayload
     public function toPayload(): array
     {
         return [
+            'id' => $this->id->toString(),
             'username' => (string) $this->username,
             'mailingList' => (string) $this->mailingList,
             'reason' => (string) $this->reason,
@@ -417,9 +428,10 @@ final class UnsubscribeFromMailingList implements SerializablePayload
     /**
      * @codeCoverageIgnore
      */
-    public static function with(): UnsubscribeFromMailingList
+    public static function withId(\Ramsey\Uuid\UuidInterface $id): UnsubscribeFromMailingList
     {
         return new UnsubscribeFromMailingList(
+            $id,
             (string) 'example-user',
             (string) 'list-name',
             (string) 'no-longer-interested'
