@@ -139,6 +139,6 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
 
     protected function newAggregateRootId(): AggregateRootId
     {
-        return UuidAggregateRootId::create();
+        return DummyAggregateRootId::generate();
     }
 }

@@ -13,10 +13,6 @@ class DummyAggregate implements AggregateRoot
 
     private $incrementedNumber = 0;
 
-    private function __construct()
-    {
-    }
-
     public function performDummyTask()
     {
         $this->recordThat(new DummyTaskWasExecuted());
