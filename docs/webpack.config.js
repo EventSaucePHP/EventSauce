@@ -1,52 +1,18 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const PurgecssPlugin = require('purgecss-webpack-plugin');
-const glob = require("glob-all");
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-class TailwindExtractor {
-    static extract(content) {
-        return content.match(/[A-z0-9-:\/]+/g);
-    }
-}
-
-let plugins = [
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-        filename: isProduction ? 'styles.[hash].css' : 'styles.css'
-    }),
-    new OptimizeCssAssetsPlugin(),
-    new ManifestPlugin({
-        fileName: '../_data/manifest.yml',
-        publicPath: '/dist/',
-    }),
-];
-
-let isProd = process.env.NODE_ENV === 'production';
-
-if (isProd) {
-    plugins.push(new PurgecssPlugin({
-        paths: glob.sync([
-            path.join(__dirname, "_site/**/*.html"),
-        ]),
-        extractors: [{
-            extractor: TailwindExtractor,
-            extensions: ["html"]
-        }]
-    }));
-}
-
 module.exports = {
-    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+    mode: isProduction ? 'production' : 'development',
     entry: {
-        docs: './index.js'
+        docs: path.resolve(__dirname, './assets/index.css'),
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, './dist/'),
         filename: isProduction ? '[name].[hash].js' : '[name].js',
+        chunkFilename: isProduction ? '[id].[hash].js' : '[id].js',
     },
     module: {
         rules: [
@@ -65,5 +31,14 @@ module.exports = {
             }
         ]
     },
-    plugins: plugins
+    plugins: [
+        new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: isProduction ? '[name].[hash].css' : '[name].css'
+        }),
+        new ManifestPlugin({
+            fileName: '../_data/manifest.yml',
+            publicPath: './dist/',
+        }),
+    ],
 };

@@ -8,3 +8,12 @@ defaults:
       layout: "default"
       published_at: "2018-03-11"
       updated_at: "2018-03-11"
+
+exclude:
+    - "*.config.js"
+    - "package*.json"
+    - assets
+    - node_modules
+    - "Gemfile*"
+    - "update-*.php"
+    - CNAME
