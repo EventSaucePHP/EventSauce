@@ -3,7 +3,7 @@ permalink: /docs/architecture/
 redirect_from: '/docs/core-concepts/'
 title: Architecture
 published_at: 2018-03-24
-updated_at: 2019-06-12
+updated_at: 2019-07-17
 ---
 
 EventSauce is designed to be pragmatic. It's pragmatic because it's easy to setup
@@ -37,8 +37,8 @@ very tiny.
 > * `MessageRepository` - custom message storage (database)
 > * `MessageDispatcher` - customer message dispatching (queue)
 > * `ClassNameInflector` - custom inflection for class-names to event names (interoperability)
-> * `MessageSerializer` - customer message serialization (storage)
-> * `EventSerializer` - customer event serialization (storage)
+> * `MessageSerializer` - custom message serialization (storage)
+> * `PayloadSerializer` - custom event serialization (storage)
 
 ### Shipped Implementation
 

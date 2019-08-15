@@ -22,6 +22,7 @@ class YamlDefinitionLoader implements DefinitionLoader
 
     public function load(string $filename, DefinitionGroup $definitionGroup = null): DefinitionGroup
     {
+        /** @var string|bool $fileContents */
         $fileContents = file_get_contents($filename);
 
         if ( ! is_string($fileContents) || empty($fileContents)) {

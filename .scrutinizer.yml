@@ -5,8 +5,7 @@ filter:
     paths:
         - "src/*"
     excluded_paths:
-        - "src/CodeGeneration/Fixtures/*"
-        - "src/Integration/*"
+        - "src/CodeGeneration/*"
         - "src/*Test.php"
         - "src/*Stub.php"
 

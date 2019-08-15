@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Serialization;
 
-final class TypeValidatingEventSerializer implements EventSerializer
+final class TypeValidatingPayloadSerializer implements PayloadSerializer
 {
     private $serializer;
     private $eventClassName;
 
     public function __construct(
-        EventSerializer $serializer,
+        PayloadSerializer $serializer,
         string $eventClassName
     ) {
         $this->serializer = $serializer;
         $this->eventClassName = $eventClassName;
     }
 
-    public function serializeEvent(object $event): array
+    public function serializePayload(object $event): array
     {
         if ( ! $event instanceof $this->eventClassName) {
             throw new \InvalidArgumentException(sprintf(
@@ -26,7 +26,7 @@ final class TypeValidatingEventSerializer implements EventSerializer
             ));
         }
 
-        return $this->serializer->serializeEvent($event);
+        return $this->serializer->serializePayload($event);
     }
 
     public function unserializePayload(string $className, array $payload): object

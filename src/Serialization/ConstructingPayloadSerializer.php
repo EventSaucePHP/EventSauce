@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Serialization;
 
-class ConstructingEventSerializer implements EventSerializer
+class ConstructingPayloadSerializer implements PayloadSerializer
 {
     /**
-     * @param SerializableEvent $event
+     * @param SerializablePayload $event
      *
      * @return array
      */
-    public function serializeEvent(object $event): array
+    public function serializePayload(object $event): array
     {
         return $event->toPayload();
     }
 
     public function unserializePayload(string $className, array $payload): object
     {
-        /* @var SerializableEvent $className */
+        /* @var SerializablePayload $className */
         return $className::fromPayload($payload);
     }
 }

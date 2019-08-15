@@ -30,8 +30,9 @@ class DummyAggregate implements AggregateRoot
         $this->incrementedNumber = $event->number();
     }
 
-    protected function applyDummyTaskWasExecuted(DummyTaskWasExecuted $event)
+    protected function applyDummyTaskWasExecuted(/** @scrutinizer ignore-unused */ DummyTaskWasExecuted $event)
     {
+
     }
 
     public function dontDoAnything()

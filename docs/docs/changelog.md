@@ -2,12 +2,20 @@
 permalink: /docs/changelog/
 title: Changelog
 published_at: 2018-03-14
-updated_at: 2019-07-11
+updated_at: 2019-07-17
 ---
+
+## 0.6.0
+
+### Breaking changes
+
+- Event serialization is now converted to payload serialization. Generated commands now use the same serialization for easier tracing and logging.
+
+See the [upgrade guide to 0.6.0](/docs/upgrading/to-0-6-0).
 
 ## 0.5.1
 
-## Breaking changes
+### Breaking changes
 
 Test helpers (the ::withX methods) are now immutable.
 

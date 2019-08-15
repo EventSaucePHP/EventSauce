@@ -25,10 +25,10 @@ class UpcastingEventsTest extends TestCase
         $clock = new TestClock();
         $pointInTime = $clock->pointInTime();
         $defaultDecorator = new DefaultHeadersDecorator(null, $clock);
-        $eventType = (new DotSeparatedSnakeCaseInflector())->classNameToType(UpcastedEventStub::class);
+        $eventType = (new DotSeparatedSnakeCaseInflector())->classNameToType(UpcastedPayloadStub::class);
         $payload = [
             'headers' => [
-                Header::EVENT_TYPE        => $eventType,
+                Header::EVENT_TYPE => $eventType,
                 Header::TIME_OF_RECORDING => $pointInTime->toString(),
             ],
             'payload' => [],
@@ -38,7 +38,9 @@ class UpcastingEventsTest extends TestCase
         $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(), $upcaster);
 
         $message = iterator_to_array($serializer->unserializePayload($payload))[0];
-        $expected = $defaultDecorator->decorate(new Message(new UpcastedEventStub('upcasted')))->withHeader('version', 1);
+        $expected = $defaultDecorator
+                ->decorate(new Message(new UpcastedPayloadStub('upcasted')))
+                ->withHeader('version', 1);
 
         $this->assertEquals($expected, $message);
     }
@@ -51,10 +53,10 @@ class UpcastingEventsTest extends TestCase
         $clock = new TestClock();
         $pointInTime = $clock->pointInTime();
         $defaultDecorator = new DefaultHeadersDecorator(null, $clock);
-        $eventType = (new DotSeparatedSnakeCaseInflector())->classNameToType(UpcastedEventStub::class);
+        $eventType = (new DotSeparatedSnakeCaseInflector())->classNameToType(UpcastedPayloadStub::class);
         $payload = [
             'headers' => [
-                Header::EVENT_TYPE        => $eventType,
+                Header::EVENT_TYPE => $eventType,
                 Header::TIME_OF_RECORDING => $pointInTime->toString(),
             ],
             'payload' => [],
@@ -64,7 +66,7 @@ class UpcastingEventsTest extends TestCase
         $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(), $upcaster);
 
         $message = iterator_to_array($serializer->unserializePayload($payload))[0];
-        $expected = $defaultDecorator->decorate(new Message(new UpcastedEventStub('undefined')));
+        $expected = $defaultDecorator->decorate(new Message(new UpcastedPayloadStub('undefined')));
 
         $this->assertEquals($expected, $message);
     }
@@ -77,7 +79,7 @@ class UpcastingEventsTest extends TestCase
         $upcaster = new DelegatingUpcaster(new UpcasterStub());
         $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(), $upcaster);
 
-        $message = new Message(new UpcastedEventStub('a value'));
+        $message = new Message(new UpcastedPayloadStub('a value'));
 
         $serializeMessage = $serializer->serializeMessage($message);
         $expectedPayload = [

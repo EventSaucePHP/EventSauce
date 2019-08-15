@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Acme\BusinessProcess;
 
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
+use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-final class UserSubscribedFromMailingList implements SerializableEvent
+final class UserSubscribedFromMailingList implements SerializablePayload
 {
     /**
      * @var string
@@ -33,11 +35,13 @@ final class UserSubscribedFromMailingList implements SerializableEvent
     {
         return $this->mailingList;
     }
-    public static function fromPayload(array $payload): SerializableEvent
+
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new UserSubscribedFromMailingList(
             (string) $payload['username'],
-            (string) $payload['mailingList']);
+            (string) $payload['mailingList']
+        );
     }
 
     public function toPayload(): array
@@ -47,10 +51,9 @@ final class UserSubscribedFromMailingList implements SerializableEvent
             'mailingList' => (string) $this->mailingList,
         ];
     }
-
 }
 
-final class SubscribeToMailingList
+final class SubscribeToMailingList implements SerializablePayload
 {
     /**
      * @var string
@@ -79,9 +82,25 @@ final class SubscribeToMailingList
     {
         return $this->mailingList;
     }
+
+    public static function fromPayload(array $payload): SerializablePayload
+    {
+        return new SubscribeToMailingList(
+            (string) $payload['username'],
+            (string) $payload['mailingList']
+        );
+    }
+
+    public function toPayload(): array
+    {
+        return [
+            'username' => (string) $this->username,
+            'mailingList' => (string) $this->mailingList,
+        ];
+    }
 }
 
-final class UnsubscribeFromMailingList
+final class UnsubscribeFromMailingList implements SerializablePayload
 {
     /**
      * @var string
@@ -121,5 +140,23 @@ final class UnsubscribeFromMailingList
     public function reason(): string
     {
         return $this->reason;
+    }
+
+    public static function fromPayload(array $payload): SerializablePayload
+    {
+        return new UnsubscribeFromMailingList(
+            (string) $payload['username'],
+            (string) $payload['mailingList'],
+            (string) $payload['reason']
+        );
+    }
+
+    public function toPayload(): array
+    {
+        return [
+            'username' => (string) $this->username,
+            'mailingList' => (string) $this->mailingList,
+            'reason' => (string) $this->reason,
+        ];
     }
 }

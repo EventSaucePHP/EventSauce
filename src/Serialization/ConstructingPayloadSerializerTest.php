@@ -5,15 +5,18 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\Serialization;
 
 use PHPStan\Testing\TestCase;
-use EventSauce\EventSourcing\EventStub;
+use EventSauce\EventSourcing\PayloadStub;
 
-final class ConstructingEventSerializerTest extends TestCase
+final class ConstructingPayloadSerializerTest extends TestCase
 {
+    /**
+     * @var ConstructingPayloadSerializer
+     */
     private $serializer;
 
     public function setUp()
     {
-        $this->serializer = new ConstructingEventSerializer();
+        $this->serializer = new ConstructingPayloadSerializer();
     }
 
     /**
@@ -21,8 +24,8 @@ final class ConstructingEventSerializerTest extends TestCase
      */
     public function serializes_serializable_event()
     {
-        $event = EventStub::create('some value');
-        $data = $this->serializer->serializeEvent($event);
+        $event = PayloadStub::create('some value');
+        $data = $this->serializer->serializePayload($event);
 
         $this->assertSame(['value' => 'some value'], $data);
     }
@@ -32,9 +35,9 @@ final class ConstructingEventSerializerTest extends TestCase
      */
     public function unserialize_into_serializable_event()
     {
-        $object = $this->serializer->unserializePayload(EventStub::class, ['value' => 'some value']);
+        $object = $this->serializer->unserializePayload(PayloadStub::class, ['value' => 'some value']);
 
-        $this->assertInstanceOf(EventStub::class, $object);
+        $this->assertInstanceOf(PayloadStub::class, $object);
         $this->assertAttributeSame('some value', 'value', $object);
     }
 }

@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
-use EventSauce\EventSourcing\Serialization\SerializableEvent;
+use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 /**
  * @codeCoverageIgnore
  */
-class DummyTaskWasExecuted implements SerializableEvent
+class DummyTaskWasExecuted implements SerializablePayload
 {
     public function toPayload(): array
     {
         return [];
     }
 
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new DummyTaskWasExecuted();
     }

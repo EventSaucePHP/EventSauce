@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Integration\SynchronousDispatching;
 
-use EventSauce\EventSourcing\EventStub;
+use EventSauce\EventSourcing\PayloadStub;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageDispatcherChain;
 use EventSauce\EventSourcing\SynchronousMessageDispatcher;
@@ -17,11 +17,11 @@ class SynchronousMessageDispatcherTest extends TestCase
      */
     public function dispatching_messages_synchronously()
     {
-        $stubconsumer = new SynchronousConsumerStub();
-        $syncDispatcher = new SynchronousMessageDispatcher($stubconsumer, $stubconsumer);
-        $message = new Message(new EventStub('value'));
+        $stubConsumer = new SynchronousConsumerStub();
+        $syncDispatcher = new SynchronousMessageDispatcher($stubConsumer, $stubConsumer);
+        $message = new Message(new PayloadStub('value'));
         $syncDispatcher->dispatch($message, $message);
-        $this->assertEquals([$message, $message, $message, $message], $stubconsumer->handled);
+        $this->assertEquals([$message, $message, $message, $message], $stubConsumer->handled);
     }
 
     /**
@@ -32,7 +32,7 @@ class SynchronousMessageDispatcherTest extends TestCase
         $stubconsumer = new SynchronousConsumerStub();
         $syncDispatcher = new SynchronousMessageDispatcher($stubconsumer);
         $dispatcherChain = new MessageDispatcherChain($syncDispatcher, $syncDispatcher);
-        $message = new Message(new EventStub('value'));
+        $message = new Message(new PayloadStub('value'));
         $dispatcherChain->dispatch($message);
         $this->assertEquals([$message, $message], $stubconsumer->handled);
     }

@@ -13,7 +13,6 @@ use EventSauce\EventSourcing\PointInTime;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\UuidAggregateRootId;
 use LogicException;
-use function var_dump;
 
 class ExampleAggregateRootTest extends AggregateRootTestCase
 {
@@ -30,7 +29,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function executing_a_command_sucessfully()
+    public function executing_a_command_successfully()
     {
         $aggregateRootId = $this->aggregateRootId();
         $this->when(new DummyCommand($aggregateRootId));
@@ -128,7 +127,6 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
 
         $this->assertContainsOnlyInstancesOf(Message::class, $messages);
 
-
         $this->assertEquals(1, $messages[0]->header(Header::AGGREGATE_ROOT_VERSION));
         $this->assertEquals(2, $messages[1]->header(Header::AGGREGATE_ROOT_VERSION));
     }
@@ -141,6 +139,6 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
 
     protected function newAggregateRootId(): AggregateRootId
     {
-        return UuidAggregateRootId::create();
+        return DummyAggregateRootId::generate();
     }
 }
