@@ -29,6 +29,15 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     /**
      * @test
      */
+    public function test_static_initiator()
+    {
+        $this->when(new InitiatorCommand($this->aggregateRootId()));
+        $this->then(new AggregateWasInitiated());
+    }
+
+    /**
+     * @test
+     */
     public function executing_a_command_successfully()
     {
         $aggregateRootId = $this->aggregateRootId();

@@ -13,6 +13,19 @@ class DummyAggregate implements AggregateRoot
 
     private $incrementedNumber = 0;
 
+    public static function create(DummyAggregateRootId $aggregateRootId)
+    {
+        $aggregate = new static($aggregateRootId);
+        $aggregate->recordThat(new AggregateWasInitiated());
+
+        return $aggregate;
+    }
+
+    protected function applyAggregateWasInitiated()
+    {
+        // cool
+    }
+
     public function performDummyTask()
     {
         $this->recordThat(new DummyTaskWasExecuted());
