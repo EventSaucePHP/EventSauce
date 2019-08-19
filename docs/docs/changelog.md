@@ -10,6 +10,7 @@ updated_at: 2019-07-17
 ### Breaking changes
 
 - Event serialization is now converted to payload serialization. Generated commands now use the same serialization for easier tracing and logging.
+- Aggregate root behaviour now has a private constructor.
 
 See the [upgrade guide to 0.6.0](/docs/upgrading/to-0-6-0).
 
