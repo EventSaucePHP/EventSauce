@@ -26,7 +26,7 @@ class DummyCommandHandler
     }
 
     /**
-     * @param DummyCommand $command
+     * @param $command
      *
      * @throws DummyException
      */
@@ -39,6 +39,7 @@ class DummyCommandHandler
             }
 
             /** @var DummyAggregate $aggregate */
+            /** @var DummyCommand $command */
             $aggregate = $this->repository->retrieve($command->aggregateRootId());
 
             if ($command instanceof DummyCommand) {
