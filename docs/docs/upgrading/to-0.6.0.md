@@ -18,3 +18,11 @@ same serialization. It's not called "payload serialization".
 -$serializer = new EventSauce\EventSourcing\Serialization\ConstructingEventSerializer();
 +$serializer = new EventSauce\EventSourcing\Serialization\ConstructingPayloadSerializer();
 ```
+
+## Aggregate Root Construction
+
+The `AggregateRootBehaviour` trait includes a construction, this constructor
+is now private by default. It's recommended to use named constructors. For more
+information, view the [aggregate root construction documentation](https://eventsauce.io/docs/getting-started/create-an-aggregate-root/#aggregate-construction).
+
+
