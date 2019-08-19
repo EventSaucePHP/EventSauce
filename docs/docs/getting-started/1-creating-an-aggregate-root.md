@@ -26,6 +26,49 @@ class AcmeProcess implements AggregateRoot
 }
 ```
 
+### Aggregate Construction
+
+The `AggregateRootBehavior` trait includes a constructor, accepting an Aggregate
+Root ID. The visibility for this constructor is set to private. It's encouraged
+to use named constructors for instance creation. Named constructors are static
+methods that combine instance creation and first action(s). This is advised because
+this combination conveys very clearly what the entry-points are for an aggregate.
+
+Named constructors have the added benefit of allowing you to tighten the type of
+aggregate root identifier. A named constructor would look something like this:
+
+```php
+<?php
+
+namespace AcmeCompany\AcmeProject;
+
+use EventSauce\EventSourcing\AggregateRoot;
+use EventSauce\EventSourcing\AggregateRootBehaviour;
+
+class AcmeProcess implements AggregateRoot
+{
+    use AggregateRootBehaviour;
+
+    public static function initiate(AcmeProcessId $id): AcmeProcess
+    {
+        $process = new static($id);
+        $process->recordThat(new ProcessWasInitiated($id));
+
+        return $process;
+    }
+
+    public static function initiateViaImport(AcmeProcessId $id): AcmeProcess
+    {
+        $process = new static($id);
+        $process->recordThat(new ProcessWasInitiated($id));
+        $process->recordThat(ProcessWasStartedBy(ProcessSource::SYSTEM_IMPORT));
+
+        return $process;
+
+    }
+}
+```
+
 ## Aggregate Root ID
 
 An aggregate root has an identifier. This is called the "aggregate root ID".
