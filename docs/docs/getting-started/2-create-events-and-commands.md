@@ -64,14 +64,14 @@ examples.
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-class SomeEvent implements SerializableEvent
+class SomeEvent implements SerializablePayload
 {
     public function toPayload(): array
     {
         return ['property' => $this->property];
     }
 
-    public static function fromPayload(array $payload): SerializableEvent
+    public static function fromPayload(array $payload): SerializablePayload
     {
         return new SomeEvent($payload['property']);
     }
