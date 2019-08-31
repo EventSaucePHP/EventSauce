@@ -37,7 +37,7 @@ class YamlDefinitionLoaderTest extends TestCase
         $loader = new YamlDefinitionLoader();
         $definitionGroup = $loader->load(__DIR__ . '/Fixtures/exampleDefinitionWithoutHelpers.yaml');
         $dumper = new CodeDumper();
-        $code = $dumper->dump($definitionGroup, false);
+        $code = $dumper->dump($definitionGroup, true);
         // file_put_contents(__DIR__ . '/Fixtures/definedWithoutHelpersInYamlFixture.php', $code);
         $expected = file_get_contents(__DIR__ . '/Fixtures/definedWithoutHelpersInYamlFixture.php');
         $this->assertEquals($expected, $code);

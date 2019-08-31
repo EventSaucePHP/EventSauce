@@ -51,6 +51,39 @@ final class UserSubscribedFromMailingList implements SerializablePayload
             'mailingList' => (string) $this->mailingList,
         ];
     }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withUsername(string $username): UserSubscribedFromMailingList
+    {
+        $clone = clone $this;
+        $clone->username = $username;
+
+        return $clone;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withMailingList(string $mailingList): UserSubscribedFromMailingList
+    {
+        $clone = clone $this;
+        $clone->mailingList = $mailingList;
+
+        return $clone;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public static function with(): UserSubscribedFromMailingList
+    {
+        return new UserSubscribedFromMailingList(
+            (string) 'example-user',
+            (string) 'list-name'
+        );
+    }
 }
 
 final class SubscribeToMailingList implements SerializablePayload
@@ -97,6 +130,39 @@ final class SubscribeToMailingList implements SerializablePayload
             'username' => (string) $this->username,
             'mailingList' => (string) $this->mailingList,
         ];
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withUsername(string $username): SubscribeToMailingList
+    {
+        $clone = clone $this;
+        $clone->username = $username;
+
+        return $clone;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withMailingList(string $mailingList): SubscribeToMailingList
+    {
+        $clone = clone $this;
+        $clone->mailingList = $mailingList;
+
+        return $clone;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public static function with(): SubscribeToMailingList
+    {
+        return new SubscribeToMailingList(
+            (string) 'example-user',
+            (string) 'list-name'
+        );
     }
 }
 
@@ -158,5 +224,50 @@ final class UnsubscribeFromMailingList implements SerializablePayload
             'mailingList' => (string) $this->mailingList,
             'reason' => (string) $this->reason,
         ];
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withUsername(string $username): UnsubscribeFromMailingList
+    {
+        $clone = clone $this;
+        $clone->username = $username;
+
+        return $clone;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withMailingList(string $mailingList): UnsubscribeFromMailingList
+    {
+        $clone = clone $this;
+        $clone->mailingList = $mailingList;
+
+        return $clone;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withReason(string $reason): UnsubscribeFromMailingList
+    {
+        $clone = clone $this;
+        $clone->reason = $reason;
+
+        return $clone;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public static function with(): UnsubscribeFromMailingList
+    {
+        return new UnsubscribeFromMailingList(
+            (string) 'example-user',
+            (string) 'list-name',
+            (string) 'no-longer-interested'
+        );
     }
 }
