@@ -49,5 +49,7 @@ class InMemoryMessageRepository implements MessageRepository
                 yield $message;
             }
         }
+
+        return isset($message) ? $message->aggregateVersion() : 0;
     }
 }

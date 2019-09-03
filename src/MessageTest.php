@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
-use PHPStan\Testing\TestCase;
+use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 class MessageTest extends TestCase
 {
@@ -18,6 +19,15 @@ class MessageTest extends TestCase
         $message = new Message($event, $initialHeaders);
         $this->assertSame($event, $message->event());
         $this->assertEquals($initialHeaders, $message->headers());
+    }
+
+    /**
+     * @test
+     */
+    public function accessing_the_version_when_not_set()
+    {
+        $this->expectException(RuntimeException::class);
+        (new Message(PayloadStub::create('v')))->aggregateVersion();
     }
 
     /**

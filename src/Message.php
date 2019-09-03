@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
+use RuntimeException;
+
 final class Message
 {
     /**
@@ -36,6 +38,17 @@ final class Message
         $clone->headers = $headers + $clone->headers;
 
         return $clone;
+    }
+
+    public function aggregateVersion(): int
+    {
+        $version = $this->headers[Header::AGGREGATE_ROOT_VERSION] ?? null;
+
+        if ($version === null) {
+            throw new RuntimeException("Can't get the version if the message has none.");
+        }
+
+        return (int) $version;
     }
 
     public function aggregateRootId(): ?AggregateRootId
