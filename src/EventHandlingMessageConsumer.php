@@ -1,0 +1,22 @@
+<?php
+
+namespace EventSauce\EventSourcing;
+
+use function end;
+use function explode;
+use function get_class;
+use function method_exists;
+
+class EventHandlingMessageConsumer implements Consumer
+{
+    public function handle(Message $message)
+    {
+        $event = $message->event();
+        $parts = explode('\\', get_class($event));
+        $method = 'handle' . end($parts);
+
+        if (method_exists($this, $method)) {
+            $this->{$method}($event, $message);
+        }
+    }
+}
