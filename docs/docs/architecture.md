@@ -54,7 +54,7 @@ this allows you to combine synchronous and asynchronous dispatching in the same 
 
 ```php
 $dispatcher = new MessageDispatcherChain(
-    new RabbitMQMessageDispatcher($producer, $serilizer),
+    new RabbitMQMessageDispatcher($producer, $serializer),
     new SynchronousMessageDispatcher($consumer, $anotherConsumer),
 );
 ```
