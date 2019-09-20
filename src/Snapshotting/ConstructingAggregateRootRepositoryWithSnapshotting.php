@@ -35,12 +35,12 @@ class ConstructingAggregateRootRepositoryWithSnapshotting
         $this->snapshotRepository = $snapshotRepository;
     }
 
-    public function retrieve(AggregateRootId $aggregateRootId): object
+    public function retrieveFromSnapshot(AggregateRootId $aggregateRootId): object
     {
         $snapshot = $this->snapshotRepository->retrieve($aggregateRootId);
 
         if ( ! $snapshot instanceof Snapshot) {
-            return parent::retrieve($aggregateRootId);
+            return $this->retrieve($aggregateRootId);
         }
 
         /** @var AggregateRootWithSnapshotting $className */

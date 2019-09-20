@@ -33,14 +33,14 @@ class AggregateSnapshottingTest extends AggregateRootTestCase
     public function testing_snapshotting()
     {
         /** @var LightSwitch $lightSwitch */
-        $lightSwitch = $this->repository->retrieve($this->aggregateRootId);
+        $lightSwitch = $this->repository->retrieveFromSnapshot($this->aggregateRootId);
         $this->assertInstanceOf(LightSwitch::class, $lightSwitch);
         $lightSwitch->turnOn();
         $this->repository->storeSnapshot($lightSwitch);
         $this->assertEquals(true, $lightSwitch->state());
 
         /** @var LightSwitch $lightSwitchFromSnapshot */
-        $lightSwitchFromSnapshot = $this->repository->retrieve($this->aggregateRootId);
+        $lightSwitchFromSnapshot = $this->repository->retrieveFromSnapshot($this->aggregateRootId);
         $this->assertEquals(1, $lightSwitchFromSnapshot->aggregateRootVersion());
 
         $lightSwitch->turnOff();
@@ -52,7 +52,7 @@ class AggregateSnapshottingTest extends AggregateRootTestCase
         $this->assertEquals(true, $snapshot->state());
 
         /** @var LightSwitch $lightSwitchFromSnapshot */
-        $lightSwitchFromSnapshot = $this->repository->retrieve($this->aggregateRootId);
+        $lightSwitchFromSnapshot = $this->repository->retrieveFromSnapshot($this->aggregateRootId);
         $this->assertInstanceOf(LightSwitch::class, $lightSwitchFromSnapshot);
         $this->assertEquals(false, $lightSwitch->state());
 
