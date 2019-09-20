@@ -11,6 +11,7 @@ use Generator;
 
 class ConstructingAggregateRootRepositoryWithSnapshotting
     extends ConstructingAggregateRootRepository
+    implements AggregateRootRepositoryWithSnapshotting
 {
     /**
      * @var SnapshotRepository
