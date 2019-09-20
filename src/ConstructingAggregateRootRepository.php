@@ -8,12 +8,12 @@ use Generator;
 use function assert;
 use function count;
 
-final class ConstructingAggregateRootRepository implements AggregateRootRepository
+class ConstructingAggregateRootRepository implements AggregateRootRepository
 {
     /**
      * @var string
      */
-    private $aggregateRootClassName;
+    protected $aggregateRootClassName;
 
     /**
      * @var MessageRepository
@@ -51,7 +51,7 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
         return $className::reconstituteFromEvents($aggregateRootId, $events);
     }
 
-    private function retrieveAllEvents(AggregateRootId $aggregateRootId): Generator
+    protected function retrieveAllEvents(AggregateRootId $aggregateRootId): Generator
     {
         /** @var Message $message */
         $messages = $this->messages->retrieveAll($aggregateRootId);

@@ -11,7 +11,7 @@ class InMemoryMessageRepository implements MessageRepository
     /**
      * @var Message[]
      */
-    private $messages = [];
+    protected $messages = [];
 
     /**
      * @var object[]
@@ -44,12 +44,15 @@ class InMemoryMessageRepository implements MessageRepository
 
     public function retrieveAll(AggregateRootId $id): Generator
     {
+        $lastMessage = null;
+
         foreach ($this->messages as $message) {
             if ($id->toString() === $message->header(Header::AGGREGATE_ROOT_ID)->toString()) {
                 yield $message;
+                $lastMessage = $message;
             }
         }
 
-        return isset($message) ? $message->aggregateVersion() : 0;
+        return $lastMessage instanceof Message ? $lastMessage->aggregateVersion() : 0;
     }
 }

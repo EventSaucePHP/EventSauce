@@ -67,7 +67,7 @@ abstract class AggregateRootTestCase extends TestCase
         $className = $this->aggregateRootClassName();
         $this->clock = new TestClock();
         $this->aggregateRootId = $this->newAggregateRootId();
-        $this->messageRepository = new InMemoryMessageRepository();
+        $this->messageRepository = $this->messageRepository();
         $dispatcher = $this->messageDispatcher();
         $decorator = $this->messageDecorator();
         $this->repository = $this->aggregateRootRepository(
@@ -80,6 +80,16 @@ abstract class AggregateRootTestCase extends TestCase
         $this->assertedScenario = false;
         $this->theExpectedException = null;
         $this->caughtException = null;
+    }
+
+    protected function retrieveAggregateRoot(AggregateRootId $id): AggregateRoot
+    {
+        return $this->repository->retrieve($id);
+    }
+
+    protected function persistAggregateRoot(AggregateRoot $aggregateRoot): void
+    {
+        $this->repository->persist($aggregateRoot);
     }
 
     /**
@@ -242,5 +252,10 @@ abstract class AggregateRootTestCase extends TestCase
             $dispatcher,
             $decorator
         );
+    }
+
+    protected function messageRepository(): InMemoryMessageRepository
+    {
+        return new InMemoryMessageRepository();
     }
 }
