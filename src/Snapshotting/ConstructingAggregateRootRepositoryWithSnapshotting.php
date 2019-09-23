@@ -77,7 +77,6 @@ final class ConstructingAggregateRootRepositoryWithSnapshotting
         return $messages->getReturn();
     }
 
-
     public function retrieve(AggregateRootId $aggregateRootId): object
     {
         return $this->regularRepository->retrieve($aggregateRootId);
