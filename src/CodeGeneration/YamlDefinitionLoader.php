@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use InvalidArgumentException;
+use LogicException;
 use function is_array;
 use Symfony\Component\Yaml\Yaml;
+use function strpos;
+use function var_dump;
 use const PATHINFO_EXTENSION;
 use function file_get_contents;
 use function in_array;
@@ -41,6 +44,7 @@ class YamlDefinitionLoader implements DefinitionLoader
             $definitionGroup->withNamespace($definition['namespace']);
         }
 
+        $this->loadInterfaces($definitionGroup, $definition['interfaces'] ?? []);
         $this->loadTypeHandlers($definitionGroup, $definition['types'] ?? []);
         $this->loadFieldDefaults($definitionGroup, $definition['fields'] ?? []);
         $this->loadCommands($definitionGroup, $definition['commands'] ?? []);
@@ -69,26 +73,8 @@ class YamlDefinitionLoader implements DefinitionLoader
     private function loadCommands(DefinitionGroup $definitionGroup, array $commands)
     {
         foreach ($commands as $commandName => $commandDefinition) {
-            $fields = $commandDefinition['fields'] ?? [];
             $command = $definitionGroup->command($commandName);
-            $command->withFieldsFrom($commandDefinition['fields_from'] ?? '');
-
-            foreach ($fields as $fieldName => $fieldDefinition) {
-                if (is_string($fieldDefinition)) {
-                    $fieldDefinition = ['type' => $fieldDefinition];
-                }
-
-                $type = $fieldDefinition['type'] ?? $definitionGroup->typeForField($fieldName);
-                $command->field($fieldName, TypeNormalizer::normalize($type), $fieldDefinition['example'] ?? null);
-
-                if (isset($fieldDefinition['serializer'])) {
-                    $command->fieldSerializer($fieldName, $fieldDefinition['serializer']);
-                }
-
-                if (isset($fieldDefinition['deserializer'])) {
-                    $command->fieldDeserializer($fieldName, $fieldDefinition['deserializer']);
-                }
-            }
+            $this->hydrateDefinition($definitionGroup, $command, $commandDefinition);
         }
     }
 
@@ -96,25 +82,7 @@ class YamlDefinitionLoader implements DefinitionLoader
     {
         foreach ($events as $eventName => $eventDefinition) {
             $event = $definitionGroup->event($eventName);
-            $event->withFieldsFrom($eventDefinition['fields_from'] ?? '');
-            $fields = $eventDefinition['fields'] ?? [];
-
-            foreach ($fields as $fieldName => $fieldDefinition) {
-                if (is_string($fieldDefinition)) {
-                    $fieldDefinition = ['type' => TypeNormalizer::normalize($fieldDefinition)];
-                }
-
-                $type = $fieldDefinition['type'] ?? $definitionGroup->typeForField($fieldName);
-                $event->field($fieldName, TypeNormalizer::normalize($type), (string) ($fieldDefinition['example'] ?? null));
-
-                if (isset($fieldDefinition['serializer'])) {
-                    $event->fieldSerializer($fieldName, $fieldDefinition['serializer']);
-                }
-
-                if (isset($fieldDefinition['deserializer'])) {
-                    $event->fieldDeserializer($fieldName, $fieldDefinition['deserializer']);
-                }
-            }
+            $this->hydrateDefinition($definitionGroup, $event, $eventDefinition);
         }
     }
 
@@ -129,6 +97,50 @@ class YamlDefinitionLoader implements DefinitionLoader
 
             if (isset($default['deserializer'])) {
                 $definitionGroup->fieldDeserializer($field, $default['deserializer']);
+            }
+        }
+    }
+
+    private function loadInterfaces(DefinitionGroup $definitionGroup, array $interfaces)
+    {
+        foreach ($interfaces as $alias => $interfaceName) {
+            if ( ! interface_exists($interfaceName)) {
+                throw new LogicException("Interface {$interfaceName} does not exist.");
+            }
+
+            $definitionGroup->defineInterface($alias, '\\'. ltrim($interfaceName, '\\'));
+        }
+    }
+
+    /**
+     * @param DefinitionGroup   $definitionGroup
+     * @param PayloadDefinition $definition
+     * @param array             $input
+     */
+    private function hydrateDefinition(DefinitionGroup $definitionGroup, PayloadDefinition $definition, array $input): void
+    {
+        $definition->withFieldsFrom($input['fields_from'] ?? '');
+        $fields = $input['fields'] ?? [];
+        $interfaces = $input['implements'] ?? [];
+
+        foreach ((array) $interfaces as $interface) {
+            $definition->withInterface($definitionGroup->resolveInterface($interface));
+        }
+
+        foreach ($fields as $fieldName => $fieldDefinition) {
+            if (is_string($fieldDefinition)) {
+                $fieldDefinition = ['type' => TypeNormalizer::normalize($fieldDefinition)];
+            }
+
+            $type = $fieldDefinition['type'] ?? $definitionGroup->typeForField($fieldName);
+            $definition->field($fieldName, TypeNormalizer::normalize($type), (string) ($fieldDefinition['example'] ?? null));
+
+            if (isset($fieldDefinition['serializer'])) {
+                $definition->fieldSerializer($fieldName, $fieldDefinition['serializer']);
+            }
+
+            if (isset($fieldDefinition['deserializer'])) {
+                $definition->fieldDeserializer($fieldName, $fieldDefinition['deserializer']);
             }
         }
     }

@@ -6,6 +6,7 @@ namespace EventSauce\EventSourcing\CodeGeneration;
 
 use InvalidArgumentException;
 use LogicException;
+use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 use const false;
 use function file_get_contents;
@@ -15,46 +16,35 @@ class YamlDefinitionLoaderTest extends TestCase
     /**
      * @test
      */
-    public function loading_definitions_from_yaml()
+    public function it_can_load_yaml_files()
     {
         $loader = new YamlDefinitionLoader();
         $this->assertTrue($loader->canLoad('a_yaml_file.yaml'));
         $this->assertTrue($loader->canLoad('a_yaml_file.yml'));
         $this->assertFalse($loader->canLoad('not_a_yaml_file.php'));
-        $definitionGroup = $loader->load(__DIR__ . '/Fixtures/exampleDefinition.yaml');
-        $dumper = new CodeDumper();
-        $code = $dumper->dump($definitionGroup);
-        // file_put_contents(__DIR__ . '/Fixtures/definedWithYamlFixture.php', $code);
-        $expected = file_get_contents(__DIR__ . '/Fixtures/definedWithYamlFixture.php');
-        $this->assertEquals($expected, $code);
     }
 
     /**
      * @test
+     * @dataProvider definitionProvider
      */
-    public function loading_definitions_from_yaml_without_helpers()
+    public function generating_code_from_yaml(string $source, string $output, bool $withHelpers = true, bool $withSerializers = true)
     {
         $loader = new YamlDefinitionLoader();
-        $definitionGroup = $loader->load(__DIR__ . '/Fixtures/exampleDefinitionWithoutHelpers.yaml');
+        $definitionGroup = $loader->load($source);
         $dumper = new CodeDumper();
-        $code = $dumper->dump($definitionGroup, true);
-        // file_put_contents(__DIR__ . '/Fixtures/definedWithoutHelpersInYamlFixture.php', $code);
-        $expected = file_get_contents(__DIR__ . '/Fixtures/definedWithoutHelpersInYamlFixture.php');
+        $code = $dumper->dump($definitionGroup, $withHelpers, $withSerializers);
+        // file_put_contents($output, $code);
+        $expected = file_get_contents($output);
         $this->assertEquals($expected, $code);
     }
 
-    /**
-     * @test
-     */
-    public function loading_definitions_that_get_fields_from_other_types()
+    public function definitionProvider()
     {
-        $loader = new YamlDefinitionLoader();
-        $definitionGroup = $loader->load(__DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitions.yaml');
-        $dumper = new CodeDumper();
-        $code = $dumper->dump($definitionGroup, false);
-        // file_put_contents(__DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitionsFixture.php', $code);
-        $expected = file_get_contents(__DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitionsFixture.php');
-        $this->assertEquals($expected, $code);
+        yield [__DIR__ . '/Fixtures/exampleDefinition.yaml', __DIR__ . '/Fixtures/definedWithYamlFixture.php'];
+        yield [__DIR__ . '/Fixtures/exampleDefinitionWithoutHelpers.yaml', __DIR__ . '/Fixtures/definedWithoutHelpersInYamlFixture.php', false];
+        yield [__DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitions.yaml', __DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitionsFixture.php', false];
+        yield [__DIR__ . '/Fixtures/commands-with-interfaces.yaml', __DIR__ . '/Fixtures/commandsWithInterfaces.php', false];
     }
 
     /**
@@ -67,6 +57,28 @@ class YamlDefinitionLoaderTest extends TestCase
         $definitionGroup = $loader->load(__DIR__ . '/Fixtures/inheritFieldsFromUnknownType.yaml');
         $dumper = new CodeDumper();
         $dumper->dump($definitionGroup, false);
+    }
+
+    /**
+     * @test
+     */
+    public function trying_to_use_non_defined_interfaces()
+    {
+        $this->expectException(OutOfBoundsException::class);
+        $loader = new YamlDefinitionLoader();
+        $definitionGroup = $loader->load(__DIR__ . '/Fixtures/commands-with-non-existing-interfaces.yaml');
+        $dumper = new CodeDumper();
+        $dumper->dump($definitionGroup, false);
+    }
+
+    /**
+     * @test
+     */
+    public function trying_to_use_non_existing_interfaces()
+    {
+        $this->expectException(LogicException::class);
+        $loader = new YamlDefinitionLoader();
+        $loader->load(__DIR__ . '/Fixtures/non-existing-interface.yaml');
     }
 
     /**

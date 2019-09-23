@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use EventSauce\EventSourcing\PointInTime;
+use OutOfBoundsException;
+use function array_key_exists;
 
 final class DefinitionGroup
 {
@@ -66,6 +68,11 @@ final class DefinitionGroup
      * @var string[]
      */
     private $typeAliases = [];
+
+    /**
+     * @var string[]
+     */
+    private $interfaces = [];
 
     public function __construct()
     {
@@ -192,5 +199,19 @@ final class DefinitionGroup
     public function namespace(): string
     {
         return $this->namespace;
+    }
+
+    public function defineInterface(string $alias, string $interfaceName): void
+    {
+        $this->interfaces[$alias] = $interfaceName;
+    }
+
+    public function resolveInterface(string $alias): string
+    {
+        if ( ! array_key_exists($alias, $this->interfaces)) {
+            throw new OutOfBoundsException("Interface not registered for alias ${alias}.");
+        }
+
+        return $this->interfaces[$alias];
     }
 }

@@ -8,8 +8,10 @@ use LogicException;
 use function array_filter;
 use function array_map;
 use function implode;
+use function join;
 use function sprintf;
 use function ucfirst;
+use function var_dump;
 use function var_export;
 use const null;
 
@@ -26,6 +28,7 @@ class CodeDumper
         $definitionCode = $this->dumpClasses($definitionGroup->events(), $withHelpers, $withSerialization);
         $commandCode = $this->dumpClasses($definitionGroup->commands(), $withHelpers, $withSerialization);
         $namespace = $definitionGroup->namespace();
+
         $allCode = implode("\n\n", array_filter([$definitionCode, $commandCode]));
 
         if ($withSerialization) {
@@ -46,6 +49,12 @@ $allCode
 EOF;
     }
 
+    /**
+     * @param PayloadDefinition[] $definitions
+     * @param bool  $withHelpers
+     * @param bool  $withSerialization
+     * @return string
+     */
     private function dumpClasses(array $definitions, bool $withHelpers, bool $withSerialization): string
     {
         $code = [];
@@ -56,12 +65,17 @@ EOF;
 
         foreach ($definitions as $definition) {
             $name = $definition->name();
+            $interfaces = $definition->interfaces();
             $fields = $this->dumpFields($definition);
             $constructor = $this->dumpConstructor($definition);
             $methods = $this->dumpMethods($definition);
             $deserializer = $this->dumpSerializationMethods($definition);
             $testHelpers = $withHelpers ? $this->dumpTestHelpers($definition) : '';
-            $implements = $withSerialization ? ' implements SerializablePayload' : '';
+
+            if ($withSerialization) {
+                $interfaces[] = 'SerializablePayload';
+            }
+            $implements = empty($interfaces) ? '' : ' implements ' . join(', ', $interfaces);
 
             $allSections = [$fields, $constructor, $methods, $deserializer, $testHelpers];
             $allSections = array_filter(array_map('rtrim', $allSections));

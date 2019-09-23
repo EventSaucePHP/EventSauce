@@ -36,6 +36,11 @@ final class PayloadDefinition
      */
     private $fieldDeserializers = [];
 
+    /**
+     * @var string[]
+     */
+    private $interfaces = [];
+
     public function __construct(DefinitionGroup $group, string $name)
     {
         $this->name = $name;
@@ -47,9 +52,16 @@ final class PayloadDefinition
      *
      * @return $this
      */
-    public function withFieldsFrom(string $otherType)
+    public function withFieldsFrom(string $otherType): PayloadDefinition
     {
         $this->fieldsFrom = $otherType;
+
+        return $this;
+    }
+
+    public function withInterface(string $interface): PayloadDefinition
+    {
+        $this->interfaces[] = $interface;
 
         return $this;
     }
@@ -69,7 +81,7 @@ final class PayloadDefinition
         return $this->fieldsFrom;
     }
 
-    public function field(string $name, string $type, string $example = null)
+    public function field(string $name, string $type, string $example = null): PayloadDefinition
     {
         $example = $example ?: $this->group->exampleForField($name);
         $this->fields[] = compact('name', 'type', 'example');
@@ -77,7 +89,7 @@ final class PayloadDefinition
         return $this;
     }
 
-    public function fieldSerializer($field, $template)
+    public function fieldSerializer($field, $template): PayloadDefinition
     {
         $this->fieldSerializers[$field] = $template;
 
@@ -109,5 +121,10 @@ final class PayloadDefinition
     public function serializerForType($type)
     {
         return $this->group->serializerForType($type);
+    }
+
+    public function interfaces(): array
+    {
+        return $this->interfaces;
     }
 }
