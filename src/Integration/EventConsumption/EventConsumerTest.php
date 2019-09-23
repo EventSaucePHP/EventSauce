@@ -21,6 +21,4 @@ class EventConsumerTest extends TestCase
         $this->assertEquals('Sup.', $consumer->message);
         $this->assertEquals($message, $consumer->messageObject);
     }
-
-
 }
