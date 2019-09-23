@@ -40,7 +40,7 @@ class AggregateSnapshottingTest extends AggregateRootTestCase
 
         /** @var LightSwitch $lightSwitchFromSnapshot */
         $lightSwitchFromSnapshot = $this->repository->retrieveFromSnapshot($this->aggregateRootId);
-        $this->assertEquals(1, $lightSwitchFromSnapshot->aggregateRootVersion());
+        $this->assertEquals(2, $lightSwitchFromSnapshot->aggregateRootVersion());
 
         $lightSwitch->turnOff();
         $this->repository->persist($lightSwitch);
