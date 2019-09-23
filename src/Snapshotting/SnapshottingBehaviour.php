@@ -9,6 +9,7 @@ use Generator;
 trait SnapshottingBehaviour
 {
     abstract public function aggregateRootVersion(): int;
+
     abstract public function aggregateRootId(): AggregateRootId;
     abstract protected function apply(object $event): void;
 
