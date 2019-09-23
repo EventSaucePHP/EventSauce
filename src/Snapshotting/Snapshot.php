@@ -4,7 +4,7 @@ namespace EventSauce\EventSourcing\Snapshotting;
 
 use EventSauce\EventSourcing\AggregateRootId;
 
-class Snapshot
+final class Snapshot
 {
     /**
      * @var AggregateRootId
