@@ -86,7 +86,6 @@ final class ConstructingAggregateRootRepositoryWithSnapshotting
     {
         $this->regularRepository->persist($aggregateRoot);
     }
-
     public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events)
     {
         $this->regularRepository->persistEvents($aggregateRootId, $aggregateRootVersion, ...$events);
