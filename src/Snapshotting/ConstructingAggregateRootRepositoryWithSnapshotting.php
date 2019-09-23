@@ -11,7 +11,6 @@ use Generator;
 final class ConstructingAggregateRootRepositoryWithSnapshotting
     implements AggregateRootRepositoryWithSnapshotting
 {
-
     /**
      * @var string
      */
