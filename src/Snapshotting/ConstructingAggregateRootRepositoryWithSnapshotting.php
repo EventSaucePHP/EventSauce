@@ -3,36 +3,45 @@
 namespace EventSauce\EventSourcing\Snapshotting;
 
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\ConstructingAggregateRootRepository;
+use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\Message;
-use EventSauce\EventSourcing\MessageDecorator;
-use EventSauce\EventSourcing\MessageDispatcher;
+use EventSauce\EventSourcing\MessageRepository;
 use Generator;
 
 class ConstructingAggregateRootRepositoryWithSnapshotting
-    extends ConstructingAggregateRootRepository
     implements AggregateRootRepositoryWithSnapshotting
 {
+
+    /**
+     * @var string
+     */
+    private $aggregateRootClassName;
+
+    /**
+     * @var MessageRepository
+     */
+    private $messageRepository;
+
     /**
      * @var SnapshotRepository
      */
     private $snapshotRepository;
 
     /**
-     * @var SeekableMessageRepository
+     * @var AggregateRootRepository
      */
-    private $messageRepository;
+    private $regularRepository;
 
     public function __construct(
         string $aggregateRootClassName,
-        SeekableMessageRepository $messageRepository,
+        MessageRepository $messageRepository,
         SnapshotRepository $snapshotRepository,
-        MessageDispatcher $dispatcher = null,
-        MessageDecorator $decorator = null
+        AggregateRootRepository $regularRepository
     ) {
-        parent::__construct($aggregateRootClassName, $messageRepository, $dispatcher, $decorator);
+        $this->aggregateRootClassName = $aggregateRootClassName;
         $this->messageRepository = $messageRepository;
         $this->snapshotRepository = $snapshotRepository;
+        $this->regularRepository = $regularRepository;
     }
 
     public function retrieveFromSnapshot(AggregateRootId $aggregateRootId): object
@@ -69,4 +78,18 @@ class ConstructingAggregateRootRepositoryWithSnapshotting
     }
 
 
+    public function retrieve(AggregateRootId $aggregateRootId): object
+    {
+        return $this->regularRepository->retrieve($aggregateRootId);
+    }
+
+    public function persist(object $aggregateRoot)
+    {
+        $this->regularRepository->persist($aggregateRoot);
+    }
+
+    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events)
+    {
+        $this->regularRepository->persistEvents($aggregateRootId, $aggregateRootVersion, ...$events);
+    }
 }

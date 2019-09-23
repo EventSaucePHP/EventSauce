@@ -2,7 +2,6 @@
 
 namespace EventSauce\EventSourcing\Snapshotting\Tests;
 
-use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootTestCase;
 

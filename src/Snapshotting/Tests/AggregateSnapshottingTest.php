@@ -5,15 +5,13 @@ namespace EventSauce\EventSourcing\Snapshotting\Tests;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\AggregateRootTestCase;
-use EventSauce\EventSourcing\InMemoryMessageRepository;
+use EventSauce\EventSourcing\ConstructingAggregateRootRepository;
 use EventSauce\EventSourcing\MessageDecorator;
 use EventSauce\EventSourcing\MessageDispatcher;
 use EventSauce\EventSourcing\MessageRepository;
 use EventSauce\EventSourcing\Snapshotting\ConstructingAggregateRootRepositoryWithSnapshotting;
 use EventSauce\EventSourcing\Snapshotting\InMemorySnapshotRepository;
-use EventSauce\EventSourcing\Snapshotting\SeekableMessageRepository;
 use EventSauce\EventSourcing\Snapshotting\Snapshot;
-use LogicException;
 
 class AggregateSnapshottingTest extends AggregateRootTestCase
 {
@@ -32,6 +30,7 @@ class AggregateSnapshottingTest extends AggregateRootTestCase
      */
     public function testing_snapshotting()
     {
+        $this->given(LightSwitchWasFlipped::off());
         /** @var LightSwitch $lightSwitch */
         $lightSwitch = $this->repository->retrieveFromSnapshot($this->aggregateRootId);
         $this->assertInstanceOf(LightSwitch::class, $lightSwitch);
@@ -70,25 +69,20 @@ class AggregateSnapshottingTest extends AggregateRootTestCase
         return LightSwitch::class;
     }
 
-    protected function messageRepository(): InMemoryMessageRepository
-    {
-        return new InMemorySeekableMessageRepository();
-    }
-
     protected function aggregateRootRepository(string $className, MessageRepository $repository, MessageDispatcher $dispatcher, MessageDecorator $decorator): AggregateRootRepository
     {
-        if ( ! $repository instanceof SeekableMessageRepository) {
-            throw new LogicException('This test-case requires a seekable message repository.');
-        }
-
         $this->snapshotRepository = new InMemorySnapshotRepository();
 
         return new ConstructingAggregateRootRepositoryWithSnapshotting(
             $className,
             $repository,
             $this->snapshotRepository,
-            $dispatcher,
-            $decorator
+            new ConstructingAggregateRootRepository(
+                $className,
+                $repository,
+                $dispatcher,
+                $decorator
+            )
         );
     }
 }
