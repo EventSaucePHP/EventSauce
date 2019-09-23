@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EventSauce\EventSourcing\Snapshotting;
 
 use EventSauce\EventSourcing\AggregateRootId;
