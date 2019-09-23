@@ -8,7 +8,7 @@ use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageRepository;
 use Generator;
 
-class ConstructingAggregateRootRepositoryWithSnapshotting
+final class ConstructingAggregateRootRepositoryWithSnapshotting
     implements AggregateRootRepositoryWithSnapshotting
 {
 
