@@ -11,7 +11,7 @@ final class InMemoryMessageRepository implements MessageRepository
     /**
      * @var Message[]
      */
-    protected $messages = [];
+    private $messages = [];
 
     /**
      * @var object[]
@@ -59,6 +59,7 @@ final class InMemoryMessageRepository implements MessageRepository
     public function retrieveAllAfterVersion(AggregateRootId $id, int $aggregateRootVersion): Generator
     {
         $lastMessage = null;
+
         foreach ($this->messages as $message) {
             if ($id->toString() === $message->header(Header::AGGREGATE_ROOT_ID)->toString()) {
                 yield $message;
