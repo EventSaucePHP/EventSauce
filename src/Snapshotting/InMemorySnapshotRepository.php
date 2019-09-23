@@ -4,7 +4,7 @@ namespace EventSauce\EventSourcing\Snapshotting;
 
 use EventSauce\EventSourcing\AggregateRootId;
 
-class InMemorySnapshotRepository implements SnapshotRepository
+final class InMemorySnapshotRepository implements SnapshotRepository
 {
     private $snapshots = [];
 
