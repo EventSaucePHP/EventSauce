@@ -9,7 +9,7 @@ use Generator;
 trait AggregateRootBehaviourWithRequiredHistory
 {
     use AggregateRootBehaviour {
-        AggregateRootBehaviour::reconstituteFromEvents as defaultAggregateRootReconstitute;
+        AggregateRootBehaviour::reconstituteFromEvents as private defaultAggregateRootReconstitute;
     }
 
     public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot
