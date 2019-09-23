@@ -36,6 +36,10 @@ trait AggregateRootBehaviour
         return $this->aggregateRootId;
     }
 
+    /**
+     * @return int
+     * @see AggregateRoot::aggregateRootVersion
+     */
     public function aggregateRootVersion(): int
     {
         return $this->aggregateRootVersion;
