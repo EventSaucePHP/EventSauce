@@ -12,6 +12,7 @@ class LightSwitch implements AggregateRootWithSnapshotting
 
     const OFF = false;
     const ON = true;
+
     private $state = self::OFF;
 
     private function createSnapshotState()
