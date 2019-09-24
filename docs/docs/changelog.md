@@ -5,6 +5,20 @@ published_at: 2018-03-14
 updated_at: 2019-07-17
 ---
 
+## 0.7.0
+
+### New Features
+
+- Snapshotting 🤩
+- Code Generation supports user defined interfaces for generated classes.
+- A new `EventConsumer` base-class is provided to simplify event consumption.
+
+### Breaking changes
+
+- Message repositories are now expected to return the aggregate version as the `Generator` return value.
+- Message repositories must now implement the `retrieveAllAfterVersion` method.
+- Many things have return types now 👍
+
 ## 0.6.0
 
 ### Breaking changes
