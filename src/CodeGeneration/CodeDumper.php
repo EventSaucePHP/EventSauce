@@ -8,10 +8,8 @@ use LogicException;
 use function array_filter;
 use function array_map;
 use function implode;
-use function join;
 use function sprintf;
 use function ucfirst;
-use function var_dump;
 use function var_export;
 use const null;
 
@@ -51,8 +49,9 @@ EOF;
 
     /**
      * @param PayloadDefinition[] $definitions
-     * @param bool  $withHelpers
-     * @param bool  $withSerialization
+     * @param bool                $withHelpers
+     * @param bool                $withSerialization
+     *
      * @return string
      */
     private function dumpClasses(array $definitions, bool $withHelpers, bool $withSerialization): string
@@ -75,7 +74,7 @@ EOF;
             if ($withSerialization) {
                 $interfaces[] = 'SerializablePayload';
             }
-            $implements = empty($interfaces) ? '' : ' implements ' . join(', ', $interfaces);
+            $implements = empty($interfaces) ? '' : ' implements ' . implode(', ', $interfaces);
 
             $allSections = [$fields, $constructor, $methods, $deserializer, $testHelpers];
             $allSections = array_filter(array_map('rtrim', $allSections));

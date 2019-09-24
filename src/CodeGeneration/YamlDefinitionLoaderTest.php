@@ -74,7 +74,7 @@ class YamlDefinitionLoaderTest extends TestCase
     /**
      * @test
      */
-    public function trying_to_use_non_existing_interfaces()
+    public function trying_to_use_non_existing_interfaces(): void
     {
         $this->expectException(LogicException::class);
         $loader = new YamlDefinitionLoader();

@@ -8,8 +8,6 @@ use InvalidArgumentException;
 use LogicException;
 use function is_array;
 use Symfony\Component\Yaml\Yaml;
-use function strpos;
-use function var_dump;
 use const PATHINFO_EXTENSION;
 use function file_get_contents;
 use function in_array;
@@ -101,14 +99,14 @@ class YamlDefinitionLoader implements DefinitionLoader
         }
     }
 
-    private function loadInterfaces(DefinitionGroup $definitionGroup, array $interfaces)
+    private function loadInterfaces(DefinitionGroup $definitionGroup, array $interfaces): void
     {
         foreach ($interfaces as $alias => $interfaceName) {
             if ( ! interface_exists($interfaceName)) {
                 throw new LogicException("Interface {$interfaceName} does not exist.");
             }
 
-            $definitionGroup->defineInterface($alias, '\\'. ltrim($interfaceName, '\\'));
+            $definitionGroup->defineInterface($alias, '\\' . ltrim($interfaceName, '\\'));
         }
     }
 
