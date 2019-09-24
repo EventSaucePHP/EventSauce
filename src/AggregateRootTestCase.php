@@ -62,7 +62,7 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @before
      */
-    protected function setUpEventSauce()
+    protected function setUpEventSauce(): void
     {
         $className = $this->aggregateRootClassName();
         $this->clock = new TestClock();
@@ -85,7 +85,7 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @after
      */
-    protected function assertScenario()
+    protected function assertScenario(): void
     {
         // @codeCoverageIgnoreStart
         if ($this->assertedScenario) {
@@ -177,12 +177,12 @@ abstract class AggregateRootTestCase extends TestCase
         return $this;
     }
 
-    protected function assertLastCommitEqualsEvents(object ...$events)
+    protected function assertLastCommitEqualsEvents(object ...$events): void
     {
         self::assertEquals($events, $this->messageRepository->lastCommit(), 'Events are not equal.');
     }
 
-    private function assertExpectedException(Exception $expectedException = null, Exception $caughtException = null)
+    private function assertExpectedException(Exception $expectedException = null, Exception $caughtException = null): void
     {
         if ($expectedException == $caughtException) {
             return;

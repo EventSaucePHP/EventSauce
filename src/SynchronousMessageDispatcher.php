@@ -16,7 +16,7 @@ final class SynchronousMessageDispatcher implements MessageDispatcher
         $this->consumers = $consumers;
     }
 
-    public function dispatch(Message ...$messages)
+    public function dispatch(Message ...$messages): void
     {
         foreach ($messages as $message) {
             foreach ($this->consumers as $consumer) {

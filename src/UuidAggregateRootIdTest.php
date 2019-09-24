@@ -12,7 +12,7 @@ class UuidAggregateRootIdTest extends TestCase
     /**
      * @test
      */
-    public function aggregate_root_id_doesnt_change_uuids()
+    public function aggregate_root_id_doesnt_change_uuids(): void
     {
         $uuid = Uuid::uuid4();
         $aggregateId = new UuidAggregateRootId($uuid->toString());

@@ -23,6 +23,7 @@ install:
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
   - vendor/bin/phpstan analyze --level max -c phpstan.neon src
+  - vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no
 
 after_script:
     - wget https://scrutinizer-ci.com/ocular.phar

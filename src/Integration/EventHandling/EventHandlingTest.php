@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Integration\EventHandling;
 
 use EventSauce\EventSourcing\Message;
@@ -11,7 +13,7 @@ class EventHandlingTest extends TestCase
     /**
      * @test
      */
-    public function handling_events_from_messages()
+    public function handling_events_from_messages(): void
     {
         $handler = new DummyEventHandler();
         $event = PayloadStub::create('value');

@@ -12,7 +12,7 @@ class MessageTest extends TestCase
     /**
      * @test
      */
-    public function accessors()
+    public function accessors(): void
     {
         $event = PayloadStub::create('some value');
         $initialHeaders = ['initial' => 'header value'];
@@ -24,7 +24,7 @@ class MessageTest extends TestCase
     /**
      * @test
      */
-    public function accessing_the_version_when_not_set()
+    public function accessing_the_version_when_not_set(): void
     {
         $this->expectException(RuntimeException::class);
         (new Message(PayloadStub::create('v')))->aggregateVersion();
@@ -33,7 +33,7 @@ class MessageTest extends TestCase
     /**
      * @test
      */
-    public function aggregate_root_id_accessor()
+    public function aggregate_root_id_accessor(): void
     {
         $event = PayloadStub::create('some value');
         $message = new Message($event);

@@ -24,7 +24,7 @@ class ConsumerThatSerializesMessages implements Consumer
         $this->serializer = $serializer ?: new ConstructingMessageSerializer();
     }
 
-    public function handle(Message $message)
+    public function handle(Message $message): void
     {
         $payload = $this->serializer->serializeMessage($message);
         $deserializedMessage = iterator_to_array($this->serializer->unserializePayload($payload))[0]

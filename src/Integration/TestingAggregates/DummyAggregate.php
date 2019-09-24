@@ -21,39 +21,38 @@ class DummyAggregate implements AggregateRoot
         return $aggregate;
     }
 
-    protected function applyAggregateWasInitiated()
+    protected function applyAggregateWasInitiated(): void
     {
         // cool
     }
 
-    public function performDummyTask()
+    public function performDummyTask(): void
     {
         $this->recordThat(new DummyTaskWasExecuted());
     }
 
-    public function increment()
+    public function increment(): void
     {
         $this->recordThat(new DummyIncrementingHappened(
             $this->incrementedNumber + 1
         ));
     }
 
-    protected function applyDummyIncrementingHappened(DummyIncrementingHappened $event)
+    protected function applyDummyIncrementingHappened(DummyIncrementingHappened $event): void
     {
         $this->incrementedNumber = $event->number();
     }
 
-    protected function applyDummyTaskWasExecuted(/** @scrutinizer ignore-unused */ DummyTaskWasExecuted $event)
+    protected function applyDummyTaskWasExecuted(/* @scrutinizer ignore-unused */ DummyTaskWasExecuted $event): void
     {
-
     }
 
-    public function dontDoAnything()
+    public function dontDoAnything(): void
     {
         // not doing anything.
     }
 
-    public function throwAnException()
+    public function throwAnException(): void
     {
         throw new DummyException();
     }
