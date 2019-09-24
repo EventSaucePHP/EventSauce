@@ -29,17 +29,20 @@ trait SnapshottingBehaviour
      */
     public static function reconstituteFromSnapshotAndEvents(Snapshot $snapshot, Generator $events): AggregateRoot
     {
-        $aggregateRoot = new static($snapshot->aggregateRootId());
-        $aggregateRoot->setPayloadState($snapshot->state());
+        $id = $snapshot->aggregateRootId();
+        /** @var static&AggregateRoot $aggregateRoot */
+        $aggregateRoot = static::reconstituteFromSnapshotState($id, $snapshot->state());
+        $version = $snapshot->aggregateRootVersion();
 
         foreach ($events as $event) {
             $aggregateRoot->apply($event);
+            $version++;
         }
 
-        $aggregateRoot->aggregateRootVersion = $events->getReturn() ?: $snapshot->aggregateRootVersion();
+        $aggregateRoot->aggregateRootVersion = $events->getReturn() ?: $version;
 
         return $aggregateRoot;
     }
 
-    abstract protected function setPayloadState($state): void;
+    abstract static protected function reconstituteFromSnapshotState(AggregateRootId $id, $state): AggregateRootWithSnapshotting;
 }

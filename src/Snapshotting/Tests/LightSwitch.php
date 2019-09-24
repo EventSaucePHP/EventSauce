@@ -3,6 +3,7 @@
 namespace EventSauce\EventSourcing\Snapshotting\Tests;
 
 use EventSauce\EventSourcing\AggregateRootBehaviour;
+use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Snapshotting\SnapshottingBehaviour;
 use EventSauce\EventSourcing\Snapshotting\AggregateRootWithSnapshotting;
 
@@ -18,11 +19,6 @@ class LightSwitch implements AggregateRootWithSnapshotting
     private function createSnapshotState()
     {
         return $this->state;
-    }
-
-    private function setPayloadState($state)
-    {
-        $this->state = $state;
     }
 
     public function state(): bool
@@ -47,5 +43,13 @@ class LightSwitch implements AggregateRootWithSnapshotting
     protected function applyLightSwitchWasFlipped(LightSwitchWasFlipped $event)
     {
         $this->state = $event->state();
+    }
+
+    static protected function reconstituteFromSnapshotState(AggregateRootId $id, bool $state): AggregateRootWithSnapshotting
+    {
+        $lightSwitch = new static($id);
+        $lightSwitch->state = $state;
+
+        return $lightSwitch;
     }
 }
