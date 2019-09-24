@@ -139,6 +139,11 @@ article ul, article ol {
     @apply mb-6 pl-4;
 }
 
+article ul {
+    list-style: disc;
+    @apply pl-6;
+}
+
 article blockquote :last-child {
     @apply mb-0;
 }
