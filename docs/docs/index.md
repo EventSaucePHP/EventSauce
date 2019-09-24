@@ -35,7 +35,7 @@ control over it. It allows everything from  custom storage adapter to highly cus
 message dispatching setups.
 
 EventSauce puts the focus on event sourcing, not on things that happen around event
-sourcing. It does not require you to follow CQRS patterns (althought you can). It does
+sourcing. It does not require you to follow CQRS patterns (although you can). It does
 not require you to use a command-, event-, or query-bus. By doing so, it allows
 developers to use event sourcing for parts of their application more easily.
 
