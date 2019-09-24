@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing;
 
 use function end;
@@ -9,7 +11,7 @@ use function method_exists;
 
 class EventHandlingMessageConsumer implements Consumer
 {
-    public function handle(Message $message)
+    public function handle(Message $message): void
     {
         $event = $message->event();
         $parts = explode('\\', get_class($event));

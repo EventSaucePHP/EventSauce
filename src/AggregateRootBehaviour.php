@@ -38,6 +38,7 @@ trait AggregateRootBehaviour
 
     /**
      * @return int
+     *
      * @see AggregateRoot::aggregateRootVersion
      */
     public function aggregateRootVersion(): int
@@ -45,14 +46,14 @@ trait AggregateRootBehaviour
         return $this->aggregateRootVersion;
     }
 
-    protected function apply(object $event)
+    protected function apply(object $event): void
     {
         $parts = explode('\\', get_class($event));
         $this->{'apply' . end($parts)}($event);
         ++$this->aggregateRootVersion;
     }
 
-    protected function recordThat(object $event)
+    protected function recordThat(object $event): void
     {
         $this->apply($event);
         $this->recordedEvents[] = $event;

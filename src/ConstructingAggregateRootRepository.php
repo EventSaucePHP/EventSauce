@@ -63,7 +63,7 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
         return $messages->getReturn();
     }
 
-    public function persist(object $aggregateRoot)
+    public function persist(object $aggregateRoot): void
     {
         assert($aggregateRoot instanceof AggregateRoot, 'Expected $aggregateRoot to be an instance of ' . AggregateRoot::class);
 
@@ -74,7 +74,7 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
         );
     }
 
-    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events)
+    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events): void
     {
         // decrease the aggregate root version by the number of raised events
         // so the version of each message represents the version at the time

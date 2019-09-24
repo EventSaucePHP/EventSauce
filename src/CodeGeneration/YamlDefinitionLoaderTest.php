@@ -15,7 +15,7 @@ class YamlDefinitionLoaderTest extends TestCase
     /**
      * @test
      */
-    public function loading_definitions_from_yaml()
+    public function loading_definitions_from_yaml(): void
     {
         $loader = new YamlDefinitionLoader();
         $this->assertTrue($loader->canLoad('a_yaml_file.yaml'));
@@ -32,7 +32,7 @@ class YamlDefinitionLoaderTest extends TestCase
     /**
      * @test
      */
-    public function loading_definitions_from_yaml_without_helpers()
+    public function loading_definitions_from_yaml_without_helpers(): void
     {
         $loader = new YamlDefinitionLoader();
         $definitionGroup = $loader->load(__DIR__ . '/Fixtures/exampleDefinitionWithoutHelpers.yaml');
@@ -46,7 +46,7 @@ class YamlDefinitionLoaderTest extends TestCase
     /**
      * @test
      */
-    public function loading_definitions_that_get_fields_from_other_types()
+    public function loading_definitions_that_get_fields_from_other_types(): void
     {
         $loader = new YamlDefinitionLoader();
         $definitionGroup = $loader->load(__DIR__ . '/Fixtures/definitionWithFieldsFromOtherDefinitions.yaml');
@@ -60,7 +60,7 @@ class YamlDefinitionLoaderTest extends TestCase
     /**
      * @test
      */
-    public function trying_to_inherit_fields_from_unknown_type()
+    public function trying_to_inherit_fields_from_unknown_type(): void
     {
         $this->expectException(LogicException::class);
         $loader = new YamlDefinitionLoader();
@@ -72,7 +72,7 @@ class YamlDefinitionLoaderTest extends TestCase
     /**
      * @test
      */
-    public function loading_a_yaml_thats_not_an_array()
+    public function loading_a_yaml_thats_not_an_array(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $loader = new YamlDefinitionLoader();
@@ -82,7 +82,7 @@ class YamlDefinitionLoaderTest extends TestCase
     /**
      * @test
      */
-    public function loading_a_yaml_that_does_not_exist()
+    public function loading_a_yaml_that_does_not_exist(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $loader = new YamlDefinitionLoader();

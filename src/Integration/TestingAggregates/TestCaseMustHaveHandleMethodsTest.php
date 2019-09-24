@@ -24,7 +24,7 @@ class TestCaseMustHaveHandleMethodsTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function missing_handle_methods_result_in_logic_exception()
+    public function missing_handle_methods_result_in_logic_exception(): void
     {
         $this->expectException(LogicException::class);
         $this->when(new DummyCommand($this->aggregateRootId()));

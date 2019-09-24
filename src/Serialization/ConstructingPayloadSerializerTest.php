@@ -14,7 +14,7 @@ final class ConstructingPayloadSerializerTest extends TestCase
      */
     private $serializer;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->serializer = new ConstructingPayloadSerializer();
     }
@@ -22,7 +22,7 @@ final class ConstructingPayloadSerializerTest extends TestCase
     /**
      * @test
      */
-    public function serializes_serializable_event()
+    public function serializes_serializable_event(): void
     {
         $event = PayloadStub::create('some value');
         $data = $this->serializer->serializePayload($event);
@@ -33,7 +33,7 @@ final class ConstructingPayloadSerializerTest extends TestCase
     /**
      * @test
      */
-    public function unserialize_into_serializable_event()
+    public function unserialize_into_serializable_event(): void
     {
         $object = $this->serializer->unserializePayload(PayloadStub::class, ['value' => 'some value']);
 

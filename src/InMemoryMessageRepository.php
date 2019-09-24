@@ -26,12 +26,12 @@ class InMemoryMessageRepository implements MessageRepository
         return $this->lastCommit;
     }
 
-    public function purgeLastCommit()
+    public function purgeLastCommit(): void
     {
         $this->lastCommit = [];
     }
 
-    public function persist(Message ...$messages)
+    public function persist(Message ...$messages): void
     {
         $this->lastCommit = [];
 

@@ -11,6 +11,9 @@ return PhpCsFixer\Config::create()
         'declare_strict_types' => true,
         'no_alias_functions' => true,
         'not_operator_with_space' => true,
+        'return_type_declaration' => true,
+        'phpdoc_to_return_type' => true,
+        'void_return' => true,
     ])
     ->setRiskyAllowed(true)
     ->setFinder($finder);

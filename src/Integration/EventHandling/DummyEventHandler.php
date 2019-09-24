@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Integration\EventHandling;
 
 use EventSauce\EventSourcing\EventHandlingMessageConsumer;
@@ -18,7 +20,7 @@ class DummyEventHandler extends EventHandlingMessageConsumer
      */
     public $message;
 
-    protected function handlePayloadStub(PayloadStub $event, Message $message)
+    protected function handlePayloadStub(PayloadStub $event, Message $message): void
     {
         $this->event = $event;
         $this->message = $message;

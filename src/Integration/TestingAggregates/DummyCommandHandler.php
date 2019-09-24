@@ -30,7 +30,7 @@ class DummyCommandHandler
      *
      * @throws DummyException
      */
-    public function handle($command)
+    public function handle($command): void
     {
         try {
             if ($command instanceof InitiatorCommand) {

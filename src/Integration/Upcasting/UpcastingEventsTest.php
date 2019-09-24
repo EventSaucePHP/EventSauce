@@ -20,7 +20,7 @@ class UpcastingEventsTest extends TestCase
     /**
      * @test
      */
-    public function upcasting_works()
+    public function upcasting_works(): void
     {
         $clock = new TestClock();
         $pointInTime = $clock->pointInTime();
@@ -48,7 +48,7 @@ class UpcastingEventsTest extends TestCase
     /**
      * @test
      */
-    public function upcasting_is_ignored_when_not_configured()
+    public function upcasting_is_ignored_when_not_configured(): void
     {
         $clock = new TestClock();
         $pointInTime = $clock->pointInTime();
@@ -74,7 +74,7 @@ class UpcastingEventsTest extends TestCase
     /**
      * @test
      */
-    public function serializing_still_works()
+    public function serializing_still_works(): void
     {
         $upcaster = new DelegatingUpcaster(new UpcasterStub());
         $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(), $upcaster);

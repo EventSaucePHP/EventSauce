@@ -18,7 +18,7 @@ class ConstructingMessageSerializerTest extends TestCase
     /**
      * @test
      */
-    public function serializing_messages_with_aggregate_root_ids()
+    public function serializing_messages_with_aggregate_root_ids(): void
     {
         $aggregateRootId = UuidAggregateRootId::create();
         $inflector = new DotSeparatedSnakeCaseInflector();

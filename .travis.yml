@@ -1,28 +1,29 @@
 language: php
 
 php:
-  - 7.2
-  - 7.3
-  - 7.4snapshot
-  - nightly
+    - 7.2
+    - 7.3
+    - 7.4snapshot
+    - nightly
 
 matrix:
     allow_failures:
-        - php: 7.4snapshot
-        - php: nightly
+        -   php: 7.4snapshot
+        -   php: nightly
 
 cache:
-  directories:
-    - vendor
+    directories:
+        - vendor
 
 sudo: false
 
 install:
-  - travis_retry composer install
+    - travis_retry composer install
 
 script:
-  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
-  - vendor/bin/phpstan analyze --level max -c phpstan.neon src
+    - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+    - if [[ "${TRAVIS_PHP_VERSION}" == "7.3" ]]; then vendor/bin/phpstan analyze --level max -c phpstan.neon src; fi
+    - if [[ "${TRAVIS_PHP_VERSION}" == "7.3" ]]; then vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no; fi
 
 after_script:
     - wget https://scrutinizer-ci.com/ocular.phar
