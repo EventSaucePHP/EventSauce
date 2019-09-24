@@ -32,14 +32,13 @@ trait SnapshottingBehaviour
         $id = $snapshot->aggregateRootId();
         /** @var static&AggregateRoot $aggregateRoot */
         $aggregateRoot = static::reconstituteFromSnapshotState($id, $snapshot->state());
-        $version = $snapshot->aggregateRootVersion();
+        $aggregateRoot->aggregateRootVersion = $snapshot->aggregateRootVersion();
 
         foreach ($events as $event) {
             $aggregateRoot->apply($event);
-            $version++;
         }
 
-        $aggregateRoot->aggregateRootVersion = $events->getReturn() ?: $version;
+        $aggregateRoot->aggregateRootVersion = $events->getReturn() ?: $aggregateRoot->aggregateRootVersion;
 
         return $aggregateRoot;
     }
