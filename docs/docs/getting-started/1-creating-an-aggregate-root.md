@@ -26,6 +26,10 @@ class AcmeProcess implements AggregateRoot
 }
 ```
 
+> NOTE: The default reconstitution mechanism allows aggregates to be
+> constructed without history. Use the `AggregateRootBehaviourWithRequiredHistory` trait instead.
+
+
 ### Aggregate Construction
 
 The `AggregateRootBehavior` trait includes a constructor, accepting an Aggregate

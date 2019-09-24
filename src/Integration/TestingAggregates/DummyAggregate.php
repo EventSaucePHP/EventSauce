@@ -6,6 +6,7 @@ namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootBehaviour;
+use EventSauce\EventSourcing\Integration\DummyAggregateRootId;
 
 class DummyAggregate implements AggregateRoot
 {
