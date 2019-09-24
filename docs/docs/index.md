@@ -35,18 +35,11 @@ control over it. It allows everything from  custom storage adapter to highly cus
 message dispatching setups.
 
 EventSauce puts the focus on event sourcing, not on things that happen around event
-sourcing. It does not require you to follow CQRS patterns. It does not require you
-to use a command-, event-, or query-bus. By doing so, it allows developers to use
-event sourcing for parts of their application more easily.
+sourcing. It does not require you to follow CQRS patterns (althought you can). It does
+not require you to use a command-, event-, or query-bus. By doing so, it allows
+developers to use event sourcing for parts of their application more easily.
 
-## Why _not_ use EventSauce?
-
-The library is focused purely around event sourcing, **not** full-blown CQRS/ES. If
-you need that, I recommend checking out [Prooph](https://github.com/prooph) or
-[Broadway](https://github.com/broadway/broadway). These libraries have a higher level
-of entry but provide an "everything you need is right here" experience.
-
-## Disclaimer
+## A paradigm shift.
 
 Solving problems using event sourcing requires a very different mindset when compared
 to traditional PHP-OOP software modeling. It's less focused about state and more
