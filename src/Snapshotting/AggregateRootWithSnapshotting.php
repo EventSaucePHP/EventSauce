@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Snapshotting;
 
 use EventSauce\EventSourcing\AggregateRoot;
@@ -10,8 +12,8 @@ interface AggregateRootWithSnapshotting extends AggregateRoot
     public function createSnapshot(): Snapshot;
 
     /**
-     * @param Snapshot $snapshot
-     * @param Generator       $events
+     * @param Snapshot  $snapshot
+     * @param Generator $events
      *
      * @return static
      */

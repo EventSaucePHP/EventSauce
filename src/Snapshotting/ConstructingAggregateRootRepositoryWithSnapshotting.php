@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Snapshotting;
 
 use EventSauce\EventSourcing\AggregateRootId;
@@ -8,8 +10,7 @@ use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageRepository;
 use Generator;
 
-final class ConstructingAggregateRootRepositoryWithSnapshotting
-    implements AggregateRootRepositoryWithSnapshotting
+final class ConstructingAggregateRootRepositoryWithSnapshotting implements AggregateRootRepositoryWithSnapshotting
 {
     /**
      * @var string
@@ -81,11 +82,12 @@ final class ConstructingAggregateRootRepositoryWithSnapshotting
         return $this->regularRepository->retrieve($aggregateRootId);
     }
 
-    public function persist(object $aggregateRoot)
+    public function persist(object $aggregateRoot): void
     {
         $this->regularRepository->persist($aggregateRoot);
     }
-    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events)
+
+    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events): void
     {
         $this->regularRepository->persistEvents($aggregateRootId, $aggregateRootVersion, ...$events);
     }

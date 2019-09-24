@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Snapshotting\Tests;
 
 use EventSauce\EventSourcing\AggregateRootId;
@@ -28,7 +30,7 @@ class AggregateSnapshottingTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function testing_snapshotting()
+    public function testing_snapshotting(): void
     {
         $this->given(LightSwitchWasFlipped::off());
         /** @var LightSwitch $lightSwitch */

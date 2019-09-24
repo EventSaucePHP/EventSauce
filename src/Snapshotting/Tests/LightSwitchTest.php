@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Snapshotting\Tests;
 
 use EventSauce\EventSourcing\AggregateRootId;
@@ -20,7 +22,7 @@ class LightSwitchTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function turning_the_light_on()
+    public function turning_the_light_on(): void
     {
         $this->when(new TurnLightOn($this->aggregateRootId()))
             ->then(
@@ -31,7 +33,7 @@ class LightSwitchTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function turning_the_light_on_again()
+    public function turning_the_light_on_again(): void
     {
         $this->given(LightSwitchWasFlipped::on())
             ->when(new TurnLightOn($this->aggregateRootId()))
@@ -41,7 +43,7 @@ class LightSwitchTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function turning_the_light_off_after_it_was_turned_on()
+    public function turning_the_light_off_after_it_was_turned_on(): void
     {
         $this->given(LightSwitchWasFlipped::on())
             ->when(new TurnLightOff($this->aggregateRootId()))
@@ -51,7 +53,7 @@ class LightSwitchTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function turning_the_light_off_after_installing()
+    public function turning_the_light_off_after_installing(): void
     {
         $this->when(new TurnLightOff($this->aggregateRootId()))
             ->thenNothingShouldHaveHappened();
@@ -68,7 +70,7 @@ class LightSwitchTest extends AggregateRootTestCase
 
         if ($command instanceof TurnLightOn) {
             $lightSwitch->turnOn();
-        } else if ($command instanceof TurnLightOff) {
+        } elseif ($command instanceof TurnLightOff) {
             $lightSwitch->turnOff();
         }
 

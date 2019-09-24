@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Snapshotting;
 
 use EventSauce\EventSourcing\AggregateRoot;
@@ -43,5 +45,5 @@ trait SnapshottingBehaviour
         return $aggregateRoot;
     }
 
-    abstract static protected function reconstituteFromSnapshotState(AggregateRootId $id, $state): AggregateRootWithSnapshotting;
+    abstract protected static function reconstituteFromSnapshotState(AggregateRootId $id, $state): AggregateRootWithSnapshotting;
 }
