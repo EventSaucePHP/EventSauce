@@ -16,7 +16,7 @@ class MessageDispatcherChain implements MessageDispatcher
         $this->dispatchers = $dispatchers;
     }
 
-    public function dispatch(Message ...$messages)
+    public function dispatch(Message ...$messages): void
     {
         foreach ($this->dispatchers as $dispatcher) {
             $dispatcher->dispatch(...$messages);

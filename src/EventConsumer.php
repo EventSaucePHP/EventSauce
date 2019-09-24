@@ -4,12 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
-use function end;
-use function explode;
-use function get_class;
-use function method_exists;
-
-class EventHandlingMessageConsumer implements Consumer
+abstract class EventConsumer implements Consumer
 {
     public function handle(Message $message): void
     {

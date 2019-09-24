@@ -12,7 +12,7 @@ class SystemClockTest extends TestCase
     /**
      * @test
      */
-    public function it_generates_very_precise_date_time_immutables()
+    public function it_generates_very_precise_date_time_immutables(): void
     {
         $clock = new SystemClock();
         $d1 = $clock->dateTime();
@@ -23,7 +23,7 @@ class SystemClockTest extends TestCase
     /**
      * @test
      */
-    public function creating_points_in_time()
+    public function creating_points_in_time(): void
     {
         $clock = new SystemClock();
         $pointInTime = $clock->pointInTime();

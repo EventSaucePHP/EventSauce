@@ -53,7 +53,7 @@ class YamlDefinitionLoader implements DefinitionLoader
         return $definitionGroup;
     }
 
-    private function loadTypeHandlers(DefinitionGroup $definitionGroup, array $types)
+    private function loadTypeHandlers(DefinitionGroup $definitionGroup, array $types): void
     {
         foreach ($types as $type => $handlers) {
             if (isset($handlers['type'])) {
@@ -70,7 +70,7 @@ class YamlDefinitionLoader implements DefinitionLoader
         }
     }
 
-    private function loadCommands(DefinitionGroup $definitionGroup, array $commands)
+    private function loadCommands(DefinitionGroup $definitionGroup, array $commands): void
     {
         foreach ($commands as $commandName => $commandDefinition) {
             $command = $definitionGroup->command($commandName);
@@ -78,7 +78,7 @@ class YamlDefinitionLoader implements DefinitionLoader
         }
     }
 
-    private function loadEvents(DefinitionGroup $definitionGroup, array $events)
+    private function loadEvents(DefinitionGroup $definitionGroup, array $events): void
     {
         foreach ($events as $eventName => $eventDefinition) {
             $event = $definitionGroup->event($eventName);
@@ -86,7 +86,7 @@ class YamlDefinitionLoader implements DefinitionLoader
         }
     }
 
-    private function loadFieldDefaults(DefinitionGroup $definitionGroup, array $defaults)
+    private function loadFieldDefaults(DefinitionGroup $definitionGroup, array $defaults): void
     {
         foreach ($defaults as $field => $default) {
             $definitionGroup->fieldDefault($field, $default['type'], $default['example'] ?? null);

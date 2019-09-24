@@ -8,6 +8,7 @@ use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\AggregateRootTestCase;
 use EventSauce\EventSourcing\Header;
+use EventSauce\EventSourcing\Integration\DummyAggregateRootId;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\PointInTime;
 use EventSauce\EventSourcing\Time\Clock;
@@ -29,7 +30,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function test_static_initiator()
+    public function test_static_initiator(): void
     {
         $this->when(new InitiatorCommand($this->aggregateRootId()));
         $this->then(new AggregateWasInitiated());
@@ -38,7 +39,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function executing_a_command_successfully()
+    public function executing_a_command_successfully(): void
     {
         $aggregateRootId = $this->aggregateRootId();
         $this->when(new DummyCommand($aggregateRootId));
@@ -48,7 +49,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function there_is_a_clock()
+    public function there_is_a_clock(): void
     {
         $this->assertInstanceOf(PointInTime::class, $this->pointInTime());
     }
@@ -56,7 +57,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function asserting_nothing_happened()
+    public function asserting_nothing_happened(): void
     {
         $aggregateRootId = $this->aggregateRootId();
         $this->when(new IgnoredCommand($aggregateRootId));
@@ -66,7 +67,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function expecting_exceptions()
+    public function expecting_exceptions(): void
     {
         $this->when(new ExceptionInducingCommand($this->aggregateRootId()))
             ->expectToFail(new DummyException());
@@ -75,7 +76,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function not_expecting_exceptions()
+    public function not_expecting_exceptions(): void
     {
         $this->expectException(DummyException::class);
         $this->when(new ExceptionInducingCommand($this->aggregateRootId()));
@@ -85,7 +86,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function expecting_the_wrong_exception()
+    public function expecting_the_wrong_exception(): void
     {
         $this->expectException(DummyException::class);
         $this->when(new ExceptionInducingCommand($this->aggregateRootId()))
@@ -96,7 +97,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function setting_preconditions()
+    public function setting_preconditions(): void
     {
         $id = $this->aggregateRootId();
         $this->given(new DummyIncrementingHappened(1))
@@ -107,7 +108,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function setting_preconditions_from_other_aggregates()
+    public function setting_preconditions_from_other_aggregates(): void
     {
         $id = $this->aggregateRootId();
         $this->on(UuidAggregateRootId::create())
@@ -119,7 +120,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function messages_have_a_sequence()
+    public function messages_have_a_sequence(): void
     {
         $id = $this->aggregateRootId();
         $this->given(new DummyIncrementingHappened(10))
@@ -139,7 +140,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         $this->assertEquals(2, $messages[1]->header(Header::AGGREGATE_ROOT_VERSION));
     }
 
-    protected function handle($command)
+    protected function handle($command): void
     {
         $commandHandler = $this->commandHandler($this->repository, $this->clock());
         $commandHandler->handle($command);

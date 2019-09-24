@@ -15,7 +15,7 @@ class SynchronousMessageDispatcherTest extends TestCase
     /**
      * @test
      */
-    public function dispatching_messages_synchronously()
+    public function dispatching_messages_synchronously(): void
     {
         $stubConsumer = new SynchronousConsumerStub();
         $syncDispatcher = new SynchronousMessageDispatcher($stubConsumer, $stubConsumer);
@@ -27,7 +27,7 @@ class SynchronousMessageDispatcherTest extends TestCase
     /**
      * @test
      */
-    public function dispatching_using_a_chain()
+    public function dispatching_using_a_chain(): void
     {
         $stubconsumer = new SynchronousConsumerStub();
         $syncDispatcher = new SynchronousMessageDispatcher($stubconsumer);
