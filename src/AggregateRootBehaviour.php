@@ -90,7 +90,7 @@ trait AggregateRootBehaviour
 
         $aggregateRoot->aggregateRootVersion = $events->getReturn() ?: 0;
 
-        /** @var AggregateRoot $aggregateRoot */
+        /* @var AggregateRoot $aggregateRoot */
         return $aggregateRoot;
     }
 }
