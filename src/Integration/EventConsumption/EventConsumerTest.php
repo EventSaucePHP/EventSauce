@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Integration\EventConsumption;
 
 use EventSauce\EventSourcing\Message;
@@ -11,7 +13,7 @@ class EventConsumerTest extends TestCase
     /**
      * @test
      */
-    public function handling_an_event()
+    public function handling_an_event(): void
     {
         $consumer = new EventConsumerStub();
         $message = new Message(new DummyEventForConsuming('Sup.'));
