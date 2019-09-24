@@ -82,6 +82,16 @@ abstract class AggregateRootTestCase extends TestCase
         $this->caughtException = null;
     }
 
+    protected function retrieveAggregateRoot(AggregateRootId $id): object
+    {
+        return $this->repository->retrieve($id);
+    }
+
+    protected function persistAggregateRoot(AggregateRoot $aggregateRoot): void
+    {
+        $this->repository->persist($aggregateRoot);
+    }
+
     /**
      * @after
      */

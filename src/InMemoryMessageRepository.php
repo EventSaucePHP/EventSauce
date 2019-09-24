@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing;
 
 use Generator;
 
-class InMemoryMessageRepository implements MessageRepository
+final class InMemoryMessageRepository implements MessageRepository
 {
     /**
      * @var Message[]
@@ -44,12 +44,30 @@ class InMemoryMessageRepository implements MessageRepository
 
     public function retrieveAll(AggregateRootId $id): Generator
     {
+        $lastMessage = null;
+
         foreach ($this->messages as $message) {
             if ($id->toString() === $message->header(Header::AGGREGATE_ROOT_ID)->toString()) {
                 yield $message;
+                $lastMessage = $message;
             }
         }
 
-        return isset($message) ? $message->aggregateVersion() : 0;
+        return $lastMessage instanceof Message ? $lastMessage->aggregateVersion() : 0;
+    }
+
+    public function retrieveAllAfterVersion(AggregateRootId $id, int $aggregateRootVersion): Generator
+    {
+        $lastMessage = null;
+
+        foreach ($this->messages as $message) {
+            if ($id->toString() === $message->header(Header::AGGREGATE_ROOT_ID)->toString()
+                && $message->header(Header::AGGREGATE_ROOT_VERSION) > $aggregateRootVersion) {
+                yield $message;
+                $lastMessage = $message;
+            }
+        }
+
+        return $lastMessage instanceof Message ? $lastMessage->aggregateVersion() : 0;
     }
 }
