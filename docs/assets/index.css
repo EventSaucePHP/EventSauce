@@ -136,12 +136,15 @@ article blockquote {
 }
 
 article ul, article ol {
-    @apply mb-6 pl-4;
+    @apply mb-6 pl-6;
 }
 
 article ul {
     list-style: disc;
-    @apply pl-6;
+}
+
+article ol {
+    list-style: decimal;
 }
 
 article blockquote :last-child {
