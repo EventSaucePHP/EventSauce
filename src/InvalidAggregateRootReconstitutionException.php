@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing;
 
 use RuntimeException;
-use Throwable;
 
 class InvalidAggregateRootReconstitutionException extends RuntimeException
 {

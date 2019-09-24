@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Integration\RequiringHistoryWithAggregateRootConstruction;
 
 use EventSauce\EventSourcing\AggregateRoot;
@@ -18,7 +20,7 @@ class AggregateThatRequiredHistoryForReconstitutionStub implements AggregateRoot
         return $aggregate;
     }
 
-    protected function applyDummyInternalEvent(DummyInternalEvent $event)
+    protected function applyDummyInternalEvent(DummyInternalEvent $event): void
     {
         // can be ignored
     }
