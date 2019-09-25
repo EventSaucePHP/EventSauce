@@ -2,7 +2,7 @@
 permalink: /docs/advanced/database-structure/
 title: Database Structure
 published_at: 2019-08-01
-updated_at: 2019-08-01
+updated_at: 2019-08-04
 ---
 
 Storing events for reconstitution should be done in any type queryable data store. It needs

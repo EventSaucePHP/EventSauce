@@ -3,7 +3,7 @@ permalink: /docs/
 title: Event sourcing for PHP
 hide_title: true
 published_at: 2018-02-21
-updated_at: 2019-06-12
+updated_at: 2019-09-24
 ---
 
 <div class="text-center mb-8 max-w-md">
