@@ -25,15 +25,7 @@
     <link rel="stylesheet" href="{{ site.data.manifest['docs.css'] }}"/>
 </head>
 <body class="bg-grey-lighter min-h-screen bg-squared leading-tight leader">
-{% if site.data.dev.dev_mode %}
-<div class="fixed left-0 top-0 bg-black text-white rounded-br p-2 opacity-50">
-    <span class="sm:hidden">&lt; sm</span>
-    <span class="sm-md:block hidden">sm-md</span>
-    <span class="md-lg:block hidden">md-lg</span>
-    <span class="lg-xl:block hidden">lg-xl</span>
-    <span class="xl:block hidden">&gt; xl</span>
-</div>
-{% endif %}
+{% include size-helper.html %}
 <header id="leader" class="text-center md:py-10">
     <div id="teaser" class="pt-10 max-w-sm mx-auto text-center">
         <a href="/">
@@ -45,12 +37,7 @@
         <p class="text-xl max-w-sm mx-auto mt-4 px-8 leading-tight">
             A pragmatic event sourcing library for PHP with a focus on developer experience.
         </p>
-        <p class="text-sm max-w-sm mx-auto mt-6 px-4 leading-very-loose">
-            <a class="bg-grey-lightest text-black shadow rounded py-2 px-3 mr-3" href="/docs/">Docs</a>
-            <a class="bg-grey-lightest text-black shadow rounded py-2 px-3 mr-3" href="#newsletter">Newsletter</a>
-            <a class="bg-grey-lightest text-black shadow rounded py-2 px-3 mr-3" href="https://github.com/eventsaucephp/eventsauce">GitHub</a>
-            <a class="bg-grey-lightest text-black shadow rounded py-2 px-3" href="https://twitter.com/eventsaucephp">Twitter</a>
-        </p>
+        {% include leader-links.html %}
         <p class="pt-4">
             <a href="https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master">
                 <img alt="Scrutinizer Code Quality" src="https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/badges/quality-score.png?b=master">
@@ -70,7 +57,7 @@
 <section class="my-10 bg-black pt-10 md:pt-16 md:pb-14 pb-10 w-full text-center md:text-left">
     <div class="max-w-xl mx-auto md:flex relative overflow-hidden md:overflow-visible">
         <section class="md:w-1/2 px-4 max-w-md flex flex-col md:flex-row items-center md:items-start">
-            <span class="h-10 w-10 mr-3 rounded-full bg-red inline-block mb-6 flex-grow-0 flex-shrink-0 flex align-middle justify-center">
+            <span class="h-10 w-10 mr-3 rounded-full bg-red inline-block mb-6 flex-1-0 flex-shrink-0 flex align-middle justify-center">
                 <img src="/static/icons/thumbs-up.svg" class="inline-block w-5" />
             </span>
             <div class="mb-2 leading-normal">
@@ -92,7 +79,7 @@
 <section class="md:right-half-bg-black relative text-center md:text-left md:my-12">
     <div class="max-w-xl mx-auto mb-10 md:flex relative">
         <section class="md:w-1/2 lg:w-2/5 px-4 max-w-md flex flex-col md:flex-row items-center md:items-start">
-            <span class="h-10 w-10 mr-3 rounded-full bg-red inline-block mb-6 flex-grow-0 flex-shrink-0 flex align-middle justify-center">
+            <span class="h-10 w-10 mr-3 rounded-full bg-red inline-block mb-6 flex-1-0 flex-shrink-0 flex align-middle justify-center">
                 <img src="/static/icons/heart.svg" class="inline-block w-5" />
             </span>
             <div class="mb-8">
@@ -137,7 +124,7 @@ class MyEventSourcedTest extends AggregateRootTestCase
 <section class="md:left-half-bg-black relative md:mt-12 md:mb-10">
     <div class="max-w-xl mx-auto md:flex relative md:flex-row-reverse">
         <section class="md:w-1/2 lg:w-2/5 mx-auto px-4 max-w-md flex flex-col md:flex-row items-center md:items-start text-center md:text-left">
-            <span class="h-10 w-10 mr-3 rounded-full bg-red inline-block mb-6 flex-grow-0 flex-shrink-0 flex align-middle justify-center">
+            <span class="h-10 w-10 mr-3 rounded-full bg-red inline-block mb-6 flex-1-0 flex-shrink-0 flex align-middle justify-center">
                 <img src="/static/icons/news-paper.svg" class="inline-block w-5" />
             </span>
             <div class="mb-2">
@@ -174,18 +161,29 @@ events:
         </section>
     </div>
 </section>
-<section class="mt-10 pt-0 pb-14 w-full text-center md:text-left leading-normal">
-    <form id="newsletter" method="post" action="https://widgets.eventsauce.io/signup/" class="max-w-xs mx-auto text-lg text-center">
-        <span class="h-12 w-12 rounded-full bg-red inline-block mb-6 flex align-middle justify-center mx-auto">
-            <img src="/static/icons/announcement.svg" class="inline-block w-6" />
-        </span>
-        <h2 class="text-3xl text-black mb-2">
-            Newsletter
-        </h2>
-        <label class="block">Want to stay up to date?</label>
-        <input class="block w-full my-4 leading-normal px-3 py-2 rounded border border-grey-light" type="email" name="email" placeholder="Enter your email" />
-        <button type="submit" class="block w-full text-center rounded leading-normal p-2 bg-red text-white">Subscribe</button>
-    </form>
+<section class="mt-10 mx-auto pt-0 w-full text-center md:text-left leading-normal md:flex flex-row content-center">
+        <form id="newsletter" method="post" action="https://widgets.eventsauce.io/signup/" class="max-w-xs mx-auto text-lg text-center flex-1 pb-10">
+            <span class="h-12 w-12 rounded-full bg-red inline-block mb-3 flex align-middle justify-center mx-auto">
+                <img src="/static/icons/announcement.svg" class="inline-block w-6" />
+            </span>
+            <h2 class="text-3xl text-black mb-2">
+                Newsletter
+            </h2>
+            <label class="block">Want to stay up to date?</label>
+            <input class="block w-full my-4 leading-normal px-3 py-2 rounded border border-grey-light" type="email" name="email" placeholder="Enter your email" />
+            <button type="submit" class="block w-full text-center rounded leading-normal p-2 bg-red text-white">Subscribe</button>
+        </form>
+        <form id="slack" method="post" action="https://widgets.eventsauce.io/slack-invite/" class="max-w-xs mx-auto text-lg text-center flex-1 pb-14">
+            <span class="h-12 w-12 rounded-full bg-red inline-block mb-3 flex align-middle justify-center mx-auto">
+                <img src="/static/icons/chat-bubble-dots.svg" class="inline-block w-6" />
+            </span>
+            <h2 class="text-3xl text-black mb-2">
+                Slack
+            </h2>
+            <label class="block">Want to discuss event sourcing?</label>
+            <input class="block w-full my-4 leading-normal px-3 py-2 rounded border border-grey-light" type="email" name="email" placeholder="Enter your email" />
+            <button type="submit" class="block w-full text-center rounded leading-normal p-2 bg-red text-white">Get Invited</button>
+        </form>
 </section>
 {% include footer.html %}
 </body>
