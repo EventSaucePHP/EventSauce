@@ -15,6 +15,12 @@ simple to document business requirements. The test tooling also makes it easy
 to follow the TDD approach. Creating tests (and the required events) often gives
 very usable insights when modeling your application.
 
+### Create your own tooling!
+
+Although EventSauce ships with its own set of test tooling, you're encouraged to
+create your own. Every domain is different. Analyse your workflow and optimize
+common cases. Tackling a problem over and over? Try creating tooling for it!
+
 ## 1. Create a base test case for your aggregate.
 
 It's advised to create a base test for your aggregate. This base class sets up the defaults
