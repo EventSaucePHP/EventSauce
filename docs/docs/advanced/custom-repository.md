@@ -48,14 +48,14 @@ class FilesystemMessageRepository implements MessageRepository
     {
         foreach ($messages as $message) {
             $aggregateRootId = $message->header(Header::AGGREGATE_ROOT_ID);
-            $timeOfRecording = $message->header(Header::TIME_OF_RECORDING);
+            $version = $message->header(Header::AGGREGATE_ROOT_VERSION);
             
             if ( ! is_dir(__DIR__.'/'.$aggregateRootId)) {
                 mkdir(__DIR__.'/'.$aggregateRootId);
             }
-            
+
             $payload = $this->serializer->serializeMessage($message);
-            file_put_contents(__DIR__."/{$aggregateRootId}/{$timeOfRecording}.json", json_encode($payload, JSON_PRETTY_PRINT));
+            file_put_contents(__DIR__."/{$aggregateRootId}/{$version}.json", json_encode($payload, JSON_PRETTY_PRINT));
         }
     }
     
@@ -64,17 +64,45 @@ class FilesystemMessageRepository implements MessageRepository
         $directory = __DIR__.'/'.$id->toString();
         
         if ( ! is_dir($directory)) {
-            return;
+            return 0;
         }
         
         foreach (array_diff(scandir($directory), array('..', '.')) as $file) {
-            yield $this->serializer->unserializePayload(
+            $message = $this->serializer->unserializePayload(
                 json_decode(
                     file_get_contents($directory.'/'.$file),
                     true
                 )
             );
+
+            yield $message;
         }
+
+        return isset($message) ? $message->header(Header::AGGREGATE_ROOT_VERSION) : 0;
     }
+    public function retrieveAllAfterVersion(AggregateRootId $id, int $version): Generator
+    {
+        $directory = __DIR__.'/'.$id->toString();
+                
+        if ( ! is_dir($directory)) {
+            return 0;
+        }
+        
+        foreach (array_diff(scandir($directory), array('..', '.')) as $file) {
+            if ($version >= (int) $file) continue;
+
+            $message = $this->serializer->unserializePayload(
+                json_decode(
+                    file_get_contents($directory.'/'.$file),
+                    true
+                )
+            );
+
+            yield $message;
+        }
+
+        return isset($message) ? $message->header(Header::AGGREGATE_ROOT_VERSION) : 0;
+    }
+
 }
 ```
