@@ -44,7 +44,7 @@ The prefix (or suffix) is named after the aggregate root.
 
 * Also easy to setup.
 * Good for small amounts of events.
-* For fore a moderate amount of events.
+* For a moderate amount of events.
 * Special querying can be easily facilitated.
 * Migrating messages is easier (no filtering, just migrate the entire data-set)
 * Easy to maintain from a DB perspective.
