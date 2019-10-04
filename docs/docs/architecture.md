@@ -3,12 +3,12 @@ permalink: /docs/architecture/
 redirect_from: '/docs/core-concepts/'
 title: Architecture
 published_at: 2018-03-24
-updated_at: 2019-07-17
+updated_at: 2019-09-19
 ---
 
 EventSauce is designed to be pragmatic. It's pragmatic because it's easy to setup
-and easy to extend. The library is focused on getting you up and running quickly
-without sacrificing the conceptual integrity.
+and easy to extend and replace. The library is focused on getting you up and
+running quickly without sacrificing the conceptual integrity.
 
 ## Overview
 
@@ -25,10 +25,10 @@ and dispatching messages to `Consumer`s. Because EventSauce is based around thes
 interfaces it's very easy to modify how the library behaves. The interfaces also
 make EventSauce highly customizable without the need for inheritance.
 
-Which `MessageRepository` or `MessageDispatcher` you use is totally up to you. There
-are benefits (and downsides) to each queueing mechanism and message repository. Because
+Which `MessageRepository` or `MessageDispatcher` you use is entirely up to you. There
+are benefits (and downsides) to each dispatching mechanism and repository type. Because
 EventSauce places these implementations behind an interface you're free to choose whatever
-fits best. You can even create your own repositories and dispatchers, the interfaces are
+fits best. You can create your own repositories and dispatchers, the interfaces are
 very tiny.
 
 ### Replaceable items

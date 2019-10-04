@@ -13,7 +13,7 @@ class TestClockTest extends TestCase
     /**
      * @test
      */
-    public function getting_back_equal_date_times()
+    public function getting_back_equal_date_times(): void
     {
         $clock = new TestClock();
         $d1 = $clock->dateTime();
@@ -24,7 +24,7 @@ class TestClockTest extends TestCase
     /**
      * @test
      */
-    public function ticking_the_clock_sets_it_forward()
+    public function ticking_the_clock_sets_it_forward(): void
     {
         $clock = new TestClock();
         $d1 = $clock->dateTime();
@@ -37,7 +37,7 @@ class TestClockTest extends TestCase
     /**
      * @test
      */
-    public function fixating_the_clock()
+    public function fixating_the_clock(): void
     {
         $clock = new TestClock();
         $clock->fixate('2017-01-01 12:00:00');
@@ -50,7 +50,7 @@ class TestClockTest extends TestCase
     /**
      * @test
      */
-    public function failing_to_fixate_the_clock()
+    public function failing_to_fixate_the_clock(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $clock = new TestClock();
@@ -60,7 +60,7 @@ class TestClockTest extends TestCase
     /**
      * @test
      */
-    public function creating_points_in_time()
+    public function creating_points_in_time(): void
     {
         $clock = new TestClock();
         $pointInTime = $clock->pointInTime();

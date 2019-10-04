@@ -1,0 +1,5 @@
+---
+namespace: CommandsWithInterfaces
+commands:
+    CommandWithInterfaceMarker:
+        implements: marker

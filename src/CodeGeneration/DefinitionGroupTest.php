@@ -11,7 +11,7 @@ class DefinitionGroupTest extends TestCase
     /**
      * @test
      */
-    public function creating_a_definition_group()
+    public function creating_a_definition_group(): void
     {
         $group = DefinitionGroup::create($namespace = 'Some\\Namespace');
         $this->assertEquals($namespace, $group->namespace());

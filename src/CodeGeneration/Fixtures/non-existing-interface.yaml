@@ -1,0 +1,4 @@
+---
+namespace: InterfacesDontExist
+interfaces:
+    marker: DoesNotExistInTheCodebase

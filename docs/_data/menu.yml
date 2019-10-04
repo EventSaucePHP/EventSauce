@@ -24,6 +24,11 @@ Reacting to events:
     Projection &amp; Read Models: '/docs/reacting-to-events/projections-and-read-models/'
     Process Managers: '/docs/reacting-to-events/process-managers/'
 
+Snapshotting:
+    About Snapshotting: '/docs/snapshotting/'
+    Setting Up Snapshotting: '/docs/snapshotting/setup/'
+    Updating Snapshots: '/docs/snapshotting/updating-snapshots/'
+
 Advanced Topics:
     Database Structure: '/docs/advanced/database-structure/'
     Rebuilding Projections: '/docs/advanced/rebuilding-projections/'

@@ -14,7 +14,7 @@ class MessageDecoratingTest extends TestCase
     /**
      * @test
      */
-    public function decorating_messages()
+    public function decorating_messages(): void
     {
         $decorator = new MessageDecoratorChain(new DummyMessageDecorator());
         $event = new PayloadStub('value');

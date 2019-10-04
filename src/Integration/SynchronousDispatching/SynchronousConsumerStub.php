@@ -11,7 +11,7 @@ final class SynchronousConsumerStub implements Consumer
 {
     public $handled = [];
 
-    public function handle(Message $message)
+    public function handle(Message $message): void
     {
         $this->handled[] = $message;
     }

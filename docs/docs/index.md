@@ -3,7 +3,7 @@ permalink: /docs/
 title: Event sourcing for PHP
 hide_title: true
 published_at: 2018-02-21
-updated_at: 2019-06-12
+updated_at: 2019-09-24
 ---
 
 <div class="text-center mb-8 max-w-md">
@@ -27,22 +27,35 @@ updated_at: 2019-06-12
 EventSauce is a no-nonsense event sourcing library for PHP with a focus on developer
 experience and productivity. This library was developed with the idea that you should
 be able to add event sourced parts to your application with ease. No application-wide
-rewrites and no big investments upfront. The core is built around a set of (tiny)
-interfaces, which gives you the freedom to choose the tools that meet your requirements.
+rewrites and no big investments upfront. 
+
+## You're in Control
+
+Event sourcing is a tool to build a domain model. You should own this model, therefor you
+should own your tooling. EventSauce is as much an implementation reference, as it is a
+library. You can use it in your application, but you can also copy it and take full control.
+
+## Extensible by Design
+
+The core is built around a set of (tiny) interfaces, which gives you the freedom to choose
+the tools that meet your requirements. Implement them however you see fit. Use them, don't
+use them. It's your choice!
+
+## Pragmatic by Nature
 
 Many parts of the library are extremely pragmatic in nature. You're encouraged to take
 control over it. It allows everything from  custom storage adapter to highly customizable
 message dispatching setups.
 
 EventSauce puts the focus on event sourcing, not on things that happen around event
-sourcing. It does not require you to follow CQRS patterns (althought you can). It does
+sourcing. It does not require you to follow CQRS patterns (although you can). It does
 not require you to use a command-, event-, or query-bus. By doing so, it allows
 developers to use event sourcing for parts of their application more easily.
 
 ## A paradigm shift.
 
 Solving problems using event sourcing requires a very different mindset when compared
-to traditional PHP-OOP software modeling. It's less focused about state and more
+to common object-oriented software modeling in PHP. It's less focused about state and more
 about processes, transitions, and communication in general. Event sourcing is also not
 simple. It's built on a body of knowledge that is inherently complex. There are many
 concepts that come into play that build off one another.

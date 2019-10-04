@@ -2,7 +2,7 @@
 permalink: /docs/getting-started/create-an-aggregate-root/
 title: Creating an Aggregate Root
 published_at: 2018-02-25
-updated_at: 2019-06-12
+updated_at: 2019-09-23
 ---
 
 An aggregate root is an entity that is modeled using events. The default
@@ -25,6 +25,10 @@ class AcmeProcess implements AggregateRoot
     use AggregateRootBehaviour;
 }
 ```
+
+> NOTE: The default reconstitution mechanism allows aggregates to be
+> constructed without history. Use the `AggregateRootBehaviourWithRequiredHistory` trait instead.
+
 
 ### Aggregate Construction
 

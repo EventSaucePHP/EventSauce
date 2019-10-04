@@ -20,7 +20,7 @@ final class TypeValidatingEventSerializerTest extends TestCase
      */
     private $innerSerializer;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->innerSerializer = new ConstructingPayloadSerializer();
         $this->serializer = new TypeValidatingPayloadSerializer(
@@ -32,7 +32,7 @@ final class TypeValidatingEventSerializerTest extends TestCase
     /**
      * @test
      */
-    public function is_an_event_serializer()
+    public function is_an_event_serializer(): void
     {
         $this->assertInstanceOf(PayloadSerializer::class, $this->serializer);
     }
@@ -40,7 +40,7 @@ final class TypeValidatingEventSerializerTest extends TestCase
     /**
      * @test
      */
-    public function delegates_serialization_to_decorated_serializer()
+    public function delegates_serialization_to_decorated_serializer(): void
     {
         $event = PayloadStub::create('some value');
         $this->assertSame(
@@ -52,7 +52,7 @@ final class TypeValidatingEventSerializerTest extends TestCase
     /**
      * @test
      */
-    public function delegates_unserialization_to_decorated_serializer()
+    public function delegates_unserialization_to_decorated_serializer(): void
     {
         $payloadArgs = [PayloadStub::class, ['value' => 'some value']];
 
@@ -67,7 +67,7 @@ final class TypeValidatingEventSerializerTest extends TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Cannot serialize event that does not implement "EventSauce\EventSourcing\Serialization\SerializablePayload".
      */
-    public function cannot_serialize_non_instance_of_provided_event_classname()
+    public function cannot_serialize_non_instance_of_provided_event_classname(): void
     {
         $this->serializer->serializePayload(new stdClass());
     }
@@ -77,7 +77,7 @@ final class TypeValidatingEventSerializerTest extends TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Cannot unserialize payload into an event that does not implement "EventSauce\EventSourcing\Serialization\SerializablePayload".
      */
-    public function cannot_unserialize_into_non_serializable_event()
+    public function cannot_unserialize_into_non_serializable_event(): void
     {
         $this->serializer->unserializePayload(stdClass::class, ['value' => 'some value']);
     }

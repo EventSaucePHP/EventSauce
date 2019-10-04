@@ -13,7 +13,7 @@ class CodeDumperTest extends TestCase
      * @test
      * @dataProvider definitionProvider
      */
-    public function dumping_a_definition(DefinitionGroup $definitionGroup, string $fixtureFile)
+    public function dumping_a_definition(DefinitionGroup $definitionGroup, string $fixtureFile): void
     {
         $dumper = new CodeDumper();
         $actual = $dumper->dump($definitionGroup);

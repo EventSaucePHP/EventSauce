@@ -32,12 +32,12 @@ class TestClock implements Clock
         $this->tick();
     }
 
-    public function tick()
+    public function tick(): void
     {
         $this->time = new DateTimeImmutable('now', $this->timeZone);
     }
 
-    public function fixate(string $input)
+    public function fixate(string $input): void
     {
         $preciseTime = sprintf('%s.000000', $input);
         $dateTime = DateTimeImmutable::createFromFormat('Y-m-d H:i:s.u', $preciseTime, $this->timeZone);

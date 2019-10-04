@@ -1,0 +1,14 @@
+---
+namespace: CommandsWithInterfaces
+interfaces:
+  marker: EventSauce\EventSourcing\CodeGeneration\Fixtures\MarkerInterfaceStub
+
+commands:
+    CommandWithInterfaceMarker:
+        implements: marker
+    AlsoCommandWithInterfaceMarker:
+        implements:
+            - marker
+events:
+    EventWithInterfaceMarker:
+        implements: marker

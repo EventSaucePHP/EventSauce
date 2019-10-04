@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use EventSauce\EventSourcing\PointInTime;
+use OutOfBoundsException;
+use function array_key_exists;
 
 final class DefinitionGroup
 {
@@ -67,6 +69,11 @@ final class DefinitionGroup
      */
     private $typeAliases = [];
 
+    /**
+     * @var string[]
+     */
+    private $interfaces = [];
+
     public function __construct()
     {
         $this->typeSerializer(PointInTime::class, '{param}->toString()');
@@ -85,7 +92,7 @@ final class DefinitionGroup
         return $this;
     }
 
-    public function typeSerializer(string $type, string $template)
+    public function typeSerializer(string $type, string $template): void
     {
         $type = $this->resolveTypeAlias($type);
 
@@ -99,7 +106,7 @@ final class DefinitionGroup
         return $this->typeSerializer[$type] ?? 'new {type}({param})';
     }
 
-    public function typeDeserializer(string $type, string $template)
+    public function typeDeserializer(string $type, string $template): void
     {
         $type = $this->resolveTypeAlias($type);
 
@@ -113,7 +120,7 @@ final class DefinitionGroup
         return $this->typeDeserializer[$type] ?? 'new {type}({param})';
     }
 
-    public function fieldSerializer(string $field, string $template)
+    public function fieldSerializer(string $field, string $template): void
     {
         $this->fieldSerializer[$field] = $template;
     }
@@ -123,7 +130,7 @@ final class DefinitionGroup
         return $this->fieldSerializer[$field] ?? null;
     }
 
-    public function fieldDeserializer(string $field, string $template)
+    public function fieldDeserializer(string $field, string $template): void
     {
         $this->fieldDeserializer[$field] = $template;
     }
@@ -133,13 +140,13 @@ final class DefinitionGroup
         return $this->fieldDeserializer[$field] ?? null;
     }
 
-    public function fieldDefault(string $name, string $type, string $example = null)
+    public function fieldDefault(string $name, string $type, string $example = null): void
     {
         $type = $this->resolveTypeAlias($type);
         $this->defaults[$name] = compact('type', 'example');
     }
 
-    public function aliasType(string $alias, string $type)
+    public function aliasType(string $alias, string $type): void
     {
         $this->typeAliases[$alias] = TypeNormalizer::normalize($type);
     }
@@ -192,5 +199,19 @@ final class DefinitionGroup
     public function namespace(): string
     {
         return $this->namespace;
+    }
+
+    public function defineInterface(string $alias, string $interfaceName): void
+    {
+        $this->interfaces[$alias] = $interfaceName;
+    }
+
+    public function resolveInterface(string $alias): string
+    {
+        if ( ! array_key_exists($alias, $this->interfaces)) {
+            throw new OutOfBoundsException("Interface not registered for alias ${alias}.");
+        }
+
+        return $this->interfaces[$alias];
     }
 }
