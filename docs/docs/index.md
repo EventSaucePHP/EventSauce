@@ -31,7 +31,7 @@ rewrites and no big investments upfront.
 
 ## You're in Control
 
-Event sourcing is a tool to build a domain model. You should own this model, therefor you
+Event sourcing is a tool to build a domain model. You should own this model, therefore you
 should own your tooling. EventSauce is as much an implementation reference, as it is a
 library. You can use it in your application, but you can also copy it and take full control.
 
