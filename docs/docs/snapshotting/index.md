@@ -18,7 +18,7 @@ is persisted and can be retrieved at a later point in time. Alongside the snapsh
 is stored. A snapshot contains:
 
 - The aggregate root ID
-- The snapshot stage
+- The snapshot state
 - The aggregate root version
 
 ## Aggregate Reconstitution from a Snapshot
