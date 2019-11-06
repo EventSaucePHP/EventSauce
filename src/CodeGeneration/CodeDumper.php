@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-use LogicException;
 use function array_filter;
 use function array_map;
 use function implode;
+use LogicException;
+use const null;
 use function sprintf;
 use function ucfirst;
 use function var_export;
-use const null;
 
 class CodeDumper
 {
@@ -49,10 +49,6 @@ EOF;
 
     /**
      * @param PayloadDefinition[] $definitions
-     * @param bool                $withHelpers
-     * @param bool                $withSerialization
-     *
-     * @return string
      */
     private function dumpClasses(array $definitions, bool $withHelpers, bool $withSerialization): string
     {
@@ -285,11 +281,6 @@ EOF;
         return rtrim(strtr($template, ['{type}' => $resolvedType, '{param}' => $parameter]));
     }
 
-    /**
-     * @param PayloadDefinition $definition
-     *
-     * @return array
-     */
     private function fieldsFromDefinition(PayloadDefinition $definition): array
     {
         $fields = $this->fieldsFrom($definition->fieldsFrom());

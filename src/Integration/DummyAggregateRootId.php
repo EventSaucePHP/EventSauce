@@ -19,17 +19,12 @@ class DummyAggregateRootId implements AggregateRootId
         $this->identifier = $identifier;
     }
 
-    /**
-     * @return string
-     */
     public function toString(): string
     {
         return $this->identifier;
     }
 
     /**
-     * @param string $aggregateRootId
-     *
      * @return static
      */
     public static function fromString(string $aggregateRootId): AggregateRootId

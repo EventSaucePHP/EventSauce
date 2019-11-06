@@ -37,8 +37,6 @@ trait AggregateRootBehaviour
     }
 
     /**
-     * @return int
-     *
      * @see AggregateRoot::aggregateRootVersion
      */
     public function aggregateRootVersion(): int
@@ -71,11 +69,6 @@ trait AggregateRootBehaviour
     }
 
     /**
-     * @param AggregateRootId $aggregateRootId
-     * @param Generator       $events
-     *
-     * @return AggregateRoot
-     *
      * @see AggregateRoot::reconstituteFromEvents
      */
     public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot

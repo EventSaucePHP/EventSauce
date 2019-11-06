@@ -29,9 +29,6 @@ trait SnapshottingBehaviour
     abstract protected function createSnapshotState();
 
     /**
-     * @param Snapshot  $snapshot
-     * @param Generator $events
-     *
      * @return static
      */
     public static function reconstituteFromSnapshotAndEvents(Snapshot $snapshot, Generator $events): AggregateRoot

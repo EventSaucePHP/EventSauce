@@ -8,10 +8,10 @@ use EventSauce\EventSourcing\TestUtilities\ConsumerThatSerializesMessages;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\Time\TestClock;
 use Exception;
-use LogicException;
-use PHPUnit\Framework\TestCase;
 use function get_class;
+use LogicException;
 use function method_exists;
+use PHPUnit\Framework\TestCase;
 use function sprintf;
 
 /**

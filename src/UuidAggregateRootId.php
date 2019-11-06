@@ -35,8 +35,6 @@ final class UuidAggregateRootId implements AggregateRootId
     }
 
     /**
-     * @param string $aggregateRootId
-     *
      * @return static
      */
     public static function fromString(string $aggregateRootId): AggregateRootId

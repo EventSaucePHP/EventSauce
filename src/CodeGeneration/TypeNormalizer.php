@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
+use function ltrim;
 use ReflectionClass;
 use ReflectionException;
-use function ltrim;
 
 /**
  * @internal

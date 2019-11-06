@@ -8,9 +8,9 @@ use EventSauce\EventSourcing\Consumer;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\Serialization\ConstructingMessageSerializer;
 use EventSauce\EventSourcing\Serialization\MessageSerializer;
+use function iterator_to_array;
 use PHPUnit\Framework\TestCase;
 use stdClass;
-use function iterator_to_array;
 
 class ConsumerThatSerializesMessages implements Consumer
 {

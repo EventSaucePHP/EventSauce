@@ -6,8 +6,8 @@ namespace EventSauce\EventSourcing\Snapshotting\Tests;
 
 use EventSauce\EventSourcing\AggregateRootBehaviour;
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\Snapshotting\SnapshottingBehaviour;
 use EventSauce\EventSourcing\Snapshotting\AggregateRootWithSnapshotting;
+use EventSauce\EventSourcing\Snapshotting\SnapshottingBehaviour;
 
 class LightSwitch implements AggregateRootWithSnapshotting
 {

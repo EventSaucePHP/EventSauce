@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Serialization;
 
-use PHPStan\Testing\TestCase;
 use EventSauce\EventSourcing\PayloadStub;
+use PHPStan\Testing\TestCase;
 
 final class ConstructingPayloadSerializerTest extends TestCase
 {

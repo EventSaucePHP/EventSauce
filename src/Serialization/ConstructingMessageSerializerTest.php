@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\Serialization;
 
 use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
-use EventSauce\EventSourcing\PayloadStub;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
+use EventSauce\EventSourcing\PayloadStub;
 use EventSauce\EventSourcing\Time\TestClock;
 use EventSauce\EventSourcing\UuidAggregateRootId;
-use PHPUnit\Framework\TestCase;
 use function iterator_to_array;
+use PHPUnit\Framework\TestCase;
 
 class ConstructingMessageSerializerTest extends TestCase
 {

@@ -8,8 +8,6 @@ class ConstructingPayloadSerializer implements PayloadSerializer
 {
     /**
      * @param SerializablePayload $event
-     *
-     * @return array
      */
     public function serializePayload(object $event): array
     {

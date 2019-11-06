@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-use InvalidArgumentException;
-use LogicException;
-use function is_array;
-use Symfony\Component\Yaml\Yaml;
-use const PATHINFO_EXTENSION;
 use function file_get_contents;
 use function in_array;
+use InvalidArgumentException;
+use function is_array;
 use function is_string;
+use LogicException;
 use function pathinfo;
+use const PATHINFO_EXTENSION;
+use Symfony\Component\Yaml\Yaml;
 
 class YamlDefinitionLoader implements DefinitionLoader
 {
@@ -110,11 +110,6 @@ class YamlDefinitionLoader implements DefinitionLoader
         }
     }
 
-    /**
-     * @param DefinitionGroup   $definitionGroup
-     * @param PayloadDefinition $definition
-     * @param array             $input
-     */
     private function hydrateDefinition(DefinitionGroup $definitionGroup, PayloadDefinition $definition, array $input): void
     {
         $definition->withFieldsFrom($input['fields_from'] ?? '');

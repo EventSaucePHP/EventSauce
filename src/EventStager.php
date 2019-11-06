@@ -34,9 +34,6 @@ class EventStager
         $this->messageRepository = $messageRepository;
     }
 
-    /**
-     * @return AggregateRootTestCase
-     */
     public function stage(object ...$events): AggregateRootTestCase
     {
         $this->repository->persistEvents($this->id, count($events), ...$events);

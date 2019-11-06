@@ -48,8 +48,6 @@ final class PayloadDefinition
     }
 
     /**
-     * @param string $otherType
-     *
      * @return $this
      */
     public function withFieldsFrom(string $otherType): PayloadDefinition
