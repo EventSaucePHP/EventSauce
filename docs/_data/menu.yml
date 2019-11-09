@@ -29,6 +29,10 @@ Snapshotting:
     Setting Up Snapshotting: '/docs/snapshotting/setup/'
     Updating Snapshots: '/docs/snapshotting/updating-snapshots/'
 
+Code Generation:
+    About Code Generation: '/docs/code-generation/'
+    Commands and Events from YAML: '/docs/code-generation/from-yaml/'
+
 Advanced Topics:
     Database Structure: '/docs/advanced/database-structure/'
     Rebuilding Projections: '/docs/advanced/rebuilding-projections/'

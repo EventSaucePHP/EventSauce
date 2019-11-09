@@ -2,7 +2,7 @@
 permalink: /docs/changelog/
 title: Changelog
 published_at: 2018-03-14
-updated_at: 2019-09-24
+updated_at: 2019-09-28
 ---
 
 ## 0.7.0

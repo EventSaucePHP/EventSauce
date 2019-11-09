@@ -2,7 +2,7 @@
 permalink: /docs/getting-started/create-events-and-commands/
 title: Create events and commands
 published_at: 2018-02-25
-updated_at: 2019-08-20
+updated_at: 2019-09-25
 ---
 
 Events are the core of any event sourced system. They are the payload,
@@ -85,25 +85,6 @@ and properly formatted in the payload methods.
 
 ## Defining commands and events using YAML.
 
-Commands and events aren't very special, they're often just glorified arrays with accessors. A common name for these kind
-of objects is "Value Object". Because of their simplicity it's possible to use code generation:
+Find out [how to define commands and events using YAML](/docs/code-generation/from-yaml/) 
 
-```php
-<?php
 
-use EventSauce\EventSourcing\CodeGeneration\CodeDumper;
-use EventSauce\EventSourcing\CodeGeneration\YamlDefinitionLoader;
-
-$loader = new YamlDefinitionLoader();
-$dumper = new CodeDumper();
-$phpCode = $dumper->dump($loader->load('path/to/definition.yml'));
-file_put_contents($destination, $phpCode);
-```
-
-Here's an example YAML file containing some command and event definitions.
-
-{% include example-definition.md %}
-
-Which compiles to the following PHP file:
- 
-{% include example-definition-output.md %}
