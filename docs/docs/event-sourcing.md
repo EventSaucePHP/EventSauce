@@ -38,7 +38,7 @@ using events that describe things that have happened in the past. In order to
 get to the current state, we replay all the events needed to make the next move.
 These events give our model the information to base new decisions on. Actions
 dispatched to the model result in any number of new events. These events are
-used for out next decision, and to communicate change throughout the system.
+used for our next decision, and to communicate change throughout the system.
 
 ## Event and Message Driven Programming
 
