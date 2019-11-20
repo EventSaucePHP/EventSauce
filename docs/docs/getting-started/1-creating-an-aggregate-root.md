@@ -73,6 +73,40 @@ class AcmeProcess implements AggregateRoot
 }
 ```
 
+## Applying events
+
+When using the default aggregate root repository implementation (`ConstructingAggregateRootRepository`) together with `AggregateRootBehavior` trait,
+it will call the `apply{EventClassName}` on your aggregate root, when applying events. 
+
+For example: when you have an event `ProcessStarted`, just implement a `applyProcessStarted` method and it will be called automatically by the repository.
+
+```php
+<?php 
+
+use EventSauce\EventSourcing\Serialization\SerializablePayload;
+
+class ProcessStarted implements SerializablePayload {
+    // ...
+}
+```
+
+```php
+<?php
+
+use EventSauce\EventSourcing\AggregateRoot;
+use EventSauce\EventSourcing\AggregateRootBehaviour;
+
+class AcmeProcess implements AggregateRoot
+{
+    use AggregateRootBehaviour;
+    
+    // ...
+    
+    public function applyProcessStarted(ProcessStarted $processStarted) {
+        // apply event data to your aggretate 
+    }
+}
+
 ## Aggregate Root ID
 
 An aggregate root has an identifier. This is called the "aggregate root ID".
