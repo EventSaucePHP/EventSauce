@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Serialization;
 
-use InvalidArgumentException;
 use EventSauce\EventSourcing\PayloadStub;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
