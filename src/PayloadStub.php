@@ -24,6 +24,14 @@ class PayloadStub implements SerializablePayload
         return ['value' => $this->value];
     }
 
+    /**
+     * @return string
+     */
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+
     public static function fromPayload(array $payload): SerializablePayload
     {
         return new static($payload['value']);

@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Serialization;
 
+use InvalidArgumentException;
 use EventSauce\EventSourcing\PayloadStub;
-use PHPStan\Testing\TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 
 final class TypeValidatingEventSerializerTest extends TestCase
@@ -64,21 +65,21 @@ final class TypeValidatingEventSerializerTest extends TestCase
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Cannot serialize event that does not implement "EventSauce\EventSourcing\Serialization\SerializablePayload".
      */
     public function cannot_serialize_non_instance_of_provided_event_classname(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Cannot serialize event that does not implement "EventSauce\EventSourcing\Serialization\SerializablePayload".');
         $this->serializer->serializePayload(new stdClass());
     }
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Cannot unserialize payload into an event that does not implement "EventSauce\EventSourcing\Serialization\SerializablePayload".
      */
     public function cannot_unserialize_into_non_serializable_event(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Cannot unserialize payload into an event that does not implement "EventSauce\EventSourcing\Serialization\SerializablePayload".');
         $this->serializer->unserializePayload(stdClass::class, ['value' => 'some value']);
     }
 }

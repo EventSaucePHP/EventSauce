@@ -35,9 +35,10 @@ final class ConstructingPayloadSerializerTest extends TestCase
      */
     public function unserialize_into_serializable_event(): void
     {
+        /** @var PayloadStub $object */
         $object = $this->serializer->unserializePayload(PayloadStub::class, ['value' => 'some value']);
 
         $this->assertInstanceOf(PayloadStub::class, $object);
-        $this->assertAttributeSame('some value', 'value', $object);
+        $this->assertEquals('some value', $object->getValue());
     }
 }
