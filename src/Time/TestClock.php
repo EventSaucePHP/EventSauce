@@ -58,4 +58,9 @@ class TestClock implements Clock
     {
         return PointInTime::fromDateTime($this->dateTime());
     }
+
+    public function timeZone(): DateTimeZone
+    {
+        return $this->timeZone;
+    }
 }
