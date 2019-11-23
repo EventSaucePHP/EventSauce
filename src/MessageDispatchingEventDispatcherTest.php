@@ -24,7 +24,7 @@ class MessageDispatchingEventDispatcherTest extends TestCase
     /**
      * @test
      */
-    public function dispatching_with_headers()
+    public function dispatching_with_headers(): void
     {
         $subdispatcher = new CollectingMessageDispatcher();
         $eventDispatcher = new MessageDispatchingEventDispatcher($subdispatcher);
