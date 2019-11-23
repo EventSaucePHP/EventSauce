@@ -9,7 +9,7 @@ updated_at: 2019-09-28
 
 ### New Features
 
-- *EventDispatcher*<br/>
+- ***EventDispatcher***<br/>
   Dispatch events with ease! The default MessageDispatchingEventDispatcher allows you to
   dispatched events, which dispatches Messages on your regular MessageDispatcher.
 
