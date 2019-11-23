@@ -5,6 +5,18 @@ published_at: 2018-03-14
 updated_at: 2019-09-28
 ---
 
+## 0.8.0 - UPCOMING RELEASE
+
+### New Features
+
+- *EventDispatcher*<br/>
+  Dispatch events with ease! The default MessageDispatchingEventDispatcher allows you to
+  dispatched events, which dispatches Messages on your regular MessageDispatcher.
+
+### Breaking Changes
+
+- The method ::timeZone(): DateTimeZone was added to the Clock interface. 
+
 ## 0.7.0
 
 ### New Features
