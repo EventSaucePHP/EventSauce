@@ -12,7 +12,7 @@ class MessageDispatchingEventDispatcher implements EventDispatcher
     private $dispatcher;
 
     /**
-     * @var MessageDecorator|null
+     * @var MessageDecorator
      */
     private $decorator;
 
