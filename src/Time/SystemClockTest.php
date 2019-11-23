@@ -34,7 +34,7 @@ class SystemClockTest extends TestCase
     /**
      * @test
      */
-    public function timezone_defaults_to_utc()
+    public function timezone_defaults_to_utc(): void
     {
         $clock = new SystemClock();
         $this->assertEquals('UTC', $clock->timeZone()->getName());
@@ -43,7 +43,7 @@ class SystemClockTest extends TestCase
     /**
      * @test
      */
-    public function setting_a_timezone_explicitly()
+    public function setting_a_timezone_explicitly(): void
     {
         $clock = new SystemClock(new DateTimeZone('Europe/Amsterdam'));
         $this->assertEquals('Europe/Amsterdam', $clock->timeZone()->getName());
