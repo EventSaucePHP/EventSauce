@@ -106,6 +106,7 @@ class AcmeProcess implements AggregateRoot
         // apply event data to your aggretate 
     }
 }
+```
 
 ## Aggregate Root ID
 
