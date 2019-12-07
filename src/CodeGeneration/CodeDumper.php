@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-use LogicException;
-
 use function array_filter;
 use function array_map;
 use function implode;
+use LogicException;
+use const null;
 use function sprintf;
 use function ucfirst;
 use function var_export;
-
-use const null;
 
 class CodeDumper
 {
@@ -29,7 +27,7 @@ class CodeDumper
 
     public function __construct(?bool $typedProperties = null)
     {
-        $this->typedProperties = $typedProperties === null ? version_compare(
+        $this->typedProperties = null === $typedProperties ? version_compare(
                 PHP_VERSION,
                 '7.4.0'
             ) >= 0 : $typedProperties;
