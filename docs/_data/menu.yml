@@ -7,7 +7,7 @@ EventSauce:
     Changelog: '/docs/changelog/'
     <span class="github-link-icon"><img class="w-5 h-5 mr-1" src="/static/github.svg" /></span> Github: 'https://github.com/eventsaucephp/eventsauce'
 
-Getting Started:
+Event Sourcing:
     1. Create an Aggregate Root: '/docs/getting-started/create-an-aggregate-root/'
     2. Create Events and Commands: '/docs/getting-started/create-events-and-commands/'
     3. Configure Persistence: '/docs/getting-started/configure-persistence/'
