@@ -15,10 +15,23 @@ class CodeDumperTest extends TestCase
      */
     public function dumping_a_definition(DefinitionGroup $definitionGroup, string $fixtureFile): void
     {
-        $dumper = new CodeDumper();
+        $dumper = new CodeDumper(false);
         $actual = $dumper->dump($definitionGroup);
         // file_put_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'Fixture.php', $actual);
         $expected = file_get_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'Fixture.php');
+        $this->assertEquals($expected, $actual, "Expect {$fixtureFile} to match generated code.");
+    }
+
+    /**
+     * @test
+     * @dataProvider definitionProvider
+     */
+    public function dumping_a_definition_with_types_properties(DefinitionGroup $definitionGroup, string $fixtureFile): void
+    {
+        $dumper = new CodeDumper(true);
+        $actual = $dumper->dump($definitionGroup);
+        file_put_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'TypePropertiesFixture.php', $actual);
+        $expected = file_get_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'TypePropertiesFixture.php');
         $this->assertEquals($expected, $actual, "Expect {$fixtureFile} to match generated code.");
     }
 

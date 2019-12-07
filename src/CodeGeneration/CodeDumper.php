@@ -20,6 +20,18 @@ class CodeDumper
      */
     private $definitionGroup;
 
+    /**
+     * @var bool|null
+     */
+    private $typedProperties;
+
+    public function __construct(?bool $typedProperties = null)
+    {
+        $this->typedProperties = $typedProperties === null
+            ? version_compare(PHP_VERSION, '7.4.0') >= 0
+            : $typedProperties;
+    }
+
     public function dump(DefinitionGroup $definitionGroup, bool $withHelpers = true, bool $withSerialization = true): string
     {
         $this->definitionGroup = $definitionGroup;
@@ -100,8 +112,23 @@ EOF;
         foreach ($fields as $field) {
             $name = $field['name'];
             $type = $this->definitionGroup->resolveTypeAlias($field['type']);
+            $code[] = $this->dumpField($type, $name);
+        }
 
-            $code[] = <<<EOF
+        return implode('', $code);
+    }
+
+    private function dumpField(string $type, string $name): string
+    {
+        if ($this->typedProperties) {
+            return <<<EOF
+    private $type \$$name;
+
+
+EOF;
+        }
+
+        return <<<EOF
     /**
      * @var $type
      */
@@ -109,9 +136,6 @@ EOF;
 
 
 EOF;
-        }
-
-        return implode('', $code);
     }
 
     private function dumpConstructor(PayloadDefinition $definition): string
