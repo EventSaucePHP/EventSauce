@@ -25,7 +25,7 @@ class TestClockTest extends TestCase
     /**
      * @test
      */
-    public function it_exposes_a_timezone()
+    public function it_exposes_a_timezone(): void
     {
         $clock = new TestClock();
         $this->assertEquals(new DateTimeZone('UTC'), $clock->timeZone());
