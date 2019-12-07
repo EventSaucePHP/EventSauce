@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Time;
 
+use DateTimeZone;
 use EventSauce\EventSourcing\PointInTime;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -19,6 +20,18 @@ class TestClockTest extends TestCase
         $d1 = $clock->dateTime();
         $d2 = $clock->dateTime();
         $this->assertEquals($d1, $d2);
+    }
+
+    /**
+     * @test
+     */
+    public function it_exposes_a_timezone()
+    {
+        $clock = new TestClock();
+        $this->assertEquals(new DateTimeZone('UTC'), $clock->timeZone());
+
+        $clock = new TestClock(new DateTimeZone('Europe/Amsterdam'));
+        $this->assertEquals(new DateTimeZone('Europe/Amsterdam'), $clock->timeZone());
     }
 
     /**
