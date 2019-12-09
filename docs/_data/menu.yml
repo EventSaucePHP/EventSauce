@@ -33,6 +33,9 @@ Code Generation:
     About Code Generation: '/docs/code-generation/'
     Commands and Events from YAML: '/docs/code-generation/from-yaml/'
 
+Utilities:
+    Event Dispatcher: '/docs/utilities/event-dispatcher/'
+
 Advanced Topics:
     Database Structure: '/docs/advanced/database-structure/'
     Rebuilding Projections: '/docs/advanced/rebuilding-projections/'
