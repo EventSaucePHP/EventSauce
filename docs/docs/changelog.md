@@ -9,9 +9,12 @@ updated_at: 2019-09-28
 
 ### New Features
 
-- ***EventDispatcher***<br/>
+- `EventDispatcher`<br/>
   Dispatch events with ease! The default MessageDispatchingEventDispatcher allows you to
   dispatched events, which dispatches Messages on your regular MessageDispatcher.
+- `TestClock::moveForward(DateInterval $interval): void`<br/>
+  The `moveForward` was introduces to make moving the test clock forward easier. Read
+  [how to use the SystemClock and the TestClock](/docs/utilities/clock/).
 
 ### Breaking Changes
 
