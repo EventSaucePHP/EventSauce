@@ -26,7 +26,7 @@ class TestClockTest extends TestCase
     /**
      * @test
      */
-    public function moving_the_clock_forward()
+    public function moving_the_clock_forward(): void
     {
         $clock = new TestClock();
         $clock->fixate('2000-01-01 10:00:00');
