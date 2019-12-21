@@ -3,7 +3,7 @@ permalink: /docs/
 title: Event sourcing for PHP
 hide_title: true
 published_at: 2018-02-21
-updated_at: 2019-09-28
+updated_at: 2019-12-07
 ---
 
 <div class="text-center mb-8 max-w-md">
@@ -31,7 +31,7 @@ rewrites and no big investments upfront.
 
 ## You're in Control
 
-Event sourcing is a tool to build a domain model. You should own this model, therefore you
+Event sourcing is a tool to build a domain model. You own the model, therefore you
 should own your tooling. EventSauce is as much an implementation reference, as it is a
 library. You can use it in your application, but you can also copy it and take full control.
 

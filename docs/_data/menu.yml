@@ -7,11 +7,11 @@ EventSauce:
     Changelog: '/docs/changelog/'
     <span class="github-link-icon"><img class="w-5 h-5 mr-1" src="/static/github.svg" /></span> Github: 'https://github.com/eventsaucephp/eventsauce'
 
-Getting Started:
-    1. Create an Aggregate Root: '/docs/getting-started/create-an-aggregate-root/'
-    2. Create Events and Commands: '/docs/getting-started/create-events-and-commands/'
-    3. Configure Persistence: '/docs/getting-started/configure-persistence/'
-    4. Bootstrap: '/docs/getting-started/bootstrap/'
+Event Sourcing:
+    1. Create an Aggregate Root: '/docs/event-sourcing/create-an-aggregate-root/'
+    2. Create Events and Commands: '/docs/event-sourcing/create-events-and-commands/'
+    3. Configure Persistence: '/docs/event-sourcing/configure-persistence/'
+    4. Bootstrap: '/docs/event-sourcing/bootstrap/'
 
 Testing:
     Introduction: '/docs/testing/'
@@ -32,6 +32,9 @@ Snapshotting:
 Code Generation:
     About Code Generation: '/docs/code-generation/'
     Commands and Events from YAML: '/docs/code-generation/from-yaml/'
+
+Utilities:
+    Event Dispatcher: '/docs/utilities/event-dispatcher/'
 
 Advanced Topics:
     Database Structure: '/docs/advanced/database-structure/'

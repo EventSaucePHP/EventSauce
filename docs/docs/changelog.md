@@ -2,20 +2,24 @@
 permalink: /docs/changelog/
 title: Changelog
 published_at: 2018-03-14
-updated_at: 2019-09-28
+updated_at: 2019-12-10
 ---
 
-## 0.8.0 - UPCOMING RELEASE
+## 0.8.0 - 2019-12-21
 
 ### New Features
 
-- ***EventDispatcher***<br/>
+- `EventDispatcher` was added:<br/>
   Dispatch events with ease! The default MessageDispatchingEventDispatcher allows you to
   dispatched events, which dispatches Messages on your regular MessageDispatcher.
 
 ### Breaking Changes
 
-- The method ::timeZone(): DateTimeZone was added to the Clock interface. 
+- The method `::timeZone(): DateTimeZone` was added to the `Clock` interface.
+- `TestClock::moveForward(DateInterval $interval): void` was added:<br/>
+  The `moveForward` was introduces to make moving the test clock forward easier. Read
+  [how to use the SystemClock and the TestClock](/docs/utilities/clock/).
+  <br/>
 
 ## 0.7.0
 
@@ -29,7 +33,7 @@ updated_at: 2019-09-28
 
 - Aggregate version handling is now more accurate (inaccuracies could happen when reducing streams in upcasting).
 
-### Breaking changes
+### Breaking Changes
 
 - Message repositories are now expected to return the aggregate version as the `Generator` return value.
 - Message repositories must now implement the `retrieveAllAfterVersion` method.
@@ -39,7 +43,7 @@ See the [upgrade guide to 0.7.0](/docs/upgrading/to-0-7-0).
 
 ## 0.6.0
 
-### Breaking changes
+### Breaking Changes
 
 - Event serialization is now converted to payload serialization. Generated commands now use the same serialization for easier tracing and logging.
 - Aggregate root behaviour now has a private constructor.
@@ -48,7 +52,7 @@ See the [upgrade guide to 0.6.0](/docs/upgrading/to-0-6-0).
 
 ## 0.5.1
 
-### Breaking changes
+### Breaking Changes
 
 Test helpers (the ::withX methods) are now immutable.
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Time;
 
+use DateInterval;
 use DateTimeZone;
 use EventSauce\EventSourcing\PointInTime;
 use InvalidArgumentException;
@@ -20,6 +21,23 @@ class TestClockTest extends TestCase
         $d1 = $clock->dateTime();
         $d2 = $clock->dateTime();
         $this->assertEquals($d1, $d2);
+    }
+
+    /**
+     * @test
+     */
+    public function moving_the_clock_forward(): void
+    {
+        $clock = new TestClock();
+        $clock->fixate('2000-01-01 10:00:00');
+        $interval = new DateInterval('PT2H');
+        $d1 = $clock->dateTime();
+        $clock->moveForward($interval);
+        $d2 = $clock->dateTime();
+        $diff = $d1->diff($d2);
+        $this->assertEquals('2000-01-01 12:00:00', $d2->format('Y-m-d H:i:s'));
+        $this->assertTrue($d1 < $d2);
+        $this->assertEquals($interval, $diff);
     }
 
     /**

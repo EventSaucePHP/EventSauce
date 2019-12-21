@@ -1,8 +1,9 @@
 ---
-permalink: /docs/getting-started/create-events-and-commands/
+permalink: /docs/event-sourcing/create-events-and-commands/
+redirect_from: /docs/getting-started/create-events-and-commands/
 title: Create events and commands
-published_at: 2018-02-25
-updated_at: 2019-09-25
+published_at: 2019-12-07
+updated_at: 2019-12-07
 ---
 
 Events are the core of any event sourced system. They are the payload,
@@ -54,7 +55,7 @@ Defining events and commands can be done in 2 ways.
 
 ## Manually creating classes.
 
-EventSauce provides interfaces for events and commands. You can create implementations of this. Here are minimal 
+EventSauce provides interfaces for events and commands. You can create implementations of this. Here are minimal
 examples.
 
 ### Event
@@ -85,6 +86,4 @@ and properly formatted in the payload methods.
 
 ## Defining commands and events using YAML.
 
-Find out [how to define commands and events using YAML](/docs/code-generation/from-yaml/) 
-
-
+Find out [how to define commands and events using YAML](/docs/code-generation/from-yaml/)

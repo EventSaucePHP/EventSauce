@@ -1,14 +1,15 @@
 ---
-permalink: /docs/getting-started/configure-persistence/
+permalink: /docs/event-sourcing/configure-persistence/
+redirect_from: /docs/getting-started/configure-persistence/
 title: Configure Persistence
-published_at: 2018-03-05
-updated_at: 2018-03-26
+published_at: 2019-12-07
+updated_at: 2019-12-07
 ---
 
 EventSauce has _two_ connections to persistence.
 
 * The `MessageRepository` which contains `Message`s for reconstituting aggregates.
-* The `MessageDispatcher` which is used to communicate `Message`s with `Consumer`s. 
+* The `MessageDispatcher` which is used to communicate `Message`s with `Consumer`s.
 
 Because of EventSauce's design it's possible to use traditional tools
 to work like an event store. Databases like [Event Store](https://eventstore.org/)
