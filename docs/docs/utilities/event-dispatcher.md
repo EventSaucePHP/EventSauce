@@ -1,6 +1,8 @@
 ---
 permalink: /docs/utilities/event-dispatcher/
 title: Event Dispatcher
+published_at: 2019-12-09
+updated_at: 2019-12-09
 ---
 
 Adopting event sourcing is not always done by using it for new functionality.

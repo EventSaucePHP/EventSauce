@@ -2,8 +2,8 @@
 permalink: /docs/event-sourcing/create-events-and-commands/
 redirect_from: /docs/getting-started/create-events-and-commands/
 title: Create events and commands
-published_at: 2018-02-25
-updated_at: 2019-09-25
+published_at: 2019-12-07
+updated_at: 2019-12-07
 ---
 
 Events are the core of any event sourced system. They are the payload,

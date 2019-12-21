@@ -1,6 +1,8 @@
 ---
 permalink: /docs/utilities/clock/
 title: Clock
+published_at: 2019-12-09
+updated_at: 2019-12-09
 ---
 
 In PHP, you can easily the current time by simply creating a `DateTime(Immutable)`

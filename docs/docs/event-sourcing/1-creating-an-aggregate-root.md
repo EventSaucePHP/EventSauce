@@ -2,8 +2,8 @@
 permalink: /docs/event-sourcing/create-an-aggregate-root/
 redirect_from: /docs/getting-started/create-an-aggregate-root/
 title: Creating an Aggregate Root
-published_at: 2018-02-25
-updated_at: 2019-09-25
+published_at: 2019-12-07
+updated_at: 2019-12-07
 ---
 
 An aggregate root is an entity that is modeled using events. The default

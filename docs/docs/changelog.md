@@ -2,7 +2,7 @@
 permalink: /docs/changelog/
 title: Changelog
 published_at: 2018-03-14
-updated_at: 2019-09-28
+updated_at: 2019-12-10
 ---
 
 ## 0.8.0 - UPCOMING RELEASE
@@ -15,6 +15,7 @@ updated_at: 2019-09-28
 
 ### Breaking Changes
 
+- The method `::timeZone(): DateTimeZone` was added to the `Clock` interface.
 - `TestClock::moveForward(DateInterval $interval): void` was added:<br/>
   The `moveForward` was introduces to make moving the test clock forward easier. Read
   [how to use the SystemClock and the TestClock](/docs/utilities/clock/).
