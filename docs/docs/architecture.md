@@ -25,7 +25,7 @@ and dispatching messages to `Consumer`s. Because EventSauce is based around thes
 interfaces it's very easy to modify how the library behaves. The interfaces also
 make EventSauce highly customizable without the need for inheritance.
 
-Which `MessageRepository` or `MessageDispatcher` you use is entirely up to you. There
+Which `MessageRepository` and/or `MessageDispatcher` you use is entirely up to you. There
 are benefits (and downsides) to each dispatching mechanism and repository type. Because
 EventSauce places these implementations behind an interface you're free to choose whatever
 fits best. You can create your own repositories and dispatchers, the interfaces are
@@ -119,5 +119,5 @@ Message serializers can be composed using decoration to provide more complex fea
 
 Time is a very important concept in EventSauce. In the core of the library a `Clock` is defined.
 The `SystemClock` provides a production-ready implementation, while the `TestClock` is used during testing.
-The `TestClock` allows you to fixate time, allowing you to test processes without worrying about the current
-time changing under you.
+
+[Read more about the Clock](/docs/utilities/clock/)

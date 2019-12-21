@@ -1,5 +1,6 @@
 ---
-permalink: /docs/getting-started/create-an-aggregate-root/
+permalink: /docs/event-sourcing/create-an-aggregate-root/
+redirect_from: /docs/getting-started/create-an-aggregate-root/
 title: Creating an Aggregate Root
 published_at: 2018-02-25
 updated_at: 2019-09-25
@@ -76,12 +77,12 @@ class AcmeProcess implements AggregateRoot
 ## Applying events
 
 When using the default aggregate root repository implementation (`ConstructingAggregateRootRepository`) together with `AggregateRootBehavior` trait,
-it will call the `apply{EventClassName}` on your aggregate root, when applying events. 
+it will call the `apply{EventClassName}` on your aggregate root, when applying events.
 
 For example: when you have an event `ProcessStarted`, just implement a `applyProcessStarted` method and it will be called automatically by the repository.
 
 ```php
-<?php 
+<?php
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
@@ -99,11 +100,11 @@ use EventSauce\EventSourcing\AggregateRootBehaviour;
 class AcmeProcess implements AggregateRoot
 {
     use AggregateRootBehaviour;
-    
+
     // ...
-    
+
     public function applyProcessStarted(ProcessStarted $processStarted) {
-        // apply event data to your aggretate 
+        // apply event data to your aggretate
     }
 }
 ```
@@ -128,12 +129,12 @@ use EventSauce\EventSourcing\AggregateRootId;
 class AcmeProcessId implements AggregateRootId
 {
     private $id;
-    
+
     private function __construct(string $id)
     {
         $this->id = $id;
     }
-    
+
     public function toString(): string
     {
         return $this->id;
@@ -152,7 +153,7 @@ natural to the domain you're modeling (e.g. a serial number or a unique
 group identifier).
 
 Having unique ID classes for each type of aggregate has an added benefit
-when you're refactoring and events or commands move to a different aggregate. The 
+when you're refactoring and events or commands move to a different aggregate. The
 types will assure you're using the right kind of ID. The fact a ProductId
 and a UserID might both be UUIDs under the hood is just a coincidence,
 not their defining feature.

@@ -9,20 +9,11 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class UserSubscribedToMailingList implements SerializablePayload
 {
-    /**
-     * @var \Ramsey\Uuid\UuidInterface
-     */
-    private $id;
+    private \Ramsey\Uuid\UuidInterface $id;
 
-    /**
-     * @var string
-     */
-    private $username;
+    private string $username;
 
-    /**
-     * @var string
-     */
-    private $mailingList;
+    private string $mailingList;
 
     public function __construct(
         \Ramsey\Uuid\UuidInterface $id,
@@ -104,25 +95,13 @@ final class UserSubscribedToMailingList implements SerializablePayload
 
 final class UserUnsubscribedFromMailingList implements SerializablePayload
 {
-    /**
-     * @var \Ramsey\Uuid\UuidInterface
-     */
-    private $id;
+    private \Ramsey\Uuid\UuidInterface $id;
 
-    /**
-     * @var string
-     */
-    private $username;
+    private string $username;
 
-    /**
-     * @var string
-     */
-    private $mailingList;
+    private string $mailingList;
 
-    /**
-     * @var string
-     */
-    private $reason;
+    private string $reason;
 
     public function __construct(
         \Ramsey\Uuid\UuidInterface $id,
@@ -225,20 +204,11 @@ final class UserUnsubscribedFromMailingList implements SerializablePayload
 
 final class SubscribeToMailingList implements SerializablePayload
 {
-    /**
-     * @var \Ramsey\Uuid\UuidInterface
-     */
-    private $id;
+    private \Ramsey\Uuid\UuidInterface $id;
 
-    /**
-     * @var string
-     */
-    private $username;
+    private string $username;
 
-    /**
-     * @var string
-     */
-    private $mailingList;
+    private string $mailingList;
 
     public function __construct(
         \Ramsey\Uuid\UuidInterface $id,
@@ -320,25 +290,13 @@ final class SubscribeToMailingList implements SerializablePayload
 
 final class UnsubscribeFromMailingList implements SerializablePayload
 {
-    /**
-     * @var \Ramsey\Uuid\UuidInterface
-     */
-    private $id;
+    private \Ramsey\Uuid\UuidInterface $id;
 
-    /**
-     * @var string
-     */
-    private $username;
+    private string $username;
 
-    /**
-     * @var string
-     */
-    private $mailingList;
+    private string $mailingList;
 
-    /**
-     * @var string
-     */
-    private $reason;
+    private string $reason;
 
     public function __construct(
         \Ramsey\Uuid\UuidInterface $id,
