@@ -5,7 +5,7 @@ published_at: 2018-03-14
 updated_at: 2019-12-10
 ---
 
-## 0.8.0 - UPCOMING RELEASE
+## 0.8.0 - 2019-12-21
 
 ### New Features
 
