@@ -34,6 +34,7 @@ Code Generation:
     Commands and Events from YAML: '/docs/code-generation/from-yaml/'
 
 Utilities:
+    Time / Clock: '/docs/utilities/clock/'
     Event Dispatcher: '/docs/utilities/event-dispatcher/'
 
 Advanced Topics:
