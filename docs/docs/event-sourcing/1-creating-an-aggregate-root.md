@@ -66,7 +66,7 @@ class AcmeProcess implements AggregateRoot
     {
         $process = new static($id);
         $process->recordThat(new ProcessWasInitiated($id));
-        $process->recordThat(ProcessWasStartedBy(ProcessSource::SYSTEM_IMPORT));
+        $process->recordThat(new ProcessWasStartedBy(ProcessSource::SYSTEM_IMPORT));
 
         return $process;
 
@@ -86,7 +86,8 @@ For example: when you have an event `ProcessStarted`, just implement a `applyPro
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-class ProcessStarted implements SerializablePayload {
+class ProcessStarted implements SerializablePayload
+{
     // ...
 }
 ```
@@ -103,7 +104,8 @@ class AcmeProcess implements AggregateRoot
 
     // ...
 
-    public function applyProcessStarted(ProcessStarted $processStarted) {
+    public function applyProcessStarted(ProcessStarted $processStarted)
+    {
         // apply event data to your aggretate
     }
 }
