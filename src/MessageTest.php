@@ -51,7 +51,6 @@ class MessageTest extends TestCase
         $event = PayloadStub::create('some value');
         $message = new Message($event);
         $timeOfRecording = (new TestClock())->pointInTime();
-        $this->assertNull($message->aggregateRootId());
         $message = $message->withHeader(Header::TIME_OF_RECORDING, $timeOfRecording->toString());
         $this->assertInstanceOf(PointInTime::class, $message->timeOfRecording());
         $this->assertSame($timeOfRecording->toString(), $message->timeOfRecording()->toString());
