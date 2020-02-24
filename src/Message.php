@@ -56,6 +56,11 @@ final class Message
         return $this->headers[Header::AGGREGATE_ROOT_ID] ?? null;
     }
 
+    public function timeOfRecording(): PointInTime
+    {
+        return PointInTime::fromString($this->headers[Header::TIME_OF_RECORDING]);
+    }
+
     public function header(string $key)
     {
         return $this->headers[$key] ?? null;
