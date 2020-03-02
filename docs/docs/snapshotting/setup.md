@@ -84,7 +84,7 @@ The interface for interacting with aggregates and snapshots is defined in the
 `AggregateRootRepositoryWithSnapshotting` interface. A concrete implementation
 is provided in the form of the `ConstructingAggregateRootRepositoryWithSnapshotting` class.
 
-The implementation needs an implementation of the `ShotshotRepository`. You can
+The implementation needs an implementation of the `SnapshotRepository`. You can
 use any storage implementation and storage type that fits your needs. As long as
 it satisfies the interface, it's all good.
 

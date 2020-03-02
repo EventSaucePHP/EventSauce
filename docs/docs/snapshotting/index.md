@@ -23,7 +23,7 @@ is stored. A snapshot contains:
 
 ## Aggregate Reconstitution from a Snapshot
 
-A snapshot can be retrieved by its the ID of an aggregate root, similar to how you'd normally retrieve
+A snapshot can be retrieved by the ID of an aggregate root, similar to how you'd normally retrieve
 the aggregate root itself. The `MessageRepository` is used to retrieve any events that have happened
 _after_ the snapshot was stored. The snapshot and the events are then passed to the aggregate's snapshot
 reconstitution method. First the aggregate root creates a new instance of itself using the aggregate ID
