@@ -13,8 +13,8 @@ update snapshots.
 > 2. Create new snapshot from a clean event stream.
 
 The snapshotting implementation makes a clear distinction between regular reconstitution
-and reconstitution from a snapshot. This makes is clear what is happening and allows you
-to choose that's best for your situation.
+and reconstitution from a snapshot. This makes it clear what is happening and allows you
+to choose what is best for your situation.
 
 ## 1. Update snapshot from an existing snapshot.
 
