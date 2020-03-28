@@ -39,7 +39,7 @@ cache:
 sudo: false
 
 install:
-    - travis_retry composer install
+  - travis_retry composer update --prefer-dist $COMPOSER_OPTS
 
 script:
     - if [[ "${TRAVIS_PHP_VERSION}" == "7.3" ]]; then vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no; fi
