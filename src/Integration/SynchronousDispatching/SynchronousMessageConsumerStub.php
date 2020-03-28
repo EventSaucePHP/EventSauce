@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Integration\SynchronousDispatching;
 
-use EventSauce\EventSourcing\MessageConsumer;
 use EventSauce\EventSourcing\Message;
+use EventSauce\EventSourcing\MessageConsumer;
 
 final class SynchronousMessageConsumerStub implements MessageConsumer
 {
