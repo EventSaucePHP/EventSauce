@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\TestUtilities;
 
-use EventSauce\EventSourcing\MessageConsumer;
 use EventSauce\EventSourcing\Message;
+use EventSauce\EventSourcing\MessageConsumer;
 use EventSauce\EventSourcing\Serialization\ConstructingMessageSerializer;
 use EventSauce\EventSourcing\Serialization\MessageSerializer;
 use function iterator_to_array;
