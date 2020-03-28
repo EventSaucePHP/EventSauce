@@ -5,6 +5,16 @@ published_at: 2018-03-14
 updated_at: 2019-12-10
 ---
 
+## Unreleased
+
+### Changes
+
+- The `EventSauce\EventSourcing\Consumer` interface was renamed to `EventSauce\EventSourcing\MessageConsumer`.
+
+### Added
+
+- `Message::timeOfRecording` was added.
+
 ## 0.8.1 - 2020-04-05
 
 ### New Features
@@ -13,7 +23,7 @@ updated_at: 2019-12-10
 
 ## 0.8.0 - 2019-12-21
 
-### New Features
+### Added
 
 - `EventDispatcher` was added:<br/>
   Dispatch events with ease! The default MessageDispatchingEventDispatcher allows you to
@@ -29,7 +39,7 @@ updated_at: 2019-12-10
 
 ## 0.7.0
 
-### New Features
+### Added
 
 - Snapshotting 🤩
 - Code Generation supports user defined interfaces for generated classes.
