@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
-abstract class EventConsumer implements Consumer
+abstract class EventConsumer implements MessageConsumer
 {
     public function handle(Message $message): void
     {

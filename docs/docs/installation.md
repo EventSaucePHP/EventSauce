@@ -22,7 +22,7 @@ composer require eventsauce/doctrine-message-repository
 
 There's also a RabbitMQ dispatcher available. This package is an extension to the php-amqplib/rabbitmq-bundle package.
 This is a Symfony specific package which offers a solid integration with the framework. This package provides an
-implementation of the `EventSauce\EventSourcing\Consumer` interface, binding it to the
+implementation of the `EventSauce\EventSourcing\MessageConsumer` interface, binding it to the
 `OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface` which ties into the bundle.
 
 ```bash

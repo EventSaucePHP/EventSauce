@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
-interface Consumer
+interface MessageConsumer
 {
     /**
      * @return void

@@ -17,7 +17,7 @@ class SynchronousMessageDispatcherTest extends TestCase
      */
     public function dispatching_messages_synchronously(): void
     {
-        $stubConsumer = new SynchronousConsumerStub();
+        $stubConsumer = new SynchronousMessageConsumerStub();
         $syncDispatcher = new SynchronousMessageDispatcher($stubConsumer, $stubConsumer);
         $message = new Message(new PayloadStub('value'));
         $syncDispatcher->dispatch($message, $message);
@@ -29,7 +29,7 @@ class SynchronousMessageDispatcherTest extends TestCase
      */
     public function dispatching_using_a_chain(): void
     {
-        $stubconsumer = new SynchronousConsumerStub();
+        $stubconsumer = new SynchronousMessageConsumerStub();
         $syncDispatcher = new SynchronousMessageDispatcher($stubconsumer);
         $dispatcherChain = new MessageDispatcherChain($syncDispatcher, $syncDispatcher);
         $message = new Message(new PayloadStub('value'));

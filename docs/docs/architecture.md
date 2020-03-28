@@ -21,7 +21,7 @@ The core of EventSauce revolves around a set of **3** interfaces:
 The `AggregateRootRepository` is the main interface. It is responsible for
 retrieving and persisting aggregate root objects. It uses the other two
 parts for retrieving and storing `Message` objects (in which events are transported)
-and dispatching messages to `Consumer`s. Because EventSauce is based around these
+and dispatching messages to `MessageConsumer`s. Because EventSauce is based around these
 interfaces it's very easy to modify how the library behaves. The interfaces also
 make EventSauce highly customizable without the need for inheritance.
 
@@ -93,7 +93,7 @@ object. This object allows you to store additional metadata alongside the event 
 
 ### Message Dispatcher
 
-The message dispatcher is responsible for sending messages to `Consumer`s. The core
+The message dispatcher is responsible for sending messages to `MessageConsumer`s. The core
 library ships with a `SynchronousMessageDispatcher` for when you don't need to process
 messages asynchronously. If you do want to process events in the background there are
 multiple options available.
