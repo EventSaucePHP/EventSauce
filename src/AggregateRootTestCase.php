@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
-use EventSauce\EventSourcing\TestUtilities\ConsumerThatSerializesMessages;
+use EventSauce\EventSourcing\TestUtilities\MessageConsumerThatSerializesMessages;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\Time\TestClock;
 use Exception;
@@ -222,13 +222,13 @@ abstract class AggregateRootTestCase extends TestCase
     protected function messageDispatcher(): MessageDispatcher
     {
         return new SynchronousMessageDispatcher(
-            new ConsumerThatSerializesMessages(),
+            new MessageConsumerThatSerializesMessages(),
             ...$this->consumers()
         );
     }
 
     /**
-     * @return Consumer[]
+     * @return MessageConsumer[]
      */
     protected function consumers(): array
     {

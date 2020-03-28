@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\TestUtilities;
 
-use EventSauce\EventSourcing\Consumer;
+use EventSauce\EventSourcing\MessageConsumer;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\Serialization\ConstructingMessageSerializer;
 use EventSauce\EventSourcing\Serialization\MessageSerializer;
@@ -12,7 +12,7 @@ use function iterator_to_array;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-class ConsumerThatSerializesMessages implements Consumer
+class MessageConsumerThatSerializesMessages implements MessageConsumer
 {
     /**
      * @var MessageSerializer

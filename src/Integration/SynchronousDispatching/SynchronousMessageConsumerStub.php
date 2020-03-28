@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Integration\SynchronousDispatching;
 
-use EventSauce\EventSourcing\Consumer;
+use EventSauce\EventSourcing\MessageConsumer;
 use EventSauce\EventSourcing\Message;
 
-final class SynchronousConsumerStub implements Consumer
+final class SynchronousMessageConsumerStub implements MessageConsumer
 {
     public $handled = [];
 
