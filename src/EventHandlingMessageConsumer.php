@@ -9,7 +9,7 @@ use function explode;
 use function get_class;
 use function method_exists;
 
-class EventHandlingMessageConsumer implements Consumer
+class EventHandlingMessageConsumer implements MessageConsumer
 {
     public function handle(Message $message): void
     {

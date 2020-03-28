@@ -6,7 +6,7 @@ updated_at: 2019-06-12
 ---
 
 In EventSauce process managers are nothing more than an implementation of
-the `Consumer` interface. Unlike projections, which feed read models, process
+the `MessageConsumer` interface. Unlike projections, which feed read models, process
 managers do more than just respond to something that happened. Process
 managers **act**. How the process manager interacts with your system depends
 on how you've chosen to model this interaction. You can dispatch commands or
@@ -28,11 +28,11 @@ dispatch new commands:
 ```php
 <?php
 
-use EventSauce\EventSourcing\Consumer;
+use EventSauce\EventSourcing\MessageConsumer;
 use EventSauce\EventSourcing\Message;
 Use League\Tactician\CommandBus;
 
-class ProductRestocker implements Consumer
+class ProductRestocker implements MessageConsumer
 {
     public function __construct(CommandBus $commandBus)
     {
