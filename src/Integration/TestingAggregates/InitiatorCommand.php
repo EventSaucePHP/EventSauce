@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
-use EventSauce\EventSourcing\Integration\DummyAggregateRootId;
+use EventSauce\EventSourcing\DummyAggregateRootId;
 
 class InitiatorCommand
 {
