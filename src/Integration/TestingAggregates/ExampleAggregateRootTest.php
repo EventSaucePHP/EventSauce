@@ -7,12 +7,11 @@ namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\AggregateRootTestCase;
+use EventSauce\EventSourcing\DummyAggregateRootId;
 use EventSauce\EventSourcing\Header;
-use EventSauce\EventSourcing\Integration\DummyAggregateRootId;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\PointInTime;
 use EventSauce\EventSourcing\Time\Clock;
-use EventSauce\EventSourcing\UuidAggregateRootId;
 use LogicException;
 
 class ExampleAggregateRootTest extends AggregateRootTestCase
@@ -111,7 +110,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     public function setting_preconditions_from_other_aggregates(): void
     {
         $id = $this->aggregateRootId();
-        $this->on(UuidAggregateRootId::create())
+        $this->on(DummyAggregateRootId::generate())
             ->stage(new DummyIncrementingHappened(10))
             ->when(new DummyIncrementCommand($id))
             ->then(new DummyIncrementingHappened(1));
