@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\Serialization;
 
 use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
+use EventSauce\EventSourcing\DummyAggregateRootId;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\PayloadStub;
 use EventSauce\EventSourcing\Time\TestClock;
-use EventSauce\EventSourcing\DummyAggregateRootId;
 use function iterator_to_array;
 use PHPUnit\Framework\TestCase;
 
