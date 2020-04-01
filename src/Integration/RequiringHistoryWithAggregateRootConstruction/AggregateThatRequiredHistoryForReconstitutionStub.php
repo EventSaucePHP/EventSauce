@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing\Integration\RequiringHistoryWithAggregateRoot
 
 use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootBehaviourWithRequiredHistory;
-use EventSauce\EventSourcing\Integration\DummyAggregateRootId;
+use EventSauce\EventSourcing\DummyAggregateRootId;
 
 class AggregateThatRequiredHistoryForReconstitutionStub implements AggregateRoot
 {
