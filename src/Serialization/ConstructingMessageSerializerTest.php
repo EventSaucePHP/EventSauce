@@ -9,7 +9,7 @@ use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\PayloadStub;
 use EventSauce\EventSourcing\Time\TestClock;
-use EventSauce\EventSourcing\UuidAggregateRootId;
+use EventSauce\EventSourcing\DummyAggregateRootId;
 use function iterator_to_array;
 use PHPUnit\Framework\TestCase;
 
@@ -20,7 +20,7 @@ class ConstructingMessageSerializerTest extends TestCase
      */
     public function serializing_messages_with_aggregate_root_ids(): void
     {
-        $aggregateRootId = UuidAggregateRootId::create();
+        $aggregateRootId = DummyAggregateRootId::generate();
         $inflector = new DotSeparatedSnakeCaseInflector();
         $aggregateRootIdType = $inflector->instanceToType($aggregateRootId);
         $timeOfRecording = (new TestClock())->pointInTime();

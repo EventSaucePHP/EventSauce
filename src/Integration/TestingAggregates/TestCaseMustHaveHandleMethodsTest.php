@@ -6,14 +6,14 @@ namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootTestCase;
-use EventSauce\EventSourcing\UuidAggregateRootId;
+use EventSauce\EventSourcing\DummyAggregateRootId;
 use LogicException;
 
 class TestCaseMustHaveHandleMethodsTest extends AggregateRootTestCase
 {
     protected function newAggregateRootId(): AggregateRootId
     {
-        return UuidAggregateRootId::create();
+        return DummyAggregateRootId::generate();
     }
 
     protected function aggregateRootClassName(): string

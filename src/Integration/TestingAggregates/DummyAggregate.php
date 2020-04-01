@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing\Integration\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootBehaviour;
-use EventSauce\EventSourcing\Integration\DummyAggregateRootId;
+use EventSauce\EventSourcing\DummyAggregateRootId;
 
 class DummyAggregate implements AggregateRoot
 {
@@ -34,9 +34,11 @@ class DummyAggregate implements AggregateRoot
 
     public function increment(): void
     {
-        $this->recordThat(new DummyIncrementingHappened(
-            $this->incrementedNumber + 1
-        ));
+        $this->recordThat(
+            new DummyIncrementingHappened(
+                $this->incrementedNumber + 1
+            )
+        );
     }
 
     protected function applyDummyIncrementingHappened(DummyIncrementingHappened $event): void

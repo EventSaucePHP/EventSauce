@@ -6,8 +6,8 @@ namespace EventSauce\EventSourcing\Integration\RequiringHistoryWithAggregateRoot
 
 use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\ConstructingAggregateRootRepository;
+use EventSauce\EventSourcing\DummyAggregateRootId;
 use EventSauce\EventSourcing\InMemoryMessageRepository;
-use EventSauce\EventSourcing\Integration\DummyAggregateRootId;
 use EventSauce\EventSourcing\InvalidAggregateRootReconstitutionException;
 use PHPUnit\Framework\TestCase;
 
