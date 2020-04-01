@@ -21,11 +21,6 @@ final class DummyAggregateRootId implements AggregateRootId
         return $this->identifier;
     }
 
-    public function toUuid(): UuidInterface
-    {
-        return Uuid::fromString($this->identifier);
-    }
-
     public static function generate(): DummyAggregateRootId
     {
         return new DummyAggregateRootId(bin2hex(random_bytes(25)));
