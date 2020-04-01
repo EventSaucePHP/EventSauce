@@ -9,7 +9,7 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 final class WeWentYamling implements SerializablePayload
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var Ramsey\Uuid\UuidInterface
      */
     private $reference;
 
@@ -19,14 +19,14 @@ final class WeWentYamling implements SerializablePayload
     private $slogan;
 
     public function __construct(
-        \Ramsey\Uuid\UuidInterface $reference,
+        Ramsey\Uuid\UuidInterface $reference,
         string $slogan
     ) {
         $this->reference = $reference;
         $this->slogan = $slogan;
     }
 
-    public function reference(): \Ramsey\Uuid\UuidInterface
+    public function reference(): Ramsey\Uuid\UuidInterface
     {
         return $this->reference;
     }
@@ -55,7 +55,7 @@ final class WeWentYamling implements SerializablePayload
     /**
      * @codeCoverageIgnore
      */
-    public function withReference(\Ramsey\Uuid\UuidInterface $reference): WeWentYamling
+    public function withReference(Ramsey\Uuid\UuidInterface $reference): WeWentYamling
     {
         $clone = clone $this;
         $clone->reference = $reference;
@@ -78,17 +78,17 @@ final class WeWentYamling implements SerializablePayload
 final class HideFinancialDetailsOfFraudulentCompany implements SerializablePayload
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var Ramsey\Uuid\UuidInterface
      */
     private $companyId;
 
     public function __construct(
-        \Ramsey\Uuid\UuidInterface $companyId
+        Ramsey\Uuid\UuidInterface $companyId
     ) {
         $this->companyId = $companyId;
     }
 
-    public function companyId(): \Ramsey\Uuid\UuidInterface
+    public function companyId(): Ramsey\Uuid\UuidInterface
     {
         return $this->companyId;
     }
@@ -110,7 +110,7 @@ final class HideFinancialDetailsOfFraudulentCompany implements SerializablePaylo
     /**
      * @codeCoverageIgnore
      */
-    public static function withCompanyId(\Ramsey\Uuid\UuidInterface $companyId): HideFinancialDetailsOfFraudulentCompany
+    public static function withCompanyId(Ramsey\Uuid\UuidInterface $companyId): HideFinancialDetailsOfFraudulentCompany
     {
         return new HideFinancialDetailsOfFraudulentCompany(
             $companyId
@@ -121,7 +121,7 @@ final class HideFinancialDetailsOfFraudulentCompany implements SerializablePaylo
 final class GoYamling implements SerializablePayload
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var Ramsey\Uuid\UuidInterface
      */
     private $reference;
 
@@ -131,14 +131,14 @@ final class GoYamling implements SerializablePayload
     private $slogan;
 
     public function __construct(
-        \Ramsey\Uuid\UuidInterface $reference,
+        Ramsey\Uuid\UuidInterface $reference,
         string $slogan
     ) {
         $this->reference = $reference;
         $this->slogan = $slogan;
     }
 
-    public function reference(): \Ramsey\Uuid\UuidInterface
+    public function reference(): Ramsey\Uuid\UuidInterface
     {
         return $this->reference;
     }
@@ -167,7 +167,7 @@ final class GoYamling implements SerializablePayload
     /**
      * @codeCoverageIgnore
      */
-    public function withReference(\Ramsey\Uuid\UuidInterface $reference): GoYamling
+    public function withReference(Ramsey\Uuid\UuidInterface $reference): GoYamling
     {
         $clone = clone $this;
         $clone->reference = $reference;

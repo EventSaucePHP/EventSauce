@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
-
-final class UuidAggregateRootId implements AggregateRootId
+final class DummyAggregateRootId implements AggregateRootId
 {
     /**
      * @var string
@@ -29,9 +26,9 @@ final class UuidAggregateRootId implements AggregateRootId
         return Uuid::fromString($this->identifier);
     }
 
-    public static function create(): UuidAggregateRootId
+    public static function generate(): DummyAggregateRootId
     {
-        return new UuidAggregateRootId(Uuid::uuid4()->toString());
+        return new DummyAggregateRootId(bin2hex(random_bytes(25)));
     }
 
     /**
