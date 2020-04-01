@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-        "prod": "jekyll build && NODE_ENV=production npx webpack",
+        "prod": "NODE_ENV=production npx webpack",
         "dev": "NODE_ENV=development npx webpack",
         "watch": "NODE_ENV=development npx webpack --watch"
     },
