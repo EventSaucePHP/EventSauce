@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\Integration\TestingAggregates;
+namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\AggregateRootTestCase;
 use EventSauce\EventSourcing\DummyAggregateRootId;
+use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 use LogicException;
 
 class TestCaseMustHaveHandleMethodsTest extends AggregateRootTestCase
