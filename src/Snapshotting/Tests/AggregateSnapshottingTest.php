@@ -6,7 +6,6 @@ namespace EventSauce\EventSourcing\Snapshotting\Tests;
 
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
-use EventSauce\EventSourcing\AggregateRootTestCase;
 use EventSauce\EventSourcing\ConstructingAggregateRootRepository;
 use EventSauce\EventSourcing\MessageDecorator;
 use EventSauce\EventSourcing\MessageDispatcher;
@@ -14,6 +13,7 @@ use EventSauce\EventSourcing\MessageRepository;
 use EventSauce\EventSourcing\Snapshotting\ConstructingAggregateRootRepositoryWithSnapshotting;
 use EventSauce\EventSourcing\Snapshotting\InMemorySnapshotRepository;
 use EventSauce\EventSourcing\Snapshotting\Snapshot;
+use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 
 class AggregateSnapshottingTest extends AggregateRootTestCase
 {

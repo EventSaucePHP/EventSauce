@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\Integration\TestingAggregates;
+namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
 use Exception;
 
