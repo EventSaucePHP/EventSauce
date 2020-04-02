@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\Integration\TestingAggregates;
+namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootId;
 
-class DummyCommand
+class IgnoredCommand
 {
     /**
      * @var AggregateRootId
