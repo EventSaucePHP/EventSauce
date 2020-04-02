@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\Integration\TestingAggregates;
+namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
-use EventSauce\EventSourcing\AggregateRootTestCase;
 use EventSauce\EventSourcing\DummyAggregateRootId;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\PointInTime;
+use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 use EventSauce\EventSourcing\Time\Clock;
 use LogicException;
 

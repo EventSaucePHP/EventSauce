@@ -2,9 +2,21 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing;
+namespace EventSauce\EventSourcing\TestUtilities;
 
-use EventSauce\EventSourcing\TestUtilities\MessageConsumerThatSerializesMessages;
+use EventSauce\EventSourcing\AggregateRoot;
+use EventSauce\EventSourcing\AggregateRootId;
+use EventSauce\EventSourcing\AggregateRootRepository;
+use EventSauce\EventSourcing\ConstructingAggregateRootRepository;
+use EventSauce\EventSourcing\DefaultHeadersDecorator;
+use EventSauce\EventSourcing\InMemoryMessageRepository;
+use EventSauce\EventSourcing\MessageConsumer;
+use EventSauce\EventSourcing\MessageDecorator;
+use EventSauce\EventSourcing\MessageDecoratorChain;
+use EventSauce\EventSourcing\MessageDispatcher;
+use EventSauce\EventSourcing\MessageRepository;
+use EventSauce\EventSourcing\PointInTime;
+use EventSauce\EventSourcing\SynchronousMessageDispatcher;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\Time\TestClock;
 use Exception;

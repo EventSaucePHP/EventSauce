@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\Snapshotting\Tests;
 
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\AggregateRootTestCase;
+use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 
 class LightSwitchTest extends AggregateRootTestCase
 {

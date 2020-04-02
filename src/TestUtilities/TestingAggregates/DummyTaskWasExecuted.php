@@ -2,11 +2,14 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\Integration\TestingAggregates;
+namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-class AggregateWasInitiated implements SerializablePayload
+/**
+ * @codeCoverageIgnore
+ */
+class DummyTaskWasExecuted implements SerializablePayload
 {
     public function toPayload(): array
     {
@@ -15,6 +18,6 @@ class AggregateWasInitiated implements SerializablePayload
 
     public static function fromPayload(array $payload): SerializablePayload
     {
-        return new static();
+        return new DummyTaskWasExecuted();
     }
 }
