@@ -12,6 +12,8 @@ updated_at: 2019-12-10
 - The `EventSauce\EventSourcing\Consumer` interface was renamed to `EventSauce\EventSourcing\MessageConsumer`.
 - The dependency on `ramsey/uuid` was removed.
 - The `EventSauce\EventSourcing\UuidAggregateRootId` was removed.
+- The `CodeGeneration` module was extracted into a separate package `eventsauce/code-generation`.
+- The test utilities were extracted into a separate package `eventsauce/test-utilities`.
 
 ### Added
 

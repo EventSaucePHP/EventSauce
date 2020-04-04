@@ -20,10 +20,10 @@ use EventSauce\EventSourcing\SynchronousMessageDispatcher;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\Time\TestClock;
 use Exception;
-use function get_class;
 use LogicException;
-use function method_exists;
 use PHPUnit\Framework\TestCase;
+use function get_class;
+use function method_exists;
 use function sprintf;
 
 /**
@@ -204,17 +204,17 @@ abstract class AggregateRootTestCase extends TestCase
         self::assertEquals($events, $this->messageRepository->lastCommit(), 'Events are not equal.');
     }
 
-    private function assertExpectedException(Exception $expectedException = null, Exception $caughtException = null): void
-    {
+    private function assertExpectedException(
+        Exception $expectedException = null,
+        Exception $caughtException = null
+    ): void {
         if ($expectedException == $caughtException) {
             return;
         }
 
-        if (
-            null !== $caughtException && (
-            null === $expectedException ||
-            get_class($expectedException) !== get_class($caughtException))
-        ) {
+        if (null !== $caughtException && (null === $expectedException || get_class($expectedException) !== get_class(
+                    $caughtException
+                ))) {
             throw $caughtException;
         }
 
@@ -234,8 +234,7 @@ abstract class AggregateRootTestCase extends TestCase
     protected function messageDispatcher(): MessageDispatcher
     {
         return new SynchronousMessageDispatcher(
-            new MessageConsumerThatSerializesMessages(),
-            ...$this->consumers()
+            new MessageConsumerThatSerializesMessages(), ...$this->consumers()
         );
     }
 
@@ -259,10 +258,7 @@ abstract class AggregateRootTestCase extends TestCase
         MessageDecorator $decorator
     ): AggregateRootRepository {
         return new ConstructingAggregateRootRepository(
-            $className,
-            $repository,
-            $dispatcher,
-            $decorator
+            $className, $repository, $dispatcher, $decorator
         );
     }
 }
