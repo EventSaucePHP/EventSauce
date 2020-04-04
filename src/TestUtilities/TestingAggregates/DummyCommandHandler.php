@@ -26,23 +26,20 @@ class DummyCommandHandler
     }
 
     /**
-     * @param $command
-     *
      * @throws DummyException
      */
-    public function handle($command): void
+    public function handle(DummyCommand $command): void
     {
         try {
             if ($command instanceof InitiatorCommand) {
                 $aggregate = DummyAggregate::create($command->aggregateRootId());
-                goto end;
+                return;
             }
 
             /** @var DummyAggregate $aggregate */
-            /** @var DummyCommand $command */
             $aggregate = $this->repository->retrieve($command->aggregateRootId());
 
-            if ($command instanceof DummyCommand) {
+            if ($command instanceof PerformDummyTask) {
                 $aggregate->performDummyTask();
             } elseif ($command instanceof IgnoredCommand) {
                 $aggregate->dontDoAnything();
@@ -51,7 +48,6 @@ class DummyCommandHandler
             } elseif ($command instanceof DummyIncrementCommand) {
                 $aggregate->increment();
             }
-            end:
         } finally {
             $this->repository->persist($aggregate);
         }
