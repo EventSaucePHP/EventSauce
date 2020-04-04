@@ -14,6 +14,10 @@ return PhpCsFixer\Config::create()
         'return_type_declaration' => true,
         'phpdoc_to_return_type' => true,
         'void_return' => true,
+        'ordered_imports' => [
+            'sort_algorithm' => 'alpha',
+            'imports_order' => ['const', 'class', 'function'],
+        ],
     ])
     ->setRiskyAllowed(true)
     ->setFinder($finder);
