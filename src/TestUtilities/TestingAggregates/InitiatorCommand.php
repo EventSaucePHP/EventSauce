@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
 use EventSauce\EventSourcing\DummyAggregateRootId;
 
-class InitiatorCommand
+class InitiatorCommand implements DummyCommand
 {
     /**
      * @var DummyAggregateRootId
