@@ -41,7 +41,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     public function executing_a_command_successfully(): void
     {
         $aggregateRootId = $this->aggregateRootId();
-        $this->when(new DummyCommand($aggregateRootId));
+        $this->when(new PerformDummyTask($aggregateRootId));
         $this->then(new DummyTaskWasExecuted());
     }
 
