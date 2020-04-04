@@ -4,22 +4,9 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
-use EventSauce\EventSourcing\AggregateRootId;
+use EventSauce\EventSourcing\DummyAggregateRootId;
 
-class DummyCommand
+interface DummyCommand
 {
-    /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    public function __construct(AggregateRootId $aggregateRootId)
-    {
-        $this->aggregateRootId = $aggregateRootId;
-    }
-
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
-    }
+    public function aggregateRootId(): DummyAggregateRootId;
 }
