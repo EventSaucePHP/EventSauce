@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use const false;
-use function file_get_contents;
 use InvalidArgumentException;
 use LogicException;
 use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
+use function file_get_contents;
 
 class YamlDefinitionLoaderTest extends TestCase
 {

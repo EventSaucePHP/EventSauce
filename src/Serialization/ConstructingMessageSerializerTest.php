@@ -10,8 +10,8 @@ use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\PayloadStub;
 use EventSauce\EventSourcing\Time\TestClock;
-use function iterator_to_array;
 use PHPUnit\Framework\TestCase;
+use function iterator_to_array;
 
 class ConstructingMessageSerializerTest extends TestCase
 {

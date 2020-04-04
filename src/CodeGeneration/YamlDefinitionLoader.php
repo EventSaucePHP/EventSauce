@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
+use const PATHINFO_EXTENSION;
+use InvalidArgumentException;
+use LogicException;
+use Symfony\Component\Yaml\Yaml;
 use function file_get_contents;
 use function in_array;
-use InvalidArgumentException;
 use function is_array;
 use function is_string;
-use LogicException;
 use function pathinfo;
-use const PATHINFO_EXTENSION;
-use Symfony\Component\Yaml\Yaml;
 
 class YamlDefinitionLoader implements DefinitionLoader
 {

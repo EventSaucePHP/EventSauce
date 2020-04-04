@@ -1,0 +1,7 @@
+* text=auto
+
+.gitattributes export-ignore
+.travis.yml export-ignore
+Fixtures export-ignore
+**/*Test.php export-ignore
+**/*Stub.php export-ignore

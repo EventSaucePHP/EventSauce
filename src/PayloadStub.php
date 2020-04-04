@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
-use function compact;
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
+use function compact;
 
 final class PayloadStub implements SerializablePayload
 {
