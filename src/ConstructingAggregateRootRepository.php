@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
+use Generator;
 use function assert;
 use function count;
-use Generator;
 
 /**
  * @template T of AggregateRoot

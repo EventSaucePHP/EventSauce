@@ -12,8 +12,8 @@ use EventSauce\EventSourcing\Serialization\ConstructingMessageSerializer;
 use EventSauce\EventSourcing\Serialization\UpcastingMessageSerializer;
 use EventSauce\EventSourcing\Time\TestClock;
 use EventSauce\EventSourcing\Upcasting\DelegatingUpcaster;
-use function iterator_to_array;
 use PHPUnit\Framework\TestCase;
+use function iterator_to_array;
 
 class UpcastingEventsTest extends TestCase
 {
