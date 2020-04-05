@@ -13,7 +13,7 @@ class UpcasterChain implements Upcaster
      */
     private $upcasters;
 
-    public function __construct(Upcaster ... $upcasters)
+    public function __construct(Upcaster ...$upcasters)
     {
         $this->upcasters = $upcasters;
     }
