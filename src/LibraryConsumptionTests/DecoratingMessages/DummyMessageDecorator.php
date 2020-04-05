@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\Integration\DecoratingMessages;
+namespace EventSauce\EventSourcing\LibraryConsumptionTests\DecoratingMessages;
 
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageDecorator;

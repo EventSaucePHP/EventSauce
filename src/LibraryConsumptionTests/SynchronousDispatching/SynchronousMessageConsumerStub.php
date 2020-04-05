@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\Integration\SynchronousDispatching;
+namespace EventSauce\EventSourcing\LibraryConsumptionTests\SynchronousDispatching;
 
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageConsumer;

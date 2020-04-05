@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\Integration\EventConsumption;
+namespace EventSauce\EventSourcing\LibraryConsumptionTests\EventConsumption;
 
 use EventSauce\EventSourcing\Message;
 use PHPUnit\Framework\TestCase;

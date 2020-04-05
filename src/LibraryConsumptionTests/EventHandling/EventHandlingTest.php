@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\Integration\EventHandling;
+namespace EventSauce\EventSourcing\LibraryConsumptionTests\EventHandling;
 
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\PayloadStub;
