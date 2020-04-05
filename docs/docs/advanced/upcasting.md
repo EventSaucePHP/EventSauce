@@ -15,7 +15,7 @@ prevents from having to alter previously persisted events at a minor
 expense.
 
 In EventSauce _upcasting_ is facilitated in the serialization
-process. The `EventSauce\EventSourcing\Serialization\UpcastingMessageSerializer`
+process. The `EventSauce\EventSourcing\Upcasting\UpcastingMessageSerializer`
 can be used to add one or more upcasting transformations.
 
 Each upcaster must implement the `EventSauce\EventSourcing\Upcasting\Upcaster`
@@ -30,8 +30,6 @@ use Generator;
 
 interface Upcaster
 {
-    public function canUpcast(string $type, array $message): bool;
-
     public function upcast(array $message): Generator;
 }
 ```
@@ -44,19 +42,16 @@ more fine-grained ones.
 
 ## Using multiple upcasters
 
-You can use multiple upcasters using the `DelegatingUpcaster`. The delegating
-upcaster is itself an upcaster that takes one or more `DelegatableUpcaster`
-instances, which are an extension of the regular upcaster but also expose
-the type which they can upcast for speedy lookups.
+You can use multiple upcasters using the `UpcasterChain`.
 
 ```php
 <?php
 
-use EventSauce\EventSourcing\Upcasting\DelegatingUpcaster;
-use EventSauce\EventSourcing\Serialization\UpcastingMessageSerializer;
+use EventSauce\EventSourcing\Upcasting\UpcasterChain;
+use EventSauce\EventSourcing\Upcasting\UpcastingMessageSerializer;
 
 $upcastingSerializer = new UpcastingMessageSerializer(
     $actualSerializer,
-    new DelegatingUpcaster(new UpcasterOne(), new UpcasterTwo())
+    new UpcasterChain(new UpcasterOne(), new UpcasterTwo())
 );
 ```
