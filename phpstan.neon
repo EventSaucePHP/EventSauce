@@ -4,6 +4,6 @@ parameters:
         - src
     excludes_analyse:
         - %rootDir%/../../../src/CodeGeneration/Fixtures/*
-        - %rootDir%/../../../src/Integration/*
-        - *Test.php
-    checkMissingIterableValueType: false
+		- %rootDir%/../../../src/LibraryConsumptionTests/*
+		- *Test.php
+	checkMissingIterableValueType: false
