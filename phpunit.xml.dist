@@ -8,7 +8,7 @@
 
     <filter>
         <whitelist>
-            <directory>./src/</directory>
+            <directory>src/</directory>
             <exclude>
                 <directory suffix="Test.php">src/</directory>
                 <directory suffix="Fixture.php">src/</directory>
