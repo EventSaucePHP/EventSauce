@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\Integration\Upcasting;
+namespace EventSauce\EventSourcing\Upcasting;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 

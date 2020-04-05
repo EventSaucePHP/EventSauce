@@ -27,10 +27,12 @@ class CodeDumper
 
     public function __construct(?bool $typedProperties = null)
     {
+        // @codeCoverageIgnoreStart
         $this->typedProperties = null === $typedProperties ? version_compare(
                 PHP_VERSION,
                 '7.4.0'
             ) >= 0 : $typedProperties;
+        // @codeCoverageIgnoreEnd
     }
 
     public function dump(
