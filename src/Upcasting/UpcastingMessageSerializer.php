@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\Serialization;
+namespace EventSauce\EventSourcing\Upcasting;
 
-use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
-use EventSauce\EventSourcing\Upcasting\Upcaster;
+use EventSauce\EventSourcing\Serialization\MessageSerializer;
 use Generator;
 
 class UpcastingMessageSerializer implements MessageSerializer
@@ -34,11 +33,7 @@ class UpcastingMessageSerializer implements MessageSerializer
 
     public function unserializePayload(array $payload): Generator
     {
-        if ($this->upcaster->canUpcast($payload['headers'][Header::EVENT_TYPE], $payload)) {
-            foreach ($this->upcaster->upcast($payload) as $payload) {
-                yield from $this->eventSerializer->unserializePayload($payload);
-            }
-        } else {
+        foreach ($this->upcaster->upcast($payload) as $payload) {
             yield from $this->eventSerializer->unserializePayload($payload);
         }
     }
