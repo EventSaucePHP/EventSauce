@@ -33,6 +33,7 @@ class DummyCommandHandler
         try {
             if ($command instanceof InitiatorCommand) {
                 $aggregate = DummyAggregate::create($command->aggregateRootId());
+
                 return;
             }
 
