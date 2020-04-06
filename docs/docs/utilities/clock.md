@@ -2,16 +2,18 @@
 permalink: /docs/utilities/clock/
 title: Clock
 published_at: 2019-12-09
-updated_at: 2019-12-09
+updated_at: 2019-12-21
 ---
 
-In PHP, you can easily the current time by simply creating a `DateTime(Immutable)`
-instance. In cases where time (or the passing of time) is important, introducing a
-system clock can be very beneficial. A system clock is used to provide the notion
-of time to you application. Because the interface is very simple, it's also simple
-to fixate for testing purposes.
+In PHP, you can retrieve the current time by creating a `DateTime(Immutable)`
+instance. PHP resolves the actual time from a system context. This means that
+time is a global resource and global resources are hard to control.
 
-EventSauce is shipped with two implementations of the `EventSauce\EventSourcing\Time\Clock`
+In cases where time (or the passing of time) is important, introducing a
+system clock can be very beneficial. A system clock is used to supply
+time to you application.
+
+EventSauce ships with two implementations of the `EventSauce\EventSourcing\Time\Clock`
 interface. The `EventSauce\EventSourcing\Time\SystemClock` supplies the current time,
 and the `EventSauce\EventSourcing\Time\TestClock` can be fixated and manipulated for
 testing purposes.

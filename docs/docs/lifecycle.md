@@ -2,7 +2,7 @@
 permalink: /docs/lifecycle/
 title: Lifecycle
 published_at: 2018-02-25
-updated_at: 2019-11-09
+updated_at: 2020-03-28
 ---
 
 The lifecycle of EventSauce can be broken down into **3** steps:
