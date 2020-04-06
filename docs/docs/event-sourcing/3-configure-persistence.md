@@ -3,7 +3,7 @@ permalink: /docs/event-sourcing/configure-persistence/
 redirect_from: /docs/getting-started/configure-persistence/
 title: Configure Persistence
 published_at: 2019-12-07
-updated_at: 2019-12-07
+updated_at: 2020-03-28
 ---
 
 EventSauce has _two_ connections to persistence.

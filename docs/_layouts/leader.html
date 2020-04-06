@@ -86,9 +86,14 @@
                 <h2 class="text-3xl text-black mb-2">
                     Expressive Testing
                 </h2>
-                <p class="text-grey-darker text-lg mx-auto max-w-sm">
+                <p class="text-grey-darker text-lg mb-2 mx-auto max-w-sm">
                     Scenario based testing provides an expressive way to
                     ensure business requirements are met.
+                </p>
+                <p class="text-grey-darker text-lg mx-auto max-w-sm">
+                    An event-driven modeling technique allows for a BDD-style
+                    test setup. This technique allows you to use events to
+                    setup your aggregate and assert desired outcome.
                 </p>
             </div>
         </section>
@@ -100,20 +105,16 @@ use EventSauce\EventSourcing\AggregateRootTestCase;
 
 class MyEventSourcedTest extends AggregateRootTestCase
 {
-    public function test_event_sourcing()
+    public function submitting_a_bank_account_for_approval()
     {
+        $iban = 'NL91ABCD0123123400';
+
         $this->given(
-            new DeveloperLikesEventSourcing(),
-            new DeveloperLearnedAboutEventSauce(),
+            new OnboardingHasStarted()
         )->when(
-            new StartsUsingEventSauce(
-                $this->aggregateRootId()
-            )
+            new SubmitBankAccountForApproval($iban)
         )->then(
-            new UsingEventSauceWasVeryEffective(),
-            new DeveloperAcquiredNewSkill(
-                AcquiredSkill::eventSourcing()
-            )
+            new BankAccountWasSubmittedForApproval($iban)
         );
     }
 }

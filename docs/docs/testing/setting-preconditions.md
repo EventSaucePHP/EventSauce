@@ -2,7 +2,7 @@
 permalink: /docs/testing/preconditions/
 title: Setting preconditions
 published_at: 2018-03-04
-updated_at: 2019-12-08
+updated_at: 2019-12-21
 ---
 
 Often you'll want to set up preconditions for tests. These are events recorded prior

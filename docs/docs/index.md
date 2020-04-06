@@ -3,7 +3,7 @@ permalink: /docs/
 title: Event sourcing for PHP
 hide_title: true
 published_at: 2018-02-21
-updated_at: 2019-12-07
+updated_at: 2019-12-21
 ---
 
 <div class="text-center mb-8 max-w-md">
@@ -29,19 +29,19 @@ experience and productivity. This library was developed with the idea that you s
 be able to add event sourced parts to your application with ease. No application-wide
 rewrites and no big investments upfront. 
 
-## You're in Control
+## You're in control
 
 Event sourcing is a tool to build a domain model. You own the model, therefore you
 should own your tooling. EventSauce is as much an implementation reference, as it is a
 library. You can use it in your application, but you can also copy it and take full control.
 
-## Extensible by Design
+## Extensible by design
 
 The core is built around a set of (tiny) interfaces, which gives you the freedom to choose
 the tools that meet your requirements. Implement them however you see fit. Use them, don't
 use them. It's your choice!
 
-## Pragmatic by Nature
+## Pragmatic by nature
 
 Many parts of the library are extremely pragmatic in nature. You're encouraged to take
 control over it. It allows everything from  custom storage adapter to highly customizable
@@ -52,7 +52,7 @@ sourcing. It does not require you to follow CQRS patterns (although you can). It
 not require you to use a command-, event-, or query-bus. By doing so, it allows
 developers to use event sourcing for parts of their application more easily.
 
-## A paradigm shift.
+## A paradigm shift
 
 Solving problems using event sourcing requires a very different mindset when compared
 to common object-oriented software modeling in PHP. It's less focused about state and more

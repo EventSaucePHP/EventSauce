@@ -2,7 +2,7 @@
 permalink: /docs/changelog/
 title: Changelog
 published_at: 2018-03-14
-updated_at: 2019-12-10
+updated_at: 2020-04-04
 ---
 
 ## Unreleased
@@ -32,6 +32,10 @@ updated_at: 2019-12-10
 ### New Features
 
 - Allow `ramsey/uuid` version 3 and 4.
+
+### Added
+
+- `Message::timeOfRecording` was added.
 
 ## 0.8.0 - 2019-12-21
 

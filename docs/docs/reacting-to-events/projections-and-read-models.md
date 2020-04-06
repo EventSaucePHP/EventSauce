@@ -2,7 +2,7 @@
 permalink: /docs/reacting-to-events/projections-and-read-models/
 title: Projections and Read Models
 published_at: 2018-03-07
-updated_at: 2019-06-12
+updated_at: 2020-03-28
 ---
 
 Projections and read models are a big part of event sourcing. They

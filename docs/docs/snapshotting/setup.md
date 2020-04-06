@@ -2,7 +2,7 @@
 permalink: /docs/snapshotting/setup/
 title: Snapshotting Setup
 published_at: 2019-09-25
-updated_at: 2019-09-25
+updated_at: 2020-03-02
 ---
 
 Setting up snapshotting consists of a couple of steps:

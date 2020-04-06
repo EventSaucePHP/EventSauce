@@ -2,7 +2,7 @@
 permalink: /docs/reacting-to-events/process-managers/
 title: Process Managers
 published_at: 2018-03-07
-updated_at: 2019-06-12
+updated_at: 2020-03-28
 ---
 
 In EventSauce process managers are nothing more than an implementation of
