@@ -2,7 +2,7 @@
 permalink: /docs/advanced/upcasting/
 title: Upcasting
 published_at: 2018-03-07
-updated_at: 2018-03-23
+updated_at: 2020-04-05
 ---
 
 Event sourcing is a great discovery tool, it also provides a
