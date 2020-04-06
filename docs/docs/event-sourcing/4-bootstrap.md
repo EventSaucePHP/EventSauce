@@ -4,7 +4,7 @@ redirect_from: /docs/getting-started/bootstrap/
 title: Bootstrap
 alternate_title: Bootstrapping EventSauce
 published_at: 2019-12-07
-updated_at: 2019-12-07
+updated_at: 2019-12-21
 ---
 
 Now that you've got your `MessageRepository` and `MessageDispatcher` in place

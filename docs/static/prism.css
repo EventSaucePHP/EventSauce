@@ -140,3 +140,6 @@ pre[class*="language-"] {
     cursor: help;
 }
 
+.token.deleted {
+    color: #f92672;
+}

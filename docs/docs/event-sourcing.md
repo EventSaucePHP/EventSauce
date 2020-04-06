@@ -3,7 +3,7 @@ permalink: /docs/event-sourcing/
 title: Event Sourcing
 alternate_title: What is event sourcing?
 published_at: 2018-03-08
-updated_at: 2019-11-20
+updated_at: 2019-12-21
 ---
 Event sourcing is a radically different way to model software, compared to
 traditional entity/state based modeling. It puts an emphasis in change,
