@@ -169,21 +169,23 @@ events:
             <h2 class="text-3xl text-black mb-2">
                 Newsletter
             </h2>
-            <label class="block">Want to stay up to date?</label>
+            <label class="block">Want to stay up to date? Be notified when important changes happen.</label>
             <input class="block w-full my-4 leading-normal px-3 py-2 rounded border border-grey-light" type="email" name="email" placeholder="Enter your email" />
             <button type="submit" class="block w-full text-center rounded leading-normal p-2 bg-red text-white">Subscribe</button>
         </form>
-        <form id="slack" method="post" action="https://widgets.eventsauce.io/slack-invite/" class="max-w-xs mx-auto text-lg text-center flex-1 pb-14">
+        <div id="slack" class="max-w-xs mx-auto text-lg text-center flex-1 pb-14">
             <span class="h-12 w-12 rounded-full bg-red inline-block mb-3 flex align-middle justify-center mx-auto">
                 <img src="/static/icons/chat-bubble-dots.svg" class="inline-block w-6" />
             </span>
             <h2 class="text-3xl text-black mb-2">
                 Slack
             </h2>
-            <label class="block">Want to discuss event sourcing?</label>
-            <input class="block w-full my-4 leading-normal px-3 py-2 rounded border border-grey-light" type="email" name="email" placeholder="Enter your email" />
-            <button type="submit" class="block w-full text-center rounded leading-normal p-2 bg-red text-white">Get Invited</button>
-        </form>
+            <p class="block">
+                Want to discuss event sourcing with other developers?
+                Find like-minded devs to discuss topics or ask questions.
+            </p>
+            <a href="https://join.slack.com/t/eventsauce/shared_invite/zt-dojxdg0k-eBY_kdeRS3rbQh6rxA0bzQ" class="block w-full text-center rounded leading-normal p-2 mt-6 bg-red text-white">Join the Slack Channel</a>
+        </div>
 </section>
 {% include footer.html %}
 </body>
