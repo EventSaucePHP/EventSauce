@@ -21,33 +21,38 @@ updated_at: 2019-12-21
 [![Packagist](https://img.shields.io/badge/packagist-eventsauce/eventsauce-orange.svg?style=flat-square)](https://packagist.org/packages/eventsauce/eventsauce)
 ![php >=7.2](https://img.shields.io/packagist/php-v/eventsauce/eventsauce.svg?style=flat-square)
 
-
 # What is EventSauce?
+
+EventSauce is a library for event-sourcing in PHP. The library provides a clear implementation
+to get you started quickly and reliably. Event-sourcing is a fundamentally different
+approach to modeling software. The technique is well suited to model complex business flows
+and transactional processes. Tackling complexity at scale works well with event-sourcing
+since the technique is based on communication.
 
 EventSauce is a no-nonsense event sourcing library for PHP with a focus on developer
 experience and productivity. This library was developed with the idea that you should
-be able to add event sourced parts to your application with ease. No application-wide
-rewrites and no big investments upfront. 
+remain in control of . No application-wide rewrites and no big investments upfront.
 
 ## You're in control
 
-Event sourcing is a tool to build a domain model. You own the model, therefore you
-should own your tooling. EventSauce is as much an implementation reference, as it is a
-library. You can use it in your application, but you can also copy it and take full control.
+Event sourcing is a tool to build a domain model. You own the model, and you own the
+tooling. EventSauce is as much an implementation reference, as it is a library. You
+can use it in your application, but you can also copy it and take full control.
 
 ## Extensible by design
 
 The core is built around a set of (tiny) interfaces, which gives you the freedom to choose
-the tools that meet your requirements. Implement them however you see fit. Use them, don't
-use them. It's your choice!
-
-## Pragmatic by nature
+the tools that meet your requirements. Implement them however you deem fit. EventSauce
+was built favoring composition (not inheritance), this allows it to be composed in whatever
+way is suitable for your project.
 
 Many parts of the library are extremely pragmatic in nature. You're encouraged to take
-control over it. It allows everything from  custom storage adapter to highly customizable
+control over it. It allows everything from custom storage adapter to highly customizable
 message dispatching setups.
 
-EventSauce puts the focus on event sourcing, not on things that happen around event
+## The
+
+EventSauce puts the focus on event-sourcing, not on things that happen around event
 sourcing. It does not require you to follow CQRS patterns (although you can). It does
 not require you to use a command-, event-, or query-bus. By doing so, it allows
 developers to use event sourcing for parts of their application more easily.
