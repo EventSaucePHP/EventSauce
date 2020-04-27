@@ -5,22 +5,30 @@ alternate_title: What is event sourcing?
 published_at: 2018-03-08
 updated_at: 2019-12-21
 ---
+
 Event sourcing is a radically different way to model software, compared to
 traditional entity/state based modeling. It puts an emphasis in change,
-rather than focusing on the current state of the application. With event
-sourcing, events are the fundamental building blocks in our software. These
-events are used to build the decision-models and the presentational models.
-They allow the core of your software to remain blissfully unaware of the
-outside world.
+rather than focusing on the current state of the application. Events are
+the fundamental building blocks in event-sourcing. Events are used to build
+decision-models, often referred to as _write models_. The same events are
+used to build presentational models, called _read models_.
 
-## When event sourcing shines.
+## It's all about **events**.
 
-This style of programming especially fit for:
+Events are at the heart of event sourcing. They are the primary building block
+upon which the technique is built. But, what is an event?
 
-* Business process modeling (finite flows, complex transitions and transactions).
-* Complex user flows.
-* Asynchronous system interactions
-* Cases where audit trails are of paramount importance.
+In event-sourcing, events are registrations of something that happened
+that is relevant to the business. They capture a moment in time and turn
+it into an historical record. These events contain intention and contextual
+information. Events should be named in past tense and reflect something that
+has happened in the past. Events are undeniable facts, represented as immutable
+objects, stored in an append-only manner.
+
+## When event-sourcing shines.
+
+Event-sourcing shines where traditional modeling techniques fall short.
+It is well suites for modeling complex business processes.
 
 ## How is it different?
 
@@ -33,12 +41,12 @@ When we test our code, we assert based on _current_ application _state_.
 
 > Over time state is modified/created/removed in order to keep up with changes.
 
-In event sourcing this concept is turned upside-down. The model is constructed 
+In event-sourcing this concept is turned upside-down. The model is constructed
 using events that describe things that have happened in the past. In order to
-get to the current state, we replay all the events needed to make the next move.
-These events give our model the information to base new decisions on. Actions
-dispatched to the model result in any number of new events. These events are
-used for our next decision, and to communicate change throughout the system.
+get to the current state, all the events needed to make the next move are
+replayed. These events give our model the information to base new decisions on.
+Actions dispatched to the model result in any number of new events. These events
+are used for our next decision, and to communicate change throughout the system.
 
 ## Event and Message Driven Programming
 
