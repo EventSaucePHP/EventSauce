@@ -76,6 +76,10 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
 
     public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events): void
     {
+        if (count($events) === 0) {
+            return;
+        }
+
         // decrease the aggregate root version by the number of raised events
         // so the version of each message represents the version at the time
         // of recording.
