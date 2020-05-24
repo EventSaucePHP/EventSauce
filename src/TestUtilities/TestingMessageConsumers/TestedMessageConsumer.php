@@ -25,10 +25,10 @@ class TestedMessageConsumer implements MessageConsumer
         $this->failAfterNumberOfMessages = $failAfterNumberOfMessages;
     }
 
-    public function handle(Message $message)
+    public function handle(Message $message): void
     {
         if (++$this->numberOfMessagesProcessed === $this->failAfterNumberOfMessages) {
-            throw new LogicException("Too many messages");
+            throw new LogicException('Too many messages');
         }
     }
 
