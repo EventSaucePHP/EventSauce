@@ -20,7 +20,7 @@ class TestedMessageConsumerTest extends MessageConsumerTestCase
     /**
      * @test
      */
-    public function not_expecting_an_exception()
+    public function not_expecting_an_exception(): void
     {
         $this->expectException(LogicException::class);
         $this->when(
@@ -45,7 +45,7 @@ class TestedMessageConsumerTest extends MessageConsumerTestCase
             new ConsumerEvent(),
             new ConsumerEvent()
         );
-        $this->expectToFail(new LogicException("Too many messages"));
+        $this->expectToFail(new LogicException('Too many messages'));
         $this->assertScenario();
     }
 
@@ -63,7 +63,7 @@ class TestedMessageConsumerTest extends MessageConsumerTestCase
             new ConsumerEvent(),
             new ConsumerEvent()
         );
-        $this->expectToFail(new DomainException("Wrong exception"));
+        $this->expectToFail(new DomainException('Wrong exception'));
         $this->assertScenario();
     }
 
@@ -73,7 +73,7 @@ class TestedMessageConsumerTest extends MessageConsumerTestCase
     public function expecting_assertions(): void
     {
         $this->when(new Message(new ConsumerEvent()), new ConsumerEvent())
-            ->then(function(TestedMessageConsumer $consumer) {
+            ->then(function (TestedMessageConsumer $consumer): void {
                 $this->assertEquals(2, $consumer->numberOfMessagesProcessed());
             });
     }
