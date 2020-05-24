@@ -46,6 +46,7 @@ abstract class MessageConsumerTestCase extends TestCase
         $this->messageConsumer = $this->messageConsumer();
         $this->assertedScenario = false;
     }
+
     /**
      * @before
      */
@@ -57,7 +58,7 @@ abstract class MessageConsumerTestCase extends TestCase
     /**
      * @return $this
      */
-    protected function given(... $eventsOrMessages)
+    protected function given(...$eventsOrMessages)
     {
         $this->processMessages($eventsOrMessages);
 
@@ -67,7 +68,7 @@ abstract class MessageConsumerTestCase extends TestCase
     /**
      * @return $this
      */
-    public function when(... $eventsOrMessages)
+    public function when(...$eventsOrMessages)
     {
         try {
             $this->processMessages($eventsOrMessages);
@@ -88,9 +89,6 @@ abstract class MessageConsumerTestCase extends TestCase
         return $this;
     }
 
-    /**
-     * @param array $eventsOrMessages
-     */
     protected function processMessages(array $eventsOrMessages): void
     {
         $messages = $this->ensureEventsAreMessages($eventsOrMessages);
@@ -105,13 +103,14 @@ abstract class MessageConsumerTestCase extends TestCase
      */
     private function ensureEventsAreMessages(array $events): array
     {
-        return array_map(function(object $event) {
+        return array_map(function (object $event) {
             return $event instanceof Message ? $event : new Message($event);
         }, $events);
     }
 
     /**
      * @after
+     *
      * @throws Exception
      */
     protected function assertScenario(): void
