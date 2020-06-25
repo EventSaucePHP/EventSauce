@@ -12,7 +12,7 @@ code generation is a great accelerator during your time spent writing code.
 ## Simple data transfer objects.
 
 Commands and Events are vehicles for transferring information. A common name for these kind
-of objects is DTO (Data Transfer Object). Their sole purpose is to cary data and context the
+of objects is DTO (Data Transfer Object). Their sole purpose is to carry data and context the
 recipient of the object needs in order to interpret it. Commands and events are applied version
 of DTO that fulfill a specific purpose. Because DTO only carry information, they are a perfect
 match for code generation.
