@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\EventHandling;
 
 use EventSauce\EventSourcing\Message;
-use EventSauce\EventSourcing\PayloadStub;
+use EventSauce\EventSourcing\EventStub;
 use PHPStan\Testing\TestCase;
 
 class EventHandlingTest extends TestCase
@@ -16,7 +16,7 @@ class EventHandlingTest extends TestCase
     public function handling_events_from_messages(): void
     {
         $handler = new DummyEventHandler();
-        $event = PayloadStub::create('value');
+        $event = EventStub::create('value');
         $message = new Message($event);
         $handler->handle($message);
         self::assertEquals($event, $handler->event);
