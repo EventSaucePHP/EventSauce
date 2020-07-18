@@ -22,7 +22,7 @@ class DecoratingMessageDispatcher implements MessageDispatcher
         $this->decorator = $decorator ?: new DefaultHeadersDecorator();
     }
 
-    public function dispatch(Message ...$messages)
+    public function dispatch(Message ...$messages): void
     {
         $messages = array_map(
             function ($message) {

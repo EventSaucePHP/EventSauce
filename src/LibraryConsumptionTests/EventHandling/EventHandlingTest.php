@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\EventHandling;
 
-use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\EventStub;
+use EventSauce\EventSourcing\Message;
 use PHPStan\Testing\TestCase;
 
 class EventHandlingTest extends TestCase

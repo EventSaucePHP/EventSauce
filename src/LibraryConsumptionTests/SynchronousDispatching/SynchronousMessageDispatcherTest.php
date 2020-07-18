@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\SynchronousDispatching;
 
+use EventSauce\EventSourcing\EventStub;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageDispatcherChain;
-use EventSauce\EventSourcing\EventStub;
 use EventSauce\EventSourcing\SynchronousMessageDispatcher;
 use PHPUnit\Framework\TestCase;
 

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\DecoratingMessages;
 
+use EventSauce\EventSourcing\EventStub;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageDecoratorChain;
-use EventSauce\EventSourcing\EventStub;
 use PHPUnit\Framework\TestCase;
 
 class MessageDecoratingTest extends TestCase

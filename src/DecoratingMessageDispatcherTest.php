@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
-use EventSauce\EventSourcing\CollectingMessageDispatcher;
-use EventSauce\EventSourcing\DecoratingMessageDispatcher;
-use EventSauce\EventSourcing\Message;
 use PHPUnit\Framework\TestCase;
 
 class DecoratingMessageDispatcherTest extends TestCase
