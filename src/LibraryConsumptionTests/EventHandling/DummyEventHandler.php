@@ -6,12 +6,12 @@ namespace EventSauce\EventSourcing\LibraryConsumptionTests\EventHandling;
 
 use EventSauce\EventSourcing\EventHandlingMessageConsumer;
 use EventSauce\EventSourcing\Message;
-use EventSauce\EventSourcing\PayloadStub;
+use EventSauce\EventSourcing\EventStub;
 
 class DummyEventHandler extends EventHandlingMessageConsumer
 {
     /**
-     * @var PayloadStub
+     * @var EventStub
      */
     public $event;
 
@@ -20,7 +20,7 @@ class DummyEventHandler extends EventHandlingMessageConsumer
      */
     public $message;
 
-    protected function handlePayloadStub(PayloadStub $event, Message $message): void
+    protected function handleEventStub(EventStub $event, Message $message): void
     {
         $this->event = $event;
         $this->message = $message;

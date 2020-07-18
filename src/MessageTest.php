@@ -15,7 +15,7 @@ class MessageTest extends TestCase
      */
     public function accessors(): void
     {
-        $event = PayloadStub::create('some value');
+        $event = EventStub::create('some value');
         $initialHeaders = ['initial' => 'header value'];
         $message = new Message($event, $initialHeaders);
         $this->assertSame($event, $message->event());
@@ -28,7 +28,7 @@ class MessageTest extends TestCase
     public function accessing_the_version_when_not_set(): void
     {
         $this->expectException(RuntimeException::class);
-        (new Message(PayloadStub::create('v')))->aggregateVersion();
+        (new Message(EventStub::create('v')))->aggregateVersion();
     }
 
     /**
@@ -36,7 +36,7 @@ class MessageTest extends TestCase
      */
     public function aggregate_root_id_accessor(): void
     {
-        $event = PayloadStub::create('some value');
+        $event = EventStub::create('some value');
         $message = new Message($event);
         $this->assertNull($message->aggregateRootId());
         $message = $message->withHeader(Header::AGGREGATE_ROOT_ID, DummyAggregateRootId::generate());
@@ -48,7 +48,7 @@ class MessageTest extends TestCase
      */
     public function time_of_recording_accessor(): void
     {
-        $event = PayloadStub::create('some value');
+        $event = EventStub::create('some value');
         $message = new Message($event);
         $timeOfRecording = (new TestClock())->pointInTime();
         $message = $message->withHeader(Header::TIME_OF_RECORDING, $timeOfRecording->toString());

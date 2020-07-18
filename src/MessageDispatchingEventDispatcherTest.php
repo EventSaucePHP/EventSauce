@@ -15,7 +15,7 @@ class MessageDispatchingEventDispatcherTest extends TestCase
     {
         $subdispatcher = new CollectingMessageDispatcher();
         $eventDispatcher = new MessageDispatchingEventDispatcher($subdispatcher);
-        $event = new PayloadStub('value');
+        $event = new EventStub('value');
         $eventDispatcher->dispatch($event);
         $collectedMessages = $subdispatcher->collectedMessages();
         $this->assertEquals($event, $collectedMessages[0]->event());
@@ -28,7 +28,7 @@ class MessageDispatchingEventDispatcherTest extends TestCase
     {
         $subdispatcher = new CollectingMessageDispatcher();
         $eventDispatcher = new MessageDispatchingEventDispatcher($subdispatcher);
-        $event = new PayloadStub('value');
+        $event = new EventStub('value');
         $eventDispatcher->dispatchWithHeaders(['some_header' => 'some_value'], $event);
         $collectedMessages = $subdispatcher->collectedMessages();
         $this->assertEquals('some_value', $collectedMessages[0]->header('some_header'));
