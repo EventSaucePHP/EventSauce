@@ -6,9 +6,9 @@ namespace EventSauce\EventSourcing\Serialization;
 
 use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
 use EventSauce\EventSourcing\DummyAggregateRootId;
+use EventSauce\EventSourcing\EventStub;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
-use EventSauce\EventSourcing\EventStub;
 use EventSauce\EventSourcing\Time\TestClock;
 use PHPUnit\Framework\TestCase;
 use function iterator_to_array;
