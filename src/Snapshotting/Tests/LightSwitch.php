@@ -48,10 +48,10 @@ class LightSwitch implements AggregateRootWithSnapshotting
         $this->state = $event->state();
     }
 
-    protected static function reconstituteFromSnapshotState(AggregateRootId $id, bool $state): AggregateRootWithSnapshotting
+    protected static function reconstituteFromSnapshotState(AggregateRootId $id, $state): AggregateRootWithSnapshotting
     {
         $lightSwitch = new static($id);
-        $lightSwitch->state = $state;
+        $lightSwitch->state = (bool) $state;
 
         return $lightSwitch;
     }
