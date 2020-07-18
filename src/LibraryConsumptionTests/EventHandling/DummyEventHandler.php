@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\EventHandling;
 
 use EventSauce\EventSourcing\EventHandlingMessageConsumer;
-use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\EventStub;
+use EventSauce\EventSourcing\Message;
 
 class DummyEventHandler extends EventHandlingMessageConsumer
 {
