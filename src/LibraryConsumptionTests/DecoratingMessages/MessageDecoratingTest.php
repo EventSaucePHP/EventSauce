@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing\LibraryConsumptionTests\DecoratingMessages;
 
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageDecoratorChain;
-use EventSauce\EventSourcing\PayloadStub;
+use EventSauce\EventSourcing\EventStub;
 use PHPUnit\Framework\TestCase;
 
 class MessageDecoratingTest extends TestCase
@@ -17,7 +17,7 @@ class MessageDecoratingTest extends TestCase
     public function decorating_messages(): void
     {
         $decorator = new MessageDecoratorChain(new DummyMessageDecorator());
-        $event = new PayloadStub('value');
+        $event = new EventStub('value');
         $message = new Message($event);
         $decoratedMessage = $decorator->decorate($message);
         $this->assertEquals($event, $decoratedMessage->event());
