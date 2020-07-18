@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing\LibraryConsumptionTests\SynchronousDispatchin
 
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageDispatcherChain;
-use EventSauce\EventSourcing\PayloadStub;
+use EventSauce\EventSourcing\EventStub;
 use EventSauce\EventSourcing\SynchronousMessageDispatcher;
 use PHPUnit\Framework\TestCase;
 
@@ -19,7 +19,7 @@ class SynchronousMessageDispatcherTest extends TestCase
     {
         $stubConsumer = new SynchronousMessageConsumerStub();
         $syncDispatcher = new SynchronousMessageDispatcher($stubConsumer, $stubConsumer);
-        $message = new Message(new PayloadStub('value'));
+        $message = new Message(new EventStub('value'));
         $syncDispatcher->dispatch($message, $message);
         $this->assertEquals([$message, $message, $message, $message], $stubConsumer->handled);
     }
@@ -32,7 +32,7 @@ class SynchronousMessageDispatcherTest extends TestCase
         $stubconsumer = new SynchronousMessageConsumerStub();
         $syncDispatcher = new SynchronousMessageDispatcher($stubconsumer);
         $dispatcherChain = new MessageDispatcherChain($syncDispatcher, $syncDispatcher);
-        $message = new Message(new PayloadStub('value'));
+        $message = new Message(new EventStub('value'));
         $dispatcherChain->dispatch($message);
         $this->assertEquals([$message, $message], $stubconsumer->handled);
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Serialization;
 
-use EventSauce\EventSourcing\PayloadStub;
+use EventSauce\EventSourcing\EventStub;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -43,7 +43,7 @@ final class TypeValidatingEventSerializerTest extends TestCase
      */
     public function delegates_serialization_to_decorated_serializer(): void
     {
-        $event = PayloadStub::create('some value');
+        $event = EventStub::create('some value');
         $this->assertSame(
             $this->innerSerializer->serializePayload($event),
             $this->serializer->serializePayload($event)
@@ -55,7 +55,7 @@ final class TypeValidatingEventSerializerTest extends TestCase
      */
     public function delegates_unserialization_to_decorated_serializer(): void
     {
-        $payloadArgs = [PayloadStub::class, ['value' => 'some value']];
+        $payloadArgs = [EventStub::class, ['value' => 'some value']];
 
         $this->assertSame(
             $this->innerSerializer->unserializePayload(...$payloadArgs)->toPayload(),
