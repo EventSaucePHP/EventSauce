@@ -41,7 +41,7 @@ abstract class SignUpProcessTestCase extends AggregateRootTestCase
 {
     protected function newAggregateRootId(): AggregateRootId
     {
-        $id = SignupId::create();
+        return SignupId::create();
     }
 
     protected function aggregateRootClassName(): string
