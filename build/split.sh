@@ -8,7 +8,7 @@ if [ ! -f "./build/splitsh-lite" ]; then
     bash build/install-split.sh
 fi
 
-CURRENT_BRANCH="master"
+CURRENT_BRANCH="version/1.0.0"
 
 function split()
 {
