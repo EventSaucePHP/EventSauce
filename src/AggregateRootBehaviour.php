@@ -11,6 +11,10 @@ use Generator;
  */
 trait AggregateRootBehaviour
 {
+    use AggregateAlwaysAppliesEvents {
+        apply as protected;
+    }
+
     /**
      * @var AggregateRootId
      */
@@ -42,13 +46,6 @@ trait AggregateRootBehaviour
     public function aggregateRootVersion(): int
     {
         return $this->aggregateRootVersion;
-    }
-
-    protected function apply(object $event): void
-    {
-        $parts = explode('\\', get_class($event));
-        $this->{'apply' . end($parts)}($event);
-        ++$this->aggregateRootVersion;
     }
 
     protected function recordThat(object $event): void
