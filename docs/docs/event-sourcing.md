@@ -25,7 +25,7 @@ This style of programming especially fit for:
 ## How is it different?
 
 Regular OOP-style, entity based modeling the software model is tightly
-coupled with the data model. Our code is a reflection this data-centric
+coupled with the data model. Our code is a reflection of this data-centric
 view. When we model our domain in this fashion we often start out by
 modeling the "things". The actions performed on our model changes its
 state, which is then persisted to become the new state of the model.
