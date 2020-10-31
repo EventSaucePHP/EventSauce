@@ -176,7 +176,7 @@ EOF;
         return implode('', $methods);
     }
 
-    private function dumpSerializationMethods(PayloadDefinition $definition)
+    private function dumpSerializationMethods(PayloadDefinition $definition): string
     {
         $name = $definition->name();
         $arguments = [];

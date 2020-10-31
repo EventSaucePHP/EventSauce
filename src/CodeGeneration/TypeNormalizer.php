@@ -25,6 +25,7 @@ class TypeNormalizer
     public static function isNativeType(string $type): bool
     {
         try {
+            // @phpstan-ignore-next-line
             new ReflectionClass(ltrim($type, '\\'));
 
             return false;

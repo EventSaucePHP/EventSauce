@@ -94,10 +94,7 @@ final class PayloadDefinition
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function serializerForField(string $field)
+    public function serializerForField(string $field): ?string
     {
         return $this->fieldSerializers[$field] ?? $this->group->serializerForField($field);
     }
@@ -109,17 +106,17 @@ final class PayloadDefinition
         return $this;
     }
 
-    public function deserializerForField($fieldName): ?string
+    public function deserializerForField(string $fieldName): ?string
     {
         return $this->fieldDeserializers[$fieldName] ?? $this->group->deserializerForField($fieldName);
     }
 
-    public function deserializerForType($type)
+    public function deserializerForType(string $type): string
     {
         return $this->group->deserializerForType($type);
     }
 
-    public function serializerForType($type)
+    public function serializerForType(string $type): string
     {
         return $this->group->serializerForType($type);
     }

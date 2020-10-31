@@ -94,12 +94,13 @@ final class DefinitionGroup
 
     public function typeSerializer(string $type, string $template): void
     {
+        /** @var string $type */
         $type = $this->resolveTypeAlias($type);
 
         $this->typeSerializer[TypeNormalizer::normalize($type)] = $template;
     }
 
-    public function serializerForType($type)
+    public function serializerForType(string $type): string
     {
         $type = $this->resolveTypeAlias($type);
 
@@ -113,7 +114,7 @@ final class DefinitionGroup
         $this->typeDeserializer[TypeNormalizer::normalize($type)] = $template;
     }
 
-    public function deserializerForType($type)
+    public function deserializerForType(string $type): string
     {
         $type = $this->resolveTypeAlias($type);
 
@@ -125,7 +126,7 @@ final class DefinitionGroup
         $this->fieldSerializer[$field] = $template;
     }
 
-    public function serializerForField($field)
+    public function serializerForField(string $field): ?string
     {
         return $this->fieldSerializer[$field] ?? null;
     }
@@ -135,7 +136,7 @@ final class DefinitionGroup
         $this->fieldDeserializer[$field] = $template;
     }
 
-    public function deserializerForField($field): ?string
+    public function deserializerForField(string $field): ?string
     {
         return $this->fieldDeserializer[$field] ?? null;
     }
@@ -151,7 +152,7 @@ final class DefinitionGroup
         $this->typeAliases[$alias] = TypeNormalizer::normalize($type);
     }
 
-    public function resolveTypeAlias(string $alias = null): ?string
+    public function resolveTypeAlias(string $alias): string
     {
         while (isset($this->typeAliases[$alias])) {
             $alias = $this->typeAliases[$alias];
