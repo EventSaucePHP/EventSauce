@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing\Snapshotting\Tests;
 
 use EventSauce\EventSourcing\AggregateRootId;
 
-class LightSwitchId implements AggregateRootId
+final class LightSwitchId implements AggregateRootId
 {
     /**
      * @var string

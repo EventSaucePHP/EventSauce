@@ -6,7 +6,14 @@ namespace EventSauce\EventSourcing\Serialization;
 
 final class TypeValidatingPayloadSerializer implements PayloadSerializer
 {
+    /**
+     * @var PayloadSerializer
+     */
     private $serializer;
+
+    /**
+     * @var string
+     */
     private $eventClassName;
 
     public function __construct(

@@ -135,7 +135,7 @@ final class DefinitionGroup
         $this->fieldDeserializer[$field] = $template;
     }
 
-    public function deserializerForField($field)
+    public function deserializerForField($field): ?string
     {
         return $this->fieldDeserializer[$field] ?? null;
     }
@@ -151,7 +151,7 @@ final class DefinitionGroup
         $this->typeAliases[$alias] = TypeNormalizer::normalize($type);
     }
 
-    public function resolveTypeAlias(string $alias = null)
+    public function resolveTypeAlias(string $alias = null): ?string
     {
         while (isset($this->typeAliases[$alias])) {
             $alias = $this->typeAliases[$alias];
@@ -165,7 +165,7 @@ final class DefinitionGroup
         return $this->events[] = new PayloadDefinition($this, $name);
     }
 
-    public function command(string $name)
+    public function command(string $name): PayloadDefinition
     {
         return $this->commands[] = new PayloadDefinition($this, $name);
     }
@@ -175,6 +175,9 @@ final class DefinitionGroup
         return $this->defaults[$field]['type'] ?? 'string';
     }
 
+    /**
+     * @return mixed
+     */
     public function exampleForField(string $field)
     {
         return $this->defaults[$field]['example'] ?? null;

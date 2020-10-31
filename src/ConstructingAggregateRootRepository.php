@@ -53,7 +53,7 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
 
     private function retrieveAllEvents(AggregateRootId $aggregateRootId): Generator
     {
-        /** @var Message $message */
+        /** @var Generator<Message> $messages */
         $messages = $this->messages->retrieveAll($aggregateRootId);
 
         foreach ($messages as $message) {

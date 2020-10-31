@@ -9,7 +9,7 @@ use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\Snapshotting\AggregateRootWithSnapshotting;
 use EventSauce\EventSourcing\Snapshotting\SnapshottingBehaviour;
 
-class LightSwitch implements AggregateRootWithSnapshotting
+final class LightSwitch implements AggregateRootWithSnapshotting
 {
     use AggregateRootBehaviour;
     use SnapshottingBehaviour;
@@ -17,8 +17,14 @@ class LightSwitch implements AggregateRootWithSnapshotting
     const OFF = false;
     const ON = true;
 
+    /**
+     * @var bool
+     */
     private $state = self::OFF;
 
+    /**
+     * @return bool
+     */
     private function createSnapshotState()
     {
         return $this->state;
@@ -48,6 +54,9 @@ class LightSwitch implements AggregateRootWithSnapshotting
         $this->state = $event->state();
     }
 
+    /**
+     * @param bool $state
+     */
     protected static function reconstituteFromSnapshotState(AggregateRootId $id, $state): AggregateRootWithSnapshotting
     {
         $lightSwitch = new static($id);

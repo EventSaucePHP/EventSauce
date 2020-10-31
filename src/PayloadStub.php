@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing;
 use function compact;
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-class PayloadStub implements SerializablePayload
+final class PayloadStub implements SerializablePayload
 {
     /**
      * @var string
@@ -34,8 +34,9 @@ class PayloadStub implements SerializablePayload
         return new static($payload['value']);
     }
 
-    public static function create(string $value = null)
+    public static function create(string $value = null): PayloadStub
     {
+        /** @var PayloadStub */
         return static::fromPayload(compact('value'));
     }
 }

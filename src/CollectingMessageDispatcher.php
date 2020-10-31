@@ -8,6 +8,9 @@ use function array_push;
 
 class CollectingMessageDispatcher implements MessageDispatcher
 {
+    /**
+     * @var Message[]
+     */
     private $collectedMessages = [];
 
     public function dispatch(Message ...$messages): void

@@ -87,26 +87,29 @@ final class PayloadDefinition
         return $this;
     }
 
-    public function fieldSerializer($field, $template): PayloadDefinition
+    public function fieldSerializer(string $field, string $template): PayloadDefinition
     {
         $this->fieldSerializers[$field] = $template;
 
         return $this;
     }
 
-    public function serializerForField($field)
+    /**
+     * @return mixed
+     */
+    public function serializerForField(string $field)
     {
         return $this->fieldSerializers[$field] ?? $this->group->serializerForField($field);
     }
 
-    public function fieldDeserializer($field, $template)
+    public function fieldDeserializer(string $field, string $template): self
     {
         $this->fieldDeserializers[$field] = $template;
 
         return $this;
     }
 
-    public function deserializerForField($fieldName)
+    public function deserializerForField($fieldName): ?string
     {
         return $this->fieldDeserializers[$fieldName] ?? $this->group->deserializerForField($fieldName);
     }

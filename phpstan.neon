@@ -3,3 +3,4 @@ parameters:
 		- %rootDir%/../../../src/CodeGeneration/Fixtures/*
 		- %rootDir%/../../../src/Integration/*
 		- *Test.php
+	checkMissingIterableValueType: false

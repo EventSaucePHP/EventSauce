@@ -33,7 +33,7 @@ final class PointInTime
         return $this->pointInTime->format(self::DATE_TIME_FORMAT);
     }
 
-    public function toString()
+    public function toString(): string
     {
         return $this->pointInTime->format(self::DATE_TIME_FORMAT);
     }

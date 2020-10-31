@@ -65,7 +65,7 @@ final class ConstructingAggregateRootRepositoryWithSnapshotting implements Aggre
         $this->snapshotRepository->persist($snapshot);
     }
 
-    private function retrieveAllEventsAfterVersion(AggregateRootId $aggregateRootId, int $version)
+    private function retrieveAllEventsAfterVersion(AggregateRootId $aggregateRootId, int $version): Generator
     {
         /** @var Message[]|Generator $messages */
         $messages = $this->messageRepository->retrieveAllAfterVersion($aggregateRootId, $version);

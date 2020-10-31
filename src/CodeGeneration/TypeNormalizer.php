@@ -22,7 +22,7 @@ class TypeNormalizer
             : '\\' . $type;
     }
 
-    public static function isNativeType(string $type)
+    public static function isNativeType(string $type): bool
     {
         try {
             new ReflectionClass(ltrim($type, '\\'));

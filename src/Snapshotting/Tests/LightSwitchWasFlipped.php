@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing\Snapshotting\Tests;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-class LightSwitchWasFlipped implements SerializablePayload
+final class LightSwitchWasFlipped implements SerializablePayload
 {
     const ON = true;
     const OFF = false;

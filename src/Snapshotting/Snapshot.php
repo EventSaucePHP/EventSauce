@@ -23,6 +23,9 @@ final class Snapshot
      */
     private $state;
 
+    /**
+     * @param mixed $state
+     */
     public function __construct(
         AggregateRootId $aggregateRootId,
         int $aggregateRootVersion,
@@ -43,6 +46,9 @@ final class Snapshot
         return $this->aggregateRootVersion;
     }
 
+    /**
+     * @return mixed
+     */
     public function state()
     {
         return $this->state;

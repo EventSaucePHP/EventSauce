@@ -8,6 +8,9 @@ use EventSauce\EventSourcing\AggregateRootId;
 
 final class InMemorySnapshotRepository implements SnapshotRepository
 {
+    /**
+     * @var array<string,Snapshot>
+     */
     private $snapshots = [];
 
     public function persist(Snapshot $snapshot): void

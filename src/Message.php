@@ -24,6 +24,9 @@ final class Message
         $this->headers = $headers;
     }
 
+    /**
+     * @param mixed $value
+     */
     public function withHeader(string $key, $value): Message
     {
         $clone = clone $this;
@@ -61,6 +64,9 @@ final class Message
         return PointInTime::fromString($this->headers[Header::TIME_OF_RECORDING]);
     }
 
+    /**
+     * @return mixed|null
+     */
     public function header(string $key)
     {
         return $this->headers[$key] ?? null;
