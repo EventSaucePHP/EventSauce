@@ -5,6 +5,14 @@ published_at: 2018-03-14
 updated_at: 2019-12-10
 ---
 
+## 0.8.2 - 2020-11-01
+
+### Changes
+
+- Support PHP 8
+- Added typehints
+- Cleaned up shipped artifact
+
 ## 0.8.1 - 2020-04-05
 
 ### New Features
