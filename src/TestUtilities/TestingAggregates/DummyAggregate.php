@@ -8,7 +8,7 @@ use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootBehaviour;
 use EventSauce\EventSourcing\DummyAggregateRootId;
 
-class DummyAggregate implements AggregateRoot
+final class DummyAggregate implements AggregateRoot
 {
     use AggregateRootBehaviour;
 
