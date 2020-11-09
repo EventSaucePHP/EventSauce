@@ -15,9 +15,9 @@ class PointInTimeTest extends TestCase
      */
     public function creating_from_string(): void
     {
-        $pointInTime = PointInTime::fromString('2017-01-01 10:30:00.000000+0000');
-        $this->assertEquals('2017-01-01 10:30:00.000000+0000', $pointInTime->toString());
-        $this->assertEquals('2017-01-01 10:30:00.000000+0000', (string) $pointInTime);
+        $pointInTime = PointInTime::fromString('2017-01-01 10:30:00.000000+00:00');
+        $this->assertEquals('2017-01-01 10:30:00.000000+00:00', $pointInTime->toString());
+        $this->assertEquals('2017-01-01 10:30:00.000000+00:00', (string) $pointInTime);
     }
 
     /**
@@ -34,7 +34,7 @@ class PointInTimeTest extends TestCase
      */
     public function creating_from_date_time(): void
     {
-        $dateTime = DateTimeImmutable::createFromFormat('Y-m-d H:i:s.uO', '2017-01-01 10:30:00.000000+0000');
+        $dateTime = DateTimeImmutable::createFromFormat('Y-m-d H:i:s.uO', '2017-01-01 10:30:00.000000+00:00');
         $this->assertNotFalse($dateTime);
         $pointInTime = PointInTime::fromDateTime($dateTime);
         $this->assertEquals($dateTime, $pointInTime->dateTime());

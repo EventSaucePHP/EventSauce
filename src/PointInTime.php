@@ -11,7 +11,7 @@ final class PointInTime
     /**
      * @private
      */
-    const DATE_TIME_FORMAT = 'Y-m-d H:i:s.uO';
+    const DATE_TIME_FORMAT = 'Y-m-d H:i:s.uP';
 
     /**
      * @var DateTimeImmutable
