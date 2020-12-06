@@ -32,11 +32,11 @@ jobs:
       - name: Install dependencies
         run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
 
-      - name: Run PHP CS Fixer
-        if: ${{ matrix.php != 8.0 }}
-        run: |
-          composer require friendsofphp/php-cs-fixer:^2.15 --dev --prefer-dist --no-interaction --no-progress --update-with-all-dependencies
-          vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no
+#      - name: Run PHP CS Fixer
+#        if: ${{ matrix.php != 8.0 }}
+#        run: |
+#          composer require friendsofphp/php-cs-fixer:^2.15 --dev --prefer-dist --no-interaction --no-progress --update-with-all-dependencies
+#          vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no
 
       - name: Run PHPStan
         run: vendor/bin/phpstan analyze --level max -c phpstan.neon src
