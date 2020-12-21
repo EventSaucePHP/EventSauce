@@ -58,7 +58,7 @@ abstract class MessageConsumerTestCase extends TestCase
     /**
      * @return $this
      */
-    protected function given(...$eventsOrMessages)
+    protected function given(object ...$eventsOrMessages)
     {
         $this->processMessages($eventsOrMessages);
 
@@ -68,7 +68,7 @@ abstract class MessageConsumerTestCase extends TestCase
     /**
      * @return $this
      */
-    public function when(...$eventsOrMessages)
+    public function when(object ...$eventsOrMessages)
     {
         try {
             $this->processMessages($eventsOrMessages);
@@ -89,6 +89,9 @@ abstract class MessageConsumerTestCase extends TestCase
         return $this;
     }
 
+    /**
+     * @param object[] $eventsOrMessages
+     */
     protected function processMessages(array $eventsOrMessages): void
     {
         $messages = $this->ensureEventsAreMessages($eventsOrMessages);
