@@ -16,7 +16,7 @@ updated_at: 2019-12-07
 [![Source Code](https://img.shields.io/badge/source-eventsaucephp/eventsauce-blue.svg?style=flat-square)](https://github.com/eventsaucephp/eventsauce)
 [![Code Quality](https://img.shields.io/scrutinizer/g/EventSaucePHP/EventSauce.svg?style=flat-square)](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/EventSaucePHP/EventSauce.svg?style=flat-square)](https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master)
-[![Travis](https://img.shields.io/travis/EventSaucePHP/EventSauce.svg?style=flat-square)](https://travis-ci.org/EventSaucePHP/EventSauce)
+[![Github Actions](https://github.com/EventSaucePHP/EventSauce/workflows/Tests/badge.svg)](https://github.com/EventSaucePHP/EventSauce/actions)
 [![Packagist Version](https://img.shields.io/packagist/v/eventsauce/eventsauce.svg?style=flat-square)](https://packagist.org/packages/eventsauce/eventsauce)
 [![Packagist](https://img.shields.io/badge/packagist-eventsauce/eventsauce-orange.svg?style=flat-square)](https://packagist.org/packages/eventsauce/eventsauce)
 ![php >=7.2](https://img.shields.io/packagist/php-v/eventsauce/eventsauce.svg?style=flat-square)
