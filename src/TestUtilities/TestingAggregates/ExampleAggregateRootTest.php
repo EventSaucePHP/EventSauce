@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
+use DateTimeImmutable;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\DummyAggregateRootId;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
-use EventSauce\EventSourcing\PointInTime;
 use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 use EventSauce\EventSourcing\Time\Clock;
 use LogicException;
@@ -48,9 +48,9 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     /**
      * @test
      */
-    public function there_is_a_clock(): void
+    public function the_current_time_is_exposed(): void
     {
-        $this->assertInstanceOf(PointInTime::class, $this->pointInTime());
+        $this->assertInstanceOf(DateTimeImmutable::class, $this->currentTime());
     }
 
     /**

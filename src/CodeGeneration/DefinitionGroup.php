@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-use EventSauce\EventSourcing\PointInTime;
+use DateTimeImmutable;
 use OutOfBoundsException;
 use function array_key_exists;
 
@@ -76,8 +76,8 @@ final class DefinitionGroup
 
     public function __construct()
     {
-        $this->typeSerializer(PointInTime::class, '{param}->toString()');
-        $this->typeDeserializer(PointInTime::class, '{type}::fromString({param})');
+        $this->typeSerializer(DateTimeImmutable::class, '{param}->format(\'Y-m-d H:i:s.uO\')');
+        $this->typeDeserializer(DateTimeImmutable::class, '{type}::createFromFormat(\'Y-m-d H:i:s.uO\', {param})');
     }
 
     public static function create(string $namespace): DefinitionGroup

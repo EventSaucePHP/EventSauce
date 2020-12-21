@@ -6,13 +6,10 @@ namespace EventSauce\EventSourcing\Time;
 
 use DateTimeImmutable;
 use DateTimeZone;
-use EventSauce\EventSourcing\PointInTime;
 
 interface Clock
 {
-    public function dateTime(): DateTimeImmutable;
-
-    public function pointInTime(): PointInTime;
+    public function currentTime(): DateTimeImmutable;
 
     public function timeZone(): DateTimeZone;
 }

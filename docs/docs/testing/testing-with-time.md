@@ -14,11 +14,11 @@ tooling to help you out.
 public function test_function()
 {
     $clock = $this->clock();
-    $pointInTime = $this->pointInTime();
+    $currentTime = $this->currentTime();
 }
 ```
 
-The `clock` and `pointInTime` methods are available to retrieve the
+The `clock` and `currentTime` methods are available to retrieve the
 `EventSauce\EventSourcing\Time\Clock` and `EventSauce\EventSourcing\Time\PointInTime`
 instances. The implementation of the `Clock` is the
 `EventSauce\EventSourcing\Time\TestClock` which can be fixated.
