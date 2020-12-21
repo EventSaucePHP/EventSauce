@@ -21,11 +21,12 @@ class TypeNormalizer
             ? $type
             : '\\' . $type;
     }
-
     public static function isNativeType(string $type): bool
     {
         try {
-            new ReflectionClass(ltrim($type, '\\'));
+            /** @var class-string $type */
+            $type = ltrim($type, '\\');
+            new ReflectionClass($type);
 
             return false;
         } catch (ReflectionException $isNativeType) {

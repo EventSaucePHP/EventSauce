@@ -12,9 +12,12 @@ final class DummyAggregate implements AggregateRoot
 {
     use AggregateRootBehaviour;
 
+    /**
+     * @var int
+     */
     private $incrementedNumber = 0;
 
-    public static function create(DummyAggregateRootId $aggregateRootId)
+    public static function create(DummyAggregateRootId $aggregateRootId): DummyAggregate
     {
         $aggregate = new static($aggregateRootId);
         $aggregate->recordThat(new AggregateWasInitiated());
