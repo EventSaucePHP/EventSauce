@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
+use DateTimeImmutable;
 use EventSauce\EventSourcing\Time\TestClock;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
@@ -50,9 +51,9 @@ class MessageTest extends TestCase
     {
         $event = EventStub::create('some value');
         $message = new Message($event);
-        $timeOfRecording = (new TestClock())->pointInTime();
-        $message = $message->withHeader(Header::TIME_OF_RECORDING, $timeOfRecording->toString());
-        $this->assertInstanceOf(PointInTime::class, $message->timeOfRecording());
-        $this->assertSame($timeOfRecording->toString(), $message->timeOfRecording()->toString());
+        $timeOfRecording = (new TestClock())->currentTime();
+        $message = $message->withHeader(Header::TIME_OF_RECORDING, $timeOfRecording->format('Y-m-d H:i:s.uO'));
+        $this->assertInstanceOf(DateTimeImmutable::class, $message->timeOfRecording());
+        $this->assertSame($timeOfRecording->format('Y-m-d H:i:s.uO'), $message->timeOfRecording()->format('Y-m-d H:i:s.uO'));
     }
 }

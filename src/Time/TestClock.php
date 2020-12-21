@@ -7,7 +7,6 @@ namespace EventSauce\EventSourcing\Time;
 use DateInterval;
 use DateTimeImmutable;
 use DateTimeZone;
-use EventSauce\EventSourcing\PointInTime;
 use InvalidArgumentException;
 
 class TestClock implements Clock
@@ -52,17 +51,12 @@ class TestClock implements Clock
 
     public function moveForward(DateInterval $interval): void
     {
-        $this->time = $this->dateTime()->add($interval);
+        $this->time = $this->currentTime()->add($interval);
     }
 
-    public function dateTime(): DateTimeImmutable
+    public function currentTime(): DateTimeImmutable
     {
         return $this->time;
-    }
-
-    public function pointInTime(): PointInTime
-    {
-        return PointInTime::fromDateTime($this->dateTime());
     }
 
     public function timeZone(): DateTimeZone

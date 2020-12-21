@@ -6,7 +6,6 @@ namespace EventSauce\EventSourcing\Time;
 
 use DateTimeImmutable;
 use DateTimeZone;
-use EventSauce\EventSourcing\PointInTime;
 
 class SystemClock implements Clock
 {
@@ -20,14 +19,9 @@ class SystemClock implements Clock
         $this->timeZone = $timeZone ?: new DateTimeZone('UTC');
     }
 
-    public function dateTime(): DateTimeImmutable
+    public function currentTime(): DateTimeImmutable
     {
         return new DateTimeImmutable('now', $this->timeZone);
-    }
-
-    public function pointInTime(): PointInTime
-    {
-        return PointInTime::fromDateTime($this->dateTime());
     }
 
     public function timeZone(): DateTimeZone

@@ -21,13 +21,13 @@ class UpcastingEventsTest extends TestCase
     public function upcasting_works(): void
     {
         $clock = new TestClock();
-        $pointInTime = $clock->pointInTime();
+        $pointInTime = $clock->currentTime();
         $defaultDecorator = new DefaultHeadersDecorator(null, $clock);
         $eventType = (new DotSeparatedSnakeCaseInflector())->classNameToType(UpcastedPayloadStub::class);
         $payload = [
             'headers' => [
                 Header::EVENT_TYPE => $eventType,
-                Header::TIME_OF_RECORDING => $pointInTime->toString(),
+                Header::TIME_OF_RECORDING => $pointInTime->format('Y-m-d H:i:s.uO'),
             ],
             'payload' => [],
         ];

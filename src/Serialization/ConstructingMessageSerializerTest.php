@@ -23,11 +23,9 @@ class ConstructingMessageSerializerTest extends TestCase
         $aggregateRootId = DummyAggregateRootId::generate();
         $inflector = new DotSeparatedSnakeCaseInflector();
         $aggregateRootIdType = $inflector->instanceToType($aggregateRootId);
-        $timeOfRecording = (new TestClock())->pointInTime();
         $message = new Message(new EventStub('original value'), [
             Header::AGGREGATE_ROOT_ID => $aggregateRootId,
             Header::AGGREGATE_ROOT_ID_TYPE => $aggregateRootIdType,
-            Header::TIME_OF_RECORDING => $timeOfRecording->toString(),
             Header::EVENT_TYPE => $inflector->classNameToType(EventStub::class),
         ]);
         $serializer = new ConstructingMessageSerializer();

@@ -24,17 +24,13 @@ testing purposes.
 ```php
 <?php
 
-use EventSauce\EventSourcing\PointInTime;
 use EventSauce\EventSourcing\Time\SystemClock;
 
 // By default the UTC time zone is used, you can specify the one you need.
 $clock = new SystemClock(/* optional */ new DateTimeZone('Europe/Amsterdam'));
 
-/** @var DateTimeImmutable $dateTime */
-$dateTime = $clock->dateTime();
-
-/** @var PointInTime $pointInTime */
-$pointInTime = $clock->pointInTime();
+/** @var DateTimeImmutable $currentTime */
+$currentTime = $clock->currentTime();
 
 /** @var DateTimeZone $timeZone */
 $timeZone = $clock->timeZone();
@@ -43,7 +39,6 @@ $timeZone = $clock->timeZone();
 ## Using the TestClock
 
 ```php
-use EventSauce\EventSourcing\PointInTime;
 use EventSauce\EventSourcing\Time\TestClock;
 
 // By default the UTC time zone is used, you can specify the one you need.

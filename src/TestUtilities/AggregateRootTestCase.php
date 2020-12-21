@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\TestUtilities;
 
+use DateTimeImmutable;
 use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
@@ -15,9 +16,7 @@ use EventSauce\EventSourcing\MessageDecorator;
 use EventSauce\EventSourcing\MessageDecoratorChain;
 use EventSauce\EventSourcing\MessageDispatcher;
 use EventSauce\EventSourcing\MessageRepository;
-use EventSauce\EventSourcing\PointInTime;
 use EventSauce\EventSourcing\SynchronousMessageDispatcher;
-use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\Time\TestClock;
 use Exception;
 use LogicException;
@@ -226,12 +225,12 @@ abstract class AggregateRootTestCase extends TestCase
         self::assertEquals([$expectedException], [$caughtException], '>> Exceptions are not equal.');
     }
 
-    protected function pointInTime(): PointInTime
+    protected function currentTime(): DateTimeImmutable
     {
-        return $this->clock->pointInTime();
+        return $this->clock->currentTime();
     }
 
-    protected function clock(): Clock
+    protected function clock(): TestClock
     {
         return $this->clock;
     }
