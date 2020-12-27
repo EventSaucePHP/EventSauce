@@ -33,7 +33,7 @@ state, ready for us to interact with it.
 
 ### Performing actions
 
-Now you that you've got the model, you can perform actions on it.
+Now that you've got the model, you can perform actions on it.
 It is recommended to encapsulate this interaction in a **command
 handler** or **service layer**.
 
