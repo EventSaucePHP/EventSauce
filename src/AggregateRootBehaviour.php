@@ -53,8 +53,8 @@ trait AggregateRootBehaviour
 
     protected function recordThat(object $event): void
     {
-        $this->apply($event);
         $this->recordedEvents[] = $event;
+        $this->apply($event); 
     }
 
     /**
