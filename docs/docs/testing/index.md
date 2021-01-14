@@ -8,7 +8,7 @@ updated_at: 2019-11-09
 
 Event sourced applications are very easy to test. EventSauce ships with test tooling
 that allows for scenario based testing using a given/when/then structure. This kind
-testing is often associated with Behavior Driven Development (BDD).
+of testing is often associated with Behavior Driven Development (BDD).
 
 Tests written in this style are very expressive and easy to read. This makes it
 simple to document business requirements. The test tooling also makes it easy
