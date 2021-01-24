@@ -13,6 +13,7 @@ class EventStager
 
     /**
      * @phpstan-var AggregateRootRepository<AggregateRoot>
+     *
      * @var AggregateRootRepository
      */
     private $repository;
