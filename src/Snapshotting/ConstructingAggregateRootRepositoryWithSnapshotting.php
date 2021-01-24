@@ -33,7 +33,9 @@ final class ConstructingAggregateRootRepositoryWithSnapshotting implements Aggre
     private $snapshotRepository;
 
     /**
-     * @var AggregateRootRepository<T>
+     * @phpstan-var AggregateRootRepository<T>
+     *
+     * @var AggregateRootRepository
      */
     private $regularRepository;
 
