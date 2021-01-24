@@ -154,7 +154,7 @@ abstract class AggregateRootTestCase extends TestCase
     protected function when(...$arguments)
     {
         try {
-            if (!method_exists($this, 'handle')) {
+            if ( ! method_exists($this, 'handle')) {
                 throw new LogicException(sprintf('Class %s is missing a ::handle method.', get_class($this)));
             }
 
