@@ -8,10 +8,11 @@ use EventSauce\EventSourcing\TestUtilities\ConsumerThatSerializesMessages;
 use EventSauce\EventSourcing\Time\Clock;
 use EventSauce\EventSourcing\Time\TestClock;
 use Exception;
-use function get_class;
 use LogicException;
-use function method_exists;
 use PHPUnit\Framework\TestCase;
+
+use function get_class;
+use function method_exists;
 use function sprintf;
 
 /**
@@ -25,6 +26,8 @@ abstract class AggregateRootTestCase extends TestCase
     protected $messageRepository;
 
     /**
+     * @phpstan-var AggregateRootRepository<AggregateRoot>
+     *
      * @var AggregateRootRepository
      */
     protected $repository;
@@ -121,6 +124,9 @@ abstract class AggregateRootTestCase extends TestCase
 
     abstract protected function newAggregateRootId(): AggregateRootId;
 
+    /**
+     * @phpstan-return class-string<AggregateRoot>
+     */
     abstract protected function aggregateRootClassName(): string;
 
     /**
@@ -144,12 +150,13 @@ abstract class AggregateRootTestCase extends TestCase
 
     /**
      * @param mixed[] $arguments
+     *
      * @return $this
      */
     protected function when(...$arguments)
     {
         try {
-            if ( ! method_exists($this, 'handle')) {
+            if (!method_exists($this, 'handle')) {
                 throw new LogicException(sprintf('Class %s is missing a ::handle method.', get_class($this)));
             }
 
@@ -204,8 +211,8 @@ abstract class AggregateRootTestCase extends TestCase
 
         if (
             null !== $caughtException && (
-            null === $expectedException ||
-            get_class($expectedException) !== get_class($caughtException))
+                null === $expectedException ||
+                get_class($expectedException) !== get_class($caughtException))
         ) {
             throw $caughtException;
         }
@@ -244,6 +251,13 @@ abstract class AggregateRootTestCase extends TestCase
         return new MessageDecoratorChain(new DefaultHeadersDecorator());
     }
 
+    /**
+     * @template T of AggregateRoot
+     *
+     * @phpstan-param class-string<T> $className
+     *
+     * @phpstan-return AggregateRootRepository<T>
+     */
     protected function aggregateRootRepository(
         string $className,
         MessageRepository $repository,

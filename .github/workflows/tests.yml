@@ -39,7 +39,7 @@ jobs:
 #          vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no
 
       - name: Run PHPStan
-        run: vendor/bin/phpstan analyze --level max -c phpstan.neon src
+        run: vendor/bin/phpstan analyze -c phpstan.neon
 
       - name: Execute tests
         run: vendor/bin/phpunit --verbose --coverage-text --coverage-clover=coverage.clover
