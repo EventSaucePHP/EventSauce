@@ -21,9 +21,9 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         return DummyAggregate::class;
     }
 
-    protected function commandHandler(AggregateRootRepository $repository, Clock $clock)
+    protected function commandHandler(AggregateRootRepository $repository)
     {
-        return new DummyCommandHandler($repository, $clock);
+        return new DummyCommandHandler($repository);
     }
 
     /**
@@ -141,7 +141,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
 
     protected function handle($command): void
     {
-        $commandHandler = $this->commandHandler($this->repository, $this->clock());
+        $commandHandler = $this->commandHandler($this->repository);
         $commandHandler->handle($command);
     }
 
