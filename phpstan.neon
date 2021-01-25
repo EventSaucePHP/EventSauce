@@ -6,4 +6,4 @@ parameters:
         - %rootDir%/../../../src/CodeGeneration/Fixtures/*
 		- %rootDir%/../../../src/LibraryConsumptionTests/*
 		- *Test.php
-	checkMissingIterableValueType: false
+    checkMissingIterableValueType: false
