@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\TestUtilities;
 
+use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
 use EventSauce\EventSourcing\InMemoryMessageRepository;
