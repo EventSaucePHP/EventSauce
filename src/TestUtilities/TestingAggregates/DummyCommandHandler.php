@@ -10,7 +10,7 @@ use EventSauce\EventSourcing\Time\Clock;
 class DummyCommandHandler
 {
     /**
-     * @var AggregateRootRepository
+     * @var AggregateRootRepository<DummyAggregate>
      */
     private $repository;
 
@@ -19,6 +19,9 @@ class DummyCommandHandler
      */
     private $clock;
 
+    /**
+     * @param AggregateRootRepository<DummyAggregate> $repository
+     */
     public function __construct(AggregateRootRepository $repository, Clock $clock)
     {
         $this->repository = $repository;
