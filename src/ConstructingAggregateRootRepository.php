@@ -8,6 +8,11 @@ use function assert;
 use function count;
 use Generator;
 
+/**
+ * @template T of AggregateRoot
+ *
+ * @template-implements AggregateRootRepository<T>
+ */
 final class ConstructingAggregateRootRepository implements AggregateRootRepository
 {
     /**
@@ -30,6 +35,9 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
      */
     private $dispatcher;
 
+    /**
+     * @param class-string<T> $aggregateRootClassName
+     */
     public function __construct(
         string $aggregateRootClassName,
         MessageRepository $messageRepository,
@@ -45,6 +53,7 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
     public function retrieve(AggregateRootId $aggregateRootId): object
     {
         /** @var AggregateRoot $className */
+        /** @phpstan-var class-string<T> $className */
         $className = $this->aggregateRootClassName;
         $events = $this->retrieveAllEvents($aggregateRootId);
 

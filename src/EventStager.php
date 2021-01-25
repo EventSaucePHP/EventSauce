@@ -12,6 +12,8 @@ class EventStager
     private $id;
 
     /**
+     * @phpstan-var AggregateRootRepository<AggregateRoot>
+     *
      * @var AggregateRootRepository
      */
     private $repository;
@@ -26,8 +28,15 @@ class EventStager
      */
     private $messageRepository;
 
-    public function __construct(AggregateRootId $id, InMemoryMessageRepository $messageRepository, AggregateRootRepository $repository, AggregateRootTestCase $testCase)
-    {
+    /**
+     * @phpstan-param AggregateRootRepository<AggregateRoot> $repository
+     */
+    public function __construct(
+        AggregateRootId $id,
+        InMemoryMessageRepository $messageRepository,
+        AggregateRootRepository $repository,
+        AggregateRootTestCase $testCase
+    ) {
         $this->id = $id;
         $this->repository = $repository;
         $this->testCase = $testCase;

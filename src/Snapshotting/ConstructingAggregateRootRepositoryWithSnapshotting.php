@@ -10,6 +10,11 @@ use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageRepository;
 use Generator;
 
+/**
+ * @template T of AggregateRootWithSnapshotting
+ *
+ * @template-implements AggregateRootRepositoryWithSnapshotting<T>
+ */
 final class ConstructingAggregateRootRepositoryWithSnapshotting implements AggregateRootRepositoryWithSnapshotting
 {
     /**
@@ -28,10 +33,16 @@ final class ConstructingAggregateRootRepositoryWithSnapshotting implements Aggre
     private $snapshotRepository;
 
     /**
+     * @phpstan-var AggregateRootRepository<T>
+     *
      * @var AggregateRootRepository
      */
     private $regularRepository;
 
+    /**
+     * @phpstan-param class-string<T> $regularRepository
+     * @phpstan-param AggregateRootRepository<T> $regularRepository
+     */
     public function __construct(
         string $aggregateRootClassName,
         MessageRepository $messageRepository,
@@ -48,10 +59,11 @@ final class ConstructingAggregateRootRepositoryWithSnapshotting implements Aggre
     {
         $snapshot = $this->snapshotRepository->retrieve($aggregateRootId);
 
-        if ( ! $snapshot instanceof Snapshot) {
+        if (!$snapshot instanceof Snapshot) {
             return $this->retrieve($aggregateRootId);
         }
 
+        /** @phpstan-var T $className */
         /** @var AggregateRootWithSnapshotting $className */
         $className = $this->aggregateRootClassName;
         $events = $this->retrieveAllEventsAfterVersion($aggregateRootId, $snapshot->aggregateRootVersion());

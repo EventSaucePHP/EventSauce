@@ -25,6 +25,8 @@ abstract class AggregateRootTestCase extends TestCase
     protected $messageRepository;
 
     /**
+     * @phpstan-var AggregateRootRepository<AggregateRoot>
+     *
      * @var AggregateRootRepository
      */
     protected $repository;
@@ -121,6 +123,9 @@ abstract class AggregateRootTestCase extends TestCase
 
     abstract protected function newAggregateRootId(): AggregateRootId;
 
+    /**
+     * @phpstan-return class-string<AggregateRoot>
+     */
     abstract protected function aggregateRootClassName(): string;
 
     /**
@@ -244,6 +249,13 @@ abstract class AggregateRootTestCase extends TestCase
         return new MessageDecoratorChain(new DefaultHeadersDecorator());
     }
 
+    /**
+     * @template T of AggregateRoot
+     *
+     * @phpstan-param class-string<T> $className
+     *
+     * @phpstan-return AggregateRootRepository<T>
+     */
     protected function aggregateRootRepository(
         string $className,
         MessageRepository $repository,
