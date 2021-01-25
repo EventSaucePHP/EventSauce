@@ -15,17 +15,11 @@ class DummyCommandHandler
     private $repository;
 
     /**
-     * @var Clock
-     */
-    private $clock;
-
-    /**
      * @param AggregateRootRepository<DummyAggregate> $repository
      */
-    public function __construct(AggregateRootRepository $repository, Clock $clock)
+    public function __construct(AggregateRootRepository $repository)
     {
         $this->repository = $repository;
-        $this->clock = $clock;
     }
 
     /**
