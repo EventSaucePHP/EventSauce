@@ -15,7 +15,7 @@
         "eventsauce/doctrine-message-repository": "Doctrine implementation of the message repository"
     },
     "require": {
-        "php": "^7.2|^8.0"
+        "php": "^7.4|^8.0"
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12.52",
