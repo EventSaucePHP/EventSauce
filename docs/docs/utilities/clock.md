@@ -30,7 +30,7 @@ use EventSauce\EventSourcing\Time\SystemClock;
 $clock = new SystemClock(/* optional */ new DateTimeZone('Europe/Amsterdam'));
 
 /** @var DateTimeImmutable $currentTime */
-$currentTime = $clock->currentTime();
+$currentTime = $clock->now();
 
 /** @var DateTimeZone $timeZone */
 $timeZone = $clock->timeZone();

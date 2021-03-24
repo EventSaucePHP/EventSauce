@@ -7,6 +7,8 @@ namespace EventSauce\EventSourcing\Time;
 use DateTimeZone;
 use PHPUnit\Framework\TestCase;
 
+use function usleep;
+
 class SystemClockTest extends TestCase
 {
     /**
@@ -15,8 +17,9 @@ class SystemClockTest extends TestCase
     public function it_generates_very_precise_date_time_immutables(): void
     {
         $clock = new SystemClock();
-        $d1 = $clock->currentTime();
-        $d2 = $clock->currentTime();
+        $d1 = $clock->now();
+        usleep(1);
+        $d2 = $clock->now();
         $this->assertTrue($d1 < $d2);
     }
 

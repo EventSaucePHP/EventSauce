@@ -30,6 +30,6 @@ class DefaultHeadersDecorator implements MessageDecorator
         return $message->withHeader(
             Header::EVENT_TYPE,
             $this->inflector->instanceToType($message->event())
-        )->withTimeOfRecording($this->clock->currentTime());
+        )->withTimeOfRecording($this->clock->now());
     }
 }

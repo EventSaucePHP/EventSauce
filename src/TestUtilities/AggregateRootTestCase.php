@@ -227,7 +227,7 @@ abstract class AggregateRootTestCase extends TestCase
 
     protected function currentTime(): DateTimeImmutable
     {
-        return $this->clock->currentTime();
+        return $this->clock->now();
     }
 
     protected function clock(): TestClock

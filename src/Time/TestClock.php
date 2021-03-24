@@ -51,10 +51,10 @@ class TestClock implements Clock
 
     public function moveForward(DateInterval $interval): void
     {
-        $this->time = $this->currentTime()->add($interval);
+        $this->time = $this->now()->add($interval);
     }
 
-    public function currentTime(): DateTimeImmutable
+    public function now(): DateTimeImmutable
     {
         return $this->time;
     }
