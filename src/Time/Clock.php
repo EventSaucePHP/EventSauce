@@ -9,7 +9,7 @@ use DateTimeZone;
 
 interface Clock
 {
-    public function currentTime(): DateTimeImmutable;
+    public function now(): DateTimeImmutable;
 
     public function timeZone(): DateTimeZone;
 }

@@ -19,7 +19,7 @@ class SystemClock implements Clock
         $this->timeZone = $timeZone ?: new DateTimeZone('UTC');
     }
 
-    public function currentTime(): DateTimeImmutable
+    public function now(): DateTimeImmutable
     {
         return new DateTimeImmutable('now', $this->timeZone);
     }

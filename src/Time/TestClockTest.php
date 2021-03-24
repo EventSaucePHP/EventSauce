@@ -9,6 +9,8 @@ use DateTimeZone;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
+use function usleep;
+
 class TestClockTest extends TestCase
 {
     /**
@@ -17,8 +19,8 @@ class TestClockTest extends TestCase
     public function getting_back_equal_date_times(): void
     {
         $clock = new TestClock();
-        $d1 = $clock->currentTime();
-        $d2 = $clock->currentTime();
+        $d1 = $clock->now();
+        $d2 = $clock->now();
         $this->assertEquals($d1, $d2);
     }
 
@@ -30,9 +32,9 @@ class TestClockTest extends TestCase
         $clock = new TestClock();
         $clock->fixate('2000-01-01 10:00:00');
         $interval = new DateInterval('PT2H');
-        $d1 = $clock->currentTime();
+        $d1 = $clock->now();
         $clock->moveForward($interval);
-        $d2 = $clock->currentTime();
+        $d2 = $clock->now();
         $diff = $d1->diff($d2);
         $this->assertEquals('2000-01-01 12:00:00', $d2->format('Y-m-d H:i:s'));
         $this->assertTrue($d1 < $d2);
@@ -57,9 +59,10 @@ class TestClockTest extends TestCase
     public function ticking_the_clock_sets_it_forward(): void
     {
         $clock = new TestClock();
-        $d1 = $clock->currentTime();
+        $d1 = $clock->now();
+        usleep(1);
         $clock->tick();
-        $d2 = $clock->currentTime();
+        $d2 = $clock->now();
         $this->assertNotEquals($d1, $d2);
         $this->assertTrue($d1 < $d2);
     }
@@ -71,9 +74,9 @@ class TestClockTest extends TestCase
     {
         $clock = new TestClock();
         $clock->fixate('2017-01-01 12:00:00');
-        $d1 = $clock->currentTime();
+        $d1 = $clock->now();
         $clock->fixate('2016-01-01 12:00:00');
-        $d2 = $clock->currentTime();
+        $d2 = $clock->now();
         $this->assertTrue($d1 > $d2);
     }
 

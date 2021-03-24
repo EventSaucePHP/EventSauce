@@ -51,7 +51,7 @@ class MessageTest extends TestCase
     {
         $event = EventStub::create('some value');
         $message = new Message($event);
-        $timeOfRecording = (new TestClock())->currentTime();
+        $timeOfRecording = (new TestClock())->now();
         $message = $message->withHeader(Header::TIME_OF_RECORDING, $timeOfRecording->format('Y-m-d H:i:s.uO'));
         $this->assertInstanceOf(DateTimeImmutable::class, $message->timeOfRecording());
         $this->assertSame($timeOfRecording->format('Y-m-d H:i:s.uO'), $message->timeOfRecording()->format('Y-m-d H:i:s.uO'));
