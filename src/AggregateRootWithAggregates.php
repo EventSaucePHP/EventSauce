@@ -12,6 +12,11 @@ trait AggregateRootWithAggregates
         AggregateAppliesKnownEvents::apply as applyOnAggregateRoot;
     }
 
+    /**
+     * @var SplObjectStorage|null
+     */
+    private $aggregatesInsideRoot = null;
+
     protected function eventRecorder(): EventRecorder
     {
         static $eventRecorder;
@@ -25,11 +30,6 @@ trait AggregateRootWithAggregates
 
         return $eventRecorder;
     }
-
-    /**
-     * @var SplObjectStorage|null
-     */
-    private $aggregatesInsideRoot;
 
     private function aggregatesInsideRoot(): SplObjectStorage
     {
