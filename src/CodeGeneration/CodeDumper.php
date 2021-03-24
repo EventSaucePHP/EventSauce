@@ -13,6 +13,9 @@ use function sprintf;
 use function ucfirst;
 use function var_export;
 
+/**
+ * Beware, the code you're about to see is ugly.
+ */
 class CodeDumper
 {
     /**
