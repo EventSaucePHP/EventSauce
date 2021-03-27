@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Upcasting;
 
+use EventSauce\Clock\TestClock;
 use EventSauce\EventSourcing\DefaultHeadersDecorator;
 use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\Serialization\ConstructingMessageSerializer;
-use EventSauce\Clock\TestClock;
 use PHPUnit\Framework\TestCase;
 use function iterator_to_array;
 
