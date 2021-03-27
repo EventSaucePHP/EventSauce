@@ -6,7 +6,6 @@ namespace EventSauce\EventSourcing;
 
 use DateTimeImmutable;
 use RuntimeException;
-
 use function assert;
 
 final class Message
@@ -64,8 +63,8 @@ final class Message
 
         assert(
             $timeOfRecording instanceof DateTimeImmutable,
-            "Your messages are not being decorated with the default headers, please " .
-            "ensure your messages are decorated with a time of recording."
+            'Your messages are not being decorated with the default headers, please ' .
+            'ensure your messages are decorated with a time of recording.'
         );
 
         return $timeOfRecording;

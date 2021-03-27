@@ -13,6 +13,8 @@ return PhpCsFixer\Config::create()
         'not_operator_with_space' => true,
         'return_type_declaration' => true,
         'phpdoc_to_return_type' => true,
+        'binary_operator_spaces' => false,
+        'php_unit_method_casing' => ['case' => 'snake_case'],
         'void_return' => true,
         'ordered_imports' => [
             'sort_algorithm' => 'alpha',

@@ -6,7 +6,6 @@ namespace EventSauce\EventSourcing\Time;
 
 use DateTimeZone;
 use PHPUnit\Framework\TestCase;
-
 use function usleep;
 
 class SystemClockTest extends TestCase
