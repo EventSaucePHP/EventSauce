@@ -9,7 +9,7 @@ use EventSauce\EventSourcing\MessageConsumer;
 
 final class SynchronousMessageConsumerStub implements MessageConsumer
 {
-    public $handled = [];
+    public array $handled = [];
 
     public function handle(Message $message): void
     {

@@ -8,11 +8,11 @@ use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootBehaviourWithRequiredHistory;
 use EventSauce\EventSourcing\DummyAggregateRootId;
 
-class AggregateThatRequiredHistoryForReconstitutionStub implements AggregateRoot
+final class AggregateThatRequiredHistoryForReconstitutionStub implements AggregateRoot
 {
     use AggregateRootBehaviourWithRequiredHistory;
 
-    public static function start(DummyAggregateRootId $id): AggregateThatRequiredHistoryForReconstitutionStub
+    public static function start(DummyAggregateRootId $id): self
     {
         $aggregate = new static($id);
         $aggregate->recordThat(new DummyInternalEvent());

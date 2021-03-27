@@ -29,11 +29,11 @@ class SynchronousMessageDispatcherTest extends TestCase
      */
     public function dispatching_using_a_chain(): void
     {
-        $stubconsumer = new SynchronousMessageConsumerStub();
-        $syncDispatcher = new SynchronousMessageDispatcher($stubconsumer);
+        $stubConsumer = new SynchronousMessageConsumerStub();
+        $syncDispatcher = new SynchronousMessageDispatcher($stubConsumer);
         $dispatcherChain = new MessageDispatcherChain($syncDispatcher, $syncDispatcher);
         $message = new Message(new EventStub('value'));
         $dispatcherChain->dispatch($message);
-        $this->assertEquals([$message, $message], $stubconsumer->handled);
+        $this->assertEquals([$message, $message], $stubConsumer->handled);
     }
 }
