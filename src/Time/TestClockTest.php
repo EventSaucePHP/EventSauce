@@ -8,7 +8,6 @@ use DateInterval;
 use DateTimeZone;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-
 use function usleep;
 
 class TestClockTest extends TestCase
