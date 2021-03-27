@@ -37,10 +37,8 @@ abstract class AggregateRootTestCase extends TestCase
 
     /**
      * @phpstan-var AggregateRootRepository<AggregateRoot>
-     *
-     * @var AggregateRootRepository
      */
-    protected $repository;
+    protected AggregateRootRepository $repository;
 
     /**
      * @var Exception|null

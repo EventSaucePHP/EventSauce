@@ -17,15 +17,12 @@ use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 
 class AggregateSnapshottingTest extends AggregateRootTestCase
 {
-    /**
-     * @var InMemorySnapshotRepository
-     */
-    protected $snapshotRepository;
+    protected InMemorySnapshotRepository $snapshotRepository;
 
     /**
      * @var ConstructingAggregateRootRepositoryWithSnapshotting
      */
-    protected $repository;
+    protected AggregateRootRepository $repository;
 
     /**
      * @test

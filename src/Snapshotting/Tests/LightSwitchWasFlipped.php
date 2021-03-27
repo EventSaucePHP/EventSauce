@@ -8,8 +8,8 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class LightSwitchWasFlipped implements SerializablePayload
 {
-    const ON = true;
-    const OFF = false;
+    public const ON = true;
+    public const OFF = false;
 
     /**
      * @var bool
@@ -26,14 +26,14 @@ final class LightSwitchWasFlipped implements SerializablePayload
         return $this->state;
     }
 
-    public static function on(): LightSwitchWasFlipped
+    public static function on(): self
     {
         return new static(self::ON);
     }
 
-    public static function off(): LightSwitchWasFlipped
+    public static function off(): self
     {
-        return new static(self::OFF);
+        return new self(self::OFF);
     }
 
     public function toPayload(): array
@@ -43,6 +43,6 @@ final class LightSwitchWasFlipped implements SerializablePayload
 
     public static function fromPayload(array $payload): self
     {
-        return new static($payload['state']);
+        return new self($payload['state']);
     }
 }
