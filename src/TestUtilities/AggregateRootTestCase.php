@@ -17,7 +17,7 @@ use EventSauce\EventSourcing\MessageDecoratorChain;
 use EventSauce\EventSourcing\MessageDispatcher;
 use EventSauce\EventSourcing\MessageRepository;
 use EventSauce\EventSourcing\SynchronousMessageDispatcher;
-use EventSauce\EventSourcing\Time\TestClock;
+use EventSauce\Clock\TestClock;
 use Exception;
 use LogicException;
 use PHPUnit\Framework\TestCase;

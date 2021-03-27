@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing;
 
 use DateTimeImmutable;
-use EventSauce\EventSourcing\Time\TestClock;
+use EventSauce\Clock\TestClock;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 use Throwable;

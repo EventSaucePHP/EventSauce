@@ -9,7 +9,7 @@ use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\Serialization\ConstructingMessageSerializer;
-use EventSauce\EventSourcing\Time\TestClock;
+use EventSauce\Clock\TestClock;
 use PHPUnit\Framework\TestCase;
 use function iterator_to_array;
 
