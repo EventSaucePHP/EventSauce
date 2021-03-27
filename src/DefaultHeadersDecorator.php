@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
-use EventSauce\EventSourcing\Time\Clock;
-use EventSauce\EventSourcing\Time\SystemClock;
+use EventSauce\Clock\Clock;
+use EventSauce\Clock\SystemClock;
 
 class DefaultHeadersDecorator implements MessageDecorator
 {

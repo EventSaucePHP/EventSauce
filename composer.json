@@ -18,6 +18,7 @@
         "php": "^8.0"
     },
     "require-dev": {
+        "eventsauce/clock": "^1.0",
         "phpstan/phpstan": "^0.12.82",
         "phpunit/phpunit": "^8.5|^9.4",
         "symfony/yaml": "^4.0|^5.0",
