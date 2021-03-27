@@ -11,9 +11,11 @@ use EventSauce\EventSourcing\DummyAggregateRootId;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
-use EventSauce\EventSourcing\Time\Clock;
 use LogicException;
 
+/**
+ * @method DummyAggregateRootId aggregateRootId()
+ */
 class ExampleAggregateRootTest extends AggregateRootTestCase
 {
     protected function aggregateRootClassName(): string
@@ -21,7 +23,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         return DummyAggregate::class;
     }
 
-    protected function commandHandler(AggregateRootRepository $repository)
+    protected function commandHandler(AggregateRootRepository $repository): DummyCommandHandler
     {
         return new DummyCommandHandler($repository);
     }
@@ -139,7 +141,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         $this->assertEquals(2, $messages[1]->header(Header::AGGREGATE_ROOT_VERSION));
     }
 
-    protected function handle($command): void
+    protected function handle(DummyCommand $command): void
     {
         $commandHandler = $this->commandHandler($this->repository);
         $commandHandler->handle($command);

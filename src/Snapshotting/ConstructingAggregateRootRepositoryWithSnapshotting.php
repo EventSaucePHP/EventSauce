@@ -18,48 +18,22 @@ use Generator;
 final class ConstructingAggregateRootRepositoryWithSnapshotting implements AggregateRootRepositoryWithSnapshotting
 {
     /**
-     * @var string
-     */
-    private $aggregateRootClassName;
-
-    /**
-     * @var MessageRepository
-     */
-    private $messageRepository;
-
-    /**
-     * @var SnapshotRepository
-     */
-    private $snapshotRepository;
-
-    /**
-     * @phpstan-var AggregateRootRepository<T>
-     *
-     * @var AggregateRootRepository
-     */
-    private $regularRepository;
-
-    /**
      * @phpstan-param class-string<T> $regularRepository
      * @phpstan-param AggregateRootRepository<T> $regularRepository
      */
     public function __construct(
-        string $aggregateRootClassName,
-        MessageRepository $messageRepository,
-        SnapshotRepository $snapshotRepository,
-        AggregateRootRepository $regularRepository
+        private string $aggregateRootClassName,
+        private MessageRepository $messageRepository,
+        private SnapshotRepository $snapshotRepository,
+        private AggregateRootRepository $regularRepository
     ) {
-        $this->aggregateRootClassName = $aggregateRootClassName;
-        $this->messageRepository = $messageRepository;
-        $this->snapshotRepository = $snapshotRepository;
-        $this->regularRepository = $regularRepository;
     }
 
     public function retrieveFromSnapshot(AggregateRootId $aggregateRootId): object
     {
         $snapshot = $this->snapshotRepository->retrieve($aggregateRootId);
 
-        if (!$snapshot instanceof Snapshot) {
+        if ( ! $snapshot instanceof Snapshot) {
             return $this->retrieve($aggregateRootId);
         }
 

@@ -11,8 +11,5 @@ interface AggregateRootWithSnapshotting extends AggregateRoot
 {
     public function createSnapshot(): Snapshot;
 
-    /**
-     * @return static
-     */
-    public static function reconstituteFromSnapshotAndEvents(Snapshot $snapshot, Generator $events): AggregateRoot;
+    public static function reconstituteFromSnapshotAndEvents(Snapshot $snapshot, Generator $events): static;
 }

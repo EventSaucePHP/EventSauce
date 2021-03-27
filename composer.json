@@ -15,12 +15,13 @@
         "eventsauce/doctrine-message-repository": "Doctrine implementation of the message repository"
     },
     "require": {
-        "php": "^7.4|^8.0"
+        "php": "^8.0"
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12.52",
         "phpunit/phpunit": "^8.5|^9.4",
-        "symfony/yaml": "^4.0|^5.0"
+        "symfony/yaml": "^4.0|^5.0",
+        "friendsofphp/php-cs-fixer": "^2.18.4"
     },
     "autoload": {
         "psr-4": {

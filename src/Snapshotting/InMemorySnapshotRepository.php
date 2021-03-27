@@ -11,11 +11,11 @@ final class InMemorySnapshotRepository implements SnapshotRepository
     /**
      * @var array<string,Snapshot>
      */
-    private $snapshots = [];
+    private array $snapshots = [];
 
     public function persist(Snapshot $snapshot): void
     {
-        $this->snapshots[$snapshot->aggregateRootId()->toString()] = $snapshot;
+        $this->snapshots[$snapshot->aggregateRootId()->toString()] = clone $snapshot;
     }
 
     public function retrieve(AggregateRootId $id): ?Snapshot

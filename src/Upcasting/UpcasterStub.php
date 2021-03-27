@@ -8,11 +8,11 @@ use Generator;
 
 class UpcasterStub implements Upcaster
 {
-    public function upcast(array $payload): Generator
+    public function upcast(array $message): Generator
     {
-        $payload['payload']['property'] = 'upcasted';
-        $payload['headers']['version'] = 1;
+        $message['payload']['property'] = 'upcasted';
+        $message['headers']['version'] = 1;
 
-        yield $payload;
+        yield $message;
     }
 }

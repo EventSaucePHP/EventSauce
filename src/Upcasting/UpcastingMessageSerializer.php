@@ -10,15 +10,8 @@ use Generator;
 
 class UpcastingMessageSerializer implements MessageSerializer
 {
-    /**
-     * @var MessageSerializer
-     */
-    private $eventSerializer;
-
-    /**
-     * @var Upcaster
-     */
-    private $upcaster;
+    private MessageSerializer $eventSerializer;
+    private Upcaster $upcaster;
 
     public function __construct(MessageSerializer $eventSerializer, Upcaster $upcaster)
     {

@@ -10,15 +10,8 @@ use LogicException;
 
 class TestedMessageConsumer implements MessageConsumer
 {
-    /**
-     * @var int
-     */
-    private $failAfterNumberOfMessages;
-
-    /**
-     * @var int
-     */
-    private $numberOfMessagesProcessed = 0;
+    private int $failAfterNumberOfMessages;
+    private int $numberOfMessagesProcessed = 0;
 
     public function __construct(int $failAfterNumberOfMessages)
     {

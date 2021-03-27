@@ -12,40 +12,14 @@ use EventSauce\EventSourcing\InMemoryMessageRepository;
 class EventStager
 {
     /**
-     * @var AggregateRootId
-     */
-    private $id;
-
-    /**
-     * @phpstan-var AggregateRootRepository<AggregateRoot>
-     *
-     * @var AggregateRootRepository
-     */
-    private $repository;
-
-    /**
-     * @var AggregateRootTestCase
-     */
-    private $testCase;
-
-    /**
-     * @var InMemoryMessageRepository
-     */
-    private $messageRepository;
-
-    /**
      * @phpstan-param AggregateRootRepository<AggregateRoot> $repository
      */
     public function __construct(
-        AggregateRootId $id,
-        InMemoryMessageRepository $messageRepository,
-        AggregateRootRepository $repository,
-        AggregateRootTestCase $testCase
+        private AggregateRootId $id,
+        private InMemoryMessageRepository $messageRepository,
+        private AggregateRootRepository $repository,
+        private AggregateRootTestCase $testCase
     ) {
-        $this->id = $id;
-        $this->repository = $repository;
-        $this->testCase = $testCase;
-        $this->messageRepository = $messageRepository;
     }
 
     public function stage(object ...$events): AggregateRootTestCase

@@ -9,6 +9,9 @@ use EventSauce\EventSourcing\DummyAggregateRootId;
 use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 use LogicException;
 
+/**
+ * @method DummyAggregateRootId aggregateRootId()
+ */
 class TestCaseMustHaveHandleMethodsTest extends AggregateRootTestCase
 {
     protected function newAggregateRootId(): AggregateRootId

@@ -5,17 +5,16 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootRepository;
-use EventSauce\EventSourcing\Time\Clock;
 
 class DummyCommandHandler
 {
     /**
-     * @var AggregateRootRepository<DummyAggregate>
+     * @phpstan-var AggregateRootRepository<DummyAggregate>
      */
-    private $repository;
+    private AggregateRootRepository $repository;
 
     /**
-     * @param AggregateRootRepository<DummyAggregate> $repository
+     * @phpstan-param AggregateRootRepository<DummyAggregate> $repository
      */
     public function __construct(AggregateRootRepository $repository)
     {

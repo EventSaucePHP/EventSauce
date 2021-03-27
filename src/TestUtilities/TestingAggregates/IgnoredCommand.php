@@ -8,10 +8,7 @@ use EventSauce\EventSourcing\DummyAggregateRootId;
 
 class IgnoredCommand implements DummyCommand
 {
-    /**
-     * @var DummyAggregateRootId
-     */
-    private $aggregateRootId;
+    private DummyAggregateRootId $aggregateRootId;
 
     public function __construct(DummyAggregateRootId $aggregateRootId)
     {

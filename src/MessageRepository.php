@@ -8,10 +8,7 @@ use Generator;
 
 interface MessageRepository
 {
-    /**
-     * @return void
-     */
-    public function persist(Message ...$messages);
+    public function persist(Message ...$messages): void;
 
     /**
      * @return Generator<Message>

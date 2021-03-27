@@ -8,12 +8,9 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class FirstEvent implements SerializablePayload
 {
-    private string $firstField;
-
     public function __construct(
-        string $firstField
+        private string $firstField
     ) {
-        $this->firstField = $firstField;
     }
 
     public function firstField(): string
@@ -21,7 +18,7 @@ final class FirstEvent implements SerializablePayload
         return $this->firstField;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new FirstEvent(
             (string) $payload['firstField']
@@ -49,7 +46,7 @@ final class FirstEvent implements SerializablePayload
     /**
      * @codeCoverageIgnore
      */
-    public static function with(): FirstEvent
+    public static function withDefaults(): FirstEvent
     {
         return new FirstEvent(
             (string) 'FIRST'
@@ -59,12 +56,9 @@ final class FirstEvent implements SerializablePayload
 
 final class SecondEvent implements SerializablePayload
 {
-    private string $secondField;
-
     public function __construct(
-        string $secondField
+        private string $secondField
     ) {
-        $this->secondField = $secondField;
     }
 
     public function secondField(): string
@@ -72,7 +66,7 @@ final class SecondEvent implements SerializablePayload
         return $this->secondField;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new SecondEvent(
             (string) $payload['secondField']
@@ -100,7 +94,7 @@ final class SecondEvent implements SerializablePayload
     /**
      * @codeCoverageIgnore
      */
-    public static function with(): SecondEvent
+    public static function withDefaults(): SecondEvent
     {
         return new SecondEvent(
             (string) 'SECOND'

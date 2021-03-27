@@ -12,10 +12,7 @@ final class DummyAggregate implements AggregateRoot
 {
     use AggregateRootBehaviour;
 
-    /**
-     * @var int
-     */
-    private $incrementedNumber = 0;
+    private int $incrementedNumber = 0;
 
     public static function create(DummyAggregateRootId $aggregateRootId): DummyAggregate
     {

@@ -78,7 +78,7 @@ EOF;
         foreach ($definitions as $definition) {
             $name = $definition->name();
             $interfaces = $definition->interfaces();
-            $fields = $this->dumpFields($definition);
+//            $fields = $this->dumpFields($definition);
             $constructor = $this->dumpConstructor($definition);
             $methods = $this->dumpMethods($definition);
             $deserializer = $this->dumpSerializationMethods($definition);
@@ -87,7 +87,7 @@ EOF;
                 $interfaces[] = 'SerializablePayload';
             }
             $implements = empty($interfaces) ? '' : ' implements ' . implode(', ', $interfaces);
-            $allSections = [$fields, $constructor, $methods, $deserializer, $testHelpers];
+            $allSections = [$constructor, $methods, $deserializer, $testHelpers];
             $allSections = array_filter(array_map('rtrim', $allSections));
             $allCode = implode("\n\n", $allSections);
             $code[] = <<<EOF
@@ -121,19 +121,8 @@ EOF;
 
     private function dumpField(string $type, string $name): string
     {
-        if ($this->typedProperties) {
-            return <<<EOF
-    private $type \$$name;
-
-
-EOF;
-        }
-
         return <<<EOF
-    /**
-     * @var $type
-     */
-    private \$$name;
+    private $type \$$name;
 
 
 EOF;
@@ -142,24 +131,20 @@ EOF;
     private function dumpConstructor(PayloadDefinition $definition): string
     {
         $arguments = [];
-        $assignments = [];
         $fields = $this->fieldsFromDefinition($definition);
         if (empty($fields)) {
             return '';
         }
         foreach ($fields as $field) {
             $resolvedType = $this->definitionGroup->resolveTypeAlias($field['type']);
-            $arguments[] = sprintf('        %s $%s', $resolvedType, $field['name']);
-            $assignments[] = sprintf('        $this->%s = $%s;', $field['name'], $field['name']);
+            $arguments[] = sprintf('        private %s $%s', $resolvedType, $field['name']);
         }
         $arguments = implode(",\n", $arguments);
-        $assignments = implode("\n", $assignments);
 
         return <<<EOF
     public function __construct(
 $arguments
     ) {
-$assignments
     }
 EOF;
     }
@@ -210,7 +195,7 @@ EOF;
         }
 
         return <<<EOF
-    public static function fromPayload(array \$payload): SerializablePayload
+    public static function fromPayload(array \$payload): self
     {
         return new $name($arguments);
     }
@@ -256,7 +241,8 @@ EOF;
 EOF;
             }
         }
-        $constructor = sprintf('with%s', implode('And', $constructor));
+        $values = count($constructor) > 0 ? implode('And', $constructor) : 'Defaults';
+        $constructor = sprintf('with%s', $values);
         $constructorValues = implode(",\n            ", $constructorValues);
         if ('' !== $constructorValues) {
             $constructorValues = "\n            $constructorValues\n        ";

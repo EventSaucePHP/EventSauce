@@ -12,7 +12,7 @@ class AggregateThatRequiredHistoryForReconstitutionStub implements AggregateRoot
 {
     use AggregateRootBehaviourWithRequiredHistory;
 
-    public static function start(DummyAggregateRootId $id)
+    public static function start(DummyAggregateRootId $id): AggregateThatRequiredHistoryForReconstitutionStub
     {
         $aggregate = new static($id);
         $aggregate->recordThat(new DummyInternalEvent());

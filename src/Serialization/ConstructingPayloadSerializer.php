@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Serialization;
 
+use function assert;
+
 class ConstructingPayloadSerializer implements PayloadSerializer
 {
-    /**
-     * @param SerializablePayload $event
-     */
     public function serializePayload(object $event): array
     {
+        assert($event instanceof SerializablePayload);
+
         return $event->toPayload();
     }
 

@@ -16,13 +16,8 @@ interface AggregateRootRepository
 
     /**
      * @phpstan-param T $aggregateRoot
-     *
-     * @return void
      */
-    public function persist(object $aggregateRoot);
+    public function persist(object $aggregateRoot): void;
 
-    /**
-     * @return void
-     */
-    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events);
+    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events): void;
 }

@@ -8,22 +8,10 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class UserSubscribedFromMailingList implements SerializablePayload
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $mailingList;
-
     public function __construct(
-        string $username,
-        string $mailingList
+        private string $username,
+        private string $mailingList
     ) {
-        $this->username = $username;
-        $this->mailingList = $mailingList;
     }
 
     public function username(): string
@@ -36,7 +24,7 @@ final class UserSubscribedFromMailingList implements SerializablePayload
         return $this->mailingList;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new UserSubscribedFromMailingList(
             (string) $payload['username'],
@@ -55,22 +43,10 @@ final class UserSubscribedFromMailingList implements SerializablePayload
 
 final class SubscribeToMailingList implements SerializablePayload
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $mailingList;
-
     public function __construct(
-        string $username,
-        string $mailingList
+        private string $username,
+        private string $mailingList
     ) {
-        $this->username = $username;
-        $this->mailingList = $mailingList;
     }
 
     public function username(): string
@@ -83,7 +59,7 @@ final class SubscribeToMailingList implements SerializablePayload
         return $this->mailingList;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new SubscribeToMailingList(
             (string) $payload['username'],
@@ -102,29 +78,11 @@ final class SubscribeToMailingList implements SerializablePayload
 
 final class UnsubscribeFromMailingList implements SerializablePayload
 {
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $mailingList;
-
-    /**
-     * @var string
-     */
-    private $reason;
-
     public function __construct(
-        string $username,
-        string $mailingList,
-        string $reason
+        private string $username,
+        private string $mailingList,
+        private string $reason
     ) {
-        $this->username = $username;
-        $this->mailingList = $mailingList;
-        $this->reason = $reason;
     }
 
     public function username(): string
@@ -142,7 +100,7 @@ final class UnsubscribeFromMailingList implements SerializablePayload
         return $this->reason;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new UnsubscribeFromMailingList(
             (string) $payload['username'],

@@ -9,10 +9,7 @@ use DateTimeZone;
 
 class SystemClock implements Clock
 {
-    /**
-     * @var DateTimeZone
-     */
-    private $timeZone;
+    private DateTimeZone $timeZone;
 
     public function __construct(DateTimeZone $timeZone = null)
     {

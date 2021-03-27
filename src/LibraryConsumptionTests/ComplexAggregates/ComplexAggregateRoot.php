@@ -11,18 +11,15 @@ class ComplexAggregateRoot implements AggregateRoot
 {
     use AggregateRootWithAggregates;
 
-    /**
-     * @var DelegatedBehaviorInAggregate
-     */
-    private $delegatedAggregate;
+    private DelegatedBehaviorInAggregate $delegatedAggregate;
 
-    protected function applyDelegatedAggregateWasChosen(DelegatedAggregateWasChosen $event)
+    protected function applyDelegatedAggregateWasChosen(DelegatedAggregateWasChosen $event): void
     {
         $this->delegatedAggregate = new DelegatedBehaviorInAggregate($this->eventRecorder());
         $this->registerAggregate($this->delegatedAggregate);
     }
 
-    protected function applyDelegatedAggregateWasDiscarded(DelegatedAggregateWasDiscarded $event)
+    protected function applyDelegatedAggregateWasDiscarded(DelegatedAggregateWasDiscarded $event): void
     {
         $this->unregisterAggregate($this->delegatedAggregate);
     }

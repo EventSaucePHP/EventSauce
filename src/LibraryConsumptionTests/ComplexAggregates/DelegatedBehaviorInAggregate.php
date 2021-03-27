@@ -12,16 +12,10 @@ class DelegatedBehaviorInAggregate implements EventSourcedAggregate
 {
     use AggregateAppliesKnownEvents;
 
-    /**
-     * @var EventRecorder
-     */
-    private $eventRecorder;
+    private int $counter = 0;
 
-    private $counter = 0;
-
-    public function __construct(EventRecorder $eventRecorder)
+    public function __construct(private EventRecorder $eventRecorder)
     {
-        $this->eventRecorder = $eventRecorder;
     }
 
     public function performAction(): void

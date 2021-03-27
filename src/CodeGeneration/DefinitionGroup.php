@@ -10,25 +10,18 @@ use function array_key_exists;
 
 final class DefinitionGroup
 {
-    /**
-     * @var string
-     */
-    private $namespace;
+    private string $namespace;
 
     /**
      * @var PayloadDefinition[]
      */
-    private $events = [];
+    private array $events = [];
+    private array $defaults = [];
 
     /**
-     * @var array
+     * @var array<string, string>
      */
-    private $defaults = [];
-
-    /**
-     * @var array
-     */
-    private $typeSerializer = [
+    private array $typeSerializer = [
         'string' => '({type}) {param}',
         'array' => '({type}) {param}',
         'integer' => '({type}) {param}',
@@ -38,9 +31,9 @@ final class DefinitionGroup
     ];
 
     /**
-     * @var array
+     * @var array<string, string>
      */
-    private $typeDeserializer = [
+    private array $typeDeserializer = [
         'string' => '({type}) {param}',
         'array' => '({type}) {param}',
         'integer' => '({type}) {param}',
@@ -50,29 +43,29 @@ final class DefinitionGroup
     ];
 
     /**
-     * @var array
+     * @var array<string, string>
      */
-    private $fieldSerializer = [];
+    private array $fieldSerializer = [];
 
     /**
-     * @var array
+     * @var array<string, string>
      */
-    private $fieldDeserializer = [];
+    private array $fieldDeserializer = [];
 
     /**
      * @var PayloadDefinition[]
      */
-    private $commands = [];
+    private array $commands = [];
 
     /**
-     * @var string[]
+     * @var array<string, string>
      */
-    private $typeAliases = [];
+    private array $typeAliases = [];
 
     /**
-     * @var string[]
+     * @var array<string, string>
      */
-    private $interfaces = [];
+    private array $interfaces = [];
 
     public function __construct()
     {
@@ -176,10 +169,7 @@ final class DefinitionGroup
         return $this->defaults[$field]['type'] ?? 'string';
     }
 
-    /**
-     * @return mixed
-     */
-    public function exampleForField(string $field)
+    public function exampleForField(string $field): mixed
     {
         return $this->defaults[$field]['example'] ?? null;
     }

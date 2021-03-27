@@ -6,40 +6,17 @@ namespace EventSauce\EventSourcing\CodeGeneration;
 
 final class PayloadDefinition
 {
-    /**
-     * @var DefinitionGroup
-     */
-    private $group;
-
-    /**
-     * @var string
-     */
-    private $name;
+    private DefinitionGroup $group;
+    private string $name;
 
     /**
      * @var array[]
      */
-    private $fields = [];
-
-    /**
-     * @var string
-     */
-    private $fieldsFrom = '';
-
-    /**
-     * @var array
-     */
-    private $fieldSerializers = [];
-
-    /**
-     * @var array
-     */
-    private $fieldDeserializers = [];
-
-    /**
-     * @var string[]
-     */
-    private $interfaces = [];
+    private array $fields = [];
+    private string $fieldsFrom = '';
+    private array $fieldSerializers = [];
+    private array $fieldDeserializers = [];
+    private array $interfaces = [];
 
     public function __construct(DefinitionGroup $group, string $name)
     {

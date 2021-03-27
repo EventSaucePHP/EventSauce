@@ -8,15 +8,9 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class BaseEvent implements SerializablePayload
 {
-    /**
-     * @var int
-     */
-    private $age;
-
     public function __construct(
-        int $age
+        private int $age
     ) {
-        $this->age = $age;
     }
 
     public function age(): int
@@ -24,7 +18,7 @@ final class BaseEvent implements SerializablePayload
         return $this->age;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new BaseEvent(
             (int) $payload['age']
@@ -41,15 +35,9 @@ final class BaseEvent implements SerializablePayload
 
 final class ExtendedEvent implements SerializablePayload
 {
-    /**
-     * @var int
-     */
-    private $age;
-
     public function __construct(
-        int $age
+        private int $age
     ) {
-        $this->age = $age;
     }
 
     public function age(): int
@@ -57,7 +45,7 @@ final class ExtendedEvent implements SerializablePayload
         return $this->age;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new ExtendedEvent(
             (int) $payload['age']
@@ -74,15 +62,9 @@ final class ExtendedEvent implements SerializablePayload
 
 final class BaseCommand implements SerializablePayload
 {
-    /**
-     * @var string
-     */
-    private $name;
-
     public function __construct(
-        string $name
+        private string $name
     ) {
-        $this->name = $name;
     }
 
     public function name(): string
@@ -90,7 +72,7 @@ final class BaseCommand implements SerializablePayload
         return $this->name;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new BaseCommand(
             (string) $payload['name']
@@ -107,15 +89,9 @@ final class BaseCommand implements SerializablePayload
 
 final class ExtendedCommand implements SerializablePayload
 {
-    /**
-     * @var string
-     */
-    private $name;
-
     public function __construct(
-        string $name
+        private string $name
     ) {
-        $this->name = $name;
     }
 
     public function name(): string
@@ -123,7 +99,7 @@ final class ExtendedCommand implements SerializablePayload
         return $this->name;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new ExtendedCommand(
             (string) $payload['name']
