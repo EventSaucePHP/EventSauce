@@ -150,16 +150,14 @@ abstract class AggregateRootTestCase extends TestCase
         return $this;
     }
 
-    /**
-     * @return EventStager
-     */
-    public function on(AggregateRootId $id)
+    public function on(AggregateRootId $id): EventStager
     {
         return new EventStager($id, $this->messageRepository, $this->repository, $this);
     }
 
     /**
      * @param mixed[] $arguments
+     *
      * @return $this
      */
     protected function when(...$arguments)

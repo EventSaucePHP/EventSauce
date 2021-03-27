@@ -8,15 +8,9 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class EventWithDescription implements SerializablePayload
 {
-    /**
-     * @var string
-     */
-    private $description;
-
     public function __construct(
-        string $description
+        private string $description
     ) {
-        $this->description = $description;
     }
 
     public function description(): string
@@ -24,7 +18,7 @@ final class EventWithDescription implements SerializablePayload
         return $this->description;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new EventWithDescription(
             (string) $payload['description']
@@ -52,7 +46,7 @@ final class EventWithDescription implements SerializablePayload
     /**
      * @codeCoverageIgnore
      */
-    public static function with(): EventWithDescription
+    public static function withDefaults(): EventWithDescription
     {
         return new EventWithDescription(
             (string) 'This is a description.'

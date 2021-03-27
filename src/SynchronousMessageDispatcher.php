@@ -9,7 +9,7 @@ final class SynchronousMessageDispatcher implements MessageDispatcher
     /**
      * @var MessageConsumer[]
      */
-    private $consumers;
+    private array $consumers;
 
     public function __construct(MessageConsumer ...$consumers)
     {

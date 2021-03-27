@@ -8,6 +8,9 @@ use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\DummyAggregateRootId;
 use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 
+/**
+ * @method DummyAggregateRootId aggregateRootId()
+ */
 class ComplexAggregateRootTest extends AggregateRootTestCase
 {
     protected function newAggregateRootId(): AggregateRootId

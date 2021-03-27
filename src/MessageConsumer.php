@@ -6,8 +6,5 @@ namespace EventSauce\EventSourcing;
 
 interface MessageConsumer
 {
-    /**
-     * @return void
-     */
-    public function handle(Message $message);
+    public function handle(Message $message): void;
 }

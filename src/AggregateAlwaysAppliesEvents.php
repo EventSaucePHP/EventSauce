@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing;
 
 trait AggregateAlwaysAppliesEvents
 {
-    private $aggregateRootVersion = 0;
+    private int $aggregateRootVersion = 0;
 
     protected function apply(object $event): void
     {

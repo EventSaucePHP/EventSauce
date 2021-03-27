@@ -15,16 +15,8 @@ class TestClock implements Clock
      * @private
      */
     const FORMAT_OF_TIME = 'Y-m-d H:i:s.uO';
-
-    /**
-     * @var DateTimeImmutable
-     */
-    private $time;
-
-    /**
-     * @var DateTimeZone
-     */
-    private $timeZone;
+    private DateTimeImmutable $time;
+    private DateTimeZone $timeZone;
 
     public function __construct(DateTimeZone $timeZone = null)
     {

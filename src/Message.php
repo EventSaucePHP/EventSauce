@@ -7,30 +7,17 @@ namespace EventSauce\EventSourcing;
 use DateTimeImmutable;
 use RuntimeException;
 
+use function assert;
+
 final class Message
 {
     private const TIME_OF_RECORDING_FORMAT = 'Y-m-d H:i:s.uO';
 
-    /**
-     * @var object
-     */
-    private $event;
-
-    /**
-     * @var array
-     */
-    private $headers;
-
-    public function __construct(object $event, array $headers = [])
+    public function __construct(private object $event, private array $headers = [])
     {
-        $this->event = $event;
-        $this->headers = $headers;
     }
 
-    /**
-     * @param mixed $value
-     */
-    public function withHeader(string $key, $value): Message
+    public function withHeader(string $key, int|string|null|AggregateRootId $value): Message
     {
         $clone = clone $this;
         $clone->headers[$key] = $value;
@@ -69,17 +56,22 @@ final class Message
 
     public function timeOfRecording(): DateTimeImmutable
     {
-        /** @var DateTimeImmutable */
-        return DateTimeImmutable::createFromFormat(
+        /* @var DateTimeImmutable */
+        $timeOfRecording = DateTimeImmutable::createFromFormat(
             self::TIME_OF_RECORDING_FORMAT,
-            $this->headers[Header::TIME_OF_RECORDING]
+            $this->headers[Header::TIME_OF_RECORDING] ?? ''
         );
+
+        assert(
+            $timeOfRecording instanceof DateTimeImmutable,
+            "Your messages are not being decorated with the default headers, please " .
+            "ensure your messages are decorated with a time of recording."
+        );
+
+        return $timeOfRecording;
     }
 
-    /**
-     * @return mixed|null
-     */
-    public function header(string $key)
+    public function header(string $key): int|string|array|AggregateRootId|null
     {
         return $this->headers[$key] ?? null;
     }

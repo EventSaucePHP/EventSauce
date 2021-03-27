@@ -6,9 +6,7 @@ namespace EventSauce\EventSourcing;
 
 class EventRecorder
 {
-    /**
-     * @var callable
-     */
+    /** @var callable */
     private $recorder;
 
     public function __construct(callable $recorder)

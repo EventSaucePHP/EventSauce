@@ -15,25 +15,11 @@ use function count;
  */
 final class ConstructingAggregateRootRepository implements AggregateRootRepository
 {
-    /**
-     * @var string
-     */
-    private $aggregateRootClassName;
-
-    /**
-     * @var MessageRepository
-     */
-    private $messages;
-
-    /**
-     * @var MessageDecorator
-     */
-    private $decorator;
-
-    /**
-     * @var MessageDispatcher
-     */
-    private $dispatcher;
+    /** @var class-string<T> */
+    private string $aggregateRootClassName;
+    private MessageRepository $messages;
+    private MessageDecorator $decorator;
+    private MessageDispatcher $dispatcher;
 
     /**
      * @param class-string<T> $aggregateRootClassName
@@ -94,12 +80,10 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
         // of recording.
         $aggregateRootVersion = $aggregateRootVersion - count($events);
         $metadata = [Header::AGGREGATE_ROOT_ID => $aggregateRootId];
-        $messages = array_map(function (object $event) use ($metadata, &$aggregateRootVersion) {
-            return $this->decorator->decorate(new Message(
-                $event,
-                $metadata + [Header::AGGREGATE_ROOT_VERSION => ++$aggregateRootVersion]
-            ));
-        }, $events);
+        $messages = array_map(fn (object $event) => $this->decorator->decorate(new Message(
+            $event,
+            $metadata + [Header::AGGREGATE_ROOT_VERSION => ++$aggregateRootVersion]
+        )), $events);
 
         $this->messages->persist(...$messages);
         $this->dispatcher->dispatch(...$messages);

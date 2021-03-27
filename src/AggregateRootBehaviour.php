@@ -15,20 +15,10 @@ trait AggregateRootBehaviour
         apply as protected;
     }
 
-    /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
-     * @var int
-     */
-    private $aggregateRootVersion = 0;
-
-    /**
-     * @var object[]
-     */
-    private $recordedEvents = [];
+    private AggregateRootId $aggregateRootId;
+    private int $aggregateRootVersion = 0;
+    /** @var object[] */
+    private array $recordedEvents = [];
 
     private function __construct(AggregateRootId $aggregateRootId)
     {
@@ -68,9 +58,8 @@ trait AggregateRootBehaviour
     /**
      * @see AggregateRoot::reconstituteFromEvents
      */
-    public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot
+    public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): static
     {
-        /** @var AggregateRoot&static $aggregateRoot */
         $aggregateRoot = new static($aggregateRootId);
 
         /** @var object $event */
@@ -80,7 +69,6 @@ trait AggregateRootBehaviour
 
         $aggregateRoot->aggregateRootVersion = $events->getReturn() ?: 0;
 
-        /* @var AggregateRoot $aggregateRoot */
         return $aggregateRoot;
     }
 }

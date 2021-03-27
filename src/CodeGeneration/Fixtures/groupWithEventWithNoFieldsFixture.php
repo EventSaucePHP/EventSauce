@@ -8,7 +8,7 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class WithoutFields implements SerializablePayload
 {
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new WithoutFields();
     }
@@ -21,7 +21,7 @@ final class WithoutFields implements SerializablePayload
     /**
      * @codeCoverageIgnore
      */
-    public static function with(): WithoutFields
+    public static function withDefaults(): WithoutFields
     {
         return new WithoutFields();
     }

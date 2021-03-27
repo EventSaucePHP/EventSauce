@@ -9,15 +9,8 @@ use EventSauce\EventSourcing\Time\SystemClock;
 
 class DefaultHeadersDecorator implements MessageDecorator
 {
-    /**
-     * @var ClassNameInflector
-     */
-    private $inflector;
-
-    /**
-     * @var Clock
-     */
-    private $clock;
+    private ClassNameInflector $inflector;
+    private Clock $clock;
 
     public function __construct(ClassNameInflector $inflector = null, Clock $clock = null)
     {

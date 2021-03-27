@@ -8,7 +8,7 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class EventWithInterfaceMarker implements \EventSauce\EventSourcing\CodeGeneration\Fixtures\MarkerInterfaceStub, SerializablePayload
 {
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new EventWithInterfaceMarker();
     }
@@ -21,7 +21,7 @@ final class EventWithInterfaceMarker implements \EventSauce\EventSourcing\CodeGe
 
 final class CommandWithInterfaceMarker implements \EventSauce\EventSourcing\CodeGeneration\Fixtures\MarkerInterfaceStub, SerializablePayload
 {
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new CommandWithInterfaceMarker();
     }
@@ -34,7 +34,7 @@ final class CommandWithInterfaceMarker implements \EventSauce\EventSourcing\Code
 
 final class AlsoCommandWithInterfaceMarker implements \EventSauce\EventSourcing\CodeGeneration\Fixtures\MarkerInterfaceStub, SerializablePayload
 {
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new AlsoCommandWithInterfaceMarker();
     }

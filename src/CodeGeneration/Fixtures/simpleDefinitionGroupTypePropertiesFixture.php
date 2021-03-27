@@ -8,16 +8,10 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class SomethingHappened implements SerializablePayload
 {
-    private string $what;
-
-    private bool $yolo;
-
     public function __construct(
-        string $what,
-        bool $yolo
+        private string $what,
+        private bool $yolo
     ) {
-        $this->what = $what;
-        $this->yolo = $yolo;
     }
 
     public function what(): string
@@ -30,7 +24,7 @@ final class SomethingHappened implements SerializablePayload
         return $this->yolo;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new SomethingHappened(
             (string) $payload['what'],
@@ -71,7 +65,7 @@ final class SomethingHappened implements SerializablePayload
     /**
      * @codeCoverageIgnore
      */
-    public static function with(): SomethingHappened
+    public static function withDefaults(): SomethingHappened
     {
         return new SomethingHappened(
             (string) 'Example Event',

@@ -13,15 +13,8 @@ use Generator;
 
 final class ConstructingMessageSerializer implements MessageSerializer
 {
-    /**
-     * @var ClassNameInflector
-     */
-    private $classNameInflector;
-
-    /**
-     * @var PayloadSerializer
-     */
-    private $payloadSerializer;
+    private ClassNameInflector $classNameInflector;
+    private PayloadSerializer $payloadSerializer;
 
     public function __construct(
         ClassNameInflector $classNameInflector = null,

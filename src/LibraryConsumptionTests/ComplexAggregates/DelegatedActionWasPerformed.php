@@ -8,14 +8,8 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 class DelegatedActionWasPerformed implements SerializablePayload
 {
-    /**
-     * @var int
-     */
-    private $counter;
-
-    public function __construct(int $counter)
+    public function __construct(private int $counter)
     {
-        $this->counter = $counter;
     }
 
     public function toPayload(): array
@@ -23,7 +17,7 @@ class DelegatedActionWasPerformed implements SerializablePayload
         return ['counter' => $this->counter];
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new DelegatedActionWasPerformed($payload['counter']);
     }

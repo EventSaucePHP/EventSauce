@@ -11,10 +11,7 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
  */
 class DummyIncrementingHappened implements SerializablePayload
 {
-    /**
-     * @var int
-     */
-    private $number = 0;
+    private int $number;
 
     public function __construct(int $number)
     {
@@ -26,7 +23,7 @@ class DummyIncrementingHappened implements SerializablePayload
         return ['number' => $this->number];
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new DummyIncrementingHappened($payload['number']);
     }

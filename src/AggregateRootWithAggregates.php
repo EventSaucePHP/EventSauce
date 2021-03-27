@@ -21,11 +21,8 @@ trait AggregateRootWithAggregates
     {
         static $eventRecorder;
 
-        if ($eventRecorder === null) {
-
-            $eventRecorder = new EventRecorder(function(object $event) {
-                $this->recordThat($event);
-            });
+        if (null === $eventRecorder) {
+            $eventRecorder = new EventRecorder(fn (object $event) => $this->recordThat($event));
         }
 
         return $eventRecorder;

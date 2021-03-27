@@ -32,7 +32,7 @@ final class EventStub implements SerializablePayload
     /**
      * @return static
      */
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new static($payload['value']);
     }

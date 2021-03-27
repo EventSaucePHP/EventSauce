@@ -21,6 +21,7 @@ class TypeNormalizer
             ? $type
             : '\\' . $type;
     }
+
     public static function isNativeType(string $type): bool
     {
         try {

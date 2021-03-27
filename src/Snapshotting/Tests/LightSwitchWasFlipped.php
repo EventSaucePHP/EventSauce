@@ -41,7 +41,7 @@ final class LightSwitchWasFlipped implements SerializablePayload
         return ['state' => $this->state];
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new static($payload['state']);
     }

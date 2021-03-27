@@ -6,14 +6,8 @@ namespace EventSauce\EventSourcing\LibraryConsumptionTests\EventConsumption;
 
 class DummyEventForConsuming
 {
-    /**
-     * @var string
-     */
-    private $message;
-
-    public function __construct(string $message)
+    public function __construct(private string $message)
     {
-        $this->message = $message;
     }
 
     public function message(): string

@@ -11,7 +11,7 @@ class UpcasterChain implements Upcaster
     /**
      * @var Upcaster[]
      */
-    private $upcasters;
+    private array $upcasters;
 
     public function __construct(Upcaster ...$upcasters)
     {

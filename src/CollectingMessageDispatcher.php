@@ -11,7 +11,7 @@ class CollectingMessageDispatcher implements MessageDispatcher
     /**
      * @var Message[]
      */
-    private $collectedMessages = [];
+    private array $collectedMessages = [];
 
     public function dispatch(Message ...$messages): void
     {

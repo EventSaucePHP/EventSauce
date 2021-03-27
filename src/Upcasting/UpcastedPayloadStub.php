@@ -8,10 +8,7 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 class UpcastedPayloadStub implements SerializablePayload
 {
-    /**
-     * @var string
-     */
-    private $property;
+    private string $property;
 
     public function __construct(string $property)
     {
@@ -23,7 +20,7 @@ class UpcastedPayloadStub implements SerializablePayload
         return ['property' => $this->property];
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new UpcastedPayloadStub($payload['property'] ?? 'undefined');
     }

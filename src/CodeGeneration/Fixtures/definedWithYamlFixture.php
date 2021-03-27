@@ -8,22 +8,10 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class WeWentYamling implements SerializablePayload
 {
-    /**
-     * @var Ramsey\Uuid\UuidInterface
-     */
-    private $reference;
-
-    /**
-     * @var string
-     */
-    private $slogan;
-
     public function __construct(
-        Ramsey\Uuid\UuidInterface $reference,
-        string $slogan
+        private Ramsey\Uuid\UuidInterface $reference,
+        private string $slogan
     ) {
-        $this->reference = $reference;
-        $this->slogan = $slogan;
     }
 
     public function reference(): Ramsey\Uuid\UuidInterface
@@ -36,7 +24,7 @@ final class WeWentYamling implements SerializablePayload
         return $this->slogan;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new WeWentYamling(
             \Ramsey\Uuid\Uuid::fromString($payload['reference']),
@@ -77,15 +65,9 @@ final class WeWentYamling implements SerializablePayload
 
 final class HideFinancialDetailsOfFraudulentCompany implements SerializablePayload
 {
-    /**
-     * @var Ramsey\Uuid\UuidInterface
-     */
-    private $companyId;
-
     public function __construct(
-        Ramsey\Uuid\UuidInterface $companyId
+        private Ramsey\Uuid\UuidInterface $companyId
     ) {
-        $this->companyId = $companyId;
     }
 
     public function companyId(): Ramsey\Uuid\UuidInterface
@@ -93,7 +75,7 @@ final class HideFinancialDetailsOfFraudulentCompany implements SerializablePaylo
         return $this->companyId;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new HideFinancialDetailsOfFraudulentCompany(
             \Ramsey\Uuid\Uuid::fromString($payload['companyId'])
@@ -120,22 +102,10 @@ final class HideFinancialDetailsOfFraudulentCompany implements SerializablePaylo
 
 final class GoYamling implements SerializablePayload
 {
-    /**
-     * @var Ramsey\Uuid\UuidInterface
-     */
-    private $reference;
-
-    /**
-     * @var string
-     */
-    private $slogan;
-
     public function __construct(
-        Ramsey\Uuid\UuidInterface $reference,
-        string $slogan
+        private Ramsey\Uuid\UuidInterface $reference,
+        private string $slogan
     ) {
-        $this->reference = $reference;
-        $this->slogan = $slogan;
     }
 
     public function reference(): Ramsey\Uuid\UuidInterface
@@ -148,7 +118,7 @@ final class GoYamling implements SerializablePayload
         return $this->slogan;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new GoYamling(
             \Ramsey\Uuid\Uuid::fromString($payload['reference']),

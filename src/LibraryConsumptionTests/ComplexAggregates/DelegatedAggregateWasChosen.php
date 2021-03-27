@@ -13,7 +13,7 @@ class DelegatedAggregateWasChosen implements SerializablePayload
         return [];
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new DelegatedAggregateWasChosen();
     }

@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing;
 
 trait AggregateAppliesKnownEvents
 {
-    private $aggregateRootVersion = 0;
+    private int $aggregateRootVersion = 0;
 
     public function apply(object $event): void
     {
