@@ -1,0 +1,31 @@
+---
+name: Sub-Split Publishing
+on:
+  push:
+    branches:
+      - version/1.0.0
+
+jobs:
+  publish_subsplits:
+    runs-on: ubuntu-latest
+    name: Publish package sub-splits
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+          persist-credentials: 'false'
+      - uses: actions/cache@v2
+        id: splitsh
+        with:
+          path: bin/splitsh-lite
+          key: ${{ runner.os }}-splitsh-lite
+      - name: install split.sh
+        if: steps.splitsh.outputs.cache-hit != 'true'
+        run: bin/install-split.sh
+      - uses: frankdejonge/use-github-token@1.0.1
+        with:
+          authentication: 'frankdejonge:${{ secrets.PERSONAL_ACCESS_TOKEN }}'
+          user_name: 'Frank de Jonge'
+          user_email: 'info@frenky.net'
+      - name: Publish subsplits
+        run: bin/push.sh
