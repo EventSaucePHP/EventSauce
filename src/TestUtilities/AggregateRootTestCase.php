@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\TestUtilities;
 
 use DateTimeImmutable;
+use EventSauce\Clock\TestClock;
 use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
@@ -17,7 +18,6 @@ use EventSauce\EventSourcing\MessageDecoratorChain;
 use EventSauce\EventSourcing\MessageDispatcher;
 use EventSauce\EventSourcing\MessageRepository;
 use EventSauce\EventSourcing\SynchronousMessageDispatcher;
-use EventSauce\Clock\TestClock;
 use Exception;
 use LogicException;
 use PHPUnit\Framework\TestCase;
