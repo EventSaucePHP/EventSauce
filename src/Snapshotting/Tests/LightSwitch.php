@@ -14,8 +14,8 @@ final class LightSwitch implements AggregateRootWithSnapshotting
     use AggregateRootBehaviour;
     use SnapshottingBehaviour;
 
-    const OFF = false;
-    const ON = true;
+    public const OFF = false;
+    public const ON = true;
 
     private bool $state = self::OFF;
 

@@ -8,11 +8,8 @@ use EventSauce\EventSourcing\AggregateRootId;
 
 final class LightSwitchId implements AggregateRootId
 {
-    private string $id;
-
-    public function __construct(string $id)
+    public function __construct(private string $id)
     {
-        $this->id = $id;
     }
 
     public function toString(): string

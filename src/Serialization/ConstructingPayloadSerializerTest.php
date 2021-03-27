@@ -9,10 +9,7 @@ use PHPStan\Testing\TestCase;
 
 final class ConstructingPayloadSerializerTest extends TestCase
 {
-    /**
-     * @var ConstructingPayloadSerializer
-     */
-    private $serializer;
+    private ConstructingPayloadSerializer $serializer;
 
     public function setUp(): void
     {

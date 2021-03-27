@@ -6,14 +6,8 @@ namespace EventSauce\EventSourcing\Snapshotting\Tests;
 
 class TurnLightOff
 {
-    /**
-     * @var LightSwitchId
-     */
-    private $id;
-
-    public function __construct(LightSwitchId $id)
+    public function __construct(private LightSwitchId $id)
     {
-        $this->id = $id;
     }
 
     public function id(): LightSwitchId

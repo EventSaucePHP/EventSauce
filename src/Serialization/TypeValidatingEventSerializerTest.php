@@ -11,15 +11,8 @@ use stdClass;
 
 final class TypeValidatingEventSerializerTest extends TestCase
 {
-    /**
-     * @var TypeValidatingPayloadSerializer
-     */
-    private $serializer;
-
-    /**
-     * @var ConstructingPayloadSerializer
-     */
-    private $innerSerializer;
+    private TypeValidatingPayloadSerializer $serializer;
+    private ConstructingPayloadSerializer $innerSerializer;
 
     public function setUp(): void
     {
