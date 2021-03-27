@@ -10,15 +10,8 @@ use EventSauce\EventSourcing\Message;
 
 class DummyEventHandler extends EventHandlingMessageConsumer
 {
-    /**
-     * @var EventStub
-     */
-    public $event;
-
-    /**
-     * @var Message
-     */
-    public $message;
+    public EventStub $event;
+    public Message $message;
 
     protected function handleEventStub(EventStub $event, Message $message): void
     {
