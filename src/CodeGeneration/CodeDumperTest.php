@@ -30,7 +30,7 @@ class CodeDumperTest extends TestCase
     {
         $dumper = new CodeDumper(true);
         $actual = $dumper->dump($definitionGroup);
-        file_put_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'TypePropertiesFixture.php', $actual);
+        // file_put_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'TypePropertiesFixture.php', $actual);
         $expected = file_get_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'TypePropertiesFixture.php');
         $this->assertEquals($expected, $actual, "Expect {$fixtureFile} to match generated code.");
     }
