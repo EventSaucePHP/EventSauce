@@ -14,6 +14,7 @@ updated_at: 2020-04-04
 - The `EventSauce\EventSourcing\UuidAggregateRootId` was removed.
 - The `CodeGeneration` module was extracted into a separate package `eventsauce/code-generation`.
 - The test utilities were extracted into a separate package `eventsauce/test-utilities`.
+- The clock module was extracted into a separate package `eventsauce/clock`.
 
 ### Added
 
