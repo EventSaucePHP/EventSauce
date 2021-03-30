@@ -15,6 +15,7 @@ updated_at: 2020-04-04
 - The `CodeGeneration` module was extracted into a separate package `eventsauce/code-generation`.
 - The test utilities were extracted into a separate package `eventsauce/test-utilities`.
 - The clock module was extracted into a separate package `eventsauce/clock`.
+- The serialization and upcasting is no longer generator based and now maps 1:1.
 
 ### Added
 
