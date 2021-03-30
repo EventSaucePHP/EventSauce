@@ -1,6 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin}  = require('webpack-manifest-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -17,14 +17,18 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(png|jpg|gif|svg)$/i,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192 // in bytes
+                    }
+                }]
+            },
+            {
                 test: /\.css$/,
                 use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            hmr: process.env.NODE_ENV === 'development',
-                        },
-                    },
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     'postcss-loader',
                 ]
@@ -36,7 +40,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: isProduction ? '[name].[hash].css' : '[name].css'
         }),
-        new ManifestPlugin({
+        new WebpackManifestPlugin({
             fileName: '../_data/manifest.yml',
             publicPath: '/dist/',
         }),

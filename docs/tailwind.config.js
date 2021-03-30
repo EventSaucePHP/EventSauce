@@ -21,6 +21,9 @@ module.exports = {
     prefix: '',
     important: false,
     separator: ':',
+    purge: [
+        './_site/**/*.html',
+    ],
     theme: {
         extend: {
             colors: colors,

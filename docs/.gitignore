@@ -1,4 +1,6 @@
 _site/
+.bundle
+.jekyll-cache
 node_modules/
 Gemfile
 Gemfile.lock

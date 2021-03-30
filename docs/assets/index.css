@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 img {
-    @apply .inline;
+    @apply inline;
     vertical-align: initial;
 }
 
