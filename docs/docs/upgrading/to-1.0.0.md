@@ -5,6 +5,18 @@ published_at: 2020-04-05
 updated_at: 2020-04-05
 ---
 
+## PHP 8.0
+
+From EventSauce 1.0 a higher PHP version is requires, namely 1.0 and above. 
+
+## Upgrade automation
+
+For those of you who want to speed up the migration from 0.8 to 1.0 there is
+a set of [Rector](https://github.com/rectorphp/rector) instructions that
+automate a big part of the work.
+
+Check out the [Rector Set](https://github.com/EventSaucePHP/RectorFrom0to1).
+
 ## Renames
 
 The `Consumer` class was renamed:

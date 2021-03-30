@@ -5,3 +5,4 @@
 /coverage.xml
 /composer.lock
 /.idea/
+/docs/vendor/
