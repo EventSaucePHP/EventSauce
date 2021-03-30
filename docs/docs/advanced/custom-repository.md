@@ -17,8 +17,9 @@ use Generator;
 
 interface MessageRepository
 {
-    public function persist(Message ... $messages);
+    public function persist(Message ... $messages): void;
     public function retrieveAll(AggregateRootId $id): Generator;
+    public function retrieveAllAfterVersion(AggregateRootId $id, int $aggregateRootVersion): Generator;
 }
 ```
 
@@ -44,7 +45,7 @@ class FilesystemMessageRepository implements MessageRepository
         $this->serializer = $serializer ?: new ConstructingMessageSerializer();
     }
     
-    public function persist(Message ... $messages)
+    public function persist(Message ... $messages): void
     {
         foreach ($messages as $message) {
             $aggregateRootId = $message->header(Header::AGGREGATE_ROOT_ID);
