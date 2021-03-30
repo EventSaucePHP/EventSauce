@@ -15,12 +15,14 @@ interface MessageRepository
 
     /**
      * @return Generator<Message>
+     *
      * @throws UnableToRetrieveMessages
      */
     public function retrieveAll(AggregateRootId $id): Generator;
 
     /**
      * @return Generator<Message>
+     *
      * @throws UnableToRetrieveMessages
      */
     public function retrieveAllAfterVersion(AggregateRootId $id, int $aggregateRootVersion): Generator;
