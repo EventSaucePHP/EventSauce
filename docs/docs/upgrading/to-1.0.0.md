@@ -37,6 +37,29 @@ composer require --dev eventsauce/test-utilities
 + use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 ```
 
+## Clock is moved to a dedicated package
+
+The clock package is included in EventSacue by default. The
+classes were moved into their own namespace `EventSauce\Clock`. This
+means the `Clock`, `TestClock`, and `SystemClock` have moved.
+
+The `currentTime` method was renamed to `now` to prepare for the
+upcoming (PHP-FIG standard for Clocks)[https://github.com/php-fig/fig-standards/blob/master/proposed/clock.md].
+
+If you wish to separately use the clock package, include it using composer:
+
+```bash
+composer require eventsauce/clock
+```
+
+## Added return types
+
+Some classes were missing return types for `void` returns.
+
+- From `MessageConsumer` (previously `Consumer`), the handle method now has a `void` return type.
+- From `MessageRepository`, the handle method now has a `persist` return type.
+- From `MessageRepository`, the handle method now has a `persistEvents` return type.
+
 ## Extracted packages
 
 The test utilities are shipped separately, install them using:
