@@ -9,8 +9,6 @@ use EventSauce\EventSourcing\MessageConsumer;
 use EventSauce\EventSourcing\Serialization\ConstructingMessageSerializer;
 use EventSauce\EventSourcing\Serialization\MessageSerializer;
 use PHPUnit\Framework\TestCase;
-use stdClass;
-use function iterator_to_array;
 
 class MessageConsumerThatSerializesMessages implements MessageConsumer
 {
@@ -27,8 +25,7 @@ class MessageConsumerThatSerializesMessages implements MessageConsumer
     public function handle(Message $message): void
     {
         $payload = $this->serializer->serializeMessage($message);
-        $deserializedMessage = iterator_to_array($this->serializer->unserializePayload($payload))[0]
-            ?? new Message(new stdClass());
+        $deserializedMessage = $this->serializer->unserializePayload($payload);
         TestCase::assertEquals($message->event(), $deserializedMessage->event());
     }
 }

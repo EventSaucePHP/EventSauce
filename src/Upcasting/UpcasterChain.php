@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Upcasting;
 
-use Generator;
-
 class UpcasterChain implements Upcaster
 {
     /**
@@ -18,21 +16,12 @@ class UpcasterChain implements Upcaster
         $this->upcasters = $upcasters;
     }
 
-    public function upcast(array $message): Generator
+    public function upcast(array $message): array
     {
-        $messages = [$message];
-
         foreach ($this->upcasters as $upcaster) {
-            $messages = $this->invokeUpcaster($messages, $upcaster);
+            $message = $upcaster->upcast($message);
         }
 
-        yield from $messages;
-    }
-
-    private function invokeUpcaster(iterable $messages, Upcaster $upcaster): Generator
-    {
-        foreach ($messages as $message) {
-            yield from $upcaster->upcast($message);
-        }
+        return $message;
     }
 }
