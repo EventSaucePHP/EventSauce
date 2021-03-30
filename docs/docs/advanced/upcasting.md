@@ -25,8 +25,6 @@ interface:
 
 namespace EventSauce\EventSourcing\Upcasting;
 
-use Generator;
-
 interface Upcaster
 {
     public function upcast(array $message): array;
