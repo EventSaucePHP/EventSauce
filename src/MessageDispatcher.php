@@ -6,5 +6,8 @@ namespace EventSauce\EventSourcing;
 
 interface MessageDispatcher
 {
+    /**
+     * @throws UnableToDispatchMessages
+     */
     public function dispatch(Message ...$messages): void;
 }
