@@ -11,7 +11,6 @@ use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\Serialization\ConstructingMessageSerializer;
 use PHPUnit\Framework\TestCase;
-use function iterator_to_array;
 
 class UpcastingEventsTest extends TestCase
 {
@@ -35,7 +34,7 @@ class UpcastingEventsTest extends TestCase
         $upcaster = new UpcasterChain(new UpcasterStub());
         $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(), $upcaster);
 
-        $message = iterator_to_array($serializer->unserializePayload($payload))[0];
+        $message = $serializer->unserializePayload($payload);
         $expected = $defaultDecorator
                 ->decorate(new Message(new UpcastedPayloadStub('upcasted')))
                 ->withHeader('version', 1);
@@ -50,7 +49,6 @@ class UpcastingEventsTest extends TestCase
     {
         $upcaster = new UpcasterStub();
         $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(), $upcaster);
-
         $message = new Message(new UpcastedPayloadStub('a value'));
 
         $serializeMessage = $serializer->serializeMessage($message);
