@@ -7,7 +7,7 @@ updated_at: 2020-04-05
 
 ## PHP 8.0
 
-From EventSauce 1.0 a higher PHP version is requires, namely 1.0 and above. 
+From EventSauce 1.0 a higher PHP version is required, namely 8.0 and above. 
 
 ## Upgrade automation
 
