@@ -6,6 +6,9 @@ namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
 use EventSauce\EventSourcing\DummyAggregateRootId;
 
+/**
+ * @testAsset
+ */
 class DummyIncrementCommand implements DummyCommand
 {
     private DummyAggregateRootId $aggregateRootId;

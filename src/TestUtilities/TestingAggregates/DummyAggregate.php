@@ -8,6 +8,9 @@ use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootBehaviour;
 use EventSauce\EventSourcing\DummyAggregateRootId;
 
+/**
+ * @testAsset
+ */
 final class DummyAggregate implements AggregateRoot
 {
     use AggregateRootBehaviour;

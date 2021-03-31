@@ -8,6 +8,9 @@ use EventSauce\EventSourcing\EventHandlingMessageConsumer;
 use EventSauce\EventSourcing\EventStub;
 use EventSauce\EventSourcing\Message;
 
+/**
+ * @testAsset
+ */
 class DummyEventHandler extends EventHandlingMessageConsumer
 {
     public EventStub $event;

@@ -6,6 +6,9 @@ namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootRepository;
 
+/**
+ * @testAsset
+ */
 class DummyCommandHandler
 {
     /**

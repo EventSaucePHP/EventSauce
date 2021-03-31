@@ -10,6 +10,9 @@ use Generator;
 
 trait SnapshottingBehaviour
 {
+    /**
+     * @var positive-int|0
+     */
     private int $aggregateRootVersion = 0;
 
     abstract public function aggregateRootVersion(): int;
