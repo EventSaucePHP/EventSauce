@@ -12,7 +12,8 @@ class DecoratingMessageDispatcher implements MessageDispatcher
 
     public function dispatch(Message ...$messages): void
     {
-        $messages = array_map(fn (Message $message) => $this->decorator->decorate($message), $messages);
-        $this->dispatcher->dispatch(...$messages);
+        $this->dispatcher->dispatch(
+            ...array_map(fn (Message $message) => $this->decorator->decorate($message), $messages)
+        );
     }
 }
