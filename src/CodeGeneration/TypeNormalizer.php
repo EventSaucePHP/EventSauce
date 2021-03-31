@@ -25,7 +25,7 @@ class TypeNormalizer
     public static function isNativeType(string $type): bool
     {
         try {
-            /* @var class-string $type */
+            /* @phpstan-ignore-next-line */
             new ReflectionClass($type);
 
             return false;
