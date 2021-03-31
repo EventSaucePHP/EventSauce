@@ -11,9 +11,7 @@ use Generator;
  */
 trait AggregateRootBehaviour
 {
-    use AggregateAlwaysAppliesEvents {
-        apply as protected;
-    }
+    use AggregateAlwaysAppliesEvents;
 
     private AggregateRootId $aggregateRootId;
     private int $aggregateRootVersion = 0;
