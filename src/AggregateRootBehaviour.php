@@ -15,7 +15,7 @@ trait AggregateRootBehaviour
 
     private AggregateRootId $aggregateRootId;
     private int $aggregateRootVersion = 0;
-    /** @var object[] */
+    /** @var list<object> */
     private array $recordedEvents = [];
 
     private function __construct(AggregateRootId $aggregateRootId)
