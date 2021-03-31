@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing;
 
 use RuntimeException;
 
-final class UnableToDetermineTimeOfRecording extends RuntimeException implements EventSauceException
+final class UnableToResolveTimeOfRecording extends RuntimeException implements EventSauceException
 {
     public static function fromFormatAndHeader(string $format, mixed $header): self
     {

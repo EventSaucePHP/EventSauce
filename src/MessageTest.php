@@ -66,7 +66,7 @@ class MessageTest extends TestCase
         $event = EventStub::create('some value');
         $message = new Message($event);
 
-        $this->expectExceptionObject(UnableToDetermineTimeOfRecording::fromFormatAndHeader(Message::TIME_OF_RECORDING_FORMAT, ''));
+        $this->expectExceptionObject(UnableToResolveTimeOfRecording::fromFormatAndHeader(Message::TIME_OF_RECORDING_FORMAT, ''));
 
         $message->timeOfRecording();
     }
