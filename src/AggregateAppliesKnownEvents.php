@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
+use function method_exists;
+
 /**
  * This trait calls the apply[EventClassName] method
  * only for the events it has an apply function for.
@@ -17,12 +19,10 @@ trait AggregateAppliesKnownEvents
 
     public function apply(object $event): void
     {
-        static $hasMethodCache = [];
         $parts = explode('\\', get_class($event));
         $methodName = 'apply' . end($parts);
-        $shouldApply = $hasMethodCache[$methodName] ?? method_exists($this, $methodName);
 
-        if ($shouldApply) {
+        if (method_exists($this, $methodName)) {
             $this->{$methodName}($event);
         }
 
