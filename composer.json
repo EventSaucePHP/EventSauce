@@ -20,7 +20,7 @@
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12.82",
-        "phpunit/phpunit": "^8.5|^9.4",
+        "phpunit/phpunit": "^9.4",
         "symfony/yaml": "^4.0|^5.0",
         "friendsofphp/php-cs-fixer": "^2.18.4"
     },
