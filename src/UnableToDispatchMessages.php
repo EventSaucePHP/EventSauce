@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing;
 use RuntimeException;
 use Throwable;
 
-class UnableToDispatchMessages extends RuntimeException
+class UnableToDispatchMessages extends RuntimeException implements EventSauceException
 {
     public static function dueTo(string $reason, Throwable $previous = null): self
     {
