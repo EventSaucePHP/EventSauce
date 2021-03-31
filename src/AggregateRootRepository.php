@@ -11,6 +11,7 @@ interface AggregateRootRepository
 {
     /**
      * @phpstan-return T
+     *
      * @throws UnableToReconstructAggregateRoot
      * @throws UnableToRetrieveMessages
      */
@@ -18,6 +19,7 @@ interface AggregateRootRepository
 
     /**
      * @phpstan-param T $aggregateRoot
+     *
      * @throws UnableToPersistMessages
      * @throws UnableToDispatchMessages
      */
