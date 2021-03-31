@@ -8,6 +8,7 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 /**
  * @codeCoverageIgnore
+ * @testAsset
  */
 class DummyTaskWasExecuted implements SerializablePayload
 {

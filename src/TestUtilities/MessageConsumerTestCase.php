@@ -11,25 +11,10 @@ use PHPUnit\Framework\TestCase;
 
 abstract class MessageConsumerTestCase extends TestCase
 {
-    /**
-     * @var MessageConsumer
-     */
-    protected $messageConsumer;
-
-    /**
-     * @var Exception|null
-     */
-    private $caughtException;
-
-    /**
-     * @var Exception|null
-     */
-    private $theExpectedException;
-
-    /**
-     * @var bool
-     */
-    private $assertedScenario = false;
+    protected MessageConsumer $messageConsumer;
+    private ?Exception $caughtException = null;
+    private ?Exception $theExpectedException = null;
+    private bool $assertedScenario = false;
 
     /**
      * @var callable

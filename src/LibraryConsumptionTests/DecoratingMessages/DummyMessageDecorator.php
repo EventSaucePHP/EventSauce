@@ -7,6 +7,9 @@ namespace EventSauce\EventSourcing\LibraryConsumptionTests\DecoratingMessages;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageDecorator;
 
+/**
+ * @testAsset
+ */
 class DummyMessageDecorator implements MessageDecorator
 {
     public function decorate(Message $message): Message

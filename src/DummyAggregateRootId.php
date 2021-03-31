@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
+/**
+ * @testAsset
+ */
 final class DummyAggregateRootId implements AggregateRootId
 {
     private string $identifier;

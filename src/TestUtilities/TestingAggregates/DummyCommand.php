@@ -6,6 +6,9 @@ namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
 use EventSauce\EventSourcing\DummyAggregateRootId;
 
+/**
+ * @testAsset
+ */
 interface DummyCommand
 {
     public function aggregateRootId(): DummyAggregateRootId;
