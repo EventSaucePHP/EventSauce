@@ -30,28 +30,29 @@ trait AggregateRootWithAggregates
         return $this->eventRecorder;
     }
 
+    /**
+     * @return SplObjectStorage<T>
+     */
     private function aggregatesInsideRoot(): SplObjectStorage
     {
-        if ($this->aggregatesInsideRoot instanceof SplObjectStorage) {
-            return $this->aggregatesInsideRoot;
+        if (null === $this->aggregatesInsideRoot) {
+            $this->aggregatesInsideRoot = new SplObjectStorage();
         }
 
-        return $this->aggregatesInsideRoot = new SplObjectStorage();
+        return $this->aggregatesInsideRoot;
     }
 
     private function registerAggregate(?EventSourcedAggregate $aggregate): void
     {
         if ($aggregate instanceof EventSourcedAggregate) {
-            $storage = $this->aggregatesInsideRoot();
-            $storage->attach($aggregate);
+            $this->aggregatesInsideRoot()->attach($aggregate);
         }
     }
 
     private function unregisterAggregate(?EventSourcedAggregate $aggregate): void
     {
         if ($aggregate instanceof EventSourcedAggregate) {
-            $storage = $this->aggregatesInsideRoot();
-            $storage->detach($aggregate);
+            $this->aggregatesInsideRoot()->detach($aggregate);
         }
     }
 
