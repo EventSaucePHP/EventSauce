@@ -6,11 +6,10 @@ namespace EventSauce\EventSourcing;
 
 use DateTimeImmutable;
 use RuntimeException;
-use function assert;
 
 final class Message
 {
-    private const TIME_OF_RECORDING_FORMAT = 'Y-m-d H:i:s.uO';
+    public const TIME_OF_RECORDING_FORMAT = 'Y-m-d H:i:s.uO';
 
     public function __construct(private object $event, private array $headers = [])
     {
@@ -58,14 +57,12 @@ final class Message
         /* @var DateTimeImmutable */
         $timeOfRecording = DateTimeImmutable::createFromFormat(
             self::TIME_OF_RECORDING_FORMAT,
-            $this->headers[Header::TIME_OF_RECORDING] ?? ''
+            $header = ($this->headers[Header::TIME_OF_RECORDING] ?? '')
         );
 
-        assert(
-            $timeOfRecording instanceof DateTimeImmutable,
-            'Your messages are not being decorated with the default headers, please ' .
-            'ensure your messages are decorated with a time of recording.'
-        );
+        if ( ! $timeOfRecording instanceof DateTimeImmutable) {
+            throw UnableToDetermineTimeOfRecording::fromFormatAndHeader(self::TIME_OF_RECORDING_FORMAT, $header);
+        }
 
         return $timeOfRecording;
     }
