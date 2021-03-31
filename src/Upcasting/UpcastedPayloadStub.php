@@ -6,6 +6,9 @@ namespace EventSauce\EventSourcing\Upcasting;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
+/**
+ * @testAsset
+ */
 class UpcastedPayloadStub implements SerializablePayload
 {
     private string $property;

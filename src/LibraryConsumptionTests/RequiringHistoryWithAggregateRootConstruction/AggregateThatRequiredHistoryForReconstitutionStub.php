@@ -8,6 +8,9 @@ use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootBehaviourWithRequiredHistory;
 use EventSauce\EventSourcing\DummyAggregateRootId;
 
+/**
+ * @testAsset
+ */
 final class AggregateThatRequiredHistoryForReconstitutionStub implements AggregateRoot
 {
     use AggregateRootBehaviourWithRequiredHistory;

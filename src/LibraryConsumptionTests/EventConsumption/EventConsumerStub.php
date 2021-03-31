@@ -7,6 +7,9 @@ namespace EventSauce\EventSourcing\LibraryConsumptionTests\EventConsumption;
 use EventSauce\EventSourcing\EventConsumer;
 use EventSauce\EventSourcing\Message;
 
+/**
+ * @testAsset
+ */
 class EventConsumerStub extends EventConsumer
 {
     public string $message = '';
