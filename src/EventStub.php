@@ -7,6 +7,9 @@ namespace EventSauce\EventSourcing;
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 use function compact;
 
+/**
+ * @testAsset
+ */
 final class EventStub implements SerializablePayload
 {
     /**

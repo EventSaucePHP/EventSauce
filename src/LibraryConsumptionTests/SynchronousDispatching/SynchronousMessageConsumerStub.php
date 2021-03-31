@@ -7,6 +7,9 @@ namespace EventSauce\EventSourcing\LibraryConsumptionTests\SynchronousDispatchin
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageConsumer;
 
+/**
+ * @testAsset
+ */
 final class SynchronousMessageConsumerStub implements MessageConsumer
 {
     /** @var list<Message> */

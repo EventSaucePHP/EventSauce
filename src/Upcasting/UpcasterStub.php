@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Upcasting;
 
+/**
+ * @testAsset
+ */
 class UpcasterStub implements Upcaster
 {
     public function upcast(array $message): array
