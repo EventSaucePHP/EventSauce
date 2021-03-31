@@ -63,7 +63,7 @@ final class DefinitionGroup
     private array $typeAliases = [];
 
     /**
-     * @var array<string, string>
+     * @var array<string, class-string>
      */
     private array $interfaces = [];
 
@@ -195,6 +195,9 @@ final class DefinitionGroup
         return $this->namespace;
     }
 
+    /**
+     * @param class-string $interfaceName
+     */
     public function defineInterface(string $alias, string $interfaceName): void
     {
         $this->interfaces[$alias] = $interfaceName;
