@@ -61,7 +61,7 @@ final class Message
         );
 
         if ( ! $timeOfRecording instanceof DateTimeImmutable) {
-            throw UnableToDetermineTimeOfRecording::fromFormatAndHeader(self::TIME_OF_RECORDING_FORMAT, $header);
+            throw UnableToResolveTimeOfRecording::fromFormatAndHeader(self::TIME_OF_RECORDING_FORMAT, $header);
         }
 
         return $timeOfRecording;
