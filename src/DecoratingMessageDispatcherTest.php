@@ -14,7 +14,7 @@ class DecoratingMessageDispatcherTest extends TestCase
     public function dispatching_a_message(): void
     {
         $internalDispatcher = new CollectingMessageDispatcher();
-        $dispatcher = new DecoratingMessageDispatcher($internalDispatcher);
+        $dispatcher = new DecoratingMessageDispatcher($internalDispatcher, new DefaultHeadersDecorator());
 
         $dispatcher->dispatch(new Message(new EventStub('value')));
 

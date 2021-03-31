@@ -6,20 +6,8 @@ namespace EventSauce\EventSourcing;
 
 class DecoratingMessageDispatcher implements MessageDispatcher
 {
-    /**
-     * @var MessageDispatcher
-     */
-    private $dispatcher;
-
-    /**
-     * @var MessageDecorator
-     */
-    private $decorator;
-
-    public function __construct(MessageDispatcher $dispatcher, MessageDecorator $decorator = null)
+    public function __construct(private MessageDispatcher $dispatcher, private MessageDecorator $decorator)
     {
-        $this->dispatcher = $dispatcher;
-        $this->decorator = $decorator ?: new DefaultHeadersDecorator();
     }
 
     public function dispatch(Message ...$messages): void

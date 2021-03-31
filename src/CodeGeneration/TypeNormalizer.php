@@ -25,7 +25,7 @@ class TypeNormalizer
     public static function isNativeType(string $type): bool
     {
         try {
-            /** @var class-string $type */
+            /* @var class-string $type */
             new ReflectionClass($type);
 
             return false;
