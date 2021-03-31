@@ -13,7 +13,7 @@ use EventSauce\EventSourcing\Message;
 class EventConsumerStub extends EventConsumer
 {
     public string $message = '';
-    public object | null $messageObject = null;
+    public ?object $messageObject = null;
 
     protected function handleDummyEventForConsuming(DummyEventForConsuming $event, Message $message): void
     {
