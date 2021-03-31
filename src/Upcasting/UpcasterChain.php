@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing\Upcasting;
 class UpcasterChain implements Upcaster
 {
     /**
-     * @var Upcaster[]
+     * @var list<Upcaster>
      */
     private array $upcasters;
 
