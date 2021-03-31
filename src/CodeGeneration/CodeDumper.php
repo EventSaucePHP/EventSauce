@@ -78,7 +78,6 @@ EOF;
         foreach ($definitions as $definition) {
             $name = $definition->name();
             $interfaces = $definition->interfaces();
-//            $fields = $this->dumpFields($definition);
             $constructor = $this->dumpConstructor($definition);
             $methods = $this->dumpMethods($definition);
             $deserializer = $this->dumpSerializationMethods($definition);
