@@ -29,16 +29,13 @@ final class EventStub implements SerializablePayload
         return $this->value;
     }
 
-    /**
-     * @return static
-     */
     public static function fromPayload(array $payload): self
     {
-        return new static($payload['value']);
+        return new self($payload['value']);
     }
 
-    public static function create(string $value = null): EventStub
+    public static function create(string $value = null): self
     {
-        return EventStub::fromPayload(compact('value'));
+        return self::fromPayload(compact('value'));
     }
 }

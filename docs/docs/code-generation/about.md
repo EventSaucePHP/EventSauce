@@ -66,9 +66,9 @@ final class EventName implements SerializablePayload
         return $this->property;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
-        return new EventName(
+        return new self(
             (string) $payload['property']
         );
     }
