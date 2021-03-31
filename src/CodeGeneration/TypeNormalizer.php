@@ -26,7 +26,6 @@ class TypeNormalizer
     {
         try {
             /** @var class-string $type */
-            $type = ltrim($type, '\\');
             new ReflectionClass($type);
 
             return false;

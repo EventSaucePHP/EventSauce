@@ -106,7 +106,9 @@ class YamlDefinitionLoader implements DefinitionLoader
                 throw new LogicException("Interface {$interfaceName} does not exist.");
             }
 
-            $definitionGroup->defineInterface($alias, '\\' . ltrim($interfaceName, '\\'));
+            /** @var class-string $interface */
+            $interface = '\\' . ltrim($interfaceName, '\\');
+            $definitionGroup->defineInterface($alias, $interface);
         }
     }
 
