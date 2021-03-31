@@ -61,6 +61,19 @@ class MessageTest extends TestCase
     /**
      * @test
      */
+    public function trying_to_resolve_a_time_of_recording_when_the_header_does_not_exist(): void
+    {
+        $event = EventStub::create('some value');
+        $message = new Message($event);
+
+        $this->expectExceptionObject(UnableToDetermineTimeOfRecording::fromFormatAndHeader(Message::TIME_OF_RECORDING_FORMAT, ''));
+
+        $message->timeOfRecording();
+    }
+
+    /**
+     * @test
+     */
     public function time_of_recording_is_asserted(): void
     {
         $message = new Message(EventStub::create('this'));
