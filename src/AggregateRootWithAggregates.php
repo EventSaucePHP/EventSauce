@@ -6,6 +6,9 @@ namespace EventSauce\EventSourcing;
 
 use SplObjectStorage;
 
+/**
+ * @template T of EventSourcedAggregate
+ */
 trait AggregateRootWithAggregates
 {
     use AggregateRootBehaviour, AggregateAppliesKnownEvents {
@@ -13,19 +16,18 @@ trait AggregateRootWithAggregates
     }
 
     /**
-     * @var SplObjectStorage|null
+     * @var ?SplObjectStorage<T>
      */
-    private $aggregatesInsideRoot = null;
+    private ?SplObjectStorage $aggregatesInsideRoot = null;
+    private ?EventRecorder $eventRecorder = null;
 
     protected function eventRecorder(): EventRecorder
     {
-        static $eventRecorder;
-
-        if (null === $eventRecorder) {
-            $eventRecorder = new EventRecorder(fn (object $event) => $this->recordThat($event));
+        if (null === $this->eventRecorder) {
+            $this->eventRecorder = new EventRecorder(fn (object $event) => $this->recordThat($event));
         }
 
-        return $eventRecorder;
+        return $this->eventRecorder;
     }
 
     private function aggregatesInsideRoot(): SplObjectStorage
