@@ -34,7 +34,7 @@ class YamlDefinitionLoaderTest extends TestCase
         $definitionGroup = $loader->load($source);
         $dumper = new CodeDumper(false);
         $code = $dumper->dump($definitionGroup, $withHelpers, $withSerializers);
-        file_put_contents($output, $code);
+        // file_put_contents($output, $code);
         $expected = file_get_contents($output);
         $this->assertEquals($expected, $code);
     }
