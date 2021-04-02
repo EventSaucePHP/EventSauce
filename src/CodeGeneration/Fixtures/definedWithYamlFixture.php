@@ -11,7 +11,8 @@ final class WeWentYamling implements SerializablePayload
     public function __construct(
         private \Ramsey\Uuid\UuidInterface $reference,
         private string $slogan,
-        private ?string $title = null
+        private ?string $title = null,
+        private ?string $description = null
     ) {
     }
 
@@ -30,12 +31,18 @@ final class WeWentYamling implements SerializablePayload
         return $this->title;
     }
 
+    public function description(): string
+    {
+        return $this->description;
+    }
+
     public static function fromPayload(array $payload): self
     {
         return new WeWentYamling(
             \Ramsey\Uuid\Uuid::fromString($payload['reference']),
             (string) $payload['slogan'],
-            (string) $payload['title']
+            (string) $payload['title'],
+            (string) $payload['description']
         );
     }
 
@@ -45,6 +52,7 @@ final class WeWentYamling implements SerializablePayload
             'reference' => $this->reference->toString(),
             'slogan' => (string) $this->slogan,
             'title' => isset($this->title) ? (string) $this->title : null,
+            'description' => (string) $this->description,
         ];
     }
 
@@ -73,12 +81,13 @@ final class WeWentYamling implements SerializablePayload
     /**
      * @codeCoverageIgnore
      */
-    public static function withSlogan(string $slogan): WeWentYamling
+    public static function withSloganAndDescription(string $slogan, string $description): WeWentYamling
     {
         return new WeWentYamling(
             \Ramsey\Uuid\Uuid::fromString("c0b47bc5-2aaa-497b-83cb-11d97da03a95"),
             $slogan,
-            (string) 'Some Example Title'
+            (string) 'Some Example Title',
+            $description
         );
     }
 }

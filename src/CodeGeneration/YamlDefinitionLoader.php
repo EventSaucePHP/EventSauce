@@ -58,6 +58,10 @@ class YamlDefinitionLoader implements DefinitionLoader
                 $definitionGroup->aliasType($type, $handlers['type']);
             }
 
+            if (isset($handlers['nullable'])) {
+                $definitionGroup->setTypeNullability($type, (bool) $handlers['nullable']);
+            }
+
             if (isset($handlers['serializer'])) {
                 $definitionGroup->typeSerializer($type, $handlers['serializer']);
             }

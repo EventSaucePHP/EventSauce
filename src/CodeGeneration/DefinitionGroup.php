@@ -67,6 +67,11 @@ final class DefinitionGroup
      */
     private array $interfaces = [];
 
+    /**
+     * @var array<string, bool>
+     */
+    private $nullable = [];
+
     public function __construct()
     {
         $this->typeSerializer(DateTimeImmutable::class, '{param}->format(\'Y-m-d H:i:s.uO\')');
@@ -210,5 +215,15 @@ final class DefinitionGroup
         }
 
         return $this->interfaces[$alias];
+    }
+
+    public function setTypeNullability(string $type, bool $nullable): void
+    {
+        $this->nullable[$type] = $nullable;
+    }
+
+    public function isTypeNullable(string $type): ?bool
+    {
+        return $this->nullable[$type] ?? null;
     }
 }
