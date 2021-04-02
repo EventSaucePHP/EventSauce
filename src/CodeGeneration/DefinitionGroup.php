@@ -134,10 +134,10 @@ final class DefinitionGroup
         return $this->fieldDeserializer[$field] ?? null;
     }
 
-    public function fieldDefault(string $name, string $type, string $example = null): void
+    public function fieldDefault(string $name, string $type, ?string $example = null, ?bool $nullable = null): void
     {
         $type = $this->resolveTypeAlias($type);
-        $this->defaults[$name] = compact('type', 'example');
+        $this->defaults[$name] = compact('type', 'example', 'nullable');
     }
 
     public function aliasType(string $alias, string $type): void

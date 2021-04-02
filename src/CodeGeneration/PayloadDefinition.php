@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
+use function var_dump;
+
 final class PayloadDefinition
 {
     private DefinitionGroup $group;
@@ -56,10 +58,10 @@ final class PayloadDefinition
         return $this->fieldsFrom;
     }
 
-    public function field(string $name, string $type, string $example = null): self
+    public function field(string $name, string $type, string $example = null, ?bool $nullable = null): self
     {
         $example = $example ?: $this->group->exampleForField($name);
-        $this->fields[] = compact('name', 'type', 'example');
+        $this->fields[] = compact('name', 'type', 'example', 'nullable');
 
         return $this;
     }
