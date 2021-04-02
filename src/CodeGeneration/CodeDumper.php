@@ -103,36 +103,6 @@ EOF;
         return rtrim(implode('', $code));
     }
 
-    private function dumpFields(PayloadDefinition $definition): string
-    {
-        $fields = $this->fieldsFromDefinition($definition);
-        $code = [];
-        $code[] = <<<EOF
-
-EOF;
-        foreach ($fields as $field) {
-            $name = $field['name'];
-            $nullable = (bool) $field['nullable'];
-            $type = $this->definitionGroup->resolveTypeAlias($field['type']);
-            $code[] = $this->dumpField($type, $name, $nullable);
-        }
-
-        return implode('', $code);
-    }
-
-    private function dumpField(string $type, string $name, bool $nullable): string
-    {
-        if ($nullable) {
-            $type = '?' . $type;
-        }
-
-        return <<<EOF
-    private $type \$$name;
-
-
-EOF;
-    }
-
     private function dumpConstructor(PayloadDefinition $definition): string
     {
         $arguments = [];
@@ -143,8 +113,11 @@ EOF;
         foreach ($fields as $field) {
             $defaultValue = '';
             $resolvedType = $this->definitionGroup->resolveTypeAlias($field['type']);
+            $isNullable = (bool) ($field['nullable']
+                ?? $this->definitionGroup->isTypeNullable($field['type'])
+                ?? $this->definitionGroup->isTypeNullable($resolvedType));
 
-            if ($field['nullable'] ?? false) {
+            if ($isNullable) {
                 $resolvedType = '?' . $resolvedType;
                 $defaultValue = ' = null';
             }
