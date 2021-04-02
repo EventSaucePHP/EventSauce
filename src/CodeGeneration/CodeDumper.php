@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
+use function rtrim;
 use const null;
 use LogicException;
 use function array_filter;
@@ -111,15 +112,19 @@ EOF;
 EOF;
         foreach ($fields as $field) {
             $name = $field['name'];
+            $nullable = (bool) $field['nullable'];
             $type = $this->definitionGroup->resolveTypeAlias($field['type']);
-            $code[] = $this->dumpField($type, $name);
+            $code[] = $this->dumpField($type, $name, $nullable);
         }
 
         return implode('', $code);
     }
 
-    private function dumpField(string $type, string $name): string
+    private function dumpField(string $type, string $name, bool $nullable): string
     {
+        if ($nullable) {
+            $type = '?' . $type;
+        }
         return <<<EOF
     private $type \$$name;
 
@@ -135,8 +140,15 @@ EOF;
             return '';
         }
         foreach ($fields as $field) {
+            $defaultValue = '';
             $resolvedType = $this->definitionGroup->resolveTypeAlias($field['type']);
-            $arguments[] = sprintf('        private %s $%s', $resolvedType, $field['name']);
+
+            if ($field['nullable'] ?? false) {
+                $resolvedType = '?' . $resolvedType;
+                $defaultValue = ' = null';
+            }
+
+            $arguments[] = sprintf('        private %s $%s%s', $resolvedType, $field['name'], $defaultValue);
         }
         $arguments = implode(",\n", $arguments);
 
@@ -181,6 +193,12 @@ EOF;
             $template = $definition->serializerForField($field['name']) ?: $definition->serializerForType(
                 $field['type']
             );
+
+            if (($field['nullable'] ?? false) === true) {
+                $template = rtrim($template);
+                $template = "isset({param}) ? {$template} : null\n";
+            }
+
             $template = sprintf("'%s' => %s", $field['name'], $template);
             $serializers[] = trim(strtr($template, ['{type}' => $type, '{param}' => $property]));
         }
@@ -265,12 +283,13 @@ EOF;
     {
         $parameter = rtrim($field['example']);
         $resolvedType = $this->definitionGroup->resolveTypeAlias($field['type']);
+
         if (gettype($parameter) === $resolvedType) {
             $parameter = var_export($parameter, true);
         }
-        $template = $definition->deserializerForField($field['name']) ?: $definition->deserializerForType(
-            $field['type']
-        );
+
+        $template = $definition->deserializerForField($field['name'])
+            ?: $definition->deserializerForType($field['type']);
 
         return rtrim(strtr($template, ['{type}' => $resolvedType, '{param}' => $parameter]));
     }
@@ -278,6 +297,7 @@ EOF;
     private function fieldsFromDefinition(PayloadDefinition $definition): array
     {
         $fields = $this->fieldsFrom($definition->fieldsFrom());
+
         foreach ($definition->fields() as $field) {
             array_push($fields, $field);
         }

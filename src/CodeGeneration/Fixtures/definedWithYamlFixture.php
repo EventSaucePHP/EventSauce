@@ -9,12 +9,13 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 final class WeWentYamling implements SerializablePayload
 {
     public function __construct(
-        private Ramsey\Uuid\UuidInterface $reference,
-        private string $slogan
+        private \Ramsey\Uuid\UuidInterface $reference,
+        private string $slogan,
+        private ?string $title = null
     ) {
     }
 
-    public function reference(): Ramsey\Uuid\UuidInterface
+    public function reference(): \Ramsey\Uuid\UuidInterface
     {
         return $this->reference;
     }
@@ -24,11 +25,17 @@ final class WeWentYamling implements SerializablePayload
         return $this->slogan;
     }
 
+    public function title(): string
+    {
+        return $this->title;
+    }
+
     public static function fromPayload(array $payload): self
     {
         return new WeWentYamling(
             \Ramsey\Uuid\Uuid::fromString($payload['reference']),
-            (string) $payload['slogan']
+            (string) $payload['slogan'],
+            (string) $payload['title']
         );
     }
 
@@ -37,16 +44,28 @@ final class WeWentYamling implements SerializablePayload
         return [
             'reference' => $this->reference->toString(),
             'slogan' => (string) $this->slogan,
+            'title' => isset($this->title) ? (string) $this->title : null,
         ];
     }
 
     /**
      * @codeCoverageIgnore
      */
-    public function withReference(Ramsey\Uuid\UuidInterface $reference): WeWentYamling
+    public function withReference(\Ramsey\Uuid\UuidInterface $reference): WeWentYamling
     {
         $clone = clone $this;
         $clone->reference = $reference;
+
+        return $clone;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function withTitle(string $title): WeWentYamling
+    {
+        $clone = clone $this;
+        $clone->title = $title;
 
         return $clone;
     }
@@ -58,7 +77,8 @@ final class WeWentYamling implements SerializablePayload
     {
         return new WeWentYamling(
             \Ramsey\Uuid\Uuid::fromString("c0b47bc5-2aaa-497b-83cb-11d97da03a95"),
-            $slogan
+            $slogan,
+            (string) 'Some Example Title'
         );
     }
 }
@@ -66,11 +86,11 @@ final class WeWentYamling implements SerializablePayload
 final class HideFinancialDetailsOfFraudulentCompany implements SerializablePayload
 {
     public function __construct(
-        private Ramsey\Uuid\UuidInterface $companyId
+        private \Ramsey\Uuid\UuidInterface $companyId
     ) {
     }
 
-    public function companyId(): Ramsey\Uuid\UuidInterface
+    public function companyId(): \Ramsey\Uuid\UuidInterface
     {
         return $this->companyId;
     }
@@ -92,7 +112,7 @@ final class HideFinancialDetailsOfFraudulentCompany implements SerializablePaylo
     /**
      * @codeCoverageIgnore
      */
-    public static function withCompanyId(Ramsey\Uuid\UuidInterface $companyId): HideFinancialDetailsOfFraudulentCompany
+    public static function withCompanyId(\Ramsey\Uuid\UuidInterface $companyId): HideFinancialDetailsOfFraudulentCompany
     {
         return new HideFinancialDetailsOfFraudulentCompany(
             $companyId
@@ -103,12 +123,12 @@ final class HideFinancialDetailsOfFraudulentCompany implements SerializablePaylo
 final class GoYamling implements SerializablePayload
 {
     public function __construct(
-        private Ramsey\Uuid\UuidInterface $reference,
+        private \Ramsey\Uuid\UuidInterface $reference,
         private string $slogan
     ) {
     }
 
-    public function reference(): Ramsey\Uuid\UuidInterface
+    public function reference(): \Ramsey\Uuid\UuidInterface
     {
         return $this->reference;
     }
@@ -137,7 +157,7 @@ final class GoYamling implements SerializablePayload
     /**
      * @codeCoverageIgnore
      */
-    public function withReference(Ramsey\Uuid\UuidInterface $reference): GoYamling
+    public function withReference(\Ramsey\Uuid\UuidInterface $reference): GoYamling
     {
         $clone = clone $this;
         $clone->reference = $reference;

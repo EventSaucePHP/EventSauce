@@ -87,7 +87,7 @@ class YamlDefinitionLoader implements DefinitionLoader
     private function loadFieldDefaults(DefinitionGroup $definitionGroup, array $defaults): void
     {
         foreach ($defaults as $field => $default) {
-            $definitionGroup->fieldDefault($field, $default['type'], $default['example'] ?? null);
+            $definitionGroup->fieldDefault($field, $default['type'], $default['example'] ?? null, $default['nullable'] ?? null);
 
             if (isset($default['serializer'])) {
                 $definitionGroup->fieldSerializer($field, $default['serializer']);
@@ -128,7 +128,7 @@ class YamlDefinitionLoader implements DefinitionLoader
             }
 
             $type = $fieldDefinition['type'] ?? $definitionGroup->typeForField($fieldName);
-            $definition->field($fieldName, TypeNormalizer::normalize($type), (string) ($fieldDefinition['example'] ?? null));
+            $definition->field($fieldName, TypeNormalizer::normalize($type), (string) ($fieldDefinition['example'] ?? null), $fieldDefinition['nullable'] ?? null);
 
             if (isset($fieldDefinition['serializer'])) {
                 $definition->fieldSerializer($fieldName, $fieldDefinition['serializer']);

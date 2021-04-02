@@ -42,3 +42,5 @@ events:
                     (string) {param}
                 deserializer: |
                     (string) {param}
+            title:
+                nullable: true
