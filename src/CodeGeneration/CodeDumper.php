@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-use function rtrim;
 use const null;
 use LogicException;
 use function array_filter;
 use function array_map;
 use function implode;
+use function rtrim;
 use function sprintf;
 use function ucfirst;
 use function var_export;
@@ -125,6 +125,7 @@ EOF;
         if ($nullable) {
             $type = '?' . $type;
         }
+
         return <<<EOF
     private $type \$$name;
 
