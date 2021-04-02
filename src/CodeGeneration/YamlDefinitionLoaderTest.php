@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-use function var_dump;
 use const false;
 use InvalidArgumentException;
 use LogicException;
