@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
+use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootRepository;
 
 /**
@@ -49,7 +50,9 @@ class DummyCommandHandler
                 $aggregate->increment();
             }
         } finally {
-            $this->repository->persist($aggregate);
+            if (isset($aggregate) && $aggregate instanceof AggregateRoot) {
+                $this->repository->persist($aggregate);
+            }
         }
     }
 }
