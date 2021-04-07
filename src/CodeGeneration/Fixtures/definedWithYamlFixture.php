@@ -26,12 +26,12 @@ final class WeWentYamling implements SerializablePayload
         return $this->slogan;
     }
 
-    public function title(): string
+    public function title(): ?string
     {
         return $this->title;
     }
 
-    public function description(): string
+    public function description(): ?string
     {
         return $this->description;
     }

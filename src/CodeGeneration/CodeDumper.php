@@ -138,8 +138,17 @@ EOF;
     {
         $methods = [];
         foreach ($this->fieldsFromDefinition($command) as $field) {
+            $resolvedType = $this->definitionGroup->resolveTypeAlias($field['type']);
+            $isNullable = (bool) ($field['nullable']
+                ?? $this->definitionGroup->isTypeNullable($field['type'])
+                ?? $this->definitionGroup->isTypeNullable($resolvedType));
+
+            if ($isNullable) {
+                $resolvedType = '?' . $resolvedType;
+            }
+
             $methods[] = <<<EOF
-    public function {$field['name']}(): {$this->definitionGroup->resolveTypeAlias($field['type'])}
+    public function {$field['name']}(): {$resolvedType}
     {
         return \$this->{$field['name']};
     }
