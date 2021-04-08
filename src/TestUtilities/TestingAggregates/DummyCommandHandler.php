@@ -50,7 +50,7 @@ class DummyCommandHandler
                 $aggregate->increment();
             }
         } finally {
-            if (isset($aggregate) && $aggregate instanceof AggregateRoot) {
+            if (isset($aggregate)) {
                 $this->repository->persist($aggregate);
             }
         }
