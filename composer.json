@@ -1,7 +1,7 @@
 {
     "name": "eventsauce/eventsauce",
     "type": "library",
-    "description": "Event sourcing library.",
+    "description": "Pragmatic event sourcing for PHP.",
     "license": "MIT",
     "authors": [
         {
