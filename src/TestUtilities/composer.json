@@ -1,7 +1,7 @@
 {
     "name": "eventsauce/test-utilities",
     "type": "library",
-    "description": "Code generation for EventSauce.",
+    "description": "Test utilities for EventSauce.",
     "license": "MIT",
     "authors": [
         {
