@@ -12,7 +12,7 @@ interface AggregateRootRepository
     /**
      * @phpstan-return T
      *
-     * @throws UnableToReconstructAggregateRoot
+     * @throws UnableToReconstituteAggregateRoot
      * @throws UnableToRetrieveMessages
      */
     public function retrieve(AggregateRootId $aggregateRootId): object;

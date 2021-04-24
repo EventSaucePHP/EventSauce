@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing;
 
 use Generator;
+use Throwable;
+
 use function assert;
 use function count;
 
@@ -38,12 +40,16 @@ final class ConstructingAggregateRootRepository implements AggregateRootReposito
 
     public function retrieve(AggregateRootId $aggregateRootId): object
     {
-        /** @var AggregateRoot $className */
-        /** @phpstan-var class-string<T> $className */
-        $className = $this->aggregateRootClassName;
-        $events = $this->retrieveAllEvents($aggregateRootId);
+        try {
+            /** @var AggregateRoot $className */
+            /** @phpstan-var class-string<T> $className */
+            $className = $this->aggregateRootClassName;
+            $events = $this->retrieveAllEvents($aggregateRootId);
 
-        return $className::reconstituteFromEvents($aggregateRootId, $events);
+            return $className::reconstituteFromEvents($aggregateRootId, $events);
+        } catch (Throwable $throwable) {
+            throw UnableToReconstituteAggregateRoot::becauseOf($throwable->getMessage(), $throwable);
+        }
     }
 
     private function retrieveAllEvents(AggregateRootId $aggregateRootId): Generator
