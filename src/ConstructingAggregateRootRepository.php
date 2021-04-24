@@ -6,7 +6,6 @@ namespace EventSauce\EventSourcing;
 
 use Generator;
 use Throwable;
-
 use function assert;
 use function count;
 
