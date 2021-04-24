@@ -35,7 +35,7 @@ very tiny.
 
 > * `AggregateRootRepository` - custom aggregate root construction and persistence
 > * `MessageRepository` - custom message storage (database)
-> * `MessageDispatcher` - customer message dispatching (queue)
+> * `MessageDispatcher` - custom message dispatching (queue)
 > * `ClassNameInflector` - custom inflection for class-names to event names (interoperability)
 > * `MessageSerializer` - custom message serialization (storage)
 > * `PayloadSerializer` - custom event serialization (storage)
