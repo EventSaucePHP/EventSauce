@@ -24,21 +24,6 @@ class CodeDumper
      */
     private $definitionGroup;
 
-    /**
-     * @var bool|null
-     */
-    private $typedProperties;
-
-    public function __construct(?bool $typedProperties = null)
-    {
-        // @codeCoverageIgnoreStart
-        $this->typedProperties = null === $typedProperties ? version_compare(
-                PHP_VERSION,
-                '7.4.0'
-            ) >= 0 : $typedProperties;
-        // @codeCoverageIgnoreEnd
-    }
-
     public function dump(
         DefinitionGroup $definitionGroup,
         bool $withHelpers = true,
