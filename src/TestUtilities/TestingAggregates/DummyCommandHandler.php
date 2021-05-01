@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootRepository;
-
 use function get_class;
 
 /**
