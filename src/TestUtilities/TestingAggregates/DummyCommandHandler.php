@@ -6,11 +6,20 @@ namespace EventSauce\EventSourcing\TestUtilities\TestingAggregates;
 
 use EventSauce\EventSourcing\AggregateRootRepository;
 
+use function get_class;
+
 /**
  * @testAsset
  */
 class DummyCommandHandler
 {
+    private array $commandToMethodMap = [
+        PerformDummyTask::class => 'performDummyTask',
+        IgnoredCommand::class => 'dontDoAnything',
+        ExceptionInducingCommand::class => 'throwAnException',
+        DummyIncrementCommand::class => 'increment',
+    ];
+
     /**
      * @phpstan-var AggregateRootRepository<DummyAggregate>
      */
@@ -38,16 +47,9 @@ class DummyCommandHandler
 
             /** @var DummyAggregate $aggregate */
             $aggregate = $this->repository->retrieve($command->aggregateRootId());
-
-            if ($command instanceof PerformDummyTask) {
-                $aggregate->performDummyTask();
-            } elseif ($command instanceof IgnoredCommand) {
-                $aggregate->dontDoAnything();
-            } elseif ($command instanceof ExceptionInducingCommand) {
-                $aggregate->throwAnException();
-            } elseif ($command instanceof DummyIncrementCommand) {
-                $aggregate->increment();
-            }
+            /** @var string $method */
+            $method = $this->commandToMethodMap[get_class($command)];
+            $aggregate->{$method}();
         } finally {
             if (isset($aggregate)) {
                 $this->repository->persist($aggregate);
