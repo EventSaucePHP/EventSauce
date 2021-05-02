@@ -6,10 +6,8 @@ namespace EventSauce\EventSourcing;
 
 class MessageDecoratorChain implements MessageDecorator
 {
-    /**
-     * @var MessageDecorator[]
-     */
-    private $processors;
+    /** @var MessageDecorator[] */
+    private array $processors;
 
     public function __construct(MessageDecorator ...$processors)
     {

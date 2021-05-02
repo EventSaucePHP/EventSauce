@@ -2,7 +2,7 @@
 permalink: /docs/reacting-to-events/projections-and-read-models/
 title: Projections and Read Models
 published_at: 2018-03-07
-updated_at: 2019-06-12
+updated_at: 2020-03-28
 ---
 
 Projections and read models are a big part of event sourcing. They
@@ -10,20 +10,20 @@ are a way to communicating state with the outside world. They're also
 very project-specific.
 
 In EventSauce projections are nothing more than the implementation of
-the `Consumer` interface.
+the `MessageConsumer` interface.
 
 ```php
 <?php
 
 namespace EventSauce\EventSourcing;
 
-interface Consumer
+interface MessageConsumer
 {
     public function handle(Message $message);
 }
 ```
 
-The `Consumer` accepts a `Message` via the `handle` method. It can
+The `MessageConsumer` accepts a `Message` via the `handle` method. It can
 then retrieve the event from the `Message` to read information
 about something important that happened in the business.
 
@@ -67,10 +67,10 @@ For each of the read models we can add a projection:
 ```php
 <?php
 
-use EventSauce\EventSourcing\Consumer;
+use EventSauce\EventSourcing\MessageConsumer;
 use EventSauce\EventSourcing\Message;
 
-class PendingInvitationProjection implements Consumer
+class PendingInvitationProjection implements MessageConsumer
 {
     public function __construct(PendingInvitations $invitations)
     {

@@ -3,15 +3,15 @@ permalink: /docs/event-sourcing/create-an-aggregate-root/
 redirect_from: /docs/getting-started/create-an-aggregate-root/
 title: Creating an Aggregate Root
 published_at: 2019-12-07
-updated_at: 2019-12-07
+updated_at: 2020-02-11
 ---
 
-An aggregate root is an entity that is modeled using events. The default
-aggregate root repository (`ConstructingAggregateRootRepository`) relies
+An event-sourced aggregate root is an aggregate root that is modeled using events.
+The default aggregate root repository (`ConstructingAggregateRootRepository`) relies
 on the `AggregateRoot` interface, which your aggregate root must implement.
 
-In order to make things easy several traits are provided which implements
-the interface so you won't have to.
+EventSauce provides traits that implement the behavior for an event-sourced
+aggregate root.
 
 ```php
 <?php

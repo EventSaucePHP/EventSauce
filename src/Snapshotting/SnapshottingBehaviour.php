@@ -11,9 +11,9 @@ use Generator;
 trait SnapshottingBehaviour
 {
     /**
-     * @var int
+     * @var positive-int|0
      */
-    private $aggregateRootVersion = 0;
+    private int $aggregateRootVersion = 0;
 
     abstract public function aggregateRootVersion(): int;
 
@@ -26,12 +26,9 @@ trait SnapshottingBehaviour
         return new Snapshot($this->aggregateRootId(), $this->aggregateRootVersion(), $this->createSnapshotState());
     }
 
-    abstract protected function createSnapshotState();
+    abstract protected function createSnapshotState(): mixed;
 
-    /**
-     * @return static
-     */
-    public static function reconstituteFromSnapshotAndEvents(Snapshot $snapshot, Generator $events): AggregateRoot
+    public static function reconstituteFromSnapshotAndEvents(Snapshot $snapshot, Generator $events): static
     {
         $id = $snapshot->aggregateRootId();
         /** @var static&AggregateRoot $aggregateRoot */

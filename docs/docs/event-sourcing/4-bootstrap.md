@@ -4,7 +4,7 @@ redirect_from: /docs/getting-started/bootstrap/
 title: Bootstrap
 alternate_title: Bootstrapping EventSauce
 published_at: 2019-12-07
-updated_at: 2019-12-07
+updated_at: 2019-12-21
 ---
 
 Now that you've got your `MessageRepository` and `MessageDispatcher` in place
@@ -24,9 +24,9 @@ implementation for if/when you want to create your own implementation.
 ```php
 <?php
 
-use EventSauce\EventSourcing\ConstructingAggregateRootRepository;
+use EventSauce\EventSourcing\EventSourcedAggregateRootRepository;
 
-$aggregateRootRepository = new ConstructingAggregateRootRepository(
+$aggregateRootRepository = new EventSourcedAggregateRootRepository(
     YourAggregateRootClass::class,
     $messageRepository,
     $messageDispatcher

@@ -11,12 +11,12 @@ final class InMemoryMessageRepository implements MessageRepository
     /**
      * @var Message[]
      */
-    private $messages = [];
+    private array $messages = [];
 
     /**
      * @var object[]
      */
-    private $lastCommit = [];
+    private array $lastCommit = [];
 
     /**
      * @return object[]
@@ -47,7 +47,7 @@ final class InMemoryMessageRepository implements MessageRepository
         $lastMessage = null;
 
         foreach ($this->messages as $message) {
-            if ($id->toString() === $message->header(Header::AGGREGATE_ROOT_ID)->toString()) {
+            if ($id->toString() === $message->aggregateRootId()?->toString()) {
                 yield $message;
                 $lastMessage = $message;
             }
@@ -61,7 +61,7 @@ final class InMemoryMessageRepository implements MessageRepository
         $lastMessage = null;
 
         foreach ($this->messages as $message) {
-            if ($id->toString() === $message->header(Header::AGGREGATE_ROOT_ID)->toString()
+            if ($id->toString() === $message->aggregateRootId()?->toString()
                 && $message->header(Header::AGGREGATE_ROOT_VERSION) > $aggregateRootVersion) {
                 yield $message;
                 $lastMessage = $message;

@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\Snapshotting\Tests;
 
 use EventSauce\EventSourcing\AggregateRootId;
-use EventSauce\EventSourcing\AggregateRootTestCase;
+use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 
+/**
+ * @method LightSwitchId aggregateRootId()
+ */
 class LightSwitchTest extends AggregateRootTestCase
 {
     protected function newAggregateRootId(): AggregateRootId

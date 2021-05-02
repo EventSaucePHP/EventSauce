@@ -2,7 +2,7 @@
 permalink: /docs/lifecycle/
 title: Lifecycle
 published_at: 2018-02-25
-updated_at: 2019-11-09
+updated_at: 2020-03-28
 ---
 
 The lifecycle of EventSauce can be broken down into **3** steps:
@@ -116,7 +116,7 @@ When you persist the events from an aggregate root the following things happen:
 
 Responding to messages is the final step of the event sourcing lifecycle.
 The `MessageDispatcher` is responsible for passing `Message`s on to
-`Consumer`s. 
+`MessageConsumer`s.
 
 Typical consumer types are:
 
@@ -124,9 +124,9 @@ Typical consumer types are:
 * Process Managers: listen to events and then perform actions.
 
 ```php
-use EventSauce\EventSourcing\Consumer;
+use EventSauce\EventSourcing\MessageConsumer;
 
-class SomeConsumer implements Consumer
+class SomeConsumer implements MessageConsumer
 {
     public function handle(Message $message)
     {

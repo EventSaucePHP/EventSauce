@@ -9,7 +9,7 @@ class MessageDispatcherChain implements MessageDispatcher
     /**
      * @var MessageDispatcher[]
      */
-    private $dispatchers;
+    private array $dispatchers;
 
     public function __construct(MessageDispatcher ...$dispatchers)
     {

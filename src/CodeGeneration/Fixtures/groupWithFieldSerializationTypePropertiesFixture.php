@@ -8,12 +8,9 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class WithFieldSerializers implements SerializablePayload
 {
-    private array $items;
-
     public function __construct(
-        array $items
+        private array $items
     ) {
-        $this->items = $items;
     }
 
     public function items(): array
@@ -21,7 +18,7 @@ final class WithFieldSerializers implements SerializablePayload
         return $this->items;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new WithFieldSerializers(
             array_map(function ($property) {

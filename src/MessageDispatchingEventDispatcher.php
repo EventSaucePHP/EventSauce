@@ -6,15 +6,8 @@ namespace EventSauce\EventSourcing;
 
 class MessageDispatchingEventDispatcher implements EventDispatcher
 {
-    /**
-     * @var MessageDispatcher
-     */
-    private $dispatcher;
-
-    /**
-     * @var MessageDecorator
-     */
-    private $decorator;
+    private MessageDispatcher $dispatcher;
+    private MessageDecorator $decorator;
 
     public function __construct(MessageDispatcher $dispatcher, ?MessageDecorator $decorator = null)
     {

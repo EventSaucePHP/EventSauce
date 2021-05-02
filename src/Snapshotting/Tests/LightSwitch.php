@@ -14,18 +14,12 @@ final class LightSwitch implements AggregateRootWithSnapshotting
     use AggregateRootBehaviour;
     use SnapshottingBehaviour;
 
-    const OFF = false;
-    const ON = true;
+    public const OFF = false;
+    public const ON = true;
 
-    /**
-     * @var bool
-     */
-    private $state = self::OFF;
+    private bool $state = self::OFF;
 
-    /**
-     * @return bool
-     */
-    private function createSnapshotState()
+    private function createSnapshotState(): bool
     {
         return $this->state;
     }
@@ -60,7 +54,7 @@ final class LightSwitch implements AggregateRootWithSnapshotting
     protected static function reconstituteFromSnapshotState(AggregateRootId $id, $state): AggregateRootWithSnapshotting
     {
         $lightSwitch = new static($id);
-        $lightSwitch->state = $state;
+        $lightSwitch->state = (bool) $state;
 
         return $lightSwitch;
     }

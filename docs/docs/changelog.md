@@ -2,8 +2,24 @@
 permalink: /docs/changelog/
 title: Changelog
 published_at: 2018-03-14
-updated_at: 2019-12-10
+updated_at: 2020-04-04
 ---
+
+## Unreleased
+
+### Changes
+
+- The `EventSauce\EventSourcing\Consumer` interface was renamed to `EventSauce\EventSourcing\MessageConsumer`.
+- The dependency on `ramsey/uuid` was removed.
+- The `EventSauce\EventSourcing\UuidAggregateRootId` was removed.
+- The `CodeGeneration` module was extracted into a separate package `eventsauce/code-generation`.
+- The test utilities were extracted into a separate package `eventsauce/test-utilities`.
+- The clock module was extracted into a separate package `eventsauce/clock`.
+- The serialization and upcasting is no longer generator based and now maps 1:1.
+
+### Added
+
+- `Message::timeOfRecording` was added.
 
 ## 0.8.2 - 2020-11-01
 
@@ -19,9 +35,13 @@ updated_at: 2019-12-10
 
 - Allow `ramsey/uuid` version 3 and 4.
 
+### Added
+
+- `Message::timeOfRecording` was added.
+
 ## 0.8.0 - 2019-12-21
 
-### New Features
+### Added
 
 - `EventDispatcher` was added:<br/>
   Dispatch events with ease! The default MessageDispatchingEventDispatcher allows you to
@@ -37,7 +57,7 @@ updated_at: 2019-12-10
 
 ## 0.7.0
 
-### New Features
+### Added
 
 - Snapshotting 🤩
 - Code Generation supports user defined interfaces for generated classes.

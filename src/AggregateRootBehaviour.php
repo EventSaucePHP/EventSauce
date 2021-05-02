@@ -11,20 +11,12 @@ use Generator;
  */
 trait AggregateRootBehaviour
 {
-    /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
+    use AggregateAlwaysAppliesEvents;
 
-    /**
-     * @var int
-     */
-    private $aggregateRootVersion = 0;
-
-    /**
-     * @var object[]
-     */
-    private $recordedEvents = [];
+    private AggregateRootId $aggregateRootId;
+    private int $aggregateRootVersion = 0;
+    /** @var list<object> */
+    private array $recordedEvents = [];
 
     private function __construct(AggregateRootId $aggregateRootId)
     {
@@ -42,13 +34,6 @@ trait AggregateRootBehaviour
     public function aggregateRootVersion(): int
     {
         return $this->aggregateRootVersion;
-    }
-
-    protected function apply(object $event): void
-    {
-        $parts = explode('\\', get_class($event));
-        $this->{'apply' . end($parts)}($event);
-        ++$this->aggregateRootVersion;
     }
 
     protected function recordThat(object $event): void
@@ -71,9 +56,8 @@ trait AggregateRootBehaviour
     /**
      * @see AggregateRoot::reconstituteFromEvents
      */
-    public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot
+    public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): static
     {
-        /** @var AggregateRoot&static $aggregateRoot */
         $aggregateRoot = new static($aggregateRootId);
 
         /** @var object $event */
@@ -83,7 +67,6 @@ trait AggregateRootBehaviour
 
         $aggregateRoot->aggregateRootVersion = $events->getReturn() ?: 0;
 
-        /* @var AggregateRoot $aggregateRoot */
         return $aggregateRoot;
     }
 }

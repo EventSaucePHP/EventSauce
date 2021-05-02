@@ -4,30 +4,18 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
+use DateTimeImmutable;
 use RuntimeException;
 
 final class Message
 {
-    /**
-     * @var object
-     */
-    private $event;
+    public const TIME_OF_RECORDING_FORMAT = 'Y-m-d H:i:s.uO';
 
-    /**
-     * @var array
-     */
-    private $headers;
-
-    public function __construct(object $event, array $headers = [])
+    public function __construct(private object $event, private array $headers = [])
     {
-        $this->event = $event;
-        $this->headers = $headers;
     }
 
-    /**
-     * @param mixed $value
-     */
-    public function withHeader(string $key, $value): Message
+    public function withHeader(string $key, int|string|null|AggregateRootId $value): Message
     {
         $clone = clone $this;
         $clone->headers[$key] = $value;
@@ -41,6 +29,11 @@ final class Message
         $clone->headers = $headers + $clone->headers;
 
         return $clone;
+    }
+
+    public function withTimeOfRecording(DateTimeImmutable $timeOfRecording): Message
+    {
+        return $this->withHeader(Header::TIME_OF_RECORDING, $timeOfRecording->format(self::TIME_OF_RECORDING_FORMAT));
     }
 
     public function aggregateVersion(): int
@@ -59,15 +52,22 @@ final class Message
         return $this->headers[Header::AGGREGATE_ROOT_ID] ?? null;
     }
 
-    public function timeOfRecording(): PointInTime
+    public function timeOfRecording(): DateTimeImmutable
     {
-        return PointInTime::fromString($this->headers[Header::TIME_OF_RECORDING]);
+        /* @var DateTimeImmutable */
+        $timeOfRecording = DateTimeImmutable::createFromFormat(
+            self::TIME_OF_RECORDING_FORMAT,
+            $header = ($this->headers[Header::TIME_OF_RECORDING] ?? '')
+        );
+
+        if ( ! $timeOfRecording instanceof DateTimeImmutable) {
+            throw UnableToResolveTimeOfRecording::fromFormatAndHeader(self::TIME_OF_RECORDING_FORMAT, $header);
+        }
+
+        return $timeOfRecording;
     }
 
-    /**
-     * @return mixed|null
-     */
-    public function header(string $key)
+    public function header(string $key): int|string|array|AggregateRootId|null
     {
         return $this->headers[$key] ?? null;
     }

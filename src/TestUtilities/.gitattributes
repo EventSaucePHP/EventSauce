@@ -1,0 +1,4 @@
+* text=auto
+
+TestingAggregates export-ignore
+TestingMessageConsumers export-ignore

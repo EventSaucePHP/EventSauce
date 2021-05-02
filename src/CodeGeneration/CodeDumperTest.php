@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-use function file_get_contents;
 use PHPUnit\Framework\TestCase;
+use function file_get_contents;
 
 class CodeDumperTest extends TestCase
 {
@@ -15,7 +15,7 @@ class CodeDumperTest extends TestCase
      */
     public function dumping_a_definition(DefinitionGroup $definitionGroup, string $fixtureFile): void
     {
-        $dumper = new CodeDumper(false);
+        $dumper = new CodeDumper();
         $actual = $dumper->dump($definitionGroup);
         // file_put_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'Fixture.php', $actual);
         $expected = file_get_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'Fixture.php');
@@ -28,9 +28,9 @@ class CodeDumperTest extends TestCase
      */
     public function dumping_a_definition_with_types_properties(DefinitionGroup $definitionGroup, string $fixtureFile): void
     {
-        $dumper = new CodeDumper(true);
+        $dumper = new CodeDumper();
         $actual = $dumper->dump($definitionGroup);
-        file_put_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'TypePropertiesFixture.php', $actual);
+        // file_put_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'TypePropertiesFixture.php', $actual);
         $expected = file_get_contents(__DIR__ . '/Fixtures/' . $fixtureFile . 'TypePropertiesFixture.php');
         $this->assertEquals($expected, $actual, "Expect {$fixtureFile} to match generated code.");
     }

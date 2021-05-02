@@ -2,7 +2,7 @@
 permalink: /docs/advanced/custom-repository/
 title: Custom Message Repository
 published_at: 2018-03-07
-updated_at: 2019-11-09
+updated_at: 2019-12-21
 ---
 
 You can create a custom implementation of the message repository if needed. Your
@@ -17,8 +17,9 @@ use Generator;
 
 interface MessageRepository
 {
-    public function persist(Message ... $messages);
+    public function persist(Message ... $messages): void;
     public function retrieveAll(AggregateRootId $id): Generator;
+    public function retrieveAllAfterVersion(AggregateRootId $id, int $aggregateRootVersion): Generator;
 }
 ```
 
@@ -44,7 +45,7 @@ class FilesystemMessageRepository implements MessageRepository
         $this->serializer = $serializer ?: new ConstructingMessageSerializer();
     }
     
-    public function persist(Message ... $messages)
+    public function persist(Message ... $messages): void
     {
         foreach ($messages as $message) {
             $aggregateRootId = $message->header(Header::AGGREGATE_ROOT_ID);

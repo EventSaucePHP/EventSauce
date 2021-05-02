@@ -4,31 +4,24 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-use function array_key_exists;
-use EventSauce\EventSourcing\PointInTime;
+use DateTimeImmutable;
 use OutOfBoundsException;
+use function array_key_exists;
 
 final class DefinitionGroup
 {
-    /**
-     * @var string
-     */
-    private $namespace;
+    private string $namespace;
 
     /**
      * @var PayloadDefinition[]
      */
-    private $events = [];
+    private array $events = [];
+    private array $defaults = [];
 
     /**
-     * @var array
+     * @var array<string, string>
      */
-    private $defaults = [];
-
-    /**
-     * @var array
-     */
-    private $typeSerializer = [
+    private array $typeSerializer = [
         'string' => '({type}) {param}',
         'array' => '({type}) {param}',
         'integer' => '({type}) {param}',
@@ -38,9 +31,9 @@ final class DefinitionGroup
     ];
 
     /**
-     * @var array
+     * @var array<string, string>
      */
-    private $typeDeserializer = [
+    private array $typeDeserializer = [
         'string' => '({type}) {param}',
         'array' => '({type}) {param}',
         'integer' => '({type}) {param}',
@@ -50,34 +43,39 @@ final class DefinitionGroup
     ];
 
     /**
-     * @var array
+     * @var array<string, string>
      */
-    private $fieldSerializer = [];
+    private array $fieldSerializer = [];
 
     /**
-     * @var array
+     * @var array<string, string>
      */
-    private $fieldDeserializer = [];
+    private array $fieldDeserializer = [];
 
     /**
      * @var PayloadDefinition[]
      */
-    private $commands = [];
+    private array $commands = [];
 
     /**
-     * @var string[]
+     * @var array<string, string>
      */
-    private $typeAliases = [];
+    private array $typeAliases = [];
 
     /**
-     * @var string[]
+     * @var array<string, class-string>
      */
-    private $interfaces = [];
+    private array $interfaces = [];
+
+    /**
+     * @var array<string, bool>
+     */
+    private $nullable = [];
 
     public function __construct()
     {
-        $this->typeSerializer(PointInTime::class, '{param}->toString()');
-        $this->typeDeserializer(PointInTime::class, '{type}::fromString({param})');
+        $this->typeSerializer(DateTimeImmutable::class, '{param}->format(\'Y-m-d H:i:s.uO\')');
+        $this->typeDeserializer(DateTimeImmutable::class, '{type}::createFromFormat(\'Y-m-d H:i:s.uO\', {param})');
     }
 
     public static function create(string $namespace): DefinitionGroup
@@ -141,10 +139,10 @@ final class DefinitionGroup
         return $this->fieldDeserializer[$field] ?? null;
     }
 
-    public function fieldDefault(string $name, string $type, string $example = null): void
+    public function fieldDefault(string $name, string $type, ?string $example = null, ?bool $nullable = null): void
     {
         $type = $this->resolveTypeAlias($type);
-        $this->defaults[$name] = compact('type', 'example');
+        $this->defaults[$name] = compact('type', 'example', 'nullable');
     }
 
     public function aliasType(string $alias, string $type): void
@@ -176,10 +174,7 @@ final class DefinitionGroup
         return $this->defaults[$field]['type'] ?? 'string';
     }
 
-    /**
-     * @return mixed
-     */
-    public function exampleForField(string $field)
+    public function exampleForField(string $field): mixed
     {
         return $this->defaults[$field]['example'] ?? null;
     }
@@ -205,6 +200,9 @@ final class DefinitionGroup
         return $this->namespace;
     }
 
+    /**
+     * @param class-string $interfaceName
+     */
     public function defineInterface(string $alias, string $interfaceName): void
     {
         $this->interfaces[$alias] = $interfaceName;
@@ -217,5 +215,15 @@ final class DefinitionGroup
         }
 
         return $this->interfaces[$alias];
+    }
+
+    public function setTypeNullability(string $type, bool $nullable): void
+    {
+        $this->nullable[$type] = $nullable;
+    }
+
+    public function isTypeNullable(string $type): ?bool
+    {
+        return $this->nullable[$type] ?? null;
     }
 }

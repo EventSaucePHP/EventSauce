@@ -8,8 +8,5 @@ interface AggregateRootId
 {
     public function toString(): string;
 
-    /**
-     * @return static
-     */
-    public static function fromString(string $aggregateRootId): AggregateRootId;
+    public static function fromString(string $aggregateRootId): self;
 }

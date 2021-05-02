@@ -8,22 +8,10 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class ThisOne implements SerializablePayload
 {
-    /**
-     * @var string
-     */
-    private $title;
-
-    /**
-     * @var string
-     */
-    private $description;
-
     public function __construct(
-        string $title,
-        string $description
+        private string $title,
+        private string $description
     ) {
-        $this->title = $title;
-        $this->description = $description;
     }
 
     public function title(): string
@@ -36,7 +24,7 @@ final class ThisOne implements SerializablePayload
         return $this->description;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new ThisOne(
             (string) $payload['title'],

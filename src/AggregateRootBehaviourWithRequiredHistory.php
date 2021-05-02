@@ -12,12 +12,12 @@ trait AggregateRootBehaviourWithRequiredHistory
         AggregateRootBehaviour::reconstituteFromEvents as private defaultAggregateRootReconstitute;
     }
 
-    public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot
+    public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): static
     {
         $aggregateRoot = static::defaultAggregateRootReconstitute($aggregateRootId, $events);
 
         if (0 === $aggregateRoot->aggregateRootVersion()) {
-            throw new InvalidAggregateRootReconstitutionException();
+            throw UnableToReconstituteAggregateRoot::becauseItHasNoHistory();
         }
 
         return $aggregateRoot;

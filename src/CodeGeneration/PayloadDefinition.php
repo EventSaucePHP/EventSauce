@@ -6,40 +6,17 @@ namespace EventSauce\EventSourcing\CodeGeneration;
 
 final class PayloadDefinition
 {
-    /**
-     * @var DefinitionGroup
-     */
-    private $group;
-
-    /**
-     * @var string
-     */
-    private $name;
+    private DefinitionGroup $group;
+    private string $name;
 
     /**
      * @var array[]
      */
-    private $fields = [];
-
-    /**
-     * @var string
-     */
-    private $fieldsFrom = '';
-
-    /**
-     * @var array
-     */
-    private $fieldSerializers = [];
-
-    /**
-     * @var array
-     */
-    private $fieldDeserializers = [];
-
-    /**
-     * @var string[]
-     */
-    private $interfaces = [];
+    private array $fields = [];
+    private string $fieldsFrom = '';
+    private array $fieldSerializers = [];
+    private array $fieldDeserializers = [];
+    private array $interfaces = [];
 
     public function __construct(DefinitionGroup $group, string $name)
     {
@@ -50,14 +27,14 @@ final class PayloadDefinition
     /**
      * @return $this
      */
-    public function withFieldsFrom(string $otherType): PayloadDefinition
+    public function withFieldsFrom(string $otherType): self
     {
         $this->fieldsFrom = $otherType;
 
         return $this;
     }
 
-    public function withInterface(string $interface): PayloadDefinition
+    public function withInterface(string $interface): self
     {
         $this->interfaces[] = $interface;
 
@@ -79,15 +56,15 @@ final class PayloadDefinition
         return $this->fieldsFrom;
     }
 
-    public function field(string $name, string $type, string $example = null): PayloadDefinition
+    public function field(string $name, string $type, string $example = null, ?bool $nullable = null): self
     {
         $example = $example ?: $this->group->exampleForField($name);
-        $this->fields[] = compact('name', 'type', 'example');
+        $this->fields[] = compact('name', 'type', 'example', 'nullable');
 
         return $this;
     }
 
-    public function fieldSerializer(string $field, string $template): PayloadDefinition
+    public function fieldSerializer(string $field, string $template): self
     {
         $this->fieldSerializers[$field] = $template;
 

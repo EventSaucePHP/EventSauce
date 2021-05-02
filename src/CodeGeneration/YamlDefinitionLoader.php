@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
+use const PATHINFO_EXTENSION;
+use InvalidArgumentException;
+use LogicException;
+use Symfony\Component\Yaml\Yaml;
 use function file_get_contents;
 use function in_array;
-use InvalidArgumentException;
 use function is_array;
 use function is_string;
-use LogicException;
 use function pathinfo;
-use const PATHINFO_EXTENSION;
-use Symfony\Component\Yaml\Yaml;
 
 class YamlDefinitionLoader implements DefinitionLoader
 {
@@ -58,6 +58,10 @@ class YamlDefinitionLoader implements DefinitionLoader
                 $definitionGroup->aliasType($type, $handlers['type']);
             }
 
+            if (isset($handlers['nullable'])) {
+                $definitionGroup->setTypeNullability($type, (bool) $handlers['nullable']);
+            }
+
             if (isset($handlers['serializer'])) {
                 $definitionGroup->typeSerializer($type, $handlers['serializer']);
             }
@@ -87,7 +91,7 @@ class YamlDefinitionLoader implements DefinitionLoader
     private function loadFieldDefaults(DefinitionGroup $definitionGroup, array $defaults): void
     {
         foreach ($defaults as $field => $default) {
-            $definitionGroup->fieldDefault($field, $default['type'], $default['example'] ?? null);
+            $definitionGroup->fieldDefault($field, $default['type'], $default['example'] ?? null, $default['nullable'] ?? null);
 
             if (isset($default['serializer'])) {
                 $definitionGroup->fieldSerializer($field, $default['serializer']);
@@ -106,7 +110,9 @@ class YamlDefinitionLoader implements DefinitionLoader
                 throw new LogicException("Interface {$interfaceName} does not exist.");
             }
 
-            $definitionGroup->defineInterface($alias, '\\' . ltrim($interfaceName, '\\'));
+            /** @var class-string $interface */
+            $interface = '\\' . ltrim($interfaceName, '\\');
+            $definitionGroup->defineInterface($alias, $interface);
         }
     }
 
@@ -126,7 +132,7 @@ class YamlDefinitionLoader implements DefinitionLoader
             }
 
             $type = $fieldDefinition['type'] ?? $definitionGroup->typeForField($fieldName);
-            $definition->field($fieldName, TypeNormalizer::normalize($type), (string) ($fieldDefinition['example'] ?? null));
+            $definition->field($fieldName, TypeNormalizer::normalize($type), (string) ($fieldDefinition['example'] ?? null), $fieldDefinition['nullable'] ?? null);
 
             if (isset($fieldDefinition['serializer'])) {
                 $definition->fieldSerializer($fieldName, $fieldDefinition['serializer']);

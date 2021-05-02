@@ -7,6 +7,9 @@ types:
             {param}->toString()
         deserializer: |
             \Ramsey\Uuid\Uuid::fromString({param})
+    nullable_string:
+        type: string
+        nullable: true
 fields:
     reference:
         type: uuid
@@ -42,3 +45,6 @@ events:
                     (string) {param}
                 deserializer: |
                     (string) {param}
+            title:
+                nullable: true
+            description: nullable_string

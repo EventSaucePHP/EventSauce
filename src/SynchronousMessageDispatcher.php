@@ -7,11 +7,11 @@ namespace EventSauce\EventSourcing;
 final class SynchronousMessageDispatcher implements MessageDispatcher
 {
     /**
-     * @var Consumer[]
+     * @var list<MessageConsumer>
      */
-    private $consumers;
+    private array $consumers;
 
-    public function __construct(Consumer ...$consumers)
+    public function __construct(MessageConsumer ...$consumers)
     {
         $this->consumers = $consumers;
     }

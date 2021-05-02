@@ -8,32 +8,11 @@ use EventSauce\EventSourcing\AggregateRootId;
 
 final class Snapshot
 {
-    /**
-     * @var AggregateRootId
-     */
-    private $aggregateRootId;
-
-    /**
-     * @var int
-     */
-    private $aggregateRootVersion;
-
-    /**
-     * @var mixed
-     */
-    private $state;
-
-    /**
-     * @param mixed $state
-     */
     public function __construct(
-        AggregateRootId $aggregateRootId,
-        int $aggregateRootVersion,
-        $state
+        private AggregateRootId $aggregateRootId,
+        private int $aggregateRootVersion,
+        private mixed $state
     ) {
-        $this->aggregateRootId = $aggregateRootId;
-        $this->aggregateRootVersion = $aggregateRootVersion;
-        $this->state = $state;
     }
 
     public function aggregateRootId(): AggregateRootId
@@ -46,10 +25,7 @@ final class Snapshot
         return $this->aggregateRootVersion;
     }
 
-    /**
-     * @return mixed
-     */
-    public function state()
+    public function state(): mixed
     {
         return $this->state;
     }

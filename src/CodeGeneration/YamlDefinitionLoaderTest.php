@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use const false;
-use function file_get_contents;
 use InvalidArgumentException;
 use LogicException;
 use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
+use function file_get_contents;
 
 class YamlDefinitionLoaderTest extends TestCase
 {
@@ -32,9 +32,9 @@ class YamlDefinitionLoaderTest extends TestCase
     {
         $loader = new YamlDefinitionLoader();
         $definitionGroup = $loader->load($source);
-        $dumper = new CodeDumper(false);
+        $dumper = new CodeDumper();
         $code = $dumper->dump($definitionGroup, $withHelpers, $withSerializers);
-        file_put_contents($output, $code);
+        // file_put_contents($output, $code);
         $expected = file_get_contents($output);
         $this->assertEquals($expected, $code);
     }
@@ -55,7 +55,7 @@ class YamlDefinitionLoaderTest extends TestCase
         $this->expectException(LogicException::class);
         $loader = new YamlDefinitionLoader();
         $definitionGroup = $loader->load(__DIR__ . '/Fixtures/inheritFieldsFromUnknownType.yaml');
-        $dumper = new CodeDumper(false);
+        $dumper = new CodeDumper();
         $dumper->dump($definitionGroup, false);
     }
 
@@ -67,7 +67,7 @@ class YamlDefinitionLoaderTest extends TestCase
         $this->expectException(OutOfBoundsException::class);
         $loader = new YamlDefinitionLoader();
         $definitionGroup = $loader->load(__DIR__ . '/Fixtures/commands-with-non-existing-interfaces.yaml');
-        $dumper = new CodeDumper(false);
+        $dumper = new CodeDumper();
         $dumper->dump($definitionGroup, false);
     }
 

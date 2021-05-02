@@ -8,12 +8,9 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class EventName implements SerializablePayload
 {
-    private string $title;
-
     public function __construct(
-        string $title
+        private string $title
     ) {
-        $this->title = $title;
     }
 
     public function title(): string
@@ -21,7 +18,7 @@ final class EventName implements SerializablePayload
         return $this->title;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new EventName(
             strtolower($payload['title'])
@@ -49,7 +46,7 @@ final class EventName implements SerializablePayload
     /**
      * @codeCoverageIgnore
      */
-    public static function with(): EventName
+    public static function withDefaults(): EventName
     {
         return new EventName(
             strtolower('Title')

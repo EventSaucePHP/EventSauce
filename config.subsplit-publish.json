@@ -1,0 +1,14 @@
+{
+    "sub-splits": [
+        {
+            "name": "codegen",
+            "directory": "src/CodeGeneration",
+            "target": "git@github.com:EventSaucePHP/CodeGeneration.git"
+        },
+        {
+            "name": "testing",
+            "directory": "src/TestUtilities",
+            "target": "git@github.com:EventSaucePHP/TestUtilities.git"
+        }
+    ]
+}

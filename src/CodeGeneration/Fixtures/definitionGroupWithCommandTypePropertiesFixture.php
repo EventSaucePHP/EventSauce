@@ -8,12 +8,9 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 final class DoSomething implements SerializablePayload
 {
-    private string $reason;
-
     public function __construct(
-        string $reason
+        private string $reason
     ) {
-        $this->reason = $reason;
     }
 
     public function reason(): string
@@ -21,7 +18,7 @@ final class DoSomething implements SerializablePayload
         return $this->reason;
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): self
     {
         return new DoSomething(
             (string) $payload['reason']
@@ -49,7 +46,7 @@ final class DoSomething implements SerializablePayload
     /**
      * @codeCoverageIgnore
      */
-    public static function with(): DoSomething
+    public static function withDefaults(): DoSomething
     {
         return new DoSomething(
             (string) 'Because reasons.'

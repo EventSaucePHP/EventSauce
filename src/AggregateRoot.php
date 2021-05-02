@@ -20,8 +20,5 @@ interface AggregateRoot
      */
     public function releaseEvents(): array;
 
-    /**
-     * @return static
-     */
-    public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): AggregateRoot;
+    public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): static;
 }

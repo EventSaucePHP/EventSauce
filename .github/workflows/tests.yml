@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [7.2, 7.3, 7.4, 8.0]
+        php: [8.0]
         stability: [prefer-lowest, prefer-stable]
 
     name: PHP ${{ matrix.php }} - ${{ matrix.stability }}
@@ -27,16 +27,25 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip
-          coverage: none
+          coverage: xdebug
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ matrix.stability }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-${{ matrix.stability }}-
+            ${{ runner.os }}-composer-
 
       - name: Install dependencies
         run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
 
-#      - name: Run PHP CS Fixer
-#        if: ${{ matrix.php != 8.0 }}
-#        run: |
-#          composer require friendsofphp/php-cs-fixer:^2.15 --dev --prefer-dist --no-interaction --no-progress --update-with-all-dependencies
-#          vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no
+      - name: Run PHP CS Fixer
+        run: vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no
 
       - name: Run PHPStan
         run: vendor/bin/phpstan analyze -c phpstan.neon
@@ -45,7 +54,7 @@ jobs:
         run: vendor/bin/phpunit --verbose --coverage-text --coverage-clover=coverage.clover
 
       - name: Code coverage
-        if: ${{ github.ref == 'refs/heads/master' && matrix.php != 8.0 }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         run: |
           wget https://scrutinizer-ci.com/ocular.phar
           php ocular.phar code-coverage:upload --format=php-clover coverage.clover

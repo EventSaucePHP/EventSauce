@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\CodeGeneration;
 
-use function ltrim;
 use ReflectionClass;
 use ReflectionException;
+use function ltrim;
 
 /**
  * @internal
@@ -25,8 +25,8 @@ class TypeNormalizer
     public static function isNativeType(string $type): bool
     {
         try {
-            // @phpstan-ignore-next-line
-            new ReflectionClass(ltrim($type, '\\'));
+            /* @phpstan-ignore-next-line */
+            new ReflectionClass($type);
 
             return false;
         } catch (ReflectionException $isNativeType) {

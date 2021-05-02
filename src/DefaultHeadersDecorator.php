@@ -4,20 +4,13 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
-use EventSauce\EventSourcing\Time\Clock;
-use EventSauce\EventSourcing\Time\SystemClock;
+use EventSauce\Clock\Clock;
+use EventSauce\Clock\SystemClock;
 
 class DefaultHeadersDecorator implements MessageDecorator
 {
-    /**
-     * @var ClassNameInflector
-     */
-    private $inflector;
-
-    /**
-     * @var Clock
-     */
-    private $clock;
+    private ClassNameInflector $inflector;
+    private Clock $clock;
 
     public function __construct(ClassNameInflector $inflector = null, Clock $clock = null)
     {
@@ -27,9 +20,9 @@ class DefaultHeadersDecorator implements MessageDecorator
 
     public function decorate(Message $message): Message
     {
-        return $message->withHeaders([
-            Header::EVENT_TYPE => $this->inflector->instanceToType($message->event()),
-            Header::TIME_OF_RECORDING => $this->clock->pointInTime()->toString(),
-        ]);
+        return $message->withHeader(
+            Header::EVENT_TYPE,
+            $this->inflector->instanceToType($message->event())
+        )->withTimeOfRecording($this->clock->now());
     }
 }
