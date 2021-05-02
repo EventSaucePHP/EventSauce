@@ -6,6 +6,10 @@ namespace EventSauce\EventSourcing;
 
 /**
  * @deprecated use EventSourcedAggregateRootRepository::class instead
+ *
+ * @template T of AggregateRoot
+ *
+ * @extends EventSourcedAggregateRootRepository<T>
  */
 class ConstructingAggregateRootRepository extends EventSourcedAggregateRootRepository
 {
