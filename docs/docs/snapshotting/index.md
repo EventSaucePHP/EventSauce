@@ -2,7 +2,7 @@
 permalink: /docs/snapshotting/
 title: Snapshotting
 published_at: 2019-09-25
-updated_at: 2020-03-02
+updated_at: 2020-04-06
 ---
 
 Snapshotting is a way to reduce the amount of events you need to load and apply when fetching

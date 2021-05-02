@@ -22,14 +22,14 @@ $files = array_map(
 
 function creation_date(string $path): string
 {
-    $date = shell_exec("git --no-pager log --diff-filter=A -1 --format=\"%ai\" -- ".$path);
+    $date = shell_exec("git --no-pager log --diff-filter=A -1 --format=\"%ai\" -- " . $path);
 
     return explode(' ', $date)[0];
 }
 
-function modified_date(string $path): string
+function modified_date(string $path): ?string
 {
-    $date = shell_exec("git --no-pager log -1 --format=\"%ai\" -- ".$path);
+    $date = shell_exec("git --no-pager log -1 --format=\"%ai\" -- " . $path);
 
     return explode(' ', $date ?: '')[0] ?? null;
 }
@@ -42,14 +42,14 @@ foreach ($files as $path) {
         continue;
     }
 
-    list($info, $offset) = $matches[1];
+    [$info, $offset] = $matches[1];
     $end = $offset + mb_strlen($info);
     $updatedInfo = trim($info);
     $document = rtrim(substr($contents, $end)) . "\n";
 
     $updates = [
         'published_at' => creation_date($path) ?: date('Y-m-d'),
-        'updated_at'   => modified_date($path) ?: date('Y-m-d'),
+        'updated_at' => modified_date($path) ?: date('Y-m-d'),
     ];
 
     foreach ($updates as $label => $date) {

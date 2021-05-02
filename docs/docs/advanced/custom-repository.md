@@ -2,7 +2,7 @@
 permalink: /docs/advanced/custom-repository/
 title: Custom Message Repository
 published_at: 2018-03-07
-updated_at: 2019-12-21
+updated_at: 2021-03-30
 ---
 
 You can create a custom implementation of the message repository if needed. Your
