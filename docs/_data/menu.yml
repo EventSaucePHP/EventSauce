@@ -37,6 +37,12 @@ Utilities:
     Time / Clock: '/docs/utilities/clock/'
     Event Dispatcher: '/docs/utilities/event-dispatcher/'
 
+Message Outbox (not released):
+    About: '/docs/message-outbox/'
+    Setup: '/docs/message-outbox/setup/'
+    Usage: '/docs/message-outbox/usage/'
+    Build your own: '/docs/message-outbox/build-your-own/'
+
 Advanced Topics:
     Database Structure: '/docs/advanced/database-structure/'
     Rebuilding Projections: '/docs/advanced/rebuilding-projections/'
