@@ -10,7 +10,7 @@ At the time of writing, two outbox implementations are provided.
 * [Doctrine](#doctrine)
 * [Illuminate](#illuminate) (Laravel)
 
-You can also [build your own implementation](/docs/message-outbox/usage/build-your-own/)
+You can also [build your own implementation](/docs/message-outbox/build-your-own/)
 
 ## Database Schema
 
