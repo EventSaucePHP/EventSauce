@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\RequiringHistoryWithAggregateRootConstruction;
 
 use EventSauce\EventSourcing\AggregateRoot;
-use EventSauce\EventSourcing\ConstructingAggregateRootRepository;
 use EventSauce\EventSourcing\DummyAggregateRootId;
+use EventSauce\EventSourcing\EventSourcedAggregateRootRepository;
 use EventSauce\EventSourcing\InMemoryMessageRepository;
 use EventSauce\EventSourcing\UnableToReconstituteAggregateRoot;
 use PHPUnit\Framework\TestCase;
@@ -19,7 +19,7 @@ class AggregateRootConstructionTest extends TestCase
     public function expecting_an_exception_without_history(): void
     {
         $this->expectException(UnableToReconstituteAggregateRoot::class);
-        $repository = new ConstructingAggregateRootRepository(
+        $repository = new EventSourcedAggregateRootRepository(
             AggregateThatRequiredHistoryForReconstitutionStub::class,
             new InMemoryMessageRepository()
         );
@@ -32,7 +32,7 @@ class AggregateRootConstructionTest extends TestCase
      */
     public function expecting_an_aggregate_when_there_is_history(): void
     {
-        $repository = new ConstructingAggregateRootRepository(
+        $repository = new EventSourcedAggregateRootRepository(
             AggregateThatRequiredHistoryForReconstitutionStub::class,
             new InMemoryMessageRepository()
         );

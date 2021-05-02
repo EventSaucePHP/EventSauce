@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing\Snapshotting\Tests;
 
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
-use EventSauce\EventSourcing\ConstructingAggregateRootRepository;
+use EventSauce\EventSourcing\EventSourcedAggregateRootRepository;
 use EventSauce\EventSourcing\MessageDecorator;
 use EventSauce\EventSourcing\MessageDispatcher;
 use EventSauce\EventSourcing\MessageRepository;
@@ -58,6 +58,32 @@ class AggregateSnapshottingTest extends AggregateRootTestCase
         $this->messageRepository->purgeLastCommit();
     }
 
+    /**
+     * @test
+     */
+    public function events_after_a_snapshot_are_applied_during_reconstitution(): void
+    {
+        // Record some events and persist the aggregate and the snapshot.
+        /** @var LightSwitch $lightSwitch */
+        $lightSwitch = $this->repository->retrieveFromSnapshot($this->aggregateRootId);
+        $lightSwitch->turnOn();
+        $lightSwitch->turnOff();
+        $lightSwitch->turnOn();
+        $this->repository->persist($lightSwitch);
+        $this->repository->storeSnapshot($lightSwitch);
+
+        // Record more events and persist them.
+        $lightSwitch->turnOff();
+        $this->repository->persist($lightSwitch);
+
+        /** @var LightSwitch $lightSwitch */
+        $lightSwitch = $this->repository->retrieveFromSnapshot($this->aggregateRootId);
+        self::assertFalse($lightSwitch->state());
+
+        // work around test tooling
+        $this->messageRepository->purgeLastCommit();
+    }
+
     protected function newAggregateRootId(): AggregateRootId
     {
         return new LightSwitchId('bedroom');
@@ -76,7 +102,7 @@ class AggregateSnapshottingTest extends AggregateRootTestCase
             $className,
             $repository,
             $this->snapshotRepository,
-            new ConstructingAggregateRootRepository(
+            new EventSourcedAggregateRootRepository(
                 $className,
                 $repository,
                 $dispatcher,

@@ -9,8 +9,8 @@ use EventSauce\Clock\TestClock;
 use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
-use EventSauce\EventSourcing\ConstructingAggregateRootRepository;
 use EventSauce\EventSourcing\DefaultHeadersDecorator;
+use EventSauce\EventSourcing\EventSourcedAggregateRootRepository;
 use EventSauce\EventSourcing\InMemoryMessageRepository;
 use EventSauce\EventSourcing\MessageConsumer;
 use EventSauce\EventSourcing\MessageDecorator;
@@ -264,7 +264,7 @@ abstract class AggregateRootTestCase extends TestCase
         MessageDispatcher $dispatcher,
         MessageDecorator $decorator
     ): AggregateRootRepository {
-        return new ConstructingAggregateRootRepository(
+        return new EventSourcedAggregateRootRepository(
             $className, $repository, $dispatcher, $decorator
         );
     }

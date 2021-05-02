@@ -8,6 +8,7 @@ use DateTimeImmutable;
 use EventSauce\Clock\TestClock;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
+use stdClass;
 use Throwable;
 
 class MessageTest extends TestCase
@@ -69,6 +70,20 @@ class MessageTest extends TestCase
         $this->expectExceptionObject(UnableToResolveTimeOfRecording::fromFormatAndHeader(Message::TIME_OF_RECORDING_FORMAT, ''));
 
         $message->timeOfRecording();
+    }
+
+    /**
+     * @test
+     */
+    public function adding_multiple_headers_to_a_message(): void
+    {
+        $message = new Message(new stdClass(), ['value' => 1, 'one' => 1]);
+        $expectedHeaders = ['value' => 2, 'one' => 1, 'two' => 2];
+
+        $changedMessage = $message->withHeaders(['value' => 2, 'two' => 2]);
+        $headers = $changedMessage->headers();
+
+        self::assertEquals($expectedHeaders, $headers);
     }
 
     /**

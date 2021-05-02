@@ -9,6 +9,7 @@ use function compact;
 
 /**
  * @testAsset
+ * @codeCoverageIgnore
  */
 final class EventStub implements SerializablePayload
 {

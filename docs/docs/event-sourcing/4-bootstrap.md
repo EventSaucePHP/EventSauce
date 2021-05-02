@@ -24,9 +24,9 @@ implementation for if/when you want to create your own implementation.
 ```php
 <?php
 
-use EventSauce\EventSourcing\ConstructingAggregateRootRepository;
+use EventSauce\EventSourcing\EventSourcedAggregateRootRepository;
 
-$aggregateRootRepository = new ConstructingAggregateRootRepository(
+$aggregateRootRepository = new EventSourcedAggregateRootRepository(
     YourAggregateRootClass::class,
     $messageRepository,
     $messageDispatcher
