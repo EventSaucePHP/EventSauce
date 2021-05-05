@@ -45,11 +45,24 @@ composer require eventsauce/message-outbox-for-doctrine
 ```
 
 ```php
-use EventSauce\MessageOutbox\DoctrineMessageOutbox\DoctrineOutboxRepository;
+use EventSauce\MessageOutbox\DoctrineOutbox\DoctrineOutboxRepository;
 use EventSauce\MessageOutbox\OutboxMessageDispatcher;
 
 $outboxRepository = new DoctrineOutboxRepository($connection, $tableName, $messageSerializer);
 $messageDispatcher = new OutboxMessageDispatcher($outboxRepository);
+```
+
+To ensure dispatching and persisting of messages is done in a single transaction, use
+the transactional repository wrapper:
+
+```php
+use EventSauce\MessageOutbox\DoctrineOutbox\DoctrineTransactionalMessageRepository;
+
+$messageRepository = new DoctrineTransactionalMessageRepository(
+    $connection,
+    $innerMessageRepository, // based which uses the same db connection,
+    $messageSerializer,
+);
 ```
 
 ### Illuminate
@@ -59,11 +72,24 @@ composer require eventsauce/message-outbox-for-illuminate
 ```
 
 ```php
-use EventSauce\MessageOutbox\IlluminateMessageOutbox\IlluminateOutboxRepository;
+use EventSauce\MessageOutbox\IlluminateOutbox\IlluminateOutboxRepository;
 use EventSauce\MessageOutbox\OutboxMessageDispatcher;
 
 $outboxRepository = new IlluminateOutboxRepository($connection, $tableName, $messageSerializer);
 $messageDispatcher = new OutboxMessageDispatcher($outboxRepository);
+```
+
+To ensure dispatching and persisting of messages is done in a single transaction, use
+the transactional repository wrapper:
+
+```php
+use EventSauce\MessageOutbox\IlluminateOutbox\IlluminateTransactionalMessageRepository;
+
+$messageRepository = new IlluminateTransactionalMessageRepository(
+    $connection,
+    $innerMessageRepository, // based which uses the same db connection,
+    $messageSerializer,
+);
 ```
 
 
