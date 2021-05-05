@@ -31,9 +31,9 @@ $messageDispatcher->dispatch(new Message(new YourEvent(1234)));
 ## Relay Setup
 
 ```php
-use EventSauce\MessageOutbox\MessageOutboxRelay;
+use EventSauce\MessageOutbox\OutboxRelay;
 
-$relay = new MessageOutboxRelay(
+$relay = new OutboxRelay(
     $yourRepository,
     $forwardingMessageConsumer,
     $backOffStrategy, /* optional */

@@ -45,10 +45,10 @@ composer require eventsauce/message-outbox-for-doctrine
 ```
 
 ```php
-use EventSauce\MessageOutbox\DoctrineMessageOutbox\DoctrineMessageOutboxRepository;
+use EventSauce\MessageOutbox\DoctrineMessageOutbox\DoctrineOutboxRepository;
 use EventSauce\MessageOutbox\OutboxMessageDispatcher;
 
-$outboxRepository = new DoctrineMessageOutboxRepository($connection, $tableName, $messageSerializer);
+$outboxRepository = new DoctrineOutboxRepository($connection, $tableName, $messageSerializer);
 $messageDispatcher = new OutboxMessageDispatcher($outboxRepository);
 ```
 
@@ -59,10 +59,10 @@ composer require eventsauce/message-outbox-for-illuminate
 ```
 
 ```php
-use EventSauce\MessageOutbox\IlluminateMessageOutbox\IlluminateMessageOutboxRepository;
+use EventSauce\MessageOutbox\IlluminateMessageOutbox\IlluminateOutboxRepository;
 use EventSauce\MessageOutbox\OutboxMessageDispatcher;
 
-$outboxRepository = new IlluminateMessageOutbox($connection, $tableName, $messageSerializer);
+$outboxRepository = new IlluminateOutboxRepository($connection, $tableName, $messageSerializer);
 $messageDispatcher = new OutboxMessageDispatcher($outboxRepository);
 ```
 
