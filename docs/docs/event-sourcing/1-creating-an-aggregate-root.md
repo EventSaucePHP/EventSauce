@@ -69,7 +69,6 @@ class AcmeProcess implements AggregateRoot
         $process->recordThat(new ProcessWasStartedBy(ProcessSource::SYSTEM_IMPORT));
 
         return $process;
-
     }
 }
 ```
@@ -106,7 +105,7 @@ class AcmeProcess implements AggregateRoot
 
     public function applyProcessStarted(ProcessStarted $processStarted)
     {
-        // apply event data to your aggretate
+        // apply event data to your aggregate
     }
 }
 ```
@@ -157,5 +156,5 @@ group identifier).
 Having unique ID classes for each type of aggregate has an added benefit
 when you're refactoring and events or commands move to a different aggregate. The
 types will assure you're using the right kind of ID. The fact a ProductId
-and a UserID might both be UUIDs under the hood is just a coincidence,
+and a UserId might both be UUIDs under the hood is just a coincidence,
 not their defining feature.
