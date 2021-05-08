@@ -8,12 +8,16 @@
  * @author Dayle Rees
  */
 
+:root {
+    --prism-background-color: rgb(248,250,252);
+}
+
 code[class*="language-"],
 pre[class*="language-"] {
     color: #36312c;
-    background-color: #fff;
+    background-color: var(--prism-background-color);
     font-family: 'Fira Code', 'Hack', 'Source Code Pro', 'Monaco', monospace;
-    /*font-size:12px;*/
+    font-size:14px;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
@@ -47,18 +51,18 @@ pre[class*="language-"] {
     margin: 1em 0;
     overflow: auto;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,.12), 0 2px 4px 0 rgba(0,0,0,.08);
-    border: 10px solid #fff;
+    border: 10px solid var(--prism-background-color);
     border-left-width: 1rem;
     border-right-width: 1rem;
     padding: 0;
     margin: 1rem 0rem;
-    background: #fff;
+    background: var(--prism-background-color);
     border-radius: 3px;
 }
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-    background: #fff;
+    background: var(--prism-background-color);
     margin-bottom: 2em;
 }
 

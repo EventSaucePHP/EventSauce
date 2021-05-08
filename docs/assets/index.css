@@ -73,7 +73,7 @@ img {
 
 body {
     @apply text-grey-darkest font-body;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 400;
     font-stretch: 100%;
     -webkit-font-smoothing: antialiased;
@@ -132,7 +132,7 @@ article table th, article table td {
 }
 
 article blockquote {
-    @apply p-4 bg-white border-l-4 border-grey-darker mb-4 shadow;
+    @apply p-4 bg-white border-l-4 border-grey-darker mb-4 shadow bg-grey-lightest;
 }
 
 article ul, article ol {

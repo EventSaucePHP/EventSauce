@@ -6,7 +6,7 @@ published_at: 2018-02-21
 updated_at: 2020-04-27
 ---
 
-<div class="text-center mb-8 max-w-md">
+<div class="text-center mb-8 w-full">
     <img id="logo" src="/static/logo.svg" height="150px" width="150px" alt="EventSauce">
     <h1 class="text-grey-darkest mt-1">
         Event<span class="text-red">Sauce</span>

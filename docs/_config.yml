@@ -14,6 +14,7 @@ exclude:
     - "package*.json"
     - assets
     - node_modules
+    - _data/manifest.yml
     - "Gemfile*"
     - "update-*.php"
     - CNAME
