@@ -6,6 +6,11 @@
             "target": "git@github.com:EventSaucePHP/CodeGeneration.git"
         },
         {
+            "name": "uuid-message-decorator",
+            "directory": "src/UuidMessageDecorator",
+            "target": "git@github.com:EventSaucePHP/UuidMessageDecorator.git"
+        },
+        {
             "name": "testing",
             "directory": "src/TestUtilities",
             "target": "git@github.com:EventSaucePHP/TestUtilities.git"

@@ -13,6 +13,7 @@
 /src/LibraryConsumptionTests/ export-ignore
 /src/TestUtilities/ export-ignore
 /src/CodeGeneration/ export-ignore
+/src/UuidMessageDecorator/ export-ignore
 /**/*Test.php export-ignore
 /**/*Stub.php export-ignore
 /**/Dummy*.php export-ignore
