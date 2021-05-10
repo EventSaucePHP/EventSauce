@@ -24,7 +24,7 @@
         "nikic/php-parser": "^v4.10.4",
         "symfony/yaml": "^5.0",
         "friendsofphp/php-cs-fixer": "^2.18.4",
-        "ramsey/uuid": "^4.1"
+        "ramsey/uuid": "^4.0"
     },
     "autoload": {
         "psr-4": {
