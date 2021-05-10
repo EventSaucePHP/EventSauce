@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\UuidMessageDecorator;
 
 use Ramsey\Uuid\Uuid;

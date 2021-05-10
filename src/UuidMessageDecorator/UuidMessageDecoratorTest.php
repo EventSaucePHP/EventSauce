@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\UuidMessageDecorator;
 
 use EventSauce\EventSourcing\EventStub;
@@ -8,6 +10,7 @@ use EventSauce\EventSourcing\Message;
 use PHPStan\Testing\TestCase;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+
 class UuidMessageDecoratorTest extends TestCase
 {
     /**
