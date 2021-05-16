@@ -37,7 +37,7 @@ Utilities:
     Time / Clock: '/docs/utilities/clock/'
     Event Dispatcher: '/docs/utilities/event-dispatcher/'
 
-Message Outbox (not released):
+Message Outbox:
     About: '/docs/message-outbox/'
     Setup: '/docs/message-outbox/setup/'
     Usage: '/docs/message-outbox/usage/'
