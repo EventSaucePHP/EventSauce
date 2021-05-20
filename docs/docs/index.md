@@ -50,9 +50,9 @@ Many parts of the library are extremely pragmatic in nature. You're encouraged t
 control over it. It allows everything from custom storage adapter to highly customizable
 message dispatching setups.
 
-## The
+## Focus of EventSauce
 
-EventSauce puts the focus on event-sourcing, not on things that happen around event
+EventSauce puts the focus on event-sourcing, not on things _around_ event
 sourcing. It does not require you to follow CQRS patterns (although you can). It does
 not require you to use a command-, event-, or query-bus. By doing so, it allows
 developers to use event sourcing for parts of their application more easily.
