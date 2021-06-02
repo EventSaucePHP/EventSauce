@@ -5,7 +5,7 @@ published_at: 2018-03-14
 updated_at: 2021-03-30
 ---
 
-## Unreleased
+## 1.0.0
 
 ### Changes
 
