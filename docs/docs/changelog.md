@@ -5,6 +5,12 @@ published_at: 2018-03-14
 updated_at: 2021-03-30
 ---
 
+## 1.0.1
+
+### Fixed
+
+- Aggregate root version is now correctly incremented per event.
+
 ## 1.0.0
 
 ### Changes
