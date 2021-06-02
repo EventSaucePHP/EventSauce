@@ -85,10 +85,12 @@ class EventSourcedAggregateRootRepository implements AggregateRootRepository
         // of recording.
         $aggregateRootVersion = $aggregateRootVersion - count($events);
         $metadata = [Header::AGGREGATE_ROOT_ID => $aggregateRootId];
-        $messages = array_map(fn (object $event) => $this->decorator->decorate(new Message(
-            $event,
-            $metadata + [Header::AGGREGATE_ROOT_VERSION => ++$aggregateRootVersion]
-        )), $events);
+        $messages = array_map(function (object $event) use ($metadata, &$aggregateRootVersion) {
+            return $this->decorator->decorate(new Message(
+                $event,
+                $metadata + [Header::AGGREGATE_ROOT_VERSION => ++$aggregateRootVersion]
+            ));
+        }, $events);
 
         $this->messages->persist(...$messages);
         $this->dispatcher->dispatch(...$messages);
