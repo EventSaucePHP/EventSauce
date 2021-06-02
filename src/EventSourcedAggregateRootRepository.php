@@ -37,6 +37,9 @@ class EventSourcedAggregateRootRepository implements AggregateRootRepository
         $this->decorator = $decorator ?: new DefaultHeadersDecorator();
     }
 
+    /**
+     * @return T
+     */
     public function retrieve(AggregateRootId $aggregateRootId): object
     {
         try {
