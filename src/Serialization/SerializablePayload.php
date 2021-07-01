@@ -8,5 +8,5 @@ interface SerializablePayload
 {
     public function toPayload(): array;
 
-    public static function fromPayload(array $payload): self;
+    public static function fromPayload(array $payload): static;
 }

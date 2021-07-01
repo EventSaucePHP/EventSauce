@@ -17,7 +17,7 @@ final class LightSwitchId implements AggregateRootId
         return $this->id;
     }
 
-    public static function fromString(string $aggregateRootId): AggregateRootId
+    public static function fromString(string $aggregateRootId): static
     {
         return new static($aggregateRootId);
     }

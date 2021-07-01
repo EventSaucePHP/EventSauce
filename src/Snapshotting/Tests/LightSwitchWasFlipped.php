@@ -26,14 +26,14 @@ final class LightSwitchWasFlipped implements SerializablePayload
         return $this->state;
     }
 
-    public static function on(): self
+    public static function on(): static
     {
         return new static(self::ON);
     }
 
-    public static function off(): self
+    public static function off(): static
     {
-        return new self(self::OFF);
+        return new static(self::OFF);
     }
 
     public function toPayload(): array
@@ -41,8 +41,8 @@ final class LightSwitchWasFlipped implements SerializablePayload
         return ['state' => $this->state];
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
-        return new self($payload['state']);
+        return new static($payload['state']);
     }
 }
