@@ -15,7 +15,7 @@ final class AggregateThatRequiredHistoryForReconstitutionStub implements Aggrega
 {
     use AggregateRootBehaviourWithRequiredHistory;
 
-    public static function start(DummyAggregateRootId $id): self
+    public static function start(DummyAggregateRootId $id): static
     {
         $aggregate = new static($id);
         $aggregate->recordThat(new DummyInternalEvent());

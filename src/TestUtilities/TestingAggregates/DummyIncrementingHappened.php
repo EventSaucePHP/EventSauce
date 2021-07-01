@@ -14,7 +14,7 @@ class DummyIncrementingHappened implements SerializablePayload
 {
     private int $number;
 
-    public function __construct(int $number)
+    final public function __construct(int $number)
     {
         $this->number = $number;
     }
@@ -24,9 +24,9 @@ class DummyIncrementingHappened implements SerializablePayload
         return ['number' => $this->number];
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
-        return new DummyIncrementingHappened($payload['number']);
+        return new static($payload['number']);
     }
 
     public function number(): int

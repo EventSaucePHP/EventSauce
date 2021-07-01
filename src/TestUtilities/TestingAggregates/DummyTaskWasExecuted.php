@@ -12,13 +12,17 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
  */
 class DummyTaskWasExecuted implements SerializablePayload
 {
+    final public function __construct()
+    {
+    }
+
     public function toPayload(): array
     {
         return [];
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
-        return new self();
+        return new static();
     }
 }

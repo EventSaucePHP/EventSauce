@@ -18,7 +18,7 @@ final class DoSomething implements SerializablePayload
         return $this->reason;
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
         return new DoSomething(
             (string) $payload['reason']
