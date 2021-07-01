@@ -7,10 +7,10 @@ namespace EventSauce\EventSourcing;
 use RuntimeException;
 use Throwable;
 
-class UnableToDispatchMessages extends RuntimeException implements EventSauceException
+final class UnableToDispatchMessages extends RuntimeException implements EventSauceException
 {
-    public static function dueTo(string $reason, Throwable $previous = null): self
+    public static function dueTo(string $reason, Throwable $previous = null): static
     {
-        return new self("Unable to dispatch messages. {$reason}", 0, $previous);
+        return new static("Unable to dispatch messages. {$reason}", 0, $previous);
     }
 }
