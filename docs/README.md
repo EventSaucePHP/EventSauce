@@ -1,4 +1,4 @@
-# EventSauce - An no-nonsense way to do event-sourcing in PHP.
+# EventSauce - An no-nonsense way to do event sourcing in PHP.
 
 EventSauce is an event sourcing library that focuses on the essence of event sourcing.
 The library is focused on develop productivity. It ships with code generators and test
