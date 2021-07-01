@@ -26,10 +26,7 @@ final class DummyAggregateRootId implements AggregateRootId
         return new DummyAggregateRootId(bin2hex(random_bytes(25)));
     }
 
-    /**
-     * @return static
-     */
-    public static function fromString(string $aggregateRootId): AggregateRootId
+    public static function fromString(string $aggregateRootId): static
     {
         return new static($aggregateRootId);
     }
