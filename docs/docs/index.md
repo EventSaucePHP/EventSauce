@@ -23,17 +23,17 @@ updated_at: 2020-04-27
 
 # What is EventSauce?
 
-EventSauce is a library for event-sourcing in PHP. The library provides a clear implementation
-to get you started quickly and reliably. Event-sourcing is a fundamentally different
+EventSauce is a library for event sourcing in PHP. The library provides a clear implementation
+to get you started quickly and reliably. Event sourcing is a fundamentally different
 approach to modeling software. The technique is well suited to model complex business flows
-and transactional processes. Tackling complexity at scale works well with event-sourcing
+and transactional processes. Tackling complexity at scale works well with event sourcing
 since the technique is based on communication.
 
 EventSauce is a no-nonsense event sourcing library for PHP with a focus on developer
 experience and productivity. This library was developed with the idea that you should
 remain in control of . No application-wide rewrites and no big investments upfront.
 
-## You're in control
+## You are in control
 
 Event sourcing is a tool to build a domain model. You own the model, and you own the
 tooling. EventSauce is as much an implementation reference, as it is a library. You
@@ -50,9 +50,9 @@ Many parts of the library are extremely pragmatic in nature. You're encouraged t
 control over it. It allows everything from custom storage adapter to highly customizable
 message dispatching setups.
 
-## Focus of EventSauce
+## Focus on event sourcing
 
-EventSauce puts the focus on event-sourcing, not on things _around_ event
+EventSauce puts the focus on event sourcing, not on things _around_ event
 sourcing. It does not require you to follow CQRS patterns (although you can). It does
 not require you to use a command-, event-, or query-bus. By doing so, it allows
 developers to use event sourcing for parts of their application more easily.
