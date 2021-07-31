@@ -55,9 +55,11 @@ jobs:
         run: vendor/bin/phpunit --verbose --coverage-text --coverage-clover=coverage.clover
 
       - name: Run PHP CS Fixer
+        if: ${{ matrix.experimental == false }}
         run: vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no
 
       - name: Run PHPStan
+        if: ${{ matrix.experimental == false }}
         run: vendor/bin/phpstan analyze -c phpstan.neon
 
 #      - name: Code coverage
