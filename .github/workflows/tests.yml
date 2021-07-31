@@ -51,14 +51,14 @@ jobs:
       - name: Install dependencies
         run: composer update --${{ matrix.stability }} ${{ matrix.composer-flags }} --prefer-dist --no-interaction --no-progress
 
+      - name: Execute tests
+        run: vendor/bin/phpunit --verbose --coverage-text --coverage-clover=coverage.clover
+
       - name: Run PHP CS Fixer
         run: vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no
 
       - name: Run PHPStan
         run: vendor/bin/phpstan analyze -c phpstan.neon
-
-      - name: Execute tests
-        run: vendor/bin/phpunit --verbose --coverage-text --coverage-clover=coverage.clover
 
 #      - name: Code coverage
 #        if: ${{ github.ref == 'refs/heads/master' }}
