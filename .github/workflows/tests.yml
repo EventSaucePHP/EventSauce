@@ -14,10 +14,13 @@ jobs:
       fail-fast: true
       matrix:
         php: [8.0]
-        stability: [prefer-lowest, prefer-stable]
+        composer-flags: [ '' ]
+        stability: ['prefer-lowest', 'prefer-stable']
         experimental: [false]
         include:
           - php: 8.1
+            stability: 'prefer-stable'
+            composer-flags: '--ignore-platform-reqs'
             experimental: true
 
     name: PHP ${{ matrix.php }} - ${{ matrix.stability }}
@@ -46,7 +49,7 @@ jobs:
             ${{ runner.os }}-composer-
 
       - name: Install dependencies
-        run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
+        run: composer update --${{ matrix.stability }} ${{ matrix.composer-flags }} --prefer-dist --no-interaction --no-progress
 
       - name: Run PHP CS Fixer
         run: vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no
