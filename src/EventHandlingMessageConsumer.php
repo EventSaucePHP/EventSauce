@@ -13,7 +13,7 @@ class EventHandlingMessageConsumer implements MessageConsumer
 {
     public function handle(Message $message): void
     {
-        $event = $message->event();
+        $event = $message->payload();
         $parts = explode('\\', get_class($event));
         $method = 'handle' . end($parts);
 

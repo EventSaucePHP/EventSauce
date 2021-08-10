@@ -11,7 +11,7 @@ final class Message
 {
     public const TIME_OF_RECORDING_FORMAT = 'Y-m-d H:i:s.uO';
 
-    public function __construct(private object $event, private array $headers = [])
+    public function __construct(private object $payload, private array $headers = [])
     {
     }
 
@@ -82,8 +82,16 @@ final class Message
         return $this->headers;
     }
 
+    public function payload(): object
+    {
+        return $this->payload;
+    }
+
+    /**
+     * @deprecated use ->payload instead
+     */
     public function event(): object
     {
-        return $this->event;
+        return $this->payload;
     }
 }
