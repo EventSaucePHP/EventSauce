@@ -20,7 +20,7 @@ final class DoSomething implements SerializablePayload
 
     public static function fromPayload(array $payload): static
     {
-        return new DoSomething(
+        return new static(
             (string) $payload['reason']
         );
     }
