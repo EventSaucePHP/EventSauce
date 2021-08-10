@@ -24,18 +24,3 @@ To use code generation, install it by running:
 ```bash
 composer require --dev eventsauce/code-generation
 ```
-
-At the time of writing a Doctrine implementation of the `MessageRepository` is provided separately _(currently not compatible with EventSauce v1.0 yet)_:
-
-```bash
-composer require eventsauce/doctrine-message-repository
-```
-
-There's also a RabbitMQ dispatcher available _(currently not compatible with EventSauce v1.0 yet)_. This package is an extension to the php-amqplib/rabbitmq-bundle package.
-This is a Symfony specific package which offers a solid integration with the framework. This package provides an
-implementation of the `EventSauce\EventSourcing\MessageConsumer` interface, binding it to the
-`OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface` which ties into the bundle.
-
-```bash
-composer require eventsauce/rabbitmq-bundle-bindings
-```
