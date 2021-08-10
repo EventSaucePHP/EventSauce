@@ -11,6 +11,7 @@ use EventSauce\EventSourcing\DummyAggregateRootId;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
+use EventSauce\EventSourcing\TestUtilities\FailedToDetectExpectedException;
 use LogicException;
 
 /**
@@ -92,6 +93,16 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         $this->expectException(DummyException::class);
         $this->when(new ExceptionInducingCommand($this->aggregateRootId()))
             ->expectToFail(new LogicException());
+        $this->assertScenario();
+    }
+
+    /**
+     * @test
+     */
+    public function expecting_an_exception_but_not_detecting_one(): void
+    {
+        $this->expectException(FailedToDetectExpectedException::class);
+        $this->expectToFail(new LogicException());
         $this->assertScenario();
     }
 

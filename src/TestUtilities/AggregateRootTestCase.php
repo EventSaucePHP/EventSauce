@@ -212,13 +212,19 @@ abstract class AggregateRootTestCase extends TestCase
         Exception $expectedException = null,
         Exception $caughtException = null
     ): void {
-        if (null !== $caughtException && (null === $expectedException || get_class($expectedException) !== get_class(
+        if ($caughtException === null && $expectedException === null) {
+            return;
+        } elseif ($expectedException !== null && $caughtException === null) {
+            throw FailedToDetectExpectedException::expectedException($expectedException);
+        } elseif (null !== $caughtException && (null === $expectedException || get_class($expectedException) !== get_class(
                     $caughtException
                 ))) {
             throw $caughtException;
         }
 
-        self::assertEquals([$expectedException], [$caughtException], '>> Exceptions are not equal.');
+        self::assertEquals(get_class($expectedException), get_class($caughtException), 'Exception types should be equal.');
+        self::assertEquals($expectedException->getMessage(), $caughtException->getMessage(), 'Exception messages should be equal.');
+        self::assertEquals($expectedException->getCode(), $caughtException->getCode(), 'Exception messages should be equal.');
     }
 
     protected function currentTime(): DateTimeImmutable
