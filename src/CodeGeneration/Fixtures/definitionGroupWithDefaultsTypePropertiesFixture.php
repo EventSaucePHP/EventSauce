@@ -20,7 +20,7 @@ final class EventWithDescription implements SerializablePayload
 
     public static function fromPayload(array $payload): static
     {
-        return new EventWithDescription(
+        return new static(
             (string) $payload['description']
         );
     }

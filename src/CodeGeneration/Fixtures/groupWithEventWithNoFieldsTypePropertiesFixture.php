@@ -10,7 +10,7 @@ final class WithoutFields implements SerializablePayload
 {
     public static function fromPayload(array $payload): static
     {
-        return new WithoutFields();
+        return new static();
     }
 
     public function toPayload(): array

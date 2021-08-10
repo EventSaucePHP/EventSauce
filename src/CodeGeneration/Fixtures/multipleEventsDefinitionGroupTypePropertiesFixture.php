@@ -20,7 +20,7 @@ final class FirstEvent implements SerializablePayload
 
     public static function fromPayload(array $payload): static
     {
-        return new FirstEvent(
+        return new static(
             (string) $payload['firstField']
         );
     }
@@ -68,7 +68,7 @@ final class SecondEvent implements SerializablePayload
 
     public static function fromPayload(array $payload): static
     {
-        return new SecondEvent(
+        return new static(
             (string) $payload['secondField']
         );
     }
