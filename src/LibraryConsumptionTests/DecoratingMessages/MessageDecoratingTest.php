@@ -20,7 +20,7 @@ class MessageDecoratingTest extends TestCase
         $event = new EventStub('value');
         $message = new Message($event);
         $decoratedMessage = $decorator->decorate($message);
-        $this->assertEquals($event, $decoratedMessage->event());
+        $this->assertEquals($event, $decoratedMessage->payload());
         $this->assertEquals('value', $decoratedMessage->header('dummy'));
     }
 }

@@ -26,6 +26,6 @@ class MessageConsumerThatSerializesMessages implements MessageConsumer
     {
         $payload = $this->serializer->serializeMessage($message);
         $deserializedMessage = $this->serializer->unserializePayload($payload);
-        TestCase::assertEquals($message->event(), $deserializedMessage->event());
+        TestCase::assertEquals($message->payload(), $deserializedMessage->payload());
     }
 }

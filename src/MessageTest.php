@@ -21,7 +21,7 @@ class MessageTest extends TestCase
         $event = EventStub::create('some value');
         $initialHeaders = ['initial' => 'header value'];
         $message = new Message($event, $initialHeaders);
-        $this->assertSame($event, $message->event());
+        $this->assertSame($event, $message->payload());
         $this->assertEquals($initialHeaders, $message->headers());
     }
 

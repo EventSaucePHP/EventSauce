@@ -57,7 +57,7 @@ final class ConstructingAggregateRootRepositoryWithSnapshotting implements Aggre
         $messages = $this->messageRepository->retrieveAllAfterVersion($aggregateRootId, $version);
 
         foreach ($messages as $message) {
-            yield $message->event();
+            yield $message->payload();
         }
 
         return $messages->getReturn();
