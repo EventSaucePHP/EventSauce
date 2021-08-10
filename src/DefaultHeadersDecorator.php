@@ -22,7 +22,7 @@ class DefaultHeadersDecorator implements MessageDecorator
     {
         return $message->withHeader(
             Header::EVENT_TYPE,
-            $this->inflector->instanceToType($message->event())
+            $this->inflector->instanceToType($message->payload())
         )->withTimeOfRecording($this->clock->now());
     }
 }

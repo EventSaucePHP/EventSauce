@@ -75,9 +75,9 @@ class PendingInvitationProjection implements MessageConsumer
         $this->invitations = $invitations;
     }
     
-    public function handle(Message $message)
+    public function handle(Message $message): void
     {
-        $event = $message->event();
+        $event = $message->payload();
         
         if ($event instanceof FriendshipRequestWasSent) {
             $this->invitations->add(new FriendshipRequest(

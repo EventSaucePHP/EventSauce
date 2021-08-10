@@ -33,6 +33,6 @@ class MessageConsumerThatSerializesMessages implements MessageConsumer
         $deserializedMessage = $this->serializer->unserializePayload(
             json_decode($payloadAsString, true)
         );
-        TestCase::assertEquals($message->event(), $deserializedMessage->event());
+        TestCase::assertEquals($message->payload(), $deserializedMessage->event());
     }
 }

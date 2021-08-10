@@ -25,7 +25,7 @@ final class ConstructingMessageSerializer implements MessageSerializer
 
     public function serializeMessage(Message $message): array
     {
-        $event = $message->event();
+        $event = $message->payload();
         $payload = $this->payloadSerializer->serializePayload($event);
         $headers = $message->headers();
         $headers[Header::EVENT_TYPE] ??= $this->classNameInflector->instanceToType($event);
