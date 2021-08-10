@@ -39,9 +39,9 @@ class ProductRestocker implements MessageConsumer
         $this->commandBus = $commandBus;
     }
 
-    public function handle(Message $message)
+    public function handle(Message $message): void
     {
-        $event = $message->event();
+        $event = $message->payload();
         
         if ($event instanceof ProductSoldOut) {
             $this->commandBus->handle(

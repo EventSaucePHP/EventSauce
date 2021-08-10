@@ -38,7 +38,7 @@ final class InMemoryMessageRepository implements MessageRepository
         /** @var Message $message */
         foreach ($messages as $message) {
             $this->messages[] = $message;
-            $this->lastCommit[] = $message->event();
+            $this->lastCommit[] = $message->payload();
         }
     }
 
