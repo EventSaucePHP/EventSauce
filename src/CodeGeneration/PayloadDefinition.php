@@ -27,14 +27,14 @@ final class PayloadDefinition
     /**
      * @return $this
      */
-    public function withFieldsFrom(string $otherType): self
+    public function withFieldsFrom(string $otherType): static
     {
         $this->fieldsFrom = $otherType;
 
         return $this;
     }
 
-    public function withInterface(string $interface): self
+    public function withInterface(string $interface): static
     {
         $this->interfaces[] = $interface;
 
@@ -56,7 +56,7 @@ final class PayloadDefinition
         return $this->fieldsFrom;
     }
 
-    public function field(string $name, string $type, string $example = null, ?bool $nullable = null): self
+    public function field(string $name, string $type, string $example = null, ?bool $nullable = null): static
     {
         $example = $example ?: $this->group->exampleForField($name);
         $this->fields[] = compact('name', 'type', 'example', 'nullable');
@@ -64,7 +64,7 @@ final class PayloadDefinition
         return $this;
     }
 
-    public function fieldSerializer(string $field, string $template): self
+    public function fieldSerializer(string $field, string $template): static
     {
         $this->fieldSerializers[$field] = $template;
 
@@ -76,7 +76,7 @@ final class PayloadDefinition
         return $this->fieldSerializers[$field] ?? $this->group->serializerForField($field);
     }
 
-    public function fieldDeserializer(string $field, string $template): self
+    public function fieldDeserializer(string $field, string $template): static
     {
         $this->fieldDeserializers[$field] = $template;
 

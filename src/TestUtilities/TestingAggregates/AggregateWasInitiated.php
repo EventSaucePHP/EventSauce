@@ -13,7 +13,7 @@ final class AggregateWasInitiated implements SerializablePayload
         return [];
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
         return new static();
     }

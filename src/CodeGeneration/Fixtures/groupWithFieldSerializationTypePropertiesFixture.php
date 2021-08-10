@@ -18,7 +18,7 @@ final class WithFieldSerializers implements SerializablePayload
         return $this->items;
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
         return new WithFieldSerializers(
             array_map(function ($property) {

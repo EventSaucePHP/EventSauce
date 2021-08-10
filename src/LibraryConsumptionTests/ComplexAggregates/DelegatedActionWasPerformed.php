@@ -17,7 +17,7 @@ class DelegatedActionWasPerformed implements SerializablePayload
         return ['counter' => $this->counter];
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
         return new DelegatedActionWasPerformed($payload['counter']);
     }
