@@ -5,6 +5,12 @@ published_at: 2018-03-14
 updated_at: 2021-03-30
 ---
 
+## 1.0.2
+
+### Fixed
+
+- Loosened the exception checking to be more in line with PHPUnit's exception comparison.
+
 ## 1.0.1
 
 ### Fixed
