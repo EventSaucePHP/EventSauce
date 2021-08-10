@@ -10,12 +10,8 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
  * @codeCoverageIgnore
  * @testAsset
  */
-class DummyTaskWasExecuted implements SerializablePayload
+final class DummyTaskWasExecuted implements SerializablePayload
 {
-    final public function __construct()
-    {
-    }
-
     public function toPayload(): array
     {
         return [];
