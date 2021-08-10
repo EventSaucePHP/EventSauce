@@ -21,6 +21,10 @@ use EventSauce\EventSourcing\SynchronousMessageDispatcher;
 use Exception;
 use LogicException;
 use PHPUnit\Framework\TestCase;
+
+use Throwable;
+
+use function assert;
 use function get_class;
 use function method_exists;
 use function sprintf;
@@ -222,6 +226,8 @@ abstract class AggregateRootTestCase extends TestCase
             throw $caughtException;
         }
 
+        assert($expectedException instanceof Throwable);
+        assert($caughtException instanceof Throwable);
         self::assertEquals(get_class($expectedException), get_class($caughtException), 'Exception types should be equal.');
         self::assertEquals($expectedException->getMessage(), $caughtException->getMessage(), 'Exception messages should be equal.');
         self::assertEquals($expectedException->getCode(), $caughtException->getCode(), 'Exception messages should be equal.');
