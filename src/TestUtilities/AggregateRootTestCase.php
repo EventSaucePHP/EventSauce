@@ -21,9 +21,7 @@ use EventSauce\EventSourcing\SynchronousMessageDispatcher;
 use Exception;
 use LogicException;
 use PHPUnit\Framework\TestCase;
-
 use Throwable;
-
 use function assert;
 use function get_class;
 use function method_exists;
@@ -216,9 +214,9 @@ abstract class AggregateRootTestCase extends TestCase
         Exception $expectedException = null,
         Exception $caughtException = null
     ): void {
-        if ($caughtException === null && $expectedException === null) {
+        if (null === $caughtException && null === $expectedException) {
             return;
-        } elseif ($expectedException !== null && $caughtException === null) {
+        } elseif (null !== $expectedException && null === $caughtException) {
             throw FailedToDetectExpectedException::expectedException($expectedException);
         } elseif (null !== $caughtException && (null === $expectedException || get_class($expectedException) !== get_class(
                     $caughtException
