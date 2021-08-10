@@ -20,7 +20,7 @@ final class BaseEvent implements SerializablePayload
 
     public static function fromPayload(array $payload): static
     {
-        return new BaseEvent(
+        return new static(
             (int) $payload['age']
         );
     }
@@ -47,7 +47,7 @@ final class ExtendedEvent implements SerializablePayload
 
     public static function fromPayload(array $payload): static
     {
-        return new ExtendedEvent(
+        return new static(
             (int) $payload['age']
         );
     }
@@ -74,7 +74,7 @@ final class BaseCommand implements SerializablePayload
 
     public static function fromPayload(array $payload): static
     {
-        return new BaseCommand(
+        return new static(
             (string) $payload['name']
         );
     }
@@ -101,7 +101,7 @@ final class ExtendedCommand implements SerializablePayload
 
     public static function fromPayload(array $payload): static
     {
-        return new ExtendedCommand(
+        return new static(
             (string) $payload['name']
         );
     }

@@ -10,7 +10,7 @@ final class EventWithInterfaceMarker implements \EventSauce\EventSourcing\CodeGe
 {
     public static function fromPayload(array $payload): static
     {
-        return new EventWithInterfaceMarker();
+        return new static();
     }
 
     public function toPayload(): array
@@ -23,7 +23,7 @@ final class CommandWithInterfaceMarker implements \EventSauce\EventSourcing\Code
 {
     public static function fromPayload(array $payload): static
     {
-        return new CommandWithInterfaceMarker();
+        return new static();
     }
 
     public function toPayload(): array
@@ -36,7 +36,7 @@ final class AlsoCommandWithInterfaceMarker implements \EventSauce\EventSourcing\
 {
     public static function fromPayload(array $payload): static
     {
-        return new AlsoCommandWithInterfaceMarker();
+        return new static();
     }
 
     public function toPayload(): array
