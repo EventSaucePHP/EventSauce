@@ -5,6 +5,12 @@ published_at: 2018-03-14
 updated_at: 2021-03-30
 ---
 
+## 1.0.3
+
+### Fixed
+
+- Added missing scalar types for message header values (array/float/bool).
+
 ## 1.0.2
 
 ### Fixed
