@@ -15,7 +15,7 @@ final class Message
     {
     }
 
-    public function withHeader(string $key, int|string|array|AggregateRootId|null $value): Message
+    public function withHeader(string $key, int|string|array|AggregateRootId|null|bool|float $value): Message
     {
         $clone = clone $this;
         $clone->headers[$key] = $value;
@@ -67,7 +67,7 @@ final class Message
         return $timeOfRecording;
     }
 
-    public function header(string $key): int|string|array|AggregateRootId|null
+    public function header(string $key): int|string|array|AggregateRootId|null|bool|float
     {
         return $this->headers[$key] ?? null;
     }

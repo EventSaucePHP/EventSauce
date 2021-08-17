@@ -102,7 +102,7 @@ class MessageTest extends TestCase
      * @test
      * @dataProvider dbHeaderValues
      */
-    public function setting_headers_of_various_types(int|string|array|AggregateRootId|null $headerValue): void
+    public function setting_headers_of_various_types(int|string|array|AggregateRootId|null|bool|float $headerValue): void
     {
         $message = (new Message(new stdClass()));
 
@@ -116,6 +116,8 @@ class MessageTest extends TestCase
     {
         return [
             'int' => [1234],
+            'bool' => [false],
+            'float' => [0.51],
             'string' => ['string'],
             'scalar_arrar' => [['something' => 'value', 1234]],
             'aggregate_root_id' => [DummyAggregateRootId::generate()],
