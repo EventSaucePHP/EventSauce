@@ -97,4 +97,29 @@ class MessageTest extends TestCase
 
         $message->timeOfRecording();
     }
+
+    /**
+     * @test
+     * @dataProvider dbHeaderValues
+     */
+    public function setting_headers_of_various_types(int|string|array|AggregateRootId|null $headerValue): void
+    {
+        $message = (new Message(new stdClass()));
+
+        $message = $message->withHeader('header', $headerValue);
+        $returnedValue = $message->header('header');
+
+        self::assertEquals($headerValue, $returnedValue);
+    }
+
+    public function dbHeaderValues(): iterable
+    {
+        return [
+            'int' => [1234],
+            'string' => ['string'],
+            'scalar_arrar' => [['something' => 'value', 1234]],
+            'aggregate_root_id' => [DummyAggregateRootId::generate()],
+            'null' => [null],
+        ];
+    }
 }

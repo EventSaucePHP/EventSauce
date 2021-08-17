@@ -15,7 +15,7 @@ final class Message
     {
     }
 
-    public function withHeader(string $key, int|string|null|AggregateRootId $value): Message
+    public function withHeader(string $key, int|string|array|AggregateRootId|null $value): Message
     {
         $clone = clone $this;
         $clone->headers[$key] = $value;
