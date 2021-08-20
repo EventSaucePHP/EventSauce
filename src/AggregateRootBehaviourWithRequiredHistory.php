@@ -16,7 +16,7 @@ trait AggregateRootBehaviourWithRequiredHistory
     {
         $aggregateRoot = static::defaultAggregateRootReconstitute($aggregateRootId, $events);
 
-        if (0 === $aggregateRoot->aggregateRootVersion()) {
+        if ($aggregateRoot->aggregateRootVersion() === 0) {
             throw UnableToReconstituteAggregateRoot::becauseItHasNoHistory();
         }
 

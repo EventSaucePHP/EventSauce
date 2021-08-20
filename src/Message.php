@@ -40,7 +40,7 @@ final class Message
     {
         $version = $this->headers[Header::AGGREGATE_ROOT_VERSION] ?? null;
 
-        if (null === $version) {
+        if ($version === null) {
             throw new RuntimeException("Can't get the version if the message has none.");
         }
 

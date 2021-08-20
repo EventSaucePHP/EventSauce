@@ -79,7 +79,7 @@ class EventSourcedAggregateRootRepository implements AggregateRootRepository
 
     public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events): void
     {
-        if (0 === count($events)) {
+        if (count($events) === 0) {
             return;
         }
 

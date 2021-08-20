@@ -214,11 +214,11 @@ abstract class AggregateRootTestCase extends TestCase
         Exception $expectedException = null,
         Exception $caughtException = null
     ): void {
-        if (null === $caughtException && null === $expectedException) {
+        if ($caughtException === null && $expectedException === null) {
             return;
-        } elseif (null !== $expectedException && null === $caughtException) {
+        } elseif ($expectedException !== null && $caughtException === null) {
             throw FailedToDetectExpectedException::expectedException($expectedException);
-        } elseif (null !== $caughtException && (null === $expectedException || get_class($expectedException) !== get_class(
+        } elseif ($caughtException !== null && ($expectedException === null || get_class($expectedException) !== get_class(
                     $caughtException
                 ))) {
             throw $caughtException;

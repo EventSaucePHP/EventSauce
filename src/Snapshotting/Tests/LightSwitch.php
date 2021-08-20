@@ -31,14 +31,14 @@ final class LightSwitch implements AggregateRootWithSnapshotting
 
     public function turnOn(): void
     {
-        if (self::OFF == $this->state) {
+        if ($this->state == self::OFF) {
             $this->recordThat(LightSwitchWasFlipped::on());
         }
     }
 
     public function turnOff(): void
     {
-        if (self::ON == $this->state) {
+        if ($this->state == self::ON) {
             $this->recordThat(LightSwitchWasFlipped::off());
         }
     }

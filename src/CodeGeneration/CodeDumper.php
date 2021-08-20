@@ -200,9 +200,9 @@ EOF;
         $helpers = [];
         foreach ($this->fieldsFromDefinition($definition) as $field) {
             $resolvedType = $this->definitionGroup->resolveTypeAlias($field['type']);
-            if (null === $field['example']) {
+            if ($field['example'] === null) {
                 $constructor[] = ucfirst($field['name']);
-                if ('' !== $constructorArguments) {
+                if ($constructorArguments !== '') {
                     $constructorArguments .= ', ';
                 }
                 $constructorArguments .= sprintf('%s $%s', $resolvedType, $field['name']);
@@ -229,7 +229,7 @@ EOF;
         $values = count($constructor) > 0 ? implode('And', $constructor) : 'Defaults';
         $constructor = sprintf('with%s', $values);
         $constructorValues = implode(",\n            ", $constructorValues);
-        if ('' !== $constructorValues) {
+        if ($constructorValues !== '') {
             $constructorValues = "\n            $constructorValues\n        ";
         }
         $helpers[] = <<<EOF

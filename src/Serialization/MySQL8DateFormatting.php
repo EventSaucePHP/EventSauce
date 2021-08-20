@@ -21,7 +21,7 @@ class MySQL8DateFormatting implements MessageSerializer
         $payload = $this->messageSerializer->serializeMessage($message);
         $dateTimeString = $payload['headers'][$this->field] ?? null;
 
-        if (null !== $dateTimeString) {
+        if ($dateTimeString !== null) {
             $payload['headers'][$this->field] = substr($dateTimeString, 0, -2) . ':' . substr($dateTimeString, -2);
         }
 
@@ -32,7 +32,7 @@ class MySQL8DateFormatting implements MessageSerializer
     {
         $dateTimeString = $payload['headers'][$this->field] ?? null;
 
-        if (null !== $dateTimeString) {
+        if ($dateTimeString !== null) {
             $payload['headers'][$this->field] = substr($dateTimeString, 0, -3) . substr($dateTimeString, -2);
         }
 

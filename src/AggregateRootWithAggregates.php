@@ -23,7 +23,7 @@ trait AggregateRootWithAggregates
 
     protected function eventRecorder(): EventRecorder
     {
-        if (null === $this->eventRecorder) {
+        if ($this->eventRecorder === null) {
             $this->eventRecorder = new EventRecorder(fn (object $event) => $this->recordThat($event));
         }
 
@@ -35,7 +35,7 @@ trait AggregateRootWithAggregates
      */
     private function aggregatesInsideRoot(): SplObjectStorage
     {
-        if (null === $this->aggregatesInsideRoot) {
+        if ($this->aggregatesInsideRoot === null) {
             $this->aggregatesInsideRoot = new SplObjectStorage();
         }
 

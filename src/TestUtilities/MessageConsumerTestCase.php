@@ -132,7 +132,7 @@ abstract class MessageConsumerTestCase extends TestCase
         Exception $expectedException = null,
         Exception $caughtException = null
     ): void {
-        if (null !== $caughtException && (null === $expectedException || get_class($expectedException) !== get_class(
+        if ($caughtException !== null && ($expectedException === null || get_class($expectedException) !== get_class(
                     $caughtException
                 ))) {
             throw $caughtException;
