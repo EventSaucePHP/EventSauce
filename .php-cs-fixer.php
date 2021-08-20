@@ -1,10 +1,12 @@
 <?php
 
+use PhpCsFixer\Config;
+
 $finder = PhpCsFixer\Finder::create()
     ->exclude('CodeGeneration/Fixtures')
     ->in(__DIR__.'/src/');
 
-return PhpCsFixer\Config::create()
+return (new Config())
     ->setRules([
         '@Symfony' => true,
         'yoda_style' => ['equal' => false, 'identical' => false, 'less_and_greater' => false],
