@@ -5,6 +5,12 @@ published_at: 2018-03-14
 updated_at: 2021-03-30
 ---
 
+## 1.1.0
+
+### Added
+
+- [Serialization] Added a MySQL8DateFormatting serialization decorator to support MySQL 8 dates.
+
 ## 1.0.3
 
 ### Fixed
