@@ -25,6 +25,7 @@ class MySQL8DateFormattingTest extends TestCase
 
         self::assertEquals('2021-08-20 16:00:44.182717+04:00', $timeStamp);
     }
+
     /**
      * @test
      */
