@@ -52,6 +52,11 @@ final class Message
         return $this->headers[Header::AGGREGATE_ROOT_ID] ?? null;
     }
 
+    public function aggregateRootClassName(): ?string
+    {
+        return $this->headers[Header::AGGREGATE_ROOT_TYPE] ?? null;
+    }
+
     public function timeOfRecording(): DateTimeImmutable
     {
         /* @var DateTimeImmutable */

@@ -31,4 +31,28 @@ class EventSourcedAggregateRootRepositoryTest extends TestCase
         self::assertEquals(2, $messages[1]->aggregateVersion());
         self::assertEquals(3, $messages[2]->aggregateVersion());
     }
+
+    /**
+     * @test
+     */
+    public function aggregate_types_are_added_to_messages(): void
+    {
+        $messageRepository = new InMemoryMessageRepository();
+        $repository = new EventSourcedAggregateRootRepository(DummyAggregate::class, $messageRepository);
+        /** @var DummyAggregate $aggregate */
+        $aggregateRootId = DummyAggregateRootId::generate();
+        $aggregate = $repository->retrieve($aggregateRootId);
+        $aggregate->increment();
+        $aggregate->increment();
+        $aggregate->increment();
+        $repository->persist($aggregate);
+
+        $expectedAggregateRootClassName =  'event_sauce.event_sourcing.test_utilities.testing_aggregates.dummy_aggregate';
+
+        /** @var Message[] $messages */
+        $messages = iterator_to_array($messageRepository->retrieveAll($aggregateRootId));
+        self::assertEquals($expectedAggregateRootClassName, $messages[0]->aggregateRootClassName());
+        self::assertEquals($expectedAggregateRootClassName, $messages[1]->aggregateRootClassName());
+        self::assertEquals($expectedAggregateRootClassName, $messages[2]->aggregateRootClassName());
+    }
 }
