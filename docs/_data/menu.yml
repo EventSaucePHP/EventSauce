@@ -42,10 +42,10 @@ Code Generation:
 
 Message Outbox:
     About The Outbox: '/docs/message-outbox/'
-    Setup / Usage: '/docs/message-outbox/setup-and-usage/'
-    Illuminate: '/docs/message-outbox/illuminate/'
-    Doctrine 3: '/docs/message-outbox/doctrine-3/'
-    Doctrine 2: '/docs/message-outbox/doctrine-2/'
+    Setup and Usage: '/docs/message-outbox/setup-and-usage/'
+    Illuminate Outbox: '/docs/message-outbox/illuminate/'
+    Doctrine 3 Outbox: '/docs/message-outbox/doctrine-3/'
+    Doctrine 2 Outbox: '/docs/message-outbox/doctrine-2/'
     Build your own: '/docs/message-outbox/build-your-own/'
 
 Snapshotting:
