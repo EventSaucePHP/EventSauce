@@ -2,7 +2,7 @@
 permalink: /docs/advanced/upcasting/
 title: Upcasting
 published_at: 2018-03-07
-updated_at: 2021-05-02
+updated_at: 2021-08-24
 ---
 
 Using events to model software can generate interesting

@@ -2,7 +2,7 @@
 permalink: /docs/message-outbox/
 title: Message Outbox
 published_at: 2021-05-02
-updated_at: 2021-05-02
+updated_at: 2021-08-24
 ---
 
 Events recorded by an aggregate root are stored for reconstitution and dispatched

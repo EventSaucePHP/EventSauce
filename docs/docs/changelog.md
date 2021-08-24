@@ -2,7 +2,7 @@
 permalink: /docs/changelog/
 title: Changelog
 published_at: 2018-03-14
-updated_at: 2021-08-21
+updated_at: 2021-08-24
 ---
 
 ## 1.2.0

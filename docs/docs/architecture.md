@@ -3,7 +3,7 @@ permalink: /docs/architecture/
 redirect_from: '/docs/core-concepts/'
 title: Architecture
 published_at: 2018-03-24
-updated_at: 2021-05-21
+updated_at: 2021-08-24
 ---
 
 EventSauce is designed to be pragmatic. It's pragmatic because it's easy to setup

@@ -2,7 +2,7 @@
 permalink: /docs/utilities/event-dispatcher/
 title: Event Dispatcher
 published_at: 2019-12-09
-updated_at: 2021-05-02
+updated_at: 2021-08-24
 ---
 
 Events are a core concept of event sourcing, but they are useful

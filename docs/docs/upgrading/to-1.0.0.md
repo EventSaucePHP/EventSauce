@@ -2,7 +2,7 @@
 permalink: /docs/upgrading/to-1-0-0
 title: Upgrade to 1.0.0
 published_at: 2020-04-06
-updated_at: 2021-05-02
+updated_at: 2021-08-24
 ---
 
 ## PHP 8.0

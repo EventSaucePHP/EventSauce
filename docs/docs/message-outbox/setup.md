@@ -2,7 +2,7 @@
 permalink: /docs/message-outbox/setup/
 title: Message Outbox - Setup
 published_at: 2021-05-02
-updated_at: 2021-05-05
+updated_at: 2021-08-24
 ---
 
 At the time of writing, two outbox implementations are provided.

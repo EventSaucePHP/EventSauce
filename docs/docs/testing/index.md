@@ -3,7 +3,7 @@ permalink: /docs/testing/
 title: Testing
 alternate_title: Testing Aggregates
 published_at: 2018-03-03
-updated_at: 2021-07-01
+updated_at: 2021-08-24
 ---
 
 Event sourced applications are very easy to test. EventSauce ships with test tooling
