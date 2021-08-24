@@ -2,7 +2,7 @@
 permalink: /docs/message-outbox/usage/
 title: Message Outbox- Usage
 published_at: 2021-05-02
-updated_at: 2021-05-02
+updated_at: 2021-05-05
 ---
 
 The outbox module consists of three parts, a _repository_, a _dispatcher_
@@ -58,4 +58,3 @@ Messages can be committed using two strategies:
 $markAsConsumed = new EventSauce\MessageOutbox\MarkMessagesConsumedOnCommit();
 $deleteMessage = new EventSauce\MessageOutbox\DeleteMessageOnCommit();
 ```
-

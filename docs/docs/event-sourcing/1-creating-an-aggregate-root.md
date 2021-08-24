@@ -3,7 +3,7 @@ permalink: /docs/event-sourcing/create-an-aggregate-root/
 redirect_from: /docs/getting-started/create-an-aggregate-root/
 title: Creating an Aggregate Root
 published_at: 2019-12-07
-updated_at: 2020-04-06
+updated_at: 2021-05-06
 ---
 
 An event-sourced aggregate root is an aggregate root that is modeled using events.

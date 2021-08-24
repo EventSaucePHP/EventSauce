@@ -28,5 +28,3 @@ In this recorded live stream, Frank explains what problem the message outbox sol
 walks through implementing it.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/1Vjc4n9HtKM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-

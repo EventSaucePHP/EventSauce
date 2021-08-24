@@ -2,7 +2,7 @@
 permalink: /docs/code-generation/
 title: Code Generation
 published_at: 2019-11-09
-updated_at: 2021-03-31
+updated_at: 2021-05-02
 ---
 
 EventSauce provides an simple and opinionated way to generate code. Code generation

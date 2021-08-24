@@ -1,6 +1,8 @@
 ---
 permalink: /docs/message-storage/uuid-encoding/
 title: Message Repository Table Schema
+published_at: 2021-08-24
+updated_at: 2021-08-24
 ---
 
 [![Packagist Version](https://img.shields.io/packagist/v/eventsauce/uuid-encoding.svg?style=flat-square)](https://packagist.org/packages/eventsauce/uuid-encoding)
@@ -26,8 +28,3 @@ text version of the UUID, which should be used when the database has a `uuid` ty
 ### Custom Implementations
 
 Custom implementations of `UuidEncoder` can be used to optimize UUID storage as needed.
-
-
-
-
-

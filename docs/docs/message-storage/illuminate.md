@@ -1,6 +1,8 @@
 ---
 permalink: /docs/message-storage/illuminate/
 title: Message Repository for Illuminate
+published_at: 2021-08-24
+updated_at: 2021-08-24
 ---
 
 [![Packagist Version](https://img.shields.io/packagist/v/eventsauce/message-repository-for-illuminate.svg?style=flat-square)](https://packagist.org/packages/eventsauce/message-repository-for-illuminate)
@@ -22,5 +24,3 @@ $messageRepository = new IlluminateUuidV4MessageRepository(
     uuidEncoder: new BinaryUuidEncoder(), // optional
 );
 ```
-
-

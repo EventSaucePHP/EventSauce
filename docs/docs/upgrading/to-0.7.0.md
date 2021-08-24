@@ -2,7 +2,7 @@
 permalink: /docs/upgrading/to-0-7-0
 title: Upgrade to 0.7.0
 published_at: 2019-09-28
-updated_at: 2020-04-06
+updated_at: 2021-05-02
 ---
 
 ## MessageRepository version handling.

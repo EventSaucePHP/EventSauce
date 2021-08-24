@@ -1,6 +1,8 @@
 ---
 permalink: /docs/message-storage/repository-table-schema/
 title: Message Repository Table Schema
+published_at: 2021-08-24
+updated_at: 2021-08-24
 ---
 
 [![Packagist Version](https://img.shields.io/packagist/v/eventsauce/message-repository-table-schema.svg?style=flat-square)](https://packagist.org/packages/eventsauce/message-repository-table-schema)
@@ -69,7 +71,3 @@ CREATE TABLE IF NOT EXISTS your_table_name (
 
 Custom implementations of `TableSchema` can use the `additionalColumns` method to
 write other `Header` values to columns, which can be useful for indexing.
-
-
-
-

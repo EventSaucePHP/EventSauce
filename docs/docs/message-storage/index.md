@@ -1,6 +1,8 @@
 ---
 permalink: /docs/message-storage/
 title: About Message Storage
+published_at: 2021-08-24
+updated_at: 2021-08-24
 ---
 
 Message repositories persist messages containing events for the event-sourced
@@ -18,7 +20,3 @@ the message storage [Table Schema](/docs/message-storage/repository-table-schema
 
 The default implementations use UUIDs for identifying aggregates and events. You can
 [customize UUID encoding](/docs/message-storage/uuid-encoding/) if needed.
-
-
-
-
