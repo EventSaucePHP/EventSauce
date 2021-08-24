@@ -52,7 +52,7 @@ final class Message
         return $this->headers[Header::AGGREGATE_ROOT_ID] ?? null;
     }
 
-    public function aggregateRootClassName(): ?string
+    public function aggregateRootType(): ?string
     {
         return $this->headers[Header::AGGREGATE_ROOT_TYPE] ?? null;
     }
