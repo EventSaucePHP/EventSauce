@@ -21,6 +21,7 @@ class EventSourcedAggregateRootRepository implements AggregateRootRepository
     private MessageRepository $messages;
     private MessageDecorator $decorator;
     private MessageDispatcher $dispatcher;
+    private ClassNameInflector $classNameInflector;
 
     /**
      * @param class-string<T> $aggregateRootClassName
@@ -29,12 +30,14 @@ class EventSourcedAggregateRootRepository implements AggregateRootRepository
         string $aggregateRootClassName,
         MessageRepository $messageRepository,
         MessageDispatcher $dispatcher = null,
-        MessageDecorator $decorator = null
+        MessageDecorator $decorator = null,
+        ClassNameInflector $classNameInflector = null
     ) {
         $this->aggregateRootClassName = $aggregateRootClassName;
         $this->messages = $messageRepository;
         $this->dispatcher = $dispatcher ?: new SynchronousMessageDispatcher();
         $this->decorator = $decorator ?: new DefaultHeadersDecorator();
+        $this->classNameInflector = $classNameInflector ?: new DotSeparatedSnakeCaseInflector();
     }
 
     /**
@@ -87,7 +90,10 @@ class EventSourcedAggregateRootRepository implements AggregateRootRepository
         // so the version of each message represents the version at the time
         // of recording.
         $aggregateRootVersion = $aggregateRootVersion - count($events);
-        $metadata = [Header::AGGREGATE_ROOT_ID => $aggregateRootId];
+        $metadata = [
+            Header::AGGREGATE_ROOT_ID => $aggregateRootId,
+            Header::AGGREGATE_ROOT_TYPE => $this->classNameInflector->classNameToType($this->aggregateRootClassName),
+        ];
         $messages = array_map(function (object $event) use ($metadata, &$aggregateRootVersion) {
             return $this->decorator->decorate(new Message(
                 $event,
