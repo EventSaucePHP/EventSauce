@@ -7,11 +7,17 @@ EventSauce:
     Changelog: '/docs/changelog/'
     <span class="github-link-icon"><img class="w-5 h-5 mr-1" src="/static/github.svg" /></span> Github: 'https://github.com/eventsaucephp/eventsauce'
 
-Event Sourcing:
+Getting Started:
     1. Create an Aggregate Root: '/docs/event-sourcing/create-an-aggregate-root/'
     2. Create Events and Commands: '/docs/event-sourcing/create-events-and-commands/'
     3. Configure Persistence: '/docs/event-sourcing/configure-persistence/'
     4. Bootstrap: '/docs/event-sourcing/bootstrap/'
+
+Testing:
+  Introduction: '/docs/testing/'
+  Preconditions: '/docs/testing/preconditions/'
+  Handling Exceptions: '/docs/testing/handling-exceptions/'
+  Testing with Time: '/docs/testing/testing-with-time/'
 
 Message Storage:
     About Message Storage: '/docs/message-storage/'
@@ -21,35 +27,30 @@ Message Storage:
     Doctine 2 Repository: '/docs/message-storage/doctrine-2/'
     Uuid Encoding: '/docs/message-storage/uuid-encoding/'
 
-Testing:
-    Introduction: '/docs/testing/'
-    Preconditions: '/docs/testing/preconditions/'
-    Handling Exceptions: '/docs/testing/handling-exceptions/'
-    Testing with Time: '/docs/testing/testing-with-time/'
-
 Reacting to events:
     Setup Consumers: '/docs/reacting-to-events/setup-consumers/'
     Projection &amp; Read Models: '/docs/reacting-to-events/projections-and-read-models/'
     Process Managers: '/docs/reacting-to-events/process-managers/'
 
-Snapshotting:
-    About Snapshotting: '/docs/snapshotting/'
-    Setting Up Snapshotting: '/docs/snapshotting/setup/'
-    Updating Snapshots: '/docs/snapshotting/updating-snapshots/'
+Utilities:
+  Time / Clock: '/docs/utilities/clock/'
+  Event Dispatcher: '/docs/utilities/event-dispatcher/'
 
 Code Generation:
     About Code Generation: '/docs/code-generation/'
     Commands and Events from YAML: '/docs/code-generation/from-yaml/'
-
-Utilities:
-    Time / Clock: '/docs/utilities/clock/'
-    Event Dispatcher: '/docs/utilities/event-dispatcher/'
 
 Message Outbox:
     About: '/docs/message-outbox/'
     Setup: '/docs/message-outbox/setup/'
     Usage: '/docs/message-outbox/usage/'
     Build your own: '/docs/message-outbox/build-your-own/'
+
+Snapshotting:
+  About Snapshotting: '/docs/snapshotting/'
+  Setting Up Snapshotting: '/docs/snapshotting/setup/'
+  Updating Snapshots: '/docs/snapshotting/updating-snapshots/'
+
 
 Advanced Topics:
     Database Structure: '/docs/advanced/database-structure/'
