@@ -51,7 +51,7 @@ class EventSourcedAggregateRootRepositoryTest extends TestCase
 
         /** @var Message[] $messages */
         $messages = iterator_to_array($messageRepository->retrieveAll($aggregateRootId));
-        self::assertEquals($expectedAggregateRootClassName, $messages[0]->aggregateRootClassName());
+        self::assertEquals($expectedAggregateRootType, $messages[0]->aggregateRootClassName());
         self::assertEquals($expectedAggregateRootType, $messages[1]->aggregateRootClassName());
         self::assertEquals($expectedAggregateRootType, $messages[2]->aggregateRootClassName());
     }
