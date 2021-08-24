@@ -13,6 +13,14 @@ Event Sourcing:
     3. Configure Persistence: '/docs/event-sourcing/configure-persistence/'
     4. Bootstrap: '/docs/event-sourcing/bootstrap/'
 
+Message Storage:
+    About Message Storage: '/docs/message-storage/'
+    Repository Table Schema: '/docs/message-storage/repository-table-schema/'
+    Illuminate Repository: '/docs/message-storage/illuminate/'
+    Doctine 3 Repository: '/docs/message-storage/doctrine-3/'
+    Doctine 2 Repository: '/docs/message-storage/doctrine-2/'
+    Uuid Encoding: '/docs/message-storage/uuid-encoding/'
+
 Testing:
     Introduction: '/docs/testing/'
     Preconditions: '/docs/testing/preconditions/'
