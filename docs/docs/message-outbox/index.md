@@ -11,7 +11,7 @@ Using a queue, the consumer can retry upon failure, which increases the fault
 tolerance of a system. Unfortunately, there is also a downside to it.
 
 When the aggregate root gets persisted, the recorded events are stored in a
-database. After that, the events are sent to the queue. These are two separate
+database. After that, the events are sent to a queue. These are two separate
 network interactions, which means one of them may fail. To ensure persisting
 and dispatching events succeeds or fails as one operation, a message outbox
 can be used.

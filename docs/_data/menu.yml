@@ -41,7 +41,7 @@ Code Generation:
     Commands and Events from YAML: '/docs/code-generation/from-yaml/'
 
 Message Outbox:
-    About: '/docs/message-outbox/'
+    About The Outbox: '/docs/message-outbox/'
     Setup: '/docs/message-outbox/setup/'
     Usage: '/docs/message-outbox/usage/'
     Build your own: '/docs/message-outbox/build-your-own/'
