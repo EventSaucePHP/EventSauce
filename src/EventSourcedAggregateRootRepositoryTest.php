@@ -47,7 +47,7 @@ class EventSourcedAggregateRootRepositoryTest extends TestCase
         $aggregate->increment();
         $repository->persist($aggregate);
 
-        $expectedAggregateRootClassName =  'event_sauce.event_sourcing.test_utilities.testing_aggregates.dummy_aggregate';
+        $expectedAggregateRootType =  'event_sauce.event_sourcing.test_utilities.testing_aggregates.dummy_aggregate';
 
         /** @var Message[] $messages */
         $messages = iterator_to_array($messageRepository->retrieveAll($aggregateRootId));
