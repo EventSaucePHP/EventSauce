@@ -5,6 +5,12 @@ published_at: 2018-03-14
 updated_at: 2021-08-24
 ---
 
+## 1.2.1
+
+### Added
+
+- Added a deprecated Consumer interface for easier upgrade from 0.8
+
 ## 1.2.0
 
 ### Added
