@@ -25,9 +25,7 @@ var active = undefined;
 var navigationLinks = navigation.querySelectorAll('a');
 
 navigationLinks.forEach(function(link) {
-    console.log(link.classList.contains('text-red'), link.href);
     if (next !== undefined || link.href.includes('/docs/') === false) {
-        console.log('returned');
         return;
     }
     if (link.classList.contains('text-red')) {
