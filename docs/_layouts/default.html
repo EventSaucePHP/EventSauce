@@ -70,10 +70,10 @@
         </menu>
     </nav>
     <div id="main-article" class="flex-grow lg:block">
-        <div class="border-b border-grey-lighter py-3 mb-3 px-5 hidden sm:block">
-            {% include prev-next.html %}
-        </div>
         <article class="max-w-3xl mx-auto px-5 py-5">
+            <div class="border-b border-grey-lighter py-3 mb-3 hidden sm:block">
+                {% include prev-next.html %}
+            </div>
 
             {% unless page.hide_title %}
             <h1 class="mb-1">{% if page.alternate_title %}{{ page.alternate_title }}{% else %}{{ page.title }}{% endif %}</h1>
@@ -82,10 +82,10 @@
             </p>
             {% endunless %}
             {{ content }}
+            <div class="border-t border-grey-lighter py-3 mb-3 bg-white">
+                {% include prev-next.html %}
+            </div>
         </article>
-        <div class="border-t border-grey-lighter py-3 mb-3 px-5 bg-white">
-            {% include prev-next.html %}
-        </div>
     </div>
 </main>
 {% include compact-footer.html %}
