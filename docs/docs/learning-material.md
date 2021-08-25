@@ -27,6 +27,8 @@ The people from [Spatie](https://spatie.be) have released
 teach you how to event source in Laravel. This course uses their own event sourcing
 tooling, which is largely based on EventSauce, so it should feel familiar.
 
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/533538232?h=1c40362827" width="100%" height="415" frameborder="0" allowfullscreen></iframe>
+
 ## Frank on Software (YouTube Channel)
 
 The maintainer of EventSauce has a YouTube channel which covers a range of technologies
