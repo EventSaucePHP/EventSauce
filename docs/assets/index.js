@@ -37,8 +37,6 @@ navigationLinks.forEach(function(link) {
     }
 });
 
-console.log(active !== undefined);
-
 if (active !== undefined) {
     prevNext.forEach(function(p) { p.classList.remove('hidden'); });
     previous && renderPreviousNext('.link-previous', previous);
