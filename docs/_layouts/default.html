@@ -70,7 +70,11 @@
         </menu>
     </nav>
     <div id="main-article" class="flex-grow lg:block">
+        <div class="border-b border-grey-lighter py-3 mb-3 px-5 hidden sm:block">
+            {% include prev-next.html %}
+        </div>
         <article class="max-w-3xl mx-auto px-5 py-5">
+
             {% unless page.hide_title %}
             <h1 class="mb-1">{% if page.alternate_title %}{{ page.alternate_title }}{% else %}{{ page.title }}{% endif %}</h1>
             <p class="text-xs text-grey-dark rounded rounded-t-none mb-4 text-shadow inline-block">
@@ -79,11 +83,13 @@
             {% endunless %}
             {{ content }}
         </article>
+        <div class="border-t border-grey-lighter py-3 mb-3 px-5 bg-white">
+            {% include prev-next.html %}
+        </div>
     </div>
 </main>
 {% include compact-footer.html %}
 <script src="/static/prism.js" type="application/javascript"></script>
-<script src="/static/menu.js" type="application/javascript"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 <script type="text/javascript"> docsearch({
     apiKey: '439460ae4715ee79780b36ea5647db26',
@@ -92,5 +98,6 @@
     debug: {% if site.data.dev.dev_mode %}true{% else %}false{% endif %}
 });
 </script>
+<script src="{{ site.data.manifest['docs.js'] }}"></script>
 </body>
 </html>
