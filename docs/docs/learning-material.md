@@ -2,6 +2,8 @@
 permalink: /docs/learning-material/
 title: Learning Material
 alternate_title: Learn about Event Sourcing
+published_at: 2021-08-25
+updated_at: 2021-08-25
 ---
 
 Event sourcing is a radically different way to create software models. Because
