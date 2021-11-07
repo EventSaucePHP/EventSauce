@@ -28,6 +28,7 @@ final class ConstructingMessageSerializer implements MessageSerializer
         $event = $message->event();
         $payload = $this->payloadSerializer->serializePayload($event);
         $headers = $message->headers();
+        $headers[Header::EVENT_TYPE] ??= $this->classNameInflector->instanceToType($event);
         $aggregateRootId = $headers[Header::AGGREGATE_ROOT_ID] ?? null;
 
         if ($aggregateRootId instanceof AggregateRootId) {

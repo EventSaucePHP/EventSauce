@@ -49,11 +49,14 @@ class UpcastingEventsTest extends TestCase
     {
         $upcaster = new UpcasterStub();
         $serializer = new UpcastingMessageSerializer(new ConstructingMessageSerializer(), $upcaster);
-        $message = new Message(new UpcastedPayloadStub('a value'));
+        $message = new Message($event = new UpcastedPayloadStub('a value'));
+        $eventType = (new DotSeparatedSnakeCaseInflector())->instanceToType($event);
 
         $serializeMessage = $serializer->serializeMessage($message);
         $expectedPayload = [
-            'headers' => [],
+            'headers' => [
+                Header::EVENT_TYPE => $eventType,
+            ],
             'payload' => [
                 'property' => 'a value',
             ],
