@@ -8,7 +8,7 @@ interface ClassNameInflector
 {
     public function classNameToType(string $className): string;
 
-    public function typeToClassName(string $eventName): string;
+    public function typeToClassName(string $eventType): string;
 
     public function instanceToType(object $instance): string;
 }
