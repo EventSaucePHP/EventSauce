@@ -27,7 +27,7 @@ use EventSauce\MessageOutbox\DoctrineOutbox\DoctrineTransactionalMessageReposito
 
 $messageRepository = new DoctrineTransactionalMessageRepository(
     $connection,
-    $innerMessageRepository, // based which uses the same db connection,
-    $messageSerializer,
+    $innerMessageRepository, // must use the same db connection
+    $outboxRepository,       // as this outbox
 );
 ```
