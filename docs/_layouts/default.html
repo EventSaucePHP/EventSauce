@@ -9,15 +9,6 @@
     {% if site.data.project.description %}
     <meta name="description" content="{{ site.data.project.description }}">
     {% endif %}
-    {% unless site.data.dev.dev_mode %}
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114414242-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-114414242-1');
-    </script>
-    {% endunless %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
     <link rel="stylesheet" href="{{ site.data.manifest['docs.css'] }}"/>
     <link rel="stylesheet" href="/static/prism.css"/>

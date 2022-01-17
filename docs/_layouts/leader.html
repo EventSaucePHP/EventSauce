@@ -13,13 +13,6 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway|Varela+Round" rel="stylesheet" />
     {% endif %}
     {% unless site.data.dev.dev_mode %}
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114414242-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-114414242-1');
-    </script>
     <base href="//eventsauce.io/" />
     {% endunless %}
     <link rel="stylesheet" href="{{ site.data.manifest['docs.css'] }}"/>
