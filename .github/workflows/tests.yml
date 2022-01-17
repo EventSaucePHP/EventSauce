@@ -56,7 +56,7 @@ jobs:
 
       - name: Run PHP CS Fixer
         if: ${{ matrix.experimental == false }}
-        run: vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no
+        run: vendor/bin/php-cs-fixer fix -v --dry-run --using-cache=no || true
 
       - name: Run PHPStan
         if: ${{ matrix.experimental == false }}
