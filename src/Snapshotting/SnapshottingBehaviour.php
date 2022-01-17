@@ -31,7 +31,7 @@ trait SnapshottingBehaviour
     public static function reconstituteFromSnapshotAndEvents(Snapshot $snapshot, Generator $events): static
     {
         $id = $snapshot->aggregateRootId();
-        /** @var static|AggregateRoot $aggregateRoot */
+        /** @var static&AggregateRoot $aggregateRoot */
         $aggregateRoot = static::reconstituteFromSnapshotState($id, $snapshot->state());
         $aggregateRoot->aggregateRootVersion = $snapshot->aggregateRootVersion();
 
