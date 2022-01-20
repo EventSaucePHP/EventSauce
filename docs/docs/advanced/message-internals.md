@@ -44,3 +44,22 @@ serializes the event to the following format (shown JSON encoded):
 
 If needed you can create a custom implementation of the `MessageSerializer` to adapt to
 existing serialization formats in your application or in systems you interact with.
+
+### Class name inflection
+
+By default, the `ContructionMessageSerializer` uses the `DotSeparatedSnakeCaseInflector` to 
+convert event and id class names to a string when storing an event. And to return the class from 
+a string when reconstructing the event from the repository.
+
+This couples the event's implementation details to the event storage, making it hard to refactor the Name or namespace 
+of the event. 
+
+The `ArrayLookupClassNameInflector` could be used to declare a map from event to string.
+
+```php
+    new ConstructingMessageSerializer(
+        new \EventSauce\EventSourcing\ArrayLookupClassNameInflector([
+            'TransactionRecorded' => TransactionRecorded::class
+        ])
+    )
+```
