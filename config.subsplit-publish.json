@@ -14,6 +14,11 @@
             "name": "testing",
             "directory": "src/TestUtilities",
             "target": "git@github.com:EventSaucePHP/TestUtilities.git"
+        },
+        {
+            "name": "replay-consumer",
+            "directory": "src/ReplayConsumer",
+            "target": "git@github.com:EventSaucePHP/ReplayConsumer.git"
         }
     ]
 }

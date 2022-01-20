@@ -1,0 +1,25 @@
+{
+  "name": "eventsauce/replay-consumer",
+  "type": "library",
+  "description": "Naive consumer replay implementation for EventSauce",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Frank de Jonge",
+      "email": "info@frenky.net"
+    },
+    {
+      "name": "Robert Baelde",
+      "email": "robert@baelde.nl"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "eventsauce/eventsauce": "^1.0",
+  },
+  "autoload": {
+    "psr-4": {
+      "EventSauce\\EventSourcing\\ReplayConsumer\\": "./"
+    }
+  }
+}
