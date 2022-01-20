@@ -48,11 +48,16 @@ existing serialization formats in your application or in systems you interact wi
 ### Class name inflection
 
 By default, the `ContructionMessageSerializer` uses the `DotSeparatedSnakeCaseInflector` to 
-convert event and id class names to a string when storing an event. And to return the class from 
-a string when reconstructing the event from the repository.
+convert event and id class names to a string when storing an event. When reconstructing the 
+event from the repository it than used the class again to construct the get the FQN from the string.
+
+For example:
+
+`Domain\BankAccount\DomainEvents\TransactionRecorded::class` becomes `Domain.bank_account.domain_events.transaction_recorded` in the database.
+
 
 This couples the event's implementation details to the event storage, making it hard to refactor the Name or namespace 
-of the event. 
+of the event.
 
 The `ArrayLookupClassNameInflector` could be used to declare a map from event to string.
 
@@ -63,3 +68,6 @@ The `ArrayLookupClassNameInflector` could be used to declare a map from event to
         ])
     )
 ```
+
+This method allows us to freely rename or move event classes.
+A downside for this method, is that you need to be sure the class name is configured in lookup array.
