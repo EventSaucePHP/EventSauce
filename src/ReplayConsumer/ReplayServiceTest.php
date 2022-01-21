@@ -18,7 +18,7 @@ class ReplayServiceTest extends TestCase
     {
         $messageRepository = new InMemoryReplayMessageRepository();
         $messageRepository->persist(...array_map(
-            fn ($number) => new Message(EventStub::create($number)),
+            fn ($number) => new Message(EventStub::create((string) $number)),
             range(1, 100))
         );
 
@@ -40,7 +40,7 @@ class ReplayServiceTest extends TestCase
     {
         $messageRepository = new InMemoryReplayMessageRepository();
         $messageRepository->persist(...array_map(
-                fn ($number) => new Message(EventStub::create($number)),
+                fn ($number) => new Message(EventStub::create((string) $number)),
                 range(1, 100))
         );
 
