@@ -17,7 +17,7 @@ class ArrayLookupClassNameInflector implements ClassNameInflector
             throw new \Exception("Configure {$className} in event type lookup");
         }
 
-        return $type;
+        return (string) $type;
     }
 
     public function typeToClassName(string $eventType): string
