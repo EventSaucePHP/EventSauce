@@ -59,7 +59,7 @@ For example:
 This couples the event's implementation details to the event storage, making it hard to refactor the Name or namespace 
 of the event.
 
-The `ArrayLookupClassNameInflector` could be used to declare a map from event to string.
+The `ExplicitlyMappedClassNameInflector` could be used to declare a map from event to string.
 
 ```php
     new ConstructingMessageSerializer(
