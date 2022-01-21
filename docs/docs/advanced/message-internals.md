@@ -63,7 +63,7 @@ The `ArrayLookupClassNameInflector` could be used to declare a map from event to
 
 ```php
     new ConstructingMessageSerializer(
-        new \EventSauce\EventSourcing\ArrayLookupClassNameInflector([
+        new \EventSauce\EventSourcing\ExplicitlyMappedClassNameInflector([
             'TransactionRecorded' => TransactionRecorded::class
         ])
     )
