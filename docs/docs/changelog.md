@@ -5,6 +5,12 @@ published_at: 2018-03-14
 updated_at: 2021-08-24
 ---
 
+## 1.3.0
+
+### Added
+
+- ExplicitlyMappedClassNameInflector: a explicitly mapped class name inflector, allowing specific mapping class names from and to event types
+
 ## 1.2.1
 
 ### Added

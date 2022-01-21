@@ -59,7 +59,7 @@ For example:
 This couples the event's implementation details to the event storage, making it hard to refactor the Name or namespace 
 of the event.
 
-The `ExplicitlyMappedClassNameInflector` could be used to declare a map from event to string.
+The `ExplicitlyMappedClassNameInflector` can be used to declare a map from event to string (added in 1.3.0).
 
 ```php
 new ConstructingMessageSerializer(
