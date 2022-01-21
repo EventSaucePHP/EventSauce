@@ -12,14 +12,14 @@ EventSauce uses a number of headers internally. All of the internal
 headers are available as constants on the `EventSauce\EventSourcing\Header`
 interface:
 
-constant | value | description
---- | --- | ---
-`Header::EVENT_ID` | `__event_id` | ID of the event (optional but recommended)
-`Header::EVENT_TYPE` | `__event_type` | type of the event
-`Header::TIME_OF_RECORDING` | `__time_of_recording` | when the event was recorded
-`Header::AGGREGATE_ROOT_ID` | `__aggregate_root_id` | the aggregate root id
-`Header::AGGREGATE_ROOT_ID_TYPE` | `__aggregate_root_id_type` | the type of aggregate root id
-`Header::AGGREGATE_ROOT_VERSION` | `__aggregate_root_version` | the aggregate version (1-based sequence)
+| constant                         | value                      | description                                |
+|----------------------------------|----------------------------|--------------------------------------------|
+| `Header::EVENT_ID`               | `__event_id`               | ID of the event (optional but recommended) |
+| `Header::EVENT_TYPE`             | `__event_type`             | type of the event                          |
+| `Header::TIME_OF_RECORDING`      | `__time_of_recording`      | when the event was recorded                |
+| `Header::AGGREGATE_ROOT_ID`      | `__aggregate_root_id`      | the aggregate root id                      |
+| `Header::AGGREGATE_ROOT_ID_TYPE` | `__aggregate_root_id_type` | the type of aggregate root id              |
+| `Header::AGGREGATE_ROOT_VERSION` | `__aggregate_root_version` | the aggregate version (1-based sequence)   |
 
 ## Message Decorator
 
