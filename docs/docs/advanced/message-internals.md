@@ -62,11 +62,17 @@ of the event.
 The `ExplicitlyMappedClassNameInflector` could be used to declare a map from event to string.
 
 ```php
-    new ConstructingMessageSerializer(
-        new \EventSauce\EventSourcing\ExplicitlyMappedClassNameInflector([
-            TransactionRecorded::class => 'TransactionRecorded'
-        ])
-    )
+new ConstructingMessageSerializer(
+    new \EventSauce\EventSourcing\ExplicitlyMappedClassNameInflector([
+        // Map event types to a specified event type
+        TransactionRecorded::class => 'transactions.transaction_recoded',
+        
+        // Use an array to map multiple event types to a class name.
+        // The first entry is used to map the class to, the others are
+        // Used to map previously emit event types to the specified class
+        OrderHasShipped::class => ['orders.order_has_shipped', 'old.event_name'],
+    ])
+)
 ```
 
 This method allows us to freely rename or move event classes.
