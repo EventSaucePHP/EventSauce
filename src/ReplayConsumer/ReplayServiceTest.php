@@ -1,11 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\ReplayConsumer;
 
-use EventSauce\EventSourcing\DummyAggregateRootId;
 use EventSauce\EventSourcing\EventStub;
-use EventSauce\EventSourcing\Header;
-use EventSauce\EventSourcing\InMemoryMessageRepository;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\ReplayConsumer\TestHelpers\InMemoryReplayMessageRepository;
 use EventSauce\EventSourcing\ReplayConsumer\TestHelpers\TestReplayableMessageConsumer;
@@ -15,11 +14,11 @@ use PHPUnit\Framework\TestCase;
 class ReplayServiceTest extends TestCase
 {
     /** @test */
-    public function it_replays_events_to_the_configured_consumers()
+    public function it_replays_events_to_the_configured_consumers(): void
     {
         $messageRepository = new InMemoryReplayMessageRepository();
         $messageRepository->persist(...array_map(
-            fn($number) => new Message(EventStub::create($number)),
+            fn ($number) => new Message(EventStub::create($number)),
             range(1, 100))
         );
 
@@ -37,11 +36,11 @@ class ReplayServiceTest extends TestCase
     }
 
     /** @test */
-    public function it_calls_before_replay_when_message_dispatcher_supports_it()
+    public function it_calls_before_replay_when_message_dispatcher_supports_it(): void
     {
         $messageRepository = new InMemoryReplayMessageRepository();
         $messageRepository->persist(...array_map(
-                fn($number) => new Message(EventStub::create($number)),
+                fn ($number) => new Message(EventStub::create($number)),
                 range(1, 100))
         );
 

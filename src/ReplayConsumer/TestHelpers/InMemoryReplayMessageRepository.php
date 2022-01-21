@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\ReplayConsumer\TestHelpers;
 
 use EventSauce\EventSourcing\AggregateRootId;
@@ -7,7 +9,6 @@ use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageRepository;
 use EventSauce\EventSourcing\ReplayConsumer\ReplayMessageRepository;
-use EventSauce\EventSourcing\UnableToRetrieveMessages;
 use Generator;
 
 class InMemoryReplayMessageRepository implements ReplayMessageRepository, MessageRepository

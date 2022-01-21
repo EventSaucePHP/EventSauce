@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\ReplayConsumer;
 
 use EventSauce\EventSourcing\Message;
