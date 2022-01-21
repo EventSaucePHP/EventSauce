@@ -11,7 +11,7 @@ class ReplayService
     public function __construct(
         protected ReplayMessageRepository $messageRepository,
         protected MessageDispatcher $dispatcher,
-        protected $pageSize = 1000,
+        protected int $pageSize = 1000,
     ) {
     }
 

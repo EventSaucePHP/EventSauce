@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\ReplayConsumer;
 
 use EventSauce\EventSourcing\Message;
-use EventSauce\EventSourcing\MessageConsumer;
 use EventSauce\EventSourcing\MessageDispatcher;
 
 class ReplayMessageDispatcher implements MessageDispatcherWithBeforeReplay
 {
     /**
-     * @var list<MessageConsumer>
+     * @var list<ReplayableMessageConsumer>
      */
     private array $consumers;
 
