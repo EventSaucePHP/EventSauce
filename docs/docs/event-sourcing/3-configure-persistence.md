@@ -14,7 +14,7 @@ EventSauce has _two_ connections to persistence.
 ## `MessageRepository`
 
 The message repository stores messages that aggregate roots use for reconstitution. The
-repository has a specific method to query messages that belong to a single aggregate root.
+repository has specific methods to query messages that belong to a single aggregate root.
 A message repository should only be used for reconstitution. Performing arbitrary queries
 on the underlying database is not advised, use a projection for this instead.
 
