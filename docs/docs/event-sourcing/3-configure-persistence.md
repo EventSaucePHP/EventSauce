@@ -24,7 +24,7 @@ There are 3 message repository implementations shipped for v1:
 - [Doctrine 3 Message Repository](/docs/message-storage/doctrine-3/)
 - [Doctrine 2 Message Repository](/docs/message-storage/doctrine-2/)
 
-Each of the implementation support [two database table schemas](/docs/message-storage/repository-table-schema/).
+Each of the implementations support [two database table schemas](/docs/message-storage/repository-table-schema/).
 
 ### Learn more about message storage
 
