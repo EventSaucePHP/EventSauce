@@ -25,7 +25,14 @@ class MessageConsumerThatSerializesMessages implements MessageConsumer
     public function handle(Message $message): void
     {
         $payload = $this->serializer->serializeMessage($message);
-        $deserializedMessage = $this->serializer->unserializePayload($payload);
+        $payloadAsString = json_encode($payload);
+        if ($payloadAsString === false) {
+            TestCase::fail('Payload could not be serialized');
+        }
+
+        $deserializedMessage = $this->serializer->unserializePayload(
+            json_decode($payloadAsString, true)
+        );
         TestCase::assertEquals($message->event(), $deserializedMessage->event());
     }
 }
