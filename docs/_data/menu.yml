@@ -63,3 +63,4 @@ Advanced Topics:
     Upcasting: '/docs/advanced/upcasting/'
     Custom Repository: '/docs/advanced/custom-repository/'
     Custom Dispatcher: '/docs/advanced/custom-dispatcher/'
+    Aggregate root with aggregates: '/docs/advanced/aggregate-root-with-aggregates/'
