@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\LibraryConsumptionTests\ComplexAggregates;
+namespace EventSauce\EventSourcing\LibraryConsumptionTests\AggregateWithDelegatedBehavior;
 
 use EventSauce\EventSourcing\AggregateAppliesKnownEvents;
 use EventSauce\EventSourcing\EventRecorder;

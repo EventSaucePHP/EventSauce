@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\LibraryConsumptionTests\ComplexAggregates;
+namespace EventSauce\EventSourcing\LibraryConsumptionTests\AggregateWithDelegatedBehavior;
 
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\DummyAggregateRootId;
@@ -11,7 +11,7 @@ use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 /**
  * @method DummyAggregateRootId aggregateRootId()
  */
-class ComplexAggregateRootTest extends AggregateRootTestCase
+class AggregateRootWithDelegatedBehaviorTest extends AggregateRootTestCase
 {
     protected function newAggregateRootId(): AggregateRootId
     {
@@ -20,7 +20,7 @@ class ComplexAggregateRootTest extends AggregateRootTestCase
 
     protected function aggregateRootClassName(): string
     {
-        return ComplexAggregateRoot::class;
+        return AggregateRootWithDelegatedBehavior::class;
     }
 
     /**
@@ -31,7 +31,6 @@ class ComplexAggregateRootTest extends AggregateRootTestCase
         $this->given(
             new DelegatedAggregateWasChosen(),
             new DelegatedActionWasPerformed(1),
-            new DelegatedAggregateWasDiscarded()
         )->when(
             new CauseDelegatedBehavior($this->aggregateRootId())
         )->then(
@@ -39,10 +38,25 @@ class ComplexAggregateRootTest extends AggregateRootTestCase
         );
     }
 
+    /**
+     * @test
+     */
+    public function a_delegated_aggregate_doesnt_apply_events_when_its_not_registered(): void
+    {
+        $this->given(
+            new DelegatedActionWasPerformed(1),
+            new DelegatedAggregateWasChosen(),
+        )->when(
+            new CauseDelegatedBehavior($this->aggregateRootId())
+        )->then(
+            new DelegatedActionWasPerformed(1)
+        );
+    }
+
     protected function handle(object $command): void
     {
         if ($command instanceof CauseDelegatedBehavior) {
-            /** @var ComplexAggregateRoot $aggregate */
+            /** @var AggregateRootWithDelegatedBehavior $aggregate */
             $aggregate = $this->repository->retrieve($command->id());
             $aggregate->causeDelegatedAction();
             $this->repository->persist($aggregate);
