@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\LibraryConsumptionTests\ComplexAggregates;
+namespace EventSauce\EventSourcing\LibraryConsumptionTests\AggregateWithDelegatedBehavior;
 
 use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootWithAggregates;
 
-class ComplexAggregateRoot implements AggregateRoot
+class AggregateRootWithDelegatedBehavior implements AggregateRoot
 {
     use AggregateRootWithAggregates;
 
@@ -22,11 +22,12 @@ class ComplexAggregateRoot implements AggregateRoot
     protected function applyDelegatedAggregateWasDiscarded(DelegatedAggregateWasDiscarded $event): void
     {
         $this->unregisterAggregate($this->delegatedAggregate);
+        unset($this->delegatedAggregate);
     }
 
     public function causeDelegatedAction(): void
     {
-        assert($this->delegatedAggregate instanceof DelegatedBehaviorInAggregate);
+        assert(isset($this->delegatedAggregate) && $this->delegatedAggregate instanceof DelegatedBehaviorInAggregate);
         $this->delegatedAggregate->performAction();
     }
 }
