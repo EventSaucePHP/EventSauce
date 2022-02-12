@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\Events\CartCheckedOut;
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\Events\ProductAddedToCart;
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\Events\ShoppingCartInitiated;
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\Exceptions\SorryCantCheckout;
-
 class ShoppingCartLifecycleTest extends ShoppingCartTestCase
 {
     /** @test */

@@ -6,9 +6,6 @@ namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 
 use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootWithAggregates;
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\Events\CartCheckedOut;
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\Events\ShoppingCartInitiated;
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\Exceptions\SorryCantCheckout;
 
 class ShoppingCart implements AggregateRoot
 {

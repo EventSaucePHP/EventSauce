@@ -7,8 +7,6 @@ namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 use EventSauce\EventSourcing\AggregateAppliesKnownEvents;
 use EventSauce\EventSourcing\EventRecorder;
 use EventSauce\EventSourcing\EventSourcedAggregate;
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\Events\ProductAddedToCart;
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\Exceptions\SorryCantAddProduct;
 
 class CartItems implements EventSourcedAggregate
 {

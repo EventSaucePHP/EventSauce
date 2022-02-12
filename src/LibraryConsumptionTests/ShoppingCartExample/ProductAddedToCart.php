@@ -1,8 +1,7 @@
 <?php
 
-namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\Events;
+namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\ProductId;
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 class ProductAddedToCart implements SerializablePayload
