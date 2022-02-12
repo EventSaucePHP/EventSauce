@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootWithAggregates;
 
-class ShoppingCart implements AggregateRoot
+final class ShoppingCart implements AggregateRoot
 {
     use AggregateRootWithAggregates;
 

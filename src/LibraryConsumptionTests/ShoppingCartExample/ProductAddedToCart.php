@@ -19,9 +19,9 @@ class ProductAddedToCart implements SerializablePayload
         ];
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
-        return new self(
+        return new static(
             ProductId::fromString($payload['productId']),
             $payload['price']
         );

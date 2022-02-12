@@ -4,7 +4,7 @@ namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-class ShoppingCartInitiated implements SerializablePayload
+final class ShoppingCartInitiated implements SerializablePayload
 {
 
     public function __construct()
@@ -16,8 +16,8 @@ class ShoppingCartInitiated implements SerializablePayload
         return [];
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): static
     {
-        return new self();
+        return new static();
     }
 }

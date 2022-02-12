@@ -2,7 +2,7 @@
 
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 
-class ProductId
+final class ProductId
 {
     public function __construct(protected string $id)
     {
@@ -14,8 +14,8 @@ class ProductId
         return $this->id;
     }
 
-    public static function fromString(string $id): self
+    public static function fromString(string $id): static
     {
-        return new self($id);
+        return new static($id);
     }
 }

@@ -2,11 +2,10 @@
 
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 
-class SorryCantAddProduct extends \Exception
+final class SorryCantAddProduct extends \Exception
 {
-
-    public static function becauseThePriceHasChanged(): self
+    public static function becauseThePriceHasChanged(): static
     {
-        return new self();
+        return new static('Item price has changed.');
     }
 }

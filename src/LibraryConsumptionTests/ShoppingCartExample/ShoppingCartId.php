@@ -4,7 +4,7 @@ namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 
 use EventSauce\EventSourcing\AggregateRootId;
 
-class ShoppingCartId implements AggregateRootId
+final class ShoppingCartId implements AggregateRootId
 {
 
     private function __construct(private string $aggregateRootId)
@@ -16,13 +16,13 @@ class ShoppingCartId implements AggregateRootId
         return $this->aggregateRootId;
     }
 
-    public static function fromString(string $aggregateRootId): self
+    public static function fromString(string $aggregateRootId): static
     {
-        return new self($aggregateRootId);
+        return new static($aggregateRootId);
     }
 
-    public static function create(): self
+    public static function create(): static
     {
-        return self::fromString(bin2hex(random_bytes(25)));
+        return static::fromString(bin2hex(random_bytes(25)));
     }
 }

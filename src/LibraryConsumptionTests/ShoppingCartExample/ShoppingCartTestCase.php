@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 
-use EventSauce\EventSourcing\AggregateRootId;
+use Closure;
 use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 
 class ShoppingCartTestCase extends AggregateRootTestCase
 {
-    protected function newAggregateRootId(): AggregateRootId
+    protected function newAggregateRootId(): ShoppingCartId
     {
         return ShoppingCartId::create();
     }
@@ -19,7 +19,7 @@ class ShoppingCartTestCase extends AggregateRootTestCase
         return ShoppingCart::class;
     }
 
-    public function handle(\Closure $closure): void
+    public function handle(Closure $closure): void
     {
         /** @var ShoppingCart $aggregate */
         $aggregate = $this->repository->retrieve($this->aggregateRootId);
