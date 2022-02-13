@@ -12,61 +12,18 @@ use Generator;
 trait AggregateRootBehaviour
 {
     use AggregateAlwaysAppliesEvents;
-
-    private AggregateRootId $aggregateRootId;
-    private int $aggregateRootVersion = 0;
-    /** @var list<object> */
-    private array $recordedEvents = [];
+    use DefaultAggregateRootImplementation;
 
     private function __construct(AggregateRootId $aggregateRootId)
     {
         $this->aggregateRootId = $aggregateRootId;
     }
 
-    public function aggregateRootId(): AggregateRootId
-    {
-        return $this->aggregateRootId;
-    }
-
     /**
-     * @see AggregateRoot::aggregateRootVersion
+     * @see DefaultAggregateRootImplementation::instantiateForReconstitution()
      */
-    public function aggregateRootVersion(): int
+    protected static function instantiateForReconstitution(AggregateRootId $aggregateRootId): static
     {
-        return $this->aggregateRootVersion;
-    }
-
-    protected function recordThat(object $event): void
-    {
-        $this->apply($event);
-        $this->recordedEvents[] = $event;
-    }
-
-    /**
-     * @return object[]
-     */
-    public function releaseEvents(): array
-    {
-        $releasedEvents = $this->recordedEvents;
-        $this->recordedEvents = [];
-
-        return $releasedEvents;
-    }
-
-    /**
-     * @see AggregateRoot::reconstituteFromEvents
-     */
-    public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): static
-    {
-        $aggregateRoot = new static($aggregateRootId);
-
-        /** @var object $event */
-        foreach ($events as $event) {
-            $aggregateRoot->apply($event);
-        }
-
-        $aggregateRoot->aggregateRootVersion = $events->getReturn() ?: 0;
-
-        return $aggregateRoot;
+        return new static($aggregateRootId);
     }
 }
