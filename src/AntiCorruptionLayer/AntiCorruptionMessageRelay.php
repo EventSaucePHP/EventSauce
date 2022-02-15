@@ -29,13 +29,13 @@ class AntiCorruptionMessageRelay implements MessageDispatcher
 
         foreach ($messages as $message) {
             if ( ! $this->filterBefore->allows($message)) {
-                return;
+                continue;
             }
 
             $message = $this->translator->translateMessage($message);
 
             if ( ! $this->filterAfter->allows($message)) {
-                return;
+                continue;
             }
 
             $forwarded[] = $message;
