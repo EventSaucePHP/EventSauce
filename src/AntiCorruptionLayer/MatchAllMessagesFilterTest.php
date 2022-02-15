@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing\AntiCorruptionLayer;
 use EventSauce\EventSourcing\Message;
 use PHPUnit\Framework\TestCase;
 
-class MatchAllMessageFilterTest extends TestCase
+class MatchAllMessagesFilterTest extends TestCase
 {
     /**
      * @test
@@ -15,7 +15,7 @@ class MatchAllMessageFilterTest extends TestCase
      */
     public function matching_all_filters(array $internalFilters, bool $expectedOutcome): void
     {
-        $filter = new MatchAllMessageFilter(...$internalFilters);
+        $filter = new MatchAllMessageFilters(...$internalFilters);
 
         $result = $filter->allows(new Message(new StubPublicEvent('yes')));
 

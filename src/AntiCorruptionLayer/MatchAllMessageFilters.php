@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing\AntiCorruptionLayer;
 
 use EventSauce\EventSourcing\Message;
 
-class MatchAllMessageFilter implements MessageFilter
+class MatchAllMessageFilters implements MessageFilter
 {
     /** @var MessageFilter[] */
     private array $filters;
