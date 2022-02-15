@@ -22,5 +22,6 @@ class CreatingAggregatesWithConstructorsInBaseClassesTest extends TestCase
 
         self::assertInstanceOf(ConcreteChildClass::class, $concreteInstance);
         self::assertEquals($id, $concreteInstance->aggregateRootId());
+        self::assertEquals(['value'], $concreteInstance->values());
     }
 }
