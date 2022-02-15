@@ -10,7 +10,7 @@ use PHPStan\Testing\TestCase;
 
 use function array_map;
 
-class AntiCorruptionMessageRelayTest extends TestCase
+class AntiCorruptionMessageDispatcherTest extends TestCase
 {
     private CollectingMessageDispatcher $destinationMessageDispatcher;
     private MessageFilter $beforeFilter;
@@ -150,9 +150,9 @@ class AntiCorruptionMessageRelayTest extends TestCase
         yield [[new StubExcludedEvent('yes')], [new StubExcludedEvent('yes')]];
     }
 
-    private function messageRelay(): AntiCorruptionMessageRelay
+    private function messageRelay(): AntiCorruptionMessageDispatcher
     {
-        return new AntiCorruptionMessageRelay(
+        return new AntiCorruptionMessageDispatcher(
             $this->destinationMessageDispatcher,
             $this->translator,
             $this->beforeFilter,

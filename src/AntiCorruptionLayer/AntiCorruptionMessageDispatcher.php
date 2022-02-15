@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing\AntiCorruptionLayer;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageDispatcher;
 
-class AntiCorruptionMessageRelay implements MessageDispatcher
+class AntiCorruptionMessageDispatcher implements MessageDispatcher
 {
     private MessageFilter $filterBefore;
     private MessageFilter $filterAfter;
