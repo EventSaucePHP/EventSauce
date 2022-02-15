@@ -98,6 +98,34 @@ class AntiCorruptionMessageRelayTest extends TestCase
 
     /**
      * @test
+     * @dataProvider dpFilterAllButPublicAndPricate
+     */
+    public function no_transformation_filter_all_but_public_and_private_payloads_after_transformation(
+        array $incoming,
+        array $expected,
+    ): void
+    {
+        $this->afterFilter = new AllowMessagesWithPayloadOfType(StubPublicEvent::class, StubPrivateEvent::class);
+        $relay = $this->messageRelay();
+        $messages = array_map(fn(object $o) => new Message($o), $incoming);
+
+        $relay->dispatch(...$messages);
+        $dispatchedEvents = $this->dispatchedPayloads();
+
+        $this->assertEquals($expected, $dispatchedEvents);
+    }
+
+    public function dpFilterAllButPublicAndPricate(): iterable
+    {
+        yield [[new StubPublicEvent('yes')], [new StubPublicEvent('yes')]];
+        yield [[new StubPublicEvent('yes'), new StubExcludedEvent('no')], [new StubPublicEvent('yes')]];
+        yield [[new StubPrivateEvent('yes')], [new StubPrivateEvent('yes')]];
+        yield [[new StubPrivateEvent('yes'), new StubExcludedEvent('no')], [new StubPrivateEvent('yes')]];
+        yield [[new StubExcludedEvent('yes')], []];
+    }
+
+    /**
+     * @test
      * @dataProvider dpTranslateFromPrivateToPublic
      */
     public function transformation_private_to_public(
