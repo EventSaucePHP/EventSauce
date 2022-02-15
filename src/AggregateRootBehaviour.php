@@ -58,7 +58,7 @@ trait AggregateRootBehaviour
      */
     public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): static
     {
-        $aggregateRoot = new static($aggregateRootId);
+        $aggregateRoot = static::createNewInstance($aggregateRootId);
 
         /** @var object $event */
         foreach ($events as $event) {
@@ -68,5 +68,10 @@ trait AggregateRootBehaviour
         $aggregateRoot->aggregateRootVersion = $events->getReturn() ?: 0;
 
         return $aggregateRoot;
+    }
+
+    private static function createNewInstance(AggregateRootId $aggregateRootId): static
+    {
+        return new static($aggregateRootId);
     }
 }
