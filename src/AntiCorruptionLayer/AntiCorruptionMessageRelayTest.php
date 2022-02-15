@@ -48,6 +48,7 @@ class AntiCorruptionMessageRelayTest extends TestCase
         yield [[new StubPublicEvent('yes')], [new StubPublicEvent('yes')]];
         yield [[new StubPrivateEvent('yes')], [new StubPrivateEvent('yes')]];
         yield [[new StubExcludedEvent('yes')], [new StubExcludedEvent('yes')]];
+        yield [[new StubPublicEvent('yes'), new StubPrivateEvent('yes')], [new StubPublicEvent('yes'), new StubPrivateEvent('yes')]];
     }
 
     /**
