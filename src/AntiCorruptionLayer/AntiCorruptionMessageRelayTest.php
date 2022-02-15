@@ -8,6 +8,8 @@ use EventSauce\EventSourcing\CollectingMessageDispatcher;
 use EventSauce\EventSourcing\Message;
 use PHPStan\Testing\TestCase;
 
+use function array_map;
+
 class AntiCorruptionMessageRelayTest extends TestCase
 {
     private CollectingMessageDispatcher $destinationMessageDispatcher;
@@ -33,11 +35,9 @@ class AntiCorruptionMessageRelayTest extends TestCase
     ): void
     {
         $relay = $this->messageRelay();
+        $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
-        foreach ($incoming as $event) {
-            $relay->handle(new Message($event));
-        }
-
+        $relay->dispatch(...$messages);
         $dispatchedEvents = $this->dispatchedPayloads();
 
         $this->assertEquals($expected, $dispatchedEvents);
@@ -61,11 +61,9 @@ class AntiCorruptionMessageRelayTest extends TestCase
     {
         $this->beforeFilter = new StubFilterExcludedMessages();
         $relay = $this->messageRelay();
+        $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
-        foreach ($incoming as $event) {
-            $relay->handle(new Message($event));
-        }
-
+        $relay->dispatch(...$messages);
         $dispatchedEvents = $this->dispatchedPayloads();
 
         $this->assertEquals($expected, $dispatchedEvents);
@@ -82,11 +80,9 @@ class AntiCorruptionMessageRelayTest extends TestCase
     {
         $this->afterFilter = new StubFilterExcludedMessages();
         $relay = $this->messageRelay();
+        $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
-        foreach ($incoming as $event) {
-            $relay->handle(new Message($event));
-        }
-
+        $relay->dispatch(...$messages);
         $dispatchedEvents = $this->dispatchedPayloads();
 
         $this->assertEquals($expected, $dispatchedEvents);
@@ -110,11 +106,9 @@ class AntiCorruptionMessageRelayTest extends TestCase
     {
         $this->translator = new StubTranslatePrivateToPublic();
         $relay = $this->messageRelay();
+        $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
-        foreach ($incoming as $event) {
-            $relay->handle(new Message($event));
-        }
-
+        $relay->dispatch(...$messages);
         $dispatchedEvents = $this->dispatchedPayloads();
 
         $this->assertEquals($expected, $dispatchedEvents);
@@ -130,8 +124,8 @@ class AntiCorruptionMessageRelayTest extends TestCase
     private function messageRelay(): AntiCorruptionMessageRelay
     {
         return new AntiCorruptionMessageRelay(
-            $this->translator,
             $this->destinationMessageDispatcher,
+            $this->translator,
             $this->beforeFilter,
             $this->afterFilter,
         );

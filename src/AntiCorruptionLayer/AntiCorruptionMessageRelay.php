@@ -8,14 +8,14 @@ use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageConsumer;
 use EventSauce\EventSourcing\MessageDispatcher;
 
-class AntiCorruptionMessageRelay implements MessageConsumer
+class AntiCorruptionMessageRelay implements MessageDispatcher
 {
     private MessageFilter $filterBefore;
     private MessageFilter $filterAfter;
 
     public function __construct(
-        private MessageTranslator $translator,
         private MessageDispatcher $dispatcher,
+        private MessageTranslator $translator,
         MessageFilter $filterBefore = null,
         MessageFilter $filterAfter = null,
     )
@@ -24,18 +24,24 @@ class AntiCorruptionMessageRelay implements MessageConsumer
         $this->filterAfter = $filterAfter ?? new AlwaysAllowingMessageFilter();
     }
 
-    public function handle(Message $message): void
+    public function dispatch(Message ...$messages): void
     {
-        if ( ! $this->filterBefore->allows($message)) {
-            return;
+        $forwarded = [];
+
+        foreach ($messages as $message) {
+            if ( ! $this->filterBefore->allows($message)) {
+                return;
+            }
+
+            $message = $this->translator->translateMessage($message);
+
+            if ( ! $this->filterAfter->allows($message)) {
+                return;
+            }
+
+            $forwarded[] = $message;
         }
 
-        $message = $this->translator->translateMessage($message);
-
-        if ( ! $this->filterAfter->allows($message)) {
-            return;
-        }
-
-        $this->dispatcher->dispatch($message);
+        $this->dispatcher->dispatch(...$forwarded);
     }
 }
