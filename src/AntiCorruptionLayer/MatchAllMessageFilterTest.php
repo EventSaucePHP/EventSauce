@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing\AntiCorruptionLayer;
 use EventSauce\EventSourcing\Message;
 use PHPUnit\Framework\TestCase;
 
-class MatchAllMessagesFilterTest extends TestCase
+class MatchAllMessageFilterTest extends TestCase
 {
     /**
      * @test
