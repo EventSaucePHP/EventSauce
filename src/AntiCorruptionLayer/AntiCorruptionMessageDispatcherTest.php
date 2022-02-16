@@ -34,10 +34,10 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
         array $expected,
     ): void
     {
-        $relay = $this->messageRelay();
+        $dispatcher = $this->messageDispatcher();
         $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
-        $relay->dispatch(...$messages);
+        $dispatcher->dispatch(...$messages);
         $dispatchedEvents = $this->dispatchedPayloads();
 
         $this->assertEquals($expected, $dispatchedEvents);
@@ -61,10 +61,10 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
     ): void
     {
         $this->beforeFilter = new StubFilterExcludedMessages();
-        $relay = $this->messageRelay();
+        $dispatcher = $this->messageDispatcher();
         $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
-        $relay->dispatch(...$messages);
+        $dispatcher->dispatch(...$messages);
         $dispatchedEvents = $this->dispatchedPayloads();
 
         $this->assertEquals($expected, $dispatchedEvents);
@@ -80,10 +80,10 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
     ): void
     {
         $this->afterFilter = new StubFilterExcludedMessages();
-        $relay = $this->messageRelay();
+        $dispatcher = $this->messageDispatcher();
         $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
-        $relay->dispatch(...$messages);
+        $dispatcher->dispatch(...$messages);
         $dispatchedEvents = $this->dispatchedPayloads();
 
         $this->assertEquals($expected, $dispatchedEvents);
@@ -106,10 +106,10 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
     ): void
     {
         $this->afterFilter = new AllowMessagesWithPayloadOfType(StubPublicEvent::class, StubPrivateEvent::class);
-        $relay = $this->messageRelay();
+        $dispatcher = $this->messageDispatcher();
         $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
-        $relay->dispatch(...$messages);
+        $dispatcher->dispatch(...$messages);
         $dispatchedEvents = $this->dispatchedPayloads();
 
         $this->assertEquals($expected, $dispatchedEvents);
@@ -134,10 +134,10 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
     ): void
     {
         $this->translator = new StubTranslatePrivateToPublic();
-        $relay = $this->messageRelay();
+        $dispatcher = $this->messageDispatcher();
         $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
-        $relay->dispatch(...$messages);
+        $dispatcher->dispatch(...$messages);
         $dispatchedEvents = $this->dispatchedPayloads();
 
         $this->assertEquals($expected, $dispatchedEvents);
@@ -150,7 +150,7 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
         yield [[new StubExcludedEvent('yes')], [new StubExcludedEvent('yes')]];
     }
 
-    private function messageRelay(): AntiCorruptionMessageDispatcher
+    private function messageDispatcher(): AntiCorruptionMessageDispatcher
     {
         return new AntiCorruptionMessageDispatcher(
             $this->destinationMessageDispatcher,

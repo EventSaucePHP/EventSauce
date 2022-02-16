@@ -34,11 +34,11 @@ class AntiCorruptionMessageConsumerTest extends TestCase
         array $expected,
     ): void
     {
-        $relay = $this->messageRelay();
+        $consumer = $this->messageConsumer();
         $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
         foreach ($messages as $message) {
-            $relay->handle($message);
+            $consumer->handle($message);
         }
         $dispatchedEvents = $this->dispatchedPayloads();
 
@@ -63,11 +63,11 @@ class AntiCorruptionMessageConsumerTest extends TestCase
     ): void
     {
         $this->beforeFilter = new StubFilterExcludedMessages();
-        $relay = $this->messageRelay();
+        $consumer = $this->messageConsumer();
         $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
         foreach ($messages as $message) {
-            $relay->handle($message);
+            $consumer->handle($message);
         }
         $dispatchedEvents = $this->dispatchedPayloads();
 
@@ -84,11 +84,11 @@ class AntiCorruptionMessageConsumerTest extends TestCase
     ): void
     {
         $this->afterFilter = new StubFilterExcludedMessages();
-        $relay = $this->messageRelay();
+        $consumer = $this->messageConsumer();
         $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
         foreach ($messages as $message) {
-            $relay->handle($message);
+            $consumer->handle($message);
         }
         $dispatchedEvents = $this->dispatchedPayloads();
 
@@ -112,11 +112,11 @@ class AntiCorruptionMessageConsumerTest extends TestCase
     ): void
     {
         $this->afterFilter = new AllowMessagesWithPayloadOfType(StubPublicEvent::class, StubPrivateEvent::class);
-        $relay = $this->messageRelay();
+        $consumer = $this->messageConsumer();
         $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
         foreach ($messages as $message) {
-            $relay->handle($message);
+            $consumer->handle($message);
         }
         $dispatchedEvents = $this->dispatchedPayloads();
 
@@ -142,11 +142,11 @@ class AntiCorruptionMessageConsumerTest extends TestCase
     ): void
     {
         $this->translator = new StubTranslatePrivateToPublic();
-        $relay = $this->messageRelay();
+        $consumer = $this->messageConsumer();
         $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
         foreach ($messages as $message) {
-            $relay->handle($message);
+            $consumer->handle($message);
         }
         $dispatchedEvents = $this->dispatchedPayloads();
 
@@ -160,7 +160,7 @@ class AntiCorruptionMessageConsumerTest extends TestCase
         yield [[new StubExcludedEvent('yes')], [new StubExcludedEvent('yes')]];
     }
 
-    private function messageRelay(): AntiCorruptionMessageConsumer
+    private function messageConsumer(): AntiCorruptionMessageConsumer
     {
         return new AntiCorruptionMessageConsumer(
             $this->destinationMessageConsumer,
