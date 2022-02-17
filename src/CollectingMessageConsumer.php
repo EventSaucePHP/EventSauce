@@ -5,19 +5,13 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing;
 
 use function array_map;
-use function array_push;
 
-class CollectingMessageDispatcher implements MessageDispatcher
+class CollectingMessageConsumer implements MessageConsumer
 {
     /**
      * @var Message[]
      */
     private array $collectedMessages = [];
-
-    public function dispatch(Message ...$messages): void
-    {
-        array_push($this->collectedMessages, ...$messages);
-    }
 
     /**
      * @return Message[]
@@ -30,5 +24,10 @@ class CollectingMessageDispatcher implements MessageDispatcher
     public function collectedPayloads(): array
     {
         return array_map(fn(Message $message) => $message->event(), $this->collectedMessages);
+    }
+
+    public function handle(Message $message): void
+    {
+        $this->collectedMessages[] = $message;
     }
 }

@@ -28,7 +28,7 @@ Message Storage:
     Doctine 2 Repository: '/docs/message-storage/doctrine-2/'
     Uuid Encoding: '/docs/message-storage/uuid-encoding/'
 
-Reacting to events:
+Reacting to Events:
     Setup Consumers: '/docs/reacting-to-events/setup-consumers/'
     Projection &amp; Read Models: '/docs/reacting-to-events/projections-and-read-models/'
     Process Managers: '/docs/reacting-to-events/process-managers/'
@@ -56,6 +56,7 @@ Snapshotting:
 
 
 Advanced Topics:
+    Anti-Corruption Layer: '/docs/advanced/anti-corruption-layer/'
     Database Structure: '/docs/advanced/database-structure/'
     Rebuilding Projections: '/docs/advanced/rebuilding-projections/'
     Message Internals: '/docs/advanced/message-internals/'
