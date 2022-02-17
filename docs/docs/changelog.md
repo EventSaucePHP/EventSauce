@@ -2,8 +2,21 @@
 permalink: /docs/changelog/
 title: Changelog
 published_at: 2018-03-14
-updated_at: 2021-08-24
+updated_at: 2022-02-17
 ---
+
+## 1.4.0 - 2022-02-17
+
+### Added
+
+- [NEW] AntiCorruptionLayer module, containing a consumer, dispatcher, and relay that filter and translate messages.
+- for AggregateRootBehaviour: extracted createNewInstance to allow construction overrides.
+- CollectingMessageConsumer, useful for testing things that invoke or decorate consumers
+- for CollectingMessageDispatcher, added collectedPayloads for convenience during test assertions
+
+### Changed
+
+- for MessageConsumerThatSerializesMessages, this implementation now serialized from and to JSON for increased test confidence.
 
 ## 1.3.0
 
