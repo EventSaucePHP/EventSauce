@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\AntiCorruptionLayer;
+namespace EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters;
 
+use EventSauce\EventSourcing\AntiCorruptionLayer\StubPublicEvent;
 use EventSauce\EventSourcing\Message;
 use PHPUnit\Framework\TestCase;
 
-class MatchAllMessageFilterTest extends TestCase
+class MatchAnyMessageFilterTest extends TestCase
 {
     /**
      * @test
@@ -15,7 +16,7 @@ class MatchAllMessageFilterTest extends TestCase
      */
     public function matching_all_filters(array $internalFilters, bool $expectedOutcome): void
     {
-        $filter = new MatchAllMessageFilters(...$internalFilters);
+        $filter = new MatchAnyMessageFilter(...$internalFilters);
 
         $result = $filter->allows(new Message(new StubPublicEvent('yes')));
 
@@ -25,8 +26,8 @@ class MatchAllMessageFilterTest extends TestCase
     public function dpFilterCombinations(): iterable
     {
         yield [[new AllowAllMessages(), new AllowAllMessages()], true];
-        yield [[new NeverAllowMessages(), new AllowAllMessages()], false];
-        yield [[new AllowAllMessages(), new NeverAllowMessages()], false];
+        yield [[new NeverAllowMessages(), new AllowAllMessages()], true];
+        yield [[new AllowAllMessages(), new NeverAllowMessages()], true];
         yield [[new NeverAllowMessages(), new NeverAllowMessages()], false];
     }
 }

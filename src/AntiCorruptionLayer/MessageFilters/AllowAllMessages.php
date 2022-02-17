@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\AntiCorruptionLayer;
+namespace EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters;
 
 use EventSauce\EventSourcing\Message;
 

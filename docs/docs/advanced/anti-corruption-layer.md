@@ -21,7 +21,7 @@ that implement the `MessageTranslator` interface.
 ```php
 namespace AcmeCorp\SomeDomain;
 
-use EventSauce\EventSourcing\AntiCorruptionLayer\MessageTranslator;
+use EventSauce\EventSourcing\AntiCorruptionLayer\Translators\MessageTranslator;
 use EventSauce\EventSourcing\Message;
 
 class MyMessageTranslator implements MessageTranslator
@@ -37,7 +37,7 @@ If you do not wish to convert the message at all, you can use the _passthrough_ 
 built-in implementation does simply passes on the original message.
 
 ```php
-use EventSauce\EventSourcing\AntiCorruptionLayer\PassthroughMessageTranslator;
+use EventSauce\EventSourcing\AntiCorruptionLayer\Translators\PassthroughMessageTranslator;
 
 $translator = new PassthroughMessageTranslator();
 ```
@@ -50,7 +50,8 @@ that implement the `MessageFilter` interface.
 ```php
 namespace AcmeCorp\SomeDomain;
 
-use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilter;use EventSauce\EventSourcing\Message;
+use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters\MessageFilter;
+use EventSauce\EventSourcing\Message;
 
 class AllowOnlyPublicEvents implements MessageFilter
 {
@@ -69,8 +70,8 @@ The outbound ACL is a message dispatcher decorator that uses filters and a trans
 only relevant messages onto the inner dispatcher.
 
 ```php
-use EventSauce\EventSourcing\AntiCorruptionLayer\AllowAllMessages;
 use EventSauce\EventSourcing\AntiCorruptionLayer\AntiCorruptionMessageDispatcher;
+use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters\AllowAllMessages;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageDispatcher;
 
@@ -93,8 +94,8 @@ The inbound ACL is a message consumer decorator that uses filters and a translat
 only relevant messages onto the inner consumer.
 
 ```php
-use EventSauce\EventSourcing\AntiCorruptionLayer\AllowAllMessages;
 use EventSauce\EventSourcing\AntiCorruptionLayer\AntiCorruptionMessageConsumer;
+use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters\AllowAllMessages;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageConsumer;
 
@@ -120,7 +121,7 @@ A number of message filters are built-in:
 Allows filtering events/payloads by class-names.
 
 ```php
-use EventSauce\EventSourcing\AntiCorruptionLayer\AllowMessagesWithPayloadOfType;
+use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters\AllowMessagesWithPayloadOfType;
 
 $filter = new AllowMessagesWithPayloadOfType(
     PublicEvent::class,
@@ -133,7 +134,7 @@ $filter = new AllowMessagesWithPayloadOfType(
 Allows all messages to pass through
 
 ```php
-use EventSauce\EventSourcing\AntiCorruptionLayer\AllowAllMessages;
+use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters\AllowAllMessages;
 
 $filter = new AllowAllMessages();
 ```
@@ -143,7 +144,7 @@ $filter = new AllowAllMessages();
 Allows no messages to pass through
 
 ```php
-use EventSauce\EventSourcing\AntiCorruptionLayer\NeverAllowMessages;
+use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters\NeverAllowMessages;
 
 $filter = new NeverAllowMessages();
 ```
@@ -153,7 +154,7 @@ $filter = new NeverAllowMessages();
 Only passes on messages if all inner filters allows the message to pass through.
 
 ```php
-use EventSauce\EventSourcing\AntiCorruptionLayer\MatchAllMessageFilters;
+use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters\MatchAllMessageFilters;
 
 $filter = new MatchAllMessageFilters(
     new MyFilter(),
@@ -166,7 +167,7 @@ $filter = new MatchAllMessageFilters(
 Passes on messages if _any_ of the inner filters allows the message to pass through.
 
 ```php
-use EventSauce\EventSourcing\AntiCorruptionLayer\MatchAnyMessageFilter;
+use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters\MatchAnyMessageFilter;
 
 $filter = new MatchAnyMessageFilter(
     new MyFilter(),
@@ -184,7 +185,7 @@ Passes on messages unmodified.
 
 ```php
 
-use EventSauce\EventSourcing\AntiCorruptionLayer\PassthroughMessageTranslator;
+use EventSauce\EventSourcing\AntiCorruptionLayer\Translators\PassthroughMessageTranslator;
 
 $translator = new PassthroughMessageTranslator();
 ```
@@ -195,7 +196,7 @@ Uses a specific translator per payload class-name.
 
 ```php
 
-use EventSauce\EventSourcing\AntiCorruptionLayer\MessageTranslatorPerPayloadType;
+use EventSauce\EventSourcing\AntiCorruptionLayer\Translators\MessageTranslatorPerPayloadType;
 
 $translator = new MessageTranslatorPerPayloadType([
     SomePayload::class => new SomePayloadTranslator(),
@@ -209,7 +210,7 @@ Uses a multiple translators, passes the message through each
 
 ```php
 
-use EventSauce\EventSourcing\AntiCorruptionLayer\MessageTranslatorChain;
+use EventSauce\EventSourcing\AntiCorruptionLayer\Translators\MessageTranslatorChain;
 
 $translator = new MessageTranslatorChain(
     new SomePayloadTranslator(), // first pass

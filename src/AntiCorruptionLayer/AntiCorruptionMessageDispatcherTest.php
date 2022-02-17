@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\AntiCorruptionLayer;
 
+use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters\AllowAllMessages;
+use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters\AllowMessagesWithPayloadOfType;
+use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters\MessageFilter;
+use EventSauce\EventSourcing\AntiCorruptionLayer\Translators\MessageTranslator;
+use EventSauce\EventSourcing\AntiCorruptionLayer\Translators\PassthroughMessageTranslator;
 use EventSauce\EventSourcing\CollectingMessageDispatcher;
 use EventSauce\EventSourcing\Message;
 use PHPStan\Testing\TestCase;
-
 use function array_map;
 
 class AntiCorruptionMessageDispatcherTest extends TestCase
@@ -98,7 +102,7 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
 
     /**
      * @test
-     * @dataProvider dpFilterAllButPublicAndPricate
+     * @dataProvider dpFilterAllButPublicAndPrivate
      */
     public function no_transformation_filter_all_but_public_and_private_payloads_after_transformation(
         array $incoming,
@@ -115,7 +119,7 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
         $this->assertEquals($expected, $dispatchedEvents);
     }
 
-    public function dpFilterAllButPublicAndPricate(): iterable
+    public function dpFilterAllButPublicAndPrivate(): iterable
     {
         yield [[new StubPublicEvent('yes')], [new StubPublicEvent('yes')]];
         yield [[new StubPublicEvent('yes'), new StubExcludedEvent('no')], [new StubPublicEvent('yes')]];

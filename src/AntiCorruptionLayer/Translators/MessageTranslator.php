@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing\AntiCorruptionLayer;
+namespace EventSauce\EventSourcing\AntiCorruptionLayer\Translators;
 
 use EventSauce\EventSourcing\Message;
 

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\AntiCorruptionLayer;
 
+use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters\AllowAllMessages;
+use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilters\MessageFilter;
+use EventSauce\EventSourcing\AntiCorruptionLayer\Translators\MessageTranslator;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageConsumer;
 
