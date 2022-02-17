@@ -1,8 +1,6 @@
 ---
 permalink: /docs/advanced/message-internals/
 title: Message Internals
-published_at: 2018-03-07
-updated_at: 2018-03-23
 ---
 
 The `Message` object is the envelope in which events are stored and

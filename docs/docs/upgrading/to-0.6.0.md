@@ -1,8 +1,6 @@
 ---
 permalink: /docs/upgrading/to-0-6-0
 title: Upgrade to 0.6.0
-published_at: 2019-07-21
-updated_at: 2021-08-24
 ---
 
 Event serialization is made generic for any payload so commands can leverage the

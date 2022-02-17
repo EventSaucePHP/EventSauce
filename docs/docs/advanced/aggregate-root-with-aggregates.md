@@ -1,8 +1,6 @@
 ---
 permalink: /docs/advanced/aggregate-root-with-aggregates/
 title: Aggregate root with aggregates
-published_at: 2022-02-08
-updated_at: 2022-02-08
 ---
 
 Sometimes you might want to split up your aggregate into multiple partial aggregates, 

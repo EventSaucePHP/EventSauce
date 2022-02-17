@@ -1,8 +1,6 @@
 ---
 permalink: /docs/code-generation/from-yaml/
 title: Code Generation From YAML
-published_at: 2019-11-09
-updated_at: 2019-11-09
 ---
 
 An easy way to define your commands and events, is by using the YAML definition loader. This

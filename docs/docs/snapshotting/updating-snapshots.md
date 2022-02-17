@@ -1,8 +1,6 @@
 ---
 permalink: /docs/snapshotting/updating-snapshots/
 title: Updating Snapshots
-published_at: 2019-09-25
-updated_at: 2021-08-24
 ---
 
 When using snapshotting, you'll need to update snapshots every once in a while

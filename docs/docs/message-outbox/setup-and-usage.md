@@ -4,8 +4,6 @@ redirect_from:
     - /docs/message-outbox/setup/
     - /docs/message-outbox/usage/
 title: Message Outbox Setup and Usage
-published_at: 2021-08-24
-updated_at: 2021-08-24
 ---
 
 The outbox module consists of three parts, a _repository_, a _dispatcher_ and a

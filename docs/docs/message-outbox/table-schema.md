@@ -1,8 +1,6 @@
 ---
 permalink: /docs/message-outbox/table-schema/
 title: Message Outbox Table Schema
-published_at: 2021-08-24
-updated_at: 2021-08-24
 ---
 
 Outbox setups come in all shapes and sized. Unless you know what you're

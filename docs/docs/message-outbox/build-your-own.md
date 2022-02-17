@@ -1,8 +1,6 @@
 ---
 permalink: /docs/message-outbox/build-your-own/
 title: Message Outbox - Build your own
-published_at: 2021-05-02
-updated_at: 2021-05-02
 ---
 
 Not all database libraries are supported, but that should not limit

@@ -1,8 +1,6 @@
 ---
 permalink: /docs/message-outbox/doctrine-2/
 title: Message Outbox for Doctrine 2
-published_at: 2021-08-24
-updated_at: 2021-08-24
 ---
 
 [![Packagist Version](https://img.shields.io/packagist/v/eventsauce/message-outbox-for-doctrine-v2.svg?style=flat-square)](https://packagist.org/packages/eventsauce/message-outbox-for-doctrine-v2)

@@ -1,8 +1,6 @@
 ---
 permalink: /docs/changelog/
 title: Changelog
-published_at: 2018-03-14
-updated_at: 2022-02-17
 ---
 
 ## 1.4.0 - 2022-02-17

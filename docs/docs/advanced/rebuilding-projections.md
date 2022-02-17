@@ -1,8 +1,6 @@
 ---
 permalink: /docs/advanced/rebuilding-projections/
 title: Rebuilding Projections
-published_at: 2018-03-13
-updated_at: 2018-03-23
 ---
 
 Rebuilding projections is one of the more complicated subjects in

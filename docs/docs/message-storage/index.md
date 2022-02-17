@@ -1,8 +1,6 @@
 ---
 permalink: /docs/message-storage/
 title: About Message Storage
-published_at: 2021-08-24
-updated_at: 2021-08-24
 ---
 
 Message Storage in event sourcing consists of a couple components. Messages contain
