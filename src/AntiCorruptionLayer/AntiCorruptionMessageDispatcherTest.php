@@ -20,8 +20,8 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
     protected function setUp(): void
     {
         $this->destinationMessageDispatcher = new CollectingMessageDispatcher();
-        $this->beforeFilter = new AlwaysAllowingMessageFilter();
-        $this->afterFilter = new AlwaysAllowingMessageFilter();
+        $this->beforeFilter = new AllowAllMessages();
+        $this->afterFilter = new AllowAllMessages();
         $this->translator = new PassthroughMessageTranslator();
     }
 

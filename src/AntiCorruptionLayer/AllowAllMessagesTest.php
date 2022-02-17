@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing\AntiCorruptionLayer;
 use EventSauce\EventSourcing\Message;
 use PHPUnit\Framework\TestCase;
 
-class AlwaysAllowingMessageFilterTest extends TestCase
+class AllowAllMessagesTest extends TestCase
 {
     /**
      * @test
@@ -15,7 +15,7 @@ class AlwaysAllowingMessageFilterTest extends TestCase
      */
     public function it_always_allows(object $payload): void
     {
-        $filter = new AlwaysAllowingMessageFilter();
+        $filter = new AllowAllMessages();
 
         $result = $filter->allows(new Message($payload));
 

@@ -69,7 +69,7 @@ The outbound ACL is a message dispatcher decorator that uses filters and a trans
 only relevant messages onto the inner dispatcher.
 
 ```php
-use EventSauce\EventSourcing\AntiCorruptionLayer\AlwaysAllowingMessageFilter;
+use EventSauce\EventSourcing\AntiCorruptionLayer\AllowAllMessages;
 use EventSauce\EventSourcing\AntiCorruptionLayer\AntiCorruptionMessageDispatcher;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageDispatcher;
@@ -81,7 +81,7 @@ $messageDispatcher = new AntiCorruptionMessageDispatcher(
     $innerDispatcher,
     new MyMessageTranslator(),
     filterBefore: new AllowOnlyPublicEvents(), // optional
-    filterAfter: new AlwaysAllowingMessageFilter(), // optional
+    filterAfter: new AllowAllMessages(), // optional
 );
 
 $messageDispatcher->dispatch(new Message(new SomethingHappened('important')));
@@ -93,7 +93,7 @@ The inbound ACL is a message consumer decorator that uses filters and a translat
 only relevant messages onto the inner consumer.
 
 ```php
-use EventSauce\EventSourcing\AntiCorruptionLayer\AlwaysAllowingMessageFilter;
+use EventSauce\EventSourcing\AntiCorruptionLayer\AllowAllMessages;
 use EventSauce\EventSourcing\AntiCorruptionLayer\AntiCorruptionMessageConsumer;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageConsumer;
@@ -105,7 +105,7 @@ $messageConsumer = new AntiCorruptionMessageConsumer(
     $innerConsumer,
     new MyMessageTranslator(),
     filterBefore: new AllowOnlyPublicEvents(), // optional
-    filterAfter: new AlwaysAllowingMessageFilter(), // optional
+    filterAfter: new AllowAllMessages(), // optional
 );
 
 $messageConsumer->handle(new Message(new SomethingHappened('important')));
@@ -128,24 +128,24 @@ $filter = new AllowMessagesWithPayloadOfType(
 );
 ```
 
-### AlwaysAllowingMessageFilter
+### AllowAllMessages
 
 Allows all messages to pass through
 
 ```php
-use EventSauce\EventSourcing\AntiCorruptionLayer\AlwaysAllowingMessageFilter;
+use EventSauce\EventSourcing\AntiCorruptionLayer\AllowAllMessages;
 
-$filter = new AlwaysAllowingMessageFilter();
+$filter = new AllowAllMessages();
 ```
 
-### NeverAllowingMessageFilter
+### NeverAllowMessages
 
 Allows no messages to pass through
 
 ```php
-use EventSauce\EventSourcing\AntiCorruptionLayer\NeverAllowingMessageFilter;
+use EventSauce\EventSourcing\AntiCorruptionLayer\NeverAllowMessages;
 
-$filter = new NeverAllowingMessageFilter();
+$filter = new NeverAllowMessages();
 ```
 
 ### MatchAllMessageFilters

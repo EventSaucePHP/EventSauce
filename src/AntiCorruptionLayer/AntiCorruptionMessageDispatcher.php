@@ -19,8 +19,8 @@ class AntiCorruptionMessageDispatcher implements MessageDispatcher
         MessageFilter $filterAfter = null,
     )
     {
-        $this->filterBefore = $filterBefore ?? new AlwaysAllowingMessageFilter();
-        $this->filterAfter = $filterAfter ?? new AlwaysAllowingMessageFilter();
+        $this->filterBefore = $filterBefore ?? new AllowAllMessages();
+        $this->filterAfter = $filterAfter ?? new AllowAllMessages();
     }
 
     public function dispatch(Message ...$messages): void

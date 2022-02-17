@@ -20,8 +20,8 @@ class AntiCorruptionMessageConsumerTest extends TestCase
     protected function setUp(): void
     {
         $this->destinationMessageConsumer = new CollectingMessageConsumer();
-        $this->beforeFilter = new AlwaysAllowingMessageFilter();
-        $this->afterFilter = new AlwaysAllowingMessageFilter();
+        $this->beforeFilter = new AllowAllMessages();
+        $this->afterFilter = new AllowAllMessages();
         $this->translator = new PassthroughMessageTranslator();
     }
 

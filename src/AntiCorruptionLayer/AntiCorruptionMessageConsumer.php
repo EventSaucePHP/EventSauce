@@ -19,8 +19,8 @@ class AntiCorruptionMessageConsumer implements MessageConsumer
         MessageFilter $filterAfter = null,
     )
     {
-        $this->filterBefore = $filterBefore ?? new AlwaysAllowingMessageFilter();
-        $this->filterAfter = $filterAfter ?? new AlwaysAllowingMessageFilter();
+        $this->filterBefore = $filterBefore ?? new AllowAllMessages();
+        $this->filterAfter = $filterAfter ?? new AllowAllMessages();
     }
 
     public function handle(Message $message): void

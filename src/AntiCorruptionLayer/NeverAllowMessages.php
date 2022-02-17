@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing\AntiCorruptionLayer;
 
 use EventSauce\EventSourcing\Message;
 
-class NeverAllowingMessageFilter implements MessageFilter
+class NeverAllowMessages implements MessageFilter
 {
     public function allows(Message $message): bool
     {

@@ -24,9 +24,9 @@ class MatchAnyMessageFilterTest extends TestCase
 
     public function dpFilterCombinations(): iterable
     {
-        yield [[new AlwaysAllowingMessageFilter(), new AlwaysAllowingMessageFilter()], true];
-        yield [[new NeverAllowingMessageFilter(), new AlwaysAllowingMessageFilter()], true];
-        yield [[new AlwaysAllowingMessageFilter(), new NeverAllowingMessageFilter()], true];
-        yield [[new NeverAllowingMessageFilter(), new NeverAllowingMessageFilter()], false];
+        yield [[new AllowAllMessages(), new AllowAllMessages()], true];
+        yield [[new NeverAllowMessages(), new AllowAllMessages()], true];
+        yield [[new AllowAllMessages(), new NeverAllowMessages()], true];
+        yield [[new NeverAllowMessages(), new NeverAllowMessages()], false];
     }
 }
