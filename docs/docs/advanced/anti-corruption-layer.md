@@ -3,7 +3,7 @@ permalink: /docs/advanced/anti-corruption-layer/
 title: Anti-Corruption Layer
 ---
 
-The integration of systems or processes using messaging or evens can lead to some unforeseen
+The integration of systems or processes using messaging or events can lead to unforeseen
 information-level coupling. To combat this, message-driven systems use ACLs (anti-corruption layers)
 to filter and transform communication between sender and receiver.
 
@@ -34,7 +34,7 @@ class MyMessageTranslator implements MessageTranslator
 ```
 
 If you do not wish to convert the message at all, you can use the _passthrough_ translator. This 
-built-in implementation does simply passes on the original message.
+built-in implementation simply passes on the original message.
 
 ```php
 use EventSauce\EventSourcing\AntiCorruptionLayer\PassthroughMessageTranslator;
@@ -150,7 +150,7 @@ $filter = new NeverAllowMessages();
 
 ### MatchAllMessageFilters
 
-Only passes on messages if all inner filters allows the message to pass through.
+Only passes on messages if all inner filters allow the message to pass through.
 
 ```php
 use EventSauce\EventSourcing\AntiCorruptionLayer\MatchAllMessageFilters;
@@ -205,7 +205,7 @@ $translator = new MessageTranslatorPerPayloadType([
 
 ### MessageTranslatorChain
 
-Uses a multiple translators, passes the message through each
+Uses multiple translators and passes the message through each
 
 ```php
 
