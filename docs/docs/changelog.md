@@ -3,6 +3,12 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 1.4.1 - 202-02-25
+
+### Changed
+
+- [CodeGeneration] Allow symfony/yaml version 6
+
 ## 1.4.0 - 2022-02-17
 
 ### Added
