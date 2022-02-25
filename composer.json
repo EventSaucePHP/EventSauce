@@ -21,7 +21,7 @@
         "phpstan/phpstan": "^0.12.83",
         "phpunit/phpunit": "^9.4",
         "nikic/php-parser": "^v4.10.4",
-        "symfony/yaml": "^5.0",
+        "symfony/yaml": "^5.0 | ^6.0",
         "friendsofphp/php-cs-fixer": "^3.0",
         "ramsey/uuid": "^4.0"
     },
