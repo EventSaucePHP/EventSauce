@@ -20,6 +20,7 @@ class ExpectedEvent
     {
         $call = $this->callable;
         $callbackResult = $call !== null ? $call($recordedEvent) : null;
+
         return $recordedEvent instanceof $this->class && $callbackResult !== false;
     }
 }
