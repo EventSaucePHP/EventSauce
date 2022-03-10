@@ -18,6 +18,7 @@ Testing:
   Introduction: '/docs/testing/'
   Preconditions: '/docs/testing/preconditions/'
   Handling Exceptions: '/docs/testing/handling-exceptions/'
+  Asserting the payload of an event: '/docs/testing/asserting-the-payload-of-an-event/'
   Testing with Time: '/docs/testing/testing-with-time/'
 
 Message Storage:

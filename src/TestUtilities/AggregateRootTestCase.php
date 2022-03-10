@@ -18,6 +18,7 @@ use EventSauce\EventSourcing\MessageDecoratorChain;
 use EventSauce\EventSourcing\MessageDispatcher;
 use EventSauce\EventSourcing\MessageRepository;
 use EventSauce\EventSourcing\SynchronousMessageDispatcher;
+use EventSauce\EventSourcing\TestUtilities\TestingAggregates\ExpectedEvent;
 use Exception;
 use LogicException;
 use PHPUnit\Framework\TestCase;
@@ -205,9 +206,24 @@ abstract class AggregateRootTestCase extends TestCase
         return $this;
     }
 
-    protected function assertLastCommitEqualsEvents(object ...$events): void
+    protected function assertEvent(string $class, ?callable $closure = null): ExpectedEvent
     {
-        self::assertEquals($events, $this->messageRepository->lastCommit(), 'Events are not equal.');
+        return new ExpectedEvent($class, $closure);
+    }
+
+    protected function assertLastCommitEqualsEvents(object ...$expectedEvents): void
+    {
+        $recordedEvents = $this->messageRepository->lastCommit();
+
+        foreach ($recordedEvents as $eventNumber => $recordedEvent) {
+            $expectedEvent = $expectedEvents[$eventNumber];
+            if ($expectedEvent instanceof ExpectedEvent) {
+                self::assertTrue($expectedEvent->assertEquals($recordedEvent), 'Event does not expected event.');
+                continue;
+            }
+            self::assertEquals($expectedEvent, $recordedEvent, 'Events are not equal.');
+        }
+        self::assertCount(count($expectedEvents), $recordedEvents, 'expected event count doesnt match recorded event count');
     }
 
     private function assertExpectedException(
