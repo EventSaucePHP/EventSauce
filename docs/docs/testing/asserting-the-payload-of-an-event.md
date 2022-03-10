@@ -37,9 +37,11 @@ class DummyIncrementTest extends DummyAggregateRootTestCase
     {
         $this->given(new DummyIncrementingHappened(1))
             ->when(new DummyIncrementCommand($this->aggregateRootId()))
-            $this->assertEvent(DummyIncrementingHappened::class, function (DummyIncrementingHappened $dummyIncrementingHappened): void {
-                $this->assertEquals(2, $dummyIncrementingHappened->number());
-            })
+            ->then(
+                $this->assertEvent(DummyIncrementingHappened::class, function (DummyIncrementingHappened $dummyIncrementingHappened): void {
+                    $this->assertEquals(2, $dummyIncrementingHappened->number());
+                })
+            );
     } 
     
         /**
@@ -49,9 +51,11 @@ class DummyIncrementTest extends DummyAggregateRootTestCase
     {
         $this->given(new DummyIncrementingHappened(1))
             ->when(new DummyIncrementCommand($this->aggregateRootId()))
-            $this->assertEvent(DummyIncrementingHappened::class, function (DummyIncrementingHappened $dummyIncrementingHappened): bool {
-                return $dummyIncrementingHappened->number() === 2;
-            })
+            ->then(
+                $this->assertEvent(DummyIncrementingHappened::class, function (DummyIncrementingHappened $dummyIncrementingHappened): bool {
+                    return $dummyIncrementingHappened->number() === 2;
+                })
+            );
     } 
 }
 ```
