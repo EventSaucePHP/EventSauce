@@ -90,7 +90,7 @@ class YourDecorator implements MessageDecorator
     {
         return $message->withHeaders([
             'x-decorated-by' => 'Frank de Jonge',
-            'x-request-id' => $context->requestIdentifier(),
+            'x-request-id' => $this->context->requestIdentifier(),
         ]);
     }
 }
