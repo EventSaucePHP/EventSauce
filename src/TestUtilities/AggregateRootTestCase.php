@@ -18,7 +18,6 @@ use EventSauce\EventSourcing\MessageDecoratorChain;
 use EventSauce\EventSourcing\MessageDispatcher;
 use EventSauce\EventSourcing\MessageRepository;
 use EventSauce\EventSourcing\SynchronousMessageDispatcher;
-use EventSauce\EventSourcing\TestUtilities\TestingAggregates\ExpectedEvent;
 use Exception;
 use LogicException;
 use PHPUnit\Framework\TestCase;
@@ -206,9 +205,14 @@ abstract class AggregateRootTestCase extends TestCase
         return $this;
     }
 
-    protected function assertEvent(string $class, ?callable $closure = null): ExpectedEvent
+    protected function expectEventOfType(string $class): ExpectedEvent
     {
-        return new ExpectedEvent($class, $closure);
+        return ExpectedEvent::ofType($class);
+    }
+
+    protected function expectEventToMatch(callable $callable): ExpectedEvent
+    {
+        return ExpectedEvent::matches($callable);
     }
 
     protected function assertLastCommitEqualsEvents(object ...$expectedEvents): void

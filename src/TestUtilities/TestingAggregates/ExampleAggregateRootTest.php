@@ -174,7 +174,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     {
         $this->when(new PerformDummyTask($this->aggregateRootId()));
         $this->then(
-            $this->assertEvent(DummyTaskWasExecuted::class)
+            $this->expectEventOfType(DummyTaskWasExecuted::class)
         );
     }
 
@@ -183,7 +183,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     {
         $this->when(new PerformDummyTask($this->aggregateRootId()));
         $this->then(
-            $this->assertEvent(AggregateWasInitiated::class)
+            $this->expectEventOfType(AggregateWasInitiated::class)
         );
         $this->expectAssertionToFail();
     }
@@ -193,7 +193,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     {
         $this->when(new DummyIncrementCommand($this->aggregateRootId()));
         $this->then(
-            $this->assertEvent(DummyIncrementingHappened::class, function (DummyIncrementingHappened $dummyIncrementingHappened): void {
+            $this->expectEventOfType(DummyIncrementingHappened::class)->toMatch(function (DummyIncrementingHappened $dummyIncrementingHappened): void {
                 $this->assertEquals(1, $dummyIncrementingHappened->number());
             })
         );
@@ -204,7 +204,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     {
         $this->when(new DummyIncrementCommand($this->aggregateRootId()));
         $this->then(
-            $this->assertEvent(DummyIncrementingHappened::class, function (DummyIncrementingHappened $dummyIncrementingHappened): bool {
+            $this->expectEventOfType(DummyIncrementingHappened::class)->toMatch(function (DummyIncrementingHappened $dummyIncrementingHappened): bool {
                 return false;
             })
         );
@@ -216,7 +216,18 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     {
         $this->when(new DummyIncrementCommand($this->aggregateRootId()));
         $this->then(
-            $this->assertEvent(DummyIncrementingHappened::class, function (DummyIncrementingHappened $dummyIncrementingHappened): bool {
+            $this->expectEventOfType(DummyIncrementingHappened::class)->toMatch(function (DummyIncrementingHappened $dummyIncrementingHappened): bool {
+                return true;
+            })
+        );
+    }
+
+    /** @test */
+    public function it_can_assert_events_on_callback_only()
+    {
+        $this->when(new DummyIncrementCommand($this->aggregateRootId()));
+        $this->then(
+            $this->expectEventToMatch(function (DummyIncrementingHappened $dummyIncrementingHappened): bool {
                 return true;
             })
         );
