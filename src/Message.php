@@ -31,9 +31,12 @@ final class Message
         return $clone;
     }
 
-    public function withTimeOfRecording(DateTimeImmutable $timeOfRecording): Message
+    public function withTimeOfRecording(DateTimeImmutable $timeOfRecording, string $format = self::TIME_OF_RECORDING_FORMAT): Message
     {
-        return $this->withHeader(Header::TIME_OF_RECORDING, $timeOfRecording->format(self::TIME_OF_RECORDING_FORMAT));
+        return $this->withHeaders([
+            Header::TIME_OF_RECORDING => $timeOfRecording->format($format),
+            Header::TIME_OF_RECORDING_FORMAT => $format,
+        ]);
     }
 
     public function aggregateVersion(): int
@@ -57,16 +60,18 @@ final class Message
         return $this->headers[Header::AGGREGATE_ROOT_TYPE] ?? null;
     }
 
-    public function timeOfRecording(): DateTimeImmutable
+    public function timeOfRecording(string $format = null): DateTimeImmutable
     {
+        $format = $format ?? $this->headers[Header::TIME_OF_RECORDING_FORMAT] ?? self::TIME_OF_RECORDING_FORMAT;
+
         /* @var DateTimeImmutable */
         $timeOfRecording = DateTimeImmutable::createFromFormat(
-            self::TIME_OF_RECORDING_FORMAT,
+            $format,
             $header = ($this->headers[Header::TIME_OF_RECORDING] ?? '')
         );
 
         if ( ! $timeOfRecording instanceof DateTimeImmutable) {
-            throw UnableToResolveTimeOfRecording::fromFormatAndHeader(self::TIME_OF_RECORDING_FORMAT, $header);
+            throw UnableToResolveTimeOfRecording::fromFormatAndHeader($format, $header);
         }
 
         return $timeOfRecording;
