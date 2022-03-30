@@ -60,13 +60,13 @@ final class Message
         return $this->headers[Header::AGGREGATE_ROOT_TYPE] ?? null;
     }
 
-    public function timeOfRecording(string $format = null): DateTimeImmutable
+    public function timeOfRecording(): DateTimeImmutable
     {
-        $format = $format ?? $this->headers[Header::TIME_OF_RECORDING_FORMAT] ?? self::TIME_OF_RECORDING_FORMAT;
+        $format = $this->headers[Header::TIME_OF_RECORDING_FORMAT] ?? self::TIME_OF_RECORDING_FORMAT;
 
         /* @var DateTimeImmutable */
         $timeOfRecording = DateTimeImmutable::createFromFormat(
-            $format,
+            '!' . $format,
             $header = ($this->headers[Header::TIME_OF_RECORDING] ?? '')
         );
 

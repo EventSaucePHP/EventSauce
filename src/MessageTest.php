@@ -100,6 +100,26 @@ class MessageTest extends TestCase
 
     /**
      * @test
+     */
+    public function using_a_custom_time_of_recording_format(): void
+    {
+        $now = new DateTimeImmutable();
+        $nowFormat = 'Y-d-m i:H:s';
+        $nowFormatted = $now->format($nowFormat);
+        $message = (new Message(EventStub::create('this')))
+            ->withTimeOfRecording($now, $nowFormat);
+
+        $timeOfRecordingFormatted = $message->timeOfRecording()->format($nowFormat);
+        $rawDateHeader = $message->header(Header::TIME_OF_RECORDING);
+        $rawFormatHeader = $message->header(Header::TIME_OF_RECORDING_FORMAT);
+
+        self::assertEquals($nowFormat, $rawFormatHeader);
+        self::assertEquals($nowFormatted, $rawDateHeader);
+        self::assertEquals($nowFormatted, $timeOfRecordingFormatted);
+    }
+
+    /**
+     * @test
      * @dataProvider dbHeaderValues
      */
     public function setting_headers_of_various_types(int|string|array|AggregateRootId|null|bool|float $headerValue): void
