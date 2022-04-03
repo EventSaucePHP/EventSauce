@@ -27,6 +27,7 @@ class UpcastingEventsTest extends TestCase
             'headers' => [
                 Header::EVENT_TYPE => $eventType,
                 Header::TIME_OF_RECORDING => $pointInTime->format('Y-m-d H:i:s.uO'),
+                Header::TIME_OF_RECORDING_FORMAT => 'Y-m-d H:i:s.uO',
             ],
             'payload' => [],
         ];

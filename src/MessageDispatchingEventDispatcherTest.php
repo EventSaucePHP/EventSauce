@@ -18,7 +18,7 @@ class MessageDispatchingEventDispatcherTest extends TestCase
         $event = new EventStub('value');
         $eventDispatcher->dispatch($event);
         $collectedMessages = $subdispatcher->collectedMessages();
-        $this->assertEquals($event, $collectedMessages[0]->event());
+        $this->assertEquals($event, $collectedMessages[0]->payload());
     }
 
     /**

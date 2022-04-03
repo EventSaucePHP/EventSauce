@@ -10,15 +10,15 @@ use EventSauce\EventSourcing\Serialization\SerializablePayload;
  * @codeCoverageIgnore
  * @testAsset
  */
-class DummyTaskWasExecuted implements SerializablePayload
+final class DummyTaskWasExecuted implements SerializablePayload
 {
     public function toPayload(): array
     {
         return [];
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
-        return new self();
+        return new static();
     }
 }

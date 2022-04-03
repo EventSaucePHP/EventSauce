@@ -21,7 +21,7 @@ class MessageTest extends TestCase
         $event = EventStub::create('some value');
         $initialHeaders = ['initial' => 'header value'];
         $message = new Message($event, $initialHeaders);
-        $this->assertSame($event, $message->event());
+        $this->assertSame($event, $message->payload());
         $this->assertEquals($initialHeaders, $message->headers());
     }
 
@@ -96,6 +96,26 @@ class MessageTest extends TestCase
         $this->expectException(Throwable::class);
 
         $message->timeOfRecording();
+    }
+
+    /**
+     * @test
+     */
+    public function using_a_custom_time_of_recording_format(): void
+    {
+        $now = new DateTimeImmutable();
+        $nowFormat = 'Y-d-m i:H:s';
+        $nowFormatted = $now->format($nowFormat);
+        $message = (new Message(EventStub::create('this')))
+            ->withTimeOfRecording($now, $nowFormat);
+
+        $timeOfRecordingFormatted = $message->timeOfRecording()->format($nowFormat);
+        $rawDateHeader = $message->header(Header::TIME_OF_RECORDING);
+        $rawFormatHeader = $message->header(Header::TIME_OF_RECORDING_FORMAT);
+
+        self::assertEquals($nowFormat, $rawFormatHeader);
+        self::assertEquals($nowFormatted, $rawDateHeader);
+        self::assertEquals($nowFormatted, $timeOfRecordingFormatted);
     }
 
     /**

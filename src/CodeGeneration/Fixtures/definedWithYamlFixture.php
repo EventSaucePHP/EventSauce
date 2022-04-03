@@ -36,9 +36,9 @@ final class WeWentYamling implements SerializablePayload
         return $this->description;
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
-        return new WeWentYamling(
+        return new static(
             \Ramsey\Uuid\Uuid::fromString($payload['reference']),
             (string) $payload['slogan'],
             (string) $payload['title'],
@@ -104,9 +104,9 @@ final class HideFinancialDetailsOfFraudulentCompany implements SerializablePaylo
         return $this->companyId;
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
-        return new HideFinancialDetailsOfFraudulentCompany(
+        return new static(
             \Ramsey\Uuid\Uuid::fromString($payload['companyId'])
         );
     }
@@ -147,9 +147,9 @@ final class GoYamling implements SerializablePayload
         return $this->slogan;
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
-        return new GoYamling(
+        return new static(
             \Ramsey\Uuid\Uuid::fromString($payload['reference']),
             (string) $payload['slogan']
         );

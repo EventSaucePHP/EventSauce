@@ -180,9 +180,9 @@ EOF;
         }
 
         return <<<EOF
-    public static function fromPayload(array \$payload): self
+    public static function fromPayload(array \$payload): static
     {
-        return new $name($arguments);
+        return new static($arguments);
     }
 
     public function toPayload(): array

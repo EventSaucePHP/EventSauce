@@ -18,9 +18,9 @@ final class EventName implements SerializablePayload
         return $this->title;
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
-        return new EventName(
+        return new static(
             strtolower($payload['title'])
         );
     }

@@ -24,9 +24,9 @@ final class ThisOne implements SerializablePayload
         return $this->description;
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
-        return new ThisOne(
+        return new static(
             (string) $payload['title'],
             (string) $payload['description']
         );

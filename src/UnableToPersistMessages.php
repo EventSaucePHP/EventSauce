@@ -9,8 +9,8 @@ use Throwable;
 
 final class UnableToPersistMessages extends RuntimeException implements EventSauceException
 {
-    public static function dueTo(string $reason, Throwable $previous = null): self
+    public static function dueTo(string $reason, Throwable $previous = null): static
     {
-        return new self("Unable to persist messages. {$reason}", 0, $previous);
+        return new static("Unable to persist messages. {$reason}", 0, $previous);
     }
 }

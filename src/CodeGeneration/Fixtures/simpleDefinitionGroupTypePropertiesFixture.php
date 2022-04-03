@@ -24,9 +24,9 @@ final class SomethingHappened implements SerializablePayload
         return $this->yolo;
     }
 
-    public static function fromPayload(array $payload): self
+    public static function fromPayload(array $payload): static
     {
-        return new SomethingHappened(
+        return new static(
             (string) $payload['what'],
             (bool) $payload['yolo']
         );

@@ -11,7 +11,7 @@ final class Message
 {
     public const TIME_OF_RECORDING_FORMAT = 'Y-m-d H:i:s.uO';
 
-    public function __construct(private object $event, private array $headers = [])
+    public function __construct(private object $payload, private array $headers = [])
     {
     }
 
@@ -31,9 +31,12 @@ final class Message
         return $clone;
     }
 
-    public function withTimeOfRecording(DateTimeImmutable $timeOfRecording): Message
+    public function withTimeOfRecording(DateTimeImmutable $timeOfRecording, string $format = self::TIME_OF_RECORDING_FORMAT): Message
     {
-        return $this->withHeader(Header::TIME_OF_RECORDING, $timeOfRecording->format(self::TIME_OF_RECORDING_FORMAT));
+        return $this->withHeaders([
+            Header::TIME_OF_RECORDING => $timeOfRecording->format($format),
+            Header::TIME_OF_RECORDING_FORMAT => $format,
+        ]);
     }
 
     public function aggregateVersion(): int
@@ -59,14 +62,16 @@ final class Message
 
     public function timeOfRecording(): DateTimeImmutable
     {
+        $format = $this->headers[Header::TIME_OF_RECORDING_FORMAT] ?? self::TIME_OF_RECORDING_FORMAT;
+
         /* @var DateTimeImmutable */
         $timeOfRecording = DateTimeImmutable::createFromFormat(
-            self::TIME_OF_RECORDING_FORMAT,
+            '!' . $format,
             $header = ($this->headers[Header::TIME_OF_RECORDING] ?? '')
         );
 
         if ( ! $timeOfRecording instanceof DateTimeImmutable) {
-            throw UnableToResolveTimeOfRecording::fromFormatAndHeader(self::TIME_OF_RECORDING_FORMAT, $header);
+            throw UnableToResolveTimeOfRecording::fromFormatAndHeader($format, $header);
         }
 
         return $timeOfRecording;
@@ -82,8 +87,16 @@ final class Message
         return $this->headers;
     }
 
+    public function payload(): object
+    {
+        return $this->payload;
+    }
+
+    /**
+     * @deprecated use ->payload instead
+     */
     public function event(): object
     {
-        return $this->event;
+        return $this->payload;
     }
 }

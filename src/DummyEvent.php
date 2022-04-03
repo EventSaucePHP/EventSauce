@@ -6,15 +6,15 @@ namespace EventSauce\EventSourcing;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
-class DummyEvent implements SerializablePayload
+final class DummyEvent implements SerializablePayload
 {
     public function toPayload(): array
     {
         return [];
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): static
     {
-        return new DummyEvent();
+        return new static();
     }
 }

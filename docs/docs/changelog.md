@@ -3,7 +3,18 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
-## 1.4.1 - 202-02-25
+## 2.0.0 - 2022-04-03
+
+### Changed
+
+- Message::payload introduced as a replacement for Message::event.
+- Message::event is deprecated.
+- SerializablePayload::fromPayload return type is now `static`.
+- Message::withTimeOfRecording now accepts a format parameter.
+- DefaultHeadersDecorator accepts a timeOfRecordingFormat constructor parameter.
+- AggregateRootId::fromString return type is now `static`.
+
+## 1.4.1 - 2022-02-25
 
 ### Changed
 

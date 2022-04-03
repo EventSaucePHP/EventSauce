@@ -11,12 +11,17 @@
     ],
     "require": {
         "php": "^8.0",
-        "eventsauce/eventsauce": "^1.0",
+        "eventsauce/eventsauce": "^2.0",
         "phpunit/phpunit": "^8.5|^9.4"
     },
     "autoload": {
         "psr-4": {
             "EventSauce\\EventSourcing\\TestUtilities\\": "./"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-version/2.0": "2.x-dev"
         }
     }
 }
