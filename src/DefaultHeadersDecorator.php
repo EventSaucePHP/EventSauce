@@ -12,7 +12,11 @@ class DefaultHeadersDecorator implements MessageDecorator
     private ClassNameInflector $inflector;
     private Clock $clock;
 
-    public function __construct(ClassNameInflector $inflector = null, Clock $clock = null)
+    public function __construct(
+        ClassNameInflector $inflector = null,
+        Clock $clock = null,
+        private string $timeOfRecordingFormat = Message::TIME_OF_RECORDING_FORMAT,
+    )
     {
         $this->inflector = $inflector ?: new DotSeparatedSnakeCaseInflector();
         $this->clock = $clock ?: new SystemClock();
@@ -23,6 +27,6 @@ class DefaultHeadersDecorator implements MessageDecorator
         return $message->withHeader(
             Header::EVENT_TYPE,
             $this->inflector->instanceToType($message->payload())
-        )->withTimeOfRecording($this->clock->now());
+        )->withTimeOfRecording($this->clock->now(), $this->timeOfRecordingFormat);
     }
 }
