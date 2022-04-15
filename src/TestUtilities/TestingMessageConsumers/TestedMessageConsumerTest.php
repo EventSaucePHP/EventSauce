@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\TestUtilities\TestingMessageConsumers;
 
 use DomainException;
+use EventSauce\EventSourcing\DummyAggregateRootId;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageConsumer;
 use EventSauce\EventSourcing\TestUtilities\MessageConsumerTestCase;
@@ -65,6 +66,23 @@ class TestedMessageConsumerTest extends MessageConsumerTestCase
         );
         $this->expectToFail(new DomainException('Wrong exception'));
         $this->assertScenario();
+    }
+
+    /**
+     * @test
+     */
+    public function it_sets_aggregate_uuid_in_message(): void
+    {
+        $aggregateRootId = DummyAggregateRootId::generate();
+        $this
+            ->givenNextMessagesHaveAggregateRootIdOf($aggregateRootId)
+            ->given(
+                new ConsumerEvent(),
+            )->when(
+                new ConsumerEvent(),
+            )->then(function (TestedMessageConsumer $consumer) use ($aggregateRootId): void {
+                $this->assertEquals($aggregateRootId, $consumer->lastProcessedUuid());
+            });
     }
 
     /**
