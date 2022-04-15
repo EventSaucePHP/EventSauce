@@ -143,6 +143,16 @@ abstract class MessageConsumerTestCase extends TestCase
     }
 
     /**
+     * @after
+     *
+     * @throws Exception
+     */
+    protected function resetAggregateRootId(): void
+    {
+        $this->aggregateRootId = null;
+    }
+
+    /**
      * @return $this
      */
     public function then(callable $assertion)
