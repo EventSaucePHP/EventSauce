@@ -13,7 +13,7 @@ class TestedMessageConsumer implements MessageConsumer
 {
     private int $failAfterNumberOfMessages;
     private int $numberOfMessagesProcessed = 0;
-    private ?AggregateRootId $lastProcessedUuid;
+    private ?AggregateRootId $lastProcessedUuid = null;
 
     public function __construct(int $failAfterNumberOfMessages)
     {
@@ -35,6 +35,6 @@ class TestedMessageConsumer implements MessageConsumer
 
     public function lastProcessedUuid(): ?AggregateRootId
     {
-        return $this->lastProcessedUuid ?? null;
+        return $this->lastProcessedUuid;
     }
 }
