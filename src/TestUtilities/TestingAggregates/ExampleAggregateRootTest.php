@@ -13,6 +13,7 @@ use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 use EventSauce\EventSourcing\TestUtilities\FailedToDetectExpectedException;
 use LogicException;
+use PHPUnit\Framework\ExpectationFailedException;
 
 /**
  * @method DummyAggregateRootId aggregateRootId()
@@ -152,6 +153,86 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
         $this->assertEquals(2, $messages[1]->header(Header::AGGREGATE_ROOT_VERSION));
     }
 
+    /** @test */
+    public function it_fails_when_expected_event_is_not_recorded(): void
+    {
+        $this->then(new DummyIncrementingHappened(1));
+        $this->expectAssertionToFail();
+    }
+
+    /** @test */
+    public function it_fails_when_event_is_not_equal_to_the_expected_event(): void
+    {
+        $this->given(new DummyIncrementingHappened(1))
+            ->when(new DummyIncrementCommand($this->aggregateRootId()))
+            ->then(new DummyIncrementingHappened(1));
+        $this->expectAssertionToFail();
+    }
+
+    /** @test */
+    public function it_can_assert_event_class_without_doing_a_exact_comparison(): void
+    {
+        $this->when(new PerformDummyTask($this->aggregateRootId()));
+        $this->then(
+            $this->expectEventOfType(DummyTaskWasExecuted::class)
+        );
+    }
+
+    /** @test */
+    public function it_fails_when_different_event_was_fired_than_expected(): void
+    {
+        $this->when(new PerformDummyTask($this->aggregateRootId()));
+        $this->then(
+            $this->expectEventOfType(AggregateWasInitiated::class)
+        );
+        $this->expectAssertionToFail();
+    }
+
+    /** @test */
+    public function it_can_test_parts_of_the_events_data(): void
+    {
+        $this->when(new DummyIncrementCommand($this->aggregateRootId()));
+        $this->then(
+            $this->expectEventOfType(DummyIncrementingHappened::class)->toMatch(function (DummyIncrementingHappened $dummyIncrementingHappened): void {
+                $this->assertEquals(1, $dummyIncrementingHappened->number());
+            })
+        );
+    }
+
+    /** @test */
+    public function it_fails_when_callback_returns_false(): void
+    {
+        $this->when(new DummyIncrementCommand($this->aggregateRootId()));
+        $this->then(
+            $this->expectEventOfType(DummyIncrementingHappened::class)->toMatch(function (DummyIncrementingHappened $dummyIncrementingHappened): bool {
+                return false;
+            })
+        );
+        $this->expectAssertionToFail();
+    }
+
+    /** @test */
+    public function it_passes_when_callback_returns_true(): void
+    {
+        $this->when(new DummyIncrementCommand($this->aggregateRootId()));
+        $this->then(
+            $this->expectEventOfType(DummyIncrementingHappened::class)->toMatch(function (DummyIncrementingHappened $dummyIncrementingHappened): bool {
+                return true;
+            })
+        );
+    }
+
+    /** @test */
+    public function it_can_assert_events_on_callback_only()
+    {
+        $this->when(new DummyIncrementCommand($this->aggregateRootId()));
+        $this->then(
+            $this->expectEventToMatch(function (DummyIncrementingHappened $dummyIncrementingHappened): bool {
+                return true;
+            })
+        );
+    }
+
     protected function handle(DummyCommand $command): void
     {
         $commandHandler = $this->commandHandler($this->repository);
@@ -161,5 +242,16 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     protected function newAggregateRootId(): AggregateRootId
     {
         return DummyAggregateRootId::generate();
+    }
+
+    private function expectAssertionToFail(): void
+    {
+        $failed = false;
+        try {
+            $this->assertScenario();
+        } catch (ExpectationFailedException $e) {
+            $failed = true;
+        }
+        $this->assertTrue($failed, "expected to fail, but the test didn't fail");
     }
 }

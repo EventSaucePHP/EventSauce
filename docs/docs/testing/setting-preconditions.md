@@ -15,6 +15,11 @@ class SigningUp extends SignUpProcessTestCase
      */
     public function signing_up_works()
     {
+        $this
+        ->when(new PerformDummyTask($this->aggregateRootId()))
+        ->then(
+            $this->assertEvent(DummyTaskWasExecuted::class)
+        );
         $this->given(
             new SignUpWasInitiated(),
             new EmailWasSpecifiedForSignUp('info@domain.tld')

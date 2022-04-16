@@ -205,9 +205,29 @@ abstract class AggregateRootTestCase extends TestCase
         return $this;
     }
 
-    protected function assertLastCommitEqualsEvents(object ...$events): void
+    protected function expectEventOfType(string $class): ExpectedEvent
     {
-        self::assertEquals($events, $this->messageRepository->lastCommit(), 'Events are not equal.');
+        return ExpectedEvent::ofType($class);
+    }
+
+    protected function expectEventToMatch(callable $callable): ExpectedEvent
+    {
+        return ExpectedEvent::matches($callable);
+    }
+
+    protected function assertLastCommitEqualsEvents(object ...$expectedEvents): void
+    {
+        $recordedEvents = $this->messageRepository->lastCommit();
+        self::assertCount(count($expectedEvents), $recordedEvents, 'expected event count doesnt match recorded event count');
+
+        foreach ($recordedEvents as $eventNumber => $recordedEvent) {
+            $expectedEvent = $expectedEvents[$eventNumber];
+            if ($expectedEvent instanceof ExpectedEvent) {
+                self::assertTrue($expectedEvent->assertEquals($recordedEvent), 'Event does not expected event.');
+                continue;
+            }
+            self::assertEquals($expectedEvent, $recordedEvent, 'Events are not equal.');
+        }
     }
 
     private function assertExpectedException(
