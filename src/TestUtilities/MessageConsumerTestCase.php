@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\TestUtilities;
 
+use EventSauce\EventSourcing\AggregateRootId;
+use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageConsumer;
 use Exception;
@@ -20,6 +22,7 @@ abstract class MessageConsumerTestCase extends TestCase
      * @var callable
      */
     private $assertionCallback;
+    private ?AggregateRootId $aggregateRootId = null;
 
     abstract public function messageConsumer(): MessageConsumer;
 
@@ -74,12 +77,21 @@ abstract class MessageConsumerTestCase extends TestCase
         return $this;
     }
 
+    public function givenNextMessagesHaveAggregateRootIdOf(?AggregateRootId $aggregateRootId): self
+    {
+        $this->aggregateRootId = $aggregateRootId;
+        return $this;
+    }
+
     /**
      * @param object[] $eventsOrMessages
      */
     protected function processMessages(array $eventsOrMessages): void
     {
         $messages = $this->ensureEventsAreMessages($eventsOrMessages);
+        if (isset($this->aggregateRootId)) {
+            $messages = $this->ensureEventsHaveUuid($messages, $this->aggregateRootId);
+        }
 
         foreach ($messages as $message) {
             $this->messageConsumer->handle($message);
@@ -94,6 +106,18 @@ abstract class MessageConsumerTestCase extends TestCase
         return array_map(function (object $event) {
             return $event instanceof Message ? $event : new Message($event);
         }, $events);
+    }
+
+    /**
+     * @return Message[]
+     */
+    private function ensureEventsHaveUuid(array $messages, AggregateRootId $aggregateRootId): array
+    {
+        return array_map(function (Message $message) use ($aggregateRootId) {
+            return $message->withHeaders([
+                Header::AGGREGATE_ROOT_ID => $aggregateRootId,
+            ]);
+        }, $messages);
     }
 
     /**
@@ -116,6 +140,16 @@ abstract class MessageConsumerTestCase extends TestCase
         if (is_callable($this->assertionCallback)) {
             ($this->assertionCallback)($this->messageConsumer);
         }
+    }
+
+    /**
+     * @after
+     *
+     * @throws Exception
+     */
+    protected function resetAggregateRootId(): void
+    {
+        $this->aggregateRootId = null;
     }
 
     /**
