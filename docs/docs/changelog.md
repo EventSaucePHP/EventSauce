@@ -3,6 +3,13 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 2.1.0 - 2022-04-16
+
+### Added
+
+- Customisable event payload assertions (#170) by @Robertbaelde
+- Set the aggregate ID in the message consumer testcase (#172) by @Robertbaelde
+
 ## 2.0.0 - 2022-04-03
 
 ### Changed
