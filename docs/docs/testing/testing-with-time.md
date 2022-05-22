@@ -28,7 +28,7 @@ public function test_with_fixated_time()
 }
 ```
 
-## Time in Events
+## Time in events
 
 When time is crucial to your domain it makes sense to account for this in
 the domain. You're free to use the `PointInTime` objects if those fit your

@@ -23,7 +23,7 @@ information. Events should be named in past tense and reflect something that
 has happened in the past. Events are undeniable facts, represented as immutable
 objects, stored in an append-only manner.
 
-## When event sourcing shines.
+## When event sourcing shines
 
 Event sourcing shines where traditional modeling techniques fall short.
 It is well suites for modeling complex business processes.
@@ -46,7 +46,7 @@ replayed. These events give our model the information to base new decisions on.
 Actions dispatched to the model result in any number of new events. These events
 are used for our next decision, and to communicate change throughout the system.
 
-## Event and Message Driven Programming
+## Event- and message-driven programming
 
 Event sourcing is a style of programming that builds off event- and message-driven
 programming. In this style of programming the focus is put on communication. Since
@@ -79,7 +79,7 @@ of theoretical and practical benefits that are possible when using event sourcin
 
 Scaling an application, both on the _read_ and _write_ side, is much easier. On the read
 side we can use projections to create a multitude of data presentations (read models).
-On the write size we can use sharding to distribute the load to a (growing) number of
+On the write side we can use sharding to distribute the load to a (growing) number of
 workers.
 
 Because all events that belong to the same process have the same identifier, it's also easier

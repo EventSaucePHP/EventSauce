@@ -38,7 +38,7 @@ very tiny.
 > * `MessageSerializer` - custom message serialization (storage)
 > * `PayloadSerializer` - custom event serialization (storage)
 
-### Shipped Implementation
+### Shipped implementation
 
 The default implementation of the `AggregateRootRepository` is the
 `ConstructingAggregateRootRepository`. This repository requires your aggregate root
@@ -60,16 +60,16 @@ $dispatcher = new MessageDispatcherChain(
 The message dispatcher chain will sub-dispatch the messages to the synchronous
 dispatcher and the RabbitMQ dispatcher. 
 
-## Core Concepts
+## Core concepts
 
 Below are short descriptions of all parts that make up EventSauce.
 
-### Aggregate Root
+### Aggregate root
 
 The aggregate root is your primary modeling space. It's tasked with maintaining the integrity
 of the model, guarding invariants, and recording events.
 
-### Aggregate Root Repository
+### Aggregate root repository
 
 The aggregate root repository is used to retrieve and "persist" aggregate root
 entities. It's your main point of interaction when using the library. You
@@ -83,27 +83,27 @@ The aggregate root repository has the following dependencies:
 3. A [message dispatcher](#message-dispatcher) which dispatches the messages _(optional)_
 3. A [message decorator](#message-decorator) which decorated the messages _(optional)_
 
-### Message Repository
+### Message repository
 
 The message repository is the library's connection to the persistence layer. It's responsible
 for storing and retrieving events. Events stored in the repository are wrapped in a `Message`
 object. This object allows you to store additional metadata alongside the event data.
 
-### Message Dispatcher
+### Message dispatcher
 
 The message dispatcher is responsible for sending messages to `MessageConsumer`s. The core
 library ships with a `SynchronousMessageDispatcher` for when you don't need to process
 messages asynchronously. If you do want to process events in the background there are
 multiple options available.
 
-### Message Decorator
+### Message decorator
 
 A message decorator has the ability to enrich messages before they are persisted and dispatched.
 This could be a request identifier so you can track an action from the web all the way down
 to background processes. This mechanism prevents you from polluting the domain events with
 specific information.
 
-### Message Serializer
+### Message serializer
 
 The message serializer is responsible for converting messages from and to a serialized form. When
 using (or implementing) a message repository, you'll want to use this rely on this interface.

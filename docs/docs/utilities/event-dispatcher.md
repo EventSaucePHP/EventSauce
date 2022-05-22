@@ -17,7 +17,7 @@ The default implementation of the `EventDispatcher` interface is the
 allows you to dispatch events. These events are wrapped in a message, decorated,
 and dispatched to a `MessageDispatcher` of your choice.
 
-### Example Usage:
+### Example usage:
 
 ```php
 <?php
