@@ -305,7 +305,7 @@ abstract class AggregateRootTestCase extends TestCase
         );
     }
 
-    private function messageSerializer(): MessageSerializer
+    protected function messageSerializer(): MessageSerializer
     {
         return new ConstructingMessageSerializer(
             $this->classNameInflector(),
@@ -313,12 +313,12 @@ abstract class AggregateRootTestCase extends TestCase
         );
     }
 
-    private function classNameInflector(): ClassNameInflector
+    protected function classNameInflector(): ClassNameInflector
     {
         return new DotSeparatedSnakeCaseInflector();
     }
 
-    private function payloadSerializer(): PayloadSerializer
+    protected function payloadSerializer(): PayloadSerializer
     {
         return new ConstructingPayloadSerializer();
     }
