@@ -3,6 +3,12 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 2.2.0 - 2022-05-28
+
+### Added
+
+- Allow serialization overrides in aggregate root test case.
+
 ## 2.1.0 - 2022-04-16
 
 ### Added
