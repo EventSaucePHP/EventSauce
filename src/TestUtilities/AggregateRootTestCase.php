@@ -318,7 +318,7 @@ abstract class AggregateRootTestCase extends TestCase
         return new DotSeparatedSnakeCaseInflector();
     }
 
-    private function payloadSerializer(): ?PayloadSerializer
+    private function payloadSerializer(): PayloadSerializer
     {
         return new ConstructingPayloadSerializer();
     }
