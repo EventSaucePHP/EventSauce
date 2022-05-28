@@ -9,7 +9,9 @@ use EventSauce\Clock\TestClock;
 use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\AggregateRootRepository;
+use EventSauce\EventSourcing\ClassNameInflector;
 use EventSauce\EventSourcing\DefaultHeadersDecorator;
+use EventSauce\EventSourcing\DotSeparatedSnakeCaseInflector;
 use EventSauce\EventSourcing\EventSourcedAggregateRootRepository;
 use EventSauce\EventSourcing\InMemoryMessageRepository;
 use EventSauce\EventSourcing\MessageConsumer;
@@ -17,6 +19,10 @@ use EventSauce\EventSourcing\MessageDecorator;
 use EventSauce\EventSourcing\MessageDecoratorChain;
 use EventSauce\EventSourcing\MessageDispatcher;
 use EventSauce\EventSourcing\MessageRepository;
+use EventSauce\EventSourcing\Serialization\ConstructingMessageSerializer;
+use EventSauce\EventSourcing\Serialization\ConstructingPayloadSerializer;
+use EventSauce\EventSourcing\Serialization\MessageSerializer;
+use EventSauce\EventSourcing\Serialization\PayloadSerializer;
 use EventSauce\EventSourcing\SynchronousMessageDispatcher;
 use Exception;
 use LogicException;
@@ -264,7 +270,7 @@ abstract class AggregateRootTestCase extends TestCase
     protected function messageDispatcher(): MessageDispatcher
     {
         return new SynchronousMessageDispatcher(
-            new MessageConsumerThatSerializesMessages(), ...$this->consumers()
+            new MessageConsumerThatSerializesMessages($this->messageSerializer()), ...$this->consumers()
         );
     }
 
@@ -297,5 +303,23 @@ abstract class AggregateRootTestCase extends TestCase
         return new EventSourcedAggregateRootRepository(
             $className, $repository, $dispatcher, $decorator
         );
+    }
+
+    private function messageSerializer(): MessageSerializer
+    {
+        return new ConstructingMessageSerializer(
+            $this->classNameInflector(),
+            $this->payloadSerializer(),
+        );
+    }
+
+    private function classNameInflector(): ClassNameInflector
+    {
+        return new DotSeparatedSnakeCaseInflector();
+    }
+
+    private function payloadSerializer(): ?PayloadSerializer
+    {
+        return new ConstructingPayloadSerializer();
     }
 }
