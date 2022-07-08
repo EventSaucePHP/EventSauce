@@ -74,11 +74,11 @@ class PendingInvitationProjection implements MessageConsumer
     {
         $this->invitations = $invitations;
     }
-    
+
     public function handle(Message $message): void
     {
         $event = $message->payload();
-        
+
         if ($event instanceof FriendshipRequestWasSent) {
             $this->invitations->add(new FriendshipRequest(
                 $event->requestId(),
@@ -94,6 +94,65 @@ class PendingInvitationProjection implements MessageConsumer
             // Just remove the request to prevent sad feelings.
             $this->invitations->removeRequest($event->requestId());
         }
+    }
+}
+```
+
+## Event Consumers
+In the previous example we had to manually check the type of the event to react
+appropriately. `EventConsumer` makes it easier to handle different event types.
+The default strategy takes the class name of the event and transforms it to a
+method name. For example, `FriendshipRequestWasSent` becomes
+`handleFriendshipRequestWasSent`.
+
+```php
+<?php
+
+class PendingInvitationProjection extends EventConsumer
+{
+    public function handleFriendshipRequestWasSent(FriendshipRequestWasSent $event, Message $message): void
+    {
+        $this->invitations->add(new FriendshipRequest(
+            $event->requestId(),
+            $event->fromUser(),
+            $event->toUser(),
+            RequestStatus::pending()
+        ));
+    }
+}
+```
+
+A different strategy uses reflection to determine which handler methods accept
+the event type. This allows you to handle multiple events in a single method
+using a union type and multiple methods for a single event.
+
+```php
+<?php
+
+use EventSauce\EventSourcing\MessageConsumer;
+use EventSauce\EventSourcing\InflectHandlersFromType;
+
+class PendingInvitationProjection extends EventConsumer
+{
+    protected function getInflector(): HandleInflector
+    {
+        return new InflectHandlersFromType();
+    }
+
+    // Note, the handler methods must be public.
+    public function addInvitation(FriendshipRequestWasSent $event, Message $message): void
+    {
+        $this->invitations->add(new FriendshipRequest(
+            $event->requestId(),
+            $event->fromUser(),
+            $event->toUser(),
+            RequestStatus::pending()
+        ));
+    }
+
+    public function increaseResponseCount(FriendshipRequestWasAccepted|FriendshipRequestWasDenied $event, Message $message): void
+    {
+        $this->responses++;
     }
 }
 ```
