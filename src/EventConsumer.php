@@ -8,12 +8,17 @@ abstract class EventConsumer implements MessageConsumer
 {
     public function handle(Message $message): void
     {
-        $event = $message->payload();
-        $parts = explode('\\', get_class($event));
-        $method = 'handle' . end($parts);
+        $methods = $this->getInflector()->getMethodNames($this, $message);
 
-        if (method_exists($this, $method)) {
-            $this->{$method}($event, $message);
+        foreach ($methods as $method) {
+            if (method_exists($this, $method)) {
+                $this->{$method}($message->payload(), $message);
+            }
         }
+    }
+
+    protected function getInflector(): HandleInflector
+    {
+        return new InflectHandlersFromClassName();
     }
 }
