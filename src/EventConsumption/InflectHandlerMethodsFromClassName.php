@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing;
+namespace EventSauce\EventSourcing\EventConsumption;
+
+use EventSauce\EventSourcing\Message;
 
 use function get_class;
 use function strrpos;

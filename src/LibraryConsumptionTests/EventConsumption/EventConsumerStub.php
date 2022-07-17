@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\EventConsumption;
 
-use EventSauce\EventSourcing\EventConsumer;
+use EventSauce\EventSourcing\EventConsumption\EventConsumer;
 use EventSauce\EventSourcing\Message;
 
 /**

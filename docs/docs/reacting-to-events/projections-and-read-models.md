@@ -108,6 +108,8 @@ method name. For example, `FriendshipRequestWasSent` becomes
 ```php
 <?php
 
+use EventSauce\EventSourcing\EventConsumption\EventConsumer;
+
 class PendingInvitationProjection extends EventConsumer
 {
     public function handleFriendshipRequestWasSent(FriendshipRequestWasSent $event, Message $message): void
@@ -130,13 +132,15 @@ using a union type and multiple methods for a single event.
 <?php
 
 use EventSauce\EventSourcing\MessageConsumer;
-use EventSauce\EventSourcing\InflectHandlersFromType;
+use EventSauce\EventSourcing\EventConsumption\EventConsumer;
+use EventSauce\EventSourcing\EventConsumption\HandleMethodInflector;
+use EventSauce\EventSourcing\EventConsumption\InflectHandlerMethodsFromType;
 
 class PendingInvitationProjection extends EventConsumer
 {
-    protected function getInflector(): HandleInflector
+    protected function handleMethodInflector(): HandleMethodInflector
     {
-        return new InflectHandlersFromType();
+        return new InflectHandlerMethodsFromType();
     }
 
     // Note, the handler methods must be public.

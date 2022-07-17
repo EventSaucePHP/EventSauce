@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing;
+namespace EventSauce\EventSourcing\EventConsumption;
 
 use EventSauce\EventSourcing\LibraryConsumptionTests\EventConsumption\DummyEventForConsuming;
+use EventSauce\EventSourcing\Message;
 use PHPUnit\Framework\TestCase;
 
 class InflectHandlerMethodsFromClassNameTest extends TestCase

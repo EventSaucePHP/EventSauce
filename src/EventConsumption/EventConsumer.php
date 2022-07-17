@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing;
+namespace EventSauce\EventSourcing\EventConsumption;
+
+use EventSauce\EventSourcing\Message;
+use EventSauce\EventSourcing\MessageConsumer;
 
 abstract class EventConsumer implements MessageConsumer
 {

@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing;
+namespace EventSauce\EventSourcing\EventConsumption;
 
+use EventSauce\EventSourcing\Message;
 use ReflectionClass;
 use ReflectionMethod;
 use ReflectionNamedType;
@@ -26,9 +27,7 @@ class InflectHandlerMethodsFromType implements HandleMethodInflector
     private function findMethodsToHandleEvent(object $handler): array
     {
         $handlerClass = new ReflectionClass($handler);
-
         $methods = $handlerClass->getMethods(ReflectionMethod::IS_PUBLIC);
-
         $handlers = [];
 
         foreach ($methods as $method) {

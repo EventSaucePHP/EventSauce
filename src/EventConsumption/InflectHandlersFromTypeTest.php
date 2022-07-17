@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace EventSauce\EventSourcing;
+namespace EventSauce\EventSourcing\EventConsumption;
 
 use EventSauce\EventSourcing\LibraryConsumptionTests\EventConsumption\DummyEventForConsuming;
+use EventSauce\EventSourcing\Message;
 use PHPUnit\Framework\TestCase;
 
 class InflectHandlersFromTypeTest extends TestCase
@@ -14,35 +15,12 @@ class InflectHandlersFromTypeTest extends TestCase
     {
         $inflector = new InflectHandlerMethodsFromType();
 
-        $names = $inflector->handleMethods(new TypedEventConsumer(), new Message(new DummyEventForConsuming('')));
+        $names = $inflector->handleMethods(new TypedEventConsumerStub(), new Message(new DummyEventForConsuming('')));
 
         $this->assertContains('onDummyEvent', $names);
         $this->assertContains('shouldIncludeUnion', $names);
         $this->assertNotContains('shouldNotIncludeOtherEvent', $names);
         $this->assertNotContains('shouldNotIncludeProtectedMethod', $names);
         $this->assertNotContains('shouldNotIncludePrivateMethod', $names);
-    }
-}
-
-class TypedEventConsumer extends EventConsumer
-{
-    public function onDummyEvent(DummyEventForConsuming $event): void
-    {
-    }
-
-    public function shouldIncludeUnion(DummyEventForConsuming|DummyEvent $event): void
-    {
-    }
-
-    public function shouldNotIncludeOtherEvent(DummyEvent $event): void
-    {
-    }
-
-    private function shouldNotIncludeProtectedMethod(DummyEventForConsuming $event): void
-    {
-    }
-
-    private function shouldNotIncludePrivateMethod(DummyEventForConsuming $event): void
-    {
     }
 }
