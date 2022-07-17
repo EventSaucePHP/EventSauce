@@ -8,7 +8,7 @@ use EventSauce\EventSourcing\LibraryConsumptionTests\EventConsumption\DummyEvent
 use EventSauce\EventSourcing\Message;
 use PHPUnit\Framework\TestCase;
 
-class InflectHandlersFromTypeTest extends TestCase
+class InflectHandlerMethodsFromTypeTest extends TestCase
 {
     /** @test */
     public function it_inflects_the_method_name_from_the_event_type_and_available_methods(): void
