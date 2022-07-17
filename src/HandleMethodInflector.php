@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
-interface HandleInflector
+interface HandleMethodInflector
 {
     /**
      * @return string[]
      */
-    public function getMethodNames(object $consumer, Message $message): array;
+    public function handleMethods(object $consumer, Message $message): array;
 }

@@ -6,9 +6,12 @@ namespace EventSauce\EventSourcing;
 
 abstract class EventConsumer implements MessageConsumer
 {
+    private HandleMethodInflector $handleMethodInflector;
+
     public function handle(Message $message): void
     {
-        $methods = $this->getInflector()->getMethodNames($this, $message);
+        $this->handleMethodInflector ??= $this->handleMethodInflector();
+        $methods = $this->handleMethodInflector->handleMethods($this, $message);
 
         foreach ($methods as $method) {
             if (method_exists($this, $method)) {
@@ -17,8 +20,8 @@ abstract class EventConsumer implements MessageConsumer
         }
     }
 
-    protected function getInflector(): HandleInflector
+    protected function handleMethodInflector(): HandleMethodInflector
     {
-        return new InflectHandlersFromClassName();
+        return new InflectHandlerMethodsFromClassName();
     }
 }

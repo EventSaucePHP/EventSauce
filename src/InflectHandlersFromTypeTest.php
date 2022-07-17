@@ -12,9 +12,9 @@ class InflectHandlersFromTypeTest extends TestCase
     /** @test */
     public function it_inflects_the_method_name_from_the_event_type_and_available_methods(): void
     {
-        $inflector = new InflectHandlersFromType();
+        $inflector = new InflectHandlerMethodsFromType();
 
-        $names = $inflector->getMethodNames(new TypedEventConsumer(), new Message(new DummyEventForConsuming('')));
+        $names = $inflector->handleMethods(new TypedEventConsumer(), new Message(new DummyEventForConsuming('')));
 
         $this->assertContains('onDummyEvent', $names);
         $this->assertContains('shouldIncludeUnion', $names);

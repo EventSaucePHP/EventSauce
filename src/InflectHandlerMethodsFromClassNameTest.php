@@ -7,14 +7,14 @@ namespace EventSauce\EventSourcing;
 use EventSauce\EventSourcing\LibraryConsumptionTests\EventConsumption\DummyEventForConsuming;
 use PHPUnit\Framework\TestCase;
 
-class InflectHandlersFromClassNameTest extends TestCase
+class InflectHandlerMethodsFromClassNameTest extends TestCase
 {
     /** @test */
     public function it_inflects_the_name_from_the_event_class_name(): void
     {
-        $inflector = new InflectHandlersFromClassName();
+        $inflector = new InflectHandlerMethodsFromClassName();
 
-        $names = $inflector->getMethodNames(new \stdClass(), new Message(new DummyEventForConsuming('')));
+        $names = $inflector->handleMethods(new \stdClass(), new Message(new DummyEventForConsuming('')));
 
         $this->assertContains('handleDummyEventForConsuming', $names);
     }

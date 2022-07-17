@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing;
 
+use function strrpos;
+use function substr;
+
 /**
  * This trait calls the apply[EventClassName] method
  * for every event it receives. Use this trait if
@@ -16,8 +19,8 @@ trait AggregateAlwaysAppliesEvents
 
     protected function apply(object $event): void
     {
-        $parts = explode('\\', get_class($event));
-        $this->{'apply' . end($parts)}($event);
+        $className = get_class($event);
+        $this->{'apply' . substr($className, (strrpos($className, '\\') ?: -1) + 1)}($event);
         ++$this->aggregateRootVersion;
     }
 }

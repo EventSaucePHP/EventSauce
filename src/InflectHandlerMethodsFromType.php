@@ -10,12 +10,12 @@ use ReflectionNamedType;
 use ReflectionType;
 use ReflectionUnionType;
 
-class InflectHandlersFromType implements HandleInflector
+class InflectHandlerMethodsFromType implements HandleMethodInflector
 {
-    public function getMethodNames(object $consumer, Message $message): array
+    public function handleMethods(object $consumer, Message $message): array
     {
         $event = $message->payload();
-        $methods = $this->getEventHandlingMethods($consumer);
+        $methods = $this->findMethodsToHandleEvent($consumer);
 
         return $methods[$event::class] ?? [];
     }
@@ -23,7 +23,7 @@ class InflectHandlersFromType implements HandleInflector
     /**
      * @return array<string, string[]>
      */
-    public function getEventHandlingMethods(object $handler): array
+    private function findMethodsToHandleEvent(object $handler): array
     {
         $handlerClass = new ReflectionClass($handler);
 
