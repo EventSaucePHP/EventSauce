@@ -14,6 +14,10 @@ Getting Started:
     3. Configure Persistence: '/docs/event-sourcing/configure-persistence/'
     4. Bootstrap: '/docs/event-sourcing/bootstrap/'
 
+Serialization:
+  Object Mapper: '/docs/serialization/object-mapper/'
+  Plain Serialization: '/docs/serialization/plain-serialization/'
+
 Testing:
   Introduction: '/docs/testing/'
   Preconditions: '/docs/testing/preconditions/'
@@ -25,8 +29,8 @@ Message Storage:
     About Message Storage: '/docs/message-storage/'
     Repository Table Schema: '/docs/message-storage/repository-table-schema/'
     Illuminate Repository: '/docs/message-storage/illuminate/'
-    Doctine 3 Repository: '/docs/message-storage/doctrine-3/'
-    Doctine 2 Repository: '/docs/message-storage/doctrine-2/'
+    Doctrine 3 Repository: '/docs/message-storage/doctrine-3/'
+    Doctrine 2 Repository: '/docs/message-storage/doctrine-2/'
     Uuid Encoding: '/docs/message-storage/uuid-encoding/'
 
 Reacting to Events:
