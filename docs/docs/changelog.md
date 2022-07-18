@@ -3,6 +3,11 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 2.3.0 - UNRELEASED
+
+- Added object-mapper based serialization method (#175)
+- Allowed for event consumer strategies (#176)
+
 ## 2.2.1 - 2022-05-28
 
 ### Fixed
