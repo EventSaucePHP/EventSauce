@@ -4,6 +4,7 @@ EventSauce:
     Event Sourcing: '/docs/event-sourcing/'
     Learning Material: '/docs/learning-material/'
     Architecture: '/docs/architecture/'
+    FAQ: '/docs/faq/'
     Lifecycle <span class="uppercase text-xs p-1 bg-white ml-2 border border-grey-light text-grey-dark rounded">must read</span>: '/docs/lifecycle/'
     Changelog: '/docs/changelog/'
     <span class="github-link-icon"><img class="w-5 h-5 mr-1" src="/static/github.svg" /></span> Github: 'https://github.com/eventsaucephp/eventsauce'
@@ -58,7 +59,6 @@ Snapshotting:
   About Snapshotting: '/docs/snapshotting/'
   Setting Up Snapshotting: '/docs/snapshotting/setup/'
   Updating Snapshots: '/docs/snapshotting/updating-snapshots/'
-
 
 Advanced Topics:
     Anti-Corruption Layer: '/docs/advanced/anti-corruption-layer/'
