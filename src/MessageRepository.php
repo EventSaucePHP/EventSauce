@@ -26,4 +26,6 @@ interface MessageRepository
      * @throws UnableToRetrieveMessages
      */
     public function retrieveAllAfterVersion(AggregateRootId $id, int $aggregateRootVersion): Generator;
+
+    public function paginate(int $perPage, PaginationCursor|null $cursor = null): Generator;
 }
