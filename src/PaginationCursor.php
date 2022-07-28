@@ -7,8 +7,6 @@ namespace EventSauce\EventSourcing;
 use RuntimeException;
 use Throwable;
 
-use function array_key_exists;
-
 use const JSON_THROW_ON_ERROR;
 
 class PaginationCursor
@@ -59,6 +57,6 @@ class PaginationCursor
             throw new RuntimeException('Unable to decode cursor, error: ' . $throwable->getMessage(), 0, $throwable);
         }
 
-        return new static($parameters);
+        return new self($parameters);
     }
 }
