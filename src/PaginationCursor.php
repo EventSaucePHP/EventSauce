@@ -9,7 +9,7 @@ use Throwable;
 
 use const JSON_THROW_ON_ERROR;
 
-class PaginationCursor
+final class PaginationCursor
 {
     /**
      * @var array<string, int|string>
@@ -37,7 +37,10 @@ class PaginationCursor
 
     public function toString(): string
     {
-        return str_replace(['+', '/', '='], ['-', '_', ''], base64_encode(json_encode($this->parameters)));
+        return str_replace(
+            ['+', '/', '='], ['-', '_', ''],
+            base64_encode((string) json_encode($this->parameters))
+        );
     }
 
     public static function fromString(string|null $cursor): static|null
@@ -48,7 +51,7 @@ class PaginationCursor
 
         try {
             $parameters = json_decode(
-                base64_decode(str_replace(['-', '_'], ['+', '/'], $cursor)),
+                (string) base64_decode(str_replace(['-', '_'], ['+', '/'], $cursor)),
                 true,
                 512,
                 JSON_THROW_ON_ERROR
@@ -57,6 +60,6 @@ class PaginationCursor
             throw new RuntimeException('Unable to decode cursor, error: ' . $throwable->getMessage(), 0, $throwable);
         }
 
-        return new self($parameters);
+        return new static($parameters);
     }
 }
