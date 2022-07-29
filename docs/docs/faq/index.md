@@ -14,9 +14,11 @@ persistent, you can totally create an in-memory read model depending on your req
 
 > How do I validate an aggregate against a service?
 
-As the aggregate is tasked with "maintaining the integrity of the model", you might be tempted to try to implement
-validation against an external service. Let's say we had an aggregate representing a bank account and wanted to
-validate the provided IBAN against an external API:
+The aggregate is tasked with maintaining the integrity of the model. Sometimes this requires validation of certain
+data against e.g. an external API or any other service. Aggregates, however, do not support constructor injection.
+This is because you are expected to pass all dependencies for a given "action" to the aggregate.
+ 
+Let's say we had an aggregate representing a bank account and wanted to validate the provided IBAN against an external API:
 
 ```php
 <?php
@@ -29,26 +31,17 @@ use EventSauce\EventSourcing\AggregateRootBehaviour;
 class AcmeBankAccount implements AggregateRoot
 {
     use AggregateRootBehaviour;
-    
-    private string $iban;
-    
-    public function changeIban(string $iban): self
-    {
-        $externalApi->validateIban($iban); // TODO: FIXME
         
-        $this->recordThat(new IbanWasChanged($iban));
+    public function changeIban(string $iban, IbanValidation $ibanValidation): self
+    {
+        if (!$ibanValidation->ibanIsValid($iban)) {
+            $this->recordThat(new ProvidedIbanWasInvalid($iban));
+        } else {
+            $this->recordThat(new IbanWasChanged($iban));
+        }
     }
 }
 ```
-
----
-TO BE ANSWERED:
-
-What do we do here now? There is no way to bring `$externalApi` to the aggregate. In my understanding, validation
-should thus probably happen before adding the IBAN to the aggregate. However, that kind of contradicts the
-statement of "the aggregate's responsibility is to maintain the integrity of the model"?
-That's why I think it deserves an FAQ entry :-)
----
 
 > How do I migrate invalid historic event data?
 
