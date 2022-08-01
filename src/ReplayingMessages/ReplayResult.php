@@ -21,6 +21,4 @@ class ReplayResult
     {
         return $this->cursor;
     }
-
-
 }
