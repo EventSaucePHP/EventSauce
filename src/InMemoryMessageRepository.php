@@ -73,12 +73,15 @@ final class InMemoryMessageRepository implements MessageRepository
         return $lastMessage instanceof Message ? $lastMessage->aggregateVersion() : 0;
     }
 
-    public function paginate(int $perPage, ?PaginationCursor $cursor = null): Generator
+    public function paginate(int $perPage, PaginationCursor | OffsetCursor $cursor): Generator
     {
-        $offset = $cursor?->intParam('offset') ?: 0;
-        $page = array_slice($this->messages, $offset, $perPage, false);
+        if(!$cursor instanceof OffsetCursor){
+            return new \InvalidArgumentException('Cursor must be an instance of OffsetCursor');
+        }
+
+        $page = array_slice($this->messages, $cursor->getOffset(), $perPage, false);
         yield from $page;
 
-        return new PaginationCursor(['offset' => $offset + count($page)]);
+        return $cursor->plusOffset(count($page));
     }
 }
