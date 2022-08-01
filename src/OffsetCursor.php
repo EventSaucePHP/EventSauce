@@ -21,7 +21,7 @@ final class OffsetCursor implements PaginationCursor
         return (string) $this->offset;
     }
 
-    public static function fromString(?string $cursor): static|null
+    public static function fromString(string $cursor): static
     {
         return new self((int) $cursor);
     }

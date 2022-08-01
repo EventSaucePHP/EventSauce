@@ -8,7 +8,7 @@ interface PaginationCursor
 {
     public function toString(): string;
 
-    public static function fromString(string|null $cursor): static|null;
+    public static function fromString(string $cursor): static;
 
     public function isAtStart(): bool;
 }
