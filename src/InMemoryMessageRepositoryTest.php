@@ -30,7 +30,7 @@ class InMemoryMessageRepositoryTest extends TestCase
             new Message(new EventStub('10')),
         );
 
-        $messages = $repository->paginate(5);
+        $messages = $repository->paginate(5, OffsetCursor::fromStart());
         $actualMessages = iterator_to_array($messages, false);
         $cursor = $messages->getReturn();
 
@@ -65,7 +65,7 @@ class InMemoryMessageRepositoryTest extends TestCase
             new Message(new EventStub('10')),
         );
 
-        $messages = $repository->paginate(5);
+        $messages = $repository->paginate(5, OffsetCursor::fromStart());
         // consume messages to ensure return value is generated
         iterator_to_array($messages, false);
         $cursor = $messages->getReturn();

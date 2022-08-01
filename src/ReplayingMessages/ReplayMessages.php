@@ -16,9 +16,9 @@ class ReplayMessages
     ) {
     }
 
-    public function replayBatch(int $pageSize, ?PaginationCursor $cursor = null): ReplayResult
+    public function replayBatch(int $pageSize, PaginationCursor $cursor): ReplayResult
     {
-        if ($cursor === null && $this->consumer instanceof TriggerBeforeReplay) {
+        if ($cursor->isAtStart() && $this->consumer instanceof TriggerBeforeReplay) {
             $this->consumer->beforeReplay();
         }
 
