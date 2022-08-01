@@ -36,7 +36,7 @@ final class OffsetCursor implements PaginationCursor
         return new self($this->offset + $offset);
     }
 
-    public function getOffset(): int
+    public function offset(): int
     {
         return $this->offset;
     }

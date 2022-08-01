@@ -18,6 +18,6 @@ class OffsetCursorTest extends TestCase
     public function it_can_parse_from_null()
     {
         $cursor = OffsetCursor::fromString(null);
-        $this->assertEquals(0, $cursor->getOffset());
+        $this->assertEquals(0, $cursor->offset());
     }
 }
