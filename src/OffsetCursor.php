@@ -20,7 +20,7 @@ final class OffsetCursor implements PaginationCursor
         return new self($limit, 0);
     }
 
-    public static function fromOffset(int $offset, $limit = 100): self
+    public static function fromOffset(int $offset, int $limit = 100): self
     {
         return new self($limit, $offset);
     }
