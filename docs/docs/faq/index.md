@@ -15,9 +15,11 @@ persistent, you can totally create an in-memory read model depending on your req
 > How do I validate an aggregate against a service?
 
 The aggregate is tasked with maintaining the integrity of the model. Sometimes this requires validation of certain
-data against e.g. an external API or any other service. Aggregates, however, do not support constructor injection.
-This is because you are expected to pass all dependencies for a given "action" to the aggregate.
- 
+data against e.g. an external API or any other service. Aggregates should not depend on external services for their
+construction. Still they are expected to encapsulate the behaviour of interacting with said services. To enable this,
+services can be supplied to the method that represents a particular interaction. Unlike traditional method injection,
+these services are not assigned to internal properties. The services are only used in the scope of executing the method.
+
 Let's say we had an aggregate representing a bank account and wanted to validate the provided IBAN against an external API:
 
 ```php
