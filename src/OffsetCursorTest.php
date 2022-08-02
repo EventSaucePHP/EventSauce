@@ -30,6 +30,17 @@ class OffsetCursorTest extends TestCase
     /**
      * @test
      */
+    public function creating_one_from_offset_with_set_limit(): void
+    {
+        $cursor = OffsetCursor::fromOffset(1234, limit: 4321);
+
+        self::assertEquals(1234, $cursor->offset());
+        self::assertEquals(4321, $cursor->limit());
+    }
+
+    /**
+     * @test
+     */
     public function splussing_an_offset(): void
     {
         $cursor = OffsetCursor::fromStart()
