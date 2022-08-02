@@ -33,10 +33,17 @@ use EventSauce\EventSourcing\AggregateRootBehaviour;
 class AcmeBankAccount implements AggregateRoot
 {
     use AggregateRootBehaviour;
-        
+    
+    /*
+     * @throws InvalidIbanException
+     */
     public function changeIban(string $iban, IbanValidation $ibanValidation): self
     {
         if (!$ibanValidation->ibanIsValid($iban)) {
+            throw new InvalidIbanException();
+            
+            // Or maybe you don't want to throw an exception and abort but instead record the event and continue
+            // the process anyway:
             $this->recordThat(new ProvidedIbanWasInvalid($iban));
         } else {
             $this->recordThat(new IbanWasChanged($iban));
