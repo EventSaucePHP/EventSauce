@@ -16,14 +16,14 @@ class ReplayMessages
     ) {
     }
 
-    public function replayBatch(int $pageSize, PaginationCursor $cursor): ReplayResult
+    public function replayBatch(PaginationCursor $cursor): ReplayResult
     {
         if ($cursor->isAtStart() && $this->consumer instanceof TriggerBeforeReplay) {
             $this->consumer->beforeReplay();
         }
 
         $messagesHandled = 0;
-        $messages = $this->repository->paginate($pageSize, $cursor);
+        $messages = $this->repository->paginate($cursor);
 
         foreach ($messages as $message) {
             $this->consumer->handle($message);

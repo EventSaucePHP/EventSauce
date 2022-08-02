@@ -37,10 +37,10 @@ class ReplayMessagesTest extends TestCase
             $consumer = new StubReplayConsumer(),
         );
 
-        $cursor = OffsetCursor::fromStart();
+        $cursor = OffsetCursor::fromStart()->withLimit(2);
 
         while (true) {
-            $result = $replayer->replayBatch(2, $cursor);
+            $result = $replayer->replayBatch($cursor);
             $cursor = $result->cursor();
             $cursor = OffsetCursor::fromString($cursor->toString());
 

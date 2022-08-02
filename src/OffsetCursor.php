@@ -2,38 +2,60 @@
 
 namespace EventSauce\EventSourcing;
 
+use function explode;
+
 final class OffsetCursor implements PaginationCursor
 {
-    private int $offset;
-
-    private function __construct(int $offset = 0)
+    private function __construct(private int $limit = 100, private int $offset = 0)
     {
-        $this->offset = $offset;
     }
 
-    public static function fromStart(): self
+    public function limit(): int
     {
-        return new self(0);
+        return $this->limit;
+    }
+
+    public static function fromStart(int $limit = 100): self
+    {
+        return new self($limit, 0);
+    }
+
+    public static function fromOffset(int $offset, $limit = 100): self
+    {
+        return new self($limit, $offset);
     }
 
     public function toString(): string
     {
-        return (string) $this->offset;
+        return $this->offset . '|' . $this->limit;
     }
 
     public static function fromString(string $cursor): static
     {
-        return new self((int) $cursor);
+        [$offset, $limit] = explode('|', $cursor);
+
+        return new self((int) $limit, (int) $offset);
     }
 
-    public static function withOffset(int $offset): self
+    public function withOffset(int $offset): self
     {
-        return new self($offset);
+        $clone = clone $this;
+        $clone->offset = $offset;
+
+        return $clone;
+    }
+
+    public function withLimit(int $limit): self
+    {
+        $clone = clone $this;
+        $clone->limit = $limit;
+
+        return $clone;
     }
 
     public function plusOffset(int $offset): self
     {
-        return new self($this->offset + $offset);
+        return $this->withOffset($this->offset + $offset);
     }
 
     public function offset(): int

@@ -30,5 +30,5 @@ interface MessageRepository
     /**
      * @return Generator<int, Message, void, PaginationCursor>
      */
-    public function paginate(int $perPage, PaginationCursor $cursor): Generator;
+    public function paginate(PaginationCursor $cursor): Generator;
 }

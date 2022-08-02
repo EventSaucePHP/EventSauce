@@ -6,11 +6,26 @@ use PHPUnit\Framework\TestCase;
 
 class OffsetCursorTest extends TestCase
 {
-    /** @test */
-    public function it_parses_to_and_from_string()
+    /**
+     * @test
+     */
+    public function from_start_has_offset_zero(): void
     {
-        $cursor = OffsetCursor::withOffset(5);
-        $string = $cursor->toString();
-        $this->assertEquals($cursor, OffsetCursor::fromString($string));
+        $cursor = OffsetCursor::fromStart();
+
+        self::assertEquals(0, $cursor->offset());
+        self::assertIsInt($cursor->limit());
+    }
+
+    /**
+     * @test
+     */
+    public function splussing_an_offset(): void
+    {
+        $cursor = OffsetCursor::fromStart()
+            ->plusOffset(20);
+
+        self::assertEquals(20, $cursor->offset());
+        self::assertIsInt($cursor->limit());
     }
 }
