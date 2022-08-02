@@ -41,7 +41,7 @@ class OffsetCursorTest extends TestCase
     /**
      * @test
      */
-    public function splussing_an_offset(): void
+    public function plussing_an_offset(): void
     {
         $cursor = OffsetCursor::fromStart()
             ->plusOffset(20);
