@@ -56,7 +56,7 @@ class AcmeBankAccount implements AggregateRoot
 
 Let's re-use our `AcmeBankAccount` aggregate from the previous question. Now imagine after two years, you notice that
 you should have validated the IBAN data and that your existing aggregates now contain invalid data.
-Do not migrate existing events in this case! In event sourcing, events are immutable and must not be tempered with. 
+Do not migrate existing events in this case! In event sourcing, events are immutable and must not be tampered with. 
 
 One possible way of handling this business case would be to loop over all the existing aggregates, and fix them by recording
 another `IbanWasChanged` event, if you can fix them automatically. Or even better, a `InvalidIbanWasAutomaticallyFixed`
