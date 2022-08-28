@@ -3,7 +3,7 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
-## 2.3.0 - 2022-08-28
+## 2.3.1 - 2022-08-28
 
 ### Changed
 
