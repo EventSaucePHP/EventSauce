@@ -6,6 +6,8 @@ namespace EventSauce\EventSourcing;
 
 use Generator;
 
+use function array_slice;
+
 final class InMemoryMessageRepository implements MessageRepository
 {
     /**
@@ -69,5 +71,17 @@ final class InMemoryMessageRepository implements MessageRepository
         }
 
         return $lastMessage instanceof Message ? $lastMessage->aggregateVersion() : 0;
+    }
+
+    public function paginate(PaginationCursor | OffsetCursor $cursor): Generator
+    {
+        if( ! $cursor instanceof OffsetCursor){
+            throw new \InvalidArgumentException('Cursor must be an instance of OffsetCursor');
+        }
+
+        $page = array_slice($this->messages, $cursor->offset(), $cursor->limit(), false);
+        yield from $page;
+
+        return $cursor->plusOffset(count($page));
     }
 }
