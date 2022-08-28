@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\ReplayingMessages;
 
+use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageConsumer;
 use EventSauce\EventSourcing\MessageRepository;
 use EventSauce\EventSourcing\PaginationCursor;
@@ -25,6 +26,7 @@ class ReplayMessages
         $messagesHandled = 0;
         $messages = $this->repository->paginate($cursor);
 
+        /** @var Message $message */
         foreach ($messages as $message) {
             $this->consumer->handle($message);
             ++$messagesHandled;

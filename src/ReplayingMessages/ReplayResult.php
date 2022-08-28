@@ -8,7 +8,7 @@ use EventSauce\EventSourcing\PaginationCursor;
 
 class ReplayResult
 {
-    public function __construct(private int $messagesHandled, private ?PaginationCursor $cursor)
+    public function __construct(private int $messagesHandled, private PaginationCursor $cursor)
     {
     }
 
@@ -17,7 +17,7 @@ class ReplayResult
         return $this->messagesHandled;
     }
 
-    public function cursor(): ?PaginationCursor
+    public function cursor(): PaginationCursor
     {
         return $this->cursor;
     }
