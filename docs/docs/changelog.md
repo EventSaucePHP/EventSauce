@@ -3,6 +3,12 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 2.3.0 - 2022-08-28
+
+### Changed
+
+- Allow eventsauce/object-hydrator version 0.5
+
 ## 2.3.0 - 2022-07-18
 
 - Added object-mapper based serialization method (#175)
