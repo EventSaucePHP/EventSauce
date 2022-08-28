@@ -8,7 +8,7 @@ title: Changelog
 ### Added
 
 - MessageRepository::paginate was added to enable replaying of projections (breaking change)
-- Message replaying capabilities added (collaboration with @Robertbaelde 👏)
+- [Message replaying](/docs/advanced/replaying-messages/) capabilities added in collaboration with @Robertbaelde 👏
 
 ## 2.3.1 - 2022-08-28
 
