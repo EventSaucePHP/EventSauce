@@ -62,6 +62,7 @@ Snapshotting:
 
 Advanced Topics:
     Anti-Corruption Layer: '/docs/advanced/anti-corruption-layer/'
+    Replaying Messages: '/docs/advanced/replaying-messages/'
     Database Structure: '/docs/advanced/database-structure/'
     Rebuilding Projections: '/docs/advanced/rebuilding-projections/'
     Message Internals: '/docs/advanced/message-internals/'
