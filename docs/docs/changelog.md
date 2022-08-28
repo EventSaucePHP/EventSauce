@@ -3,6 +3,13 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.0.0 - 2022-08-28
+
+### Added
+
+- MessageRepository::paginate was added to enable replaying of projections (breaking change)
+- Message replaying capabilities added (collaboration with @Robertbaelde 👏)
+
 ## 2.3.1 - 2022-08-28
 
 ### Changed
