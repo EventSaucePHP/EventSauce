@@ -18,6 +18,7 @@ class ConstructingPayloadSerializer implements PayloadSerializer
     public function unserializePayload(string $className, array $payload): object
     {
         /* @var SerializablePayload $className */
+        // @phpstan-ignore-next-line
         return $className::fromPayload($payload);
     }
 }

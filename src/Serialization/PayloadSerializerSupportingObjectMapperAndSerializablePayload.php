@@ -31,6 +31,7 @@ class PayloadSerializerSupportingObjectMapperAndSerializablePayload implements P
     public function unserializePayload(string $className, array $payload): object
     {
         if (is_a($className, SerializablePayload::class, true)) {
+            // @phpstan-ignore-next-line
             return $this->constructingSerializer->unserializePayload($className, $payload);
         }
 

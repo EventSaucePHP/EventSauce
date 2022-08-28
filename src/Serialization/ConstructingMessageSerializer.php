@@ -50,6 +50,7 @@ final class ConstructingMessageSerializer implements MessageSerializer
             $payload['headers'][Header::AGGREGATE_ROOT_ID] = $aggregateRootIdClassName::fromString($payload['headers'][Header::AGGREGATE_ROOT_ID]);
         }
 
+        /** @var class-string $className */
         $className = $this->classNameInflector->typeToClassName($payload['headers'][Header::EVENT_TYPE]);
         $event = $this->payloadSerializer->unserializePayload($className, $payload['payload']);
 
