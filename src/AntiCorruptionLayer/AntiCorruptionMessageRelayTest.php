@@ -32,10 +32,9 @@ class AntiCorruptionMessageRelayTest extends TestCase
     public function when_no_filters_and_transformation_happens_messages_are_always_relayed(
         array $incoming,
         array $expected,
-    ): void
-    {
+    ): void {
         $consumer = $this->messageConsumer();
-        $messages = array_map(fn(object $o) => new Message($o), $incoming);
+        $messages = array_map(fn (object $o) => new Message($o), $incoming);
 
         foreach ($messages as $message) {
             $consumer->handle($message);
@@ -60,11 +59,10 @@ class AntiCorruptionMessageRelayTest extends TestCase
     public function no_transformation_filter_out_excluded_payloads_before_transformation(
         array $incoming,
         array $expected,
-    ): void
-    {
+    ): void {
         $this->beforeFilter = new StubFilterExcludedMessages();
         $consumer = $this->messageConsumer();
-        $messages = array_map(fn(object $o) => new Message($o), $incoming);
+        $messages = array_map(fn (object $o) => new Message($o), $incoming);
 
         foreach ($messages as $message) {
             $consumer->handle($message);
@@ -81,11 +79,10 @@ class AntiCorruptionMessageRelayTest extends TestCase
     public function no_transformation_filter_out_excluded_payloads_after_transformation(
         array $incoming,
         array $expected,
-    ): void
-    {
+    ): void {
         $this->afterFilter = new StubFilterExcludedMessages();
         $consumer = $this->messageConsumer();
-        $messages = array_map(fn(object $o) => new Message($o), $incoming);
+        $messages = array_map(fn (object $o) => new Message($o), $incoming);
 
         foreach ($messages as $message) {
             $consumer->handle($message);
@@ -109,11 +106,10 @@ class AntiCorruptionMessageRelayTest extends TestCase
     public function no_transformation_filter_all_but_public_and_private_payloads_after_transformation(
         array $incoming,
         array $expected,
-    ): void
-    {
+    ): void {
         $this->afterFilter = new AllowMessagesWithPayloadOfType(StubPublicEvent::class, StubPrivateEvent::class);
         $consumer = $this->messageConsumer();
-        $messages = array_map(fn(object $o) => new Message($o), $incoming);
+        $messages = array_map(fn (object $o) => new Message($o), $incoming);
 
         foreach ($messages as $message) {
             $consumer->handle($message);
@@ -139,11 +135,10 @@ class AntiCorruptionMessageRelayTest extends TestCase
     public function transformation_private_to_public(
         array $incoming,
         array $expected,
-    ): void
-    {
+    ): void {
         $this->translator = new StubTranslatePrivateToPublic();
         $consumer = $this->messageConsumer();
-        $messages = array_map(fn(object $o) => new Message($o), $incoming);
+        $messages = array_map(fn (object $o) => new Message($o), $incoming);
 
         foreach ($messages as $message) {
             $consumer->handle($message);
@@ -170,9 +165,6 @@ class AntiCorruptionMessageRelayTest extends TestCase
         );
     }
 
-    /**
-     * @return array
-     */
     private function dispatchedPayloads(): array
     {
         return $this->destinationMessageDispatcher->collectedPayloads();

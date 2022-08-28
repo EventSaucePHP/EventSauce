@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
+
 use function compact;
 
 /**

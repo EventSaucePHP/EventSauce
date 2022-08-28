@@ -9,7 +9,7 @@ use function is_string;
 
 final class ExplicitlyMappedClassNameInflector implements ClassNameInflector
 {
-    /** @var array<string, class-string>|null  */
+    /** @var array<string, class-string>|null */
     private array|null $eventTypeToClassMap;
 
     /**
@@ -17,7 +17,8 @@ final class ExplicitlyMappedClassNameInflector implements ClassNameInflector
      */
     public function __construct(
         private array $classToEventTypeMap
-    ) {}
+    ) {
+    }
 
     public function classNameToType(string $className): string
     {

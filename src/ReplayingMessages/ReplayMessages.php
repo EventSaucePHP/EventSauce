@@ -27,7 +27,7 @@ class ReplayMessages
 
         foreach ($messages as $message) {
             $this->consumer->handle($message);
-            $messagesHandled++;
+            ++$messagesHandled;
         }
 
         if ($messagesHandled === 0 && $this->consumer instanceof TriggerAfterReplay) {

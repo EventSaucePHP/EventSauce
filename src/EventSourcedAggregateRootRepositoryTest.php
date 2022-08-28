@@ -6,6 +6,7 @@ namespace EventSauce\EventSourcing;
 
 use EventSauce\EventSourcing\TestUtilities\TestingAggregates\DummyAggregate;
 use PHPUnit\Framework\TestCase;
+
 use function iterator_to_array;
 
 class EventSourcedAggregateRootRepositoryTest extends TestCase

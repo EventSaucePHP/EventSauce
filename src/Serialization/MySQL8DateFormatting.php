@@ -6,6 +6,7 @@ namespace EventSauce\EventSourcing\Serialization;
 
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
+
 use function substr;
 
 class MySQL8DateFormatting implements MessageSerializer

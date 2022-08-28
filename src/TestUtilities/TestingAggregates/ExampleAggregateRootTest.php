@@ -223,7 +223,7 @@ class ExampleAggregateRootTest extends AggregateRootTestCase
     }
 
     /** @test */
-    public function it_can_assert_events_on_callback_only()
+    public function it_can_assert_events_on_callback_only(): void
     {
         $this->when(new DummyIncrementCommand($this->aggregateRootId()));
         $this->then(

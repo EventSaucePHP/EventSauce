@@ -11,7 +11,7 @@ class MessageTranslatorChain implements MessageTranslator
     /** @var MessageTranslator[] */
     private array $translators;
 
-    public function __construct(MessageTranslator ... $translators)
+    public function __construct(MessageTranslator ...$translators)
     {
         $this->translators = $translators;
     }

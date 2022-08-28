@@ -11,7 +11,7 @@ class MatchAnyMessageFilter implements MessageFilter
     /** @var MessageFilter[] */
     private array $filters;
 
-    public function __construct(MessageFilter ... $filters)
+    public function __construct(MessageFilter ...$filters)
     {
         $this->filters = $filters;
     }

@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use const PATHINFO_EXTENSION;
+
 use InvalidArgumentException;
 use LogicException;
 use Symfony\Component\Yaml\Yaml;
+
 use function file_get_contents;
 use function in_array;
 use function is_array;

@@ -28,6 +28,7 @@ use Exception;
 use LogicException;
 use PHPUnit\Framework\TestCase;
 use Throwable;
+
 use function assert;
 use function get_class;
 use function method_exists;
@@ -245,8 +246,8 @@ abstract class AggregateRootTestCase extends TestCase
         } elseif ($expectedException !== null && $caughtException === null) {
             throw FailedToDetectExpectedException::expectedException($expectedException);
         } elseif ($caughtException !== null && ($expectedException === null || get_class($expectedException) !== get_class(
-                    $caughtException
-                ))) {
+            $caughtException
+        ))) {
             throw $caughtException;
         }
 

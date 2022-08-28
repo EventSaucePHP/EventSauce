@@ -17,8 +17,7 @@ class DefaultHeadersDecorator implements MessageDecorator
         ClassNameInflector $inflector = null,
         Clock $clock = null,
         string $timeOfRecordingFormat = Message::TIME_OF_RECORDING_FORMAT,
-    )
-    {
+    ) {
         $this->inflector = $inflector ?: new DotSeparatedSnakeCaseInflector();
         $this->clock = $clock ?: new SystemClock();
         $this->timeOfRecordingFormat = $timeOfRecordingFormat;

@@ -29,6 +29,6 @@ class CollectingMessageDispatcher implements MessageDispatcher
 
     public function collectedPayloads(): array
     {
-        return array_map(fn(Message $message) => $message->event(), $this->collectedMessages);
+        return array_map(fn (Message $message) => $message->event(), $this->collectedMessages);
     }
 }

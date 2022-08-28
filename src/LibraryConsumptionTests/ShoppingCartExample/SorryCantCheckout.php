@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 
 class SorryCantCheckout extends \Exception

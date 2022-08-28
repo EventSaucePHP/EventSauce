@@ -8,7 +8,6 @@ use EventSauce\EventSourcing\EventStub;
 use EventSauce\EventSourcing\InMemoryMessageRepository;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\OffsetCursor;
-use EventSauce\EventSourcing\PaginationCursor;
 use PHPUnit\Framework\TestCase;
 
 class ReplayMessagesTest extends TestCase

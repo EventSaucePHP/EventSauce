@@ -16,19 +16,19 @@ class MessageTranslatorChainTest extends TestCase
     {
         $message = new Message(new StubPublicEvent('yes'));
         $translator = new MessageTranslatorChain(
-            new class implements MessageTranslator {
+            new class() implements MessageTranslator {
                 public function translateMessage(Message $message): Message
                 {
                     return $message->withHeader('first', 1);
                 }
             },
-            new class implements MessageTranslator {
+            new class() implements MessageTranslator {
                 public function translateMessage(Message $message): Message
                 {
                     return $message->withHeader('second', 2);
                 }
             },
-            new class implements MessageTranslator {
+            new class() implements MessageTranslator {
                 public function translateMessage(Message $message): Message
                 {
                     return $message->withHeader('third', 3);

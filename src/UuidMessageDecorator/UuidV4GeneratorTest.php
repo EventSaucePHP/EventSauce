@@ -7,6 +7,7 @@ namespace EventSauce\EventSourcing\UuidMessageDecorator;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Rfc4122\FieldsInterface;
 use Ramsey\Uuid\Uuid;
+
 use function assert;
 
 class UuidV4GeneratorTest extends TestCase

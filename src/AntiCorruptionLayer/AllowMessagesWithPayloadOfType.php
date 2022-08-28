@@ -11,7 +11,7 @@ class AllowMessagesWithPayloadOfType implements MessageFilter
     /** @var string[] */
     private array $classNames;
 
-    public function __construct(string ... $classNames)
+    public function __construct(string ...$classNames)
     {
         $this->classNames = $classNames;
     }

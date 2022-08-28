@@ -17,8 +17,7 @@ class AntiCorruptionMessageDispatcher implements MessageDispatcher
         private MessageTranslator $translator,
         MessageFilter $filterBefore = null,
         MessageFilter $filterAfter = null,
-    )
-    {
+    ) {
         $this->filterBefore = $filterBefore ?? new AllowAllMessages();
         $this->filterAfter = $filterAfter ?? new AllowAllMessages();
     }

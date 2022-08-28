@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 class CartCheckedOut implements SerializablePayload
 {
-
     public function toPayload(): array
     {
         return [];

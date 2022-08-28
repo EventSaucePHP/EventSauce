@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use const null;
+
 use LogicException;
+
 use function array_filter;
 use function array_map;
 use function implode;

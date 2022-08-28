@@ -6,6 +6,7 @@ namespace EventSauce\EventSourcing\CodeGeneration;
 
 use ReflectionClass;
 use ReflectionException;
+
 use function ltrim;
 
 /**

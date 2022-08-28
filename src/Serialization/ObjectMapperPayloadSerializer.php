@@ -24,7 +24,7 @@ class ObjectMapperPayloadSerializer implements PayloadSerializer
 
     public function unserializePayload(string $className, array $payload): object
     {
-        /** @var class-string $className */
+        /* @var class-string $className */
         return $this->objectMapper->hydrateObject($className, $payload);
     }
 }

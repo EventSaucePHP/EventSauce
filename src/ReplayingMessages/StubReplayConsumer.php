@@ -15,7 +15,7 @@ class StubReplayConsumer implements MessageConsumer, TriggerAfterReplay, Trigger
 
     public function handle(Message $message): void
     {
-        $this->messagesHandled++;
+        ++$this->messagesHandled;
     }
 
     public function afterReplay(): void

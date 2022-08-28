@@ -6,6 +6,7 @@ namespace EventSauce\EventSourcing\TestUtilities;
 
 use Exception;
 use LogicException;
+
 use function get_class;
 
 /**

@@ -73,9 +73,9 @@ final class InMemoryMessageRepository implements MessageRepository
         return $lastMessage instanceof Message ? $lastMessage->aggregateVersion() : 0;
     }
 
-    public function paginate(PaginationCursor | OffsetCursor $cursor): Generator
+    public function paginate(PaginationCursor|OffsetCursor $cursor): Generator
     {
-        if( ! $cursor instanceof OffsetCursor){
+        if ( ! $cursor instanceof OffsetCursor) {
             throw new \InvalidArgumentException('Cursor must be an instance of OffsetCursor');
         }
 

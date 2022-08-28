@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 
 final class ProductId
 {
     public function __construct(protected string $id)
     {
-
     }
 
     public function toString(): string

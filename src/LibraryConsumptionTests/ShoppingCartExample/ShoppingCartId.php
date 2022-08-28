@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 
 use EventSauce\EventSourcing\AggregateRootId;
 
 final class ShoppingCartId implements AggregateRootId
 {
-
     private function __construct(private string $aggregateRootId)
     {
     }

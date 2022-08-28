@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\CodeGeneration;
 
 use PHPUnit\Framework\TestCase;
+
 use function file_get_contents;
 
 class CodeDumperTest extends TestCase

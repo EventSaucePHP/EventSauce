@@ -80,6 +80,7 @@ abstract class MessageConsumerTestCase extends TestCase
     public function givenNextMessagesHaveAggregateRootIdOf(?AggregateRootId $aggregateRootId): self
     {
         $this->aggregateRootId = $aggregateRootId;
+
         return $this;
     }
 
@@ -167,8 +168,8 @@ abstract class MessageConsumerTestCase extends TestCase
         Exception $caughtException = null
     ): void {
         if ($caughtException !== null && ($expectedException === null || get_class($expectedException) !== get_class(
-                    $caughtException
-                ))) {
+            $caughtException
+        ))) {
             throw $caughtException;
         }
 

@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
 class ProductAddedToCart implements SerializablePayload
 {
-
     public function __construct(public ProductId $productId, public int $price)
     {
     }

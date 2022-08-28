@@ -16,13 +16,13 @@ class MessageTranslatorPerPayloadTypeTest extends TestCase
     public function messages_are_routed_to_the_right_translator(Message $input, Message $expected): void
     {
         $translators = [
-            StubPublicEvent::class => new class implements MessageTranslator {
+            StubPublicEvent::class => new class() implements MessageTranslator {
                 public function translateMessage(Message $message): Message
                 {
                     return $message->withHeader('x', 'public');
                 }
             },
-            StubPrivateEvent::class => new class implements MessageTranslator {
+            StubPrivateEvent::class => new class() implements MessageTranslator {
                 public function translateMessage(Message $message): Message
                 {
                     return $message->withHeader('x', 'private');

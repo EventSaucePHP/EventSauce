@@ -14,8 +14,7 @@ class PayloadSerializerSupportingObjectMapperAndSerializablePayload implements P
     public function __construct(
         ConstructingPayloadSerializer $constructingSerializer = null,
         ObjectMapperPayloadSerializer $objectMapperSerializer = null,
-    )
-    {
+    ) {
         $this->constructingSerializer = $constructingSerializer ?? new ConstructingPayloadSerializer();
         $this->objectMapperSerializer = $objectMapperSerializer ?? new ObjectMapperPayloadSerializer();
     }

@@ -6,6 +6,7 @@ namespace EventSauce\EventSourcing\CodeGeneration;
 
 use DateTimeImmutable;
 use OutOfBoundsException;
+
 use function array_key_exists;
 
 final class DefinitionGroup
@@ -211,7 +212,7 @@ final class DefinitionGroup
     public function resolveInterface(string $alias): string
     {
         if ( ! array_key_exists($alias, $this->interfaces)) {
-            throw new OutOfBoundsException("Interface not registered for alias ${alias}.");
+            throw new OutOfBoundsException("Interface not registered for alias {$alias}.");
         }
 
         return $this->interfaces[$alias];
