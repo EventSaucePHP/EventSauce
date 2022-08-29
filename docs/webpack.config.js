@@ -19,12 +19,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(png|jpg|gif|svg)$/i,
-                use: [{
-                    loader: 'url-loader',
-                    options: {
-                        limit: 8192 // in bytes
-                    }
-                }]
+                type: 'asset/inline'
             },
             {
                 test: /\.css$/,
