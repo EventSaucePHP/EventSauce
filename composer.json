@@ -2,6 +2,7 @@
     "name": "eventsauce/eventsauce",
     "description": "A pragmatic event sourcing library for PHP with a focus on developer experience.",
     "license": "MIT",
+    "homepage": "https://eventsauce.io/",
     "authors": [
         {
             "name": "Frank de Jonge",
