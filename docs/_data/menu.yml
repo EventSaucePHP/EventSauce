@@ -13,10 +13,8 @@ Stop Russia's Aggression:
   Support Ukraine: https://savelife.in.ua/en/
 
 Getting Started:
-    1. Create an Aggregate Root: '/docs/event-sourcing/create-an-aggregate-root/'
-    2. Create Events and Commands: '/docs/event-sourcing/create-events-and-commands/'
-    3. Configure Persistence: '/docs/event-sourcing/configure-persistence/'
-    4. Bootstrap: '/docs/event-sourcing/bootstrap/'
+  Intro and install: '/docs/getting-started/introduction/'
+  1. Create an Aggregate Root: '/docs/getting-started/create-aggregate-root/'
 
 Serialization:
   Object Mapper: '/docs/serialization/object-mapper/'

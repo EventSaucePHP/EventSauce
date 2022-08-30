@@ -1,6 +1,5 @@
 ---
 permalink: /docs/event-sourcing/create-an-aggregate-root/
-redirect_from: /docs/getting-started/create-an-aggregate-root/
 title: Creating an Aggregate Root
 ---
 

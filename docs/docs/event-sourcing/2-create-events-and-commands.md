@@ -1,6 +1,5 @@
 ---
 permalink: /docs/event-sourcing/create-events-and-commands/
-redirect_from: /docs/getting-started/create-events-and-commands/
 title: Create events and commands
 ---
 
