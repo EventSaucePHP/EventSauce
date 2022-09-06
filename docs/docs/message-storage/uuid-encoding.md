@@ -14,13 +14,13 @@ aggregate root ID are converted to string when written to the database.
 
 ### Binary UUID Encoder
 
-`UuidBinaryEncoder` encodes the UUID using `$uuid->getBytes()` to generate a binary
+`BinaryUuidEncoder` encodes the UUID using `$uuid->getBytes()` to generate a binary
 text version of the UUID, which should be used when the database does not have a
 native `uuid` type.
 
 ### String UUID Encoder
 
-`UuidStringEncoder` encodes the UUID using `$uuid->toString()` to generate a plain
+`StringUuidEncoder` encodes the UUID using `$uuid->toString()` to generate a plain
 text version of the UUID, which should be used when the database has a `uuid` type.
 
 ### Custom Implementations
