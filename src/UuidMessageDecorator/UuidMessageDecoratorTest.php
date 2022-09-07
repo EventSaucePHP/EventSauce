@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing\UuidMessageDecorator;
 use EventSauce\EventSourcing\EventStub;
 use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
-use PHPStan\Testing\TestCase;
+use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 

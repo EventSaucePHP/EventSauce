@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing\Serialization;
 
 use EventSauce\EventSourcing\EventStub;
-use PHPStan\Testing\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class PayloadSerializerSupportingObjectMapperAndSerializablePayloadTest extends TestCase
 {

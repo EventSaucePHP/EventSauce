@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing\LibraryConsumptionTests\EventHandling;
 
 use EventSauce\EventSourcing\EventStub;
 use EventSauce\EventSourcing\Message;
-use PHPStan\Testing\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class EventHandlingTest extends TestCase
 {
