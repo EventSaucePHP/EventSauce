@@ -6,4 +6,7 @@ parameters:
         - %rootDir%/../../../src/CodeGeneration/Fixtures/*
         - %rootDir%/../../../src/LibraryConsumptionTests/*
         - *Test.php
+    ignoreErrors:
+        - '#^Method EventSauce\\EventSourcing\\EventConsumption\\TypedEventConsumerStub\:\:.+\(\) is unused.#'
     checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false

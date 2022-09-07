@@ -26,13 +26,14 @@ class MessageConsumerThatSerializesMessages implements MessageConsumer
     {
         $payload = $this->serializer->serializeMessage($message);
         $payloadAsString = json_encode($payload);
+
         if ($payloadAsString === false) {
             TestCase::fail('Payload could not be serialized');
         }
 
         $deserializedMessage = $this->serializer->unserializePayload(
-            json_decode($payloadAsString, true)
+            json_decode($payloadAsString, true) // @phpstan-ignore-line
         );
-        TestCase::assertEquals($message->payload(), $deserializedMessage->event());
+        TestCase::assertEquals($message->payload(), $deserializedMessage->payload());
     }
 }

@@ -8,7 +8,7 @@ use RuntimeException;
 
 final class UnableToResolveTimeOfRecording extends RuntimeException implements EventSauceException
 {
-    public static function fromFormatAndHeader(string $format, mixed $header): static
+    public static function fromFormatAndHeader(string $format, string $header): static
     {
         return new static("Unable to determine time of recording from format \"{$format}\" and header \"{$header}\"");
     }

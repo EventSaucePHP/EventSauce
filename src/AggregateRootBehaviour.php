@@ -14,8 +14,9 @@ trait AggregateRootBehaviour
     use AggregateAlwaysAppliesEvents;
 
     private AggregateRootId $aggregateRootId;
+    /** @var 0|positive-int */
     private int $aggregateRootVersion = 0;
-    /** @var list<object> */
+    /** @var object[] */
     private array $recordedEvents = [];
 
     private function __construct(AggregateRootId $aggregateRootId)
@@ -30,6 +31,7 @@ trait AggregateRootBehaviour
 
     /**
      * @see AggregateRoot::aggregateRootVersion
+     * @return 0|positive-int
      */
     public function aggregateRootVersion(): int
     {
@@ -55,6 +57,7 @@ trait AggregateRootBehaviour
 
     /**
      * @see AggregateRoot::reconstituteFromEvents
+     * @param Generator<int, object, void, int> $events
      */
     public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): static
     {
@@ -65,6 +68,7 @@ trait AggregateRootBehaviour
             $aggregateRoot->apply($event);
         }
 
+        // @phpstan-ignore-next-line
         $aggregateRoot->aggregateRootVersion = $events->getReturn() ?: 0;
 
         return $aggregateRoot;

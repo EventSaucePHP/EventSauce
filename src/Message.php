@@ -31,8 +31,10 @@ final class Message
         return $clone;
     }
 
-    public function withTimeOfRecording(DateTimeImmutable $timeOfRecording, string $format = self::TIME_OF_RECORDING_FORMAT): Message
-    {
+    public function withTimeOfRecording(
+        DateTimeImmutable $timeOfRecording,
+        string $format = self::TIME_OF_RECORDING_FORMAT
+    ): Message {
         return $this->withHeaders([
             Header::TIME_OF_RECORDING => $timeOfRecording->format($format),
             Header::TIME_OF_RECORDING_FORMAT => $format,
@@ -67,7 +69,7 @@ final class Message
         /* @var DateTimeImmutable */
         $timeOfRecording = DateTimeImmutable::createFromFormat(
             '!' . $format,
-            $header = ($this->headers[Header::TIME_OF_RECORDING] ?? '')
+            $header = (string) ($this->headers[Header::TIME_OF_RECORDING] ?? '')
         );
 
         if ( ! $timeOfRecording instanceof DateTimeImmutable) {

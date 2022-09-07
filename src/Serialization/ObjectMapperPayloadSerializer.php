@@ -19,6 +19,7 @@ class ObjectMapperPayloadSerializer implements PayloadSerializer
 
     public function serializePayload(object $event): array
     {
+        // @phpstan-ignore-next-line
         return $this->objectMapper->serializeObject($event);
     }
 

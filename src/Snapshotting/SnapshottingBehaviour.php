@@ -35,6 +35,7 @@ trait SnapshottingBehaviour
         $aggregateRoot = static::reconstituteFromSnapshotState($id, $snapshot->state());
         $aggregateRoot->aggregateRootVersion = $snapshot->aggregateRootVersion();
 
+        /** @var object $event */
         foreach ($events as $event) {
             $aggregateRoot->apply($event);
         }
