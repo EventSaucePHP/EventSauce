@@ -6,7 +6,7 @@ namespace EventSauce\EventSourcing\AntiCorruptionLayer;
 
 use EventSauce\EventSourcing\CollectingMessageConsumer;
 use EventSauce\EventSourcing\Message;
-use PHPStan\Testing\TestCase;
+use PHPUnit\Framework\TestCase;
 
 use function array_map;
 
