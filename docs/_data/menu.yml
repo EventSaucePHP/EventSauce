@@ -13,8 +13,8 @@ Stop Russia's Aggression:
   Support Ukraine: https://savelife.in.ua/en/
 
 Getting Started:
-  Intro and install: '/docs/getting-started/introduction/'
-  1. Create an Aggregate Root: '/docs/getting-started/create-aggregate-root/'
+  1. Intro and install: '/docs/getting-started/introduction/'
+  2. Create an Aggregate Root: '/docs/getting-started/create-aggregate-root/'
 
 Serialization:
   Object Mapper: '/docs/serialization/object-mapper/'
