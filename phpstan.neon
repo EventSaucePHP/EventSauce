@@ -2,7 +2,7 @@ parameters:
     level: max
     paths:
         - src
-    excludes_analyse:
+    excludePaths:
         - %rootDir%/../../../src/CodeGeneration/Fixtures/*
         - %rootDir%/../../../src/LibraryConsumptionTests/*
         - *Test.php
