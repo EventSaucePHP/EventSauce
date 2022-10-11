@@ -108,7 +108,7 @@ specific information.
 ### Message Serializer
 
 The message serializer is responsible for converting messages from and to a serialized form. When
-using (or implementing) a message repository, you'll want to use this rely on this interface.
+using (or implementing) a message repository, you'll want to use this interface.
 
 The core ships with a default (JSON based) serializer. You're free to implement your own
 serialization strategy if your use-case requires it.
