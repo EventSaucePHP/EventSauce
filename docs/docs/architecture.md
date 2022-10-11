@@ -81,7 +81,7 @@ The aggregate root repository has the following dependencies:
 1. An aggregate root class name (so it knows what to reconstitute and return)
 2. A [message repository](#message-repository) from which it retrieves previously recorded events
 3. A [message dispatcher](#message-dispatcher) which dispatches the messages _(optional)_
-3. A [message decorator](#message-decorator) which decorated the messages _(optional)_
+3. A [message decorator](#message-decorator) which decorates the messages _(optional)_
 
 ### Message repository
 
@@ -106,7 +106,7 @@ specific information.
 ### Message serializer
 
 The message serializer is responsible for converting messages from and to a serialized form. When
-using (or implementing) a message repository, you'll want to use this rely on this interface.
+using (or implementing) a message repository, you'll want to use this interface.
 
 The core ships with a default (array based) serializer. You're free to implement your own
 serialization strategy if your use-case requires it.
