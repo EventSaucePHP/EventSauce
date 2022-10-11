@@ -30,7 +30,7 @@ like this will be called something along the lines of "domain_messages".
 * Difficult to optimize for special cases.
 * Cleanup is difficult.
 
-## All events in table per aggregate.
+## All events in table per aggregate type.
 
 Storing events per aggregate type is one step up from using a single table. Generally this is
 advised when starting out. It's relatively simple to setup and simple to maintain over time. In
@@ -86,5 +86,5 @@ atomically add new entries using a `$push` operation.
 
 ### Con's
 
-* Required a NoSQL database (although MySQL and Postgres also have similar features).
+* Requires a NoSQL database (although MySQL and Postgres also have similar features).
 * Creating snapshots is harder when you want incremental snapshots.
