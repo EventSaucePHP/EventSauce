@@ -11,7 +11,7 @@ provides a pragmatic default approach to re-consuming historic messages.
 
 ## Paginated replaying with cursors
 
-EventSauce uses cursor-based pagination to fees messages into consumer. The design allows you
+EventSauce uses cursor-based pagination to feed messages into consumers. The design allows you
 to set up routines that can rebuild projections that cross multiple deployments. By using a
 cursor, the tooling can store any type of offset or filter when the process is signalled to stop.
 
