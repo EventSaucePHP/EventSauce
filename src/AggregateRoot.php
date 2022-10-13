@@ -7,10 +7,15 @@ namespace EventSauce\EventSourcing;
 use Generator;
 
 /**
+ * @template AggregateRootIdType of AggregateRootId
+ *
  * @see AggregateRootBehaviour
  */
 interface AggregateRoot
 {
+    /**
+     * @return AggregateRootIdType
+     */
     public function aggregateRootId(): AggregateRootId;
 
     public function aggregateRootVersion(): int;
@@ -21,6 +26,7 @@ interface AggregateRoot
     public function releaseEvents(): array;
 
     /**
+     * @param AggregateRootIdType               $aggregateRootId
      * @param Generator<int, object, void, int> $events
      */
     public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): static;
