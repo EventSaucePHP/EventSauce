@@ -8,6 +8,7 @@ use Generator;
 
 /**
  * @template AggregateRootIdType of AggregateRootId
+ *
  * @see AggregateRoot
  */
 trait AggregateRootBehaviour
@@ -29,8 +30,8 @@ trait AggregateRootBehaviour
         $this->aggregateRootId = $aggregateRootId;
     }
 
-    /** 
-     * @return AggregateRootIdType 
+    /**
+     * @return AggregateRootIdType
      */
     public function aggregateRootId(): AggregateRootId
     {
@@ -39,6 +40,7 @@ trait AggregateRootBehaviour
 
     /**
      * @see AggregateRoot::aggregateRootVersion
+     *
      * @return 0|positive-int
      */
     public function aggregateRootVersion(): int
@@ -65,7 +67,8 @@ trait AggregateRootBehaviour
 
     /**
      * @see AggregateRoot::reconstituteFromEvents
-     * @param AggregateRootIdType $aggregateRootId
+     *
+     * @param AggregateRootIdType               $aggregateRootId
      * @param Generator<int, object, void, int> $events
      */
     public static function reconstituteFromEvents(AggregateRootId $aggregateRootId, Generator $events): static
