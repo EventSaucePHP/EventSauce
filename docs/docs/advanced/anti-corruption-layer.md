@@ -216,3 +216,46 @@ $translator = new MessageTranslatorChain(
     new AnotherPayloadTranslator(), // second pass
 );
 ```
+
+## Testing Anti corruption layers
+
+Anti corruption layers can be tested using the `AntiCorruptionLayerTestCase` class.
+
+```php
+class AntiCorruptionLayerTest extends AntiCorruptionLayerTestCase
+{
+    /** @test */
+    public function it_passes_trough_all_messages()
+    {
+        $this->given(
+            new Message(new EventA())
+        )->passedTroughAntiCorruptionMessageDispatcher(
+            new AntiCorruptionMessageDispatcher(
+                $this->getDestinationDispatcher(),
+                new PassthroughMessageTranslator(),
+                filterBefore: new AllowAllMessages(),
+                filterAfter: new AllowAllMessages(),
+            )
+        )->then(
+            new Message(new EventA())
+        );
+    }
+    
+    /** @test */
+    public function it_tests_anti_corruption_layer_message_consumer()
+    {
+        $this->given(
+            new Message(new EventA())
+        )->passedTroughAntiCorruptionMessageConsumer(
+            new AntiCorruptionMessageConsumer(
+                $this->getDestinationConsumer(),
+                new PassthroughMessageTranslator(),
+                filterBefore: new AllowAllMessages(),
+                filterAfter: new AllowAllMessages(),
+            )
+        )->then(
+            new Message(new EventA())
+        );
+    }
+}
+```
