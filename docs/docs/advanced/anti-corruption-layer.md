@@ -250,8 +250,8 @@ class AntiCorruptionLayerTest extends AntiCorruptionLayerTestCase
      */
     public function it_tests_anti_corruption_layer_message_consumer()
     {
-        $this->given(
-            new Message(new EventA())
+        $this->givenEvents(
+            new EventA()
         )->consumedThrough(
             fn($consumer) => new AntiCorruptionMessageConsumer(
                 $consumer,
@@ -259,8 +259,8 @@ class AntiCorruptionLayerTest extends AntiCorruptionLayerTestCase
                 filterBefore: new AllowAllMessages(),
                 filterAfter: new AllowAllMessages(),
             )
-        )->then(
-            new Message(new EventA())
+        )->expectEvents(
+            new EventA()
         );
     }
 }
