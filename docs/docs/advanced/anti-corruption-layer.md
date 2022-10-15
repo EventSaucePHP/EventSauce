@@ -219,6 +219,8 @@ $translator = new MessageTranslatorChain(
 
 ## Testing Anti corruption layers
 
+> New in 3.1
+
 Anti corruption layers can be tested using the `AntiCorruptionLayerTestCase` class.
 
 ```php

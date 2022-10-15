@@ -3,6 +3,17 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.1.0 - 2022-08-28
+
+### Added
+
+- AntiCorruptionLayerTestCase was added to easily allow testing of ACLs
+
+### Changed
+
+- AntiCorruptionMessageConsumer $translator parameter is now optional.
+- AntiCorruptionMessageDispatcher $translator parameter is now optional.
+
 ## 3.0.0 - 2022-08-28
 
 ### Added
