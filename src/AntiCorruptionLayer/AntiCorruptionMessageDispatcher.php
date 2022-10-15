@@ -11,13 +11,15 @@ class AntiCorruptionMessageDispatcher implements MessageDispatcher
 {
     private MessageFilter $filterBefore;
     private MessageFilter $filterAfter;
+    private MessageTranslator $translator;
 
     public function __construct(
         private MessageDispatcher $dispatcher,
-        private MessageTranslator $translator,
+        MessageTranslator $translator = null,
         MessageFilter $filterBefore = null,
         MessageFilter $filterAfter = null,
     ) {
+        $this->translator = $translator ?? new PassthroughMessageTranslator();
         $this->filterBefore = $filterBefore ?? new AllowAllMessages();
         $this->filterAfter = $filterAfter ?? new AllowAllMessages();
     }

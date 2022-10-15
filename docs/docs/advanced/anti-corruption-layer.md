@@ -224,31 +224,35 @@ Anti corruption layers can be tested using the `AntiCorruptionLayerTestCase` cla
 ```php
 class AntiCorruptionLayerTest extends AntiCorruptionLayerTestCase
 {
-    /** @test */
+    /**
+     * @test
+     */
     public function it_passes_trough_all_messages()
     {
-        $this->given(
+        $this->givenMessages(
             new Message(new EventA())
-        )->passedTroughAntiCorruptionMessageDispatcher(
-            new AntiCorruptionMessageDispatcher(
-                $this->getDestinationDispatcher(),
+        )->dispatchedThrough(
+            fn($dispatcher) => new AntiCorruptionMessageDispatcher(
+                $dispatcher,
                 new PassthroughMessageTranslator(),
                 filterBefore: new AllowAllMessages(),
                 filterAfter: new AllowAllMessages(),
             )
-        )->then(
+        )->expectMessages(
             new Message(new EventA())
         );
     }
     
-    /** @test */
+    /**
+     * @test
+     */
     public function it_tests_anti_corruption_layer_message_consumer()
     {
         $this->given(
             new Message(new EventA())
-        )->passedTroughAntiCorruptionMessageConsumer(
-            new AntiCorruptionMessageConsumer(
-                $this->getDestinationConsumer(),
+        )->consumedThrough(
+            fn($consumer) => new AntiCorruptionMessageConsumer(
+                $consumer,
                 new PassthroughMessageTranslator(),
                 filterBefore: new AllowAllMessages(),
                 filterAfter: new AllowAllMessages(),
@@ -259,3 +263,51 @@ class AntiCorruptionLayerTest extends AntiCorruptionLayerTestCase
     }
 }
 ```
+
+For more elaborate ACL setups, you can configure the ACL once, and run multiple scenarios. By overriding
+the `antiCorruptionDispatcher` and `antiCorruptionConsumer` methods, you can specify the default
+ACLs used by all test cases in the class.
+
+```php
+class AntiCorruptionLayerTest extends AntiCorruptionLayerTestCase
+{
+    /**
+     * Configure the default ACL dispatcher
+     */
+    protected function antiCorruptionDispatcher(
+        MessageDispatcher $dispatcher
+    ): AntiCorruptionMessageDispatcher {
+        return new AntiCorruptionMessageDispatcher(
+            $dispatcher,
+            new TranslateEventAToEventB()
+        );
+    }
+
+    /**
+     * Configure the default ACL consumer
+     */
+    protected function antiCorruptionConsumer(
+        MessageConsumer $consumer
+    ): AntiCorruptionMessageConsumer {
+        return new AntiCorruptionMessageConsumer(
+            $consumer,
+            new TranslateEventBToEventA()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function events_are_converted_back_and_forth()
+    {
+        $this->givenMessages(
+            new Message(new EventA('input value'))
+        )->expectMessages(
+            new Message(new EventA('input value'))
+        );
+    }
+}
+```
+
+
+

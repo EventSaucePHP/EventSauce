@@ -8,73 +8,105 @@ use EventSauce\EventSourcing\AntiCorruptionLayer\AntiCorruptionMessageConsumer;
 use EventSauce\EventSourcing\AntiCorruptionLayer\AntiCorruptionMessageDispatcher;
 use EventSauce\EventSourcing\AntiCorruptionLayer\PassthroughMessageTranslator;
 use EventSauce\EventSourcing\Message;
+use EventSauce\EventSourcing\MessageConsumer;
+use EventSauce\EventSourcing\MessageDispatcher;
 use EventSauce\EventSourcing\TestUtilities\AntiCorruptionLayerTestCase;
 
 class AntiCorruptionLayerTest extends AntiCorruptionLayerTestCase
 {
-    /** @test */
+    /**
+     * @test
+     */
     public function it_passes_trough_all_messages()
     {
-        $this->given(
+        $this->givenMessages(
             new Message(new EventA())
-        )->passedTroughAntiCorruptionMessageDispatcher(
-            new AntiCorruptionMessageDispatcher(
-                $this->getDestinationDispatcher(),
+        )->dispatchedThrough(
+            fn(MessageDispatcher $dispatcher) => new AntiCorruptionMessageDispatcher(
+                $dispatcher,
                 new PassthroughMessageTranslator(),
                 filterBefore: new AllowAllMessages(), // optional
                 filterAfter: new AllowAllMessages(), // optional
             )
-        )->then(
+        )->expectMessages(
             new Message(new EventA())
         );
     }
+    /**
+     * @test
+     */
+    public function it_converts_messages_from_a_to_b()
+    {
+        $this->givenMessages(
+            new Message(new EventA('passed value'))
+        )->dispatchedThrough(
+            fn(MessageDispatcher $dispatcher) => new AntiCorruptionMessageDispatcher(
+                $dispatcher,
+                new TranslateEventAToEventB(),
+                filterBefore: new AllowAllMessages(), // optional
+                filterAfter: new AllowAllMessages(), // optional
+            )
+        )->expectMessages(
+            new Message(new EventB('passed value'))
+        );
+    }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_filters_out_messages_of_type_a()
     {
-        $this->given(
-            new Message(new EventA())
-        )->passedTroughAntiCorruptionMessageDispatcher(
-            new AntiCorruptionMessageDispatcher(
-                $this->getDestinationDispatcher(),
+        $this->givenMessages(
+            new Message(new EventA()),
+            new Message(new EventB()),
+        )->dispatchedThrough(
+            fn(MessageDispatcher $dispatcher) => new AntiCorruptionMessageDispatcher(
+                $dispatcher,
                 new PassthroughMessageTranslator(),
-                filterBefore: new AllowMessagesWithPayloadOfType(),
+                filterBefore: new AllowMessagesWithPayloadOfType(EventB::class),
                 filterAfter: new AllowAllMessages(),
             )
-        )->then(
+        )->expectEvents(
+            new EventB(),
         );
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function it_tests_anti_corruption_layer_message_consumer()
     {
-        $this->given(
-            new Message(new EventA())
-        )->passedTroughAntiCorruptionMessageConsumer(
-            new AntiCorruptionMessageConsumer(
-                $this->getDestinationConsumer(),
-                new PassthroughMessageTranslator(),
+        $this->givenMessages(
+            new Message(new EventA('value of a'))
+        )->consumedThrough(
+            fn(MessageConsumer $consumer) => new AntiCorruptionMessageConsumer(
+                $consumer,
+                new TranslateEventAToEventB(),
                 filterBefore: new AllowAllMessages(),
                 filterAfter: new AllowAllMessages(),
             )
-        )->then(
-            new Message(new EventA())
+        )->expectMessages(
+            new Message(new EventB('value of a'))
         );
     }
 
-    /** @test */
+    /**
+     * @test
+     */
     public function dispatcher_filters_out_messages_of_type_a()
     {
-        $this->given(
-            new Message(new EventA())
-        )->passedTroughAntiCorruptionMessageDispatcher(
-            new AntiCorruptionMessageDispatcher(
-                $this->getDestinationDispatcher(),
+        $this->givenMessages(
+            new Message(new EventA()),
+            new Message(new EventB('something')),
+        )->dispatchedThrough(
+            fn(MessageDispatcher $dispatcher) => new AntiCorruptionMessageDispatcher(
+                $dispatcher,
                 new PassthroughMessageTranslator(),
-                filterBefore: new AllowMessagesWithPayloadOfType(),
+                filterBefore: new AllowMessagesWithPayloadOfType(EventB::class),
                 filterAfter: new AllowAllMessages(),
             )
-        )->then(
+        )->expectEvents(
+            new EventB('something')
         );
     }
 }
