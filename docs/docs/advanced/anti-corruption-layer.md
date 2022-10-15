@@ -217,7 +217,7 @@ $translator = new MessageTranslatorChain(
 );
 ```
 
-## Testing Anti corruption layers
+## Testing anti-corruption layers
 
 > New in 3.1
 
