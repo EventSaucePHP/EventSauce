@@ -21,6 +21,7 @@ use EventSauce\EventSourcing\MessageDispatcher;
 use EventSauce\EventSourcing\MessageRepository;
 use EventSauce\EventSourcing\Serialization\ConstructingMessageSerializer;
 use EventSauce\EventSourcing\Serialization\ConstructingPayloadSerializer;
+use EventSauce\EventSourcing\Serialization\DefaultPayloadSerializer;
 use EventSauce\EventSourcing\Serialization\MessageSerializer;
 use EventSauce\EventSourcing\Serialization\PayloadSerializer;
 use EventSauce\EventSourcing\SynchronousMessageDispatcher;
@@ -30,6 +31,7 @@ use PHPUnit\Framework\TestCase;
 use Throwable;
 
 use function assert;
+use function class_exists;
 use function get_class;
 use function method_exists;
 use function sprintf;
@@ -321,6 +323,10 @@ abstract class AggregateRootTestCase extends TestCase
 
     protected function payloadSerializer(): PayloadSerializer
     {
+        if (class_exists(DefaultPayloadSerializer::class)) {
+            return DefaultPayloadSerializer::resolve();
+        }
+
         return new ConstructingPayloadSerializer();
     }
 }

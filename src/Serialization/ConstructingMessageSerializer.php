@@ -20,7 +20,7 @@ final class ConstructingMessageSerializer implements MessageSerializer
         PayloadSerializer $payloadSerializer = null
     ) {
         $this->classNameInflector = $classNameInflector ?: new DotSeparatedSnakeCaseInflector();
-        $this->payloadSerializer = $payloadSerializer ?: new ConstructingPayloadSerializer();
+        $this->payloadSerializer = $payloadSerializer ?: DefaultPayloadSerializer::resolve();
     }
 
     public function serializeMessage(Message $message): array
