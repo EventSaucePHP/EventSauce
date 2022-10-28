@@ -3,6 +3,13 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.2.0 - 2022-10-28
+
+### Added
+
+- Allow setting the default payload serialization to use object mapping by setting the `EVENTSAUCE_DEFAULT_SERIALIZER` environment variable to `"object-mapper"'.
+- Allow installing `eventsauce/object-hydrator` 1.0
+
 ## 3.1.0 - 2022-08-28
 
 ### Added
