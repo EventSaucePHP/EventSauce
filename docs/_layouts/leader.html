@@ -32,12 +32,6 @@
         </p>
         {% include leader-links.html %}
         <p class="pt-4">
-            <a href="https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master">
-                <img alt="Scrutinizer Code Quality" src="https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/badges/quality-score.png?b=master">
-            </a>
-            <a href="https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/?branch=master">
-                <img src="https://scrutinizer-ci.com/g/EventSaucePHP/EventSauce/badges/coverage.png?b=master">
-            </a>
             <a href="https://github.com/EventSaucePHP/EventSauce/actions">
                 <img src="https://github.com/EventSaucePHP/EventSauce/workflows/Tests/badge.svg">
             </a>
@@ -48,7 +42,7 @@
     </div>
 </header>
 <section class="my-10 bg-black pt-10 md:pt-16 md:pb-14 pb-10 w-full text-center md:text-left">
-    <div class="max-w-6xl mx-auto md:flex relative overflow-hidden md:overflow-visible">
+    <div class="max-w-6xl mx-auto md:flex relative overflow-hidden md:overflow-visible md:items-center">
         <section class="md:w-1/2 px-4 max-w-md flex flex-col md:flex-row items-center md:items-start">
             <span class="h-10 w-10 mr-3 rounded-full bg-red inline-block mb-6 flex-1-0 flex-shrink-0 flex align-middle justify-center">
                 <img src="/static/icons/thumbs-up.svg" class="inline-block w-5" />
@@ -58,18 +52,43 @@
                     Why use EventSauce?
                 </h2>
                 <p class="text-grey-dark text-lg mx-auto max-w-sm">
-                    Model your domain using event sourcing; a message-driven approach
+                    Model your domain using event sourcing; an event-driven approach
                     that provides clarity when dealing with complex business requirements.
-                    The library is designed so you can take full&nbsp;control.
+                    The library is designed to give you full&nbsp;control.
                 </p>
+                <p class="text-grey-dark text-lg mt-4 mx-auto max-w-sm">
+                    Out of the box support for:
+                </p>
+                <ul class="text-grey-dark text-lg mt-4 pl-5 mx-auto max-w-sm list-disc">
+                    <li>
+                        <strong>Anti-corruption layers (ACL)</strong><br/>
+<!--                        Control how event consumers are informed about your internal events. The built-in-->
+<!--                        ACL supports allows you to translate and filter your incoming and outgoing events.-->
+                    </li>
+                    <li>
+                        <strong>Customizable serialization</strong><br/>
+<!--                        Bring your own serialization format. By default, EventSauce ships with two-->
+<!--                        strategies (including a object-mapper based implementation) that allow you-->
+<!--                        to efficiently serialize your events.-->
+                    </li>
+                    <li>
+                        <strong>Adaptable storage and transports</strong><br/>
+<!--                        The simple interfaces allow you to choose your own infrastructure for message-->
+<!--                        storage and dispatching (queues).-->
+                    </li>
+                    <li>
+                        <strong>Snapshotting</strong><br/>
+<!--                        Speed up reconstitution by taking aggregate snapshopts.-->
+                    </li>
+                </ul>
             </div>
         </section>
-        <section class="md:w-1/2 md:pl-4 text-center -md:bg-black -mx-8 md:-mx-0 mt-6 md:mt-0 md:text-right md:leading-squash">
+        <section class="md:w-1/2 md:pl-4 -md:bg-black -mx-8 md:-mx-0 mt-6 md:mt-0 md:text-right md:leading-squash">
             <img class="w-full inline-block mt-6 md:-mt-8 md:rounded-l-lg flex-no-grow" height="576px" width="1186px" style="max-width: 593px; height: auto;" src="/static/event-cards.jpg" alt="Events" />
         </section>
     </div>
 </section>
-<section class="md:right-half-bg-black relative text-center md:text-left md:my-12">
+<section class="md:right-half-bg-black relative md:text-left md:my-12">
     <div class="max-w-6xl mx-auto mb-10 md:flex relative">
         <section class="md:w-1/2 lg:w-2/5 px-4 max-w-md flex flex-col md:flex-row items-center md:items-start">
             <span class="h-10 w-10 mr-3 rounded-full bg-red inline-block mb-6 flex-1-0 flex-shrink-0 flex align-middle justify-center">
@@ -92,10 +111,6 @@
         </section>
         <section class="md:w-1/2 lg:w-3/5 border-b border-t md:border-l border-grey-light md:rounded-l-lg bg-white">
 {% highlight php %}
-<?php
-
-use EventSauce\EventSourcing\AggregateRootTestCase;
-
 class MyEventSourcedTest extends AggregateRootTestCase
 {
     public function submitting_a_bank_account_for_approval()
