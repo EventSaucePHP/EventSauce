@@ -6,6 +6,9 @@ namespace EventSauce\EventSourcing\Serialization;
 use LogicException;
 use function getenv;
 
+/**
+ * @interal
+ */
 final class DefaultPayloadSerializer
 {
     private static ?PayloadSerializer $serializer = null;
