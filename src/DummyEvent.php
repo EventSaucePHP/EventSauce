@@ -6,6 +6,9 @@ namespace EventSauce\EventSourcing;
 
 use EventSauce\EventSourcing\Serialization\SerializablePayload;
 
+/**
+ * @codeCoverageIgnore
+ */
 final class DummyEvent implements SerializablePayload
 {
     public function toPayload(): array
