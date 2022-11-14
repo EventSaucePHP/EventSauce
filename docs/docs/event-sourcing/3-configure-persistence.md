@@ -16,7 +16,7 @@ repository has specific methods to query messages that belong to a single aggreg
 A message repository should only be used for reconstitution. Performing arbitrary queries
 on the underlying database is not advised, use a projection for this instead.
 
-There are 3 message repository implementations shipped for v1:
+There are 3 message repository implementations shipped:
 
 - [Illuminate Message Repository](/docs/message-storage/illuminate/)
 - [Doctrine 3 Message Repository](/docs/message-storage/doctrine-3/)
