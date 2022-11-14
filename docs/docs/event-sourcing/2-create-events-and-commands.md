@@ -70,7 +70,7 @@ class SomeEvent implements SerializablePayload
         return ['property' => $this->property];
     }
 
-    public static function fromPayload(array $payload): SerializablePayload
+    public static function fromPayload(array $payload): static
     {
         return new SomeEvent($payload['property']);
     }
