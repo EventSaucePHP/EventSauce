@@ -3,6 +3,12 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.2.1 - 2022-11-18
+
+### Fixed
+
+- Add missing template to AggregateRootBehaviourWithRequiredHistory [(#202)](https://github.com/EventSaucePHP/EventSauce/pull/202)
+
 ## 3.2.0 - 2022-10-28
 
 ### Added
