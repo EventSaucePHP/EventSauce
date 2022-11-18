@@ -6,8 +6,14 @@ namespace EventSauce\EventSourcing;
 
 use Generator;
 
+/**
+ * @template AggregateRootIdType of AggregateRootId
+ *
+ * @see AggregateRoot
+ */
 trait AggregateRootBehaviourWithRequiredHistory
 {
+    /** @phstan-use AggregateRootBehaviour<AggregateRootIdType> */
     use AggregateRootBehaviour {
         AggregateRootBehaviour::reconstituteFromEvents as private defaultAggregateRootReconstitute;
     }
