@@ -3,6 +3,12 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.2.2 - 2023-02-14
+
+### Fixed
+
+- Make template for AggregateRootId a covariant template (#205)
+
 ## 3.2.1 - 2022-11-18
 
 ### Fixed
