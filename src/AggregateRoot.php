@@ -7,7 +7,7 @@ namespace EventSauce\EventSourcing;
 use Generator;
 
 /**
- * @template AggregateRootIdType of AggregateRootId
+ * @template-covariant AggregateRootIdType of AggregateRootId
  *
  * @see AggregateRootBehaviour
  */
