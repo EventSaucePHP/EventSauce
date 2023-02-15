@@ -31,6 +31,6 @@ stream of events.
 
 ## Versioning Snapshots
 
-Snapshots are stored in the database. When your aggregate root evolves, so must your snapshots. A good practise is to
+Snapshots are stored in the database. When your aggregate root evolves, so must your snapshots. A good practice is to
 version your snapshots. Storing a version along with your snapshot allows you to filter out any outdated ones when
 trying to fetch your aggregate root.

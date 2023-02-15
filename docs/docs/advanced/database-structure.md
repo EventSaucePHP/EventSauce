@@ -55,7 +55,7 @@ The prefix (or suffix) is named after the aggregate root.
 ## Table per aggregate identifier.
 
 In this approach the messages will be assigned to a table per aggregate identifier. Tables will be
-create dynamically. Table names generally follow a naming scheme consisting of the aggregate type
+created dynamically. Table names generally follow a naming scheme consisting of the aggregate type
 and identifier, like "orders_[order process id]".
 
 ### Pro's

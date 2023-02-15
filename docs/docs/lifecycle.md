@@ -11,7 +11,7 @@ The lifecycle of EventSauce can be broken down into **3** steps:
 
 ## Interacting with the model
 
-In order to interact with your model  you'll need to
+In order to interact with your model you'll need to
 retrieve the `AggregateRoot` from the `AggregateRootRepository`.
 
 ### Retrieving the `AggregateRoot`
@@ -105,7 +105,7 @@ $repository->persist($aggregateRoot);
 When you persist the events from an aggregate root the following things happen:
 
 1. Events are pulled from the aggregate root.
-2. The events are wrapped in a `Message` objects.
+2. The events are wrapped in `Message` objects.
 3. The message objects are decorated (optional).
 4. The messages are persisted in the `MessageRepository`.
 5. The messages are dispatched by the `MessageDispatcher`.

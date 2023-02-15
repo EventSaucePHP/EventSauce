@@ -44,7 +44,7 @@ class DummyIncrementTest extends DummyAggregateRootTestCase
             );
     } 
     
-        /**
+    /**
      * @test
      */
     public function it_dispatches_a_event_when_incrementing_using_return_of_closure()

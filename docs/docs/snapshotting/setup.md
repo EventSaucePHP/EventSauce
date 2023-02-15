@@ -99,7 +99,7 @@ $aggregateRepository = new ConstructingAggregateRootRepositoryWithSnapshotting(
 
 As you can see above, the repository requires the regular repository to be injected
 into it. This allows you to transparently replace the existing usage without
-breaking anything. In addition you now have added snapshot capabilities to the repository!
+breaking anything. In addition, you now have added snapshot capabilities to the repository!
 
 ## 3. Use it in your application.
 

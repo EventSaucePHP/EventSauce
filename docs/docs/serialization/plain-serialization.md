@@ -4,7 +4,7 @@ title: Serialization using ObjectMapper
 ---
 
 The plain serialization strategy uses an interface to ensure events comply with the needs to serialize and
-deserialize events using handwritten property mapping. This strategy is the default, therefor now setup is required.
+deserialize events using handwritten property mapping. This strategy is the default, therefore no setup is required.
 
 ## Creating events
 

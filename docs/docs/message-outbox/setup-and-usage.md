@@ -7,9 +7,9 @@ title: Message Outbox Setup and Usage
 ---
 
 The outbox module consists of three parts, a _repository_, a _dispatcher_ and a
-_relay_. The repository is responsible storing and retrieving  messages. The
-dispatcher is responsible for putting messages  in the repository and hooks into
-the core by implementing the `MessageDispatcher` interface.  The relay is
+_relay_. The repository is responsible storing and retrieving messages. The
+dispatcher is responsible for putting messages in the repository and hooks into
+the core by implementing the `MessageDispatcher` interface. The relay is
 responsible for fetching messages from the repository and committing them (mark
 as consumed or delete).
 
@@ -17,7 +17,7 @@ as consumed or delete).
 
 Your messages should be stored in the same database as our regular message
 repository does. This may sound like we're needlessly storing twice but each
-table has its own responsibility, and we interact with the in distinct ways.
+table has its own responsibility, and we interact with them in distinct ways.
 
 Messages stored in the outbox table are expected to be deleted or marked as
 consumed while our normal messages are intended to stay around for as long as

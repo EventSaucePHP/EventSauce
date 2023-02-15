@@ -58,4 +58,4 @@ protected function handle($command)
 
 The `finally` clause will be triggered even though an exception is thrown. In
 this case the events recorded prior to the exception are still recorded but
-your exception still bubbles up so you can handle it transparently.
+your exception still bubbles up, so you can handle it transparently.
