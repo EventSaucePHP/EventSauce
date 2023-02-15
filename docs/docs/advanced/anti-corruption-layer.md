@@ -310,6 +310,3 @@ class AntiCorruptionLayerTest extends AntiCorruptionLayerTestCase
     }
 }
 ```
-
-
-

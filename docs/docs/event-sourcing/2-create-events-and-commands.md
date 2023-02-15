@@ -25,8 +25,8 @@ By default the `MessageSerializer` uses the `PayloadSerializer` to serialize
 events. This serializer requires events to implement the `SerializablePayload`
 interface. This interface requires you to implement **2** public functions:
 
-> 2. `toPayload(): array`
-> 3. `fromPayload(array $payload): SerializablePayload`
+> 1. `toPayload(): array`
+> 2. `fromPayload(array $payload): SerializablePayload`
 
 ## To and From payload
 

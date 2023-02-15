@@ -3,11 +3,11 @@ permalink: /docs/message-storage/
 title: About Message Storage
 ---
 
-Message Storage in event sourcing consists of a couple components. Messages contain
+Message Storage in event sourcing consists of a couple of components. Messages contain
 the events that an aggregate root needs to rebuild itself, a Message Repository
 is used to store and retrieve messages for this purpose. Messages can also be stored
-temporarily in a database to ensure transaction dispatching to asynchronous consumer,
-a Transactional Outbox (or Outbox for short) is used to facilitate that.
+temporarily in a database to ensure transaction dispatching to an asynchronous consumer.
+A Transactional Outbox (or Outbox for short) is used to facilitate that.
 
 ## Message Repositories
 

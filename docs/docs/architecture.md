@@ -81,7 +81,7 @@ The aggregate root repository has the following dependencies:
 1. An aggregate root class name (so it knows what to reconstitute and return)
 2. A [message repository](#message-repository) from which it retrieves previously recorded events
 3. A [message dispatcher](#message-dispatcher) which dispatches the messages _(optional)_
-3. A [message decorator](#message-decorator) which decorates the messages _(optional)_
+4. A [message decorator](#message-decorator) which decorates the messages _(optional)_
 
 ### Message repository
 

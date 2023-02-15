@@ -16,7 +16,7 @@ the _aggregate root id_ by turning it into a string and adding type information.
 ## Time Of Recording
 
 Storing the time of recording lets us replay events in the same order they
-originally happened and it's extremely useful for business analyics too!
+originally happened and it's extremely useful for business analytics too!
 
 Almost every event sourcing project eventually comes to a point where the
 timing of events (and/or commands) becomes significant. Having this information

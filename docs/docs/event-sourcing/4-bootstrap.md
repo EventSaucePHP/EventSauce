@@ -9,8 +9,8 @@ Now that you've got your `MessageRepository` and `MessageDispatcher` in place
 you're ready to bootstrap your `AggregateRootRepository`.
 
 The `AggregateRootRepository` is the main interface of EventSauce. It's where
-you get your aggregate root from and where you persist (persist recorded events)
-it. When you're retrieving an aggregate root from the repository it's responsible
+you get your aggregate root from and where you persist recorded events.
+When you're retrieving an aggregate root from the repository it's responsible
 for fetching the associated events from the `MessageRepository` and using that
 to create an aggregate root. This process is commonly referred to as
 **reconstituting an aggregate root**.

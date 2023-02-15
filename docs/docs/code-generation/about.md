@@ -3,9 +3,9 @@ permalink: /docs/code-generation/
 title: Code Generation
 ---
 
-EventSauce provides an simple and opinionated way to generate code. Code generation
-is not always to everybody's liking. However, when correct in the right circumstances,
-code generation is a great accelerator during your time spent writing code.
+EventSauce provides a simple and opinionated way to generate code. Code generation
+is not always to everybody's liking. However, given the right circumstances,
+code generation is a great accelerator to your time spent writing code.
 
 ## Simple data transfer objects.
 

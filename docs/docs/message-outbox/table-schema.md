@@ -3,7 +3,7 @@ permalink: /docs/message-outbox/table-schema/
 title: Message Outbox Table Schema
 ---
 
-Outbox setups come in all shapes and sized. Unless you know what you're
+Outbox setups come in all shapes and sizes. Unless you know what you're
 doing, you're advised to default to one outbox per aggregate root type.
 
 Below is a highly optimized database schema, perfect for an outbox table:

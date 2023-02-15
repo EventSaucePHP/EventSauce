@@ -29,7 +29,7 @@ since the technique is based on communication.
 
 EventSauce is a no-nonsense event sourcing library for PHP with a focus on developer
 experience and productivity. This library was developed with the idea that you should
-remain in control of . No application-wide rewrites and no big investments upfront.
+remain in control. No application-wide rewrites and no big investments upfront.
 
 ## You are in control
 
@@ -40,7 +40,7 @@ can use it in your application, but you can also copy it and take full control.
 ## Extensible by design
 
 The core is built around a set of (tiny) interfaces, which gives you the freedom to choose
-the tools that meet your requirements. Implement them however you deem fit. EventSauce
+the tools that meet your requirements. Implement them however you see fit. EventSauce
 was built favoring composition (not inheritance), this allows it to be composed in whatever
 way is suitable for your project.
 
