@@ -22,7 +22,7 @@ class AllowMessagesWithPayloadOfTypeTest extends TestCase
         $this->assertEquals($expectedOutcome, $result);
     }
 
-    public function dpMessagesWithPayloadOfType(): iterable
+    public static function dpMessagesWithPayloadOfType(): iterable
     {
         yield [new StubPublicEvent('yes'), true];
         yield [new StubPrivateEvent('yes'), true];

@@ -36,7 +36,7 @@ class CodeDumperTest extends TestCase
         $this->assertEquals($expected, $actual, "Expect {$fixtureFile} to match generated code.");
     }
 
-    public function definitionProvider()
+    public static function definitionProvider(): iterable
     {
         /* test case 1 */
         $simpleDefinitionGroup = DefinitionGroup::create('Simple\\Definition\\Group');

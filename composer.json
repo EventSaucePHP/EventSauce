@@ -21,7 +21,7 @@
     },
     "require-dev": {
         "phpstan/phpstan": "^1.8.6",
-        "phpunit/phpunit": "^9.5.23",
+        "phpunit/phpunit": "^9.5.23|^10.0",
         "nikic/php-parser": "^v4.10.4",
         "symfony/yaml": "^5.0 | ^6.0",
         "friendsofphp/php-cs-fixer": "^3.0",

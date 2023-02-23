@@ -132,7 +132,7 @@ class MessageTest extends TestCase
         self::assertEquals($headerValue, $returnedValue);
     }
 
-    public function dbHeaderValues(): iterable
+    public static function dbHeaderValues(): iterable
     {
         return [
             'int' => [1234],

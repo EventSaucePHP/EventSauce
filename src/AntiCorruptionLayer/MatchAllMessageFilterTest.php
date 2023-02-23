@@ -22,7 +22,7 @@ class MatchAllMessageFilterTest extends TestCase
         $this->assertEquals($expectedOutcome, $result);
     }
 
-    public function dpFilterCombinations(): iterable
+    public static function dpFilterCombinations(): iterable
     {
         yield [[new AllowAllMessages(), new AllowAllMessages()], true];
         yield [[new NeverAllowMessages(), new AllowAllMessages()], false];
