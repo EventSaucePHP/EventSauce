@@ -41,7 +41,7 @@ class YamlDefinitionLoaderTest extends TestCase
         $this->assertEquals($expected, $code);
     }
 
-    public function definitionProvider()
+    public static function definitionProvider(): iterable
     {
         yield [__DIR__ . '/Fixtures/exampleDefinition.yaml', __DIR__ . '/Fixtures/definedWithYamlFixture.php'];
         yield [__DIR__ . '/Fixtures/exampleDefinitionWithoutHelpers.yaml', __DIR__ . '/Fixtures/definedWithoutHelpersInYamlFixture.php', false];

@@ -22,7 +22,7 @@ class AllowAllMessagesTest extends TestCase
         $this->assertTrue($result);
     }
 
-    public function dpMessagesToCheck(): iterable
+    public static function dpMessagesToCheck(): iterable
     {
         yield [new StubPublicEvent('yes')];
         yield [new StubPrivateEvent('yes')];

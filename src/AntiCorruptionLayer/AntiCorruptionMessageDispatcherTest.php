@@ -42,7 +42,7 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
         $this->assertEquals($expected, $dispatchedEvents);
     }
 
-    public function dpNoFilterNoTransform(): iterable
+    public static function dpNoFilterNoTransform(): iterable
     {
         yield [[new StubPublicEvent('yes')], [new StubPublicEvent('yes')]];
         yield [[new StubPrivateEvent('yes')], [new StubPrivateEvent('yes')]];
@@ -86,7 +86,7 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
         $this->assertEquals($expected, $dispatchedEvents);
     }
 
-    public function dpFilterExcludedNoTransform(): iterable
+    public static function dpFilterExcludedNoTransform(): iterable
     {
         yield [[new StubPublicEvent('yes')], [new StubPublicEvent('yes')]];
         yield [[new StubPrivateEvent('yes')], [new StubPrivateEvent('yes')]];
@@ -111,7 +111,7 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
         $this->assertEquals($expected, $dispatchedEvents);
     }
 
-    public function dpFilterAllButPublicAndPrivate(): iterable
+    public static function dpFilterAllButPublicAndPrivate(): iterable
     {
         yield [[new StubPublicEvent('yes')], [new StubPublicEvent('yes')]];
         yield [[new StubPublicEvent('yes'), new StubExcludedEvent('no')], [new StubPublicEvent('yes')]];
@@ -138,7 +138,7 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
         $this->assertEquals($expected, $dispatchedEvents);
     }
 
-    public function dpTranslateFromPrivateToPublic(): iterable
+    public static function dpTranslateFromPrivateToPublic(): iterable
     {
         yield [[new StubPublicEvent('yes')], [new StubPublicEvent('yes')]];
         yield [[new StubPrivateEvent('yes')], [new StubPublicEvent('yes')]];

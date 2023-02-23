@@ -37,7 +37,7 @@ class MessageTranslatorPerPayloadTypeTest extends TestCase
         self::assertEquals($expected, $actual);
     }
 
-    public function dpTransformationExamples(): iterable
+    public static function dpTransformationExamples(): iterable
     {
         yield [new Message(new StubPublicEvent('yes')), new Message(new StubPublicEvent('yes'), ['x' => 'public'])];
         yield [new Message(new StubPrivateEvent('yes')), new Message(new StubPrivateEvent('yes'), ['x' => 'private'])];
