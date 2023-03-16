@@ -9,7 +9,7 @@ Much of the tools that EventSauce is built on can be used to do just that.
 
 When events are dispatched and stored in EventSauce, they are contained in
 a `Message` object. This object contains the event and any additional
-metadata. In order to simplifyy the dispatching of events in a non-eventsourced
+metadata. In order to simplify the dispatching of events in a non-eventsourced
 context, there is an `EventDispatcher`.
 
 The default implementation of the `EventDispatcher` interface is the
