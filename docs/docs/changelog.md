@@ -3,6 +3,12 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.3.0 - 2023-05-02
+
+### Added
+
+- Support for PHPUnit 10 by @Robertbaelde
+
 ## 3.2.2 - 2023-02-14
 
 ### Fixed
