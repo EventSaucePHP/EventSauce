@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Publish Sub-split
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: '0'
           persist-credentials: 'false'
@@ -31,7 +31,7 @@ jobs:
         with:
           path: './.splitsh'
           key: '${{ runner.os }}-splitsh'
-      - uses: frankdejonge/use-subsplit-publish@1.0.0-beta.2
+      - uses: frankdejonge/use-subsplit-publish@1.0.0-beta.7
         with:
           source-branch: 'main'
           config-path: './config.subsplit-publish.json'
