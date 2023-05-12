@@ -26,7 +26,7 @@ class DefaultPayloadSerializerTest extends TestCase
         $serializer = DefaultPayloadSerializer::resolve();
 
         self::assertInstanceOf(PayloadSerializer::class, $serializer);
-        self::assertInstanceOf(ConstructingPayloadSerializer::class, $serializer);
+        self::assertInstanceOf(PayloadSerializerSupportingObjectMapperAndSerializablePayload::class, $serializer);
     }
 
     /**
@@ -39,6 +39,18 @@ class DefaultPayloadSerializerTest extends TestCase
         $serializer = DefaultPayloadSerializer::resolve();
 
         self::assertInstanceOf(ObjectMapperPayloadSerializer::class, $serializer);
+    }
+
+    /**
+     * @test
+     */
+    public function configuring_a_payload_serializer(): void
+    {
+        putenv('EVENTSAUCE_DEFAULT_SERIALIZER=payload-serializer');
+
+        $serializer = DefaultPayloadSerializer::resolve();
+
+        self::assertInstanceOf(ConstructingPayloadSerializer::class, $serializer);
     }
 
     /**
