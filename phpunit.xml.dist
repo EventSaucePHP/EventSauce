@@ -3,6 +3,7 @@
   <coverage>
     <include>
       <directory>src/</directory>
+      <directory>tests/</directory>
     </include>
     <exclude>
       <directory suffix="Test.php">src/</directory>

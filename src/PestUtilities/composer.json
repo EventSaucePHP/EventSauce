@@ -1,0 +1,22 @@
+{
+  "name": "eventsauce/pest-utilities",
+  "type": "library",
+  "description": "Test utilities for EventSauce.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Frank de Jonge",
+      "email": "info@frenky.net"
+    }
+  ],
+  "require": {
+    "php": "^8.0",
+    "eventsauce/eventsauce": "^3.0",
+    "eventsauce/test-utilities": "^3.4"
+  },
+  "autoload": {
+    "files": [
+      "./functions.php"
+    ]
+  }
+}

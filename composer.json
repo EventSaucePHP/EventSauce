@@ -25,16 +25,30 @@
         "nikic/php-parser": "^v4.10.4",
         "symfony/yaml": "^5.0 | ^6.0",
         "friendsofphp/php-cs-fixer": "^3.0",
-        "ramsey/uuid": "^4.0"
+        "ramsey/uuid": "^4.0",
+        "pestphp/pest": "^1.23"
     },
     "autoload": {
         "psr-4": {
             "EventSauce\\EventSourcing\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "PeventSauce\\": "tests"
+        },
+        "files": [
+            "./src/PestUtilities/functions.php"
+        ]
+    },
     "extra": {
         "branch-alias": {
             "dev-version/2.0": "2.x-dev"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
         }
     }
 }

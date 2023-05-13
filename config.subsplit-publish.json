@@ -14,6 +14,11 @@
             "name": "testing",
             "directory": "src/TestUtilities",
             "target": "git@github.com:EventSaucePHP/TestUtilities.git"
+        },
+        {
+            "name": "pesting",
+            "directory": "src/PestUtilities",
+            "target": "git@github.com:EventSaucePHP/PestUtilities.git"
         }
     ]
 }

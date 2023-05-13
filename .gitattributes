@@ -14,6 +14,7 @@
 /src/TestUtilities/ export-ignore
 /src/CodeGeneration/ export-ignore
 /src/UuidMessageDecorator/ export-ignore
+/tests/ export-ignore
 /**/*Test.php export-ignore
 /**/*Stub.php export-ignore
 /**/Stub*.php export-ignore

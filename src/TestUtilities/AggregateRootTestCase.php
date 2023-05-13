@@ -32,6 +32,7 @@ use Throwable;
 
 use function assert;
 use function class_exists;
+use function count;
 use function get_class;
 use function method_exists;
 use function sprintf;
@@ -151,7 +152,7 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @return $this
      */
-    protected function given(object ...$events)
+    public function given(object ...$events)
     {
         $this->repository->persistEvents($this->aggregateRootId(), count($events), ...$events);
         $this->messageRepository->purgeLastCommit();
@@ -169,7 +170,7 @@ abstract class AggregateRootTestCase extends TestCase
      *
      * @return $this
      */
-    protected function when(...$arguments)
+    public function when(...$arguments)
     {
         try {
             if ( ! method_exists($this, 'handle')) {
@@ -187,7 +188,7 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @return $this
      */
-    protected function then(object ...$events)
+    public function then(object ...$events)
     {
         $this->expectedEvents = $events;
 
@@ -207,36 +208,45 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @return $this
      */
-    protected function thenNothingShouldHaveHappened()
+    public function thenNothingShouldHaveHappened()
+    {
+        return $this->nothingShouldHaveHappened();
+    }
+
+    /**
+     * @return $this
+     */
+    public function nothingShouldHaveHappened()
     {
         $this->expectedEvents = [];
 
         return $this;
     }
 
-    protected function expectEventOfType(string $class): ExpectedEvent
+    public function expectEventOfType(string $class): ExpectedEvent
     {
         return ExpectedEvent::ofType($class);
     }
 
-    protected function expectEventToMatch(callable $callable): ExpectedEvent
+    public function expectEventToMatch(callable $callable): ExpectedEvent
     {
         return ExpectedEvent::matches($callable);
     }
 
-    protected function assertLastCommitEqualsEvents(object ...$expectedEvents): void
+    private function assertLastCommitEqualsEvents(object ...$expectedEvents): void
     {
         $recordedEvents = $this->messageRepository->lastCommit();
-        self::assertCount(count($expectedEvents), $recordedEvents, 'expected event count doesnt match recorded event count');
 
-        foreach ($recordedEvents as $eventNumber => $recordedEvent) {
-            $expectedEvent = $expectedEvents[$eventNumber];
+        foreach ($expectedEvents as $eventNumber => $expectedEvent) {
+            $recordedEvent = $recordedEvents[$eventNumber];
             if ($expectedEvent instanceof ExpectedEvent) {
-                self::assertTrue($expectedEvent->assertEquals($recordedEvent), 'Event does not expected event.');
-                continue;
+                self::assertTrue($expectedEvent->assertEquals($recordedEvent), 'Event does not equal expected event.');
+            } else {
+                self::assertEquals($expectedEvent, $recordedEvent, 'Events are not equal.');
             }
-            self::assertEquals($expectedEvent, $recordedEvent, 'Events are not equal.');
         }
+
+        self::assertCount(count($expectedEvents), $recordedEvents, 'expected event count doesnt match recorded event count');
     }
 
     private function assertExpectedException(
@@ -285,7 +295,7 @@ abstract class AggregateRootTestCase extends TestCase
         return [];
     }
 
-    private function messageDecorator(): MessageDecorator
+    protected function messageDecorator(): MessageDecorator
     {
         return new MessageDecoratorChain(new DefaultHeadersDecorator());
     }
