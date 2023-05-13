@@ -15,11 +15,11 @@ final class DefaultPayloadSerializer
 
     private static function createSerializer(): PayloadSerializer
     {
-        if (getenv('EVENTSAUCE_DEFAULT_SERIALIZER') === 'object-mapper') {
-            return new ObjectMapperPayloadSerializer();
-        }
-
-        return new ConstructingPayloadSerializer();
+        return match (getenv('EVENTSAUCE_DEFAULT_SERIALIZER')) {
+            'object-mapper' => new ObjectMapperPayloadSerializer(),
+            'payload-serializer' => new ConstructingPayloadSerializer(),
+            default => new PayloadSerializerSupportingObjectMapperAndSerializablePayload(),
+        };
     }
 
     public static function resolve(): PayloadSerializer
