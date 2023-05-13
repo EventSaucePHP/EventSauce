@@ -238,7 +238,8 @@ abstract class AggregateRootTestCase extends TestCase
         $recordedEvents = $this->messageRepository->lastCommit();
 
         foreach ($expectedEvents as $eventNumber => $expectedEvent) {
-            $recordedEvent = $recordedEvents[$eventNumber];
+            $recordedEvent = $recordedEvents[$eventNumber] ?? null;
+
             if ($expectedEvent instanceof ExpectedEvent) {
                 self::assertTrue($expectedEvent->assertEquals($recordedEvent), 'Event does not equal expected event.');
             } else {
