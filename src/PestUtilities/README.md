@@ -1,17 +1,22 @@
-<?php
+## Code generation for EventSauce
 
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\ProductAddedToCart;
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\ProductId;
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\ShoppingCart;
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\ShoppingCartInitiated;
-use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\SorryCantCheckout;
-use PeventSauce\ShoppingCartTestCase;
+```bash
+composer require --dev eventsauce/pest-utilities
+```
+
+### Usage
+
+First, create a base test case, as [described in the regular PHPUnit setup](https://eventsauce.io/docs/testing/#1-create-a-base-test-case-for-your-aggregate).
+
+Next, use the base test case in your Pest tests:
+
+```php
 use function EventSauce\EventSourcing\PestTooling\expectToFail;
 use function EventSauce\EventSourcing\PestTooling\given;
 use function EventSauce\EventSourcing\PestTooling\nothingShouldHaveHappened;
 use function EventSauce\EventSourcing\PestTooling\when;
 
-uses(ShoppingCartTestCase::class);
+uses(YourBaseTestCase::class);
 
 it('you can use the object-oriented interface', function () {
     $this->given(
@@ -40,3 +45,4 @@ it('or mix it all', function () {
     expectToFail(SorryCantCheckout::becauseThereAreNoProductsInCart())
         ->nothingShouldHaveHappened();
 });
+```

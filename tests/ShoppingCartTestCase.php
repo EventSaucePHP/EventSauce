@@ -8,7 +8,7 @@ use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\Shoppin
 use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\ShoppingCartId;
 use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 
-class ShoppingCartTestCase extends AggregateRootTestCase
+abstract class ShoppingCartTestCase extends AggregateRootTestCase
 {
     protected function newAggregateRootId(): ShoppingCartId
     {

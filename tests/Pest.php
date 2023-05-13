@@ -24,9 +24,6 @@
 |
 */
 
-
-use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
-
 expect()->extend('toBeOne', function () {
     return $this->toBe(1);
 });
