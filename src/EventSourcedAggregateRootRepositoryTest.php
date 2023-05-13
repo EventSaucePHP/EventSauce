@@ -17,8 +17,8 @@ class EventSourcedAggregateRootRepositoryTest extends TestCase
     public function aggregate_versions_are_incremented_per_event(): void
     {
         $messageRepository = new InMemoryMessageRepository();
+        /** @var AggregateRootRepository<DummyAggregate> $repository */
         $repository = new EventSourcedAggregateRootRepository(DummyAggregate::class, $messageRepository);
-        /** @var DummyAggregate $aggregate */
         $aggregateRootId = DummyAggregateRootId::generate();
         $aggregate = $repository->retrieve($aggregateRootId);
         $aggregate->increment();

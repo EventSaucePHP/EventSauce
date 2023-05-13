@@ -15,11 +15,17 @@ implementation of that interface. To make it easy, a default implementation is s
 the form of a trait, preventing you from having to write some boilerplate code.
 
 ```php
+namespace YourCompany\YourBusinessProcess;
+
 use EventSauce\EventSourcing\AggregateRoot;
 use EventSauce\EventSourcing\AggregateRootBehaviour;
 
-class YourAggregateRoot implements AggregateRoot
+/**
+
+class AccountCreation implements AggregateRoot
 {
     use AggregateRootBehaviour;
 }
 ```
+
+Next up, implement your first [method](/docs/getting-started/implement-your-first-method/)!
