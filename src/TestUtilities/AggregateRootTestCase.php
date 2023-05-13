@@ -28,6 +28,7 @@ use EventSauce\EventSourcing\SynchronousMessageDispatcher;
 use Exception;
 use LogicException;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 use Throwable;
 
 use function assert;
@@ -238,7 +239,7 @@ abstract class AggregateRootTestCase extends TestCase
         $recordedEvents = $this->messageRepository->lastCommit();
 
         foreach ($expectedEvents as $eventNumber => $expectedEvent) {
-            $recordedEvent = $recordedEvents[$eventNumber] ?? null;
+            $recordedEvent = $recordedEvents[$eventNumber] ?? new stdClass();
 
             if ($expectedEvent instanceof ExpectedEvent) {
                 self::assertTrue($expectedEvent->assertEquals($recordedEvent), 'Event does not equal expected event.');

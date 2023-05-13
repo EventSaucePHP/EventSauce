@@ -5,6 +5,8 @@ parameters:
     excludePaths:
         - %rootDir%/../../../src/CodeGeneration/Fixtures/*
         - %rootDir%/../../../src/LibraryConsumptionTests/*
+        - %rootDir%/../../../src/PestUtilities/*
+        - %rootDir%/../../../tests/*
         - *Test.php
     ignoreErrors:
         - '#^Method EventSauce\\EventSourcing\\EventConsumption\\TypedEventConsumerStub\:\:.+\(\) is unused.#'
