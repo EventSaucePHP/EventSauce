@@ -3,6 +3,17 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.4.0 - 2023-06-14
+
+### Changed
+
+- The default serialization strategy now transparently switches between object mapper and interface
+  based serialization.
+
+### Added
+
+- A [new package] for [pest](https://pestphp.com) was added.
+
 ## 3.3.0 - 2023-05-02
 
 ### Added
