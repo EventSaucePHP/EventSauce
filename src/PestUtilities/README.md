@@ -45,4 +45,9 @@ it('or mix it all', function () {
     expectToFail(SorryCantCheckout::becauseThereAreNoProductsInCart())
         ->nothingShouldHaveHappened();
 });
+
+it('can be used in a compact manner')
+    ->given(new ShoppingCartInitiated())
+    ->when(fn (ShoppingCart $cart) => $cart->add(new ProductId('garlic sauce'), 250))
+    ->then(new ProductAddedToCart(new ProductId('garlic sauce'), 250));
 ```
