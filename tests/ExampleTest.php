@@ -17,7 +17,7 @@ it('you can use the object-oriented interface', function () {
     $this->given(
         new ShoppingCartInitiated(),
     )->when(function (ShoppingCart $cart): void {
-        $cart->addProduct(new ProductId('garlic sauce'), 250);
+        $cart->add(new ProductId('garlic sauce'), 250);
     })->then(
         new ProductAddedToCart(new ProductId('garlic sauce'), 250)
     );
@@ -40,3 +40,8 @@ it('or mix it all', function () {
     expectToFail(SorryCantCheckout::becauseThereAreNoProductsInCart())
         ->nothingShouldHaveHappened();
 });
+
+it('can be chained into `it`')
+    ->given(new ShoppingCartInitiated())
+    ->when(fn (ShoppingCart $cart) => $cart->add(new ProductId('garlic sauce'), 250))
+    ->then(new ProductAddedToCart(new ProductId('garlic sauce'), 250));

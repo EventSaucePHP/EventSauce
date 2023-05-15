@@ -21,7 +21,7 @@ final class ShoppingCart implements AggregateRoot
         return $shoppingCart;
     }
 
-    public function addProduct(ProductId $productId, int $currentPriceInCents): void
+    public function add(ProductId $productId, int $currentPriceInCents): void
     {
         $this->cartItems->add($productId, $currentPriceInCents);
     }

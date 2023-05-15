@@ -14,7 +14,7 @@ class CartItemsTest extends ShoppingCartTestCase
                 new ShoppingCartInitiated(),
             )
             ->when(function (ShoppingCart $cart): void {
-                $cart->addProduct(new ProductId('garlic sauce'), 250);
+                $cart->add(new ProductId('garlic sauce'), 250);
             })
             ->then(
                 new ProductAddedToCart(new ProductId('garlic sauce'), 250)
@@ -30,7 +30,7 @@ class CartItemsTest extends ShoppingCartTestCase
                 new ProductAddedToCart(new ProductId('garlic sauce'), 250),
             )
             ->when(function (ShoppingCart $cart): void {
-                $cart->addProduct(new ProductId('garlic sauce'), 250);
+                $cart->add(new ProductId('garlic sauce'), 250);
             })
             ->then(
                 new ProductAddedToCart(new ProductId('garlic sauce'), 250)
@@ -46,7 +46,7 @@ class CartItemsTest extends ShoppingCartTestCase
                 new ProductAddedToCart(new ProductId('garlic sauce'), 250),
             )
             ->when(function (ShoppingCart $cart): void {
-                $cart->addProduct(new ProductId('garlic sauce'), 300);
+                $cart->add(new ProductId('garlic sauce'), 300);
             })
             ->expectToFail(SorryCantAddProduct::becauseThePriceHasChanged())
             ->thenNothingShouldHaveHappened();
