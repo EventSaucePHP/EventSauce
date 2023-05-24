@@ -23,24 +23,24 @@
     <link rel="stylesheet" href="/static/prism.css"/>
     <!--<base href="//eventsauce.io/">-->
 </head>
-<body class="min-h-screen min-w-full pt-12 leading-normal bg-grey-lightest">
-<div class="h-16 fixed z-10 top-0 w-screen bg-white border-grey-light border-b">
+<body class="min-h-screen min-w-full pt-12 leading-normal bg-grey-lightest dark:bg-gray-900">
+<div class="h-16 fixed z-10 top-0 w-screen bg-white dark:bg-gray-900 border-grey-light dark:border-gray-700 border-b dark:border-b">
     <div class="max-w-lg lg:max-w-2xl mx-auto px-4 py-2">
         <div class="flex items-center flex-no-shrink pt-1">
             <a href="/" class="flex items-center">
                 <img class="fill-current h-10 w-10 mr-2" width="30" height="30" src="/static/logo.svg"/>
-                <span class="pr-2 font-normal font-heading leading-none text-3xl text-grey-darkest hidden sm:block">
-                    Event<span class="text-red">Sauce</span><sup class="text-xs relative text-grey-dark" style="top: -20px;">{{ site.data.project.version }}</sup>
+                <span class="pr-2 font-normal font-heading leading-none text-3xl dark:text-3xl text-grey-darkest dark:text-gray-100 hidden sm:block">
+                    Event<span class="text-red dark:text-red">Sauce</span><sup class="text-xs dark:text-xs relative text-grey-dark dark:text-gray-300" style="top: -20px;">{{ site.data.project.version }}</sup>
                 </span>
             </a>
             <div class="flex-grow"></div>
             <div class="flex-no-grow h-10 px-4 relative">
-                <input id="global-search" class="focus:outline-0 h-10 py-2 pl-8 pr-2 rounded border border-grey-lightest focus:border-grey-light bg-grey-lightest focus:bg-white focus:placeholder-white max-w-xs w-full appearance-none" type="text" placeholder="Search the docs" />
+                <input id="global-search" class="focus:outline-0 h-10 py-2 pl-8 pr-2 rounded border border-grey-lightest dark:border-gray-900 focus:border-grey-light dark:border-gray-700 bg-grey-lightest dark:bg-gray-900 focus:bg-white dark:bg-gray-900 focus:placeholder-white max-w-xs w-full appearance-none" type="text" placeholder="Search the docs" />
                 <span class="pointer-events-none absolute inset-y-0 left-0 pl-6 flex items-center">
-                    <svg class="fill-current pointer-events-none text-grey w-4 h-4 border-transparent border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
+                    <svg class="fill-current pointer-events-none text-grey dark:text-grey w-4 h-4 border-transparent dark:border-transparent border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
                 </span>
             </div>
-            <a href="#" id="menu-toggle" class="block lg:hidden h-8 w-8 border p-1 border-transparent text-grey hover:text-grey menu-closed">
+            <a href="#" id="menu-toggle" class="block lg:hidden h-8 w-8 border p-1 border-transparent dark:border-transparent text-grey dark:text-grey hover:text-grey dark:text-grey menu-closed">
                 <svg class="menu-closed:shown fill-current h-full w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                     <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
                 </svg>
@@ -56,12 +56,12 @@
     <nav id="main-navigation" class="lg:w-auto p-4 w-fullfixed lg:relative flex-no-shrink min-h-screen hidden lg:block">
         <menu class="p-0 mt-0">
             {% for section in site.data.menu %}
-            <h2 class="cli-prefixed text-sm leading-loose tracking-wide text-grey uppercase">{{
+            <h2 class="cli-prefixed text-sm dark:text-sm leading-loose tracking-wide text-grey dark:text-grey uppercase">{{
                 section[0] }}</h2>
             <ul class="list-reset mb-8">
                 {% for link in section[1] %}
                 <li>
-                    <a class="leading-loose text-md {% if page.url == link[1] %}text-red{% else %}text-grey-darker{% endif %}"
+                    <a class="leading-loose text-md dark:text-md {% if page.url == link[1] %}text-red dark:text-red{% else %}text-grey-darker dark:text-gray-200{% endif %}"
                        href="{{ link[1] }}">{{ link[0] }}</a>
                 </li>
                 {% endfor %}
@@ -73,7 +73,7 @@
         <article class="max-w-lg mx-auto px-4 py-4">
             {% unless page.hide_title %}
             <h1 class="mb-1">{% if page.alternate_title %}{{ page.alternate_title }}{% else %}{{ page.title }}{% endif %}</h1>
-            <p class="text-xs text-grey-dark rounded rounded-t-none mb-4 text-shadow inline-block">
+            <p class="text-xs dark:text-xs text-grey-dark dark:text-gray-300 rounded rounded-t-none mb-4 text-shadow dark:text-shadow inline-block">
                 {% if page.published_at != page.updated_at %}Last updated at {{ page.updated_at | date_to_long_string }} | {% endif %}Published at {{ page.published_at | date_to_long_string }}
             </p>
             {% endunless %}

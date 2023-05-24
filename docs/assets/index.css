@@ -442,3 +442,304 @@ article blockquote :last-child {
 .highlight pre {
     overflow: auto;
 }
+
+@media (prefers-color-scheme: dark) {
+    .text-shadow {
+        /*text-shadow: 0 1px 1px rgba(34, 41, 47, 0.4);*/
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+    }
+
+    .bg-white-faded {
+        background: linear-gradient(-180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    body {
+        @apply text-gray-300;
+    }
+
+    a {
+        @apply text-red;
+    }
+
+    article h1 {
+        @apply text-red;
+    }
+
+    article h2 {
+        @apply text-red
+    }
+
+    article h3 {
+        @apply text-red
+    }
+
+    article table {
+        @apply bg-gray-800 text-gray-300 border-gray-700 shadow-md;
+    }
+
+    article table td {
+        @apply border-gray-700;
+    }
+
+    article blockquote {
+        @apply border-gray-700 shadow bg-gray-800;
+    }
+
+    .bg-squared::before {
+        background: linear-gradient(0deg, rgba(24, 24, 27, 1) 0%, rgba(63, 63, 70, 0) 100%), url('/static/squares.svg') repeat center center;
+    }
+
+    @screen md {
+        .md\:right-half-bg-gray-800:before {
+            @apply bg-gray-800 border-gray-700;
+        }
+        .md\:left-half-bg-gray-800:before {
+            @apply bg-gray-800 border-gray-700;
+        }
+    }
+
+    .highlight .cm {
+        color: #999988;
+    }
+    .highlight .cp {
+        color: #8795a1;
+    }
+    .highlight .c1 {
+        color: #999988;
+    }
+    .highlight .cs {
+        color: #666666;
+    }
+    .highlight .c, .highlight .cd {
+        color: #999988;
+    }
+    .highlight .err {
+        color: #a61717;
+        background-color: #e3d2d2;
+    }
+    .highlight .gd {
+        color: #10b981;
+        background-color: #ffdddd;
+    }
+    .highlight .ge {
+        color: #10b981;
+    }
+    .highlight .gr {
+        color: #aa0000;
+    }
+    .highlight .gh {
+        color: #666666;
+    }
+    .highlight .gi {
+        color: #10b981;
+        background-color: #ddffdd;
+    }
+    .highlight .go {
+        color: #888888;
+    }
+    .highlight .gp {
+        color: #555555;
+    }
+    .highlight .gu {
+        color: #aaaaaa;
+    }
+    .highlight .gt {
+        color: #aa0000;
+    }
+    .highlight .kc {
+        color: #10b981;
+    }
+    .highlight .kd {
+        color: #10b981;
+    }
+    .highlight .kn {
+        color: #10b981;
+    }
+    .highlight .kp {
+        color: #10b981;
+    }
+    .highlight .kr {
+        color: #10b981;
+    }
+    .highlight .kt {
+        color: #445588;
+    }
+    .highlight .k, .highlight .kv {
+        color: #10b981;
+    }
+    .highlight .mf {
+        color: #009999;
+    }
+    .highlight .mh {
+        color: #009999;
+    }
+    .highlight .il {
+        color: #009999;
+    }
+    .highlight .mi {
+        color: #009999;
+    }
+    .highlight .mo {
+        color: #009999;
+    }
+    .highlight .m, .highlight .mb, .highlight .mx {
+        color: #009999;
+    }
+    .highlight .sb {
+        color: #10b981;
+    }
+    .highlight .sc {
+        color: #10b981;
+    }
+    .highlight .sd {
+        color: #10b981;
+    }
+    .highlight .s2 {
+        color: #10b981;
+    }
+    .highlight .se {
+        color: #10b981;
+    }
+    .highlight .sh {
+        color: #10b981;
+    }
+    .highlight .si {
+        color: #10b981;
+    }
+    .highlight .sx {
+        color: #10b981;
+    }
+    .highlight .sr {
+        color: #009926;
+    }
+    .highlight .s1 {
+        color: #10b981;
+    }
+    .highlight .ss {
+        color: #990073;
+    }
+    .highlight .s {
+        color: #d4d4d8;
+    }
+    .highlight .n {
+        color: #f43f5e;
+    }
+    .highlight .na {
+        color: #10b981;
+    }
+    .highlight .bp {
+        color: #666666;
+    }
+    .highlight .nb {
+        color: #0086B3;
+    }
+    .highlight .nc {
+        color: #d4d4d8;
+    }
+    .highlight .no {
+        color: #d4d4d8;
+    }
+    .highlight .nd {
+        color: #3c5d5d;
+    }
+    .highlight .ni {
+        color: #800080;
+    }
+    .highlight .ne {
+        color: #990000;
+    }
+    .highlight .nf {
+        color: #f43f5e;
+    }
+    .highlight .nl {
+        color: #990000;
+    }
+    .highlight .nn {
+        color: #555555;
+    }
+    .highlight .nt {
+        color: #000080;
+    }
+    .highlight .vc {
+        color: #d4d4d8;
+    }
+    .highlight .vg {
+        color: #d4d4d8;
+    }
+    .highlight .vi {
+        color: #d4d4d8;
+    }
+    .highlight .nv {
+        color: #d4d4d8;
+    }
+    .highlight .ow {
+        color: #10b981;
+    }
+    .highlight .o {
+        color: #f8bb39;
+    }
+    .highlight .w {
+        color: #bbbbbb;
+    }
+    .leader .highlight {
+        @apply bg-gray-800;
+    }
+
+    .algolia-autocomplete .ds-dropdown-menu [class^=ds-dataset-],
+    .algolia-autocomplete .ds-dropdown-menu:before
+    {
+        @apply bg-gray-900 border-gray-700 text-gray-500;
+    }
+
+    .algolia-autocomplete .algolia-docsearch-suggestion {
+        @apply bg-gray-900 text-gray-500;
+    }
+
+    /* Main category (eg. Getting Started) */
+    .algolia-autocomplete .algolia-docsearch-suggestion--category-header {
+        @apply bg-gray-900 text-gray-400;
+    }
+
+    /* Category (eg. Downloads) */
+    .algolia-autocomplete .algolia-docsearch-suggestion--subcategory-column {
+        @apply bg-gray-900 text-gray-300;
+    }
+
+    /* Title (eg. Bootstrap CDN) */
+    .algolia-autocomplete .algolia-docsearch-suggestion--title {
+        @apply bg-transparent text-gray-300;
+    }
+
+    /* Description description (eg. Bootstrap currently works...) */
+    .algolia-autocomplete .algolia-docsearch-suggestion--text {
+        @apply bg-gray-900 text-gray-500;
+    }
+
+    .algolia-docsearch-suggestion--subcategory-column-text {
+        @apply bg-gray-900 text-gray-500;
+    }
+
+    /* Highlighted text */
+    .algolia-autocomplete .algolia-docsearch-suggestion--category-header .algolia-docsearch-suggestion--category-header-lvl0 .algolia-docsearch-suggestion--highlight,
+    .algolia-autocomplete .algolia-docsearch-suggestion--category-header .algolia-docsearch-suggestion--category-header-lvl1 .algolia-docsearch-suggestion--highlight,
+    .algolia-autocomplete .algolia-docsearch-suggestion--text .algolia-docsearch-suggestion--highlight,
+    .algolia-autocomplete .algolia-docsearch-suggestion--highlight {
+        @apply bg-transparent text-blue-500;
+    }
+
+    .algolia-autocomplete .algolia-docsearch-suggestion--category-header .algolia-docsearch-suggestion--category-header-lvl0 .algolia-docsearch-suggestion--highlight,
+    .algolia-autocomplete .algolia-docsearch-suggestion--category-header .algolia-docsearch-suggestion--category-header-lvl1 .algolia-docsearch-suggestion--highlight,
+    .algolia-autocomplete .algolia-docsearch-suggestion--text .algolia-docsearch-suggestion--highlight {
+        @apply border-blue-500 shadow-blue-500 outline-blue-500;
+        box-shadow: inset 0 -2px 0 0 var(--tw-shadow-color);
+    }
+
+    .algolia-autocomplete .algolia-docsearch-suggestion--content:before,
+    .algolia-autocomplete .algolia-docsearch-suggestion--subcategory-column:before {
+        @apply bg-gray-700;
+    }
+
+    .algolia-autocomplete .ds-dropdown-menu .ds-suggestion.ds-cursor .algolia-docsearch-suggestion.suggestion-layout-simple, .algolia-autocomplete .ds-dropdown-menu .ds-suggestion.ds-cursor .algolia-docsearch-suggestion:not(.suggestion-layout-simple) .algolia-docsearch-suggestion--content {
+        @apply bg-gray-700;
+    }
+}

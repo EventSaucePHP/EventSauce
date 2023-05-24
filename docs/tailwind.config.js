@@ -1,3 +1,5 @@
+const defaultColors = require('tailwindcss/colors')
+
 let colors = {
     'transparent': 'transparent',
 
@@ -15,6 +17,8 @@ let colors = {
     'grey-lighter': '#f1f5f8',
     'grey-lightest': '#f8fafc',
     'white': '#ffffff',
+
+    'gray': defaultColors.zinc,
 };
 
 module.exports = {

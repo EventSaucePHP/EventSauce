@@ -13,21 +13,21 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway|Varela+Round" rel="stylesheet" />
     {% endif %}
     {% unless site.data.dev.dev_mode %}
-    <base href="//eventsauce.io/" />
+<!--    <base href="//eventsauce.io/" />-->
     {% endunless %}
     <link rel="stylesheet" href="{{ site.data.manifest['docs.css'] }}"/>
 </head>
-<body class="bg-grey-lighter min-h-screen bg-squared leading-tight leader">
+<body class="bg-grey-lighter dark:bg-gray-900 min-h-screen bg-squared dark:bg-squared leading-tight leader">
 {% include size-helper.html %}
 <header id="leader" class="text-center md:py-10">
-    <div id="teaser" class="pt-10 max-w-sm mx-auto text-center">
+    <div id="teaser" class="pt-10 max-w-sm mx-auto text-center ">
         <a href="/">
             <img class="mb-4 inline" id="logo" src="/static/logo.svg" height="150px" width="150px" alt="EventSauce">
         </a>
-        <h1 class="text-4xl">
-            Event<span class="text-red">Sauce</span>.
+        <h1 class="text-4xl dark:text-4xl">
+            Event<span class="text-red dark:text-red">Sauce</span>.
         </h1>
-        <p class="text-xl max-w-sm mx-auto mt-4 px-8 leading-tight">
+        <p class="text-xl dark:text-xl max-w-sm mx-auto mt-4 px-8 leading-tight">
             A pragmatic event sourcing library for PHP with a focus on developer experience.
         </p>
         {% include leader-links.html %}
@@ -41,25 +41,25 @@
         </p>
     </div>
 </header>
-<section class="my-10 bg-black pt-10 md:pt-16 md:pb-14 pb-10 w-full text-center md:text-left">
+<section class="my-10 bg-black dark:bg-gray-800 pt-10 md:pt-16 md:pb-14 pb-10 w-full text-center md:text-left ">
     <div class="max-w-6xl mx-auto md:flex relative overflow-hidden md:overflow-visible md:items-center">
         <section class="md:w-1/2 px-4 max-w-md flex flex-col md:flex-row items-center md:items-start">
-            <span class="h-10 w-10 mr-3 rounded-full bg-red inline-block mb-6 flex-1-0 flex-shrink-0 flex align-middle justify-center">
+            <span class="h-10 w-10 mr-3 rounded-full bg-red dark:bg-red inline-block mb-6 flex-1-0 flex-shrink-0 flex align-middle justify-center">
                 <img src="/static/icons/thumbs-up.svg" class="inline-block w-5" />
             </span>
             <div class="mb-2 leading-normal">
-                <h2 class="text-3xl text-white leading-tight mb-2">
+                <h2 class="text-3xl dark:text-3xl text-white dark:text-gray-3123 leading-tight mb-2">
                     Why use EventSauce?
                 </h2>
-                <p class="text-grey-dark text-lg mx-auto max-w-sm">
+                <p class="text-grey-dark dark:text-gray-300 text-lg dark:text-lg mx-auto max-w-sm">
                     Model your domain using event sourcing; an event-driven approach
                     that provides clarity when dealing with complex business requirements.
                     The library is designed to give you full&nbsp;control.
                 </p>
-                <p class="text-grey-dark text-lg mt-4 mx-auto max-w-sm">
+                <p class="text-grey-dark dark:text-gray-300 text-lg dark:text-lg mt-4 mx-auto max-w-sm">
                     Out of the box support for:
                 </p>
-                <ul class="text-grey-dark text-lg mt-4 pl-5 mx-auto max-w-sm list-disc">
+                <ul class="text-grey-dark dark:text-gray-300 text-lg dark:text-lg mt-4 pl-5 mx-auto max-w-sm list-disc">
                     <li>
                         <strong>Anti-corruption layers (ACL)</strong><br/>
 <!--                        Control how event consumers are informed about your internal events. The built-in-->
@@ -83,33 +83,33 @@
                 </ul>
             </div>
         </section>
-        <section class="md:w-1/2 md:pl-4 -md:bg-black -mx-8 md:-mx-0 mt-6 md:mt-0 md:text-right md:leading-squash">
-            <img class="w-full inline-block mt-6 md:-mt-8 md:rounded-l-lg flex-no-grow" height="576px" width="1186px" style="max-width: 593px; height: auto;" src="/static/event-cards.jpg" alt="Events" />
+        <section class="md:w-1/2 md:pl-4 -md:bg-black dark:bg-gray-800 -mx-8 md:-mx-0 mt-6 md:mt-0 md:text-right md:leading-squash">
+            <img class="w-full inline-block mt-6 md:-mt-8 md:rounded-l-lg flex-no-grow" height="576px" width="1186px" style="max-width: 593px; height: auto;" src="/static/event-cards.png" alt="Events" />
         </section>
     </div>
 </section>
-<section class="md:right-half-bg-black relative md:text-left md:my-12">
+<section class="md:right-half-bg-black md:right-half-bg-gray-800 relative md:text-left md:my-12">
     <div class="max-w-6xl mx-auto mb-10 md:flex relative">
         <section class="md:w-1/2 lg:w-2/5 px-4 max-w-md flex flex-col md:flex-row items-center md:items-start">
-            <span class="h-10 w-10 mr-3 rounded-full bg-red inline-block mb-6 flex-1-0 flex-shrink-0 flex align-middle justify-center">
+            <span class="h-10 w-10 mr-3 rounded-full bg-red dark:bg-red inline-block mb-6 flex-1-0 flex-shrink-0 flex align-middle justify-center">
                 <img src="/static/icons/heart.svg" class="inline-block w-5" />
             </span>
             <div class="mb-8">
-                <h2 class="text-3xl text-black mb-2">
+                <h2 class="text-3xl dark:text-3xl text-black dark:text-gray-50 mb-2">
                     Expressive Testing
                 </h2>
-                <p class="text-grey-darker text-lg mb-2 mx-auto max-w-sm">
+                <p class="text-grey-darker dark:text-gray-400 text-lg dark:text-lg mb-2 mx-auto max-w-sm">
                     Scenario based testing provides an expressive way to
                     ensure business requirements are met.
                 </p>
-                <p class="text-grey-darker text-lg mx-auto max-w-sm">
+                <p class="text-grey-darker dark:text-gray-400 text-lg dark:text-lg mx-auto max-w-sm">
                     An event-driven modeling technique allows for a BDD-style
                     test setup. This technique allows you to use events to
                     setup your aggregate and assert desired outcome.
                 </p>
             </div>
         </section>
-        <section class="md:w-1/2 lg:w-3/5 border-b border-t md:border-l border-grey-light md:rounded-l-lg bg-white">
+        <section class="md:w-1/2 lg:w-3/5 border-b dark:border-b border-t dark:border-t md:border-l dark:border-l border-grey-light dark:border-gray-700 md:rounded-l-lg bg-white dark:bg-gray-900">
 {% highlight php %}
 class MyEventSourcedTest extends AggregateRootTestCase
 {
@@ -130,24 +130,24 @@ class MyEventSourcedTest extends AggregateRootTestCase
         </section>
     </div>
 </section>
-<section class="md:left-half-bg-black relative md:mt-12 md:mb-10">
+<section class="md:left-half-bg-black md:left-half-bg-gray-800 relative md:mt-12 md:mb-10">
     <div class="max-w-4xl mx-auto md:flex relative md:flex-row-reverse">
-        <section class="md:w-1/2 lg:w-2/5 mx-auto px-4 max-w-md flex flex-col md:flex-row items-center md:items-start text-center md:text-left">
-            <span class="h-10 w-10 mr-3 rounded-full bg-red inline-block mb-6 flex-1-0 flex-shrink-0 flex align-middle justify-center">
+        <section class="md:w-1/2 lg:w-2/5 mx-auto px-4 max-w-md flex flex-col md:flex-row items-center md:items-start text-center md:text-left ">
+            <span class="h-10 w-10 mr-3 rounded-full bg-red dark:bg-red inline-block mb-6 flex-1-0 flex-shrink-0 flex align-middle justify-center">
                 <img src="/static/icons/news-paper.svg" class="inline-block w-5" />
             </span>
             <div class="mb-2">
-                <h2 class="text-3xl text-black mb-2">
+                <h2 class="text-3xl dark:text-3xl text-black dark:text-gray-50 mb-2">
                     Code Generation
                 </h2>
-                <p class="text-grey-darker text-lg mx-auto max-w-sm">
+                <p class="text-grey-darker dark:text-gray-400 text-lg dark:text-lg mx-auto max-w-sm">
                     Generated event and command definitions can greatly speed up your workflow.
                     The built-in code generation tools provide an easy way to
                     create them quickly.
                 </p>
             </div>
         </section>
-        <section class="md:w-1/2  lg:w-3/5 bg-white mt-6 md:mt-0 border-t border-b md:border-r border-grey-light md:rounded-r-lg">
+        <section class="md:w-1/2  lg:w-3/5 bg-white dark:bg-gray-800 mt-6 md:mt-0 border-t dark:border-t border-b dark:border-b md:border-r dark:border-r border-grey-light dark:border-gray-700 md:rounded-r-lg">
 {% highlight yaml %}
 namespace: modelingWith\EventSauce
 
@@ -171,28 +171,28 @@ events:
     </div>
 </section>
 <section class="mt-10 mx-auto pt-0 w-full text-center md:text-left leading-normal md:flex flex-row content-center">
-        <div id="newsletter" class="max-w-xs mx-auto text-lg text-center flex-1 pb-10">
-            <span class="h-12 w-12 rounded-full bg-red inline-block mb-3 flex align-middle justify-center mx-auto">
+        <div id="newsletter" class="max-w-xs mx-auto text-lg dark:text-lg text-center flex-1 pb-10">
+            <span class="h-12 w-12 rounded-full bg-red dark:bg-red inline-block mb-3 flex align-middle justify-center mx-auto">
                 <img src="/static/icons/announcement.svg" class="inline-block w-6" />
             </span>
-            <h2 class="text-3xl text-black mb-2">
+            <h2 class="text-3xl dark:text-3xl text-black dark:text-gray-50 mb-2">
                 Newsletter
             </h2>
             <p class="block">Want to stay up to date? Be notified when important changes happen.</p>
-            <a href="http://eepurl.com/dpCYT5" class="block w-full text-center rounded leading-normal p-2 mt-6 bg-red text-white">Subscribe</a>
+            <a href="http://eepurl.com/dpCYT5" class="block w-full text-center rounded leading-normal p-2 mt-6 bg-red dark:bg-red text-white dark:text-gray-3123">Subscribe</a>
         </div>
-        <div id="slack" class="max-w-xs mx-auto text-lg text-center flex-1 pb-14">
-            <span class="h-12 w-12 rounded-full bg-red inline-block mb-3 flex align-middle justify-center mx-auto">
+        <div id="slack" class="max-w-xs mx-auto text-lg dark:text-lg text-center flex-1 pb-14">
+            <span class="h-12 w-12 rounded-full bg-red dark:bg-red inline-block mb-3 flex align-middle justify-center mx-auto">
                 <img src="/static/icons/chat-bubble-dots.svg" class="inline-block w-6" />
             </span>
-            <h2 class="text-3xl text-black mb-2">
+            <h2 class="text-3xl dark:text-3xl text-black dark:text-gray-50 mb-2">
                 Slack
             </h2>
             <p class="block">
                 Want to discuss event sourcing with other developers?
                 Find like-minded devs to discuss topics or ask questions.
             </p>
-            <a href="https://join.slack.com/t/eventsauce/shared_invite/zt-dojxdg0k-eBY_kdeRS3rbQh6rxA0bzQ" class="block w-full text-center rounded leading-normal p-2 mt-6 bg-red text-white">Join the Slack Channel</a>
+            <a href="https://join.slack.com/t/eventsauce/shared_invite/zt-dojxdg0k-eBY_kdeRS3rbQh6rxA0bzQ" class="block w-full text-center rounded leading-normal p-2 mt-6 bg-red dark:bg-red text-white dark:text-gray-3123">Join the Slack Channel</a>
         </div>
 </section>
 {% include footer.html %}
