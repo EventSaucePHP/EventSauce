@@ -7,6 +7,8 @@ use EventSauce\EventSourcing\EventStub;
 use EventSauce\EventSourcing\InMemoryMessageRepository;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\OffsetCursor;
+use EventSauce\EventSourcing\Subscriptions\OffsetCheckpoint;
+use EventSauce\EventSourcing\Subscriptions\OffsetStreamSubscriptionProvider;
 use PHPUnit\Framework\TestCase;
 
 class ProjectionHandlerTest extends TestCase
@@ -24,15 +26,15 @@ class ProjectionHandlerTest extends TestCase
         $projectionStatusRepository = new InMemoryProjectionStatusRepository();
 
         $projectionHandler = new ProjectionHandler(
-            repository: $repository,
+            subscription: new OffsetStreamSubscriptionProvider($repository),
             consumer: $consumer,
             projectionStatusRepository: $projectionStatusRepository,
         );
 
-        $projectionHandler->handle($this->getProjectionId(), OffsetCursor::fromStart());
+        $projectionHandler->handle($this->getProjectionId(), OffsetCheckpoint::fromStart());
 
         $this->assertCount(1, $consumer->collectedMessages());
-        $this->assertEquals(OffsetCursor::fromStart()->plusOffset(1), $projectionStatusRepository->getCursor($this->getProjectionId()));
+        $this->assertEquals(OffsetCheckpoint::forOffset(1), $projectionStatusRepository->getCursor($this->getProjectionId()));
     }
 
     /** @test */
@@ -46,16 +48,16 @@ class ProjectionHandlerTest extends TestCase
         $consumer = new CollectingMessageConsumer();
 
         $projectionStatusRepository = new InMemoryProjectionStatusRepository();
-        $projectionStatusRepository->getCursorAndLock($this->getProjectionId());
+        $projectionStatusRepository->getCheckpointAndLock($this->getProjectionId());
 
         $projectionHandler = new ProjectionHandler(
-            repository: $repository,
+            subscription: new OffsetStreamSubscriptionProvider($repository),
             consumer: $consumer,
             projectionStatusRepository: $projectionStatusRepository,
         );
 
         $this->expectExceptionObject(CantLockProjection::becauseItIsAlreadyLocked('test'));
-        $projectionHandler->handle($this->getProjectionId(), OffsetCursor::fromStart());
+        $projectionHandler->handle($this->getProjectionId(), OffsetCheckpoint::fromStart());
     }
 
     private function getProjectionId(): ProjectionId

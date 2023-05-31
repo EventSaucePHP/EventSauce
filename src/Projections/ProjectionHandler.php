@@ -6,29 +6,29 @@ namespace EventSauce\EventSourcing\Projections;
 
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageConsumer;
-use EventSauce\EventSourcing\MessageRepository;
-use EventSauce\EventSourcing\PaginationCursor;
+use EventSauce\EventSourcing\Subscriptions\Checkpoint;
+use EventSauce\EventSourcing\Subscriptions\SubscriptionProvider;
 
 class ProjectionHandler
 {
     public function __construct(
-        private MessageRepository $repository,
+        private SubscriptionProvider $subscription,
         private MessageConsumer $consumer,
         private ProjectionStatusRepository $projectionStatusRepository,
     ) {
     }
 
-    public function handle(ProjectionId $projectionId, PaginationCursor $initialCursor): void
+    public function handle(ProjectionId $projectionId, Checkpoint $initialCheckpoint): void
     {
-        $cursor = $this->projectionStatusRepository->getCursorAndLock($projectionId) ?? $initialCursor;
+        $cursor = $this->projectionStatusRepository->getCheckpointAndLock($projectionId) ?? $initialCheckpoint;
 
-        $messages = $this->repository->paginate($cursor);
+        $messages = $this->subscription->getEventsSinceCheckpoint($cursor);
 
         /** @var Message $message */
         foreach ($messages as $message) {
             $this->consumer->handle($message);
         }
 
-        $this->projectionStatusRepository->persistCursorAndRelease($projectionId, $messages->getReturn());
+        $this->projectionStatusRepository->persistCheckpointAndRelease($projectionId, $messages->getReturn());
     }
 }

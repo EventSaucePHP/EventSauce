@@ -14,11 +14,12 @@ class AggregateRootIdVersionSubscriptionProvider implements SubscriptionProvider
 {
 
     public function __construct(
-        private MessageRepository $messageRepository)
+        private MessageRepository $messageRepository,
+    )
     {
     }
 
-    public function getEventsSinceCheckpoint(Checkpoint $checkpoint, int $maxEvents = 100): Generator
+    public function getEventsSinceCheckpoint(Checkpoint $checkpoint): Generator
     {
         if(!$checkpoint instanceof AggregateCheckpoint){
             throw new \InvalidArgumentException('Checkpoint must be an instance of AggregateCheckpoint');

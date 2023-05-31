@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Projections;
 
-use EventSauce\EventSourcing\PaginationCursor;
+
+use EventSauce\EventSourcing\Subscriptions\Checkpoint;
 
 class InMemoryProjectionStatusRepository implements ProjectionStatusRepository
 {
     private array $state = [];
     private array $locks = [];
 
-    public function getCursor(ProjectionId $projectionId): ?PaginationCursor
+    public function getCursor(ProjectionId $projectionId): ?Checkpoint
     {
         return $this->state[$projectionId->toString()] ?? null;
     }
@@ -19,7 +20,7 @@ class InMemoryProjectionStatusRepository implements ProjectionStatusRepository
     /**
      * @throws CantLockProjection
      */
-    public function getCursorAndLock(ProjectionId $projectionId): ?PaginationCursor
+    public function getCheckpointAndLock(ProjectionId $projectionId): ?Checkpoint
     {
         if (array_key_exists($projectionId->toString(), $this->locks)) {
             throw CantLockProjection::becauseItIsAlreadyLocked($projectionId->toString());
@@ -30,9 +31,9 @@ class InMemoryProjectionStatusRepository implements ProjectionStatusRepository
         return $this->state[$projectionId->toString()] ?? null;
     }
 
-    public function persistCursorAndRelease(ProjectionId $projectionId, PaginationCursor $cursor): void
+    public function persistCheckpointAndRelease(ProjectionId $projectionId, Checkpoint $checkpoint): void
     {
         unset($this->locks[$projectionId->toString()]);
-        $this->state[$projectionId->toString()] = $cursor;
+        $this->state[$projectionId->toString()] = $checkpoint;
     }
 }

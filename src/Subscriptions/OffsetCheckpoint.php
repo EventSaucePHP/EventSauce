@@ -14,6 +14,11 @@ class OffsetCheckpoint implements Checkpoint
         return new static($offset);
     }
 
+    public static function fromStart(): static
+    {
+        return new static(0);
+    }
+
     public function getOffset(): int
     {
         return $this->offset;

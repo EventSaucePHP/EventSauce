@@ -14,16 +14,17 @@ class PartitionedSubscriptionProvider implements SubscriptionProvider
     public function __construct(
         private MessageRepository $messageRepository,
         private Partitioner $partitioner,
+        private int $pageLimit = 100,
     ) {
     }
 
-    public function getEventsSinceCheckpoint(Checkpoint $checkpoint, int $maxEvents = 100): \Generator
+    public function getEventsSinceCheckpoint(Checkpoint $checkpoint): \Generator
     {
         if ( ! $checkpoint instanceof PartitionedCheckpoint) {
             throw new \InvalidArgumentException('Checkpoint must be an instance of PartitionedCheckpoint');
         }
 
-        $cursor = OffsetCursor::fromOffset($checkpoint->getOffset(), $maxEvents);
+        $cursor = OffsetCursor::fromOffset($checkpoint->getOffset(), $this->pageLimit);
 
         $messages = $this->messageRepository->paginate($cursor);
 
