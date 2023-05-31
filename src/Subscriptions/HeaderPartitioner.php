@@ -13,6 +13,10 @@ class HeaderPartitioner implements Partitioner
 
     public function getPartitionKey(Message $message): ?string
     {
-        return $message->header($this->headerName);
+        $key = $message->header($this->headerName);
+        if(!is_string($key)) {
+            return null;
+        }
+        return $key;
     }
 }

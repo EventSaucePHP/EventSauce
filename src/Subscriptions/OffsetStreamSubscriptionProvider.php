@@ -26,6 +26,12 @@ class OffsetStreamSubscriptionProvider implements SubscriptionProvider
 
         yield from $messages;
 
-        return OffsetCheckpoint::forOffset($messages->getReturn()->offset());
+        $returnedCursor = $messages->getReturn();
+
+        if ( ! $returnedCursor instanceof OffsetCursor) {
+            throw new \Exception('Invalid returned cursor type');
+        }
+
+        return OffsetCheckpoint::forOffset($returnedCursor->offset());
     }
 }

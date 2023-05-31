@@ -4,7 +4,7 @@ namespace EventSauce\EventSourcing\Subscriptions;
 
 use EventSauce\EventSourcing\AggregateRootId;
 
-class AggregateCheckpoint implements Checkpoint
+final class AggregateCheckpoint implements Checkpoint
 {
     private function __construct(
         private AggregateRootId $aggregateRootId,
@@ -12,7 +12,7 @@ class AggregateCheckpoint implements Checkpoint
     ) {
     }
 
-    public static function forAggregateRootId(AggregateRootId $aggregateRootId, $version = 0): static
+    public static function forAggregateRootId(AggregateRootId $aggregateRootId, int $version = 0): static
     {
         return new static($aggregateRootId, $version);
     }

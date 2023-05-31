@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Subscriptions;
 
-use EventSauce\EventSourcing\AntiCorruptionLayer\MessageFilter;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageRepository;
 use EventSauce\EventSourcing\OffsetCursor;
@@ -37,6 +36,12 @@ class PartitionedSubscriptionProvider implements SubscriptionProvider
             yield $message;
         }
 
-        return $checkpoint->withOffset($messages->getReturn()->offset());
+        $returnedCursor = $messages->getReturn();
+
+        if ( ! $returnedCursor instanceof OffsetCursor) {
+            throw new \Exception('Invalid returned cursor type');
+        };
+
+        return $checkpoint->withOffset($returnedCursor->offset());
     }
 }

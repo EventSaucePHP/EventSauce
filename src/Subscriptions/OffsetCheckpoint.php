@@ -2,7 +2,7 @@
 
 namespace EventSauce\EventSourcing\Subscriptions;
 
-class OffsetCheckpoint implements Checkpoint
+final class OffsetCheckpoint implements Checkpoint
 {
     private function __construct(
         private int $offset,

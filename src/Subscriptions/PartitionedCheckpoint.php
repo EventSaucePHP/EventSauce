@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EventSauce\EventSourcing\Subscriptions;
 
-class PartitionedCheckpoint implements Checkpoint
+final class PartitionedCheckpoint implements Checkpoint
 {
     private function __construct(
         private string $partitionKey,

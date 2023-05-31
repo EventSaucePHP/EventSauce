@@ -1,27 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace EventSauce\EventSourcing\Subscriptions;
 
-use EventSauce\EventSourcing\DummyAggregateRootId;
-use EventSauce\EventSourcing\EventStub;
-use EventSauce\EventSourcing\Header;
-use EventSauce\EventSourcing\InMemoryMessageRepository;
-use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageRepository;
-use Generator;
 
 class AggregateRootIdVersionSubscriptionProvider implements SubscriptionProvider
 {
-
     public function __construct(
         private MessageRepository $messageRepository,
-    )
-    {
+    ) {
     }
 
-    public function getEventsSinceCheckpoint(Checkpoint $checkpoint): Generator
+    public function getEventsSinceCheckpoint(Checkpoint $checkpoint): \Generator
     {
-        if(!$checkpoint instanceof AggregateCheckpoint){
+        if ( ! $checkpoint instanceof AggregateCheckpoint) {
             throw new \InvalidArgumentException('Checkpoint must be an instance of AggregateCheckpoint');
         }
 
@@ -29,6 +23,11 @@ class AggregateRootIdVersionSubscriptionProvider implements SubscriptionProvider
 
         yield from $messages;
 
-        return AggregateCheckpoint::forAggregateRootId($checkpoint->getAggregateRootId(), $messages->getReturn() ?? $checkpoint->getVersion());
+        $version = $messages->getReturn() ?? $checkpoint->getVersion();
+        if ( ! is_int($version)) {
+            throw new \InvalidArgumentException('Version must be an integer');
+        }
+
+        return AggregateCheckpoint::forAggregateRootId($checkpoint->getAggregateRootId(), $version);
     }
 }

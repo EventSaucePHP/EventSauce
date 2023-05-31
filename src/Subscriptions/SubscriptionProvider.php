@@ -8,7 +8,7 @@ use Generator;
 interface SubscriptionProvider
 {
     /**
-     * @return Generator<int, Message, void, Checkpoint>
+     * @return Generator<mixed, Message, void, Checkpoint>
      */
     public function getEventsSinceCheckpoint(Checkpoint $checkpoint): Generator;
 }
