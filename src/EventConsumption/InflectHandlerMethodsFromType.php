@@ -57,12 +57,18 @@ class InflectHandlerMethodsFromType implements HandleMethodInflector
      */
     protected function acceptedTypes(ReflectionType $type): array
     {
+        $acceptedTypes = [];
+
         if ($type instanceof ReflectionNamedType) {
-            return [$type];
+            $acceptedTypes[] = $type;
         } elseif ($type instanceof ReflectionUnionType) {
-            return $type->getTypes();
+            foreach ($type->getTypes() as $type) {
+                if ($type instanceof ReflectionNamedType) {
+                    $acceptedTypes[] = $type;
+                }
+            }
         }
 
-        return [];
+        return $acceptedTypes;
     }
 }
