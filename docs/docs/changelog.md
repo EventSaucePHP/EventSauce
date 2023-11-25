@@ -7,7 +7,7 @@ title: Changelog
 
 ### Fixed
 
-- Prevent intersection types from messing up 
+- Prevent intersection types from messing up event handler lookup 
 
 ## 3.4.0 - 2023-06-14
 
