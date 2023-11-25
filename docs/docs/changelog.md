@@ -3,6 +3,12 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.4.1 - 2023-11-25
+
+### Fixed
+
+- Prevent intersection types from messing up 
+
 ## 3.4.0 - 2023-06-14
 
 ### Changed
