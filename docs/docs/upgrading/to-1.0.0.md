@@ -37,7 +37,7 @@ composer require --dev eventsauce/test-utilities
 
 ## Clock is moved to a dedicated package
 
-The clock package is included in EventSacue by default. The
+The clock package is included in EventSauce by default. The
 classes were moved into their own namespace `EventSauce\Clock`. This
 means the `Clock`, `TestClock`, and `SystemClock` have moved.
 
