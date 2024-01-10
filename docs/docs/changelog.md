@@ -3,6 +3,12 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.5.0 - 2024-01-10
+
+### Added
+
+- Support for symfony/yaml version 7 by @ramondelafuente
+
 ## 3.4.1 - 2023-11-25
 
 ### Fixed
