@@ -6,16 +6,17 @@ namespace EventSauce\EventSourcing;
 
 use EventSauce\Clock\Clock;
 use EventSauce\Clock\SystemClock;
+use Psr\Clock\ClockInterface;
 
 class DefaultHeadersDecorator implements MessageDecorator
 {
     private ClassNameInflector $inflector;
-    private Clock $clock;
+    private Clock|ClockInterface $clock;
     private string $timeOfRecordingFormat;
 
     public function __construct(
         ClassNameInflector $inflector = null,
-        Clock $clock = null,
+        Clock|ClockInterface $clock = null,
         string $timeOfRecordingFormat = Message::TIME_OF_RECORDING_FORMAT,
     ) {
         $this->inflector = $inflector ?: new DotSeparatedSnakeCaseInflector();
