@@ -3,6 +3,12 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.6.0 - 2024-01-10
+
+### Added
+
+- Added support for psr/clock
+
 ## 3.5.0 - 2024-01-10
 
 ### Added
