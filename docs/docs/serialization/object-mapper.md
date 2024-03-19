@@ -4,7 +4,7 @@ title: Serialization using ObjectMapper
 ---
 
 The object hydrator based serialization provides an easy way to serialize events to
-plain/scalar data structures. Unlike [plain serialization](/docs/serialization/object-hydrator/)
+plain/scalar data structures. Unlike [plain serialization](/docs/serialization/plain-serialization/)
 this serialization implementation doesn't require you to write your own mapping code.
 Instead, it uses a combination of conventions and [PHP 8 Attributes](https://www.php.net/manual/en/language.attributes.overview.php)
 to map objects to raw data and back.
