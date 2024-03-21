@@ -13,7 +13,7 @@ use Generator;
  */
 trait AggregateRootBehaviourWithRequiredHistory
 {
-    /** @phstan-use AggregateRootBehaviour<AggregateRootIdType> */
+    /** @phpstan-use AggregateRootBehaviour<AggregateRootIdType> */
     use AggregateRootBehaviour {
         AggregateRootBehaviour::reconstituteFromEvents as private defaultAggregateRootReconstitute;
     }
