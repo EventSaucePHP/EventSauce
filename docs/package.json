@@ -3,11 +3,15 @@
     "scripts": {
         "prod": "NODE_ENV=production npx webpack",
         "dev": "NODE_ENV=development npx webpack",
-        "watch": "NODE_ENV=development npx webpack --watch"
+        "watch": "NODE_ENV=development npx webpack --watch",
+        "watch:prod": "NODE_ENV=production npx webpack --watch",
+        "jekyll:serve": "bundle exec jekyll serve",
+        "start": "concurrently --kill-others \"npm run watch:prod\" \"npm run jekyll:serve\""
     },
     "devDependencies": {
         "autoprefixer": "^10.4.14",
         "clean-webpack-plugin": "^4.0.0",
+        "concurrently": "^8.0.1",
         "css-loader": "^6.7.3",
         "cssnano": "^6.0.1",
         "mini-css-extract-plugin": "^2.7.5",
