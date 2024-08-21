@@ -51,7 +51,7 @@ event from the repository it than used the class again to construct the get the 
 
 For example:
 
-`Domain\BankAccount\DomainEvents\TransactionRecorded::class` becomes `Domain.bank_account.domain_events.transaction_recorded` in the database.
+`Domain\BankAccount\DomainEvents\TransactionRecorded::class` becomes `domain.bank_account.domain_events.transaction_recorded` in the database.
 
 
 This couples the event's implementation details to the event storage, making it hard to refactor the Name or namespace 
