@@ -1,6 +1,6 @@
 ---
 permalink: /docs/message-storage/uuid-encoding/
-title: Message Repository Table Schema
+title: Uuid Enconding
 ---
 
 [![Packagist Version](https://img.shields.io/packagist/v/eventsauce/uuid-encoding.svg?style=flat-square)](https://packagist.org/packages/eventsauce/uuid-encoding)
