@@ -1,6 +1,5 @@
 ---
 permalink: /docs/event-sourcing/configure-persistence/
-redirect_from: /docs/getting-started/configure-persistence/
 title: Configure Persistence
 ---
 
