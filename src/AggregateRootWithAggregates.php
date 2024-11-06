@@ -7,10 +7,14 @@ namespace EventSauce\EventSourcing;
 use SplObjectStorage;
 
 /**
+ * @template AggregateRootIdType of AggregateRootId
  * @template T of EventSourcedAggregate
  */
 trait AggregateRootWithAggregates
 {
+    /**
+     * @use AggregateRootBehaviour<AggregateRootIdType>
+     */
     use AggregateRootBehaviour, AggregateAppliesKnownEvents {
         AggregateAppliesKnownEvents::apply as applyOnAggregateRoot;
     }
