@@ -30,9 +30,9 @@ class EventSourcedAggregateRootRepository implements AggregateRootRepository
     public function __construct(
         string $aggregateRootClassName,
         MessageRepository $messageRepository,
-        MessageDispatcher $dispatcher = null,
-        MessageDecorator $decorator = null,
-        ClassNameInflector $classNameInflector = null
+        ?MessageDispatcher $dispatcher = null,
+        ?MessageDecorator $decorator = null,
+        ?ClassNameInflector $classNameInflector = null
     ) {
         $this->aggregateRootClassName = $aggregateRootClassName;
         $this->messages = $messageRepository;

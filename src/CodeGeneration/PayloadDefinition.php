@@ -56,7 +56,7 @@ final class PayloadDefinition
         return $this->fieldsFrom;
     }
 
-    public function field(string $name, string $type, string $example = null, ?bool $nullable = null): static
+    public function field(string $name, string $type, ?string $example = null, ?bool $nullable = null): static
     {
         $example = $example ?: $this->group->exampleForField($name);
         $this->fields[] = compact('name', 'type', 'example', 'nullable');

@@ -252,8 +252,8 @@ abstract class AggregateRootTestCase extends TestCase
     }
 
     private function assertExpectedException(
-        Exception $expectedException = null,
-        Exception $caughtException = null
+        ?Exception $expectedException = null,
+        ?Exception $caughtException = null
     ): void {
         if ($caughtException === null && $expectedException === null) {
             return;

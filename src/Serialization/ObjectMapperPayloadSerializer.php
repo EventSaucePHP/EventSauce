@@ -12,7 +12,7 @@ class ObjectMapperPayloadSerializer implements PayloadSerializer
     private ObjectMapper $objectMapper;
 
     public function __construct(
-        ObjectMapper $objectMapper = null
+        ?ObjectMapper $objectMapper = null
     ) {
         $this->objectMapper = $objectMapper ?: new ObjectMapperUsingReflection();
     }

@@ -16,8 +16,8 @@ final class ConstructingMessageSerializer implements MessageSerializer
     private PayloadSerializer $payloadSerializer;
 
     public function __construct(
-        ClassNameInflector $classNameInflector = null,
-        PayloadSerializer $payloadSerializer = null
+        ?ClassNameInflector $classNameInflector = null,
+        ?PayloadSerializer $payloadSerializer = null
     ) {
         $this->classNameInflector = $classNameInflector ?: new DotSeparatedSnakeCaseInflector();
         $this->payloadSerializer = $payloadSerializer ?: DefaultPayloadSerializer::resolve();

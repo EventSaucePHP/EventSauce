@@ -15,8 +15,8 @@ class DefaultHeadersDecorator implements MessageDecorator
     private string $timeOfRecordingFormat;
 
     public function __construct(
-        ClassNameInflector $inflector = null,
-        Clock|ClockInterface $clock = null,
+        ?ClassNameInflector $inflector = null,
+        null|Clock|ClockInterface $clock = null,
         string $timeOfRecordingFormat = Message::TIME_OF_RECORDING_FORMAT,
     ) {
         $this->inflector = $inflector ?: new DotSeparatedSnakeCaseInflector();

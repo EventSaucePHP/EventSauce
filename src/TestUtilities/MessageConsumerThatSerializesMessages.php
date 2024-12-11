@@ -17,7 +17,7 @@ class MessageConsumerThatSerializesMessages implements MessageConsumer
      */
     private $serializer;
 
-    public function __construct(MessageSerializer $serializer = null)
+    public function __construct(?MessageSerializer $serializer = null)
     {
         $this->serializer = $serializer ?: new ConstructingMessageSerializer();
     }

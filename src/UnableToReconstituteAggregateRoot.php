@@ -9,7 +9,7 @@ use Throwable;
 
 final class UnableToReconstituteAggregateRoot extends RuntimeException implements EventSauceException
 {
-    public static function becauseOf(string $reason, Throwable $previous = null): UnableToReconstituteAggregateRoot
+    public static function becauseOf(string $reason, ?Throwable $previous = null): UnableToReconstituteAggregateRoot
     {
         return new UnableToReconstituteAggregateRoot(
             'Unable to reconstruct aggregate root. ' . $reason, 0, $previous

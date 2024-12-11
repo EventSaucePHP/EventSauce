@@ -15,9 +15,9 @@ class AntiCorruptionMessageDispatcher implements MessageDispatcher
 
     public function __construct(
         private MessageDispatcher $dispatcher,
-        MessageTranslator $translator = null,
-        MessageFilter $filterBefore = null,
-        MessageFilter $filterAfter = null,
+        ?MessageTranslator $translator = null,
+        ?MessageFilter $filterBefore = null,
+        ?MessageFilter $filterAfter = null,
     ) {
         $this->translator = $translator ?? new PassthroughMessageTranslator();
         $this->filterBefore = $filterBefore ?? new AllowAllMessages();

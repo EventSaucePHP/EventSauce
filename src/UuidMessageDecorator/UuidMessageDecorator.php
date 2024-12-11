@@ -12,7 +12,7 @@ class UuidMessageDecorator implements MessageDecorator
 {
     private UuidGenerator $generator;
 
-    public function __construct(UuidGenerator $generator = null)
+    public function __construct(?UuidGenerator $generator = null)
     {
         $this->generator = $generator ?? new UuidV4Generator();
     }

@@ -39,7 +39,7 @@ final class EventStub implements SerializablePayload
         return new static($payload['value']);
     }
 
-    public static function create(string $value = null): static
+    public static function create(?string $value = null): static
     {
         return static::fromPayload(compact('value'));
     }

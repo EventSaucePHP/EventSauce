@@ -15,9 +15,9 @@ class AntiCorruptionMessageConsumer implements MessageConsumer
 
     public function __construct(
         private MessageConsumer $consumer,
-        MessageTranslator $translator = null,
-        MessageFilter $filterBefore = null,
-        MessageFilter $filterAfter = null,
+        ?MessageTranslator $translator = null,
+        ?MessageFilter $filterBefore = null,
+        ?MessageFilter $filterAfter = null,
     ) {
         $this->translator = $translator ?? new PassthroughMessageTranslator();
         $this->filterBefore = $filterBefore ?? new AllowAllMessages();

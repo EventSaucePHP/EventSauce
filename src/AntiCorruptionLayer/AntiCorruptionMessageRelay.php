@@ -16,8 +16,8 @@ class AntiCorruptionMessageRelay implements MessageConsumer
     public function __construct(
         private MessageDispatcher $dispatcher,
         private MessageTranslator $translator,
-        MessageFilter $filterBefore = null,
-        MessageFilter $filterAfter = null,
+        ?MessageFilter $filterBefore = null,
+        ?MessageFilter $filterAfter = null,
     ) {
         $this->filterBefore = $filterBefore ?? new AllowAllMessages();
         $this->filterAfter = $filterAfter ?? new AllowAllMessages();

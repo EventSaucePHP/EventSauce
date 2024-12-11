@@ -164,8 +164,8 @@ abstract class MessageConsumerTestCase extends TestCase
     }
 
     private function assertExpectedException(
-        Exception $expectedException = null,
-        Exception $caughtException = null
+        ?Exception $expectedException = null,
+        ?Exception $caughtException = null
     ): void {
         if ($caughtException !== null && ($expectedException === null || get_class($expectedException) !== get_class(
             $caughtException

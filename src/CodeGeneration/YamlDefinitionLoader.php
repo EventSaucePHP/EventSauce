@@ -23,7 +23,7 @@ class YamlDefinitionLoader implements DefinitionLoader
         return in_array(pathinfo($filename, PATHINFO_EXTENSION), ['yaml', 'yml']);
     }
 
-    public function load(string $filename, DefinitionGroup $definitionGroup = null): DefinitionGroup
+    public function load(string $filename, ?DefinitionGroup $definitionGroup = null): DefinitionGroup
     {
         /** @var string|bool $fileContents */
         $fileContents = file_get_contents($filename);
