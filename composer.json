@@ -27,7 +27,7 @@
         "symfony/yaml": "^5.0 | ^6.0 | ^7.0",
         "friendsofphp/php-cs-fixer": "^3.0",
         "ramsey/uuid": "^4.0",
-        "pestphp/pest": "^1.23"
+        "pestphp/pest": "^1.23|^2.0|^3.0"
     },
     "autoload": {
         "psr-4": {
