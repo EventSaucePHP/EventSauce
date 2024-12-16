@@ -3,6 +3,12 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.6.0 - 2025-12-16
+
+### Fixed
+
+- PHP 8.4 deprecations
+
 ## 3.6.0 - 2024-01-10
 
 ### Added
