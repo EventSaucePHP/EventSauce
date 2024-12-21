@@ -3,7 +3,7 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
-## 3.6.1 - 2025-12-16
+## 3.6.1 - 2024-12-16
 
 ### Fixed
 
