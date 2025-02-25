@@ -9,6 +9,8 @@ use EventSauce\EventSourcing\Header;
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageConsumer;
 use Exception;
+use PHPUnit\Framework\Attributes\After;
+use PHPUnit\Framework\Attributes\Before;
 use PHPUnit\Framework\TestCase;
 
 abstract class MessageConsumerTestCase extends TestCase
@@ -29,6 +31,7 @@ abstract class MessageConsumerTestCase extends TestCase
     /**
      * @before
      */
+    #[Before]
     public function setupMessageConsumer(): void
     {
         $this->messageConsumer = $this->messageConsumer();
@@ -38,6 +41,7 @@ abstract class MessageConsumerTestCase extends TestCase
     /**
      * @before
      */
+    #[Before]
     public function unsetMessageConsumer(): void
     {
         unset($this->messageConsumer);
@@ -126,6 +130,7 @@ abstract class MessageConsumerTestCase extends TestCase
      *
      * @throws Exception
      */
+    #[After]
     protected function assertScenario(): void
     {
         // @codeCoverageIgnoreStart
@@ -148,6 +153,7 @@ abstract class MessageConsumerTestCase extends TestCase
      *
      * @throws Exception
      */
+    #[After]
     protected function resetAggregateRootId(): void
     {
         $this->aggregateRootId = null;

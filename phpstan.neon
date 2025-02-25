@@ -10,5 +10,7 @@ parameters:
         - *Test.php
     ignoreErrors:
         - '#^Method EventSauce\\EventSourcing\\EventConsumption\\TypedEventConsumerStub\:\:.+\(\) is unused.#'
+        - '#^Attribute class PHPUnit\\Framework\\Attributes\\Before does not exist.#'
+        - '#^Attribute class PHPUnit\\Framework\\Attributes\\After does not exist.#'
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
