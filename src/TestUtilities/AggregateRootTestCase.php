@@ -27,6 +27,8 @@ use EventSauce\EventSourcing\Serialization\PayloadSerializer;
 use EventSauce\EventSourcing\SynchronousMessageDispatcher;
 use Exception;
 use LogicException;
+use PHPUnit\Framework\Attributes\After;
+use PHPUnit\Framework\Attributes\Before;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Throwable;
@@ -86,6 +88,7 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @before
      */
+    #[Before]
     protected function setUpEventSauce(): void
     {
         $className = $this->aggregateRootClassName();
@@ -119,6 +122,7 @@ abstract class AggregateRootTestCase extends TestCase
     /**
      * @after
      */
+    #[After]
     protected function assertScenario(): void
     {
         // @codeCoverageIgnoreStart
