@@ -9,8 +9,12 @@ parameters:
         - %rootDir%/../../../tests/*
         - *Test.php
     ignoreErrors:
+        - identifier: missingType.iterableValue
+        - identifier: missingType.generics
         - '#^Method EventSauce\\EventSourcing\\EventConsumption\\TypedEventConsumerStub\:\:.+\(\) is unused.#'
-        - '#^Attribute class PHPUnit\\Framework\\Attributes\\Before does not exist.#'
-        - '#^Attribute class PHPUnit\\Framework\\Attributes\\After does not exist.#'
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
+        -
+            message: '#^Attribute class PHPUnit\\Framework\\Attributes\\Before does not exist.#'
+            reportUnmatched: false
+        -
+            message: '#^Attribute class PHPUnit\\Framework\\Attributes\\After does not exist.#'
+            reportUnmatched: false
