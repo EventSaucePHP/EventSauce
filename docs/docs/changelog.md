@@ -3,6 +3,12 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.6.2 - 2025-03-16
+
+### Fixed
+
+- Allow PHPUnit 12
+
 ## 3.6.1 - 2024-12-16
 
 ### Fixed

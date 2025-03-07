@@ -56,9 +56,3 @@ jobs:
       - name: Run PHPStan
         if: ${{ matrix.experimental == false }}
         run: vendor/bin/phpstan analyze -c phpstan.neon
-
-#      - name: Code coverage
-#        if: ${{ github.ref == 'refs/heads/master' }}
-#        run: |
-#          wget https://scrutinizer-ci.com/ocular.phar
-#          php ocular.phar code-coverage:upload --format=php-clover coverage.clover
