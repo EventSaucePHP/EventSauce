@@ -7,6 +7,9 @@ namespace EventSauce\EventSourcing;
 use DateTimeImmutable;
 use RuntimeException;
 
+/**
+ * @template TId of AggregateRootId
+ */
 final class Message
 {
     public const TIME_OF_RECORDING_FORMAT = 'Y-m-d H:i:s.uO';
@@ -52,6 +55,9 @@ final class Message
         return (int) $version;
     }
 
+    /**
+     * @return TId|null
+     */
     public function aggregateRootId(): ?AggregateRootId
     {
         return $this->headers[Header::AGGREGATE_ROOT_ID] ?? null;
