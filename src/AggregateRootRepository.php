@@ -28,6 +28,7 @@ interface AggregateRootRepository
     /**
      * @throws UnableToPersistMessages
      * @throws UnableToDispatchMessages
+     * @param iterable<object> $events
      */
-    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events): void;
+    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, iterable $events): void;
 }

@@ -35,6 +35,6 @@ class AntiCorruptionMessageRelay implements MessageConsumer
             return;
         }
 
-        $this->dispatcher->dispatch($message);
+        $this->dispatcher->dispatch([$message]);
     }
 }

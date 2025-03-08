@@ -159,7 +159,7 @@ abstract class AggregateRootTestCase extends TestCase
      */
     public function given(object ...$events)
     {
-        $this->repository->persistEvents($this->aggregateRootId(), count($events), ...$events);
+        $this->repository->persistEvents($this->aggregateRootId(), count($events), $events);
         $this->messageRepository->purgeLastCommit();
 
         return $this;

@@ -81,7 +81,7 @@ abstract class AntiCorruptionLayerTestCase extends TestCase
         $dispatcher = new SynchronousMessageDispatcher($aclConsumer);
         $aclDispatcher = ($this->dispatcher)($dispatcher);
 
-        $aclDispatcher->dispatch(...$this->messagesToDispatch);
+        $aclDispatcher->dispatch($this->messagesToDispatch);
         $messagesDispatched = $consumer->collectedMessages();
         $this->assertCount(count($messages), $messagesDispatched);
 

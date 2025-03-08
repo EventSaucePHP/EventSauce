@@ -10,8 +10,9 @@ interface MessageRepository
 {
     /**
      * @throws UnableToPersistMessages
+     * @param iterable<Message> $messages
      */
-    public function persist(Message ...$messages): void;
+    public function persist(iterable $messages): void;
 
     /**
      * @return Generator<Message>

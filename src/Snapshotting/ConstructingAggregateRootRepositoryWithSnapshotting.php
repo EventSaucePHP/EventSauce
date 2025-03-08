@@ -73,8 +73,8 @@ final class ConstructingAggregateRootRepositoryWithSnapshotting implements Aggre
         $this->regularRepository->persist($aggregateRoot);
     }
 
-    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events): void
+    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, iterable $events): void
     {
-        $this->regularRepository->persistEvents($aggregateRootId, $aggregateRootVersion, ...$events);
+        $this->regularRepository->persistEvents($aggregateRootId, $aggregateRootVersion, $events);
     }
 }

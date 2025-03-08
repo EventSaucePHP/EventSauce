@@ -77,12 +77,17 @@ class EventSourcedAggregateRootRepository implements AggregateRootRepository
         $this->persistEvents(
             $aggregateRoot->aggregateRootId(),
             $aggregateRoot->aggregateRootVersion(),
-            ...$aggregateRoot->releaseEvents()
+            $aggregateRoot->releaseEvents()
         );
     }
 
-    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, object ...$events): void
+    /**
+     * @param iterable<object> $events
+     */
+    public function persistEvents(AggregateRootId $aggregateRootId, int $aggregateRootVersion, iterable $events): void
     {
+        $events = [...$events];
+
         if (count($events) === 0) {
             return;
         }
@@ -102,7 +107,7 @@ class EventSourcedAggregateRootRepository implements AggregateRootRepository
             ));
         }, $events);
 
-        $this->messages->persist(...$messages);
-        $this->dispatcher->dispatch(...$messages);
+        $this->messages->persist($messages);
+        $this->dispatcher->dispatch($messages);
     }
 }

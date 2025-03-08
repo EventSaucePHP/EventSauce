@@ -24,7 +24,7 @@ class EventStager
 
     public function stage(object ...$events): AggregateRootTestCase
     {
-        $this->repository->persistEvents($this->id, count($events), ...$events);
+        $this->repository->persistEvents($this->id, count($events), $events);
         $this->messageRepository->purgeLastCommit();
 
         return $this->testCase;

@@ -6,7 +6,13 @@ namespace EventSauce\EventSourcing;
 
 interface EventDispatcher
 {
-    public function dispatch(object ...$events): void;
+    /**
+     * @param iterable<object>|object $events
+     */
+    public function dispatch(iterable|object $events): void;
 
-    public function dispatchWithHeaders(array $headers, object ...$events): void;
+    /**
+     * @param iterable<object>|object $events
+     */
+    public function dispatchWithHeaders(array $headers, iterable|object $events): void;
 }

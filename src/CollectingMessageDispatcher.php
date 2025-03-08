@@ -14,8 +14,10 @@ class CollectingMessageDispatcher implements MessageDispatcher
      */
     private array $collectedMessages = [];
 
-    public function dispatch(Message ...$messages): void
+    public function dispatch(iterable|Message $messages): void
     {
+        $messages = is_iterable($messages) ? $messages : [$messages];
+
         array_push($this->collectedMessages, ...$messages);
     }
 

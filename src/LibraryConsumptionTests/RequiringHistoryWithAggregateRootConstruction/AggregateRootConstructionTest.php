@@ -37,7 +37,7 @@ class AggregateRootConstructionTest extends TestCase
             new InMemoryMessageRepository()
         );
         $id = DummyAggregateRootId::fromString('nope');
-        $repository->persistEvents($id, 1, new DummyInternalEvent());
+        $repository->persistEvents($id, 1, [new DummyInternalEvent()]);
         $aggregateRoot = $repository->retrieve($id);
         $this->assertInstanceOf(AggregateThatRequiredHistoryForReconstitutionStub::class, $aggregateRoot);
     }

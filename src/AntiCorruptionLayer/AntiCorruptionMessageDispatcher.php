@@ -6,6 +6,7 @@ namespace EventSauce\EventSourcing\AntiCorruptionLayer;
 
 use EventSauce\EventSourcing\Message;
 use EventSauce\EventSourcing\MessageDispatcher;
+use function is_iterable;
 
 class AntiCorruptionMessageDispatcher implements MessageDispatcher
 {
@@ -24,9 +25,11 @@ class AntiCorruptionMessageDispatcher implements MessageDispatcher
         $this->filterAfter = $filterAfter ?? new AllowAllMessages();
     }
 
-    public function dispatch(Message ...$messages): void
+    public function dispatch(iterable|Message $messages): void
     {
         $forwarded = [];
+        /** @var iterable<Message> $messages */
+        $messages = is_iterable($messages) ? $messages : [$messages];
 
         foreach ($messages as $message) {
             if ( ! $this->filterBefore->allows($message)) {
@@ -42,6 +45,6 @@ class AntiCorruptionMessageDispatcher implements MessageDispatcher
             $forwarded[] = $message;
         }
 
-        $this->dispatcher->dispatch(...$forwarded);
+        $this->dispatcher->dispatch($forwarded);
     }
 }
