@@ -8,6 +8,7 @@ interface MessageDispatcher
 {
     /**
      * @throws UnableToDispatchMessages
+     * @param iterable<Message>|Message $messages
      */
-    public function dispatch(Message ...$messages): void;
+    public function dispatch(iterable|Message $messages): void;
 }

@@ -15,19 +15,20 @@ class MessageDispatchingEventDispatcher implements EventDispatcher
         $this->decorator = $decorator ?: new DefaultHeadersDecorator();
     }
 
-    public function dispatch(object ...$events): void
+    public function dispatch(iterable|object $events): void
     {
-        $this->dispatchWithHeaders([], ...$events);
+        $this->dispatchWithHeaders([], $events);
     }
 
-    public function dispatchWithHeaders(array $headers, object ...$events): void
+    public function dispatchWithHeaders(array $headers, iterable|object $events): void
     {
+        $events = is_iterable($events) ? $events : [$events];
         $messages = [];
 
         foreach ($events as $event) {
             $messages[] = $this->decorator->decorate(new Message($event, $headers));
         }
 
-        $this->dispatcher->dispatch(...$messages);
+        $this->dispatcher->dispatch($messages);
     }
 }

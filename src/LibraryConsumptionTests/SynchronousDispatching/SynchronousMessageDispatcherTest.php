@@ -20,7 +20,7 @@ class SynchronousMessageDispatcherTest extends TestCase
         $stubConsumer = new SynchronousMessageConsumerStub();
         $syncDispatcher = new SynchronousMessageDispatcher($stubConsumer, $stubConsumer);
         $message = new Message(new EventStub('value'));
-        $syncDispatcher->dispatch($message, $message);
+        $syncDispatcher->dispatch([$message, $message]);
         $this->assertEquals([$message, $message, $message, $message], $stubConsumer->handled);
     }
 

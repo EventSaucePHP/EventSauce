@@ -33,7 +33,7 @@ final class InMemoryMessageRepository implements MessageRepository
         $this->lastCommit = [];
     }
 
-    public function persist(Message ...$messages): void
+    public function persist(iterable $messages): void
     {
         $this->lastCommit = [];
 

@@ -18,7 +18,7 @@ class ReplayMessagesTest extends TestCase
     public function replaying_multiple_pages(): void
     {
         $messageRepository = new InMemoryMessageRepository();
-        $messageRepository->persist(
+        $messageRepository->persist([
             new Message(new EventStub('1')),
             new Message(new EventStub('2')),
             new Message(new EventStub('3')),
@@ -29,7 +29,7 @@ class ReplayMessagesTest extends TestCase
             new Message(new EventStub('8')),
             new Message(new EventStub('9')),
             new Message(new EventStub('10')),
-        );
+        ]);
 
         $replayer = new ReplayMessages(
             $messageRepository,

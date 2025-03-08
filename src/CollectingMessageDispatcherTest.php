@@ -15,11 +15,11 @@ class CollectingMessageDispatcherTest extends TestCase
     {
         $dispatcher = new CollectingMessageDispatcher();
 
-        $dispatcher->dispatch(
+        $dispatcher->dispatch([
             new Message(new EventStub('what')),
             new Message(new EventStub('is')),
             new Message(new EventStub('up')),
-        );
+        ]);
 
         $this->assertEquals(
             [
@@ -38,11 +38,11 @@ class CollectingMessageDispatcherTest extends TestCase
     {
         $dispatcher = new CollectingMessageDispatcher();
 
-        $dispatcher->dispatch(
+        $dispatcher->dispatch([
             new Message(new EventStub('what')),
             new Message(new EventStub('is')),
             new Message(new EventStub('up')),
-        );
+        ]);
 
         $this->assertEquals(
             [

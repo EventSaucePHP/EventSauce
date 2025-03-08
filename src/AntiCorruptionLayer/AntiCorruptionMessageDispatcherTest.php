@@ -36,7 +36,7 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
         $dispatcher = $this->messageDispatcher();
         $messages = array_map(fn (object $o) => new Message($o), $incoming);
 
-        $dispatcher->dispatch(...$messages);
+        $dispatcher->dispatch($messages);
         $dispatchedEvents = $this->dispatchedPayloads();
 
         $this->assertEquals($expected, $dispatchedEvents);
@@ -62,7 +62,7 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
         $dispatcher = $this->messageDispatcher();
         $messages = array_map(fn (object $o) => new Message($o), $incoming);
 
-        $dispatcher->dispatch(...$messages);
+        $dispatcher->dispatch($messages);
         $dispatchedEvents = $this->dispatchedPayloads();
 
         $this->assertEquals($expected, $dispatchedEvents);
@@ -80,7 +80,7 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
         $dispatcher = $this->messageDispatcher();
         $messages = array_map(fn (object $o) => new Message($o), $incoming);
 
-        $dispatcher->dispatch(...$messages);
+        $dispatcher->dispatch($messages);
         $dispatchedEvents = $this->dispatchedPayloads();
 
         $this->assertEquals($expected, $dispatchedEvents);
@@ -105,7 +105,7 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
         $dispatcher = $this->messageDispatcher();
         $messages = array_map(fn (object $o) => new Message($o), $incoming);
 
-        $dispatcher->dispatch(...$messages);
+        $dispatcher->dispatch($messages);
         $dispatchedEvents = $this->dispatchedPayloads();
 
         $this->assertEquals($expected, $dispatchedEvents);
@@ -132,7 +132,7 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
         $dispatcher = $this->messageDispatcher();
         $messages = array_map(fn (object $o) => new Message($o), $incoming);
 
-        $dispatcher->dispatch(...$messages);
+        $dispatcher->dispatch($messages);
         $dispatchedEvents = $this->dispatchedPayloads();
 
         $this->assertEquals($expected, $dispatchedEvents);

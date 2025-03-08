@@ -16,10 +16,10 @@ class MessageDispatcherChain implements MessageDispatcher
         $this->dispatchers = $dispatchers;
     }
 
-    public function dispatch(Message ...$messages): void
+    public function dispatch(iterable|Message $messages): void
     {
         foreach ($this->dispatchers as $dispatcher) {
-            $dispatcher->dispatch(...$messages);
+            $dispatcher->dispatch($messages);
         }
     }
 }
