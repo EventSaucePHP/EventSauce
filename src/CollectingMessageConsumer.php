@@ -21,6 +21,9 @@ class CollectingMessageConsumer implements MessageConsumer
         return $this->collectedMessages;
     }
 
+    /**
+     * @return object[]
+     */
     public function collectedPayloads(): array
     {
         return array_map(fn (Message $message) => $message->payload(), $this->collectedMessages);
