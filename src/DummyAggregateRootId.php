@@ -9,8 +9,12 @@ namespace EventSauce\EventSourcing;
  */
 final class DummyAggregateRootId implements AggregateRootId
 {
+    /** @var non-empty-string */
     private string $identifier;
 
+    /**
+     * @param non-empty-string $identifier
+     */
     public function __construct(string $identifier)
     {
         $this->identifier = $identifier;
