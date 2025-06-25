@@ -3,6 +3,13 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.7.0 - 2025-06-25
+
+### Fixed
+
+- Stricter typing for aggregate root IDs, only non-empty strings
+- More useful generics for aggregate root ID types
+
 ## 3.6.2 - 2025-03-16
 
 ### Fixed
