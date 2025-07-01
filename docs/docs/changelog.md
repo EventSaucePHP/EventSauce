@@ -3,6 +3,12 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.7.1 - 2025-07-01
+
+### Fixed
+
+- Add default to generic message type
+
 ## 3.7.0 - 2025-06-25
 
 ### Fixed
