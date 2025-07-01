@@ -8,7 +8,7 @@ use DateTimeImmutable;
 use RuntimeException;
 
 /**
- * @template TId of AggregateRootId
+ * @template TId of AggregateRootId = AggregateRootId
  */
 final class Message
 {
