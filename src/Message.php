@@ -8,16 +8,29 @@ use DateTimeImmutable;
 use RuntimeException;
 
 /**
+ * @template TPayload of object = object
  * @template TId of AggregateRootId = AggregateRootId
+ *
+ * @phpstan-type HeadersShape array<non-empty-string, int|string|array<mixed>|AggregateRootId|null|bool|float>
  */
 final class Message
 {
     public const TIME_OF_RECORDING_FORMAT = 'Y-m-d H:i:s.uO';
 
+    /**
+     * @param TPayload $payload
+     * @param HeadersShape $headers
+     */
     public function __construct(private object $payload, private array $headers = [])
     {
     }
 
+    /**
+     * @param non-empty-string $key
+     * @param int|string|array<mixed>|AggregateRootId|null|bool|float $value
+     *
+     * @return Message<TPayload, TId>
+     */
     public function withHeader(string $key, int|string|array|AggregateRootId|null|bool|float $value): Message
     {
         $clone = clone $this;
@@ -26,6 +39,11 @@ final class Message
         return $clone;
     }
 
+    /**
+     * @param HeadersShape $headers
+     *
+     * @return Message<TPayload, TId>
+     */
     public function withHeaders(array $headers): Message
     {
         $clone = clone $this;
@@ -34,6 +52,11 @@ final class Message
         return $clone;
     }
 
+    /**
+     * @param non-empty-string $format
+     *
+     * @return Message<TPayload, TId>
+     */
     public function withTimeOfRecording(
         DateTimeImmutable $timeOfRecording,
         string $format = self::TIME_OF_RECORDING_FORMAT
@@ -85,16 +108,27 @@ final class Message
         return $timeOfRecording;
     }
 
+    /**
+     * @param non-empty-string $key
+     *
+     * @return int|string|array<mixed>|AggregateRootId|null|bool|float
+     */
     public function header(string $key): int|string|array|AggregateRootId|null|bool|float
     {
         return $this->headers[$key] ?? null;
     }
 
+    /**
+     * @return HeadersShape
+     */
     public function headers(): array
     {
         return $this->headers;
     }
 
+    /**
+     * @return TPayload
+     */
     public function payload(): object
     {
         return $this->payload;
@@ -102,6 +136,8 @@ final class Message
 
     /**
      * @deprecated use ->payload instead
+     * 
+     * @return TPayload
      */
     public function event(): object
     {
