@@ -49,14 +49,14 @@ trait AggregateRootWithAggregates
     private function registerAggregate(?EventSourcedAggregate $aggregate): void
     {
         if ($aggregate instanceof EventSourcedAggregate) {
-            $this->aggregatesInsideRoot()->attach($aggregate);
+            $this->aggregatesInsideRoot()->offsetSet($aggregate);
         }
     }
 
     private function unregisterAggregate(?EventSourcedAggregate $aggregate): void
     {
         if ($aggregate instanceof EventSourcedAggregate) {
-            $this->aggregatesInsideRoot()->detach($aggregate);
+            $this->aggregatesInsideRoot()->offsetUnset($aggregate);
         }
     }
 
