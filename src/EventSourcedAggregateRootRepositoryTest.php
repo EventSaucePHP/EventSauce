@@ -7,6 +7,7 @@ namespace EventSauce\EventSourcing;
 use EventSauce\EventSourcing\TestUtilities\TestingAggregates\DummyAggregate;
 use PHPUnit\Framework\TestCase;
 
+use Ramsey\Uuid\Uuid;
 use function iterator_to_array;
 
 class EventSourcedAggregateRootRepositoryTest extends TestCase
@@ -55,5 +56,27 @@ class EventSourcedAggregateRootRepositoryTest extends TestCase
         self::assertEquals($expectedAggregateRootType, $messages[0]->aggregateRootType());
         self::assertEquals($expectedAggregateRootType, $messages[1]->aggregateRootType());
         self::assertEquals($expectedAggregateRootType, $messages[2]->aggregateRootType());
+    }
+
+    /**
+     * @test
+     */
+    public function event_ids_are_added_to_messages(): void
+    {
+        $messageRepository = new InMemoryMessageRepository();
+        $repository = new EventSourcedAggregateRootRepository(DummyAggregate::class, $messageRepository);
+        /** @var DummyAggregate $aggregate */
+        $aggregateRootId = DummyAggregateRootId::generate();
+        $aggregate = $repository->retrieve($aggregateRootId);
+        $aggregate->increment();
+        $aggregate->increment();
+        $aggregate->increment();
+        $repository->persist($aggregate);
+
+        /** @var Message[] $messages */
+        $messages = iterator_to_array($messageRepository->retrieveAll($aggregateRootId));
+        self::assertTrue(Uuid::isValid($messages[0]->header(Header::EVENT_ID)));
+        self::assertTrue(Uuid::isValid($messages[1]->header(Header::EVENT_ID)));
+        self::assertTrue(Uuid::isValid($messages[2]->header(Header::EVENT_ID)));
     }
 }

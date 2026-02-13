@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace EventSauce\EventSourcing;
 
 use Generator;
+use Ramsey\Uuid\Uuid;
 use Throwable;
 
 use function assert;
@@ -98,7 +99,10 @@ class EventSourcedAggregateRootRepository implements AggregateRootRepository
         $messages = array_map(function (object $event) use ($metadata, &$aggregateRootVersion) {
             return $this->decorator->decorate(new Message(
                 $event,
-                $metadata + [Header::AGGREGATE_ROOT_VERSION => ++$aggregateRootVersion]
+                $metadata + [
+                    Header::AGGREGATE_ROOT_VERSION => ++$aggregateRootVersion,
+                    Header::EVENT_ID => Uuid::uuid4()->toString(),
+                ],
             ));
         }, $events);
 
