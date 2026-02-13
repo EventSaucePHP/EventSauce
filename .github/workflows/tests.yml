@@ -15,7 +15,7 @@ jobs:
       matrix:
         php: [8.0, 8.1, 8.2, 8.3, 8.4, 8.5]
         composer-flags: [ '' ]
-        stability: ['prefer-lowest', 'prefer-stable']
+        stability: ['prefer-stable']
         experimental: [false]
 
     name: PHP ${{ matrix.php }} - ${{ matrix.stability }}
