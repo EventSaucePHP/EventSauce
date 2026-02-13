@@ -3,6 +3,14 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.8.1 - 2026-02-13
+
+### Fixed
+
+### Added
+
+- Added a UUID V7 event ID generator
+
 ## 3.7.1 - 2025-07-01
 
 ### Fixed
