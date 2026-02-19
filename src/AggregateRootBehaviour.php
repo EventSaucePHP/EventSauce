@@ -48,10 +48,12 @@ trait AggregateRootBehaviour
         return $this->aggregateRootVersion;
     }
 
-    protected function recordThat(object $event): void
+    protected function recordThat(object ...$events): void
     {
-        $this->apply($event);
-        $this->recordedEvents[] = $event;
+        foreach ($events as $event) {
+            $this->apply($event);
+            $this->recordedEvents[] = $event;
+        }
     }
 
     /**

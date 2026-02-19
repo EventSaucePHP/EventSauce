@@ -10,6 +10,8 @@ use EventSauce\EventSourcing\DummyAggregateRootId;
 
 /**
  * @testAsset
+ *
+ * @implements AggregateRoot<DummyAggregateRootId>
  */
 final class DummyAggregate implements AggregateRoot
 {

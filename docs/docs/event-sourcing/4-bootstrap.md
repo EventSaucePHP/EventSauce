@@ -1,6 +1,5 @@
 ---
 permalink: /docs/event-sourcing/bootstrap/
-redirect_from: /docs/getting-started/bootstrap/
 title: Bootstrap
 alternate_title: Bootstrapping EventSauce
 ---
