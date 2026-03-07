@@ -3,9 +3,11 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
-## 3.8.1 - 2026-02-13
+## 3.8.1 - 2026-03-07
 
 ### Fixed
+
+- ACL; do not forward to inner dispatcher if no messages are left to forward
 
 ### Added
 
