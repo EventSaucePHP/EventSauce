@@ -42,6 +42,8 @@ class AntiCorruptionMessageDispatcher implements MessageDispatcher
             $forwarded[] = $message;
         }
 
-        $this->dispatcher->dispatch(...$forwarded);
+        if (count($forwarded) > 0) {
+            $this->dispatcher->dispatch(...$forwarded);
+        }
     }
 }

@@ -122,15 +122,39 @@ class AntiCorruptionMessageDispatcherTest extends TestCase
 
     /**
      * @test
+     */
+    public function not_forwarding_any_message(): void
+    {
+        $this->beforeFilter = new class implements MessageFilter
+        {
+            public function allows(Message $message): bool
+            {
+                return false;
+            }
+        };
+
+        $dispatcher = $this->messageDispatcher();
+        $dispatcher->dispatch(
+            new Message(new StubPublicEvent('yes')),
+            new Message(new StubPrivateEvent('yes')),
+            new Message(new StubPublicEvent('no')),
+            new Message(new StubPrivateEvent('no')),
+        );
+
+        $this->assertCount(0, $this->dispatchedPayloads());
+    }
+
+    /**
+     * @test
      * @dataProvider dpTranslateFromPrivateToPublic
      */
     public function transformation_private_to_public(
         array $incoming,
         array $expected,
-    ): void {
+    ): void{
         $this->translator = new StubTranslatePrivateToPublic();
         $dispatcher = $this->messageDispatcher();
-        $messages = array_map(fn (object $o) => new Message($o), $incoming);
+        $messages = array_map(fn(object $o) => new Message($o), $incoming);
 
         $dispatcher->dispatch(...$messages);
         $dispatchedEvents = $this->dispatchedPayloads();
