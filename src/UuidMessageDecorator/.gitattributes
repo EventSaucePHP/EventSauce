@@ -1,4 +1,5 @@
 * text=auto
 
+.github export-ignore
 .gitattributes export-ignore
 **/*Test.php export-ignore

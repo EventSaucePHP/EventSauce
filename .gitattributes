@@ -6,6 +6,7 @@
 /.gitattributes export-ignore
 /.gitignore export-ignore
 /.scrutinizer.yml export-ignore
+/config.subsplit-publish.json export-ignore
 /run-tests.sh export-ignore
 /phpstan.neon export-ignore
 /phpunit.xml.dist export-ignore
