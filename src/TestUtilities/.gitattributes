@@ -1,4 +1,7 @@
 * text=auto
 
+.github export-ignore
 TestingAggregates export-ignore
+TestingAntiCorruptionLayers export-ignore
 TestingMessageConsumers export-ignore
+.gitattributes export-ignore
