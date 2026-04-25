@@ -1,1 +1,1 @@
-> The changelog can be viewed at [eventsauce.io/docs/changelog](https://eventsauce.io/docs/changelog/)
+./docs/docs/changelog.md

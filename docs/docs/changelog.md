@@ -3,6 +3,10 @@ permalink: /docs/changelog/
 title: Changelog
 ---
 
+## 3.9.0 - 2026-04-25
+
+- Allow PHPUnit 13 for test tooling
+
 ## 3.8.1 - 2026-03-07
 
 ### Fixed
