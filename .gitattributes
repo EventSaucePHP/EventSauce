@@ -22,3 +22,4 @@
 /**/Dummy*.php export-ignore
 /docs export-ignore
 /**/*Tests export-ignore
+/CHANGELOG.md export-ignore
