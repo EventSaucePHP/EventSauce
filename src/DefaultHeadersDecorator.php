@@ -12,8 +12,10 @@ class DefaultHeadersDecorator implements MessageDecorator
 {
     private ClassNameInflector $inflector;
     private Clock|ClockInterface $clock;
+    /** @var non-empty-string */
     private string $timeOfRecordingFormat;
 
+    /** @param non-empty-string $timeOfRecordingFormat */
     public function __construct(
         ?ClassNameInflector $inflector = null,
         null|Clock|ClockInterface $clock = null,
