@@ -8,6 +8,9 @@ use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\Shoppin
 use EventSauce\EventSourcing\LibraryConsumptionTests\ShoppingCartExample\ShoppingCartId;
 use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 
+/**
+ * @extends AggregateRootTestCase<ShoppingCartId, ShoppingCart>
+ */
 abstract class ShoppingCartTestCase extends AggregateRootTestCase
 {
     protected function newAggregateRootId(): ShoppingCartId
@@ -22,7 +25,6 @@ abstract class ShoppingCartTestCase extends AggregateRootTestCase
 
     public function handle(Closure $closure): void
     {
-        /** @var ShoppingCart $aggregate */
         $aggregate = $this->repository->retrieve($this->aggregateRootId);
         $closure($aggregate);
         $this->repository->persist($aggregate);

@@ -8,7 +8,7 @@ use EventSauce\EventSourcing\AggregateRootId;
 use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 
 /**
- * @method LightSwitchId aggregateRootId()
+ * @extends AggregateRootTestCase<LightSwitchId, LightSwitch>
  */
 class LightSwitchTest extends AggregateRootTestCase
 {
@@ -68,7 +68,6 @@ class LightSwitchTest extends AggregateRootTestCase
             return;
         }
 
-        /** @var LightSwitch $lightSwitch */
         $lightSwitch = $this->retrieveAggregateRoot($command->id());
 
         if ($command instanceof TurnLightOn) {

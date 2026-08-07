@@ -15,6 +15,9 @@ use EventSauce\EventSourcing\Snapshotting\InMemorySnapshotRepository;
 use EventSauce\EventSourcing\Snapshotting\Snapshot;
 use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 
+/**
+ * @extends AggregateRootTestCase<LightSwitchId, LightSwitch>
+ */
 class AggregateSnapshottingTest extends AggregateRootTestCase
 {
     protected InMemorySnapshotRepository $snapshotRepository;

@@ -16,7 +16,7 @@ use LogicException;
 use PHPUnit\Framework\ExpectationFailedException;
 
 /**
- * @method DummyAggregateRootId aggregateRootId()
+ * @extends AggregateRootTestCase<DummyAggregateRootId, DummyAggregate>
  */
 class ExampleAggregateRootTest extends AggregateRootTestCase
 {
