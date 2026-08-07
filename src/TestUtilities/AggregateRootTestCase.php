@@ -41,6 +41,9 @@ use function method_exists;
 use function sprintf;
 
 /**
+ * @template AggregateRootIdType of AggregateRootId
+ * @template AggregateRootType of AggregateRoot<AggregateRootIdType>
+ *
  * @method handle(...$arguments)
  */
 abstract class AggregateRootTestCase extends TestCase
@@ -51,7 +54,7 @@ abstract class AggregateRootTestCase extends TestCase
     protected $messageRepository;
 
     /**
-     * @phpstan-var AggregateRootRepository<AggregateRoot>
+     * @phpstan-var AggregateRootRepository<AggregateRootType>
      */
     protected AggregateRootRepository $repository;
 
@@ -81,7 +84,7 @@ abstract class AggregateRootTestCase extends TestCase
     private $assertedScenario = false;
 
     /**
-     * @var AggregateRootId
+     * @var AggregateRootIdType
      */
     protected $aggregateRootId;
 
@@ -109,11 +112,17 @@ abstract class AggregateRootTestCase extends TestCase
         $this->caughtException = null;
     }
 
+    /**
+     * @return AggregateRootType
+     */
     protected function retrieveAggregateRoot(AggregateRootId $id): object
     {
         return $this->repository->retrieve($id);
     }
 
+    /**
+     * @param AggregateRootType $aggregateRoot
+     */
     protected function persistAggregateRoot(AggregateRoot $aggregateRoot): void
     {
         $this->repository->persist($aggregateRoot);
@@ -142,15 +151,21 @@ abstract class AggregateRootTestCase extends TestCase
         }
     }
 
+    /**
+     * @return AggregateRootIdType
+     */
     protected function aggregateRootId(): AggregateRootId
     {
         return $this->aggregateRootId;
     }
 
+    /**
+     * @return AggregateRootIdType
+     */
     abstract protected function newAggregateRootId(): AggregateRootId;
 
     /**
-     * @phpstan-return class-string<AggregateRoot>
+     * @phpstan-return class-string<AggregateRootType>
      */
     abstract protected function aggregateRootClassName(): string;
 

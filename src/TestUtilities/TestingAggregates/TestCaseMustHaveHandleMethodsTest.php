@@ -10,7 +10,7 @@ use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 use LogicException;
 
 /**
- * @method DummyAggregateRootId aggregateRootId()
+ * @extends AggregateRootTestCase<DummyAggregateRootId, DummyAggregate>
  */
 class TestCaseMustHaveHandleMethodsTest extends AggregateRootTestCase
 {

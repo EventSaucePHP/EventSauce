@@ -9,7 +9,7 @@ use EventSauce\EventSourcing\DummyAggregateRootId;
 use EventSauce\EventSourcing\TestUtilities\AggregateRootTestCase;
 
 /**
- * @method DummyAggregateRootId aggregateRootId()
+ * @extends AggregateRootTestCase<DummyAggregateRootId, AggregateRootWithDelegatedBehavior>
  */
 class AggregateRootWithDelegatedBehaviorTest extends AggregateRootTestCase
 {
